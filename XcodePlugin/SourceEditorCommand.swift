@@ -23,10 +23,15 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
             print(error)
             self.finish(with: error, handler: completionHandler)
         } as! MockGeneratorXPCProtocol
-        proxy.test() { string in
-            print(String(describing: string))
-            self.finish(with: nil, handler: completionHandler)
-        }
+        proxy.generateMock(fromFileContents: invocation.buffer.completeBuffer, projectURL: Preferences().projectPath!, reply: { (result, error) in
+            DispatchQueue.main.async {
+                print("\(String(describing: result)) \(String(describing: error))")
+                if let result = result {
+                    invocation.buffer.completeBuffer = result.joined(separator: "\n")
+                }
+                self.finish(with: error, handler: completionHandler)
+            }
+        })
     }
     
     private func finish(with error: Error?, handler: (Error?) -> ()) {

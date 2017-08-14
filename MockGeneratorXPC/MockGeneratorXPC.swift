@@ -10,105 +10,71 @@ import Foundation
 import SourceKittenFramework
 
 @objc class MockGeneratorXPC: NSObject, MockGeneratorXPCProtocol {
-    func test(_ completion: ((String?) -> Void)!) {
-        message = ""
-        printProtocol()
-        completion(message)
-    }
     
     var message = ""
-    let dir = "/Users/sean/source/temp/SourceKitTest/SourceKitTest"
-    var protocolPath: String { return dir + "/Protocol.swift" }
-    var path: String { return dir + "/MockProtocol.swift" }
-    let args: [String] = [
-//        "-module-name",
-//        "Test",
-        "-Onone",// Will this improve performance?
-//        "-DDEBUG",
-        "-sdk",
-        "/Applications/Xcode-8.3.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk",
-//        "-target",
-//        "x86_64-apple-macosx10.12",
-//        "-g",
-//        "-module-cache-path",
-//        "/Users/sean/Library/Developer/Xcode/DerivedData/ModuleCache",
-//        "-Xfrontend",
-//        "-serialize-debugging-options",
-//        "-enable-testing",
-//        "-Xcc",
-//        "-I",
-//        "-Xcc",
-//        "/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Products/Debug",
-//        "-I",
-//        "/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Products/Debug",
-//        "-Xcc",
-//        "-F",
-//        "-Xcc",
-//        "/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Products/Debug",
-//        "-F",
-//        "/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Products/Debug",
-//        "-c",
-        "-j4",
-        "/Users/sean/source/temp/SourceKitTest/Test/ViewController.swift",
-        "/Users/sean/source/temp/SourceKitTest/SourceKitTest/MockProtocol.swift",
-        "/Users/sean/source/temp/SourceKitTest/Test/AppDelegate.swift",
-        "/Users/sean/source/temp/SourceKitTest/SourceKitTest/Protocol.swift",
-//        "-emit-module",
-//        "-emit-module-path",
-//        "/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Intermediates/SourceKitTest.build/Debug/Test.build/Objects-normal/x86_64/Test.swiftmodule",
-//        "-Xcc",
-//        "-I/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Intermediates/SourceKitTest.build/Debug/Test.build/swift-overrides.hmap",
-//        "-Xcc",
-//        "-iquote",
-//        "-Xcc",
-//        "/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Intermediates/SourceKitTest.build/Debug/Test.build/Test-generated-files.hmap",
-//        "-Xcc",
-//        "-I/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Intermediates/SourceKitTest.build/Debug/Test.build/Test-own-target-headers.hmap",
-//        "-Xcc",
-//        "-I/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Intermediates/SourceKitTest.build/Debug/Test.build/Test-all-target-headers.hmap",
-//        "-Xcc",
-//        "-iquote",
-//        "-Xcc",
-//        "/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Intermediates/SourceKitTest.build/Debug/Test.build/Test-project-headers.hmap",
-//        "-Xcc",
-//        "-I/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Products/Debug/include",
-//        "-Xcc",
-//        "-ISourceKitTest/lib/SourceKittenFramework.framework",
-//        "-Xcc",
-//        "-I/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Intermediates/SourceKitTest.build/Debug/Test.build/DerivedSources/x86_64",
-//        "-Xcc",
-//        "-I/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Intermediates/SourceKitTest.build/Debug/Test.build/DerivedSources",
-//        "-Xcc",
-//        "-DDEBUG=1",
-//        "-emit-objc-header",
-//        "-emit-objc-header-path",
-//        "/Users/sean/Library/Developer/Xcode/DerivedData/SourceKitTest-azlyrlpainvikkgvxsaikyagdvrg/Build/Intermediates/SourceKitTest.build/Debug/Test.build/Objects-normal/x86_64/Test-Swift.h",
-//        "-Xcc",
-//        "-working-directory/Users/sean/source/temp/SourceKitTest"
-    ]
+    var args: [String]!
+    var lines = [String]()
+    var error = ""
+    
+    func generateMock(fromFileContents contents: String, projectURL: URL, reply: @escaping ([String]?, Error?) -> Void) {
+        
+        let files = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
+        args = [
+            "-Onone",
+            "-sdk",
+            "/Applications/Xcode-8.3.2.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk",
+            "-enable-testing",
+            "-j4",
+            ] + files.map { projectURL.appendingPathComponent($0).absoluteString }
+        message = ""
+        error = ""
+        lines = []
+        printProtocol()
+        args.append(message)
+        var nsError: Error?
+        if !error.isEmpty {
+            nsError = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: error])
+        }
+        reply(lines, nsError)
+    }
     
     func print(_ message: String) {
         self.message += message + "\n"
     }
     
     func printProtocol() {
-        let result = Request.cursorInfo(file: "/Users/sean/source/temp/SourceKitTest/SourceKitTest/MockProtocol.swift", offset: 186, arguments: args)
+        let result = Request.cursorInfo(file: "/Users/sean/source/plugins/xcodeTestProject/MockSimpleProtocol.swift", offset: 61, arguments: args)
             .send()
-        let filepath = result["key.filepath"] as! String
+        guard let filepath = result["key.filepath"] as? String else {
+            error = "key.filepath not found \(result)"
+            return;
+        }
         let structure = Structure(file: File(path: filepath)!).dictionary
         let protocols = findProtocols(structure)
         protocols.forEach { p in
+            lines.append("@testable import MockTestProject")
+            lines.append("")
+            lines.append("class MockSimpleProtocol: SimpleProtocol {")
+            lines.append("")
             let methods = findMethods(p)
             methods.forEach { m in
                 print("method: \(getName(m))")
-                findParameters(m).forEach { p in
-                    print("parameter: \(getName(p)): \(getType(p))")
-                    let offset = getParameterTypeOffset(p)
-                    let parameterResult = Request.cursorInfo(file: filepath, offset: offset, arguments: args)
-                        .send()
-                    print("Resolved:" + (parameterResult["key.name"] as! String))
-                }
+                let name = getName(m)
+                let invokedName = "invoked" + name.capitalized
+                lines.append("    var \(invokedName) = false")
+                lines.append("")
+                lines.append("    func \(name)() {")
+                lines.append("        \(invokedName) = true")
+                lines.append("    }")
+//                findParameters(m).forEach { p in
+//                    print("parameter: \(getName(p)): \(getType(p))")
+//                    let offset = getParameterTypeOffset(p)
+//                    let parameterResult = Request.cursorInfo(file: filepath, offset: offset, arguments: args)
+//                        .send()
+//                    print("Resolved:" + (parameterResult["key.name"] as! String))
+//                }
             }
+            lines.append("}")
         }
     }
     
@@ -134,7 +100,7 @@ import SourceKittenFramework
     }
     
     private func getName(_ any: [String: SourceKitRepresentable]) -> String {
-        return (any["key.name"] as? String) ?? "unknown"
+        return (any["key.name"] as? String)?.replacingOccurrences(of: "()", with: "") ?? "unknown"
     }
     
     private func getType(_ any: [String: SourceKitRepresentable]) -> String {
