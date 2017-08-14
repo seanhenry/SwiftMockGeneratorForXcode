@@ -27,6 +27,9 @@
 		14CA2DA61F4006A900900937 /* SWXMLHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14CA2DA71F4006A900900937 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; };
 		14CA2DA81F4006A900900937 /* Yams.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14CA2DAC1F41349500900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
+		14CA2DAD1F41351200900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
+		14CA2DDD1F41391E00900937 /* SourceFileFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DDC1F41391E00900937 /* SourceFileFinder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +110,8 @@
 		14CA2D981F4003EA00900937 /* Yams.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yams.framework; path = lib/Yams.framework; sourceTree = "<group>"; };
 		14CA2D9C1F40049700900937 /* MockGeneratorXPC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MockGeneratorXPC-Bridging-Header.h"; sourceTree = "<group>"; };
 		14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGeneratorXPC.swift; sourceTree = "<group>"; };
+		14CA2DAB1F41349500900937 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preferences.swift; path = Shared/Preferences.swift; sourceTree = "<group>"; };
+		14CA2DDC1F41391E00900937 /* SourceFileFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceFileFinder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +149,7 @@
 		14CA2D4A1F40007000900937 = {
 			isa = PBXGroup;
 			children = (
+				14CA2DAA1F41348100900937 /* Shared */,
 				14CA2D551F40007000900937 /* MockGenerator */,
 				14CA2D6D1F40009000900937 /* XcodePlugin */,
 				14CA2D811F4000AB00900937 /* MockGeneratorXPC */,
@@ -214,8 +220,17 @@
 				14CA2D881F4000AB00900937 /* Info.plist */,
 				14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */,
 				14CA2D9C1F40049700900937 /* MockGeneratorXPC-Bridging-Header.h */,
+				14CA2DDC1F41391E00900937 /* SourceFileFinder.swift */,
 			);
 			path = MockGeneratorXPC;
+			sourceTree = "<group>";
+		};
+		14CA2DAA1F41348100900937 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				14CA2DAB1F41349500900937 /* Preferences.swift */,
+			);
+			name = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +307,9 @@
 						DevelopmentTeam = HU45578K6L;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
 							com.apple.Sandbox = {
 								enabled = 1;
 							};
@@ -301,6 +319,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = HU45578K6L;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
+						};
 					};
 					14CA2D7F1F4000AB00900937 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -363,6 +386,7 @@
 			files = (
 				14CA2D591F40007000900937 /* ViewController.swift in Sources */,
 				14CA2D571F40007000900937 /* AppDelegate.swift in Sources */,
+				14CA2DAC1F41349500900937 /* Preferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +396,7 @@
 			files = (
 				14CA2D711F40009000900937 /* SourceEditorExtension.swift in Sources */,
 				14CA2D731F40009000900937 /* SourceEditorCommand.swift in Sources */,
+				14CA2DAD1F41351200900937 /* Preferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +406,7 @@
 			files = (
 				14CA2D871F4000AB00900937 /* main.m in Sources */,
 				14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */,
+				14CA2DDD1F41391E00900937 /* SourceFileFinder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +673,7 @@
 				14CA2D641F40007000900937 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		14CA2D781F40009000900937 /* Build configuration list for PBXNativeTarget "XcodePlugin" */ = {
 			isa = XCConfigurationList;
@@ -655,6 +682,7 @@
 				14CA2D7A1F40009000900937 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		14CA2D8C1F4000AB00900937 /* Build configuration list for PBXNativeTarget "MockGeneratorXPC" */ = {
 			isa = XCConfigurationList;
@@ -663,6 +691,7 @@
 				14CA2D8E1F4000AB00900937 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

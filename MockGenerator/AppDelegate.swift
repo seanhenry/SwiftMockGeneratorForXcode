@@ -11,9 +11,8 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        Preferences().projectPath = URL(string: "/Users/sean/source/plugins/xcodeTestProject")!
         // Insert code here to initialize your application
     }
 
