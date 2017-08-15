@@ -1,0 +1,52 @@
+import XCTest
+
+class CaretTestHelper {
+
+    class func findCaretOffset(_ contents: String) -> (contents: String, offset: Int?) {
+        var contents = contents
+        if let range = contents.range(of: "<caret>") {
+            contents.removeSubrange(range)
+            return (contents, contents.distance(from: contents.startIndex, to: range.lowerBound))
+        }
+        return (contents, nil)
+    }
+}
+
+class CaretTestHelperTests: XCTestCase {
+
+    // MARK: - findCaretOffset
+
+    func test_findCaretOffset_shouldReturnNil_forEmptyString() {
+        XCTAssertNil(CaretTestHelper.findCaretOffset("").offset)
+        XCTAssertEqual(CaretTestHelper.findCaretOffset("").contents, "")
+    }
+
+    func test_findCaretOffset_shouldReturnPosition_forCaretOnlyContents() {
+        let string = "<caret>"
+        XCTAssertEqual(CaretTestHelper.findCaretOffset(string).offset, 0)
+        XCTAssertEqual(CaretTestHelper.findCaretOffset(string).contents, "")
+    }
+
+    func test_findCaretOffset_shouldReturnPosition_forCaretAtBeginning() {
+        let string = "<caret>class A {}"
+        XCTAssertEqual(CaretTestHelper.findCaretOffset(string).offset, 0)
+        XCTAssertEqual(CaretTestHelper.findCaretOffset(string).contents, "class A {}")
+    }
+
+    func test_findCaretOffset_shouldReturnPosition_forCaretAtEnd() {
+        let string = "class A {}<caret>"
+        XCTAssertEqual(CaretTestHelper.findCaretOffset(string).offset, 10)
+        XCTAssertEqual(CaretTestHelper.findCaretOffset(string).contents, "class A {}")
+    }
+
+    func test_findCaretOffset_shouldReturnPosition_forCaretOnNewLine() {
+        let string = "class A {" + "\n" +
+            "  <caret>" + "\n" +
+            "}"
+        let expected = "class A {" + "\n" +
+            "  " + "\n" +
+            "}"
+        XCTAssertEqual(CaretTestHelper.findCaretOffset(string).offset, 12)
+        XCTAssertEqual(CaretTestHelper.findCaretOffset(string).contents, expected)
+    }
+}
