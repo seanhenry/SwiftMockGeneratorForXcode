@@ -16,7 +16,7 @@ import SourceKittenFramework
     var lines = [String]()
     var error = ""
     
-    func generateMock(fromFileContents contents: String, projectURL: URL, reply: @escaping ([String]?, Error?) -> Void) {
+    func generateMock(fromFileContents contents: String, projectURL: URL, withReply reply: @escaping ([String]?, Error?) -> Void) {
         
         let files = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
         args = [
