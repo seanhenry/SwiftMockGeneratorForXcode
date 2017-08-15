@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+input = ARGV[0]
+out_file = File.dirname(__FILE__) + "swift_out.scratch"
+contents = IO.read(input)
+output = contents
+  .gsub(/"/, '\"')
+  .gsub(/\n/, "\" + \"\\n\" +\n")
+  .gsub(/^(.)/, '"\1')
+File.write(out_file, output)

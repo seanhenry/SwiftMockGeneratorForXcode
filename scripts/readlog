@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+input = ARGV[0]
+out_file = File.dirname(__FILE__) + "log_out.scratch"
+contents = IO.read(input)
+output = contents.gsub(/\\n/, "\n").gsub(/\\"/, "\"")
+File.write(out_file, output)
