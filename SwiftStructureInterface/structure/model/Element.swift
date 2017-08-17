@@ -5,4 +5,6 @@ protocol Element {
 //    var scope: String? { get } // accessibility
 //    var parent: Element? { get }
     var children: [Element] { get }
+
+    func accept(_ visitor: ElementVisitor)
 }

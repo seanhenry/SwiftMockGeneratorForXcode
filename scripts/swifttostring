@@ -5,5 +5,5 @@ contents = IO.read(input)
 output = contents
   .gsub(/"/, '\"')
   .gsub(/\n/, "\" + \"\\n\" +\n")
-  .gsub(/^(.)/, '"\1')
+  .gsub(/^(.)/, '"\1') + '"'
 File.write(out_file, output)

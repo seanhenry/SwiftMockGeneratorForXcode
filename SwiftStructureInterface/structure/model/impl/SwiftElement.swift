@@ -1,16 +1,20 @@
 import SourceKittenFramework
 
-class SwiftElement: Element {
+class SwiftElement: Element, PositionedElement {
 
+    let name: String
     let children: [Element]
-    private var data: [String: SourceKitRepresentable]
+    let offset: Int64
+    let length: Int64
 
-    init(data: [String: SourceKitRepresentable], children: [Element] = []) {
-        self.data = data
+    init(name: String, children: [Element], offset: Int64, length: Int64) {
+        self.name = name
         self.children = children
+        self.offset = offset
+        self.length = length
     }
 
-    var name: String {
-        return data["key.name"] as? String ?? ""
+    func accept(_ visitor: ElementVisitor) {
+        visitor.visit(self)
     }
 }
