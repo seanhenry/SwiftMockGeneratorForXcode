@@ -25,4 +25,16 @@ class MockElementVisitor: ElementVisitor {
         invokedVisitSwiftTypeElementParameters = (element, ())
         invokedVisitSwiftTypeElementParametersList.append((element, ()))
     }
+
+    var invokedVisitSwiftFile = false
+    var invokedVisitSwiftFileCount = 0
+    var invokedVisitSwiftFileParameters: (element: SwiftFile, Void)?
+    var invokedVisitSwiftFileParametersList = [(element: SwiftFile, Void)]()
+
+    func visit(_ element: SwiftFile) {
+        invokedVisitSwiftFile = true
+        invokedVisitSwiftFileCount += 1
+        invokedVisitSwiftFileParameters = (element, ())
+        invokedVisitSwiftFileParametersList.append((element, ()))
+    }
 }

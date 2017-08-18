@@ -4,7 +4,7 @@ import SourceKittenFramework
 
 class CaretUtilTests: XCTestCase {
 
-    typealias ElementAndOffset = (element: Element, offset: Int)
+    typealias ElementAndOffset = (element: Element, offset: Int64)
 
     var util: CaretUtil!
 
@@ -104,7 +104,7 @@ class CaretUtilTests: XCTestCase {
 
     private func build(_ string: String) -> Element {
         let data = Structure(file: File(contents: string)).dictionary
-        return StructureBuilder(data: data).build()!
+        return StructureBuilder(data: data, text: string).build()
     }
 
     private func getClassString() -> String {

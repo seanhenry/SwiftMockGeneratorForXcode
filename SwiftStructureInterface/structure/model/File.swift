@@ -1,0 +1,2 @@
+protocol File: class, Element {
+}

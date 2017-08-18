@@ -2,11 +2,11 @@ import XCTest
 
 class CaretTestHelper {
 
-    class func findCaretOffset(_ contents: String) -> (contents: String, offset: Int?) {
+    class func findCaretOffset(_ contents: String) -> (contents: String, offset: Int64?) {
         var contents = contents
         if let range = contents.range(of: "<caret>") {
             contents.removeSubrange(range)
-            return (contents, contents.distance(from: contents.startIndex, to: range.lowerBound))
+            return (contents, Int64(contents.distance(from: contents.startIndex, to: range.lowerBound)))
         }
         return (contents, nil)
     }

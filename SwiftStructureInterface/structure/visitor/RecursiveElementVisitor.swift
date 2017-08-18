@@ -14,4 +14,8 @@ class RecursiveElementVisitor: ElementVisitor {
     func visit(_ element: SwiftTypeElement) {
         visitor.visit(element)
     }
+
+    func visit(_ element: SwiftFile) {
+        visitor.visit(element)
+    }
 }
