@@ -41,6 +41,10 @@ class RecursiveElementVisitorTests: XCTestCase {
 
         XCTAssertEqual(getInvokedSwiftFileCount(), 1)
         XCTAssert(getInvokedSwiftFile(at: 0) === file)
+
+        XCTAssertEqual(getInvokedSwiftMethodElementCount(), 2)
+        XCTAssert(getInvokedSwiftMethodElement(at: 0) === innerMethod)
+        XCTAssert(getInvokedSwiftMethodElement(at: 1) === method)
     }
 
     // MARK: - Helpers
@@ -57,16 +61,24 @@ class RecursiveElementVisitorTests: XCTestCase {
         return mockInnerVisitor.invokedVisitSwiftFileParametersList[index].element
     }
 
+    private func getInvokedSwiftMethodElement(at index: Int) -> SwiftMethodElement {
+        return mockInnerVisitor.invokedVisitSwiftMethodElementParametersList[index].element
+    }
+
     private func getInvokedSwiftElementCount() -> Int {
-        return mockInnerVisitor.invokedVisitSwiftElementParametersList.count
+        return mockInnerVisitor.invokedVisitSwiftElementCount
     }
 
     private func getInvokedSwiftTypeElementCount() -> Int {
-        return mockInnerVisitor.invokedVisitSwiftTypeElementParametersList.count
+        return mockInnerVisitor.invokedVisitSwiftTypeElementCount
     }
 
     private func getInvokedSwiftFileCount() -> Int {
-        return mockInnerVisitor.invokedVisitSwiftFileParametersList.count
+        return mockInnerVisitor.invokedVisitSwiftFileCount
+    }
+
+    private func getInvokedSwiftMethodElementCount() -> Int {
+        return mockInnerVisitor.invokedVisitSwiftMethodElementCount
     }
 
     private func getClassFile() -> Element {

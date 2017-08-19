@@ -32,6 +32,11 @@ class StructureBuilder {
         case "source.lang.swift.decl.protocol",
              "source.lang.swift.decl.class":
             return buildSwiftTypeElement()
+        case "source.lang.swift.decl.function.method.instance",
+             "source.lang.swift.decl.function.method.static",
+             "source.lang.swift.decl.function.method.class",
+             "source.lang.swift.decl.function.free":
+            return buildSwiftMethodElement()
         default:
             return buildSwiftElement()
         }
@@ -53,6 +58,13 @@ class StructureBuilder {
         let length = getLength()
         let text = getText(offset: offset, length: length)
         return SwiftTypeElement(name: getName(), text: text, children: buildChildren(), inheritedTypes: getInheritedTypes(), offset: offset, length: length, bodyOffset: getBodyOffset(), bodyLength: getBodyLength())
+    }
+
+    private func buildSwiftMethodElement() -> SwiftMethodElement {
+        let offset = getOffset()
+        let length = getLength()
+        let text = getText(offset: offset, length: length)
+        return SwiftMethodElement(name: getName(), text: text, children: buildChildren(), offset: offset, length: length)//, bodyOffset: getBodyOffset(), bodyLength: getBodyLength())
     }
 
     private func buildChildren() -> [Element] {

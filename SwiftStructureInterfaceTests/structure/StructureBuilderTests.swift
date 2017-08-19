@@ -138,6 +138,23 @@ class StructureBuilderTests: XCTestCase {
         _ = StructureBuilder(data: getNestedClass(), text: "").build() // should not crash
     }
 
+    func test_build_shouldDetectMethods() {
+        let file = StructureBuilder(data: getMethodsExample(), text: getMethodsExampleString()).build()
+        let protocolType = file.children[0] as! SwiftTypeElement
+        let protocolMethod = protocolType.children[0] as? SwiftMethodElement
+        XCTAssertEqual(protocolMethod?.name, "protocolMethod")
+        let classType = file.children[1] as! SwiftTypeElement
+        let instanceMethod = classType.children[0] as? SwiftMethodElement
+        XCTAssertEqual(instanceMethod?.name, "method")
+        let nestedMethod = instanceMethod?.children[0] as? SwiftMethodElement
+        XCTAssertEqual(nestedMethod?.name, "nestedMethod")
+        let classMethod = classType.children[1] as? SwiftMethodElement
+        XCTAssertEqual(classMethod?.name, "classMethod")
+        let staticMethod = classType.children[2] as? SwiftMethodElement
+        XCTAssertEqual(staticMethod?.name, "staticMethod")
+//        let secondType = file.children[1] as! SwiftTypeElement
+    }
+
     // MARK: - Helpers
 
     private func getProtocol() -> [String: SourceKitRepresentable] {
@@ -277,5 +294,27 @@ class StructureBuilderTests: XCTestCase {
         return "protocol ProtocolA {}" + "\n" +
             "" + "\n" +
             "class ClassA: ProtocolA {}"
+    }
+
+    private func getMethodsExample() -> [String: SourceKitRepresentable] {
+        let classDeclaration = getMethodsExampleString()
+        return Structure(file: File(contents: classDeclaration))
+            .dictionary
+    }
+
+    private func getMethodsExampleString() -> String {
+        return "protocol TestProtocol {" + "\n" +
+            "  func protocolMethod()" + "\n" +
+            "}" + "\n" +
+            "" + "\n" +
+            "class TestClass {" + "\n" +
+            "  func method() {" + "\n" +
+            "    func nestedMethod() {}" + "\n" +
+            "  }" + "\n" +
+            "  class func classMethod() {}" + "\n" +
+            "  static func staticMethod() {}" + "\n" +
+            "}" + "\n" +
+            "" + "\n" +
+            "func globalMethod() {}"
     }
 }

@@ -27,5 +27,8 @@ class CaretUtil {
 
         func visit(_ element: SwiftFile) {
         }
+
+        func visit(_ element: SwiftMethodElement) {
+        }
     }
 }

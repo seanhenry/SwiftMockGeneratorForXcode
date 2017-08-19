@@ -32,5 +32,8 @@ class SwiftFile: SwiftElement, File {
 
         func visit(_ element: SwiftFile) {
         }
+
+        func visit(_ element: SwiftMethodElement) {
+        }
     }
 }

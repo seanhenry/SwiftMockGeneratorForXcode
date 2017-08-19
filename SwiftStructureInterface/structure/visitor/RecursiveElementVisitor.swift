@@ -18,4 +18,8 @@ class RecursiveElementVisitor: ElementVisitor {
     func visit(_ element: SwiftFile) {
         visitor.visit(element)
     }
+
+    func visit(_ element: SwiftMethodElement) {
+        visitor.visit(element)
+    }
 }
