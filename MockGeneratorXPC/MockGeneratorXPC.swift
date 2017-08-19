@@ -32,9 +32,10 @@ import SourceKittenFramework
             self.reply(with: "No inheritedType", reply: reply)
             return
         }
-        let resolved = ResolveUtil().resolve(inheritedType)
-        if let resolved = resolved {
-            self.reply(with: "\(inheritedType.name) element resolved: \(resolved.name) at: \(inheritedType.offset)", reply: reply)
+        if let resolved = ResolveUtil().resolve(inheritedType) {
+            let visitor = MethodGatheringVisitor()
+            resolved.accept(RecursiveElementVisitor(visitor: visitor))
+            buildMock(methodNames: visitor.methodNames, reply: reply)
         } else {
             self.reply(with: "\(inheritedType.name) element not found at: \(inheritedType.offset)", reply: reply)
         }
@@ -43,5 +44,18 @@ import SourceKittenFramework
     private func reply(with message: String, reply: ([String]?, Error?) -> Void) {
         let nsError = NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey : message])
         reply(nil, nsError)
+    }
+    
+    private func buildMock(methodNames: [String], reply: ([String]?, Error?) -> Void) {
+        var lines = [String]()
+        for name in methodNames {
+            lines.append("var invoked\(name.capitalized) = false")
+            lines.append("var invoked\(name.capitalized)Count = 0")
+            lines.append("func \(name)() {")
+            lines.append("invoked\(name.capitalized) = true")
+            lines.append("invoked\(name.capitalized)Count += 1")
+            lines.append("}")
+        }
+        reply(lines, nil)
     }
 }
