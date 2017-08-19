@@ -28,8 +28,9 @@ class ResolveUtilTests: XCTestCase {
         let structure = Structure(file: swiftFile)
         let element = StructureBuilder(data: structure.dictionary, text: swiftFile.contents).build()
         let reference = (element.children[0] as! SwiftTypeElement).inheritedTypes[0]
-        XCTAssertEqual(util.resolve(reference)?.name, "ResolvedProtocol")
-        XCTAssertEqual(util.resolve(reference)?.children[0].name, "method")
+        let resolved = util.resolve(reference)
+        XCTAssertEqual(resolved?.name, "ResolveTest")
+        XCTAssertEqual(resolved?.children[0].name, "method")
     }
 
     // MARK: - Helpers
@@ -42,11 +43,11 @@ class ResolveUtilTests: XCTestCase {
     }
 
     private func getResolveClassString() -> String {
-        return "class ResolveTest: ResolvedProtocol { }"
+        return "class MockResolveTest: ResolveTest { }"
     }
 
     private func getResolvedProtocolString() -> String {
-        return "protocol ResolvedProtocol { " + "\n" +
+        return "protocol ResolveTest { " + "\n" +
             "" + "\n" +
             "  func method() {}" + "/n" +
             "}"

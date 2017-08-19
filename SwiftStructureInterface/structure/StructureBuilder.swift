@@ -116,13 +116,16 @@ class StructureBuilder {
 
     private func getInheritedTypesTextOffsets(typesTextStrings: [String], declarationText: String) -> [(offset: Int64, length: Int64)] {
         return typesTextStrings.map { type in
-            let range = declarationText.range(of: type)!
-            return (getOffset() + Int64(declarationText.distance(from: declarationText.startIndex, to: range.lowerBound)), Int64(declarationText.distance(from: range.lowerBound, to: range.upperBound)))
+            let splitDeclaration = self.splitDeclaration(declarationText)
+            let classPart = splitDeclaration[0] + ":"
+            let inheritedPart = splitDeclaration[1]
+            let range = inheritedPart.range(of: type)!
+            return (getOffset() + Int64(classPart.characters.count) + Int64(declarationText.distance(from: inheritedPart.startIndex, to: range.lowerBound)), Int64(inheritedPart.distance(from: range.lowerBound, to: range.upperBound)))
         }
     }
 
     private func getInheritedTypesStrings(declarationText: String) -> [String] {
-        let inheritedTypesString = declarationText.components(separatedBy: CharacterSet(charactersIn: ":{"))
+        let inheritedTypesString = splitDeclaration(declarationText)
         var typesTextStrings = [String]()
         if inheritedTypesString.count > 1 {
             typesTextStrings = inheritedTypesString[1]
@@ -130,6 +133,10 @@ class StructureBuilder {
                 .components(separatedBy: ",")
         }
         return typesTextStrings
+    }
+
+    private func splitDeclaration(_ declarationText: String) -> [String] {
+        return declarationText.components(separatedBy: CharacterSet(charactersIn: ":{"))
     }
 
     private func getDeclarationText() -> String {
@@ -140,8 +147,8 @@ class StructureBuilder {
     }
 
     private func getStatementEndOffset() -> Int64 {
-        var bodyOffset = getBodyOffset()
-        if bodyOffset == -1 {
+        var bodyOffset = getBodyOffset() - 1
+        if bodyOffset < 0 {
             bodyOffset = getLength()
         }
         return bodyOffset

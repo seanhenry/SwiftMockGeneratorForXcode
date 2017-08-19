@@ -94,6 +94,18 @@ class StructureBuilderTests: XCTestCase {
 
     func test_build_shouldBuildWithNoInheritedTypes() {
         let file = StructureBuilder(data: getNoInheritedTypesExample(), text: getNoInheritedTypesExampleString()).build()
+        let element = file.children[0] as! SwiftTypeElement
+        XCTAssert(element.inheritedTypes.isEmpty)
+    }
+
+    func test_build_shouldNotConfusePartiallyMatchingStringsInClassNameAndInheritedTypes() {
+        let file = StructureBuilder(data: getRealisticNameExample(), text: getRealisticNameExampleString()).build()
+        let element = file.children[0] as! SwiftTypeElement
+        let inheritedType = element.inheritedTypes[0]
+        XCTAssertEqual(element.name, "MockProtocol")
+        XCTAssertEqual(inheritedType.name, "Protocol")
+        XCTAssertEqual(inheritedType.offset, 20)
+        XCTAssertEqual(inheritedType.length, 8)
     }
 
     // MARK: - Helpers
@@ -196,6 +208,18 @@ class StructureBuilderTests: XCTestCase {
 
     private func getNoInheritedTypesExampleString() -> String {
         return "protocol Protocol {" + "\n" +
+            "" + "\n" +
+            "}"
+    }
+
+    private func getRealisticNameExample() -> [String: SourceKitRepresentable] {
+        let classDeclaration = getRealisticNameExampleString()
+        return Structure(file: File(contents: classDeclaration))
+            .dictionary
+    }
+
+    private func getRealisticNameExampleString() -> String {
+        return "class MockProtocol: Protocol {" + "\n" +
             "" + "\n" +
             "}"
     }

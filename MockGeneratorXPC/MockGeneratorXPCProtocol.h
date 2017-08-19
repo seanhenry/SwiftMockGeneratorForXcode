@@ -11,7 +11,7 @@
 // The protocol that this service will vend as its API. This header file will also need to be visible to the process hosting the service.
 @protocol MockGeneratorXPCProtocol
 
-- (void)generateMockFromFileContents:(nonnull NSString *)contents projectURL:(nonnull NSURL *)projectURL withReply:(nonnull void(^)(NSArray<NSString *> * _Nullable, NSError * _Nullable))reply;
+- (void)generateMockFromFileContents:(nonnull NSString *)contents projectURL:(nonnull NSURL *)projectURL line:(NSInteger)line column:(NSInteger)column withReply:(nonnull void(^)(NSArray<NSString *> * _Nullable, NSError * _Nullable))reply;
     
 @end
 

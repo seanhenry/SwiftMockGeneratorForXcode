@@ -23,7 +23,8 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
             print(error)
             self.finish(with: error, handler: completionHandler)
         } as! MockGeneratorXPCProtocol
-        proxy.generateMock(fromFileContents: invocation.buffer.completeBuffer, projectURL: Preferences().projectPath!, withReply: { (result, error) in
+        let range = invocation.buffer.selections.object(at: 0) as! XCSourceTextRange
+        proxy.generateMock(fromFileContents: invocation.buffer.completeBuffer, projectURL: Preferences().projectPath!, line: range.start.line, column: range.start.column, withReply: { (result, error) in
             DispatchQueue.main.async {
                 print("\(String(describing: result)) \(String(describing: error))")
                 if let result = result {

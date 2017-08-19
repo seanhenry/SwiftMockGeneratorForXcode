@@ -13,7 +13,7 @@ class SourceFileFinder {
         var files = [String]()
         while let file = enumerator?.nextObject() as? String {
             if file.hasSuffix(".swift") {
-                files.append(file)
+                files.append(projectRoot.absoluteString + "/" + file)
             }
         }
         return files
