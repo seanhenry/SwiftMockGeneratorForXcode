@@ -108,6 +108,36 @@ class StructureBuilderTests: XCTestCase {
         XCTAssertEqual(inheritedType.length, 8)
     }
 
+    func test_build_shouldFindInheritedTypesOnNewlines() {
+        let file = StructureBuilder(data: getNewlineTypesExample(), text: getNewlineTypesExampleString()).build()
+        let element = file.children[0] as! SwiftTypeElement
+        let inheritedType = element.inheritedTypes[0]
+        let inheritedType2 = element.inheritedTypes[1]
+        XCTAssertEqual(element.name, "AClass")
+        XCTAssertEqual(inheritedType.name, "ProtocolA")
+        XCTAssertEqual(inheritedType.offset, 14)
+        XCTAssertEqual(inheritedType.length, 9)
+        XCTAssertEqual(inheritedType2.name, "Prot")
+        XCTAssertEqual(inheritedType2.offset, 26)
+        XCTAssertEqual(inheritedType2.length, 4)
+    }
+
+    func test_build_shouldFindMultipleTypesInBaseOfFile() {
+        let file = StructureBuilder(data: getMultipleTypeExample(), text: getMultipleTypeExampleString()).build()
+        let firstType = file.children[0] as! SwiftTypeElement
+        XCTAssertEqual(firstType.name, "ProtocolA")
+        let secondType = file.children[1] as! SwiftTypeElement
+        let inheritedType = secondType.inheritedTypes[0]
+        XCTAssertEqual(secondType.name, "ClassA")
+        XCTAssertEqual(inheritedType.name, "ProtocolA")
+        XCTAssertEqual(inheritedType.offset, 37)
+        XCTAssertEqual(inheritedType.length, 9)
+    }
+
+    func test_build_shouldNotCrash_whenStringIsSmallerThanTheDataProvided() {
+        _ = StructureBuilder(data: getNestedClass(), text: "").build() // should not crash
+    }
+
     // MARK: - Helpers
 
     private func getProtocol() -> [String: SourceKitRepresentable] {
@@ -222,5 +252,30 @@ class StructureBuilderTests: XCTestCase {
         return "class MockProtocol: Protocol {" + "\n" +
             "" + "\n" +
             "}"
+    }
+
+    private func getNewlineTypesExample() -> [String: SourceKitRepresentable] {
+        let classDeclaration = getNewlineTypesExampleString()
+        return Structure(file: File(contents: classDeclaration))
+            .dictionary
+    }
+
+    private func getNewlineTypesExampleString() -> String {
+        return "class AClass: ProtocolA ," + "\n" +
+            "Prot" + "\n" +
+            "{" + "\n" +
+            "}"
+    }
+
+    private func getMultipleTypeExample() -> [String: SourceKitRepresentable] {
+        let classDeclaration = getMultipleTypeExampleString()
+        return Structure(file: File(contents: classDeclaration))
+            .dictionary
+    }
+
+    private func getMultipleTypeExampleString() -> String {
+        return "protocol ProtocolA {}" + "\n" +
+            "" + "\n" +
+            "class ClassA: ProtocolA {}"
     }
 }

@@ -62,7 +62,8 @@ class StructureBuilder {
     }
 
     private func getText(offset: Int64, length: Int64) -> String {
-        if offset < 0 || length < 0 {
+        let lastTextIndex = Int64(text.characters.count)
+        if offset < 0 || length < 0 || lastTextIndex < offset + length {
             return ""
         }
         let start = text.index(text.startIndex, offsetBy: Int(offset))
@@ -101,7 +102,7 @@ class StructureBuilder {
         guard let typeData = data["key.inheritedtypes"] as? [[String: SourceKitRepresentable]] else { return [] }
         let declarationText = getDeclarationText()
         let typesTextStrings = getInheritedTypesStrings(declarationText: declarationText)
-        let offsetAndLengths = getInheritedTypesTextOffsets(typesTextStrings: typesTextStrings, declarationText: declarationText)
+        let offsetAndLengths = getInheritedTypesTextOffsets(typeTexts: typesTextStrings, declarationText: declarationText)
         return augmentAndBuildInheritedTypes(offsetAndLengths: offsetAndLengths, typeData: typeData)
     }
 
@@ -114,13 +115,24 @@ class StructureBuilder {
         }
     }
 
-    private func getInheritedTypesTextOffsets(typesTextStrings: [String], declarationText: String) -> [(offset: Int64, length: Int64)] {
-        return typesTextStrings.map { type in
-            let splitDeclaration = self.splitDeclaration(declarationText)
-            let classPart = splitDeclaration[0] + ":"
-            let inheritedPart = splitDeclaration[1]
+    private func getInheritedTypesTextOffsets(typeTexts: [String], declarationText: String) -> [(offset: Int64, length: Int64)] {
+        let splitDeclaration = self.splitDeclaration(declarationText)
+        guard splitDeclaration.count > 1 else { return [] }
+        let classPart = splitDeclaration[0] + ":"
+        let inheritedTypeNames = splitDeclaration[1].components(separatedBy: ",").map { $0 + "," }
+        return getOffsets(fromTypes: typeTexts, typeNames: inheritedTypeNames, typeClauseOffset: classPart.characters.count, in: declarationText)
+
+    }
+
+    private func getOffsets(fromTypes typeTexts: [String], typeNames: [String], typeClauseOffset: Int, in declarationText: String) -> [(offset: Int64, length: Int64)] {
+        var runningOffset = getOffset() + Int64(typeClauseOffset)
+        return typeTexts.enumerated().map { i, type in
+            let inheritedPart = typeNames[i]
+            defer { runningOffset += Int64(inheritedPart.characters.count) }
             let range = inheritedPart.range(of: type)!
-            return (getOffset() + Int64(classPart.characters.count) + Int64(declarationText.distance(from: inheritedPart.startIndex, to: range.lowerBound)), Int64(inheritedPart.distance(from: range.lowerBound, to: range.upperBound)))
+            let startOffset = Int64(declarationText.distance(from: inheritedPart.startIndex, to: range.lowerBound))
+            let length = Int64(inheritedPart.distance(from: range.lowerBound, to: range.upperBound))
+            return (runningOffset + startOffset, length)
         }
     }
 
@@ -130,6 +142,7 @@ class StructureBuilder {
         if inheritedTypesString.count > 1 {
             typesTextStrings = inheritedTypesString[1]
                 .replacingOccurrences(of: " ", with: "")
+                .replacingOccurrences(of: "\n", with: "")
                 .components(separatedBy: ",")
         }
         return typesTextStrings
