@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1410E0961F4F75E90075503B /* SourceKittenFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1410E0971F4F75E90075503B /* SWXMLHash.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1410E0981F4F75E90075503B /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1410E09A1F4F76040075503B /* SourceKittenFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1410E09B1F4F76040075503B /* SWXMLHash.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1410E09C1F4F76040075503B /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1410E09D1F4F76420075503B /* SwiftStructureInterface.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1410E09E1F4F76550075503B /* SwiftStructureInterface.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14276C6A1F4F312E00EA7753 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
 		14276C6F1F4F312E00EA7753 /* MockGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */; };
 		14276C711F4F312E00EA7753 /* MockGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 14276C631F4F312E00EA7753 /* MockGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -158,6 +166,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		1410E0951F4F75DB0075503B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1410E09D1F4F76420075503B /* SwiftStructureInterface.framework in CopyFiles */,
+				1410E0961F4F75E90075503B /* SourceKittenFramework.framework in CopyFiles */,
+				1410E0971F4F75E90075503B /* SWXMLHash.framework in CopyFiles */,
+				1410E0981F4F75E90075503B /* Yams.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1410E0991F4F75FB0075503B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1410E09E1F4F76550075503B /* SwiftStructureInterface.framework in CopyFiles */,
+				1410E09A1F4F76040075503B /* SourceKittenFramework.framework in CopyFiles */,
+				1410E09B1F4F76040075503B /* SWXMLHash.framework in CopyFiles */,
+				1410E09C1F4F76040075503B /* Yams.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14276C911F4F37D500EA7753 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -667,6 +701,7 @@
 				14276C5D1F4F312E00EA7753 /* Frameworks */,
 				14276C5E1F4F312E00EA7753 /* Headers */,
 				14276C5F1F4F312E00EA7753 /* Resources */,
+				1410E0951F4F75DB0075503B /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -685,6 +720,7 @@
 				14276C651F4F312E00EA7753 /* Sources */,
 				14276C661F4F312E00EA7753 /* Frameworks */,
 				14276C671F4F312E00EA7753 /* Resources */,
+				1410E0991F4F75FB0075503B /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -813,7 +849,6 @@
 					14276C681F4F312E00EA7753 = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 14CA2D521F40007000900937;
 					};
 					14A81E261F436941001A6221 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -1152,12 +1187,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MockGeneratorApp.app/Contents/MacOS/MockGeneratorApp";
 			};
 			name = Debug;
 		};
@@ -1166,12 +1204,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MockGeneratorApp.app/Contents/MacOS/MockGeneratorApp";
 			};
 			name = Release;
 		};

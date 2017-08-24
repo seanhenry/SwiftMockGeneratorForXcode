@@ -1,36 +1,37 @@
-//
-//  MockGeneratorTests.swift
-//  MockGeneratorTests
-//
-//  Created by Sean Henry on 24/08/2017.
-//  Copyright © 2017 Sean Henry. All rights reserved.
-//
-
 import XCTest
 @testable import MockGenerator
 
 class MockGeneratorTests: XCTestCase {
     
+    let testProject = "/Users/sean/source/plugins/community/MockGenerator/testData/TestProject"
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_simpleMock() {
+        let (mock, expected) = readMock(named: "SimpleProtocolMock")
+        let result = CaretTestHelper.findCaretLineColumn(mock)
+        let (lines, error) = Generator.generateMock(fromFileContents: result.contents, projectURL: URL(fileURLWithPath: testProject), line: result.lineColumn!.line, column: result.lineColumn!.column)
+        XCTAssertNil(error)
+        XCTAssertEqual(join(lines), expected)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+    // MARK: - Helpers
     
+    private func readMock(named: String) -> (String, String) {
+        let mock = try! String(contentsOfFile: testProject + "/" + named + ".swift")
+        let expected = try! String(contentsOfFile: testProject + "/" + named + "_expected.swift")
+        return (mock, expected)
+    }
+
+    private func join(_ lines: [String]?) -> String {
+        guard let lines = lines else { return "lines were nil" }
+        return lines.joined(separator: "\n")
+    }
 }
