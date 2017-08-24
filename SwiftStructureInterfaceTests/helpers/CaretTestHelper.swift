@@ -1,4 +1,5 @@
 import XCTest
+@testable import SwiftStructureInterface
 
 class CaretTestHelper {
 
@@ -9,6 +10,11 @@ class CaretTestHelper {
             return (contents, Int64(contents.distance(from: contents.startIndex, to: range.lowerBound)))
         }
         return (contents, nil)
+    }
+
+    class func findCaretLineColumn(_ contents: String) -> (contents: String, lineColumn: (line: Int, column: Int)?) {
+        let contentsOffset = findCaretOffset(contents)
+        return (contentsOffset.contents, LocationConverter.convert(caretOffset: contentsOffset.offset ?? -1, in: contents))
     }
 }
 
@@ -48,5 +54,19 @@ class CaretTestHelperTests: XCTestCase {
             "}"
         XCTAssertEqual(CaretTestHelper.findCaretOffset(string).offset, 12)
         XCTAssertEqual(CaretTestHelper.findCaretOffset(string).contents, expected)
+    }
+
+    // MARK: - findCaretLineColumn
+
+    func test_findCaretLineColumn_shouldReturnLineAndColumnConvertedFromOffset() {
+        let string = "class A {" + "\n" +
+            "  <caret>" + "\n" +
+            "}"
+        let expected = "class A {" + "\n" +
+            "  " + "\n" +
+            "}"
+        XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).lineColumn?.line, 1)
+        XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).lineColumn?.column, 2)
+        XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).contents, expected)
     }
 }
