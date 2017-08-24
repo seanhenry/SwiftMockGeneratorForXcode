@@ -1,11 +1,13 @@
 class LocationConverter {
 
     class func convert(line: Int, column: Int, in string: String) -> Int64? {
-        let lines = string.components(separatedBy: .newlines)
+        var lines = string.components(separatedBy: .newlines)
+        lines = lines.enumerated()
+            .map { addNewlinesExceptLast(i: $0, string: $1, lineCount: lines.count) }
         if line < 0 || lines.count <= line || column < 0 {
             return nil
         }
-        let characterCount = lines[0..<line].reduce(0, addCharactersAndNewline)
+        let characterCount = lines[0..<line].reduce(0, addCharacters)
         if column < lines[line].characters.count {
             return characterCount + Int64(column)
         }
@@ -32,8 +34,14 @@ class LocationConverter {
         return (lineCounter, remainingOffset)
     }
 
-    private class func addCharactersAndNewline(count: Int64, string: String) -> Int64 {
-        let newlineCount: Int64 = 1
-        return count + Int64(string.characters.count) + newlineCount
+    private class func addCharacters(count: Int64, string: String) -> Int64 {
+        return count + Int64(string.characters.count)
+    }
+    
+    private class func addNewlinesExceptLast(i: Int, string: String, lineCount: Int) -> String {
+        if i == lineCount - 1 {
+            return string
+        }
+        return string + "\n"
     }
 }

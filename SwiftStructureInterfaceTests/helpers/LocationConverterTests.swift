@@ -27,6 +27,7 @@ class LocationConverterTests: XCTestCase {
 
     func test_convert_shouldCountNewlinesAndConvertToOffset() {
         XCTAssertEqual(LocationConverter.convert(line: 1, column: 0, in: "012345\n012345"), 7)
+        XCTAssertEqual(LocationConverter.convert(line: 0, column: 6, in: "012345\n012345"), 6)
         XCTAssertEqual(LocationConverter.convert(line: 1, column: 5, in: "0123\n012345"), 10)
     }
 

@@ -30,8 +30,8 @@ class MockGeneratorTests: XCTestCase {
         return (mock, expected)
     }
 
-    private func join(_ lines: [String]?) -> String {
-        guard let lines = lines else { return "lines were nil" }
+    private func join(_ lines: [String]?) -> String? {
+        guard let lines = lines else { return nil }
         return lines.joined(separator: "\n")
     }
 }
