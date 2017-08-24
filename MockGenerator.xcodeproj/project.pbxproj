@@ -37,12 +37,6 @@
 		14CA2D9A1F4003EA00900937 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; };
 		14CA2D9B1F4003EA00900937 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; };
 		14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */; };
-		14CA2DA31F4006A900900937 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; };
-		14CA2DA41F4006A900900937 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14CA2DA51F4006A900900937 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; };
-		14CA2DA61F4006A900900937 /* SWXMLHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14CA2DA71F4006A900900937 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; };
-		14CA2DA81F4006A900900937 /* Yams.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14CA2DAC1F41349500900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
 		14CA2DAD1F41351200900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
 		14CA2DDD1F41391E00900937 /* SourceFileFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DDC1F41391E00900937 /* SourceFileFinder.swift */; };
@@ -154,19 +148,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		14CA2DA91F4006A900900937 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				14CA2DA81F4006A900900937 /* Yams.framework in Embed Frameworks */,
-				14CA2DA61F4006A900900937 /* SWXMLHash.framework in Embed Frameworks */,
-				14CA2DA41F4006A900900937 /* SourceKittenFramework.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -176,7 +157,7 @@
 		14A81E2F1F436941001A6221 /* SwiftStructureInterfaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftStructureInterfaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A81E361F436941001A6221 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14A81E481F4369A1001A6221 /* SSI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSI.swift; sourceTree = "<group>"; };
-		14CA2D531F40007000900937 /* MockGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14CA2D531F40007000900937 /* MockGeneratorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockGeneratorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CA2D561F40007000900937 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14CA2D581F40007000900937 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		14CA2D5A1F40007000900937 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -192,7 +173,7 @@
 		14CA2D821F4000AB00900937 /* MockGeneratorXPCProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockGeneratorXPCProtocol.h; sourceTree = "<group>"; };
 		14CA2D861F4000AB00900937 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		14CA2D881F4000AB00900937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14CA2D941F4000D000900937 /* MockGenerator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MockGenerator.entitlements; sourceTree = "<group>"; };
+		14CA2D941F4000D000900937 /* MockGeneratorApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MockGeneratorApp.entitlements; sourceTree = "<group>"; };
 		14CA2D951F40012100900937 /* XcodePlugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XcodePlugin-Bridging-Header.h"; sourceTree = "<group>"; };
 		14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceKittenFramework.framework; path = lib/SourceKittenFramework.framework; sourceTree = "<group>"; };
 		14CA2D971F4003EA00900937 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWXMLHash.framework; path = lib/SWXMLHash.framework; sourceTree = "<group>"; };
@@ -261,9 +242,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14CA2DA71F4006A900900937 /* Yams.framework in Frameworks */,
-				14CA2DA51F4006A900900937 /* SWXMLHash.framework in Frameworks */,
-				14CA2DA31F4006A900900937 /* SourceKittenFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				14CA2DAA1F41348100900937 /* Shared */,
-				14CA2D551F40007000900937 /* MockGenerator */,
+				14CA2D551F40007000900937 /* MockGeneratorApp */,
 				14CA2D6D1F40009000900937 /* XcodePlugin */,
 				14CA2D811F4000AB00900937 /* MockGeneratorXPC */,
 				14A81E281F436941001A6221 /* SwiftStructureInterface */,
@@ -329,7 +307,7 @@
 		14CA2D541F40007000900937 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				14CA2D531F40007000900937 /* MockGenerator.app */,
+				14CA2D531F40007000900937 /* MockGeneratorApp.app */,
 				14CA2D691F40008F00900937 /* XcodePlugin.appex */,
 				14CA2D801F4000AB00900937 /* MockGeneratorXPC.xpc */,
 				14A81E271F436941001A6221 /* SwiftStructureInterface.framework */,
@@ -338,17 +316,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		14CA2D551F40007000900937 /* MockGenerator */ = {
+		14CA2D551F40007000900937 /* MockGeneratorApp */ = {
 			isa = PBXGroup;
 			children = (
-				14CA2D941F4000D000900937 /* MockGenerator.entitlements */,
+				14CA2D941F4000D000900937 /* MockGeneratorApp.entitlements */,
 				14CA2D561F40007000900937 /* AppDelegate.swift */,
 				14CA2D581F40007000900937 /* ViewController.swift */,
 				14CA2D5A1F40007000900937 /* Assets.xcassets */,
 				14CA2D5C1F40007000900937 /* Main.storyboard */,
 				14CA2D5F1F40007000900937 /* Info.plist */,
 			);
-			path = MockGenerator;
+			name = MockGeneratorApp;
+			path = MockGeneratorApp;
 			sourceTree = "<group>";
 		};
 		14CA2D6A1F40008F00900937 /* Frameworks */ = {
@@ -586,24 +565,23 @@
 			productReference = 14A81E2F1F436941001A6221 /* SwiftStructureInterfaceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		14CA2D521F40007000900937 /* MockGenerator */ = {
+		14CA2D521F40007000900937 /* MockGeneratorApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 14CA2D621F40007000900937 /* Build configuration list for PBXNativeTarget "MockGenerator" */;
+			buildConfigurationList = 14CA2D621F40007000900937 /* Build configuration list for PBXNativeTarget "MockGeneratorApp" */;
 			buildPhases = (
 				14CA2D4F1F40007000900937 /* Sources */,
 				14CA2D501F40007000900937 /* Frameworks */,
 				14CA2D511F40007000900937 /* Resources */,
 				14CA2D7B1F40009000900937 /* Embed App Extensions */,
-				14CA2DA91F4006A900900937 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				14CA2D761F40009000900937 /* PBXTargetDependency */,
 			);
-			name = MockGenerator;
-			productName = MockGenerator;
-			productReference = 14CA2D531F40007000900937 /* MockGenerator.app */;
+			name = MockGeneratorApp;
+			productName = MockGeneratorApp;
+			productReference = 14CA2D531F40007000900937 /* MockGeneratorApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		14CA2D681F40008F00900937 /* XcodePlugin */ = {
@@ -706,7 +684,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				14CA2D521F40007000900937 /* MockGenerator */,
+				14CA2D521F40007000900937 /* MockGeneratorApp */,
 				14CA2D681F40008F00900937 /* XcodePlugin */,
 				14CA2D7F1F4000AB00900937 /* MockGeneratorXPC */,
 				14A81E261F436941001A6221 /* SwiftStructureInterface */,
@@ -1055,7 +1033,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = MockGenerator/MockGenerator.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MockGeneratorApp/MockGeneratorApp.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
@@ -1063,9 +1041,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
-				INFOPLIST_FILE = MockGenerator/Info.plist;
+				INFOPLIST_FILE = MockGeneratorApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -1077,7 +1055,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = MockGenerator/MockGenerator.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MockGeneratorApp/MockGeneratorApp.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
@@ -1085,9 +1063,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
-				INFOPLIST_FILE = MockGenerator/Info.plist;
+				INFOPLIST_FILE = MockGeneratorApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -1205,7 +1183,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		14CA2D621F40007000900937 /* Build configuration list for PBXNativeTarget "MockGenerator" */ = {
+		14CA2D621F40007000900937 /* Build configuration list for PBXNativeTarget "MockGeneratorApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				14CA2D631F40007000900937 /* Debug */,
