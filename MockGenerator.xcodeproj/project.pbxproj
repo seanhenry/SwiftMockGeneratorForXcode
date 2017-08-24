@@ -63,6 +63,7 @@
 		35CDF3051C92D783E99E519D /* SourceFileFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF4695C73C787CC3952DB /* SourceFileFinder.swift */; };
 		35CDF33A981D9FC40DD8DED0 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF1DF23DA287BB89C98CE /* Element.swift */; };
 		35CDF382F399D38EF3964E34 /* StructureBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF1982CF619E9EB7EB843 /* StructureBuilderTests.swift */; };
+		35CDF456C1B2DE8521968DDA /* CaretTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF790C9B97835CC38B63 /* CaretTestHelper.swift */; };
 		35CDF481A22EB7B25F82A057 /* MockElementVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF5233283389F936081DF /* MockElementVisitor.swift */; };
 		35CDF48B7D7BDDAE0C1AF8C7 /* SwiftFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFD52CD219150135E7502 /* SwiftFile.swift */; };
 		35CDF4CEE0EF8AE2CCC8EF42 /* CaretUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF5E76D0D23D53FAA33FE /* CaretUtil.swift */; };
@@ -125,6 +126,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 14276C601F4F312E00EA7753;
 			remoteInfo = MockGenerator;
+		};
+		14276C921F4F3C3300EA7753 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14CA2D521F40007000900937;
+			remoteInfo = MockGeneratorApp;
 		};
 		14A81E311F436941001A6221 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -682,6 +690,7 @@
 			);
 			dependencies = (
 				14276C6C1F4F312E00EA7753 /* PBXTargetDependency */,
+				14276C931F4F3C3300EA7753 /* PBXTargetDependency */,
 			);
 			name = MockGeneratorTests;
 			productName = MockGeneratorTests;
@@ -804,6 +813,7 @@
 					14276C681F4F312E00EA7753 = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 14CA2D521F40007000900937;
 					};
 					14A81E261F436941001A6221 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -939,6 +949,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14276C6F1F4F312E00EA7753 /* MockGeneratorTests.swift in Sources */,
+				35CDF456C1B2DE8521968DDA /* CaretTestHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1043,6 +1054,11 @@
 			target = 14276C601F4F312E00EA7753 /* MockGenerator */;
 			targetProxy = 14276C8F1F4F37D500EA7753 /* PBXContainerItemProxy */;
 		};
+		14276C931F4F3C3300EA7753 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14CA2D521F40007000900937 /* MockGeneratorApp */;
+			targetProxy = 14276C921F4F3C3300EA7753 /* PBXContainerItemProxy */;
+		};
 		14A81E321F436941001A6221 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 14A81E261F436941001A6221 /* SwiftStructureInterface */;
@@ -1141,6 +1157,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MockGeneratorApp.app/Contents/MacOS/MockGeneratorApp";
 			};
 			name = Debug;
 		};
@@ -1154,6 +1171,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MockGeneratorApp.app/Contents/MacOS/MockGeneratorApp";
 			};
 			name = Release;
 		};

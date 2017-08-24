@@ -1,11 +1,3 @@
-//
-//  MockGeneratorXPC.swift
-//  MockGenerator
-//
-//  Created by Sean Henry on 12/08/2017.
-//  Copyright © 2017 Sean Henry. All rights reserved.
-//
-
 import Foundation
 import MockGenerator
 
