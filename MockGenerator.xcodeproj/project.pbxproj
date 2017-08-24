@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14276C6A1F4F312E00EA7753 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
+		14276C6F1F4F312E00EA7753 /* MockGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */; };
+		14276C711F4F312E00EA7753 /* MockGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 14276C631F4F312E00EA7753 /* MockGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14276C791F4F314600EA7753 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14276C781F4F314600EA7753 /* Generator.swift */; };
+		14276C7A1F4F330E00EA7753 /* SwiftStructureInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; };
+		14276C7B1F4F332100EA7753 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; };
+		14276C7E1F4F33E300EA7753 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
+		14276C811F4F340800EA7753 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; };
+		14276C821F4F340800EA7753 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; };
+		14276C831F4F37D500EA7753 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; };
+		14276C841F4F37D500EA7753 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14276C851F4F37D500EA7753 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; };
+		14276C861F4F37D500EA7753 /* SWXMLHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14276C871F4F37D500EA7753 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; };
+		14276C881F4F37D500EA7753 /* Yams.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14276C891F4F37D500EA7753 /* SwiftStructureInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; };
+		14276C8A1F4F37D500EA7753 /* SwiftStructureInterface.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14276C8D1F4F37D500EA7753 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
+		14276C8E1F4F37D500EA7753 /* MockGenerator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14A81E301F436941001A6221 /* SwiftStructureInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; };
 		14A81E371F436941001A6221 /* SwiftStructureInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A81E291F436941001A6221 /* SwiftStructureInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A81E401F436953001A6221 /* SwiftStructureInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; };
@@ -39,9 +58,9 @@
 		14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */; };
 		14CA2DAC1F41349500900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
 		14CA2DAD1F41351200900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
-		14CA2DDD1F41391E00900937 /* SourceFileFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DDC1F41391E00900937 /* SourceFileFinder.swift */; };
 		35CDF23785F8638042864254 /* ResolveUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFFE183347682F0523AEC /* ResolveUtil.swift */; };
 		35CDF26B05A866EF1D0CBA3E /* ResolveUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF67FD332DFA012E4AFD1 /* ResolveUtilTests.swift */; };
+		35CDF3051C92D783E99E519D /* SourceFileFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF4695C73C787CC3952DB /* SourceFileFinder.swift */; };
 		35CDF33A981D9FC40DD8DED0 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF1DF23DA287BB89C98CE /* Element.swift */; };
 		35CDF382F399D38EF3964E34 /* StructureBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF1982CF619E9EB7EB843 /* StructureBuilderTests.swift */; };
 		35CDF481A22EB7B25F82A057 /* MockElementVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF5233283389F936081DF /* MockElementVisitor.swift */; };
@@ -72,14 +91,42 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		14A81E311F436941001A6221 /* PBXContainerItemProxy */ = {
+		14276C6B1F4F312E00EA7753 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14276C601F4F312E00EA7753;
+			remoteInfo = MockGenerator;
+		};
+		14276C7C1F4F332A00EA7753 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 14A81E261F436941001A6221;
 			remoteInfo = SwiftStructureInterface;
 		};
-		14A81E3E1F43694E001A6221 /* PBXContainerItemProxy */ = {
+		14276C7F1F4F33E700EA7753 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14276C601F4F312E00EA7753;
+			remoteInfo = MockGenerator;
+		};
+		14276C8B1F4F37D500EA7753 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14A81E261F436941001A6221;
+			remoteInfo = SwiftStructureInterface;
+		};
+		14276C8F1F4F37D500EA7753 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14276C601F4F312E00EA7753;
+			remoteInfo = MockGenerator;
+		};
+		14A81E311F436941001A6221 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
 			proxyType = 1;
@@ -103,6 +150,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		14276C911F4F37D500EA7753 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				14276C8A1F4F37D500EA7753 /* SwiftStructureInterface.framework in Embed Frameworks */,
+				14276C881F4F37D500EA7753 /* Yams.framework in Embed Frameworks */,
+				14276C861F4F37D500EA7753 /* SWXMLHash.framework in Embed Frameworks */,
+				14276C8E1F4F37D500EA7753 /* MockGenerator.framework in Embed Frameworks */,
+				14276C841F4F37D500EA7753 /* SourceKittenFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14A81E441F43696B001A6221 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -151,6 +213,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		14276C611F4F312E00EA7753 /* MockGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MockGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14276C631F4F312E00EA7753 /* MockGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockGenerator.h; sourceTree = "<group>"; };
+		14276C641F4F312E00EA7753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14276C691F4F312E00EA7753 /* MockGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MockGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGeneratorTests.swift; sourceTree = "<group>"; };
+		14276C701F4F312E00EA7753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14276C781F4F314600EA7753 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		14A81E271F436941001A6221 /* SwiftStructureInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftStructureInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A81E291F436941001A6221 /* SwiftStructureInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftStructureInterface.h; sourceTree = "<group>"; };
 		14A81E2A1F436941001A6221 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,13 +250,13 @@
 		14CA2D9C1F40049700900937 /* MockGeneratorXPC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MockGeneratorXPC-Bridging-Header.h"; sourceTree = "<group>"; };
 		14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGeneratorXPC.swift; sourceTree = "<group>"; };
 		14CA2DAB1F41349500900937 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preferences.swift; path = Shared/Preferences.swift; sourceTree = "<group>"; };
-		14CA2DDC1F41391E00900937 /* SourceFileFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceFileFinder.swift; sourceTree = "<group>"; };
 		35CDF087FFEDD3FD8F68133F /* readlog */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text; path = readlog; sourceTree = "<group>"; };
 		35CDF14DD45E8554072A9C62 /* SwiftFileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftFileTests.swift; sourceTree = "<group>"; };
 		35CDF1979F49B7777F1BB71E /* swifttostring */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swifttostring; sourceTree = "<group>"; };
 		35CDF1982CF619E9EB7EB843 /* StructureBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructureBuilderTests.swift; sourceTree = "<group>"; };
 		35CDF1DF23DA287BB89C98CE /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		35CDF33961A5167417B7B98C /* ElementVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementVisitor.swift; sourceTree = "<group>"; };
+		35CDF4695C73C787CC3952DB /* SourceFileFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceFileFinder.swift; sourceTree = "<group>"; };
 		35CDF5233283389F936081DF /* MockElementVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockElementVisitor.swift; sourceTree = "<group>"; };
 		35CDF5690154C9A374C4AF51 /* runxcode */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text; path = runxcode; sourceTree = "<group>"; };
 		35CDF56AA2864F89BCC2B13D /* RecursiveElementVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecursiveElementVisitor.swift; sourceTree = "<group>"; };
@@ -217,6 +286,25 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		14276C5D1F4F312E00EA7753 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14276C811F4F340800EA7753 /* SWXMLHash.framework in Frameworks */,
+				14276C821F4F340800EA7753 /* Yams.framework in Frameworks */,
+				14276C7B1F4F332100EA7753 /* SourceKittenFramework.framework in Frameworks */,
+				14276C7A1F4F330E00EA7753 /* SwiftStructureInterface.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14276C661F4F312E00EA7753 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14276C6A1F4F312E00EA7753 /* MockGenerator.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14A81E231F436941001A6221 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -242,6 +330,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14276C891F4F37D500EA7753 /* SwiftStructureInterface.framework in Frameworks */,
+				14276C871F4F37D500EA7753 /* Yams.framework in Frameworks */,
+				14276C851F4F37D500EA7753 /* SWXMLHash.framework in Frameworks */,
+				14276C8D1F4F37D500EA7753 /* MockGenerator.framework in Frameworks */,
+				14276C831F4F37D500EA7753 /* SourceKittenFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +350,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14276C7E1F4F33E300EA7753 /* MockGenerator.framework in Frameworks */,
 				14A81E401F436953001A6221 /* SwiftStructureInterface.framework in Frameworks */,
 				14CA2D991F4003EA00900937 /* SourceKittenFramework.framework in Frameworks */,
 				14CA2D9A1F4003EA00900937 /* SWXMLHash.framework in Frameworks */,
@@ -267,6 +361,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14276C621F4F312E00EA7753 /* MockGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				14276C631F4F312E00EA7753 /* MockGenerator.h */,
+				14276C641F4F312E00EA7753 /* Info.plist */,
+				14276C781F4F314600EA7753 /* Generator.swift */,
+				35CDF4695C73C787CC3952DB /* SourceFileFinder.swift */,
+			);
+			path = MockGenerator;
+			sourceTree = "<group>";
+		};
+		14276C6D1F4F312E00EA7753 /* MockGeneratorTests */ = {
+			isa = PBXGroup;
+			children = (
+				14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */,
+				14276C701F4F312E00EA7753 /* Info.plist */,
+			);
+			path = MockGeneratorTests;
+			sourceTree = "<group>";
+		};
 		14A81E281F436941001A6221 /* SwiftStructureInterface */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +412,8 @@
 				14CA2D811F4000AB00900937 /* MockGeneratorXPC */,
 				14A81E281F436941001A6221 /* SwiftStructureInterface */,
 				14A81E331F436941001A6221 /* SwiftStructureInterfaceTests */,
+				14276C621F4F312E00EA7753 /* MockGenerator */,
+				14276C6D1F4F312E00EA7753 /* MockGeneratorTests */,
 				14CA2D6A1F40008F00900937 /* Frameworks */,
 				14CA2D541F40007000900937 /* Products */,
 				35CDFCBA18471CBB83E38C32 /* scripts */,
@@ -312,6 +428,8 @@
 				14CA2D801F4000AB00900937 /* MockGeneratorXPC.xpc */,
 				14A81E271F436941001A6221 /* SwiftStructureInterface.framework */,
 				14A81E2F1F436941001A6221 /* SwiftStructureInterfaceTests.xctest */,
+				14276C611F4F312E00EA7753 /* MockGenerator.framework */,
+				14276C691F4F312E00EA7753 /* MockGeneratorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -326,7 +444,6 @@
 				14CA2D5C1F40007000900937 /* Main.storyboard */,
 				14CA2D5F1F40007000900937 /* Info.plist */,
 			);
-			name = MockGeneratorApp;
 			path = MockGeneratorApp;
 			sourceTree = "<group>";
 		};
@@ -369,7 +486,6 @@
 				14CA2D881F4000AB00900937 /* Info.plist */,
 				14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */,
 				14CA2D9C1F40049700900937 /* MockGeneratorXPC-Bridging-Header.h */,
-				14CA2DDC1F41391E00900937 /* SourceFileFinder.swift */,
 			);
 			path = MockGeneratorXPC;
 			sourceTree = "<group>";
@@ -516,6 +632,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		14276C5E1F4F312E00EA7753 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14276C711F4F312E00EA7753 /* MockGenerator.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14A81E241F436941001A6221 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -527,6 +651,43 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		14276C601F4F312E00EA7753 /* MockGenerator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14276C761F4F312E00EA7753 /* Build configuration list for PBXNativeTarget "MockGenerator" */;
+			buildPhases = (
+				14276C5C1F4F312E00EA7753 /* Sources */,
+				14276C5D1F4F312E00EA7753 /* Frameworks */,
+				14276C5E1F4F312E00EA7753 /* Headers */,
+				14276C5F1F4F312E00EA7753 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				14276C7D1F4F332A00EA7753 /* PBXTargetDependency */,
+			);
+			name = MockGenerator;
+			productName = MockGenerator;
+			productReference = 14276C611F4F312E00EA7753 /* MockGenerator.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		14276C681F4F312E00EA7753 /* MockGeneratorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14276C771F4F312E00EA7753 /* Build configuration list for PBXNativeTarget "MockGeneratorTests" */;
+			buildPhases = (
+				14276C651F4F312E00EA7753 /* Sources */,
+				14276C661F4F312E00EA7753 /* Frameworks */,
+				14276C671F4F312E00EA7753 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				14276C6C1F4F312E00EA7753 /* PBXTargetDependency */,
+			);
+			name = MockGeneratorTests;
+			productName = MockGeneratorTests;
+			productReference = 14276C691F4F312E00EA7753 /* MockGeneratorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		14A81E261F436941001A6221 /* SwiftStructureInterface */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14A81E3C1F436941001A6221 /* Build configuration list for PBXNativeTarget "SwiftStructureInterface" */;
@@ -573,11 +734,14 @@
 				14CA2D501F40007000900937 /* Frameworks */,
 				14CA2D511F40007000900937 /* Resources */,
 				14CA2D7B1F40009000900937 /* Embed App Extensions */,
+				14276C911F4F37D500EA7753 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				14CA2D761F40009000900937 /* PBXTargetDependency */,
+				14276C8C1F4F37D500EA7753 /* PBXTargetDependency */,
+				14276C901F4F37D500EA7753 /* PBXTargetDependency */,
 			);
 			name = MockGeneratorApp;
 			productName = MockGeneratorApp;
@@ -614,7 +778,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				14A81E3F1F43694E001A6221 /* PBXTargetDependency */,
+				14276C801F4F33E700EA7753 /* PBXTargetDependency */,
 			);
 			name = MockGeneratorXPC;
 			productName = MockGeneratorXPC;
@@ -631,8 +795,19 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Sean Henry";
 				TargetAttributes = {
+					14276C601F4F312E00EA7753 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = HU45578K6L;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+					14276C681F4F312E00EA7753 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
 					14A81E261F436941001A6221 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = HU45578K6L;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -689,11 +864,27 @@
 				14CA2D7F1F4000AB00900937 /* MockGeneratorXPC */,
 				14A81E261F436941001A6221 /* SwiftStructureInterface */,
 				14A81E2E1F436941001A6221 /* SwiftStructureInterfaceTests */,
+				14276C601F4F312E00EA7753 /* MockGenerator */,
+				14276C681F4F312E00EA7753 /* MockGeneratorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		14276C5F1F4F312E00EA7753 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14276C671F4F312E00EA7753 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14A81E251F436941001A6221 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -734,6 +925,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		14276C5C1F4F312E00EA7753 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14276C791F4F314600EA7753 /* Generator.swift in Sources */,
+				35CDF3051C92D783E99E519D /* SourceFileFinder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14276C651F4F312E00EA7753 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14276C6F1F4F312E00EA7753 /* MockGeneratorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		14A81E221F436941001A6221 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -804,22 +1012,41 @@
 			files = (
 				14CA2D871F4000AB00900937 /* main.m in Sources */,
 				14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */,
-				14CA2DDD1F41391E00900937 /* SourceFileFinder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		14276C6C1F4F312E00EA7753 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14276C601F4F312E00EA7753 /* MockGenerator */;
+			targetProxy = 14276C6B1F4F312E00EA7753 /* PBXContainerItemProxy */;
+		};
+		14276C7D1F4F332A00EA7753 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14A81E261F436941001A6221 /* SwiftStructureInterface */;
+			targetProxy = 14276C7C1F4F332A00EA7753 /* PBXContainerItemProxy */;
+		};
+		14276C801F4F33E700EA7753 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14276C601F4F312E00EA7753 /* MockGenerator */;
+			targetProxy = 14276C7F1F4F33E700EA7753 /* PBXContainerItemProxy */;
+		};
+		14276C8C1F4F37D500EA7753 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14A81E261F436941001A6221 /* SwiftStructureInterface */;
+			targetProxy = 14276C8B1F4F37D500EA7753 /* PBXContainerItemProxy */;
+		};
+		14276C901F4F37D500EA7753 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14276C601F4F312E00EA7753 /* MockGenerator */;
+			targetProxy = 14276C8F1F4F37D500EA7753 /* PBXContainerItemProxy */;
+		};
 		14A81E321F436941001A6221 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 14A81E261F436941001A6221 /* SwiftStructureInterface */;
 			targetProxy = 14A81E311F436941001A6221 /* PBXContainerItemProxy */;
-		};
-		14A81E3F1F43694E001A6221 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 14A81E261F436941001A6221 /* SwiftStructureInterface */;
-			targetProxy = 14A81E3E1F43694E001A6221 /* PBXContainerItemProxy */;
 		};
 		14CA2D761F40009000900937 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -845,14 +1072,100 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		14276C721F4F312E00EA7753 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = HU45578K6L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = MockGenerator/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		14276C731F4F312E00EA7753 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = HU45578K6L;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = MockGenerator/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		14276C741F4F312E00EA7753 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		14276C751F4F312E00EA7753 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		14A81E381F436941001A6221 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = HU45578K6L;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -878,10 +1191,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = HU45578K6L;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1082,7 +1396,7 @@
 				INFOPLIST_FILE = XcodePlugin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator.XcodePlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp.XcodePlugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1101,7 +1415,7 @@
 				INFOPLIST_FILE = XcodePlugin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator.XcodePlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp.XcodePlugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1156,6 +1470,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		14276C761F4F312E00EA7753 /* Build configuration list for PBXNativeTarget "MockGenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14276C721F4F312E00EA7753 /* Debug */,
+				14276C731F4F312E00EA7753 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14276C771F4F312E00EA7753 /* Build configuration list for PBXNativeTarget "MockGeneratorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14276C741F4F312E00EA7753 /* Debug */,
+				14276C751F4F312E00EA7753 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		14A81E3C1F436941001A6221 /* Build configuration list for PBXNativeTarget "SwiftStructureInterface" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
