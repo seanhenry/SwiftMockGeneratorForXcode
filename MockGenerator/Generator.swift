@@ -21,10 +21,13 @@ public class Generator {
             let inheritedType = typeElement.inheritedTypes.first else {
                 return reply(with: "No inheritedType")
         }
+        guard let (newFile, newTypeElement) = DeleteBodyUtil().deleteClassBody(from: typeElement) as? (SwiftFile, SwiftTypeElement) else {
+            return reply(with: "Could not delete body from: \(String(describing: typeElement.file?.text))")
+        }
         if let resolved = ResolveUtil().resolve(inheritedType) {
             let visitor = MethodGatheringVisitor()
             resolved.accept(RecursiveElementVisitor(visitor: visitor))
-            return buildMock(methodNames: visitor.methodNames)
+            return buildMock(toFile: newFile, atElement: newTypeElement, methodNames: visitor.methodNames)
         } else {
             return reply(with: "\(inheritedType.name) element not found at: \(inheritedType.offset)")
         }
@@ -35,15 +38,21 @@ public class Generator {
         return (nil, nsError)
     }
     
-    private static func buildMock(methodNames: [String]) -> ([String]?, Error?) {
-        var lines = [String]()
+    // TODO: remove these responsibilities from the extension
+    private static func buildMock(toFile file: Element, atElement element: SwiftTypeElement, methodNames: [String]) -> ([String]?, Error?) {
+
+        var lines = file.text.components(separatedBy: .newlines)
+        let lineColumn = LocationConverter.convert(caretOffset: element.bodyOffset + element.bodyLength, in: file.text)!
+        let insertIndex = lineColumn.line
         for name in methodNames {
-            lines.append("var invoked\(name.capitalized) = false")
-            lines.append("var invoked\(name.capitalized)Count = 0")
-            lines.append("func \(name)() {")
-            lines.append("invoked\(name.capitalized) = true")
-            lines.append("invoked\(name.capitalized)Count += 1")
-            lines.append("}")
+            lines.insert("}", at: insertIndex)
+            lines.insert("invoked\(name.capitalized)Count += 1", at: insertIndex)
+            lines.insert("invoked\(name.capitalized) = true", at: insertIndex)
+            lines.insert("func \(name)() {", at: insertIndex)
+            lines.insert("", at: insertIndex)
+            lines.insert("var invoked\(name.capitalized)Count = 0", at: insertIndex)
+            lines.insert("var invoked\(name.capitalized) = false", at: insertIndex)
+            lines.insert("", at: insertIndex)
         }
         return (lines, nil)
     }

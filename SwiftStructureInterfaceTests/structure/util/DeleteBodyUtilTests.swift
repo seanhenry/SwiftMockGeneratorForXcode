@@ -1,5 +1,5 @@
 import XCTest
-@testable import $IMPORT$
+@testable import SwiftStructureInterface
 
 class DeleteBodyUtilTests: XCTestCase {
 
@@ -15,10 +15,43 @@ class DeleteBodyUtilTests: XCTestCase {
         super.tearDown()
     }
 
-    // MARK: - $METHOD$
+    // MARK: - deleteClassBody
 
-    func test_$METHOD$_should$WRITE_DESCRIPTION$() {
-        util.$METHOD$()
-        XCTAssert$END$
+    func test_deleteClassBody_shouldReturnElementWithBodyRemoved() {
+        let file = StructureBuilderTestHelper.build(from: getSimpleClass())!
+        let classElement = file.children[0]
+        let result = util.deleteClassBody(from: classElement)!
+        StringCompareTestHelper.assertEqualStrings(result.file.text, getExpectedSimpleClass())
+        StringCompareTestHelper.assertEqualStrings(result.element.text, getExpectedSimpleClass())
+    }
+
+    func test_deleteClassBody_shouldReturnClassElement() {
+        let file = StructureBuilderTestHelper.build(from: getSimpleClass())!
+        let classElement = file.children[0]
+        let result = util.deleteClassBody(from: classElement)!
+        XCTAssert(result.element is SwiftTypeElement)
+    }
+
+    func test_deleteClassBody_returnsNil_whenElementHasNoFile() {
+        XCTAssertNil(util.deleteClassBody(from: emptySwiftTypeElement))
+    }
+
+    func test_deleteClassBody_returnsNil_whenClassElementHasBadOffsets() {
+        let element = SwiftTypeElement(name: "A", text: "class A { }", children: [], inheritedTypes: [], offset: -1, length: 0, bodyOffset: 100, bodyLength: 0)
+        let file = SwiftFile(name: "", text: "class A { }", children: [element], offset: 0, length: 11)
+        XCTAssertNil(util.deleteClassBody(from: file.children[0]))
+    }
+
+    // MARK: - Helpers
+
+    func getSimpleClass() -> String {
+        return "class A {" + "\n" +
+            "  var varA = \"\"" + "\n" +
+            "}"
+    }
+
+    func getExpectedSimpleClass() -> String {
+        return "class A {" + "\n" +
+            "}"
     }
 }
