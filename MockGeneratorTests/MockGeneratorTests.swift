@@ -3,7 +3,7 @@ import XCTest
 
 class MockGeneratorTests: XCTestCase {
     
-    let testProject = "/Users/sean/source/plugins/community/MockGenerator/testData/TestProject"
+    let testProject = "/Users/sean/source/plugins/MockGenerator/TestProject"
     
     override func setUp() {
         super.setUp()
