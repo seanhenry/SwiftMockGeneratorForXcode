@@ -19,7 +19,7 @@ class MockGeneratorTests: XCTestCase {
         let result = CaretTestHelper.findCaretLineColumn(mock)
         let (lines, error) = Generator.generateMock(fromFileContents: result.contents, projectURL: URL(fileURLWithPath: testProject), line: result.lineColumn!.line, column: result.lineColumn!.column)
         XCTAssertNil(error)
-        XCTAssertEqual(join(lines), expected)
+        StringCompareTestHelper.assertEqualStrings(join(lines), expected)
     }
     
     // MARK: - Helpers
