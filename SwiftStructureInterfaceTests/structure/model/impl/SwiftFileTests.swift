@@ -30,9 +30,7 @@ class SwiftFileTests: XCTestCase {
     // MARK: - init
 
     func test_init_shouldAddItselfToAllChildren() {
-        let string = getNestedClassString()
-        let nestedClass = Structure(file: File(contents: string)).dictionary
-        file = StructureBuilder(data: nestedClass, text: string).build() as! SwiftFile
+        file = StructureBuilderTestHelper.build(from: getNestedClassString())!
         XCTAssert(file.file === file)
         XCTAssert(file.children[0].file === file)
         let classB = file.children[0].children[0] as! SwiftTypeElement

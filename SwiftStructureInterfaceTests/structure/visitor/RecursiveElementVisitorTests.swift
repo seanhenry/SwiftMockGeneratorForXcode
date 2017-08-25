@@ -82,8 +82,7 @@ class RecursiveElementVisitorTests: XCTestCase {
     }
 
     private func getClassFile() -> Element {
-        let string = getNestedClassString()
-        return StructureBuilder(data: Structure(file: File(contents: string)).dictionary, text: string).build()
+        return StructureBuilderTestHelper.build(from: getNestedClassString())!
     }
 
     private func getNestedClassString() -> String {

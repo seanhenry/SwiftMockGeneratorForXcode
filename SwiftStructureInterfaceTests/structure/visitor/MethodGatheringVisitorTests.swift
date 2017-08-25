@@ -26,8 +26,8 @@ class MethodGatheringVisitorTests: XCTestCase {
     // MARK: - Helpers
 
     private func getProtocol() -> Element {
-        let protocolElement = StructureBuilder(data: Structure(file: File(contents: getProtocolString())).dictionary, text: getProtocolString()).build()
-        return protocolElement.children[0]
+        let file = StructureBuilderTestHelper.build(from: getProtocolString())!
+        return file.children[0]
     }
 
     private func getProtocolString() -> String {

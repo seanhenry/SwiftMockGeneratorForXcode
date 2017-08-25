@@ -24,10 +24,8 @@ class ResolveUtilTests: XCTestCase {
 
     func test_resolve_shouldResolveSwiftTypeElement() {
         writeResolveClassesToFile()
-        let swiftFile = File(path: resolveFile)!
-        let structure = Structure(file: swiftFile)
-        let element = StructureBuilder(data: structure.dictionary, text: swiftFile.contents).build()
-        let reference = (element.children[0] as! SwiftTypeElement).inheritedTypes[0]
+        let file = StructureBuilderTestHelper.build(fromPath: resolveFile)!
+        let reference = (file.children[0] as! SwiftTypeElement).inheritedTypes[0]
         let resolved = util.resolve(reference)
         XCTAssertEqual(resolved?.name, "ResolveTest")
         XCTAssertEqual(resolved?.children[0].name, "method")

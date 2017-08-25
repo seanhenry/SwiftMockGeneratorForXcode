@@ -103,8 +103,7 @@ class CaretUtilTests: XCTestCase {
     }
 
     private func build(_ string: String) -> Element {
-        let data = Structure(file: File(contents: string)).dictionary
-        return StructureBuilder(data: data, text: string).build()
+        return StructureBuilderTestHelper.build(from: string)!
     }
 
     private func getClassString() -> String {
