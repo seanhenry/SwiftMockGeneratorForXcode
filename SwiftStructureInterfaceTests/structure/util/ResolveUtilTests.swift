@@ -47,7 +47,7 @@ class ResolveUtilTests: XCTestCase {
     private func getResolvedProtocolString() -> String {
         return "protocol ResolveTest { " + "\n" +
             "" + "\n" +
-            "  func method() {}" + "/n" +
+            "  func method() {}" + "\n" +
             "}"
     }
 }

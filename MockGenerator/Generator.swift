@@ -54,6 +54,14 @@ public class Generator {
             lines.insert("var invoked\(name.capitalized) = false", at: insertIndex)
             lines.insert("", at: insertIndex)
         }
-        return (lines, nil)
+        return (format(lines), nil)
+    }
+    
+    private static func format(_ lines: [String]) -> [String] {
+        let newFileText = lines.joined(separator: "\n")
+        let dictionary = Structure(file: File(contents: newFileText)).dictionary
+        let newFile = StructureBuilder(data: dictionary, text: newFileText).build()
+        let formatted = FormatUtil().format(newFile).text
+        return formatted.components(separatedBy: .newlines)
     }
 }
