@@ -14,6 +14,6 @@ FOUNDATION_EXPORT double MockGeneratorVersionNumber;
 //! Project version string for MockGenerator.
 FOUNDATION_EXPORT const unsigned char MockGeneratorVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <MockGenerator/PublicHeader.h>
-
-
+#import "JavaXcodeMockGeneratorBridge.h"
+#import "JavaProtocolMethodBridge.h"
+#import "JavaEnvironment.h"

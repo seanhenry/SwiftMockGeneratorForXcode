@@ -34,6 +34,10 @@
 		14276C8A1F4F37D500EA7753 /* SwiftStructureInterface.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14276C8D1F4F37D500EA7753 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
 		14276C8E1F4F37D500EA7753 /* MockGenerator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		149287361F560D7B00E1D4B3 /* JavaEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 149287341F560D7800E1D4B3 /* JavaEnvironment.m */; };
+		149287391F56158B00E1D4B3 /* JavaXcodeMockGeneratorBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BC8AFD1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1492873A1F56158B00E1D4B3 /* JavaProtocolMethodBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BC8B011F538CAC005B4F09 /* JavaProtocolMethodBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1492873B1F56158B00E1D4B3 /* JavaEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 149287331F560D7800E1D4B3 /* JavaEnvironment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A81E301F436941001A6221 /* SwiftStructureInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; };
 		14A81E371F436941001A6221 /* SwiftStructureInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A81E291F436941001A6221 /* SwiftStructureInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A81E401F436953001A6221 /* SwiftStructureInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; };
@@ -50,6 +54,9 @@
 		14AB7E2D1F43E65B0001E6C3 /* SourceKittenFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14AB7E2E1F43E65B0001E6C3 /* SWXMLHash.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14AB7E2F1F43E65B0001E6C3 /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14BC8B001F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC8AFE1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m */; };
+		14BC8B041F538CAC005B4F09 /* JavaProtocolMethodBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC8B021F538CAC005B4F09 /* JavaProtocolMethodBridge.m */; };
+		14BC8B0A1F538EDD005B4F09 /* libjvm.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC8B091F538EDD005B4F09 /* libjvm.dylib */; };
 		14CA2D571F40007000900937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D561F40007000900937 /* AppDelegate.swift */; };
 		14CA2D591F40007000900937 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D581F40007000900937 /* ViewController.swift */; };
 		14CA2D5B1F40007000900937 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14CA2D5A1F40007000900937 /* Assets.xcassets */; };
@@ -66,6 +73,7 @@
 		14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */; };
 		14CA2DAC1F41349500900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
 		14CA2DAD1F41351200900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
+		14E132271F571EAF00D75943 /* MockGeneratorUseCases.jar in Resources */ = {isa = PBXBuildFile; fileRef = 14BC8B071F538CD8005B4F09 /* MockGeneratorUseCases.jar */; };
 		35CDF0068DB237A15D5F0802 /* StringCompareTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9A9E9859C405A1E3B06 /* StringCompareTestHelper.swift */; };
 		35CDF23785F8638042864254 /* ResolveUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFFE183347682F0523AEC /* ResolveUtil.swift */; };
 		35CDF26B05A866EF1D0CBA3E /* ResolveUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF67FD332DFA012E4AFD1 /* ResolveUtilTests.swift */; };
@@ -271,12 +279,20 @@
 		14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGeneratorTests.swift; sourceTree = "<group>"; };
 		14276C701F4F312E00EA7753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14276C781F4F314600EA7753 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		149287331F560D7800E1D4B3 /* JavaEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaEnvironment.h; sourceTree = "<group>"; };
+		149287341F560D7800E1D4B3 /* JavaEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaEnvironment.m; sourceTree = "<group>"; };
 		14A81E271F436941001A6221 /* SwiftStructureInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftStructureInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A81E291F436941001A6221 /* SwiftStructureInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftStructureInterface.h; sourceTree = "<group>"; };
 		14A81E2A1F436941001A6221 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14A81E2F1F436941001A6221 /* SwiftStructureInterfaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftStructureInterfaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A81E361F436941001A6221 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14A81E481F4369A1001A6221 /* SSI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSI.swift; sourceTree = "<group>"; };
+		14BC8AFD1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaXcodeMockGeneratorBridge.h; sourceTree = "<group>"; };
+		14BC8AFE1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaXcodeMockGeneratorBridge.m; sourceTree = "<group>"; };
+		14BC8B011F538CAC005B4F09 /* JavaProtocolMethodBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaProtocolMethodBridge.h; sourceTree = "<group>"; };
+		14BC8B021F538CAC005B4F09 /* JavaProtocolMethodBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaProtocolMethodBridge.m; sourceTree = "<group>"; };
+		14BC8B071F538CD8005B4F09 /* MockGeneratorUseCases.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = MockGeneratorUseCases.jar; path = ../../community/out/artifacts/MockGeneratorUseCases_jar/MockGeneratorUseCases.jar; sourceTree = "<group>"; };
+		14BC8B091F538EDD005B4F09 /* libjvm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjvm.dylib; path = ../../../../../Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server/libjvm.dylib; sourceTree = "<group>"; };
 		14CA2D531F40007000900937 /* MockGeneratorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MockGeneratorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CA2D561F40007000900937 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14CA2D581F40007000900937 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -349,6 +365,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14BC8B0A1F538EDD005B4F09 /* libjvm.dylib in Frameworks */,
 				14276C811F4F340800EA7753 /* SWXMLHash.framework in Frameworks */,
 				14276C821F4F340800EA7753 /* Yams.framework in Frameworks */,
 				14276C7B1F4F332100EA7753 /* SourceKittenFramework.framework in Frameworks */,
@@ -462,9 +479,24 @@
 			path = SwiftStructureInterfaceTests;
 			sourceTree = "<group>";
 		};
+		14BC8AFA1F538B73005B4F09 /* Java */ = {
+			isa = PBXGroup;
+			children = (
+				14BC8B071F538CD8005B4F09 /* MockGeneratorUseCases.jar */,
+				14BC8AFD1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.h */,
+				14BC8AFE1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m */,
+				14BC8B011F538CAC005B4F09 /* JavaProtocolMethodBridge.h */,
+				14BC8B021F538CAC005B4F09 /* JavaProtocolMethodBridge.m */,
+				149287331F560D7800E1D4B3 /* JavaEnvironment.h */,
+				149287341F560D7800E1D4B3 /* JavaEnvironment.m */,
+			);
+			path = Java;
+			sourceTree = "<group>";
+		};
 		14CA2D4A1F40007000900937 = {
 			isa = PBXGroup;
 			children = (
+				14BC8AFA1F538B73005B4F09 /* Java */,
 				14CA2DAA1F41348100900937 /* Shared */,
 				14CA2D551F40007000900937 /* MockGeneratorApp */,
 				14CA2D6D1F40009000900937 /* XcodePlugin */,
@@ -509,6 +541,7 @@
 		14CA2D6A1F40008F00900937 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14BC8B091F538EDD005B4F09 /* libjvm.dylib */,
 				14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */,
 				14CA2D971F4003EA00900937 /* SWXMLHash.framework */,
 				14CA2D981F4003EA00900937 /* Yams.framework */,
@@ -703,7 +736,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1492873A1F56158B00E1D4B3 /* JavaProtocolMethodBridge.h in Headers */,
 				14276C711F4F312E00EA7753 /* MockGenerator.h in Headers */,
+				1492873B1F56158B00E1D4B3 /* JavaEnvironment.h in Headers */,
+				149287391F56158B00E1D4B3 /* JavaXcodeMockGeneratorBridge.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -888,6 +924,7 @@
 					14CA2D521F40007000900937 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = HU45578K6L;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -945,6 +982,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E132271F571EAF00D75943 /* MockGeneratorUseCases.jar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,6 +1039,9 @@
 			files = (
 				14276C791F4F314600EA7753 /* Generator.swift in Sources */,
 				35CDF3051C92D783E99E519D /* SourceFileFinder.swift in Sources */,
+				14BC8B001F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m in Sources */,
+				14BC8B041F538CAC005B4F09 /* JavaProtocolMethodBridge.m in Sources */,
+				149287361F560D7B00E1D4B3 /* JavaEnvironment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1174,9 +1215,18 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				FRAMEWORK_VERSION = A;
+				HEADER_SEARCH_PATHS = (
+					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/include,
+					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/include/darwin,
+				);
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server";
+				LIBRARY_SEARCH_PATHS = (
+					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib",
+					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server,
+					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1204,9 +1254,18 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				FRAMEWORK_VERSION = A;
+				HEADER_SEARCH_PATHS = (
+					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/include,
+					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/include/darwin,
+				);
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server";
+				LIBRARY_SEARCH_PATHS = (
+					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib",
+					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server,
+					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1440,6 +1499,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MockGeneratorApp/MockGeneratorApp.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1453,6 +1513,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1462,6 +1523,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MockGeneratorApp/MockGeneratorApp.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;

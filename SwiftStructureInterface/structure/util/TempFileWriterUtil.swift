@@ -1,8 +1,12 @@
+import Foundation
+
 class TempFileWriterUtil {
 
-    let tempFile = NSTemporaryDirectory() + "codes.seanhenry.mockgenerator/" + UUID().uuidString + ".swift"
+    private static let tempDir = NSTemporaryDirectory() + "codes.seanhenry.mockgenerator/"
+    let tempFile = TempFileWriterUtil.tempDir + UUID().uuidString + ".swift"
 
     func write(_ string: String) {
+        try? FileManager.default.createDirectory(at: URL(fileURLWithPath: TempFileWriterUtil.tempDir), withIntermediateDirectories: true, attributes: nil)
         try? string.data(using: .utf8)!
             .write(to: URL(fileURLWithPath: tempFile))
     }

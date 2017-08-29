@@ -41,20 +41,20 @@ public class Generator {
     // TODO: remove these responsibilities from the extension
     private static func buildMock(toFile file: Element, atElement element: SwiftTypeElement, methodNames: [String]) -> ([String]?, Error?) {
 
-        var lines = file.text.components(separatedBy: .newlines)
+        let environment = JavaEnvironment()
+        let generator = JavaXcodeMockGeneratorBridge(javaEnvironment: environment)
+        for methodName in methodNames {
+            let method = JavaProtocolMethodBridge(javaEnvironment: environment, name: methodName)
+            generator.addProtocolMethod(method)
+        }
+        let mockString = generator.generate()
+        let mockLines = mockString.components(separatedBy: .newlines)
+        
+        var fileLines = file.text.components(separatedBy: .newlines)
         let lineColumn = LocationConverter.convert(caretOffset: element.bodyOffset + element.bodyLength, in: file.text)!
         let insertIndex = lineColumn.line
-        for name in methodNames {
-            lines.insert("}", at: insertIndex)
-            lines.insert("invoked\(name.capitalized)Count += 1", at: insertIndex)
-            lines.insert("invoked\(name.capitalized) = true", at: insertIndex)
-            lines.insert("func \(name)() {", at: insertIndex)
-            lines.insert("", at: insertIndex)
-            lines.insert("var invoked\(name.capitalized)Count = 0", at: insertIndex)
-            lines.insert("var invoked\(name.capitalized) = false", at: insertIndex)
-            lines.insert("", at: insertIndex)
-        }
-        return (format(lines), nil)
+        fileLines.insert(contentsOf: mockLines, at: insertIndex)
+        return (format(fileLines), nil)
     }
     
     private static func format(_ lines: [String]) -> [String] {
