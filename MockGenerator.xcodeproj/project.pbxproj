@@ -47,7 +47,6 @@
 		14A81E451F436979001A6221 /* SourceKittenFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14A81E461F436979001A6221 /* SWXMLHash.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14A81E471F436979001A6221 /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14A81E491F4369A1001A6221 /* SSI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A81E481F4369A1001A6221 /* SSI.swift */; };
 		14AB7E291F43E6320001E6C3 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; };
 		14AB7E2A1F43E6320001E6C3 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; };
 		14AB7E2B1F43E6320001E6C3 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; };
@@ -74,6 +73,8 @@
 		14CA2DAC1F41349500900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
 		14CA2DAD1F41351200900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
 		14E132271F571EAF00D75943 /* MockGeneratorUseCases.jar in Resources */ = {isa = PBXBuildFile; fileRef = 14BC8B071F538CD8005B4F09 /* MockGeneratorUseCases.jar */; };
+		14E132281F58E6D300D75943 /* MethodGatheringVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDB834B634E694CF658C /* MethodGatheringVisitor.swift */; };
+		14E1322B1F58E88F00D75943 /* StructureBuilderTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF935B41E2DAED50B8D54 /* StructureBuilderTestHelper.swift */; };
 		35CDF0068DB237A15D5F0802 /* StringCompareTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9A9E9859C405A1E3B06 /* StringCompareTestHelper.swift */; };
 		35CDF23785F8638042864254 /* ResolveUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFFE183347682F0523AEC /* ResolveUtil.swift */; };
 		35CDF26B05A866EF1D0CBA3E /* ResolveUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF67FD332DFA012E4AFD1 /* ResolveUtilTests.swift */; };
@@ -92,8 +93,6 @@
 		35CDF7CC43284E5D7E50D365 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFA651F3CC48921FAC53C /* File.swift */; };
 		35CDF85E7BE3D38252AA5261 /* StructureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9C14F5E6D0F651D7DCC /* StructureBuilder.swift */; };
 		35CDF8B31981E6BBF132E1BD /* SwiftElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF766CA2BD7332CEDEFE4 /* SwiftElement.swift */; };
-		35CDF8CA98C11DEC3FF777CF /* MethodGatheringVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDB834B634E694CF658C /* MethodGatheringVisitor.swift */; };
-		35CDF959667D2CE1735A96AC /* MethodGatheringVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A9B1705ADFFC0CB415 /* MethodGatheringVisitorTests.swift */; };
 		35CDF9685E42EEEE45755B2E /* DeleteBodyUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF713F6161FBDE25F45B9 /* DeleteBodyUtil.swift */; };
 		35CDFA633679A596E5A724FD /* SwiftElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF8C7624DBE51669019E0 /* SwiftElementTests.swift */; };
 		35CDFA84F24F64939FD7F5D0 /* StringCompareTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9A9E9859C405A1E3B06 /* StringCompareTestHelper.swift */; };
@@ -286,7 +285,6 @@
 		14A81E2A1F436941001A6221 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14A81E2F1F436941001A6221 /* SwiftStructureInterfaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftStructureInterfaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A81E361F436941001A6221 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14A81E481F4369A1001A6221 /* SSI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSI.swift; sourceTree = "<group>"; };
 		14BC8AFD1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaXcodeMockGeneratorBridge.h; sourceTree = "<group>"; };
 		14BC8AFE1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaXcodeMockGeneratorBridge.m; sourceTree = "<group>"; };
 		14BC8B011F538CAC005B4F09 /* JavaProtocolMethodBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaProtocolMethodBridge.h; sourceTree = "<group>"; };
@@ -440,6 +438,7 @@
 		14276C621F4F312E00EA7753 /* MockGenerator */ = {
 			isa = PBXGroup;
 			children = (
+				35CDFDB834B634E694CF658C /* MethodGatheringVisitor.swift */,
 				14276C631F4F312E00EA7753 /* MockGenerator.h */,
 				14276C641F4F312E00EA7753 /* Info.plist */,
 				14276C781F4F314600EA7753 /* Generator.swift */,
@@ -451,6 +450,7 @@
 		14276C6D1F4F312E00EA7753 /* MockGeneratorTests */ = {
 			isa = PBXGroup;
 			children = (
+				35CDF7A9B1705ADFFC0CB415 /* MethodGatheringVisitorTests.swift */,
 				14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */,
 				14276C701F4F312E00EA7753 /* Info.plist */,
 			);
@@ -462,7 +462,6 @@
 			children = (
 				14A81E291F436941001A6221 /* SwiftStructureInterface.h */,
 				14A81E2A1F436941001A6221 /* Info.plist */,
-				14A81E481F4369A1001A6221 /* SSI.swift */,
 				35CDF892B271C7273F39A3C6 /* helpers */,
 				35CDF7482294CACE06F40602 /* structure */,
 			);
@@ -606,7 +605,6 @@
 			children = (
 				35CDF5233283389F936081DF /* MockElementVisitor.swift */,
 				35CDF5FC4DF19CB7E29E7291 /* RecursiveElementVisitorTests.swift */,
-				35CDF7A9B1705ADFFC0CB415 /* MethodGatheringVisitorTests.swift */,
 			);
 			path = visitor;
 			sourceTree = "<group>";
@@ -646,7 +644,6 @@
 			children = (
 				35CDF33961A5167417B7B98C /* ElementVisitor.swift */,
 				35CDF56AA2864F89BCC2B13D /* RecursiveElementVisitor.swift */,
-				35CDFDB834B634E694CF658C /* MethodGatheringVisitor.swift */,
 			);
 			path = visitor;
 			sourceTree = "<group>";
@@ -1040,6 +1037,7 @@
 				14276C791F4F314600EA7753 /* Generator.swift in Sources */,
 				35CDF3051C92D783E99E519D /* SourceFileFinder.swift in Sources */,
 				14BC8B001F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m in Sources */,
+				14E132281F58E6D300D75943 /* MethodGatheringVisitor.swift in Sources */,
 				14BC8B041F538CAC005B4F09 /* JavaProtocolMethodBridge.m in Sources */,
 				149287361F560D7B00E1D4B3 /* JavaEnvironment.m in Sources */,
 			);
@@ -1051,6 +1049,7 @@
 			files = (
 				14276C6F1F4F312E00EA7753 /* MockGeneratorTests.swift in Sources */,
 				35CDF456C1B2DE8521968DDA /* CaretTestHelper.swift in Sources */,
+				14E1322B1F58E88F00D75943 /* StructureBuilderTestHelper.swift in Sources */,
 				35CDF0068DB237A15D5F0802 /* StringCompareTestHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1059,7 +1058,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14A81E491F4369A1001A6221 /* SSI.swift in Sources */,
 				35CDFBEE697BA9EA2262CC2B /* LocationConverter.swift in Sources */,
 				35CDF85E7BE3D38252AA5261 /* StructureBuilder.swift in Sources */,
 				35CDF33A981D9FC40DD8DED0 /* Element.swift in Sources */,
@@ -1074,7 +1072,6 @@
 				35CDF23785F8638042864254 /* ResolveUtil.swift in Sources */,
 				35CDF48B7D7BDDAE0C1AF8C7 /* SwiftFile.swift in Sources */,
 				35CDF7CC43284E5D7E50D365 /* File.swift in Sources */,
-				35CDF8CA98C11DEC3FF777CF /* MethodGatheringVisitor.swift in Sources */,
 				35CDF6632380B3EC3A0D5194 /* SwiftMethodElement.swift in Sources */,
 				35CDF9685E42EEEE45755B2E /* DeleteBodyUtil.swift in Sources */,
 				35CDFCBD3149A396687A224F /* FormatUtil.swift in Sources */,
@@ -1097,7 +1094,6 @@
 				35CDFCA7893A4ED583B224CE /* TestConstants.swift in Sources */,
 				35CDF26B05A866EF1D0CBA3E /* ResolveUtilTests.swift in Sources */,
 				35CDFE03E5358F42D81075F8 /* SwiftFileTests.swift in Sources */,
-				35CDF959667D2CE1735A96AC /* MethodGatheringVisitorTests.swift in Sources */,
 				35CDFFA99D7813A4D10E6E72 /* SwiftMethodElementTests.swift in Sources */,
 				35CDFA84F24F64939FD7F5D0 /* StringCompareTestHelper.swift in Sources */,
 				35CDFAE02852F36895E33BBC /* DeleteBodyUtilTests.swift in Sources */,

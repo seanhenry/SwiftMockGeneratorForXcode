@@ -25,9 +25,7 @@ public class Generator {
             return reply(with: "Could not delete body from: \(String(describing: typeElement.file?.text))")
         }
         if let resolved = ResolveUtil().resolve(inheritedType) {
-            let visitor = MethodGatheringVisitor()
-            resolved.accept(RecursiveElementVisitor(visitor: visitor))
-            return buildMock(toFile: newFile, atElement: newTypeElement, methodNames: visitor.methodNames)
+            return buildMock(toFile: newFile, atElement: newTypeElement, resolvedProtocol: resolved)
         } else {
             return reply(with: "\(inheritedType.name) element not found at: \(inheritedType.offset)")
         }
@@ -39,12 +37,13 @@ public class Generator {
     }
     
     // TODO: remove these responsibilities from the extension
-    private static func buildMock(toFile file: Element, atElement element: SwiftTypeElement, methodNames: [String]) -> ([String]?, Error?) {
+    private static func buildMock(toFile file: Element, atElement element: SwiftTypeElement, resolvedProtocol: Element) -> ([String]?, Error?) {
 
         let environment = JavaEnvironment()
         let generator = JavaXcodeMockGeneratorBridge(javaEnvironment: environment)
-        for methodName in methodNames {
-            let method = JavaProtocolMethodBridge(javaEnvironment: environment, name: methodName)
+        let visitor = MethodGatheringVisitor(environment: environment)
+        resolvedProtocol.accept(RecursiveElementVisitor(visitor: visitor))
+        for method in visitor.methods {
             generator.addProtocolMethod(method)
         }
         let mockString = generator.generate()

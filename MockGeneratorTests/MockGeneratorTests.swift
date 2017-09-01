@@ -5,15 +5,6 @@ class MockGeneratorTests: XCTestCase {
     
     let testProject = "/Users/sean/source/plugins/MockGenerator/TestProject"
     
-    override func setUp() {
-        super.setUp()
-        
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
     func test_simpleMock() {
         let (mock, expected) = readMock(named: "SimpleProtocolMock")
         let result = CaretTestHelper.findCaretLineColumn(mock)
