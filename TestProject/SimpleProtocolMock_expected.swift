@@ -1,4 +1,4 @@
-@testable import MockableTypes
+@testable import TestProject
 
 class AnotherDeclarationInTheFileShouldNotBeAffected {
     
@@ -22,7 +22,7 @@ class SimpleProtocolMock: SimpleProtocol {
     }
     var invokedReturnMethod = false
     var invokedReturnMethodCount = 0
-    func returnMethod(_ hello: String) -> Object {
+    func returnMethod(_ hello: String) -> String {
         invokedReturnMethod = true
         invokedReturnMethodCount += 1
     }
