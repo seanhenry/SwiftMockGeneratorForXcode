@@ -34,6 +34,8 @@
 		14276C8A1F4F37D500EA7753 /* SwiftStructureInterface.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14276C8D1F4F37D500EA7753 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
 		14276C8E1F4F37D500EA7753 /* MockGenerator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14872E851F59F7050017AF3F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
+		14872E861F5A0C760017AF3F /* libjvm.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC8B091F538EDD005B4F09 /* libjvm.dylib */; };
 		149287361F560D7B00E1D4B3 /* JavaEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 149287341F560D7800E1D4B3 /* JavaEnvironment.m */; };
 		149287391F56158B00E1D4B3 /* JavaXcodeMockGeneratorBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BC8AFD1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1492873A1F56158B00E1D4B3 /* JavaProtocolMethodBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BC8B011F538CAC005B4F09 /* JavaProtocolMethodBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -55,7 +57,6 @@
 		14AB7E2F1F43E65B0001E6C3 /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14BC8B001F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC8AFE1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m */; };
 		14BC8B041F538CAC005B4F09 /* JavaProtocolMethodBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC8B021F538CAC005B4F09 /* JavaProtocolMethodBridge.m */; };
-		14BC8B0A1F538EDD005B4F09 /* libjvm.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC8B091F538EDD005B4F09 /* libjvm.dylib */; };
 		14CA2D571F40007000900937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D561F40007000900937 /* AppDelegate.swift */; };
 		14CA2D591F40007000900937 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D581F40007000900937 /* ViewController.swift */; };
 		14CA2D5B1F40007000900937 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14CA2D5A1F40007000900937 /* Assets.xcassets */; };
@@ -376,7 +377,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14BC8B0A1F538EDD005B4F09 /* libjvm.dylib in Frameworks */,
+				14872E861F5A0C760017AF3F /* libjvm.dylib in Frameworks */,
 				14276C811F4F340800EA7753 /* SWXMLHash.framework in Frameworks */,
 				14276C821F4F340800EA7753 /* Yams.framework in Frameworks */,
 				14276C7B1F4F332100EA7753 /* SourceKittenFramework.framework in Frameworks */,
@@ -1098,6 +1099,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14276C791F4F314600EA7753 /* Generator.swift in Sources */,
+				14872E851F59F7050017AF3F /* Preferences.swift in Sources */,
 				35CDF3051C92D783E99E519D /* SourceFileFinder.swift in Sources */,
 				14BC8B001F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m in Sources */,
 				14E132281F58E6D300D75943 /* MethodGatheringVisitor.swift in Sources */,
@@ -1294,7 +1296,7 @@
 				);
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks /Library/Java/JavaVirtualMachines/MockGeneratorJVM/Contents/Home/jre/lib/server";
 				LIBRARY_SEARCH_PATHS = (
 					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib",
 					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server,
@@ -1333,7 +1335,7 @@
 				);
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks /Library/Java/JavaVirtualMachines/MockGeneratorJVM/Contents/Home/jre/lib/server";
 				LIBRARY_SEARCH_PATHS = (
 					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib",
 					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server,
