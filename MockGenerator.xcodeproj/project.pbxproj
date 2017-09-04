@@ -64,7 +64,7 @@
 		14CA2D6C1F40008F00900937 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D6B1F40008F00900937 /* Cocoa.framework */; };
 		14CA2D711F40009000900937 /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D701F40009000900937 /* SourceEditorExtension.swift */; };
 		14CA2D731F40009000900937 /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D721F40009000900937 /* SourceEditorCommand.swift */; };
-		14CA2D771F40009000900937 /* Debug Mock Generator.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 14CA2D691F40008F00900937 /* Debug Mock Generator.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		14CA2D771F40009000900937 /* Mock Generator.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 14CA2D691F40008F00900937 /* Mock Generator.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		14CA2D871F4000AB00900937 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D861F4000AB00900937 /* main.m */; };
 		14CA2D911F4000C400900937 /* MockGeneratorXPC.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D801F4000AB00900937 /* MockGeneratorXPC.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		14CA2D991F4003EA00900937 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; };
@@ -263,7 +263,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				14CA2D771F40009000900937 /* Debug Mock Generator.appex in Embed App Extensions */,
+				14CA2D771F40009000900937 /* Mock Generator.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,7 +309,7 @@
 		14CA2D5A1F40007000900937 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14CA2D5D1F40007000900937 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14CA2D5F1F40007000900937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14CA2D691F40008F00900937 /* Debug Mock Generator.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Debug Mock Generator.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		14CA2D691F40008F00900937 /* Mock Generator.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Mock Generator.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CA2D6B1F40008F00900937 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		14CA2D6F1F40009000900937 /* XcodePlugin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XcodePlugin.entitlements; sourceTree = "<group>"; };
 		14CA2D701F40009000900937 /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
@@ -545,7 +545,7 @@
 			isa = PBXGroup;
 			children = (
 				14CA2D531F40007000900937 /* MockGeneratorApp.app */,
-				14CA2D691F40008F00900937 /* Debug Mock Generator.appex */,
+				14CA2D691F40008F00900937 /* Mock Generator.appex */,
 				14CA2D801F4000AB00900937 /* MockGeneratorXPC.xpc */,
 				14A81E271F436941001A6221 /* SwiftStructureInterface.framework */,
 				14A81E2F1F436941001A6221 /* SwiftStructureInterfaceTests.xctest */,
@@ -918,7 +918,7 @@
 			);
 			name = XcodePlugin;
 			productName = XcodePlugin;
-			productReference = 14CA2D691F40008F00900937 /* Debug Mock Generator.appex */;
+			productReference = 14CA2D691F40008F00900937 /* Mock Generator.appex */;
 			productType = "com.apple.product-type.xcode-extension";
 		};
 		14CA2D7F1F4000AB00900937 /* MockGeneratorXPC */ = {
@@ -1655,8 +1655,9 @@
 				INFOPLIST_FILE = XcodePlugin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MENU_DISPLAY_NAME = "Debug Mock Generator";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp.XcodePluginDebug;
-				PRODUCT_NAME = "Debug Mock Generator";
+				PRODUCT_NAME = "Mock Generator";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "XcodePlugin/XcodePlugin-Bridging-Header.h";
@@ -1674,6 +1675,7 @@
 				INFOPLIST_FILE = XcodePlugin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MENU_DISPLAY_NAME = "Mock Generator";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp.XcodePlugin;
 				PRODUCT_NAME = "Mock Generator";
 				PROVISIONING_PROFILE_SPECIFIER = "";
