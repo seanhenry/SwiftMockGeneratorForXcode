@@ -22,7 +22,7 @@ public class Generator {
                 return reply(with: "No inheritedType")
         }
         guard let (newFile, newTypeElement) = DeleteBodyUtil().deleteClassBody(from: typeElement) as? (SwiftFile, SwiftTypeElement) else {
-            return reply(with: "Could not delete body from: \(String(describing: typeElement.file?.text))")
+            return reply(with: "Could not delete body from: \(typeElement.text)")
         }
         if let resolved = ResolveUtil().resolve(inheritedType) {
             return buildMock(toFile: newFile, atElement: newTypeElement, resolvedProtocol: resolved)
@@ -36,7 +36,6 @@ public class Generator {
         return (nil, nsError)
     }
     
-    // TODO: remove these responsibilities from the extension
     private static func buildMock(toFile file: Element, atElement element: SwiftTypeElement, resolvedProtocol: Element) -> ([String]?, Error?) {
 
         let environment = JavaEnvironment()
