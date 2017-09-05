@@ -41,12 +41,14 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
             return
         }
         guard let range = selections.object(at: 0) as? XCSourceTextRange else {
-            DispatchQueue.main.async {
-                self.finish(with: self.createError("First selection was not a text range"), handler: completionHandler)
-            }
+            finish(with: createError("First selection was not a text range"), handler: completionHandler)
             return
         }
-        proxy.generateMock(fromFileContents: invocation.buffer.completeBuffer, projectURL: Preferences().projectPath!, line: range.start.line, column: range.start.column) { [weak self] (result, error) in
+        guard let projectURL = Preferences().projectPath else {
+            finish(with: createError("Set the project path in the Mock Generator companion app"), handler: completionHandler)
+            return
+        }
+        proxy.generateMock(fromFileContents: invocation.buffer.completeBuffer, projectURL: projectURL, line: range.start.line, column: range.start.column) { [weak self] (result, error) in
             DispatchQueue.main.async {
                 self?.handleGenerateMock(invocation: invocation, result: result, error: error, completionHandler: completionHandler)
             }
