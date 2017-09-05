@@ -1,0 +1,3 @@
+protocol DeleteBody {
+    func method()
+}

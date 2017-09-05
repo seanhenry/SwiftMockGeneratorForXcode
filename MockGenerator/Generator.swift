@@ -5,29 +5,25 @@ import SourceKittenFramework
 public class Generator {
     
     public static func generateMock(fromFileContents contents: String, projectURL: URL, line: Int, column: Int) -> ([String]?, Error?) {
-        
         // TODO: put files elsewhere
         ResolveUtil.files = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
         // TODO: fully encapsulate SourceKitten
         let structure = Structure(file: File(contents: contents))
-        let element = StructureBuilder(data: structure.dictionary, text: contents).build()
+        let file = StructureBuilder(data: structure.dictionary, text: contents).build()
         guard let cursorOffset = LocationConverter.convert(line: line, column: column, in: contents) else {
             return reply(with: "cursor not found")
         }
-        guard let elementUnderCaret = CaretUtil().findElementUnderCaret(in: element, cursorOffset: cursorOffset) else {
+        guard let elementUnderCaret = CaretUtil().findElementUnderCaret(in: file, cursorOffset: cursorOffset) else {
             return reply(with: "elementUnderCaret not found")
         }
         guard let typeElement = elementUnderCaret as? SwiftTypeElement,
             let inheritedType = typeElement.inheritedTypes.first else {
                 return reply(with: "No inheritedType")
         }
-        guard let (newFile, newTypeElement) = DeleteBodyUtil().deleteClassBody(from: typeElement) as? (SwiftFile, SwiftTypeElement) else {
-            return reply(with: "Could not delete body from: \(typeElement.text)")
-        }
         if let resolved = ResolveUtil().resolve(inheritedType) {
-            return buildMock(toFile: newFile, atElement: newTypeElement, resolvedProtocol: resolved)
+            return buildMock(toFile: file, atElement: typeElement, resolvedProtocol: resolved)
         } else {
-            return reply(with: "\(inheritedType.name) element not found at: \(inheritedType.offset)")
+            return reply(with: "\(inheritedType.name) element could not be resolved")
         }
     }
     
@@ -37,7 +33,15 @@ public class Generator {
     }
     
     private static func buildMock(toFile file: Element, atElement element: SwiftTypeElement, resolvedProtocol: Element) -> ([String]?, Error?) {
-
+        let mockLines = getMockBody(fromResolvedProtocol: resolvedProtocol)
+        guard let (newFile, newTypeElement) = delete(contentsOf: element) else {
+            return reply(with: "Could not delete body from: \(element.text)")
+        }
+        let fileLines = insert(mockLines, atTypeElement: newTypeElement, in: newFile)
+        return (format(fileLines), nil)
+    }
+    
+    private static func getMockBody(fromResolvedProtocol resolvedProtocol: Element) -> [String] {
         let environment = JavaEnvironment()
         let generator = JavaXcodeMockGeneratorBridge(javaEnvironment: environment)
         let visitor = MethodGatheringVisitor(environment: environment)
@@ -46,13 +50,22 @@ public class Generator {
             generator.addProtocolMethod(method)
         }
         let mockString = generator.generate()
-        let mockLines = mockString.components(separatedBy: .newlines)
-        
+        return mockString.components(separatedBy: .newlines)
+    }
+    
+    private static func delete(contentsOf typeElement: SwiftTypeElement) -> (SwiftFile, SwiftTypeElement)? {
+        guard let (newFile, newTypeElement) = DeleteBodyUtil().deleteClassBody(from: typeElement) as? (SwiftFile, SwiftTypeElement) else {
+            return nil
+        }
+        return (newFile, newTypeElement)
+    }
+    
+    private static func insert(_ mockBody: [String], atTypeElement typeElement: SwiftTypeElement, in file: Element) -> [String] {
         var fileLines = file.text.components(separatedBy: .newlines)
-        let lineColumn = LocationConverter.convert(caretOffset: element.bodyOffset + element.bodyLength, in: file.text)!
+        let lineColumn = LocationConverter.convert(caretOffset: typeElement.bodyOffset + typeElement.bodyLength, in: file.text)!
         let insertIndex = lineColumn.line
-        fileLines.insert(contentsOf: mockLines, at: insertIndex)
-        return (format(fileLines), nil)
+        fileLines.insert(contentsOf: mockBody, at: insertIndex)
+        return fileLines
     }
     
     private static func format(_ lines: [String]) -> [String] {

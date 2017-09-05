@@ -11,6 +11,8 @@
 		14AA097B1F50D95B00968958 /* TestProject.h in Headers */ = {isa = PBXBuildFile; fileRef = 14AA096D1F50D95B00968958 /* TestProject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14AA09851F50D9D000968958 /* SimpleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AA09841F50D9D000968958 /* SimpleProtocol.swift */; };
 		14AA098A1F50DA5400968958 /* SimpleProtocolMock_expected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AA09881F50DA0900968958 /* SimpleProtocolMock_expected.swift */; };
+		35CDF407B8C8E5D4025834B1 /* DeleteBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF6B7AB385DAB7DB13909 /* DeleteBody.swift */; };
+		35CDFA86776AE6A642CEDA1E /* DeleteBodyMock_expected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF6E7D5D4FEB7A5E661E8 /* DeleteBodyMock_expected.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +34,10 @@
 		14AA09841F50D9D000968958 /* SimpleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleProtocol.swift; sourceTree = "<group>"; };
 		14AA09861F50D9F200968958 /* SimpleProtocolMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleProtocolMock.swift; sourceTree = "<group>"; };
 		14AA09881F50DA0900968958 /* SimpleProtocolMock_expected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleProtocolMock_expected.swift; sourceTree = "<group>"; };
+		35CDF2AE83BFFCA90B7AE860 /* DeleteBodyMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBodyMock.swift; sourceTree = "<group>"; };
+		35CDF6B7AB385DAB7DB13909 /* DeleteBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBody.swift; sourceTree = "<group>"; };
+		35CDF6E7D5D4FEB7A5E661E8 /* DeleteBodyMock_expected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBodyMock_expected.swift; sourceTree = "<group>"; };
+		35CDFCC44DB261E460E4AD8A /* DoNotDeleteBodyMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoNotDeleteBodyMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,10 @@
 				14AA096C1F50D95B00968958 /* TestProject */,
 				14AA09771F50D95B00968958 /* TestProjectTests */,
 				14AA096B1F50D95B00968958 /* Products */,
+				35CDF2AE83BFFCA90B7AE860 /* DeleteBodyMock.swift */,
+				35CDF6E7D5D4FEB7A5E661E8 /* DeleteBodyMock_expected.swift */,
+				35CDF6B7AB385DAB7DB13909 /* DeleteBody.swift */,
+				35CDFCC44DB261E460E4AD8A /* DoNotDeleteBodyMock.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -203,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14AA09851F50D9D000968958 /* SimpleProtocol.swift in Sources */,
+				35CDF407B8C8E5D4025834B1 /* DeleteBody.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14AA098A1F50DA5400968958 /* SimpleProtocolMock_expected.swift in Sources */,
+				35CDFA86776AE6A642CEDA1E /* DeleteBodyMock_expected.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
