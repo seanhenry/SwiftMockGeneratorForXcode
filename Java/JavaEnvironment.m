@@ -15,13 +15,14 @@ static JavaVM* jvm = NULL; // Cannot recreate a JVM. See http://bugs.java.com/bu
         
         jint version = JNI_VERSION_1_8;
         if (jvm == NULL) {
+            // <- Add breakpoint here to run 'pr h -s false SIGSEGV'. See https://github.com/SwiftJava/SwiftJava
             NSString *classpath = [[NSBundle bundleForClass:[self class]] pathForResource:@"MockGeneratorUseCases" ofType:@"jar"];
             classpath = [@"-Djava.class.path=" stringByAppendingString:classpath];
             args.version = version;
             args.nOptions = 1;
             options[0].optionString = (char *)classpath.UTF8String;
             args.options = options;
-            args.ignoreUnrecognized = JNI_TRUE;
+            args.ignoreUnrecognized = JNI_FALSE;
             JNI_CreateJavaVM(&jvm, (void **)&env, &args);
         } else {
             (*jvm)->AttachCurrentThread(jvm, (void **)&env, NULL);
