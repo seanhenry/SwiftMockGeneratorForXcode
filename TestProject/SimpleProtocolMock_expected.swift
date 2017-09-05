@@ -20,10 +20,4 @@ class SimpleProtocolMock: SimpleProtocol {
         invokedAnotherMethod = true
         invokedAnotherMethodCount += 1
     }
-    var invokedReturnMethod = false
-    var invokedReturnMethodCount = 0
-    func returnMethod(_ hello: String) -> String {
-        invokedReturnMethod = true
-        invokedReturnMethodCount += 1
-    }
 }

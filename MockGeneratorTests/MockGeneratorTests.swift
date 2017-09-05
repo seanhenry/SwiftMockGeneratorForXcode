@@ -17,6 +17,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesError("DoNotDeleteBodyMock", "NotAValidProtocol element could not be resolved")
     }
 
+    func test_generatesReturnStubs() {
+        assertMockGeneratesExpected("ReturnProtocolMock")
+    }
+
     // MARK: - Helpers
 
     private func assertMockGeneratesExpected(_ fileName: String, line: UInt = #line) {
