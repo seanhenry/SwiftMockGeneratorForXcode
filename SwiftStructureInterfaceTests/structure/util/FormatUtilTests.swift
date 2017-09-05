@@ -39,6 +39,12 @@ class FormatUtilTests: XCTestCase {
         let out = util.format(emptySwiftElement) as! SwiftElement
         XCTAssert(out === emptySwiftElement)
     }
+    
+    func test_format_shouldCorrectlyCountUTF16Character() {
+        let file = StructureBuilderTestHelper.build(from: getUTF16Class())!
+        let outFile = util.format(file)
+        StringCompareTestHelper.assertEqualStrings(outFile.text, getFormattedUTF16Class())
+    }
 
     // MARK: - Helpers
 
@@ -179,6 +185,22 @@ class FormatUtilTests: XCTestCase {
             "            _ = closure(result.0)" + "\n" +
             "        }" + "\n" +
             "    }" + "\n" +
+            "}"
+    }
+
+    func getUTF16Class() -> String {
+        // "✋️".utf8.count = 3
+        // "💐".utf8.count = 4
+        return "class 💐A {" + "\n" +
+            "var var✋A = \"\"" + "\n" +
+            "func method💐A() {}" + "\n" +
+            "}"
+    }
+
+    func getFormattedUTF16Class() -> String {
+        return "class 💐A {" + "\n" +
+            "    var var✋A = \"\"" + "\n" +
+            "    func method💐A() {}" + "\n" +
             "}"
     }
 }
