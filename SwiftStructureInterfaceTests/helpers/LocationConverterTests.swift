@@ -31,8 +31,16 @@ class LocationConverterTests: XCTestCase {
         XCTAssertEqual(LocationConverter.convert(line: 1, column: 5, in: "0123\n012345"), 10)
     }
 
-    func test_convert_shouldCountSpecialCharsAsOne() {
-        XCTAssertEqual(LocationConverter.convert(line: 1, column: 3, in: "0123🎉\n0123"), 9)
+    func test_convert_shouldCountLongerUnicodeScalarsAsManyOffsets() {
+        // "©".utf8.count = 2
+        // "💐".utf8.count = 4
+        let string = "©💐\n©💐"
+        XCTAssertEqual(LocationConverter.convert(line: 0, column: 0, in: string), 0)
+        XCTAssertEqual(LocationConverter.convert(line: 0, column: 1, in: string), 2)
+        XCTAssertEqual(LocationConverter.convert(line: 0, column: 2, in: string), 6)
+        XCTAssertEqual(LocationConverter.convert(line: 1, column: 0, in: string), 7)
+        XCTAssertEqual(LocationConverter.convert(line: 1, column: 1, in: string), 9)
+        XCTAssertNil(LocationConverter.convert(line: 1, column: 2, in: string))
     }
 
     // MARK: - convert(caretOffset:)
@@ -61,8 +69,25 @@ class LocationConverterTests: XCTestCase {
         assertOffset(8, convertsToLine: 1, column: 3, in: "0123\n012345")
     }
 
-    func test_convert_shouldCountSpecialCharsAsOneColumn() {
-        assertOffset(6, convertsToLine: 1, column: 1, in: "0123\n🎉123")
+    func test_convert_shouldCountLongerUTF8CharsAsOneColumn() {
+        // "©".utf8.count = 2
+        // "💐".utf8.count = 4
+        let string = "©💐\n©💐"
+        assertOffset(0, convertsToLine: 0, column: 0, in: string)
+        assertOffset(1, convertsToLine: 0, column: 0, in: string)
+        assertOffset(2, convertsToLine: 0, column: 1, in: string)
+        assertOffset(3, convertsToLine: 0, column: 1, in: string)
+        assertOffset(4, convertsToLine: 0, column: 1, in: string)
+        assertOffset(5, convertsToLine: 0, column: 1, in: string)
+        assertOffset(6, convertsToLine: 0, column: 2, in: string)
+        assertOffset(7, convertsToLine: 1, column: 0, in: string)
+        assertOffset(8, convertsToLine: 1, column: 0, in: string)
+        assertOffset(9, convertsToLine: 1, column: 1, in: string)
+        assertOffset(10, convertsToLine: 1, column: 1, in: string)
+        assertOffset(11, convertsToLine: 1, column: 1, in: string)
+        assertOffset(12, convertsToLine: 1, column: 1, in: string)
+        assertOffset(13, convertsToLine: 1, column: 2, in: string)
+        XCTAssertNil(LocationConverter.convert(caretOffset: 14, in: string))
     }
 
     // MARK: - Helpers
