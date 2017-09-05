@@ -74,13 +74,14 @@ class StructureBuilder {
     }
 
     private func getText(offset: Int64, length: Int64) -> String {
-        let lastTextIndex = Int64(text.characters.count)
+        let utf8 = text.utf8
+        let lastTextIndex = Int64(utf8.count)
         if offset < 0 || length < 0 || lastTextIndex < offset + length {
             return ""
         }
-        let start = text.index(text.startIndex, offsetBy: Int(offset))
-        let end = text.index(start, offsetBy: Int(length))
-        return text[start..<end]
+        let start = utf8.index(utf8.startIndex, offsetBy: Int(offset))
+        let end = utf8.index(start, offsetBy: Int(length))
+        return String(utf8[start..<end])!
     }
 
     private func getSubStructure() -> [[String: SourceKitRepresentable]]? {
@@ -132,15 +133,14 @@ class StructureBuilder {
         guard splitDeclaration.count > 1 else { return [] }
         let classPart = splitDeclaration[0] + ":"
         let inheritedTypeNames = splitDeclaration[1].components(separatedBy: ",").map { $0 + "," }
-        return getOffsets(fromTypes: typeTexts, typeNames: inheritedTypeNames, typeClauseOffset: classPart.characters.count, in: declarationText)
-
+        return getOffsets(fromTypes: typeTexts, typeNames: inheritedTypeNames, typeClauseOffset: classPart.utf8.count, in: declarationText)
     }
 
     private func getOffsets(fromTypes typeTexts: [String], typeNames: [String], typeClauseOffset: Int, in declarationText: String) -> [(offset: Int64, length: Int64)] {
         var runningOffset = getOffset() + Int64(typeClauseOffset)
         return typeTexts.enumerated().map { i, type in
             let inheritedPart = typeNames[i]
-            defer { runningOffset += Int64(inheritedPart.characters.count) }
+            defer { runningOffset += Int64(inheritedPart.utf8.count) }
             let range = inheritedPart.range(of: type)!
             let startOffset = Int64(declarationText.distance(from: inheritedPart.startIndex, to: range.lowerBound))
             let length = Int64(inheritedPart.distance(from: range.lowerBound, to: range.upperBound))

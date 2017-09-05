@@ -92,6 +92,19 @@ class StructureBuilderTests: XCTestCase {
         XCTAssertEqual(snakeCaseType?.text, "snake_case")
     }
 
+    func test_build_shouldCalculateOffsetsForInheritedTypes_whenUTF16CharactersArePresent() {
+        // "💐".utf8.count = 4
+        // SourceKit doesn't seem to support inherited types with emojis in their name.
+        print(UnicodeScalar(0x2D30)!)
+        let string = "protocol 💐Protocol: Type1 { }"
+        let file = StructureBuilderTestHelper.build(from: string)
+        let `protocol` = file?.children.first as? SwiftTypeElement
+        let type1 = `protocol`?.inheritedTypes[0]
+        XCTAssertEqual(type1?.offset, 23)
+        XCTAssertEqual(type1?.length, 5)
+        XCTAssertEqual(type1?.text, "Type1")
+    }
+
     func test_build_shouldBuildWithNoInheritedTypes() {
         let file = StructureBuilderTestHelper.build(from: getNoInheritedTypesExampleString())
         let element = file?.children[0] as! SwiftTypeElement
@@ -166,7 +179,7 @@ class StructureBuilderTests: XCTestCase {
     }
 
     private func getProtocolLength() -> Int64 {
-        return Int64(getProtocolString().characters.count)
+        return Int64(getProtocolString().utf8.count)
     }
 
     private func getProtocolBodyOffset() -> Int64 {
