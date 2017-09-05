@@ -24,10 +24,14 @@ static JavaVM* jvm = NULL; // Cannot recreate a JVM. See http://bugs.java.com/bu
             args.ignoreUnrecognized = JNI_TRUE;
             JNI_CreateJavaVM(&jvm, (void **)&env, &args);
         } else {
-            (*jvm)->GetEnv(jvm, (void **)&env, version);
+            (*jvm)->AttachCurrentThread(jvm, (void **)&env, NULL);
         }
     }
     return self;
+}
+
+- (void)dealloc {
+    (*jvm)->DetachCurrentThread(jvm);
 }
 
 - (JNIEnv *)env {
