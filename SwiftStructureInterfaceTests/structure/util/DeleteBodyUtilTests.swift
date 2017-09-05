@@ -42,6 +42,14 @@ class DeleteBodyUtilTests: XCTestCase {
         XCTAssertNil(util.deleteClassBody(from: file.children[0]))
     }
 
+    func test_deleteClassBody_shouldDeleteUTF16Contents() {
+        let file = StructureBuilderTestHelper.build(from: getUTF16Class())!
+        let classElement = file.children[0]
+        let result = util.deleteClassBody(from: classElement)!
+        StringCompareTestHelper.assertEqualStrings(result.file.text, getExpectedUTF16Class())
+        StringCompareTestHelper.assertEqualStrings(result.element.text, getExpectedUTF16Class())
+    }
+
     // MARK: - Helpers
 
     func getSimpleClass() -> String {
@@ -52,6 +60,20 @@ class DeleteBodyUtilTests: XCTestCase {
 
     func getExpectedSimpleClass() -> String {
         return "class A {" + "\n" +
+            "}"
+    }
+
+    func getUTF16Class() -> String {
+        // "✋️".utf8.count = 3
+        // "💐".utf8.count = 4
+        return "class 💐A {" + "\n" +
+            "  var var✋A = \"\"" + "\n" +
+            "  func method💐A() {}" + "\n" +
+            "}"
+    }
+
+    func getExpectedUTF16Class() -> String {
+        return "class 💐A {" + "\n" +
             "}"
     }
 }

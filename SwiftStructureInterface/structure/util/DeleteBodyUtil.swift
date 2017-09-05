@@ -27,10 +27,13 @@ class DeleteBodyUtil {
             let bodyLength = Int(element.bodyLength)
             guard let fileText = element.file?.text,
                 bodyOffset > 0,
-                bodyOffset + bodyLength < fileText.characters.count else { return }
-            let bodyStartIndex = fileText.index(fileText.startIndex, offsetBy: bodyOffset)
-            let bodyEndIndex = fileText.index(bodyStartIndex, offsetBy: bodyLength)
-            fileString = fileText.substring(to: bodyStartIndex) + "\n" + fileText.substring(from: bodyEndIndex)
+                bodyOffset + bodyLength < fileText.utf8.count else { return }
+            let fileUTF8Text = fileText.utf8
+            let bodyStartIndex = fileUTF8Text.index(fileUTF8Text.startIndex, offsetBy: bodyOffset)
+            let bodyEndIndex = fileUTF8Text.index(bodyStartIndex, offsetBy: bodyLength)
+            let beforeString = String(fileUTF8Text[fileUTF8Text.startIndex..<bodyStartIndex])!
+            let afterString = String(fileUTF8Text[bodyEndIndex..<fileUTF8Text.endIndex])!
+            fileString = beforeString + "\n" + afterString
         }
 
         func visit(_ element: SwiftFile) {
