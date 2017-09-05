@@ -1,0 +1,4 @@
+#!/usr/bin/env bash -e
+xcrun xcodebuild -workspace MockGenerator.xcworkspace -scheme SwiftStructureInterface clean test | xcpretty
+xcrun xcodebuild -workspace MockGenerator.xcworkspace -scheme MockGenerator clean test | xcpretty
+xcrun xcodebuild -workspace MockGenerator.xcworkspace -scheme MockGeneratorApp clean test | xcpretty
