@@ -3,7 +3,7 @@ import XcodeKit
 
 class SourceEditorCommand: NSObject, XCSourceEditorCommand {
     
-    var cancelled = false
+    private var cancelled = false
     fileprivate lazy var connection: Connection = {
         let connection = Connection()
         connection.setUpConnection()
@@ -11,12 +11,10 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
     }()
     
     func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) -> Void {
-        cancelled = false
         invocation.cancellationHandler = { [weak self] in
             DispatchQueue.main.async { [weak self] in
                 self?.cancelled = true
                 self?.connection.suspendConnection()
-                self?.finish(with: nil, handler: completionHandler)
             }
         }
         connection.interruptionHandler { [weak self] in
