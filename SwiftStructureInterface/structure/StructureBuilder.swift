@@ -64,7 +64,8 @@ class StructureBuilder {
         let offset = getOffset()
         let length = getLength()
         let text = getText(offset: offset, length: length)
-        return SwiftMethodElement(name: getName(), text: text, children: buildChildren(), offset: offset, length: length)//, bodyOffset: getBodyOffset(), bodyLength: getBodyLength())
+        let returnType = getMethodReturnType()
+        return SwiftMethodElement(name: getName(), text: text, children: buildChildren(), offset: offset, length: length, returnType: returnType)//, bodyOffset: getBodyOffset(), bodyLength: getBodyLength())
     }
 
     private func buildChildren() -> [Element] {
@@ -107,6 +108,51 @@ class StructureBuilder {
 
     private func getBodyLength() -> Int64 {
         return (data["key.bodylength"] as? Int64) ?? -1
+    }
+
+    // MARK: - Method return type
+
+    private func getMethodReturnType() -> String? {
+        let returnStatementText = getReturnStatementText()
+        let returnMarker = "->"
+        let components = returnStatementText.components(separatedBy: returnMarker)
+        if components.count >= 2 {
+            return components[1..<components.count]
+                .joined(separator: returnMarker)
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        return nil
+    }
+
+    private func getReturnStatementText() -> String {
+        var text = getDeclarationText().utf8
+        var openBracketCount = 0
+        var offset = text.startIndex
+        repeat {
+            guard let firstBracketOffset = firstBracketIndex(text: text) else { break }
+            openBracketCount += isOpenBracket(bracket: text[firstBracketOffset]) ? 1 : -1
+            offset = text.index(after: firstBracketOffset)
+            text = text[offset..<text.endIndex]
+        } while openBracketCount > 0
+        return String(text[offset..<text.endIndex])!
+    }
+
+    private func isOpenBracket(bracket: UTF8.CodeUnit) -> Bool {
+        return bracket == openBracketUTF8
+    }
+
+    private let closedBracketUTF8: UTF8.CodeUnit = {
+        let closedBracket = ")".utf8
+        return closedBracket[closedBracket.startIndex]
+    }()
+
+    private let openBracketUTF8: UTF8.CodeUnit = {
+        let openBracket = "(".utf8
+        return openBracket[openBracket.startIndex]
+    }()
+
+    private func firstBracketIndex(text: String.UTF8View) -> String.UTF8View.Index? {
+        return text.index { $0 == openBracketUTF8 || $0 == closedBracketUTF8 }
     }
 
     // MARK: - InheritedType
@@ -167,15 +213,14 @@ class StructureBuilder {
     private func getDeclarationText() -> String {
         let offset = getOffset()
         let bodyOffset = getStatementEndOffset()
-        let declarationText = getText(offset: offset, length: bodyOffset - offset)
-        return declarationText
+        return getText(offset: offset, length: bodyOffset - offset)
     }
 
     private func getStatementEndOffset() -> Int64 {
-        var bodyOffset = getBodyOffset() - 1
-        if bodyOffset < 0 {
-            bodyOffset = getLength()
+        var statementEndOffset = getBodyOffset() - 1
+        if statementEndOffset < 0 {
+            statementEndOffset = getOffset() + getLength()
         }
-        return bodyOffset
+        return statementEndOffset
     }
 }
