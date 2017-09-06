@@ -15,7 +15,7 @@ An Xcode extension (plugin) to generate mock classes automatically.
 - Download the latest release [here](https://github.com/seanhenry/SwiftMockGeneratorForXcode/releases)
 - Copy the app to the `Applications` folder.
 - Open the app
-- Select the path to your project ([Why do I have to do this?](##why-do-i-have-to-set-a-path-to-my-project?))
+- Select the path to your project ([Why do I have to do this?](##why-do-i-have-to-set-a-path-to-my-project))
 - Open Xcode
 
 ## How to create a new Swift mock
