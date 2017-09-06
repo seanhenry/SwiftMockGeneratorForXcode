@@ -691,47 +691,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="240"/>
                                 <subviews>
                                     <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4D-w1-Fmx">
-                                        <rect key="frame" x="8" y="130" width="464" height="102"/>
+                                        <rect key="frame" x="8" y="185" width="464" height="47"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47P-jH-na3">
-                                                <rect key="frame" x="-2" y="85" width="60" height="17"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="JDK path" id="dUB-AS-eZm">
-                                                    <font key="font" metaFont="system"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dmz-7L-NLx">
-                                                <rect key="frame" x="0.0" y="55" width="464" height="22"/>
-                                                <subviews>
-                                                    <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8UD-Dy-zJg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="438" height="22"/>
-                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="vsF-Pw-2PP">
-                                                            <font key="font" metaFont="system"/>
-                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fnF-kc-3fu">
-                                                        <rect key="frame" x="446" y="2" width="18" height="21"/>
-                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSPathTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VgG-a2-iPC">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="didTapJDKPathButton:" target="VQz-9A-PX1" id="pxA-pc-6Tb"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <visibilityPriorities>
-                                                    <integer value="1000"/>
-                                                    <integer value="1000"/>
-                                                </visibilityPriorities>
-                                                <customSpacing>
-                                                    <real value="3.4028234663852886e+38"/>
-                                                    <real value="3.4028234663852886e+38"/>
-                                                </customSpacing>
-                                            </stackView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnF-nW-tKi">
                                                 <rect key="frame" x="-2" y="30" width="78" height="17"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Project path" id="OlE-51-ShT">
@@ -774,19 +735,13 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="kf8-Tc-urf" firstAttribute="leading" secondItem="s4D-w1-Fmx" secondAttribute="leading" id="hMp-yZ-DWQ"/>
-                                            <constraint firstAttribute="trailing" secondItem="Dmz-7L-NLx" secondAttribute="trailing" id="n1l-Xy-Ybn"/>
-                                            <constraint firstItem="Dmz-7L-NLx" firstAttribute="leading" secondItem="s4D-w1-Fmx" secondAttribute="leading" id="wB3-E7-h6j"/>
                                             <constraint firstAttribute="trailing" secondItem="kf8-Tc-urf" secondAttribute="trailing" id="xca-EN-wqV"/>
                                         </constraints>
                                         <visibilityPriorities>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
@@ -798,7 +753,6 @@
                                     <constraint firstAttribute="trailing" secondItem="s4D-w1-Fmx" secondAttribute="trailing" constant="8" id="YgM-cC-Zn4"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="jdkPathField" destination="8UD-Dy-zJg" id="p1S-fJ-7K2"/>
                                     <outlet property="projectPathField" destination="GcX-IJ-g25" id="qVg-sR-LyD"/>
                                 </connections>
                             </customView>

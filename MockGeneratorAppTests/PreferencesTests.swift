@@ -22,11 +22,4 @@ class PreferencesTests: XCTestCase {
         preferences.projectPath = testURL
         XCTAssertEqual(Preferences().projectPath, testURL)
     }
-
-    // MARK: - jdkPath
-
-    func test_jdkPath_shouldRememberJDKPath() {
-        preferences.jdkPath = testURL
-        XCTAssertEqual(Preferences().jdkPath, testURL)
-    }
 }
