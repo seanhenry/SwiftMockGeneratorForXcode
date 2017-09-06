@@ -7,7 +7,10 @@ typedef struct _jobject *jobject;
 
 NS_ASSUME_NONNULL_BEGIN
 
-- (instancetype)initWithJavaEnvironment:(JavaEnvironment *)environment name:(NSString *)name signature:(NSString *)signature;
+- (instancetype)initWithJavaEnvironment:(JavaEnvironment *)environment
+                                   name:(NSString *)name
+                             returnType:(nullable NSString *)returnType
+                              signature:(NSString *)signature;
 @property (nonatomic, readonly, copy) NSString *name;
 @property (nonatomic, readonly, copy) NSString *signature;
 @property (nonatomic, readonly) jobject javaInstance;

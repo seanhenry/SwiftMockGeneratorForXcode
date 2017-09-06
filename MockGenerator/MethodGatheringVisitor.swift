@@ -19,6 +19,6 @@ class MethodGatheringVisitor: ElementVisitor {
     }
 
     func visit(_ element: SwiftMethodElement) {
-        methods.append(JavaProtocolMethodBridge(javaEnvironment: environment, name: element.name, signature: element.text))
+        methods.append(JavaProtocolMethodBridge(javaEnvironment: environment, name: element.name, returnType: element.returnType, signature: element.text))
     }
 }
