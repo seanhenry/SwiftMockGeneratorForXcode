@@ -15,6 +15,7 @@
 		1410E09C1F4F76040075503B /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1410E09D1F4F76420075503B /* SwiftStructureInterface.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1410E09E1F4F76550075503B /* SwiftStructureInterface.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1423A7A91F60921D00D548A7 /* distribution.jdk in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1423A7A61F608CFB00D548A7 /* distribution.jdk */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		14276C6A1F4F312E00EA7753 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
 		14276C6F1F4F312E00EA7753 /* MockGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */; };
 		14276C711F4F312E00EA7753 /* MockGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 14276C631F4F312E00EA7753 /* MockGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -199,6 +200,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				1423A7A91F60921D00D548A7 /* distribution.jdk in CopyFiles */,
 				1410E09D1F4F76420075503B /* SwiftStructureInterface.framework in CopyFiles */,
 				1410E0961F4F75E90075503B /* SourceKittenFramework.framework in CopyFiles */,
 				1410E0971F4F75E90075503B /* SWXMLHash.framework in CopyFiles */,
@@ -282,6 +284,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1423A7A61F608CFB00D548A7 /* distribution.jdk */ = {isa = PBXFileReference; lastKnownFileType = folder; name = distribution.jdk; path = /Library/Java/JavaVirtualMachines/distribution.jdk; sourceTree = "<absolute>"; };
 		14276C611F4F312E00EA7753 /* MockGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MockGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14276C631F4F312E00EA7753 /* MockGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockGenerator.h; sourceTree = "<group>"; };
 		14276C641F4F312E00EA7753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -527,6 +530,7 @@
 		14CA2D4A1F40007000900937 = {
 			isa = PBXGroup;
 			children = (
+				1423A7A61F608CFB00D548A7 /* distribution.jdk */,
 				14BC8AFA1F538B73005B4F09 /* Java */,
 				14CA2DAA1F41348100900937 /* Shared */,
 				14CA2D551F40007000900937 /* MockGeneratorApp */,
@@ -1295,17 +1299,13 @@
 				);
 				FRAMEWORK_VERSION = A;
 				HEADER_SEARCH_PATHS = (
-					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/include,
-					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/include/darwin,
+					/Library/Java/JavaVirtualMachines/distribution.jdk/Contents/Home/include,
+					/Library/Java/JavaVirtualMachines/distribution.jdk/Contents/Home/include/darwin,
 				);
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks /Library/Java/JavaVirtualMachines/MockGeneratorJVM/Contents/Home/jre/lib/server";
-				LIBRARY_SEARCH_PATHS = (
-					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib",
-					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server,
-					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/Frameworks/distribution.jdk/Contents/Home/jre/lib/server";
+				LIBRARY_SEARCH_PATHS = /Library/Java/JavaVirtualMachines/distribution.jdk/Contents/Home/jre/lib/server;
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1334,17 +1334,13 @@
 				);
 				FRAMEWORK_VERSION = A;
 				HEADER_SEARCH_PATHS = (
-					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/include,
-					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/include/darwin,
+					/Library/Java/JavaVirtualMachines/distribution.jdk/Contents/Home/include,
+					/Library/Java/JavaVirtualMachines/distribution.jdk/Contents/Home/include/darwin,
 				);
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks /Library/Java/JavaVirtualMachines/MockGeneratorJVM/Contents/Home/jre/lib/server";
-				LIBRARY_SEARCH_PATHS = (
-					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib",
-					/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server,
-					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/server",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/Frameworks/distribution.jdk/Contents/Home/jre/lib/server";
+				LIBRARY_SEARCH_PATHS = /Library/Java/JavaVirtualMachines/distribution.jdk/Contents/Home/jre/lib/server;
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
