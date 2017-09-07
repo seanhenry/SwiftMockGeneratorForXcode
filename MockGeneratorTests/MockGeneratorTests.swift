@@ -21,6 +21,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("ReturnProtocolMock")
     }
 
+    func test_generatesPropertyMock() {
+        assertMockGeneratesExpected("PropertyProtocolMock")
+    }
+
     // MARK: - Helpers
 
     private func assertMockGeneratesExpected(_ fileName: String, line: UInt = #line) {

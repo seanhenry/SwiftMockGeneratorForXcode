@@ -46,9 +46,8 @@ public class Generator {
         let generator = JavaXcodeMockGeneratorBridge(javaEnvironment: environment)
         let visitor = MethodGatheringVisitor(environment: environment)
         resolvedProtocol.accept(RecursiveElementVisitor(visitor: visitor))
-        for method in visitor.methods {
-            generator.addProtocolMethod(method)
-        }
+        visitor.properties.forEach { generator.addProtocolProperty($0) }
+        visitor.methods.forEach { generator.addProtocolMethod($0) }
         let mockString = generator.generate()
         return mockString.components(separatedBy: .newlines)
     }

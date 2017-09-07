@@ -2,6 +2,7 @@
 #import "JavaProtocolMethodBridge.h"
 #import "jni.h"
 #import "JavaEnvironment.h"
+#import "JavaProtocolPropertyBridge.h"
 
 @implementation JavaXcodeMockGeneratorBridge {
     jclass xcodeMockGeneratorClass;
@@ -23,6 +24,11 @@
 - (void)addProtocolMethod:(JavaProtocolMethodBridge *)method {
     jmethodID methodID = (*env)->GetMethodID(env, xcodeMockGeneratorClass, "add", "(Lcodes/seanhenry/mockgenerator/entities/ProtocolMethod;)V");
     (*env)->CallVoidMethod(env, instance, methodID, method.javaInstance);
+}
+
+- (void)addProtocolProperty:(JavaProtocolPropertyBridge *)prop {
+    jmethodID methodID = (*env)->GetMethodID(env, xcodeMockGeneratorClass, "add", "(Lcodes/seanhenry/mockgenerator/entities/ProtocolProperty;)V");
+    (*env)->CallVoidMethod(env, instance, methodID, prop.javaInstance);
 }
 
 - (NSString *)generate {

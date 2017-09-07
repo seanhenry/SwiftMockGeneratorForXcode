@@ -2,9 +2,10 @@
 
 class MethodGatheringVisitor: ElementVisitor {
 
-    let environment: JavaEnvironment
-    var methods = [JavaProtocolMethodBridge]()
-    
+    private let environment: JavaEnvironment
+    private(set) var methods = [JavaProtocolMethodBridge]()
+    private(set) var properties: [JavaProtocolPropertyBridge]()
+
     init(environment: JavaEnvironment) {
         self.environment = environment
     }
