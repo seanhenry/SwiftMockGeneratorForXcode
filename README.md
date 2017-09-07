@@ -74,6 +74,69 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 
 As shown above, the AppCode plugin is much more feature-rich. If there is a feature you need, check for an existing GitHub issue and make a comment or, if no issue exists, raise a new issue.
 
+## Usage example
+
+A protocol called Animator that we wish to mock:
+
+```
+protocol Animator {
+    func animate(duration: TimeInterval, animations: () -> (), completion: (Bool) -> ()) -> Bool
+}
+```
+Create a mock class conforming to a protocol:
+```
+class MockAnimator: Animator {
+}
+```
+Generate the mock:
+
+```
+class MockAnimator: Animator {
+
+    var invokedAnimate = false
+    var invokedAnimateCount = 0
+    var stubbedAnimateResult: Bool! = false
+
+    func animate(duration: TimeInterval, animations: () -> (), completion: (Bool) -> ()) -> Bool {
+        invokedAnimate = true
+        invokedAnimateCount += 1
+        return stubbedAnimateResult
+    }
+}
+```
+Inject the mock into the class you wish to test:
+
+```
+let mockAnimator = MockAnimator()
+let object = ObjectToTest(animator: mockAnimator)
+```
+Test if animate method was invoked:
+
+```
+func test_mockCanVerifyInvokedMethod() {
+    object.myMethod()
+    XCTAssertTrue(mockAnimator.invokedAnimate)
+}
+```
+Test the number of times animate was invoked:
+
+```
+func test_mockCanVerifyInvokedMethodCount() {
+    object.myMethod()
+    object.myMethod()
+    XCTAssertEqual(mockAnimator.invokedAnimateCount, 2)
+}
+```
+Stub a return value for the animate method:
+
+```
+func test_mockCanReturnAStubbedValue() {
+    mockAnimator.stubbedAnimateResult = true
+    let result = object.myMethod()
+    XCTAssertTrue(result)
+}
+```
+
 ## Disable or remove the plugin
 
 To disable:
