@@ -37,6 +37,9 @@ class StructureBuilder {
              "source.lang.swift.decl.function.method.class",
              "source.lang.swift.decl.function.free":
             return buildSwiftMethodElement()
+        case "source.lang.swift.decl.var.instance",
+             "source.lang.swift.decl.var.global":
+            return buildSwiftPropertyElement()
         default:
             return buildSwiftElement()
         }
@@ -66,6 +69,14 @@ class StructureBuilder {
         let text = getText(offset: offset, length: length)
         let returnType = getMethodReturnType()
         return SwiftMethodElement(name: getName(), text: text, children: buildChildren(), offset: offset, length: length, returnType: returnType)//, bodyOffset: getBodyOffset(), bodyLength: getBodyLength())
+    }
+
+    private func buildSwiftPropertyElement() -> Element {
+        let offset = getOffset()
+        let length = getLength()
+        let text = getText(offset: offset, length: length)
+        let isWritable = data["key.setter_accessibility"] != nil
+        return SwiftPropertyElement(name: getName(), text: text, children: buildChildren(), offset: offset, length: length, type: getTypeName(), isWritable: isWritable)
     }
 
     private func buildChildren() -> [Element] {
@@ -108,6 +119,10 @@ class StructureBuilder {
 
     private func getBodyLength() -> Int64 {
         return (data["key.bodylength"] as? Int64) ?? -1
+    }
+
+    private func getTypeName() -> String {
+        return data["key.typename"] as? String ?? ""
     }
 
     // MARK: - Method return type

@@ -22,4 +22,8 @@ class RecursiveElementVisitor: ElementVisitor {
     func visit(_ element: SwiftMethodElement) {
         visitor.visit(element)
     }
+
+    func visit(_ element: SwiftPropertyElement) {
+        visitor.visit(element)
+    }
 }

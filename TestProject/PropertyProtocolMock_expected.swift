@@ -3,8 +3,6 @@
 class MockPropertyProtocol: PropertyProtocol {
     var invokedReadWriteSetter = false
     var invokedReadWriteSetterCount = 0
-    var invokedReadWrite: String?
-    var invokedReadWriteList = [String]()
     var invokedReadWriteGetter = false
     var invokedReadWriteGetterCount = 0
     var stubbedReadWrite: String!
@@ -12,8 +10,6 @@ class MockPropertyProtocol: PropertyProtocol {
         set {
             invokedReadWriteSetter = true
             invokedReadWriteSetterCount += 1
-            invokedReadWrite = newValue
-            invokedReadWriteList.append(newValue)
         }
         get {
             invokedReadWriteGetter = true

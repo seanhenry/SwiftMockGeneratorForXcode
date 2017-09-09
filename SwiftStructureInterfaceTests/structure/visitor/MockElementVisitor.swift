@@ -49,4 +49,16 @@ class MockElementVisitor: ElementVisitor {
         invokedVisitSwiftMethodElementParameters = (element, ())
         invokedVisitSwiftMethodElementParametersList.append((element, ()))
     }
+
+    var invokedVisitSwiftPropertyElement = false
+    var invokedVisitSwiftPropertyElementCount = 0
+    var invokedVisitSwiftPropertyElementParameters: (element: SwiftPropertyElement, Void)?
+    var invokedVisitSwiftPropertyElementParametersList = [(element: SwiftPropertyElement, Void)]()
+
+    func visit(_ element: SwiftPropertyElement) {
+        invokedVisitSwiftPropertyElement = true
+        invokedVisitSwiftPropertyElementCount += 1
+        invokedVisitSwiftPropertyElementParameters = (element, ())
+        invokedVisitSwiftPropertyElementParametersList.append((element, ()))
+    }
 }

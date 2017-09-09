@@ -4,7 +4,7 @@ class MethodGatheringVisitor: ElementVisitor {
 
     private let environment: JavaEnvironment
     private(set) var methods = [JavaProtocolMethodBridge]()
-    private(set) var properties: [JavaProtocolPropertyBridge]()
+    private(set) var properties = [JavaProtocolPropertyBridge]()
 
     init(environment: JavaEnvironment) {
         self.environment = environment
@@ -21,5 +21,9 @@ class MethodGatheringVisitor: ElementVisitor {
 
     func visit(_ element: SwiftMethodElement) {
         methods.append(JavaProtocolMethodBridge(javaEnvironment: environment, name: element.name, returnType: element.returnType, signature: element.text))
+    }
+
+    func visit(_ element: SwiftPropertyElement) {
+        properties.append(JavaProtocolPropertyBridge(javaEnvironment: environment, name: element.name, type: element.type, isWritable: element.isWritable, signature: element.text))
     }
 }

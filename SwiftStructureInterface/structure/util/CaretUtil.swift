@@ -30,5 +30,7 @@ class CaretUtil {
 
         func visit(_ element: SwiftMethodElement) {
         }
+        func visit(_ element: SwiftPropertyElement) {
+        }
     }
 }

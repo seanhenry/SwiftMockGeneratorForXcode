@@ -22,8 +22,8 @@
                                      (*env)->NewStringUTF(env, returnType.UTF8String), // return type
                                      (*env)->NewStringUTF(env, signature.UTF8String) // signature
                                      );
-        _name = name;
-        _signature = signature;
+        _name = [name copy];
+        _signature = [signature copy];
     }
     return self;
 }

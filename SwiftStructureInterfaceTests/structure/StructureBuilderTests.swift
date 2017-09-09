@@ -180,17 +180,33 @@ class StructureBuilderTests: XCTestCase {
         assertChildMethodReturnType(classType, at: 3, equals: "Type0")
     }
 
-    func assertChildMethodReturnType(_ type: Element?, at index: Int, equals expected: String?, line: UInt = #line) {
-        let method = type?.children[index] as? SwiftMethodElement
-        XCTAssertEqual(method?.returnType, expected, line: line)
-    }
-
-    func assertChildMethodName(_ type: Element?, at index: Int, equals expected: String?, line: UInt = #line) {
-        let method = type?.children[index] as? SwiftMethodElement
-        XCTAssertEqual(method?.name, expected, line: line)
+    func test_build_shouldFindProperties() {
+        let file = StructureBuilderTestHelper.build(from: getPropertiesExampleString())!
+        assertChildProperty(file, name: "globalConstant", type: "", isWritable: false, at: 0)
+        assertChildProperty(file, name: "globalVariable", type: "String", isWritable: true, at: 1)
+        let protocolType = file.children[2] as! SwiftTypeElement
+        assertChildProperty(protocolType, name: "readWrite", type: "String", isWritable: true, at: 0)
+        assertChildProperty(protocolType, name: "readOnly", type: "Int", isWritable: false, at: 1)
     }
 
     // MARK: - Helpers
+
+    func assertChildProperty(_ parent: Element?, name: String, type: String, isWritable: Bool, at index: Int, line: UInt = #line) {
+        let property = parent?.children[index] as? SwiftPropertyElement
+        XCTAssertEqual(property?.name, name, line: line)
+        XCTAssertEqual(property?.type, type, line: line)
+        XCTAssertEqual(property?.isWritable, isWritable, line: line)
+    }
+
+    func assertChildMethodReturnType(_ parent: Element?, at index: Int, equals expected: String?, line: UInt = #line) {
+        let method = parent?.children[index] as? SwiftMethodElement
+        XCTAssertEqual(method?.returnType, expected, line: line)
+    }
+
+    func assertChildMethodName(_ parent: Element?, at index: Int, equals expected: String?, line: UInt = #line) {
+        let method = parent?.children[index] as? SwiftMethodElement
+        XCTAssertEqual(method?.name, expected, line: line)
+    }
 
     private func getProtocolString() -> String {
         return "protocol Protocol: Inherited {" + "\n" +
@@ -319,6 +335,15 @@ class StructureBuilderTests: XCTestCase {
             "  var2: Int," + "\n" +
             "  closure: (Int) -> ((Int) -> ())" + "\n" +
             "  ) -> Type0 {}" + "\n" +
+            "}"
+    }
+
+    private func getPropertiesExampleString() -> String {
+        return "let globalConstant = \"let\"" + "\n" +
+            "var globalVariable: String = \"var\"" + "\n" +
+            "protocol P {" + "\n" +
+            "    var readWrite: String { set get }" + "\n" +
+            "    var readOnly: Int { get }" + "\n" +
             "}"
     }
 }

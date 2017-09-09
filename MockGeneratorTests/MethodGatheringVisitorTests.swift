@@ -23,22 +23,42 @@ class MethodGatheringVisitorTests: XCTestCase {
     // MARK: - visit
 
     func test_visit_shouldGetAllMethodsFromProtocol() {
-        getProtocol().accept(RecursiveElementVisitor(visitor: visitor))
+        getMethodProtocol().accept(RecursiveElementVisitor(visitor: visitor))
         XCTAssertEqual(visitor.methods.map { $0.name }, ["method", "method2"])
         XCTAssertEqual(visitor.methods.map { $0.signature }, ["func method()", "func method2(label name: Type) -> String"])
     }
 
+    func test_visit_shouldGetAllPropertiesFromProtocol() {
+        getPropertyProtocol().accept(RecursiveElementVisitor(visitor: visitor))
+        XCTAssertEqual(visitor.properties.map { $0.name }, ["prop1", "prop2"])
+        XCTAssertEqual(visitor.properties.map { $0.type }, ["Int", "String!"])
+        XCTAssertEqual(visitor.properties.map { $0.signature }, ["var prop1: Int { get set }", "var prop2: String! { get }"])
+    }
+
     // MARK: - Helpers
 
-    private func getProtocol() -> Element {
-        let file = StructureBuilderTestHelper.build(from: getProtocolString())!
+    private func getMethodProtocol() -> Element {
+        let file = StructureBuilderTestHelper.build(from: getMethodProtocolString())!
         return file.children[0]
     }
 
-    private func getProtocolString() -> String {
+    private func getMethodProtocolString() -> String {
         return "protocol TestProtocol {" + "\n" +
             "  func method()" + "\n" +
             "  func method2(label name: Type) -> String" + "\n" +
             "}"
+    }
+
+    private func getPropertyProtocol() -> Element {
+        let file = StructureBuilderTestHelper.build(from: getPropertyProtocolString())!
+        return file.children[0]
+    }
+
+    private func getPropertyProtocolString() -> String {
+        return "protocol TestProtocol {" + "\n" +
+            "  var prop1: Int { get set }" + "\n" +
+            "  var prop2: String! { get }" + "\n" +
+            "}" + "\n" +
+            "class Object {}"
     }
 }

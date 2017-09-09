@@ -13,6 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
                              isWritable:(BOOL)isWritable
                               signature:(NSString *)signature;
 @property (nonatomic, readonly) jobject javaInstance;
+@property (nonatomic, readonly, copy) NSString *name;
+@property (nonatomic, readonly, copy) NSString *type;
+@property (nonatomic, readonly) BOOL isWritable;
+@property (nonatomic, readonly, copy) NSString *signature;
 
 NS_ASSUME_NONNULL_END
 
