@@ -10,7 +10,7 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        environment = JavaEnvironment()
+        environment = JavaEnvironment.shared
         visitor = MethodGatheringVisitor(environment: environment)
     }
 

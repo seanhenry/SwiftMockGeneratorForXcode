@@ -1,6 +1,6 @@
 #import "JavaXcodeMockGeneratorBridge.h"
 #import "JavaProtocolMethodBridge.h"
-#import <jni.h>
+#import "jni.h"
 #import "JavaEnvironment.h"
 
 @implementation JavaXcodeMockGeneratorBridge {
@@ -14,7 +14,7 @@
     if (self != nil) {
         env = environment.env;
         xcodeMockGeneratorClass = (*env)->FindClass(env, "codes/seanhenry/mockgenerator/xcode/XcodeMockGenerator");
-        jmethodID constructor = (*env)->GetMethodID(env, xcodeMockGeneratorClass, NULL, "()V");
+        jmethodID constructor = (*env)->GetMethodID(env, xcodeMockGeneratorClass, "<init>", "()V");
         instance = (*env)->NewObject(env, xcodeMockGeneratorClass, constructor);
     }
     return self;

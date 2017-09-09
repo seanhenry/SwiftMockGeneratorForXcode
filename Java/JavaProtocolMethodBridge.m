@@ -16,7 +16,7 @@
     if (self != nil) {
         env = environment.env;
         protocolMethodClass = (*env)->FindClass(env, "codes/seanhenry/mockgenerator/entities/ProtocolMethod");
-        jmethodID constructor = (*env)->GetMethodID(env, protocolMethodClass, NULL, "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
+        jmethodID constructor = (*env)->GetMethodID(env, protocolMethodClass, "<init>", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
         instance = (*env)->NewObject(env, protocolMethodClass, constructor,
                                      (*env)->NewStringUTF(env, name.UTF8String), // name
                                      (*env)->NewStringUTF(env, returnType.UTF8String), // return type

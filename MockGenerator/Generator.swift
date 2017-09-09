@@ -42,7 +42,7 @@ public class Generator {
     }
     
     private static func getMockBody(fromResolvedProtocol resolvedProtocol: Element) -> [String] {
-        let environment = JavaEnvironment()
+        let environment = JavaEnvironment.shared
         let generator = JavaXcodeMockGeneratorBridge(javaEnvironment: environment)
         let visitor = MethodGatheringVisitor(environment: environment)
         resolvedProtocol.accept(RecursiveElementVisitor(visitor: visitor))
