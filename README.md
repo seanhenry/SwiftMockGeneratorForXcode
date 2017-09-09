@@ -16,6 +16,7 @@ An Xcode extension (plugin) to generate mock classes automatically.
 - Copy the app to the `Applications` folder.
 - Open the app
 - Select the path to your project ([Why do I have to do this?](#why-do-i-have-to-set-a-path-to-my-project))
+- Go to `System Preferences -> Extensions -> Xcode Source Editor` and make sure `Mock Generator` is enabled.
 - Open Xcode
 
 ## How to create a new Swift mock
