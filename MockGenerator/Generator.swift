@@ -9,7 +9,7 @@ public class Generator {
         ResolveUtil.files = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
         // TODO: fully encapsulate SourceKitten
         let structure = Structure(file: File(contents: contents))
-        let file = StructureBuilder(data: structure.dictionary, text: contents).build()
+        let file = StructureBuilder(data: structure.dictionary, fileText: contents).build()
         guard let cursorOffset = LocationConverter.convert(line: line, column: column, in: contents) else {
             return reply(with: "cursor not found")
         }
@@ -70,7 +70,7 @@ public class Generator {
     private static func format(_ lines: [String]) -> [String] {
         let newFileText = lines.joined(separator: "\n")
         let dictionary = Structure(file: File(contents: newFileText)).dictionary
-        let newFile = StructureBuilder(data: dictionary, text: newFileText).build()
+        let newFile = StructureBuilder(data: dictionary, fileText: newFileText).build()
         let formatted = FormatUtil().format(newFile).text
         return formatted.components(separatedBy: .newlines)
     }
