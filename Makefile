@@ -1,8 +1,8 @@
-JAVA_HOME?=/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home
+JAVA_HOME?=$$(/usr/libexec/java_home)
 JAVAC=$(JAVA_HOME)/bin/javac
 ROOT=$(shell pwd)
 
-SRC_PATH=$(shell pwd)/lib-src
+SRC_PATH=$(ROOT)/lib-src
 AVIAN_SRC_PATH=$(SRC_PATH)/avian
 USECASES_SRC_PATH=$(SRC_PATH)/usecases
 SOURCEKITTEN_SRC_PATH=$(SRC_PATH)/sourcekitten
@@ -21,9 +21,9 @@ YAMS_FRAMEWORK=$(SOURCEKITTEN_PRODUCTS)/Yams.framework
 DEST_PATH=$(ROOT)/lib
 AVIAN_DEST_PATH=$(DEST_PATH)/avian
 
-.PHONY: test bootstrap clean cleanbuild sourcekitten usecases avian kotlin mklib mkavian
+.PHONY: test bootstrap clean cleanbuild sourcekitten usecases avian kotlin mklib mkavian lnjavahome
 
-bootstrap: cleanbuild sourcekitten usecases
+bootstrap: cleanbuild sourcekitten usecases lnjavahome
 
 cleanbuild:
 	rm -rf $(BUILD_PATH) || true
@@ -104,6 +104,9 @@ kotlin:
     else \
         brew install kotlin; \
     fi
+
+lnjavahome:
+	ln -sfh $(JAVA_HOME) Java/Home
 
 mklib:
 	mkdir -p $(DEST_PATH)
