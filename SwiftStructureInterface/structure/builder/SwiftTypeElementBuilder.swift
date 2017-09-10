@@ -1,6 +1,14 @@
 import SourceKittenFramework
 
-class SwiftTypeElementBuilder: SwiftElementBuilder {
+class SwiftTypeElementBuilder: SKSwiftElement {
+
+    let fileText: String
+    let data: [String: SourceKitRepresentable]
+
+    init(data: [String: SourceKitRepresentable], fileText: String) {
+        self.data = data
+        self.fileText = fileText
+    }
 
     func build() -> SwiftTypeElement {
         let offset = getOffset()

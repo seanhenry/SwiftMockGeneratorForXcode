@@ -1,5 +1,14 @@
+import SourceKittenFramework
 
-class SwiftMethodElementBuilder: SwiftElementBuilder {
+class SwiftMethodElementBuilder: SKSwiftElement {
+
+    let fileText: String
+    let data: [String: SourceKitRepresentable]
+
+    init(data: [String: SourceKitRepresentable], fileText: String) {
+        self.data = data
+        self.fileText = fileText
+    }
 
     private let closedBracketUTF8: UTF8.CodeUnit = {
         let closedBracket = ")".utf8

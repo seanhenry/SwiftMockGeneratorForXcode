@@ -26,7 +26,7 @@ class SKElementFactory {
 
     private func buildElement(_ data: [String: SourceKitRepresentable], fileText: String) -> Element {
         guard let kind = data["key.kind"] as? String else {
-            return SwiftElementBuilder(data: data, fileText: fileText).buildSwiftElement()
+            return SwiftElementBuilder(data: data, fileText: fileText).build()
         }
         switch kind {
         case "source.lang.swift.decl.protocol",
@@ -41,7 +41,7 @@ class SKElementFactory {
              "source.lang.swift.decl.var.global":
             return SwiftPropertyElementBuilder(data: data, fileText: fileText).build()
         default:
-            return SwiftElementBuilder(data: data, fileText: fileText).buildSwiftElement()
+            return SwiftElementBuilder(data: data, fileText: fileText).build()
         }
     }
 }
