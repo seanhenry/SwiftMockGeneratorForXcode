@@ -55,8 +55,9 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 | Feature | Xcode | AppCode
 |---|---|---|
 | Captures invocation status of methods.|✅|✅|
-| Captures invocation status of properties.||✅|
+| Captures invocation status of properties.|✅|✅|
 | Captures invoked method parameters.||✅|
+| Captures invoked property values.||✅|
 | Stubs values for your mocks to return.|✅|✅|
 | Stubs a default value for return values where possible.||✅|
 | Automatically calls closure parameters with stubbed values.||✅|
@@ -157,3 +158,10 @@ Despite being called a Mock Generator, this plugin actually generates something 
 The plugin uses SourceKit which needs a list of your Swift files to index.
 
 You have to set the path to your code because there is no way to derive it from an Xcode extension.
+
+## Build
+
+To bootstrap the project's dependencies use:
+```
+make
+```
