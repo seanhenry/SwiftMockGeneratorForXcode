@@ -4,7 +4,7 @@ import SourceKittenFramework
 
 class SwiftPropertyElementBuilderTests: XCTestCase {
 
-    // TODO: test all cases
+    // This is a trivial implementation so far. Enough to detect protocol properties.
 
     func test_build_shouldFindProperties() {
         let file = SKElementFactoryTestHelper.build(from: getPropertiesExampleString())!
