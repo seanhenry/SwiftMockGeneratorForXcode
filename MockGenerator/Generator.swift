@@ -7,22 +7,25 @@ public class Generator {
     public static func generateMock(fromFileContents contents: String, projectURL: URL, line: Int, column: Int) -> ([String]?, Error?) {
         // TODO: put files elsewhere
         ResolveUtil.files = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
-        let file = SKElementFactory().build(from: contents)
+        guard let file = SKElementFactory().build(from: contents) else {
+            return reply(with: "Could not parse Swift file")
+        }
         guard let cursorOffset = LocationConverter.convert(line: line, column: column, in: contents) else {
-            return reply(with: "cursor not found")
+            return reply(with: "Could not get the cursor position")
         }
         guard let elementUnderCaret = CaretUtil().findElementUnderCaret(in: file, cursorOffset: cursorOffset) else {
-            return reply(with: "elementUnderCaret not found")
+            return reply(with: "No Swift element found under the cursor")
         }
-        guard let typeElement = elementUnderCaret as? SwiftTypeElement,
-            let inheritedType = typeElement.inheritedTypes.first else {
-                return reply(with: "No inheritedType")
+        guard let typeElement = elementUnderCaret as? SwiftTypeElement else {
+            return reply(with: "Place the cursor on a mock class declaration")
         }
-        if let resolved = ResolveUtil().resolve(inheritedType) {
-            return buildMock(toFile: file, atElement: typeElement, resolvedProtocol: resolved)
-        } else {
+        guard let inheritedType = typeElement.inheritedTypes.first else {
+                return reply(with: "Could not find a protocol on \(typeElement.name)")
+        }
+        guard let resolved = ResolveUtil().resolve(inheritedType) else {
             return reply(with: "\(inheritedType.name) element could not be resolved")
         }
+        return buildMock(toFile: file, atElement: typeElement, resolvedProtocol: resolved)
     }
     
     private static func reply(with message: String) -> ([String]?, Error?) {
@@ -67,7 +70,7 @@ public class Generator {
     
     private static func format(_ lines: [String]) -> [String] {
         let newFileText = lines.joined(separator: "\n")
-        let newFile = SKElementFactory().build(from: newFileText)
+        guard let newFile = SKElementFactory().build(from: newFileText) else { return lines }
         let formatted = FormatUtil().format(newFile).text
         return formatted.components(separatedBy: .newlines)
     }
