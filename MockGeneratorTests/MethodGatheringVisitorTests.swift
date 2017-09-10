@@ -38,7 +38,7 @@ class MethodGatheringVisitorTests: XCTestCase {
     // MARK: - Helpers
 
     private func getMethodProtocol() -> Element {
-        let file = StructureBuilderTestHelper.build(from: getMethodProtocolString())!
+        let file = SKElementFactoryTestHelper.build(from: getMethodProtocolString())!
         return file.children[0]
     }
 
@@ -50,7 +50,7 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func getPropertyProtocol() -> Element {
-        let file = StructureBuilderTestHelper.build(from: getPropertyProtocolString())!
+        let file = SKElementFactoryTestHelper.build(from: getPropertyProtocolString())!
         return file.children[0]
     }
 

@@ -5,21 +5,21 @@ import SourceKittenFramework
 class SwiftTypeElementBuilderTests: XCTestCase {
 
     func test_build_shouldBuildProtocolFromDictionary() {
-        let file = StructureBuilderTestHelper.build(from: getProtocolString())
+        let file = SKElementFactoryTestHelper.build(from: getProtocolString())
         let element = file?.children.first as? SwiftTypeElement
         XCTAssertEqual(element?.name, "Protocol")
         XCTAssertEqual(element?.inheritedTypes.count, 1)
         XCTAssertEqual(element?.inheritedTypes[0].name, "Inherited")
         XCTAssertEqual(element?.children.count, 2)
-        XCTAssertEqual(element?.children[0].name, "property")
-        XCTAssertEqual(element?.children[1].name, "method")
+        XCTAssertEqual(element?.namedChild(at: 0)?.name, "property")
+        XCTAssertEqual(element?.namedChild(at: 1)?.name, "method")
         XCTAssert(element?.file === file)
         XCTAssert(element?.children[0].file === file)
         XCTAssert(element?.children[1].file === file)
     }
 
     func test_build_shouldPopulateProtocolTextOffsets() {
-        let file = StructureBuilderTestHelper.build(from: getProtocolString())
+        let file = SKElementFactoryTestHelper.build(from: getProtocolString())
         let element = file?.children.first as? SwiftTypeElement
         XCTAssertEqual(element?.offset, 0)
         XCTAssertEqual(element?.length, getProtocolLength())
@@ -28,112 +28,39 @@ class SwiftTypeElementBuilderTests: XCTestCase {
     }
 
     func test_build_shouldBuildClassFromDictionary() {
-        let file = StructureBuilderTestHelper.build(from: getClassString())
+        let file = SKElementFactoryTestHelper.build(from: getClassString())
         let element = file?.children.first as? SwiftTypeElement
         XCTAssertEqual(element?.name, "A")
         XCTAssertEqual(element?.inheritedTypes.count, 1)
         XCTAssertEqual(element?.inheritedTypes[0].name, "B")
         XCTAssertEqual(element?.children.count, 5)
-        XCTAssertEqual(element?.children[0].name, "varA")
-        XCTAssertEqual(element?.children[1].name, "varB")
-        XCTAssertEqual(element?.children[2].name, "varC")
-        XCTAssertEqual(element?.children[3].name, "methodA")
-        XCTAssertEqual(element?.children[4].name, "methodB")
+        XCTAssertEqual(element?.namedChild(at: 0)?.name, "varA")
+        XCTAssertEqual(element?.namedChild(at: 1)?.name, "varB")
+        XCTAssertEqual(element?.namedChild(at: 2)?.name, "varC")
+        XCTAssertEqual(element?.namedChild(at: 3)?.name, "methodA")
+        XCTAssertEqual(element?.namedChild(at: 4)?.name, "methodB")
         XCTAssertEqual(file?.text, getClassString())
     }
 
     func test_build_shouldBuildNestedClassFromDictionary() {
-        let file = StructureBuilderTestHelper.build(from: getNestedClassString())
+        let file = SKElementFactoryTestHelper.build(from: getNestedClassString())
         let element = file?.children.first as? SwiftTypeElement
         XCTAssertEqual(element?.name, "A")
         XCTAssertEqual(element?.inheritedTypes.count, 0)
         XCTAssertEqual(element?.children.count, 2)
-        XCTAssertEqual(element?.children[1].name, "methodA")
+        XCTAssertEqual(element?.namedChild(at: 1)?.name, "methodA")
         let innerElement = element?.children[0] as? SwiftTypeElement
         XCTAssertEqual(innerElement?.name, "B")
         XCTAssertEqual(innerElement?.inheritedTypes.count, 2)
         XCTAssertEqual(innerElement?.inheritedTypes[0].name, "C")
         XCTAssertEqual(innerElement?.inheritedTypes[1].name, "D")
         XCTAssertEqual(innerElement?.children.count, 1)
-        XCTAssertEqual(innerElement?.children[0].name, "innerMethodA")
+        XCTAssertEqual(innerElement?.namedChild(at: 0)?.name, "innerMethodA")
         XCTAssertEqual(file?.text, getNestedClassString())
     }
 
-    // Inherited declaration offsets are missing in SourceKit
-    func test_build_shouldCalculateOffsetsForInheritedTypes() {
-        let file = StructureBuilderTestHelper.build(from: getInheritedTypesExampleString())
-        let `protocol` = file?.children.first as? SwiftTypeElement
-        let simpleType = `protocol`?.inheritedTypes[0]
-        XCTAssertEqual(simpleType?.offset, 19)
-        XCTAssertEqual(simpleType?.length, 19)
-        XCTAssertEqual(simpleType?.text, "SimpleInheritedType")
-        let genericType = `protocol`?.inheritedTypes[1]
-        XCTAssertEqual(genericType?.offset, 40)
-        XCTAssertEqual(genericType?.length, 15)
-        XCTAssertEqual(genericType?.text, "Generic<String>")
-        let snakeCaseType = `protocol`?.inheritedTypes[2]
-        XCTAssertEqual(snakeCaseType?.offset, 60)
-        XCTAssertEqual(snakeCaseType?.length, 10)
-        XCTAssertEqual(snakeCaseType?.text, "snake_case")
-    }
-
-    func test_build_shouldCalculateOffsetsForInheritedTypes_whenUTF16CharactersArePresent() {
-        // "💐".utf8.count = 4
-        // SourceKit doesn't seem to support inherited types with emojis in their name.
-        print(UnicodeScalar(0x2D30)!)
-        let string = "protocol 💐Protocol: Type1 { }"
-        let file = StructureBuilderTestHelper.build(from: string)
-        let `protocol` = file?.children.first as? SwiftTypeElement
-        let type1 = `protocol`?.inheritedTypes[0]
-        XCTAssertEqual(type1?.offset, 23)
-        XCTAssertEqual(type1?.length, 5)
-        XCTAssertEqual(type1?.text, "Type1")
-    }
-
-    func test_build_shouldBuildWithNoInheritedTypes() {
-        let file = StructureBuilderTestHelper.build(from: getNoInheritedTypesExampleString())
-        let element = file?.children[0] as! SwiftTypeElement
-        XCTAssert(element.inheritedTypes.isEmpty)
-    }
-
-    func test_build_shouldNotConfusePartiallyMatchingStringsInClassNameAndInheritedTypes() {
-        let file = StructureBuilderTestHelper.build(from: getRealisticNameExampleString())
-        let element = file?.children[0] as! SwiftTypeElement
-        let inheritedType = element.inheritedTypes[0]
-        XCTAssertEqual(element.name, "MockProtocol")
-        XCTAssertEqual(inheritedType.name, "Protocol")
-        XCTAssertEqual(inheritedType.offset, 20)
-        XCTAssertEqual(inheritedType.length, 8)
-    }
-
-    func test_build_shouldFindInheritedTypesOnNewlines() {
-        let file = StructureBuilderTestHelper.build(from: getNewlineTypesExampleString())
-        let element = file?.children[0] as! SwiftTypeElement
-        let inheritedType = element.inheritedTypes[0]
-        let inheritedType2 = element.inheritedTypes[1]
-        XCTAssertEqual(element.name, "AClass")
-        XCTAssertEqual(inheritedType.name, "ProtocolA")
-        XCTAssertEqual(inheritedType.offset, 14)
-        XCTAssertEqual(inheritedType.length, 9)
-        XCTAssertEqual(inheritedType2.name, "Prot")
-        XCTAssertEqual(inheritedType2.offset, 26)
-        XCTAssertEqual(inheritedType2.length, 4)
-    }
-
-    func test_build_shouldFindMultipleTypesInBaseOfFile() {
-        let file = StructureBuilderTestHelper.build(from: getMultipleTypeExampleString())
-        let firstType = file?.children[0] as! SwiftTypeElement
-        XCTAssertEqual(firstType.name, "ProtocolA")
-        let secondType = file?.children[1] as! SwiftTypeElement
-        let inheritedType = secondType.inheritedTypes[0]
-        XCTAssertEqual(secondType.name, "ClassA")
-        XCTAssertEqual(inheritedType.name, "ProtocolA")
-        XCTAssertEqual(inheritedType.offset, 37)
-        XCTAssertEqual(inheritedType.length, 9)
-    }
-
     func test_build_shouldSetTextOnProtocol() {
-        let file = StructureBuilderTestHelper.build(from: getProtocolString())
+        let file = SKElementFactoryTestHelper.build(from: getProtocolString())
         let `protocol` = file?.children.first as? SwiftTypeElement
         let inheritedType = `protocol`?.inheritedTypes.first
         let property = `protocol`?.children[0]
@@ -205,36 +132,5 @@ class SwiftTypeElementBuilderTests: XCTestCase {
             "" + "\n" +
             "    func methodA() {}" + "\n" +
             "}"
-    }
-
-    private func getInheritedTypesExampleString() -> String {
-        return "protocol Protocol: SimpleInheritedType, Generic<String>  ,  snake_case {" + "\n" +
-            "" + "\n" +
-            "}"
-    }
-
-    private func getNoInheritedTypesExampleString() -> String {
-        return "protocol Protocol {" + "\n" +
-            "" + "\n" +
-            "}"
-    }
-
-    private func getRealisticNameExampleString() -> String {
-        return "class MockProtocol: Protocol {" + "\n" +
-            "" + "\n" +
-            "}"
-    }
-
-    private func getNewlineTypesExampleString() -> String {
-        return "class AClass: ProtocolA ," + "\n" +
-            "Prot" + "\n" +
-            "{" + "\n" +
-            "}"
-    }
-
-    private func getMultipleTypeExampleString() -> String {
-        return "protocol ProtocolA {}" + "\n" +
-            "" + "\n" +
-            "class ClassA: ProtocolA {}"
     }
 }

@@ -18,19 +18,19 @@ class FormatUtilTests: XCTestCase {
     // MARK: - format
 
     func test_format_shouldFormatClassesAndMethods_whenWholeFileIsProvided() {
-        let inFile = StructureBuilderTestHelper.build(from: getExampleString())!
+        let inFile = SKElementFactoryTestHelper.build(from: getExampleString())!
         let outFile = util.format(inFile)
         StringCompareTestHelper.assertEqualStrings(outFile.text, getFormattedString())
     }
 
     func test_format_shouldFormatSingleProperty() {
-        let file = StructureBuilderTestHelper.build(from: getExampleString())!
+        let file = SKElementFactoryTestHelper.build(from: getExampleString())!
         let outFile = util.format(file.children[0].children[0])
         StringCompareTestHelper.assertEqualStrings(outFile.text, getFormattedProperty())
     }
 
     func test_format_shouldFormatSingleMethod() {
-        let file = StructureBuilderTestHelper.build(from: getExampleString())!
+        let file = SKElementFactoryTestHelper.build(from: getExampleString())!
         let outFile = util.format(file.children[0].children[13])
         StringCompareTestHelper.assertEqualStrings(outFile.text, getFormattedMethod())
     }
@@ -41,7 +41,7 @@ class FormatUtilTests: XCTestCase {
     }
     
     func test_format_shouldCorrectlyCountUTF16Character() {
-        let file = StructureBuilderTestHelper.build(from: getUTF16Class())!
+        let file = SKElementFactoryTestHelper.build(from: getUTF16Class())!
         let outFile = util.format(file)
         StringCompareTestHelper.assertEqualStrings(outFile.text, getFormattedUTF16Class())
     }

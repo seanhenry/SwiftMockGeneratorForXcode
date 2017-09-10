@@ -1,6 +1,6 @@
 import SourceKittenFramework
 
-class SwiftPropertyElementBuilder: SKSwiftElement {
+class SwiftPropertyElementBuilder: NamedSwiftElementBuilderTemplate {
 
     let fileText: String
     let data: [String: SourceKitRepresentable]
@@ -10,13 +10,10 @@ class SwiftPropertyElementBuilder: SKSwiftElement {
         self.fileText = fileText
     }
 
-    func build() -> Element {
-        let offset = getOffset()
-        let length = getLength()
-        let text = getText(offset: offset, length: length)
+    func build(text: String, offset: Int64, length: Int64, name: String) -> Element? {
         let isWritable = getPropertyIsWritable()
         let attributeString = getAttributeString()
-        return SwiftPropertyElement(name: getName(), text: text, children: buildChildren(), offset: offset, length: length, type: getTypeName(), isWritable: isWritable, attribute: attributeString)
+        return SwiftPropertyElement(name: name, text: text, children: buildChildren(), offset: offset, length: length, type: getTypeName(), isWritable: isWritable, attribute: attributeString)
     }
 
     private func getTypeName() -> String {

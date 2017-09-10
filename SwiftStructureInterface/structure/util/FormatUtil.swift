@@ -22,7 +22,7 @@ class FormatUtil {
                 }
             }
             let formattedString = stitch(formattedArray)
-            return SKElementFactory().build(from: formattedString)
+            return SKElementFactory().build(from: formattedString) ?? element
         } catch {
             print("Error: \(error)\nFailed to format: \(element.text)")
         }

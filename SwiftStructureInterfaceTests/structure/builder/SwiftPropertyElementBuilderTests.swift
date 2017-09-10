@@ -7,7 +7,7 @@ class SwiftPropertyElementBuilderTests: XCTestCase {
     // TODO: test all cases
 
     func test_build_shouldFindProperties() {
-        let file = StructureBuilderTestHelper.build(from: getPropertiesExampleString())!
+        let file = SKElementFactoryTestHelper.build(from: getPropertiesExampleString())!
         assertChildProperty(file, name: "globalConstant", type: "", isWritable: false, at: 0)
         assertChildProperty(file, name: "globalVariable", type: "String", isWritable: true, at: 1)
         let protocolType = file.children[2] as! SwiftTypeElement

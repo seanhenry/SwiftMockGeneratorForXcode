@@ -1,6 +1,6 @@
 import SourceKittenFramework
 
-class SwiftElementBuilder: SKSwiftElement {
+class SwiftElementBuilder: SwiftElementBuilderTemplate {
 
     let fileText: String
     let data: [String: SourceKitRepresentable]
@@ -10,10 +10,7 @@ class SwiftElementBuilder: SKSwiftElement {
         self.fileText = fileText
     }
 
-    func build() -> SwiftElement {
-        let offset = getOffset()
-        let length = getLength()
-        let text = getText(offset: offset, length: length)
-        return SwiftElement(name: getName(), text: text, children: buildChildren(), offset: offset, length: length)
+    func build(text: String, offset: Int64, length: Int64) -> Element? {
+        return SwiftElement(text: text, children: buildChildren(), offset: offset, length: length)
     }
 }

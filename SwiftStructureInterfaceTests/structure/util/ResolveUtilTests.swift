@@ -27,20 +27,22 @@ class ResolveUtilTests: XCTestCase {
 
     func test_resolve_shouldResolveSwiftTypeElement() {
         writeResolveClassesToFile()
-        let file = StructureBuilderTestHelper.build(fromPath: resolveFile)!
+        let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
         let reference = (file.children[0] as! SwiftTypeElement).inheritedTypes[0]
-        let resolved = util.resolve(reference)
+        let resolved = util.resolve(reference) as? NamedElement
         XCTAssertEqual(resolved?.name, "ResolveTest")
-        XCTAssertEqual(resolved?.children[0].name, "method")
+        let method = resolved?.namedChild(at: 0)
+        XCTAssertEqual(method?.name, "method")
     }
-    
+
     func test_resolve_shouldResolveElementWithUTF16Characters() {
         writeUTF16ResolveClassesToFile()
-        let file = StructureBuilderTestHelper.build(fromPath: resolveFile)!
+        let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
         let reference = (file.children[0] as! SwiftTypeElement).inheritedTypes[0]
-        let resolved = ResolveUtil().resolve(reference)
+        let resolved = ResolveUtil().resolve(reference) as? NamedElement
         XCTAssertEqual(resolved?.name, "Resolve💐Test")
-        XCTAssertEqual(resolved?.children[0].name, "method💐")
+        let method = resolved?.namedChild(at: 0)
+        XCTAssertEqual(method?.name, "method💐")
     }
 
     // MARK: - Helpers

@@ -2,7 +2,7 @@ import SourceKittenFramework
 
 class SKElementFactory {
 
-    func build(from string: String) -> Element {
+    func build(from string: String) -> Element? {
         let dictionary = Structure(file: SourceKittenFramework.File(contents: string)).dictionary
         return build(data: dictionary, fileText: string)
     }
@@ -13,7 +13,7 @@ class SKElementFactory {
         return SKElementFactory().build(data: dictionary, fileText: file.contents)
     }
 
-    func build(data: [String: SourceKitRepresentable], fileText: String) -> Element {
+    func build(data: [String: SourceKitRepresentable], fileText: String) -> Element? {
         guard isFileData(data) else {
             return buildElement(data, fileText: fileText)
         }
@@ -24,7 +24,7 @@ class SKElementFactory {
         return data["key.diagnostic_stage"] != nil
     }
 
-    private func buildElement(_ data: [String: SourceKitRepresentable], fileText: String) -> Element {
+    private func buildElement(_ data: [String: SourceKitRepresentable], fileText: String) -> Element? {
         guard let kind = data["key.kind"] as? String else {
             return SwiftElementBuilder(data: data, fileText: fileText).build()
         }
@@ -40,6 +40,8 @@ class SKElementFactory {
         case "source.lang.swift.decl.var.instance",
              "source.lang.swift.decl.var.global":
             return SwiftPropertyElementBuilder(data: data, fileText: fileText).build()
+        case SwiftInheritedTypeBuilder.key:
+            return SwiftInheritedTypeBuilder(data: data, fileText: fileText).build()
         default:
             return SwiftElementBuilder(data: data, fileText: fileText).build()
         }

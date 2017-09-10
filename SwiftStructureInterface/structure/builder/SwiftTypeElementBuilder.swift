@@ -1,6 +1,6 @@
 import SourceKittenFramework
 
-class SwiftTypeElementBuilder: SKSwiftElement {
+class SwiftTypeElementBuilder: BodySwiftElementBuilderTemplate {
 
     let fileText: String
     let data: [String: SourceKitRepresentable]
@@ -10,27 +10,25 @@ class SwiftTypeElementBuilder: SKSwiftElement {
         self.fileText = fileText
     }
 
-    func build() -> SwiftTypeElement {
-        let offset = getOffset()
-        let length = getLength()
-        let text = getText(offset: offset, length: length)
-        return SwiftTypeElement(name: getName(), text: text, children: buildChildren(), inheritedTypes: getInheritedTypes(), offset: offset, length: length, bodyOffset: getBodyOffset(), bodyLength: getBodyLength())
+    func build(text: String, offset: Int64, length: Int64, name: String, bodyOffset: Int64, bodyLength: Int64) -> Element? {
+        return SwiftTypeElement(name: name, text: text, children: buildChildren(), inheritedTypes: getInheritedTypes(), offset: offset, length: length, bodyOffset: bodyOffset, bodyLength: bodyLength)
     }
 
-    private func getInheritedTypes() -> [Element] {
-        guard let typeData = data["key.inheritedtypes"] as? [[String: SourceKitRepresentable]] else { return [] }
-        let declarationText = getDeclarationText()
+    private func getInheritedTypes() -> [SwiftInheritedType] {
+        guard let typeData = data["key.inheritedtypes"] as? [[String: SourceKitRepresentable]],
+              let declarationText = getDeclarationText() else { return [] }
         let typesTextStrings = getInheritedTypesStrings(declarationText: declarationText)
         let offsetAndLengths = getInheritedTypesTextOffsets(typeTexts: typesTextStrings, declarationText: declarationText)
         return augmentAndBuildInheritedTypes(offsetAndLengths: offsetAndLengths, typeData: typeData)
     }
 
-    private func augmentAndBuildInheritedTypes(offsetAndLengths: [(offset: Int64, length: Int64)], typeData: [[String: SourceKitRepresentable]]) -> [Element] {
-        return zip(offsetAndLengths, typeData).map { (offsetAndLength, data) in
+    private func augmentAndBuildInheritedTypes(offsetAndLengths: [(offset: Int64, length: Int64)], typeData: [[String: SourceKitRepresentable]]) -> [SwiftInheritedType] {
+        return zip(offsetAndLengths, typeData).flatMap { (offsetAndLength, data) in
             var newData = data
+            newData["key.kind"] = SwiftInheritedTypeBuilder.key
             newData["key.offset"] = offsetAndLength.0
             newData["key.length"] = offsetAndLength.1
-            return SKElementFactory().build(data: newData, fileText: fileText)
+            return SwiftInheritedTypeBuilder(data: newData, fileText: fileText).build() as? SwiftInheritedType
         }
     }
 
@@ -43,7 +41,7 @@ class SwiftTypeElementBuilder: SKSwiftElement {
     }
 
     private func getOffsets(fromTypes typeTexts: [String], typeNames: [String], typeClauseOffset: Int, in declarationText: String) -> [(offset: Int64, length: Int64)] {
-        var runningOffset = getOffset() + Int64(typeClauseOffset)
+        var runningOffset = getOffset()! + Int64(typeClauseOffset)
         return typeTexts.enumerated().map { i, type in
             let inheritedPart = typeNames[i]
             defer { runningOffset += Int64(inheritedPart.utf8.count) }

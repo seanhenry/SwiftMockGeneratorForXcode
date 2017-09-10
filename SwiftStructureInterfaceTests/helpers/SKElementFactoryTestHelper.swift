@@ -1,6 +1,6 @@
 @testable import SwiftStructureInterface
 
-class StructureBuilderTestHelper {
+class SKElementFactoryTestHelper {
 
     static func build(from string: String) -> SwiftFile? {
         return SKElementFactory().build(from: string) as? SwiftFile

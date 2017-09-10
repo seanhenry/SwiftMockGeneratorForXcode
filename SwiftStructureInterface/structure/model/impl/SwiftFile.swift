@@ -1,7 +1,7 @@
 class SwiftFile: SwiftElement, File {
 
-    override init(name: String, text: String, children: [Element], offset: Int64, length: Int64) {
-        super.init(name: name, text: text, children: children, offset: offset, length: length)
+    override init(text: String, children: [Element], offset: Int64, length: Int64) {
+        super.init(text: text, children: children, offset: offset, length: length)
         let visitor = FileSettingVisitor(file: self)
         accept(RecursiveElementVisitor(visitor: visitor))
     }

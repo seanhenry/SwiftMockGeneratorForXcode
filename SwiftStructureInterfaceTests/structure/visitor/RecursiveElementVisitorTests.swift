@@ -98,7 +98,7 @@ class RecursiveElementVisitorTests: XCTestCase {
     }
 
     private func getClassFile() -> Element {
-        return StructureBuilderTestHelper.build(from: getNestedClassString())!
+        return SKElementFactoryTestHelper.build(from: getNestedClassString())!
     }
 
     private func getNestedClassString() -> String {

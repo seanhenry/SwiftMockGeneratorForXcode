@@ -1,3 +1,3 @@
 protocol TypeDeclaration {
-    var inheritedTypes: [Element] { get }
+    var inheritedTypes: [NamedElement] { get }
 }

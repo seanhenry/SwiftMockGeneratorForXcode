@@ -57,7 +57,7 @@ class CaretUtilTests: XCTestCase {
     // MARK: - Helpers
 
     private func assertElementNameIs(_ expected: String, in elementAndOffset: ElementAndOffset, line: UInt = #line) {
-        let found = util.findElementUnderCaret(in: elementAndOffset.element, cursorOffset: elementAndOffset.offset)
+        let found = util.findElementUnderCaret(in: elementAndOffset.element, cursorOffset: elementAndOffset.offset) as? NamedElement
         XCTAssertEqual(found?.name, expected, line: line)
     }
 
@@ -103,7 +103,7 @@ class CaretUtilTests: XCTestCase {
     }
 
     private func build(_ string: String) -> Element {
-        return StructureBuilderTestHelper.build(from: string)!
+        return SKElementFactoryTestHelper.build(from: string)!
     }
 
     private func getClassString() -> String {

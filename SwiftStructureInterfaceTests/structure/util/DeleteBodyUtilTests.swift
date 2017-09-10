@@ -18,7 +18,7 @@ class DeleteBodyUtilTests: XCTestCase {
     // MARK: - deleteClassBody
 
     func test_deleteClassBody_shouldReturnElementWithBodyRemoved() {
-        let file = StructureBuilderTestHelper.build(from: getSimpleClass())!
+        let file = SKElementFactoryTestHelper.build(from: getSimpleClass())!
         let classElement = file.children[0]
         let result = util.deleteClassBody(from: classElement)!
         StringCompareTestHelper.assertEqualStrings(result.file.text, getExpectedSimpleClass())
@@ -26,7 +26,7 @@ class DeleteBodyUtilTests: XCTestCase {
     }
 
     func test_deleteClassBody_shouldReturnClassElement() {
-        let file = StructureBuilderTestHelper.build(from: getSimpleClass())!
+        let file = SKElementFactoryTestHelper.build(from: getSimpleClass())!
         let classElement = file.children[0]
         let result = util.deleteClassBody(from: classElement)!
         XCTAssert(result.element is SwiftTypeElement)
@@ -38,12 +38,12 @@ class DeleteBodyUtilTests: XCTestCase {
 
     func test_deleteClassBody_returnsNil_whenClassElementHasBadOffsets() {
         let element = SwiftTypeElement(name: "A", text: "class A { }", children: [], inheritedTypes: [], offset: -1, length: 0, bodyOffset: 100, bodyLength: 0)
-        let file = SwiftFile(name: "", text: "class A { }", children: [element], offset: 0, length: 11)
+        let file = SwiftFile(text: "class A { }", children: [element], offset: 0, length: 11)
         XCTAssertNil(util.deleteClassBody(from: file.children[0]))
     }
 
     func test_deleteClassBody_shouldDeleteUTF16Contents() {
-        let file = StructureBuilderTestHelper.build(from: getUTF16Class())!
+        let file = SKElementFactoryTestHelper.build(from: getUTF16Class())!
         let classElement = file.children[0]
         let result = util.deleteClassBody(from: classElement)!
         StringCompareTestHelper.assertEqualStrings(result.file.text, getExpectedUTF16Class())

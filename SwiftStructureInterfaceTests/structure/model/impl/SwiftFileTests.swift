@@ -30,7 +30,7 @@ class SwiftFileTests: XCTestCase {
     // MARK: - init
 
     func test_init_shouldAddItselfToAllChildren() {
-        file = StructureBuilderTestHelper.build(from: getNestedClassString())!
+        file = SKElementFactoryTestHelper.build(from: getNestedClassString())!
         XCTAssert(file.file === file)
         XCTAssert(file.children[0].file === file)
         let classB = file.children[0].children[0] as! SwiftTypeElement

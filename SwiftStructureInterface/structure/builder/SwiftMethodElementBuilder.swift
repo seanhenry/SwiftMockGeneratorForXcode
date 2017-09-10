@@ -1,6 +1,6 @@
 import SourceKittenFramework
 
-class SwiftMethodElementBuilder: SKSwiftElement {
+class SwiftMethodElementBuilder: NamedSwiftElementBuilderTemplate {
 
     let fileText: String
     let data: [String: SourceKitRepresentable]
@@ -8,6 +8,11 @@ class SwiftMethodElementBuilder: SKSwiftElement {
     init(data: [String: SourceKitRepresentable], fileText: String) {
         self.data = data
         self.fileText = fileText
+    }
+
+    func build(text: String, offset: Int64, length: Int64, name: String) -> Element? {
+        let returnType = getMethodReturnType()
+        return SwiftMethodElement(name: name, text: text, children: buildChildren(), offset: offset, length: length, returnType: returnType)
     }
 
     private let closedBracketUTF8: UTF8.CodeUnit = {
@@ -20,19 +25,11 @@ class SwiftMethodElementBuilder: SKSwiftElement {
         return openBracket[openBracket.startIndex]
     }()
 
-    func build() -> SwiftMethodElement {
-        let offset = getOffset()
-        let length = getLength()
-        let text = getText(offset: offset, length: length)
-        let returnType = getMethodReturnType()
-        return SwiftMethodElement(name: getName(), text: text, children: buildChildren(), offset: offset, length: length, returnType: returnType)//, bodyOffset: getBodyOffset(), bodyLength: getBodyLength())
-    }
-
     private func getMethodReturnType() -> String? {
         let returnStatementText = getReturnStatementText()
         let returnMarker = "->"
-        let components = returnStatementText.components(separatedBy: returnMarker)
-        if components.count >= 2 {
+        if let components = returnStatementText?.components(separatedBy: returnMarker),
+           components.count >= 2 {
             return components[1..<components.count]
                 .joined(separator: returnMarker)
                 .trimmingCharacters(in: .whitespacesAndNewlines)
@@ -40,8 +37,8 @@ class SwiftMethodElementBuilder: SKSwiftElement {
         return nil
     }
 
-    private func getReturnStatementText() -> String {
-        var text = getDeclarationText().utf8
+    private func getReturnStatementText() -> String? {
+        guard var text = getDeclarationText()?.utf8 else { return nil }
         var openBracketCount = 0
         var offset = text.startIndex
         repeat {

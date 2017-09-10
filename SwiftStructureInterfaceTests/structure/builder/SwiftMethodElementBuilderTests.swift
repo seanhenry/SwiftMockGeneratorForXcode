@@ -5,7 +5,7 @@ import SourceKittenFramework
 class SwiftMethodElementBuilderTests: XCTestCase {
 
     func test_build_shouldDetectMethods() {
-        let file = StructureBuilderTestHelper.build(from: getMethodsExampleString())!
+        let file = SKElementFactoryTestHelper.build(from: getMethodsExampleString())!
         let protocolType = file.children[0] as? SwiftTypeElement
         let classType = file.children[1] as? SwiftTypeElement
         let instanceMethod = classType?.children[0] as? SwiftMethodElement
@@ -17,7 +17,7 @@ class SwiftMethodElementBuilderTests: XCTestCase {
     }
 
     func test_build_shouldAddReturnTypeToMethods() {
-        let file = StructureBuilderTestHelper.build(from: getReturnMethodsExampleString())!
+        let file = SKElementFactoryTestHelper.build(from: getReturnMethodsExampleString())!
         let protocolType = file.children[0] as! SwiftTypeElement
         assertChildMethodReturnType(protocolType, at: 0, equals: nil)
         assertChildMethodReturnType(protocolType, at: 1, equals: "Type0")
