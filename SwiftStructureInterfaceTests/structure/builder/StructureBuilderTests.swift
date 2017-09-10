@@ -4,13 +4,7 @@ import SourceKittenFramework
 
 class StructureBuilderTests: XCTestCase {
 
-    // MARK: - build
-// TODO: what should actually happen here?
-    func test_build_shouldNotCrash_whenStringIsSmallerThanTheDataProvided() {
-        _ = StructureBuilder(data: Structure(file: File(contents: "protocol P {}")).dictionary, fileText: "").build() // should not crash
+    func test_badFilePath_returnsNil() {
+        XCTAssertNil(StructureBuilder().build(fromPath: "nonexistent_file"))
     }
-
-    // MARK: - Helpers
-
-
 }

@@ -22,8 +22,7 @@ class FormatUtil {
                 }
             }
             let formattedString = stitch(formattedArray)
-            let dictionary = Structure(file: SourceKittenFramework.File(contents: formattedString)).dictionary
-            return StructureBuilder(data: dictionary, fileText: formattedString).build()
+            return StructureBuilder().build(from: formattedString)
         } catch {
             print("Error: \(error)\nFailed to format: \(element.text)")
         }

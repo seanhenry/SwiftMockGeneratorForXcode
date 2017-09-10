@@ -13,9 +13,7 @@ class ResolveUtil {
         let data = Request.cursorInfo(file: tempFile, offset: element.offset, arguments: arguments).send()
         if let path = data["key.filepath"] as? String,
            let offset = data["key.offset"] as? Int64,
-           let file = SourceKittenFramework.File(path: path) {
-            let structure = Structure(file: file)
-            let resolvedFile = StructureBuilder(data: structure.dictionary, fileText: file.contents).build()
+           let resolvedFile = StructureBuilder().build(fromPath: path) {
             return CaretUtil().findElementUnderCaret(in: resolvedFile, cursorOffset: offset)
         }
         return nil
