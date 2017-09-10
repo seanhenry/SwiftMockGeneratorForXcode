@@ -19,7 +19,7 @@ class PreferencesView: NSView {
             startingDirectory = NSHomeDirectory()
         }
         panel.directoryURL = URL(fileURLWithPath: startingDirectory)
-        if panel.runModal() == NSModalResponseOK {
+        if panel.runModal() == NSApplication.ModalResponse.OK {
             Preferences().projectPath = panel.directoryURL
             projectPathField.stringValue = panel.directoryURL?.path ?? ""
         }
