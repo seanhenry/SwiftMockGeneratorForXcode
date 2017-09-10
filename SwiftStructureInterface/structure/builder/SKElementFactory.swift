@@ -1,7 +1,6 @@
 import SourceKittenFramework
 
-// TODO: remove subclass and rename to SwiftFileBuilder
-class StructureBuilder {
+class SKElementFactory {
 
     func build(from string: String) -> Element {
         let dictionary = Structure(file: SourceKittenFramework.File(contents: string)).dictionary
@@ -11,7 +10,7 @@ class StructureBuilder {
     func build(fromPath path: String) -> Element? {
         guard let file = SourceKittenFramework.File(path: path) else { return nil }
         let dictionary = Structure(file: file).dictionary
-        return StructureBuilder().build(data: dictionary, fileText: file.contents)
+        return SKElementFactory().build(data: dictionary, fileText: file.contents)
     }
 
     func build(data: [String: SourceKitRepresentable], fileText: String) -> Element {

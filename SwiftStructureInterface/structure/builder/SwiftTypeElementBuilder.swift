@@ -22,7 +22,7 @@ class SwiftTypeElementBuilder: SwiftElementBuilder {
             var newData = data
             newData["key.offset"] = offsetAndLength.0
             newData["key.length"] = offsetAndLength.1
-            return StructureBuilder().build(data: newData, fileText: fileText)
+            return SKElementFactory().build(data: newData, fileText: fileText)
         }
     }
 

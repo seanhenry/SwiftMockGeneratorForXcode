@@ -4,7 +4,7 @@ class DeleteBodyUtil {
 
     func deleteClassBody(from element: Element) -> (file: Element, element: Element)? {
         guard let fileString = getFileStringRemovingBody(from: element) else { return nil }
-        let file = StructureBuilder().build(from: fileString)
+        let file = SKElementFactory().build(from: fileString)
         let elementEquivalent = CaretUtil().findElementUnderCaret(in: file, cursorOffset: element.offset)!
         return (file, elementEquivalent)
     }

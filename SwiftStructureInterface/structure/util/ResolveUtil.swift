@@ -13,7 +13,7 @@ class ResolveUtil {
         let data = Request.cursorInfo(file: tempFile, offset: element.offset, arguments: arguments).send()
         if let path = data["key.filepath"] as? String,
            let offset = data["key.offset"] as? Int64,
-           let resolvedFile = StructureBuilder().build(fromPath: path) {
+           let resolvedFile = SKElementFactory().build(fromPath: path) {
             return CaretUtil().findElementUnderCaret(in: resolvedFile, cursorOffset: offset)
         }
         return nil

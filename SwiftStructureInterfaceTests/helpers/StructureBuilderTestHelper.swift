@@ -3,10 +3,10 @@
 class StructureBuilderTestHelper {
 
     static func build(from string: String) -> SwiftFile? {
-        return StructureBuilder().build(from: string) as? SwiftFile
+        return SKElementFactory().build(from: string) as? SwiftFile
     }
 
     static func build(fromPath path: String) -> SwiftFile? {
-        return StructureBuilder().build(fromPath: path) as? SwiftFile
+        return SKElementFactory().build(fromPath: path) as? SwiftFile
     }
 }

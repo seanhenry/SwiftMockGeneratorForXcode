@@ -1,15 +1,13 @@
 import Foundation
+// TODO: remove testable when API becomes more clear
 @testable import SwiftStructureInterface
-import SourceKittenFramework
 
 public class Generator {
     
     public static func generateMock(fromFileContents contents: String, projectURL: URL, line: Int, column: Int) -> ([String]?, Error?) {
         // TODO: put files elsewhere
         ResolveUtil.files = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
-        // TODO: fully encapsulate SourceKitten
-        let structure = Structure(file: File(contents: contents))
-        let file = StructureBuilder(data: structure.dictionary, fileText: contents).build()
+        let file = SKElementFactory().build(from: contents)
         guard let cursorOffset = LocationConverter.convert(line: line, column: column, in: contents) else {
             return reply(with: "cursor not found")
         }
@@ -69,8 +67,7 @@ public class Generator {
     
     private static func format(_ lines: [String]) -> [String] {
         let newFileText = lines.joined(separator: "\n")
-        let dictionary = Structure(file: File(contents: newFileText)).dictionary
-        let newFile = StructureBuilder(data: dictionary, fileText: newFileText).build()
+        let newFile = SKElementFactory().build(from: newFileText)
         let formatted = FormatUtil().format(newFile).text
         return formatted.components(separatedBy: .newlines)
     }

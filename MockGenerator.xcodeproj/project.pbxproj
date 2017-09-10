@@ -68,7 +68,7 @@
 		14E132281F58E6D300D75943 /* MethodGatheringVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDB834B634E694CF658C /* MethodGatheringVisitor.swift */; };
 		14E1322B1F58E88F00D75943 /* StructureBuilderTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF935B41E2DAED50B8D54 /* StructureBuilderTestHelper.swift */; };
 		35CDF0068DB237A15D5F0802 /* StringCompareTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9A9E9859C405A1E3B06 /* StringCompareTestHelper.swift */; };
-		35CDF0BA3F278A564ED3053F /* StructureBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF972F898CB60BD896524 /* StructureBuilder.swift */; };
+		35CDF0BA3F278A564ED3053F /* SKElementFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF972F898CB60BD896524 /* SKElementFactory.swift */; };
 		35CDF20A263B211CBF427FDC /* SwiftTypeElementBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFCD982124DFA56FC2763 /* SwiftTypeElementBuilderTests.swift */; };
 		35CDF23785F8638042864254 /* ResolveUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFFE183347682F0523AEC /* ResolveUtil.swift */; };
 		35CDF26B05A866EF1D0CBA3E /* ResolveUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF67FD332DFA012E4AFD1 /* ResolveUtilTests.swift */; };
@@ -91,7 +91,7 @@
 		35CDF8B31981E6BBF132E1BD /* SwiftElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF766CA2BD7332CEDEFE4 /* SwiftElement.swift */; };
 		35CDF90FF79F5FB7BCC13835 /* SwiftFileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF51BAA9B0427E72C8CBE /* SwiftFileBuilder.swift */; };
 		35CDF9685E42EEEE45755B2E /* DeleteBodyUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF713F6161FBDE25F45B9 /* DeleteBodyUtil.swift */; };
-		35CDF9E4AF9580EF15A8B63A /* StructureBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF7FC5D86D0B008DD7A4 /* StructureBuilderTests.swift */; };
+		35CDF9E4AF9580EF15A8B63A /* SKElementFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF7FC5D86D0B008DD7A4 /* SKElementFactoryTests.swift */; };
 		35CDFA633679A596E5A724FD /* SwiftElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF8C7624DBE51669019E0 /* SwiftElementTests.swift */; };
 		35CDFA7E852D94A08030BC3A /* SwiftTypeElementBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF3C1DC96F5B424A3879A /* SwiftTypeElementBuilder.swift */; };
 		35CDFA84F24F64939FD7F5D0 /* StringCompareTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9A9E9859C405A1E3B06 /* StringCompareTestHelper.swift */; };
@@ -396,7 +396,7 @@
 		35CDF8C7624DBE51669019E0 /* SwiftElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftElementTests.swift; sourceTree = "<group>"; };
 		35CDF935B41E2DAED50B8D54 /* StructureBuilderTestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructureBuilderTestHelper.swift; sourceTree = "<group>"; };
 		35CDF9501C3AB85D6387804C /* JavaProtocolPropertyBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaProtocolPropertyBridge.m; sourceTree = "<group>"; };
-		35CDF972F898CB60BD896524 /* StructureBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructureBuilder.swift; sourceTree = "<group>"; };
+		35CDF972F898CB60BD896524 /* SKElementFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKElementFactory.swift; sourceTree = "<group>"; };
 		35CDF9A9DDF892650697EF1C /* SwiftMethodElementBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMethodElementBuilder.swift; sourceTree = "<group>"; };
 		35CDF9A9E9859C405A1E3B06 /* StringCompareTestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCompareTestHelper.swift; sourceTree = "<group>"; };
 		35CDFA0304D65D99B38F1511 /* CaretUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaretUtilTests.swift; sourceTree = "<group>"; };
@@ -416,7 +416,7 @@
 		35CDFF626768CFA150C8AC4A /* DeleteBodyUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBodyUtilTests.swift; sourceTree = "<group>"; };
 		35CDFF76AF338D84655E5142 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		35CDFF790C9B97835CC38B63 /* CaretTestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaretTestHelper.swift; sourceTree = "<group>"; };
-		35CDFF7FC5D86D0B008DD7A4 /* StructureBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructureBuilderTests.swift; sourceTree = "<group>"; };
+		35CDFF7FC5D86D0B008DD7A4 /* SKElementFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKElementFactoryTests.swift; sourceTree = "<group>"; };
 		35CDFFE183347682F0523AEC /* ResolveUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolveUtil.swift; sourceTree = "<group>"; };
 		35CDFFF66DAF392668FD8C65 /* PositionedElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionedElement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -699,7 +699,7 @@
 		35CDF2CE5C9F6F95CBBA6222 /* builder */ = {
 			isa = PBXGroup;
 			children = (
-				35CDFF7FC5D86D0B008DD7A4 /* StructureBuilderTests.swift */,
+				35CDFF7FC5D86D0B008DD7A4 /* SKElementFactoryTests.swift */,
 				35CDFB0B94816A30DE3324DE /* SwiftMethodElementBuilderTests.swift */,
 				35CDFDBA69D15F512927BA6F /* SwiftPropertyElementBuilderTests.swift */,
 				35CDFCD982124DFA56FC2763 /* SwiftTypeElementBuilderTests.swift */,
@@ -779,7 +779,7 @@
 		35CDFA8EE4D1178A1F1D9502 /* builder */ = {
 			isa = PBXGroup;
 			children = (
-				35CDF972F898CB60BD896524 /* StructureBuilder.swift */,
+				35CDF972F898CB60BD896524 /* SKElementFactory.swift */,
 				35CDF9A9DDF892650697EF1C /* SwiftMethodElementBuilder.swift */,
 				35CDF1BE911C7FDF07E89F57 /* SwiftPropertyElementBuilder.swift */,
 				35CDF3C1DC96F5B424A3879A /* SwiftTypeElementBuilder.swift */,
@@ -1308,7 +1308,7 @@
 				35CDFCBD3149A396687A224F /* FormatUtil.swift in Sources */,
 				35CDFFD4FEE85F54F1EDB391 /* TempFileWriterUtil.swift in Sources */,
 				35CDFC947EE8AF62E4E54320 /* SwiftPropertyElement.swift in Sources */,
-				35CDF0BA3F278A564ED3053F /* StructureBuilder.swift in Sources */,
+				35CDF0BA3F278A564ED3053F /* SKElementFactory.swift in Sources */,
 				35CDF510483126464F22099B /* SwiftMethodElementBuilder.swift in Sources */,
 				35CDF8565148EA9D669DF970 /* SwiftPropertyElementBuilder.swift in Sources */,
 				35CDFA7E852D94A08030BC3A /* SwiftTypeElementBuilder.swift in Sources */,
@@ -1338,7 +1338,7 @@
 				35CDFF24A71BDAEF47CE5C47 /* FormatUtilTests.swift in Sources */,
 				35CDFDA6602AD4DA24978981 /* TempFileWriterUtilTests.swift in Sources */,
 				35CDFF85ACE8EFD8BB8E3821 /* SwiftPropertyElementTests.swift in Sources */,
-				35CDF9E4AF9580EF15A8B63A /* StructureBuilderTests.swift in Sources */,
+				35CDF9E4AF9580EF15A8B63A /* SKElementFactoryTests.swift in Sources */,
 				35CDFE1DBEFF4173D5F12D28 /* SwiftMethodElementBuilderTests.swift in Sources */,
 				35CDF7A5A88CC4FB9B3D4B46 /* SwiftPropertyElementBuilderTests.swift in Sources */,
 				35CDF20A263B211CBF427FDC /* SwiftTypeElementBuilderTests.swift in Sources */,

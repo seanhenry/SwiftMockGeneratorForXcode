@@ -31,7 +31,7 @@ class SwiftElementBuilder {
 
     func buildChildren() -> [Element] {
         return getSubStructure()?.flatMap {
-            StructureBuilder().build(data: $0, fileText: fileText)
+            SKElementFactory().build(data: $0, fileText: fileText)
         } ?? []
     }
 

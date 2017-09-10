@@ -2,9 +2,9 @@ import XCTest
 import SourceKittenFramework
 @testable import SwiftStructureInterface
 
-class StructureBuilderTests: XCTestCase {
+class SKElementFactoryTests: XCTestCase {
 
     func test_badFilePath_returnsNil() {
-        XCTAssertNil(StructureBuilder().build(fromPath: "nonexistent_file"))
+        XCTAssertNil(SKElementFactory().build(fromPath: "nonexistent_file"))
     }
 }
