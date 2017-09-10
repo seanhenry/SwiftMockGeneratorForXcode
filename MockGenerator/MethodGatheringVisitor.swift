@@ -24,6 +24,10 @@ class MethodGatheringVisitor: ElementVisitor {
     }
 
     func visit(_ element: SwiftPropertyElement) {
-        properties.append(JavaProtocolPropertyBridge(javaEnvironment: environment, name: element.name, type: element.type, isWritable: element.isWritable, signature: element.text))
+        var attribute = ""
+        if let elementAttribute = element.attribute {
+            attribute = elementAttribute + " "
+        }
+        properties.append(JavaProtocolPropertyBridge(javaEnvironment: environment, name: element.name, type: element.type, isWritable: element.isWritable, signature: attribute + element.text))
     }
 }

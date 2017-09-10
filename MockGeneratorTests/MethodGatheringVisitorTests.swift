@@ -30,9 +30,9 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     func test_visit_shouldGetAllPropertiesFromProtocol() {
         getPropertyProtocol().accept(RecursiveElementVisitor(visitor: visitor))
-        XCTAssertEqual(visitor.properties.map { $0.name }, ["prop1", "prop2"])
-        XCTAssertEqual(visitor.properties.map { $0.type }, ["Int", "String!"])
-        XCTAssertEqual(visitor.properties.map { $0.signature }, ["var prop1: Int { get set }", "var prop2: String! { get }"])
+        XCTAssertEqual(visitor.properties.map { $0.name }, ["prop1", "prop2", "prop3"])
+        XCTAssertEqual(visitor.properties.map { $0.type }, ["Int", "String!", "NSObject?"])
+        XCTAssertEqual(visitor.properties.map { $0.signature }, ["var prop1: Int { get set }", "var prop2: String! { get }", "weak var prop3: NSObject? { set get }"])
     }
 
     // MARK: - Helpers
@@ -58,6 +58,7 @@ class MethodGatheringVisitorTests: XCTestCase {
         return "protocol TestProtocol {" + "\n" +
             "  var prop1: Int { get set }" + "\n" +
             "  var prop2: String! { get }" + "\n" +
+            "  weak var prop3: NSObject? { set get }" + "\n" +
             "}" + "\n" +
             "class Object {}"
     }
