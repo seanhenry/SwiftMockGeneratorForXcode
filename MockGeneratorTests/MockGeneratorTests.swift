@@ -44,6 +44,24 @@ class MockGeneratorTests: XCTestCase {
         }
     }
 
+    func test_generatesErrorForAllBadCaretPositions() {
+        let caretFile = readFile(named: "CaretFailureTest.swift")
+        var contentsLineColumn: (contents: String, lineColumn: (line: Int, column: Int)?) = (caretFile, nil)
+        var caretLineColumns = [(line: Int, column: Int)]()
+        repeat {
+            contentsLineColumn = CaretTestHelper.findCaretLineColumn(contentsLineColumn.contents)
+            if let lineColumn = contentsLineColumn.lineColumn {
+                caretLineColumns.append(lineColumn)
+            }
+        } while contentsLineColumn.lineColumn != nil
+        XCTAssertGreaterThan(caretLineColumns.count, 0)
+        caretLineColumns.forEach { lineColumn in
+            let (lines, error) = Generator.generateMock(fromFileContents: contentsLineColumn.contents, projectURL: URL(fileURLWithPath: testProject), line: lineColumn.line, column: lineColumn.column)
+            XCTAssertNotNil(error, "Should not be generating a mock from caret at line: \(lineColumn.line) column: \(lineColumn.column)")
+            XCTAssertNil(lines)
+        }
+    }
+
     // MARK: - Helpers
 
     private func assertMockGeneratesExpected(_ fileName: String, line: UInt = #line) {
