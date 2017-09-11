@@ -63,7 +63,8 @@ public class Generator {
     private static func insert(_ mockBody: [String], atTypeElement typeElement: SwiftTypeElement, in file: Element) -> [String] {
         var fileLines = file.text.components(separatedBy: .newlines)
         let lineColumn = LocationConverter.convert(caretOffset: typeElement.bodyOffset + typeElement.bodyLength, in: file.text)!
-        let insertIndex = lineColumn.line
+        let zeroBasedLine = lineColumn.line - 1
+        let insertIndex = zeroBasedLine
         fileLines.insert(contentsOf: mockBody, at: insertIndex)
         return fileLines
     }

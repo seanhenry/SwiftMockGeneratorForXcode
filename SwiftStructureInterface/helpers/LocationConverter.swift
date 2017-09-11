@@ -3,10 +3,11 @@ class LocationConverter {
     private static let newLineCharacterCount = 1
 
     static func convert(line: Int, column: Int, in string: String) -> Int64? {
+        let zeroBasedLine = line - 1
         var lines = string.components(separatedBy: .newlines)
         lines = appendNewlines(to: lines)
-        guard areLineAndColumnValid(line, column, in: lines) else { return nil }
-        return findOffset(atLine: line, atColumn: column, in: lines)
+        guard areLineAndColumnValid(zeroBasedLine, column, in: lines) else { return nil }
+        return findOffset(atLine: zeroBasedLine, atColumn: column, in: lines)
     }
 
     private static func appendNewlines(to lines: [String]) -> [String] {
@@ -52,8 +53,9 @@ class LocationConverter {
         guard isOffsetValid(Int(caretOffset), in: string) else { return nil }
         let strings = string.components(separatedBy: .newlines)
         var remainingOffset = Int(caretOffset)
-        let line = findLineNumber(inLines: strings, remainingOffset: &remainingOffset)
-        let column = findColumnNumber(inLine: strings[line], remainingOffset: &remainingOffset)
+        let zeroBasedLine = findLineNumber(inLines: strings, remainingOffset: &remainingOffset)
+        let column = findColumnNumber(inLine: strings[zeroBasedLine], remainingOffset: &remainingOffset)
+        let line = zeroBasedLine + 1
         return (line, column)
     }
 

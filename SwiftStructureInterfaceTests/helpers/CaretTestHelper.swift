@@ -65,7 +65,7 @@ class CaretTestHelperTests: XCTestCase {
         let expected = "class A {" + "\n" +
             "  " + "\n" +
             "}"
-        XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).lineColumn?.line, 1)
+        XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).lineColumn?.line, 2)
         XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).lineColumn?.column, 2)
         XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).contents, expected)
     }

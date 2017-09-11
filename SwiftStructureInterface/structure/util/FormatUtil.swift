@@ -13,7 +13,7 @@ class FormatUtil {
         var formattedArray = file.text.components(separatedBy: .newlines)
         tempFileWriter.write(file.text)
         do {
-            for i in (startLine+1)...(endLine+1) { // TODO: line and column should not be 0 based. Change in location converter
+            for i in (startLine)...(endLine) {
                 try openFileInEditor()
                 let formatted = try formatLine(i)
                 if let newText = formatted["key.sourcetext"] as? String {

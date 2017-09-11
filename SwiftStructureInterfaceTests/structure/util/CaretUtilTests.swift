@@ -69,31 +69,31 @@ class CaretUtilTests: XCTestCase {
     }
 
     private func getClassWithCaretAtFirstPositionInClass() -> ElementAndOffset {
-        return getClassAndOffset(line: 0, column: 0)
+        return getClassAndOffset(line: 1, column: 0)
     }
 
     private func getClassWithCaretAtLastPositionInClass() -> ElementAndOffset {
-        return getClassAndOffset(line: 22, column: 0)
+        return getClassAndOffset(line: 23, column: 0)
     }
 
     private func getClassWithCaretAtFirstPositionInMethod() -> ElementAndOffset {
-        return getClassAndOffset(line: 15, column: 4)
-    }
-
-    private func getClassWithCaretAtLastPositionInMethod() -> ElementAndOffset {
-        return getClassAndOffset(line: 17, column: 4)
-    }
-
-    private func getClassWithCaretInMethodBody() -> ElementAndOffset {
         return getClassAndOffset(line: 16, column: 4)
     }
 
+    private func getClassWithCaretAtLastPositionInMethod() -> ElementAndOffset {
+        return getClassAndOffset(line: 18, column: 4)
+    }
+
+    private func getClassWithCaretInMethodBody() -> ElementAndOffset {
+        return getClassAndOffset(line: 17, column: 4)
+    }
+
     private func getClassWithCaretAtFirstPositionInProperty() -> ElementAndOffset {
-        return getClassAndOffset(line: 2, column: 4)
+        return getClassAndOffset(line: 3, column: 4)
     }
 
     private func getClassWithCaretAtLastPositionInProperty() -> ElementAndOffset {
-        return getClassAndOffset(line: 2, column: 34)
+        return getClassAndOffset(line: 3, column: 34)
     }
 
     private func getClassAndOffset(line: Int, column: Int) -> ElementAndOffset {
