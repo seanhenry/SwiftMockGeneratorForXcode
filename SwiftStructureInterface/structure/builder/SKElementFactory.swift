@@ -10,7 +10,7 @@ class SKElementFactory {
     func build(fromPath path: String) -> Element? {
         guard let file = SourceKittenFramework.File(path: path) else { return nil }
         let dictionary = Structure(file: file).dictionary
-        return SKElementFactory().build(data: dictionary, fileText: file.contents)
+        return build(data: dictionary, fileText: file.contents)
     }
 
     func build(data: [String: SourceKitRepresentable], fileText: String) -> Element? {
@@ -40,7 +40,7 @@ class SKElementFactory {
         case "source.lang.swift.decl.var.instance",
              "source.lang.swift.decl.var.global":
             return SwiftPropertyElementBuilder(data: data, fileText: fileText).build()
-        case SwiftInheritedTypeBuilder.key:
+        case SwiftInheritedTypeBuilder.kind:
             return SwiftInheritedTypeBuilder(data: data, fileText: fileText).build()
         default:
             return SwiftElementBuilder(data: data, fileText: fileText).build()

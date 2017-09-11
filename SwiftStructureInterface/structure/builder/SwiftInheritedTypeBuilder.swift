@@ -2,7 +2,7 @@ import SourceKittenFramework
 
 class SwiftInheritedTypeBuilder: NamedSwiftElementBuilderTemplate {
     
-    static let key = "SwiftInheritedTypeBuilder.inheritedType"
+    static let kind = "SwiftInheritedTypeBuilder.inheritedType"
     let data: [String: SourceKitRepresentable]
     let fileText: String
 

@@ -38,11 +38,6 @@ extension SwiftElementBuilderTemplate {
         return data["key.substructure"] as? [[String: SourceKitRepresentable]]
     }
 
-    func getName() -> String? {
-        let name = data["key.name"] as? String
-        return name?.components(separatedBy: "(").first
-    }
-
     func getOffset() -> Int64? {
         return data["key.offset"] as? Int64
     }

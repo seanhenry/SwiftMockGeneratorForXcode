@@ -25,7 +25,7 @@ class SwiftTypeElementBuilder: BodySwiftElementBuilderTemplate {
     private func augmentAndBuildInheritedTypes(offsetAndLengths: [(offset: Int64, length: Int64)], typeData: [[String: SourceKitRepresentable]]) -> [SwiftInheritedType] {
         return zip(offsetAndLengths, typeData).flatMap { (offsetAndLength, data) in
             var newData = data
-            newData["key.kind"] = SwiftInheritedTypeBuilder.key
+            newData["key.kind"] = SwiftInheritedTypeBuilder.kind
             newData["key.offset"] = offsetAndLength.0
             newData["key.length"] = offsetAndLength.1
             return SwiftInheritedTypeBuilder(data: newData, fileText: fileText).build() as? SwiftInheritedType

@@ -2,6 +2,10 @@ import XCTest
 import SourceKittenFramework
 @testable import SwiftStructureInterface
 
+protocol P {
+    unowned(safe) var a : NSObject { get }
+    unowned(unsafe) var b : NSObject { get }
+}
 class SwiftPropertyElementBuilderTests: XCTestCase {
 
     // This is a trivial implementation so far. Enough to detect protocol properties.
@@ -14,6 +18,11 @@ class SwiftPropertyElementBuilderTests: XCTestCase {
         assertChildProperty(protocolType, name: "readWrite", type: "String", isWritable: true, at: 0)
         assertChildProperty(protocolType, name: "readOnly", type: "Int", isWritable: false, at: 1)
         assertChildProperty(protocolType, name: "weakProp", type: "NSObject?", isWritable: false, attributes: "weak", at: 2)
+        assertChildProperty(protocolType, name: "unownedProp", type: "NSObject", isWritable: false, attributes: "unowned", at: 3)
+        assertChildProperty(protocolType, name: "unownedWithWhitespace", type: "NSObject", isWritable: false, attributes: "unowned", at: 4)
+        assertChildProperty(protocolType, name: "weakWithNewline", type: "NSObject?", isWritable: false, attributes: "weak", at: 5)
+        assertChildProperty(protocolType, name: "unownedSafe", type: "NSObject", isWritable: false, attributes: "unowned(safe)", at: 6)
+        assertChildProperty(protocolType, name: "unownedUnsafe", type: "NSObject", isWritable: false, attributes: "unowned(unsafe)", at: 7)
     }
 
     // MARK: - Helpers
@@ -33,6 +42,11 @@ class SwiftPropertyElementBuilderTests: XCTestCase {
             "    var readWrite: String { set get }" + "\n" +
             "    var readOnly: Int { get }" + "\n" +
             "    weak var weakProp: NSObject? { get }" + "\n" +
+            "    unowned var unownedProp: NSObject { get }" + "\n" +
+            "    unowned     var unownedWithWhitespace: NSObject { get }" + "\n" +
+            "    weak \n var weakWithNewline: NSObject? { get }" + "\n" +
+            "    unowned(safe) \n var unownedSafe: NSObject { get }" + "\n" +
+            "    unowned(unsafe) \n var unownedUnsafe: NSObject { get }" + "\n" +
             "}"
     }
 }

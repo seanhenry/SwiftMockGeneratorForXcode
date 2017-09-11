@@ -15,16 +15,6 @@ class SwiftMethodElementBuilder: NamedSwiftElementBuilderTemplate {
         return SwiftMethodElement(name: name, text: text, children: buildChildren(), offset: offset, length: length, returnType: returnType)
     }
 
-    private let closedBracketUTF8: UTF8.CodeUnit = {
-        let closedBracket = ")".utf8
-        return closedBracket[closedBracket.startIndex]
-    }()
-
-    private let openBracketUTF8: UTF8.CodeUnit = {
-        let openBracket = "(".utf8
-        return openBracket[openBracket.startIndex]
-    }()
-
     private func getMethodReturnType() -> String? {
         let returnStatementText = getReturnStatementText()
         let returnMarker = "->"
@@ -57,4 +47,14 @@ class SwiftMethodElementBuilder: NamedSwiftElementBuilderTemplate {
     private func firstBracketIndex(text: String.UTF8View) -> String.UTF8View.Index? {
         return text.index { $0 == openBracketUTF8 || $0 == closedBracketUTF8 }
     }
+
+    private let closedBracketUTF8: UTF8.CodeUnit = {
+        let closedBracket = ")".utf8
+        return closedBracket[closedBracket.startIndex]
+    }()
+
+    private let openBracketUTF8: UTF8.CodeUnit = {
+        let openBracket = "(".utf8
+        return openBracket[openBracket.startIndex]
+    }()
 }

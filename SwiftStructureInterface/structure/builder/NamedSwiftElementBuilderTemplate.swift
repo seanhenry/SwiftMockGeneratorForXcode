@@ -12,4 +12,9 @@ extension NamedSwiftElementBuilderTemplate {
         }
         return build(text: text, offset: offset, length: length, name: name)
     }
+
+    func getName() -> String? {
+        let name = data["key.name"] as? String
+        return name?.components(separatedBy: "(").first
+    }
 }
