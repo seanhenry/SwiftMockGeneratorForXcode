@@ -16,11 +16,11 @@ public class Generator {
         guard let elementUnderCaret = CaretUtil().findElementUnderCaret(in: file, cursorOffset: cursorOffset) else {
             return reply(with: "No Swift element found under the cursor")
         }
-        guard let typeElement = elementUnderCaret as? SwiftTypeElement else {
+        guard let typeElement = (elementUnderCaret as? SwiftTypeElement) ?? ElementTreeUtil().findParentType(elementUnderCaret) else {
             return reply(with: "Place the cursor on a mock class declaration")
         }
         guard let inheritedType = typeElement.inheritedTypes.first else {
-                return reply(with: "Could not find a protocol on \(typeElement.name)")
+            return reply(with: "Could not find a protocol on \(typeElement.name)")
         }
         guard let resolved = ResolveUtil().resolve(inheritedType) else {
             return reply(with: "\(inheritedType.name) element could not be resolved")

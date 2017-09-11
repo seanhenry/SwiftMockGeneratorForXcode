@@ -24,4 +24,20 @@ class SwiftElementTests: XCTestCase {
         element.accept(mockVisitor)
         XCTAssert(mockVisitor.invokedVisitSwiftElementParameters?.element === element)
     }
+
+    // MARK: - init
+
+    func test_init_shouldSetSelfAsParentToAllChildren() {
+        let child0 = createElement()
+        let child1 = createElement()
+        let element = SwiftElement(text: "", children: [child0, child1], offset: 0, length: 0)
+        XCTAssert(child0.parent === element)
+        XCTAssert(child1.parent === element)
+    }
+
+    // MARK: - Helpers
+    
+    func createElement() -> Element {
+        return SwiftElement(text: "", children: [], offset: 0, length: 0)
+    }
 }

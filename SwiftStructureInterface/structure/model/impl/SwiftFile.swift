@@ -25,7 +25,6 @@ class SwiftFile: SwiftElement, File {
 
         func visit(_ element: SwiftTypeElement) {
             element.inheritedTypes.forEach { type in
-                var type = type
                 type.file = file
             }
         }

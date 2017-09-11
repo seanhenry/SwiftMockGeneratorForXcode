@@ -25,6 +25,25 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("PropertyProtocolMock")
     }
 
+    func test_generatesMockForAllCaretPositions() {
+        let expected = readFile(named: "SimpleProtocolMock_expected.swift")
+        let caretFile = readFile(named: "CaretSuccessTest.swift")
+        var contentsLineColumn: (contents: String, lineColumn: (line: Int, column: Int)?) = (caretFile, nil)
+        var caretLineColumns = [(line: Int, column: Int)]()
+        repeat {
+            contentsLineColumn = CaretTestHelper.findCaretLineColumn(contentsLineColumn.contents)
+            if let lineColumn = contentsLineColumn.lineColumn {
+                caretLineColumns.append(lineColumn)
+            }
+        } while contentsLineColumn.lineColumn != nil
+        XCTAssertGreaterThan(caretLineColumns.count, 0)
+        caretLineColumns.forEach { lineColumn in
+            let (lines, error) = Generator.generateMock(fromFileContents: contentsLineColumn.contents, projectURL: URL(fileURLWithPath: testProject), line: lineColumn.line, column: lineColumn.column)
+            XCTAssertNil(error, "Failed to generate mock from caret at line: \(lineColumn.line) column: \(lineColumn.column)")
+            StringCompareTestHelper.assertEqualStrings(join(lines), expected)
+        }
+    }
+
     // MARK: - Helpers
 
     private func assertMockGeneratesExpected(_ fileName: String, line: UInt = #line) {
@@ -40,10 +59,14 @@ class MockGeneratorTests: XCTestCase {
         XCTAssertEqual(nsError?.localizedDescription, expectedError, line: line)
     }
     
-    private func readMock(named: String) -> (String, String) {
-        let mock = try! String(contentsOfFile: testProject + "/" + named + ".swift")
-        let expected = try! String(contentsOfFile: testProject + "/" + named + "_expected.swift")
+    private func readMock(named fileName: String) -> (String, String) {
+        let mock = readFile(named: fileName + ".swift")
+        let expected = readFile(named: fileName + "_expected.swift")
         return (mock, expected)
+    }
+
+    private func readFile(named fileName: String) -> String {
+        return try! String(contentsOfFile: testProject + "/" + fileName)
     }
 
     private func assertMock(_ mock: String, generates expected: String, line: UInt = #line) {

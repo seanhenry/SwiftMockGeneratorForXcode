@@ -1,2 +1,2 @@
-protocol File: class, Element {
+protocol File: Element {
 }
