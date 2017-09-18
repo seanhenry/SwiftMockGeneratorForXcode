@@ -69,6 +69,7 @@
 		14E1322B1F58E88F00D75943 /* SKElementFactoryTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF935B41E2DAED50B8D54 /* SKElementFactoryTestHelper.swift */; };
 		35CDF0068DB237A15D5F0802 /* StringCompareTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9A9E9859C405A1E3B06 /* StringCompareTestHelper.swift */; };
 		35CDF00958415FBD9AA9D798 /* SwiftInheritedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF8B58C428555C8B6B8E7 /* SwiftInheritedType.swift */; };
+		35CDF0511F897CF1F43B80B4 /* MethodParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDB3A06E93A1EE64B196 /* MethodParameter.swift */; };
 		35CDF05F9EC2586F896B2103 /* ElementTreeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFC389AA6A362117D44ED /* ElementTreeUtil.swift */; };
 		35CDF0BA3F278A564ED3053F /* SKElementFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF972F898CB60BD896524 /* SKElementFactory.swift */; };
 		35CDF20A263B211CBF427FDC /* SwiftTypeElementBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFCD982124DFA56FC2763 /* SwiftTypeElementBuilderTests.swift */; };
@@ -80,6 +81,7 @@
 		35CDF395131A881DA3866A4B /* NamedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF34E9830199994ECA542 /* NamedElement.swift */; };
 		35CDF43AF99AC5EE5A3CAEC4 /* PreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7966B174AC850706CB1 /* PreferencesTests.swift */; };
 		35CDF456C1B2DE8521968DDA /* CaretTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF790C9B97835CC38B63 /* CaretTestHelper.swift */; };
+		35CDF462A526BDD7628EF03E /* SwiftMethodParameterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFD4D281485706D982DFE /* SwiftMethodParameterBuilder.swift */; };
 		35CDF481A22EB7B25F82A057 /* MockElementVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF5233283389F936081DF /* MockElementVisitor.swift */; };
 		35CDF48B7D7BDDAE0C1AF8C7 /* SwiftFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFD52CD219150135E7502 /* SwiftFile.swift */; };
 		35CDF4CEE0EF8AE2CCC8EF42 /* CaretUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF5E76D0D23D53FAA33FE /* CaretUtil.swift */; };
@@ -123,9 +125,11 @@
 		35CDFE1DBEFF4173D5F12D28 /* SwiftMethodElementBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFB0B94816A30DE3324DE /* SwiftMethodElementBuilderTests.swift */; };
 		35CDFE91B43BA1AB535C7875 /* CodeBlockContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFBC00965128E6462CE1A /* CodeBlockContainer.swift */; };
 		35CDFEE0D0A0655C464CA6D3 /* SwiftElementBuilderTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF8AD43E399696D3ECEF7 /* SwiftElementBuilderTemplateTests.swift */; };
+		35CDFEEBEE0DE8282CFAFB85 /* SwiftMethodParameterBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF081A1A734EEC26D9892 /* SwiftMethodParameterBuilderTests.swift */; };
 		35CDFF02C0E0D3CD6AAF6407 /* SKElementFactoryTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF935B41E2DAED50B8D54 /* SKElementFactoryTestHelper.swift */; };
 		35CDFF1EBDCD49B97A999ABA /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF41BB007A5C1F4180748 /* PreferencesView.swift */; };
 		35CDFF24A71BDAEF47CE5C47 /* FormatUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF55A2F9EFDC3DE2DAF78 /* FormatUtilTests.swift */; };
+		35CDFF46CAF91B2347A4B8D7 /* SwiftMethodParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF30EED5082D3608B6467 /* SwiftMethodParameter.swift */; };
 		35CDFF6285A403A99A95FC3E /* SwiftElementBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF294C6C18CE1979168DA /* SwiftElementBuilder.swift */; };
 		35CDFF85ACE8EFD8BB8E3821 /* SwiftPropertyElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF1226A4B510884846203 /* SwiftPropertyElementTests.swift */; };
 		35CDFFA99D7813A4D10E6E72 /* SwiftMethodElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFBD5666F5CFC66BE57FC /* SwiftMethodElementTests.swift */; };
@@ -371,6 +375,7 @@
 		14CA2D9C1F40049700900937 /* MockGeneratorXPC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MockGeneratorXPC-Bridging-Header.h"; sourceTree = "<group>"; };
 		14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGeneratorXPC.swift; sourceTree = "<group>"; };
 		14CA2DAB1F41349500900937 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preferences.swift; path = Shared/Preferences.swift; sourceTree = "<group>"; };
+		35CDF081A1A734EEC26D9892 /* SwiftMethodParameterBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMethodParameterBuilderTests.swift; sourceTree = "<group>"; };
 		35CDF087FFEDD3FD8F68133F /* readlog */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text; path = readlog; sourceTree = "<group>"; };
 		35CDF1226A4B510884846203 /* SwiftPropertyElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPropertyElementTests.swift; sourceTree = "<group>"; };
 		35CDF14DD45E8554072A9C62 /* SwiftFileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftFileTests.swift; sourceTree = "<group>"; };
@@ -381,6 +386,7 @@
 		35CDF23686B80D1A8FF37150 /* FormatUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatUtil.swift; sourceTree = "<group>"; };
 		35CDF294C6C18CE1979168DA /* SwiftElementBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftElementBuilder.swift; sourceTree = "<group>"; };
 		35CDF309B1A4EF19F20BFE43 /* NamedSwiftElementBuilderTemplateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedSwiftElementBuilderTemplateTests.swift; sourceTree = "<group>"; };
+		35CDF30EED5082D3608B6467 /* SwiftMethodParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMethodParameter.swift; sourceTree = "<group>"; };
 		35CDF32023D75565E3CBD23A /* XcodeMockGenerator.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = XcodeMockGenerator.gif; sourceTree = "<group>"; };
 		35CDF33961A5167417B7B98C /* ElementVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementVisitor.swift; sourceTree = "<group>"; };
 		35CDF34E9830199994ECA542 /* NamedElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedElement.swift; sourceTree = "<group>"; };
@@ -429,7 +435,9 @@
 		35CDFC389AA6A362117D44ED /* ElementTreeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementTreeUtil.swift; sourceTree = "<group>"; };
 		35CDFCD100C66008E7CDCA63 /* jarsigs */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text; path = jarsigs; sourceTree = "<group>"; };
 		35CDFCD982124DFA56FC2763 /* SwiftTypeElementBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTypeElementBuilderTests.swift; sourceTree = "<group>"; };
+		35CDFD4D281485706D982DFE /* SwiftMethodParameterBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMethodParameterBuilder.swift; sourceTree = "<group>"; };
 		35CDFD52CD219150135E7502 /* SwiftFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftFile.swift; sourceTree = "<group>"; };
+		35CDFDB3A06E93A1EE64B196 /* MethodParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodParameter.swift; sourceTree = "<group>"; };
 		35CDFDB834B634E694CF658C /* MethodGatheringVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodGatheringVisitor.swift; sourceTree = "<group>"; };
 		35CDFDBA69D15F512927BA6F /* SwiftPropertyElementBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPropertyElementBuilderTests.swift; sourceTree = "<group>"; };
 		35CDFE4746A0EE0B2C45867B /* SwiftElementBuilderTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftElementBuilderTemplate.swift; sourceTree = "<group>"; };
@@ -731,6 +739,7 @@
 				35CDF309B1A4EF19F20BFE43 /* NamedSwiftElementBuilderTemplateTests.swift */,
 				35CDF3732F22D76A28D8617D /* BodySwiftElementBuilderTemplateTests.swift */,
 				35CDFE6E16D1DEC831955535 /* SwiftInheritedTypeBuilderTests.swift */,
+				35CDF081A1A734EEC26D9892 /* SwiftMethodParameterBuilderTests.swift */,
 			);
 			path = builder;
 			sourceTree = "<group>";
@@ -744,6 +753,7 @@
 				35CDF894D29CF584F3FCF949 /* SwiftMethodElement.swift */,
 				35CDF81C979537DF8605BFF7 /* SwiftPropertyElement.swift */,
 				35CDF8B58C428555C8B6B8E7 /* SwiftInheritedType.swift */,
+				35CDF30EED5082D3608B6467 /* SwiftMethodParameter.swift */,
 			);
 			path = impl;
 			sourceTree = "<group>";
@@ -817,6 +827,7 @@
 				35CDFBCF807CB8DBB43C9647 /* NamedSwiftElementBuilderTemplate.swift */,
 				35CDF1FA709CD9C72AE3D70D /* BodySwiftElementBuilderTemplate.swift */,
 				35CDFF0F73058A06313F9DB0 /* SwiftInheritedTypeBuilder.swift */,
+				35CDFD4D281485706D982DFE /* SwiftMethodParameterBuilder.swift */,
 			);
 			path = builder;
 			sourceTree = "<group>";
@@ -831,6 +842,7 @@
 				35CDFFF66DAF392668FD8C65 /* PositionedElement.swift */,
 				35CDFA651F3CC48921FAC53C /* File.swift */,
 				35CDF34E9830199994ECA542 /* NamedElement.swift */,
+				35CDFDB3A06E93A1EE64B196 /* MethodParameter.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1357,6 +1369,9 @@
 				35CDF00958415FBD9AA9D798 /* SwiftInheritedType.swift in Sources */,
 				35CDF87BB86A3B12776113ED /* SwiftInheritedTypeBuilder.swift in Sources */,
 				35CDF05F9EC2586F896B2103 /* ElementTreeUtil.swift in Sources */,
+				35CDF0511F897CF1F43B80B4 /* MethodParameter.swift in Sources */,
+				35CDFF46CAF91B2347A4B8D7 /* SwiftMethodParameter.swift in Sources */,
+				35CDF462A526BDD7628EF03E /* SwiftMethodParameterBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1391,6 +1406,7 @@
 				35CDF6D4FDFCAA470BD5A155 /* Element+TestHelper.swift in Sources */,
 				35CDFA916036A0CDDB609CEF /* SwiftInheritedTypeBuilderTests.swift in Sources */,
 				35CDF605C745801B3DF1002C /* ElementTreeUtilTests.swift in Sources */,
+				35CDFEEBEE0DE8282CFAFB85 /* SwiftMethodParameterBuilderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

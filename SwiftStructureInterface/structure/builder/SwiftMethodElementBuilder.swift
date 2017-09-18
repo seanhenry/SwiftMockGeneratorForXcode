@@ -12,7 +12,14 @@ class SwiftMethodElementBuilder: NamedSwiftElementBuilderTemplate {
 
     func build(text: String, offset: Int64, length: Int64, name: String) -> Element? {
         let returnType = getMethodReturnType()
-        return SwiftMethodElement(name: name, text: text, children: buildChildren(), offset: offset, length: length, returnType: returnType)
+        return SwiftMethodElement(name: name, text: text, children: buildChildren(), offset: offset, length: length, returnType: returnType, parameters: buildParameters())
+    }
+
+    private func buildParameters() -> [MethodParameter] {
+        return (getSubStructure() ?? [])
+            .filter { $0["key.kind"] as? String == "source.lang.swift.decl.var.parameter" }
+            .map { SwiftMethodParameterBuilder(data: $0, fileText: fileText).build() }
+            .flatMap { $0 as? MethodParameter }
     }
 
     private func getMethodReturnType() -> String? {

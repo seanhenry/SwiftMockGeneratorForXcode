@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
                               signature:(NSString *)signature;
 @property (nonatomic, readonly, copy) NSString *name;
 @property (nonatomic, readonly, copy) NSString *signature;
+@property (nonatomic, readonly, copy) NSString *parameters;
 @property (nonatomic, readonly) jobject javaInstance;
 
 NS_ASSUME_NONNULL_END

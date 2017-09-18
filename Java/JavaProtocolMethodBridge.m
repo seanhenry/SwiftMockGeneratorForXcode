@@ -26,6 +26,7 @@
                                      );
         _name = [name copy];
         _signature = [signature copy];
+        _parameters = [parameters copy];
     }
     return self;
 }

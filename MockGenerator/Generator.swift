@@ -3,7 +3,7 @@ import Foundation
 @testable import SwiftStructureInterface
 
 public class Generator {
-    
+
     public static func generateMock(fromFileContents contents: String, projectURL: URL, line: Int, column: Int) -> ([String]?, Error?) {
         // TODO: put files elsewhere
         ResolveUtil.files = SourceFileFinder(projectRoot: projectURL).findSourceFiles()

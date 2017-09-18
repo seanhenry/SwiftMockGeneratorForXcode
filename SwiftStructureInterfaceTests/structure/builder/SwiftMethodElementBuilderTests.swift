@@ -1,5 +1,4 @@
 import XCTest
-import SourceKittenFramework
 @testable import SwiftStructureInterface
 
 class SwiftMethodElementBuilderTests: XCTestCase {
@@ -69,7 +68,7 @@ class SwiftMethodElementBuilderTests: XCTestCase {
             "  func closureMethod() -> (Type0) -> (Type2)" + "\n" +
             "  func genericMethod() -> Type0<Type1>" + "\n" +
             "  func whitespaceMethod() ->     Type0     " + "\n" +
-            "  func ticksyMethod(_ closure: () -> ()) -> Type0" + "\n" +
+            "  func tricksyMethod(_ closure: () -> ()) -> Type0" + "\n" +
             "}" + "\n" +
             "class TestClass {" + "\n" +
             "  func inlineBrace() -> Type0 {" + "\n" +

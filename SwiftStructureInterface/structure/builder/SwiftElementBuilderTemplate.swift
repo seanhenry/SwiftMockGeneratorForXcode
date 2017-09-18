@@ -6,6 +6,17 @@ protocol SwiftElementBuilderTemplate {
     func build(text: String, offset: Int64, length: Int64) -> Element?
 }
 
+func getSubstring(from text: String, offset: Int64, length: Int64) -> String? {
+    let utf8 = text.utf8
+    let lastTextIndex = Int64(utf8.count)
+    if offset < 0 || length < 0 || lastTextIndex < offset + length {
+        return nil
+    }
+    let start = utf8.index(utf8.startIndex, offsetBy: Int(offset))
+    let end = utf8.index(start, offsetBy: Int(length))
+    return String(utf8[start..<end])
+}
+
 extension SwiftElementBuilderTemplate {
 
     func build() -> Element? {
@@ -18,14 +29,7 @@ extension SwiftElementBuilderTemplate {
     }
 
     func getText(offset: Int64, length: Int64) -> String? {
-        let utf8 = fileText.utf8
-        let lastTextIndex = Int64(utf8.count)
-        if offset < 0 || length < 0 || lastTextIndex < offset + length {
-            return nil
-        }
-        let start = utf8.index(utf8.startIndex, offsetBy: Int(offset))
-        let end = utf8.index(start, offsetBy: Int(length))
-        return String(utf8[start..<end])
+        return getSubstring(from: fileText, offset: offset, length: length)
     }
 
     func buildChildren() -> [Element] {
