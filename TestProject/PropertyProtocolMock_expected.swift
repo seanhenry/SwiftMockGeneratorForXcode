@@ -3,6 +3,8 @@
 class MockPropertyProtocol: PropertyProtocol {
     var invokedReadWriteSetter = false
     var invokedReadWriteSetterCount = 0
+    var invokedReadWrite: String?
+    var invokedReadWriteList = [String]()
     var invokedReadWriteGetter = false
     var invokedReadWriteGetterCount = 0
     var stubbedReadWrite: String!
@@ -10,6 +12,8 @@ class MockPropertyProtocol: PropertyProtocol {
         set {
             invokedReadWriteSetter = true
             invokedReadWriteSetterCount += 1
+            invokedReadWrite = newValue
+            invokedReadWriteList.append(newValue)
         }
         get {
             invokedReadWriteGetter = true
@@ -27,6 +31,8 @@ class MockPropertyProtocol: PropertyProtocol {
     }
     var invokedOptionalSetter = false
     var invokedOptionalSetterCount = 0
+    var invokedOptional: UInt?
+    var invokedOptionalList = [UInt?]()
     var invokedOptionalGetter = false
     var invokedOptionalGetterCount = 0
     var stubbedOptional: UInt!
@@ -34,6 +40,8 @@ class MockPropertyProtocol: PropertyProtocol {
         set {
             invokedOptionalSetter = true
             invokedOptionalSetterCount += 1
+            invokedOptional = newValue
+            invokedOptionalList.append(newValue)
         }
         get {
             invokedOptionalGetter = true
@@ -43,6 +51,8 @@ class MockPropertyProtocol: PropertyProtocol {
     }
     var invokedUnwrappedSetter = false
     var invokedUnwrappedSetterCount = 0
+    var invokedUnwrapped: String?
+    var invokedUnwrappedList = [String!]()
     var invokedUnwrappedGetter = false
     var invokedUnwrappedGetterCount = 0
     var stubbedUnwrapped: String!
@@ -50,6 +60,8 @@ class MockPropertyProtocol: PropertyProtocol {
         set {
             invokedUnwrappedSetter = true
             invokedUnwrappedSetterCount += 1
+            invokedUnwrapped = newValue
+            invokedUnwrappedList.append(newValue)
         }
         get {
             invokedUnwrappedGetter = true
@@ -59,6 +71,8 @@ class MockPropertyProtocol: PropertyProtocol {
     }
     var invokedWeakVarSetter = false
     var invokedWeakVarSetterCount = 0
+    var invokedWeakVar: AnyObject?
+    var invokedWeakVarList = [AnyObject?]()
     var invokedWeakVarGetter = false
     var invokedWeakVarGetterCount = 0
     var stubbedWeakVar: AnyObject!
@@ -66,6 +80,8 @@ class MockPropertyProtocol: PropertyProtocol {
         set {
             invokedWeakVarSetter = true
             invokedWeakVarSetterCount += 1
+            invokedWeakVar = newValue
+            invokedWeakVarList.append(newValue)
         }
         get {
             invokedWeakVarGetter = true
@@ -75,6 +91,8 @@ class MockPropertyProtocol: PropertyProtocol {
     }
     var invokedTupleSetter = false
     var invokedTupleSetterCount = 0
+    var invokedTuple: (Int, String?)?
+    var invokedTupleList = [(Int, String?)?]()
     var invokedTupleGetter = false
     var invokedTupleGetterCount = 0
     var stubbedTuple: (Int, String?)!
@@ -82,6 +100,8 @@ class MockPropertyProtocol: PropertyProtocol {
         set {
             invokedTupleSetter = true
             invokedTupleSetterCount += 1
+            invokedTuple = newValue
+            invokedTupleList.append(newValue)
         }
         get {
             invokedTupleGetter = true
