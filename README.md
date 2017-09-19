@@ -78,81 +78,89 @@ As shown above, the AppCode plugin is much more feature-rich. If there is a feat
 
 ## Usage example
 
-A protocol called Animator that we wish to mock:
+A protocol called `DataStore` that we wish to mock:
 
 ```
-protocol Animator {
-    func animate(duration: TimeInterval, animations: () -> (), completion: (Bool) -> ()) -> Bool
+protocol DataStore {
+    func save(_ data: Data, to file: URL) -> Bool
 }
 ```
-Create a mock class conforming to a protocol:
+Create a mock class conforming to the `DataStore` protocol:
 ```
-class MockAnimator: Animator {
+class MockDataStore: DataStore {
 }
 ```
-Generate the mock:
+Place the cursor in the class declaration and generate the mock:
 
 ```
-class MockAnimator: Animator {
+class MockDataStore: DataStore {
 
-    var invokedAnimate = false
-    var invokedAnimateCount = 0
-    var stubbedAnimateResult: Bool! = false
+    var invokedSave = false
+    var invokedSaveCount = 0
+    var invokedSaveParameters: (data: Data, file: URL)?
+    var invokedSaveParametersList = [(data: Data, file: URL)]()
+    var stubbedSaveResult: Bool!
 
-    func animate(duration: TimeInterval, animations: () -> (), completion: (Bool) -> ()) -> Bool {
-        invokedAnimate = true
-        invokedAnimateCount += 1
-        return stubbedAnimateResult
+    func save(_ data: Data, to file: URL) -> Bool {
+        invokedSave = true
+        invokedSaveCount += 1
+        invokedSaveParameters = (data, file)
+        invokedSaveParametersList.append((data, file))
+        return stubbedSaveResult
     }
 }
 ```
-Inject the mock into the class you wish to test:
+Create and inject the mock into the class you wish to test:
 
 ```
-let mockAnimator = MockAnimator()
-let object = ObjectToTest(animator: mockAnimator)
-```
-Test if animate method was invoked:
-
-```
-func test_mockCanVerifyInvokedMethod() {
-    object.myMethod()
-    XCTAssertTrue(mockAnimator.invokedAnimate)
+override func setUp() {
+    super.setUp()
+    mockDataStore = MockDataStore()
+    object = MyObject(dataStore: mockDataStore)
 }
 ```
-Test the correct parameter was passed to the animate method:
+Test if the `save` method was invoked:
 
 ```
-func test_mockCanVerifyInvokedParameters() {
-    object.myMethod()
-    XCTAssertEqual(mockAnimator.invokedAnimateParameters?.duration, 5)
+func testSaveWasInvoked() {
+    object.writeSomeData()
+    XCTAssertTrue(mockDataStore.invokedSave)
 }
 ```
-Test the number of times animate was invoked:
+Test the parameters passed to the data store are correct:
 
 ```
-func test_mockCanVerifyInvokedMethodCount() {
-    object.myMethod()
-    object.myMethod()
-    XCTAssertEqual(mockAnimator.invokedAnimateCount, 2)
+func testCorrectDataWasSavedToCorrectLocation() {
+    object.writeSomeData()
+    XCTAssertEqual(mockDataStore.invokedSaveParameters?.data, expectedData)
+    XCTAssertEqual(mockDataStore.invokedSaveParameters?.file, expectedFile)
 }
 ```
-Test the parameters passed into each call of the animate method:
+Test the `save` method was called the correct number of times:
 
 ```
-func test_mockCanVerifyMultipleInvokedMethodParameters() {
-    object.myMethod()
-    object.myMethod()
-    XCTAssertEqual(mockAnimator.invokedAnimateParametersList[0].duration, 5)
-    XCTAssertEqual(mockAnimator.invokedAnimateParametersList[1].duration, 5)
+func testSaveWasInvokedTwice() {
+    object.writeSomeData()
+    object.writeSomeData()
+    XCTAssertEqual(mockDataStore.invokedSaveCount, 2)
 }
 ```
-Stub a return value for the animate method:
+Test the parameters passed into each call of the data store are correct:
 
 ```
-func test_mockCanReturnAStubbedValue() {
-    mockAnimator.stubbedAnimateResult = true
-    let result = object.myMethod()
+func testDataWasSavedToTwoDifferentFiles() {
+    object.writeSomeData()
+    object.writeSomeData()
+    XCTAssertEqual(mockDataStore.invokedSaveParametersList[0].file, expectedFile)
+    XCTAssertEqual(mockDataStore.invokedSaveParametersList[1].file, anotherExpectedFile)
+}
+```
+Stub a return value for the `save` method:
+
+```
+func testMyMethodReturnsTrueWhenSaveWasSuccessful() {
+    mockDataStore.stubbedSaveResult = true
+    let result = object.writeSomeData()
     XCTAssertTrue(result)
 }
 ```
