@@ -29,16 +29,54 @@ class SwiftFileTests: XCTestCase {
 
     // MARK: - init
 
-    func test_init_shouldAddItselfToAllChildren() {
+    func test_init_shouldAddCopyOfItselfToAllChildren() {
         file = SKElementFactoryTestHelper.build(from: getNestedClassString())!
-        XCTAssert(file.file === file)
-        XCTAssert(file.children[0].file === file)
+        assertFilesAreEquivalent(file.file, file)
+        assertFilesAreEquivalent(file.children[0].file, file)
         let classB = file.children[0].children[0] as! SwiftTypeElement
-        XCTAssert(classB.file === file)
-        XCTAssert(classB.inheritedTypes[0].file === file)
-        XCTAssert(classB.inheritedTypes[1].file === file)
-        XCTAssert(classB.children[0].file === file)
-        XCTAssert(file.children[0].children[1].file === file)
+        assertFilesAreEquivalent(classB.file, file)
+        assertFilesAreEquivalent(classB.inheritedTypes[0].file, file)
+        assertFilesAreEquivalent(classB.inheritedTypes[1].file, file)
+        assertFilesAreEquivalent(classB.children[0].file, file)
+        assertFilesAreEquivalent(file.children[0].children[1].file, file)
+    }
+
+    func test_init_copyingFileToChildren_shouldNotCauseRetainCycle() {
+        weak var weakFile: Element?
+        autoreleasepool {
+            let file = SKElementFactoryTestHelper.build(from: getNestedClassString())!
+            weakFile = file
+        }
+        XCTAssertNil(weakFile)
+    }
+
+    func test_fileShouldBePresent_whenProgramHoldsAReferenceToAChild() {
+        var child: Element?
+        autoreleasepool {
+            let file = SKElementFactoryTestHelper.build(from: getNestedClassString())!
+            child = file.children[0]
+        }
+        XCTAssertNotNil(child?.file)
+    }
+
+    func test_copyOfFile_shouldKeepStrongReferencesToChildren() {
+        var fileCopy: Element?
+        autoreleasepool {
+            let file = SKElementFactoryTestHelper.build(from: getNestedClassString())!
+            fileCopy = file.children[0].file
+        }
+        XCTAssertEqual(fileCopy?.children.count, 1)
+    }
+
+    private func assertFilesAreEquivalent(_ lhs: Element?, _ rhs: Element?, line: UInt = #line) {
+        XCTAssertNotNil(lhs)
+        XCTAssertNotNil(rhs)
+        guard let lhs = lhs, let rhs = rhs else { return }
+        XCTAssertEqual(lhs.offset, rhs.offset)
+        XCTAssertEqual(lhs.length, rhs.length)
+        XCTAssertEqual(lhs.text, rhs.text)
+        XCTAssertEqual(lhs.children.count, rhs.children.count)
+        zip(lhs.children, rhs.children).forEach { XCTAssert($0 === $1) }
     }
 
     private func getNestedClassString() -> String {

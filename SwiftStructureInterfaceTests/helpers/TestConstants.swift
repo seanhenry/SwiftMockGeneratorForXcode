@@ -3,5 +3,5 @@
 let emptySwiftTypeElement = SwiftTypeElement(name: "", text: "", children: [], inheritedTypes: [], offset: 0, length: 0, bodyOffset: 0, bodyLength: 0)
 let emptySwiftElement = SwiftElement(text: "", children: [], offset: 0, length: 0)
 let emptySwiftFile = SwiftFile(text: "", children: [], offset: 0, length: 0)
-let emptySwiftMethod = SwiftMethodElement(name: "", text: "", children: [], offset: 0, length: 0, returnType: nil, parametersText: "", parameters: [])
+let emptySwiftMethod = SwiftMethodElement(name: "", text: "", children: [], offset: 0, length: 0, returnType: nil, parameters: [])
 let emptySwiftProperty = SwiftPropertyElement(name: "", text: "", children: [], offset: 0, length: 0, type: "", isWritable: false, attribute: nil)
