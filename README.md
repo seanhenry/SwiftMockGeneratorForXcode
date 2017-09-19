@@ -6,10 +6,6 @@ An Xcode extension (plugin) to generate mock classes automatically.
 
 [Looking for the AppCode version?](https://github.com/seanhenry/MockGenerator)
 
-**IMPORTANT:**
-- This plugin is in development and only supports a fraction of the features offered in the [AppCode plugin](https://github.com/seanhenry/MockGenerator).
-- Only tested with Xcode 8.3.2 but will support Xcode 9 soon.
-
 ## Install Swift Mock Generator Xcode Source Editor Extension
 
 - Download the latest release [here](https://github.com/seanhenry/SwiftMockGeneratorForXcode/releases)
