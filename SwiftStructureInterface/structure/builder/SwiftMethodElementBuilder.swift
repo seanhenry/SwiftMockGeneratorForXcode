@@ -37,14 +37,13 @@ class SwiftMethodElementBuilder: NamedSwiftElementBuilderTemplate {
     private func getReturnStatementText() -> String? {
         guard var text = getDeclarationText()?.utf8 else { return nil }
         var openBracketCount = 0
-        var offset = text.startIndex
         repeat {
             guard let firstBracketOffset = firstBracketIndex(text: text) else { break }
             openBracketCount += isOpenBracket(bracket: text[firstBracketOffset]) ? 1 : -1
-            offset = text.index(after: firstBracketOffset)
-            text = text[offset..<text.endIndex]
+            let offset = text.index(after: firstBracketOffset)
+            text = String(text[offset..<text.endIndex])!.utf8
         } while openBracketCount > 0
-        return String(text[offset..<text.endIndex])!
+        return String(text)
     }
 
     private func isOpenBracket(bracket: UTF8.CodeUnit) -> Bool {
