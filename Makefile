@@ -47,6 +47,7 @@ sourcekitten: mkclasses mklib
 	make bootstrap; \
 	xcrun xcodebuild -workspace SourceKitten.xcworkspace -scheme SourceKittenFramework -configuration Debug -derivedDataPath $(SOURCEKITTEN_BUILD_PATH) clean build
 
+	rm -rf $(DEST_PATH)/*.framework
 	cp -Rf $(SOURCEKITTEN_FRAMEWORK) $(SOURCEKITTEN_DSYM) $(SWXMLHASH_FRAMEWORK) $(YAMS_FRAMEWORK) $(DEST_PATH)
 
 usecases: mkavian mklib mkclasses avian kotlin
