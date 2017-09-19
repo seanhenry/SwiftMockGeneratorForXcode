@@ -36,17 +36,19 @@ class SwiftPropertyElementBuilderTests: XCTestCase {
     }
 
     private func getPropertiesExampleString() -> String {
-        return "let globalConstant = \"let\"" + "\n" +
-            "var globalVariable: String = \"var\"" + "\n" +
-            "protocol P {" + "\n" +
-            "    var readWrite: String { set get }" + "\n" +
-            "    var readOnly: Int { get }" + "\n" +
-            "    weak var weakProp: NSObject? { get }" + "\n" +
-            "    unowned var unownedProp: NSObject { get }" + "\n" +
-            "    unowned     var unownedWithWhitespace: NSObject { get }" + "\n" +
-            "    weak \n var weakWithNewline: NSObject? { get }" + "\n" +
-            "    unowned(safe) \n var unownedSafe: NSObject { get }" + "\n" +
-            "    unowned(unsafe) \n var unownedUnsafe: NSObject { get }" + "\n" +
-            "}"
+        return """
+            let globalConstant = \"let\"
+            var globalVariable: String = \"var\"
+            protocol P {
+                var readWrite: String { set get }
+                var readOnly: Int { get }
+                weak var weakProp: NSObject? { get }
+                unowned var unownedProp: NSObject { get }
+                unowned     var unownedWithWhitespace: NSObject { get }
+                weak \n var weakWithNewline: NSObject? { get }
+                unowned(safe) \n var unownedSafe: NSObject { get }
+                unowned(unsafe) \n var unownedUnsafe: NSObject { get }
+            }
+            """
     }
 }

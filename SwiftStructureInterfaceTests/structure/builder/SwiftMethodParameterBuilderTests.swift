@@ -34,18 +34,20 @@ class SwiftMethodParameterBuilderTests: XCTestCase {
     }
 
     private func getMethodParametersExampleString() -> String {
-        return "protocol TestProtocol {" + "\n" +
-            "  func noParams()" + "\n" +
-            "  func oneParam(param0: Int)" + "\n" +
-            "  func twoParam(param0: Int, param1: String)" + "\n" +
-            "  func noLabelParam(_ name0: Int)" + "\n" +
-            "  func whitespaceParam( param0 : Type0 )" + "\n" +
-            "}" + "\n" +
-            "class TestClass {" + "\n" +
-            "  func instanceMethod(param0: String) {" + "\n" +
-            "    var shouldNotBecomeParameter = 0" + "\n" +
-            "    func methodShouldNotBecomeParameter() {}" + "\n" +
-            "  }" + "\n" +
-            "}"
+        return """
+            protocol TestProtocol {
+              func noParams()
+              func oneParam(param0: Int)
+              func twoParam(param0: Int, param1: String)
+              func noLabelParam(_ name0: Int)
+              func whitespaceParam( param0 : Type0 )
+            }
+            class TestClass {
+              func instanceMethod(param0: String) {
+                var shouldNotBecomeParameter = 0
+                func methodShouldNotBecomeParameter() {}
+              }
+            }
+            """
     }
 }

@@ -80,33 +80,43 @@ class SwiftInheritedTypeBuilderTests: XCTestCase {
     // MARK: - Helpers
 
     private func getInheritedTypesExampleString() -> String {
-        return "protocol Protocol: SimpleInheritedType, Generic<String>  ,  snake_case {" + "\n" +
-            "" + "\n" +
-            "}"
+        return """
+            protocol Protocol: SimpleInheritedType, Generic<String>  ,  snake_case {
+
+            }
+            """
     }
 
     private func getNoInheritedTypesExampleString() -> String {
-        return "protocol Protocol {" + "\n" +
-            "" + "\n" +
-            "}"
+        return """
+            protocol Protocol {
+
+            }
+            """
     }
 
     private func getRealisticNameExampleString() -> String {
-        return "class MockProtocol: Protocol {" + "\n" +
-            "" + "\n" +
-            "}"
+        return """
+            class MockProtocol: Protocol {
+
+            }
+            """
     }
 
     private func getNewlineTypesExampleString() -> String {
-        return "class AClass: ProtocolA ," + "\n" +
-            "Prot" + "\n" +
-            "{" + "\n" +
-            "}"
+        return """
+            class AClass: ProtocolA ,
+            Prot
+            {
+            }
+            """
     }
 
     private func getMultipleTypeExampleString() -> String {
-        return "protocol ProtocolA {}" + "\n" +
-            "" + "\n" +
-            "class ClassA: ProtocolA {}"
+        return """
+            protocol ProtocolA {}
+
+            class ClassA: ProtocolA {}
+            """
     }
 }

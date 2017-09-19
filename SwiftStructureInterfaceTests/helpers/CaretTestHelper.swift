@@ -70,11 +70,11 @@ class A {
             """
         let expected = """
             class A {
-            
+                
             }
             """
         XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).lineColumn?.line, 2)
-        XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).lineColumn?.column, 2)
+        XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).lineColumn?.column, 4)
         XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).contents, expected)
     }
 }

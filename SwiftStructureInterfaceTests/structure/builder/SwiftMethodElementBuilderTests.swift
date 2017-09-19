@@ -45,41 +45,45 @@ class SwiftMethodElementBuilderTests: XCTestCase {
     }
 
     private func getMethodsExampleString() -> String {
-        return "protocol TestProtocol {" + "\n" +
-            "  func protocolMethod()" + "\n" +
-            "}" + "\n" +
-            "" + "\n" +
-            "class TestClass {" + "\n" +
-            "  func method() {" + "\n" +
-            "    func nestedMethod() {}" + "\n" +
-            "  }" + "\n" +
-            "  class func classMethod() {}" + "\n" +
-            "  static func staticMethod() {}" + "\n" +
-            "}" + "\n" +
-            "" + "\n" +
-            "func globalMethod() {}"
+        return """
+            protocol TestProtocol {
+              func protocolMethod()
+            }
+            
+            class TestClass {
+              func method() {
+                func nestedMethod() {}
+              }
+              class func classMethod() {}
+              static func staticMethod() {}
+            }
+            
+            func globalMethod() {}
+            """
     }
 
     private func getReturnMethodsExampleString() -> String {
-        return "protocol TestProtocol {" + "\n" +
-            "  func method()" + "\n" +
-            "  func returnMethod() -> Type0" + "\n" +
-            "  func tupleMethod() -> (Type0, Type1)" + "\n" +
-            "  func closureMethod() -> (Type0) -> (Type2)" + "\n" +
-            "  func genericMethod() -> Type0<Type1>" + "\n" +
-            "  func whitespaceMethod() ->     Type0     " + "\n" +
-            "  func tricksyMethod(_ closure: () -> ()) -> Type0" + "\n" +
-            "}" + "\n" +
-            "class TestClass {" + "\n" +
-            "  func inlineBrace() -> Type0 {" + "\n" +
-            "  }" + "\n" +
-            "  func inlineBraces() -> Type0 {}" + "\n" +
-            "  func nextLineBrace() -> Type0" + "\n" +
-            "  {}" + "\n" +
-            "  func paramsOnNewlines(var: String," + "\n" +
-            "  var2: Int," + "\n" +
-            "  closure: (Int) -> ((Int) -> ())" + "\n" +
-            "  ) -> Type0 {}" + "\n" +
-            "}"
+        return """
+            protocol TestProtocol {
+              func method()
+              func returnMethod() -> Type0
+              func tupleMethod() -> (Type0, Type1)
+              func closureMethod() -> (Type0) -> (Type2)
+              func genericMethod() -> Type0<Type1>
+              func whitespaceMethod() ->     Type0
+              func tricksyMethod(_ closure: () -> ()) -> Type0
+            }
+            class TestClass {
+              func inlineBrace() -> Type0 {
+              }
+              func inlineBraces() -> Type0 {}
+              func nextLineBrace() -> Type0
+              {}
+              func paramsOnNewlines(var: String,
+              var2: Int,
+              closure: (Int) -> ((Int) -> ())
+              ) -> Type0 {}
+            }
+            """
     }
 }
