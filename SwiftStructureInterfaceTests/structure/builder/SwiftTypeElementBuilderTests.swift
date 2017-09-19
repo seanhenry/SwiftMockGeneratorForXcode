@@ -13,9 +13,6 @@ class SwiftTypeElementBuilderTests: XCTestCase {
         XCTAssertEqual(element?.children.count, 2)
         XCTAssertEqual(element?.namedChild(at: 0)?.name, "property")
         XCTAssertEqual(element?.namedChild(at: 1)?.name, "method")
-        XCTAssert(element?.file === file)
-        XCTAssert(element?.children[0].file === file)
-        XCTAssert(element?.children[1].file === file)
     }
 
     func test_build_shouldPopulateProtocolTextOffsets() {
