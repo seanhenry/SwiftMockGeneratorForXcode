@@ -56,8 +56,8 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 |---|---|---|
 | Captures invocation status of methods.|✅|✅|
 | Captures invocation status of properties.|✅|✅|
-| Captures invoked method parameters.||✅|
-| Captures invoked property values.||✅|
+| Captures invoked method parameters.|✅|✅|
+| Captures invoked property values.|✅|✅|
 | Stubs values for your mocks to return.|✅|✅|
 | Stubs a default value for return values where possible.||✅|
 | Automatically calls closure parameters with stubbed values.||✅|
@@ -68,7 +68,7 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 | Supports parameter type-annotation attributes and inout.||✅|
 | Respects public and open mocks and makes queries publicly available.||✅|
 | Records multiple invocations of methods.|✅|✅|
-| Records multiple invocations of method parameters.||✅|
+| Records multiple invocations of method parameters.|✅|✅|
 | Generate mocks from protocols in 3rd party frameworks.||✅|
 | Generate mocks from classes|||
 
@@ -120,6 +120,14 @@ func test_mockCanVerifyInvokedMethod() {
     XCTAssertTrue(mockAnimator.invokedAnimate)
 }
 ```
+Test the correct parameter was passed to the animate method:
+
+```
+func test_mockCanVerifyInvokedParameters() {
+    object.myMethod()
+    XCTAssertEqual(mockAnimator.invokedAnimateParameters?.duration, 5)
+}
+```
 Test the number of times animate was invoked:
 
 ```
@@ -127,6 +135,16 @@ func test_mockCanVerifyInvokedMethodCount() {
     object.myMethod()
     object.myMethod()
     XCTAssertEqual(mockAnimator.invokedAnimateCount, 2)
+}
+```
+Test the parameters passed into each call of the animate method:
+
+```
+func test_mockCanVerifyMultipleInvokedMethodParameters() {
+    object.myMethod()
+    object.myMethod()
+    XCTAssertEqual(mockAnimator.invokedAnimateParametersList[0].duration, 5)
+    XCTAssertEqual(mockAnimator.invokedAnimateParametersList[1].duration, 5)
 }
 ```
 Stub a return value for the animate method:
