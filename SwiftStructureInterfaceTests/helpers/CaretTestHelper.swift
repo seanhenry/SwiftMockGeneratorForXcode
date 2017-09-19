@@ -46,25 +46,33 @@ class CaretTestHelperTests: XCTestCase {
     }
 
     func test_findCaretOffset_shouldReturnPosition_forCaretOnNewLine() {
-        let string = "class A {" + "\n" +
-            "  <caret>" + "\n" +
-            "}"
-        let expected = "class A {" + "\n" +
-            "  " + "\n" +
-            "}"
-        XCTAssertEqual(CaretTestHelper.findCaretOffset(string).offset, 12)
+        let string = """
+class A {
+<caret>
+}
+"""
+        let expected = """
+class A {
+
+}
+"""
+        XCTAssertEqual(CaretTestHelper.findCaretOffset(string).offset, 10)
         XCTAssertEqual(CaretTestHelper.findCaretOffset(string).contents, expected)
     }
 
     // MARK: - findCaretLineColumn
 
     func test_findCaretLineColumn_shouldReturnLineAndColumnConvertedFromOffset() {
-        let string = "class A {" + "\n" +
-            "  <caret>" + "\n" +
-            "}"
-        let expected = "class A {" + "\n" +
-            "  " + "\n" +
-            "}"
+        let string = """
+            class A {
+                <caret>
+            }
+            """
+        let expected = """
+            class A {
+            
+            }
+            """
         XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).lineColumn?.line, 2)
         XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).lineColumn?.column, 2)
         XCTAssertEqual(CaretTestHelper.findCaretLineColumn(string).contents, expected)

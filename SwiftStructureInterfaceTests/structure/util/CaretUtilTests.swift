@@ -107,28 +107,30 @@ class CaretUtilTests: XCTestCase {
     }
 
     private func getClassString() -> String {
-        return "class A: B {" + "\n" +
-            "    " + "\n" +
-            "    var varA: String = \"varAResult\"" + "\n" +
-            "    var varB: String {" + "\n" +
-            "        return \"varBResult\"" + "\n" +
-            "    }" + "\n" +
-            "    var varC: String {" + "\n" +
-            "        set {" + "\n" +
-            "            " + "\n" +
-            "        }" + "\n" +
-            "        get {" + "\n" +
-            "            return \"varCResult\"" + "\n" +
-            "        }" + "\n" +
-            "    }" + "\n" +
-            "    " + "\n" +
-            "    func methodA() -> String {" + "\n" +
-            "        return \"methodAResult\"" + "\n" +
-            "    }" + "\n" +
-            "    " + "\n" +
-            "    func methodB(labelA nameA: String, labelB: String) {" + "\n" +
-            "        var methodVarA = \"methodVarAResult\"" + "\n" +
-            "    }" + "\n" +
-            "}"
+        return """
+class A: B {
+
+    var varA: String = \"varAResult\"
+    var varB: String {
+        return \"varBResult\"
+    }
+    var varC: String {
+        set {
+
+        }
+        get {
+            return \"varCResult\"
+        }
+    }
+
+    func methodA() -> String {
+        return \"methodAResult\"
+    }
+
+    func methodB(labelA nameA: String, labelB: String) {
+        var methodVarA = \"methodVarAResult\"
+    }
+}
+"""
     }
 }

@@ -44,11 +44,13 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func getMethodProtocolString() -> String {
-        return "protocol TestProtocol {" + "\n" +
-            "  func method()" + "\n" +
-            "  func method2(label name: Type) -> String" + "\n" +
-            "  func method3(label name: Type, param: OtherType) -> String" + "\n" +
-            "}"
+        return """
+        protocol TestProtocol {
+            func method()
+            func method2(label name: Type) -> String
+            func method3(label name: Type, param: OtherType) -> String
+        }
+        """
     }
 
     private func getPropertyProtocol() -> Element {
@@ -57,11 +59,12 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func getPropertyProtocolString() -> String {
-        return "protocol TestProtocol {" + "\n" +
-            "  var prop1: Int { get set }" + "\n" +
-            "  var prop2: String! { get }" + "\n" +
-            "  weak var prop3: NSObject? { set get }" + "\n" +
-            "}" + "\n" +
-            "class Object {}"
+        return """
+            protocol TestProtocol {
+              var prop1: Int { get set }
+              var prop2: String! { get }
+              weak var prop3: NSObject? { set get }
+            }
+        """
     }
 }

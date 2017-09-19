@@ -53,27 +53,35 @@ class DeleteBodyUtilTests: XCTestCase {
     // MARK: - Helpers
 
     func getSimpleClass() -> String {
-        return "class A {" + "\n" +
-            "  var varA = \"\"" + "\n" +
-            "}"
+        return """
+class A {
+  var varA = \"\"
+}
+"""
     }
 
     func getExpectedSimpleClass() -> String {
-        return "class A {" + "\n" +
-            "}"
+        return """
+class A {
+}
+"""
     }
 
     func getUTF16Class() -> String {
         // "✋️".utf8.count = 3
         // "💐".utf8.count = 4
-        return "class 💐A {" + "\n" +
-            "  var var✋A = \"\"" + "\n" +
-            "  func method💐A() {}" + "\n" +
-            "}"
+        return """
+class 💐A {
+  var var✋A = \"\"
+  func method💐A() {}
+}
+"""
     }
 
     func getExpectedUTF16Class() -> String {
-        return "class 💐A {" + "\n" +
-            "}"
+        return """
+class 💐A {
+}
+"""
     }
 }

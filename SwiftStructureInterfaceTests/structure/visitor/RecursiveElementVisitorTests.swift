@@ -102,16 +102,18 @@ class RecursiveElementVisitorTests: XCTestCase {
     }
 
     private func getNestedClassString() -> String {
-        return "class A {" + "\n" +
-            "    " + "\n" +
-            "    class B: C, D {" + "\n" +
-            "" + "\n" +
-            "        func innerMethodA() {}" + "\n" +
-            "        var propertyB = 0" + "\n" +
-            "    }" + "\n" +
-            "" + "\n" +
-            "    func methodA() {}" + "\n" +
-            "    var propertyA: Int?" + "\n" +
-            "}"
+        return """
+class A {
+
+    class B: C, D {
+
+        func innerMethodA() {}
+        var propertyB = 0
+    }
+
+    func methodA() {}
+    var propertyA: Int?
+}
+"""
     }
 }

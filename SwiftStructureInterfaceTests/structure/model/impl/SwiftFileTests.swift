@@ -80,14 +80,16 @@ class SwiftFileTests: XCTestCase {
     }
 
     private func getNestedClassString() -> String {
-        return "class A {" + "\n" +
-            "    " + "\n" +
-            "    class B: C, D {" + "\n" +
-            "" + "\n" +
-            "        func innerMethodA() {}" + "\n" +
-            "    }" + "\n" +
-            "" + "\n" +
-            "    func methodA() {}" + "\n" +
-            "}"
+        return """
+class A {
+
+    class B: C, D {
+
+        func innerMethodA() {}
+    }
+
+    func methodA() {}
+}
+"""
     }
 }

@@ -49,158 +49,170 @@ class FormatUtilTests: XCTestCase {
     // MARK: - Helpers
 
     private func getExampleString() -> String {
-        return "class FormatExample {" + "\n" +
-            "var invokedReadWriteSetter = false" + "\n" +
-            "var invokedReadWriteSetterCount = 0" + "\n" +
-            "var invokedReadWrite: String?" + "\n" +
-            "var invokedReadWriteList = [String]()" + "\n" +
-            "var invokedReadWriteGetter = false" + "\n" +
-            "var invokedReadWriteGetterCount = 0" + "\n" +
-            "var stubbedReadWrite: String! = \"\"" + "\n" +
-            "var readWrite: String {" + "\n" +
-            "set {" + "\n" +
-            "invokedReadWriteSetter = true" + "\n" +
-            "invokedReadWriteSetterCount += 1" + "\n" +
-            "invokedReadWrite = newValue" + "\n" +
-            "invokedReadWriteList.append(newValue)" + "\n" +
-            "}" + "\n" +
-            "get {" + "\n" +
-            "invokedReadWriteGetter = true" + "\n" +
-            "invokedReadWriteGetterCount += 1" + "\n" +
-            "return stubbedReadWrite" + "\n" +
-            "}" + "\n" +
-            "}" + "\n" +
-            "var invokedFilter = false" + "\n" +
-            "var invokedFilterCount = 0" + "\n" +
-            "var stubbedFilterClosureResult: (String, Void)?" + "\n" +
-            "func filter(closure: (String) -> Bool) {" + "\n" +
-            "invokedFilter = true" + "\n" +
-            "invokedFilterCount += 1" + "\n" +
-            "if let result = stubbedFilterClosureResult {" + "\n" +
-            "_ = closure(result.0)" + "\n" +
-            "}" + "\n" +
-            "}" + "\n" +
-            "}"
+        return """
+class FormatExample {
+var invokedReadWriteSetter = false
+var invokedReadWriteSetterCount = 0
+var invokedReadWrite: String?
+var invokedReadWriteList = [String]()
+var invokedReadWriteGetter = false
+var invokedReadWriteGetterCount = 0
+var stubbedReadWrite: String! = \"\"
+var readWrite: String {
+set {
+invokedReadWriteSetter = true
+invokedReadWriteSetterCount += 1
+invokedReadWrite = newValue
+invokedReadWriteList.append(newValue)
+}
+get {
+invokedReadWriteGetter = true
+invokedReadWriteGetterCount += 1
+return stubbedReadWrite
+}
+}
+var invokedFilter = false
+var invokedFilterCount = 0
+var stubbedFilterClosureResult: (String, Void)?
+func filter(closure: (String) -> Bool) {
+invokedFilter = true
+invokedFilterCount += 1
+if let result = stubbedFilterClosureResult {
+_ = closure(result.0)
+}
+}
+}
+"""
     }
 
     private func getFormattedString() -> String {
-        return "class FormatExample {" + "\n" +
-            "    var invokedReadWriteSetter = false" + "\n" +
-            "    var invokedReadWriteSetterCount = 0" + "\n" +
-            "    var invokedReadWrite: String?" + "\n" +
-            "    var invokedReadWriteList = [String]()" + "\n" +
-            "    var invokedReadWriteGetter = false" + "\n" +
-            "    var invokedReadWriteGetterCount = 0" + "\n" +
-            "    var stubbedReadWrite: String! = \"\"" + "\n" +
-            "    var readWrite: String {" + "\n" +
-            "        set {" + "\n" +
-            "            invokedReadWriteSetter = true" + "\n" +
-            "            invokedReadWriteSetterCount += 1" + "\n" +
-            "            invokedReadWrite = newValue" + "\n" +
-            "            invokedReadWriteList.append(newValue)" + "\n" +
-            "        }" + "\n" +
-            "        get {" + "\n" +
-            "            invokedReadWriteGetter = true" + "\n" +
-            "            invokedReadWriteGetterCount += 1" + "\n" +
-            "            return stubbedReadWrite" + "\n" +
-            "        }" + "\n" +
-            "    }" + "\n" +
-            "    var invokedFilter = false" + "\n" +
-            "    var invokedFilterCount = 0" + "\n" +
-            "    var stubbedFilterClosureResult: (String, Void)?" + "\n" +
-            "    func filter(closure: (String) -> Bool) {" + "\n" +
-            "        invokedFilter = true" + "\n" +
-            "        invokedFilterCount += 1" + "\n" +
-            "        if let result = stubbedFilterClosureResult {" + "\n" +
-            "            _ = closure(result.0)" + "\n" +
-            "        }" + "\n" +
-            "    }" + "\n" +
-            "}"
+        return """
+class FormatExample {
+    var invokedReadWriteSetter = false
+    var invokedReadWriteSetterCount = 0
+    var invokedReadWrite: String?
+    var invokedReadWriteList = [String]()
+    var invokedReadWriteGetter = false
+    var invokedReadWriteGetterCount = 0
+    var stubbedReadWrite: String! = \"\"
+    var readWrite: String {
+        set {
+            invokedReadWriteSetter = true
+            invokedReadWriteSetterCount += 1
+            invokedReadWrite = newValue
+            invokedReadWriteList.append(newValue)
+        }
+        get {
+            invokedReadWriteGetter = true
+            invokedReadWriteGetterCount += 1
+            return stubbedReadWrite
+        }
+    }
+    var invokedFilter = false
+    var invokedFilterCount = 0
+    var stubbedFilterClosureResult: (String, Void)?
+    func filter(closure: (String) -> Bool) {
+        invokedFilter = true
+        invokedFilterCount += 1
+        if let result = stubbedFilterClosureResult {
+            _ = closure(result.0)
+        }
+    }
+}
+"""
     }
 
     private func getFormattedProperty() -> String {
-        return "class FormatExample {" + "\n" +
-            "    var invokedReadWriteSetter = false" + "\n" +
-            "var invokedReadWriteSetterCount = 0" + "\n" +
-            "var invokedReadWrite: String?" + "\n" +
-            "var invokedReadWriteList = [String]()" + "\n" +
-            "var invokedReadWriteGetter = false" + "\n" +
-            "var invokedReadWriteGetterCount = 0" + "\n" +
-            "var stubbedReadWrite: String! = \"\"" + "\n" +
-            "var readWrite: String {" + "\n" +
-            "set {" + "\n" +
-            "invokedReadWriteSetter = true" + "\n" +
-            "invokedReadWriteSetterCount += 1" + "\n" +
-            "invokedReadWrite = newValue" + "\n" +
-            "invokedReadWriteList.append(newValue)" + "\n" +
-            "}" + "\n" +
-            "get {" + "\n" +
-            "invokedReadWriteGetter = true" + "\n" +
-            "invokedReadWriteGetterCount += 1" + "\n" +
-            "return stubbedReadWrite" + "\n" +
-            "}" + "\n" +
-            "}" + "\n" +
-            "var invokedFilter = false" + "\n" +
-            "var invokedFilterCount = 0" + "\n" +
-            "var stubbedFilterClosureResult: (String, Void)?" + "\n" +
-            "func filter(closure: (String) -> Bool) {" + "\n" +
-            "invokedFilter = true" + "\n" +
-            "invokedFilterCount += 1" + "\n" +
-            "if let result = stubbedFilterClosureResult {" + "\n" +
-            "_ = closure(result.0)" + "\n" +
-            "}" + "\n" +
-            "}" + "\n" +
-            "}"
+        return """
+class FormatExample {
+    var invokedReadWriteSetter = false
+var invokedReadWriteSetterCount = 0
+var invokedReadWrite: String?
+var invokedReadWriteList = [String]()
+var invokedReadWriteGetter = false
+var invokedReadWriteGetterCount = 0
+var stubbedReadWrite: String! = \"\"
+var readWrite: String {
+set {
+invokedReadWriteSetter = true
+invokedReadWriteSetterCount += 1
+invokedReadWrite = newValue
+invokedReadWriteList.append(newValue)
+}
+get {
+invokedReadWriteGetter = true
+invokedReadWriteGetterCount += 1
+return stubbedReadWrite
+}
+}
+var invokedFilter = false
+var invokedFilterCount = 0
+var stubbedFilterClosureResult: (String, Void)?
+func filter(closure: (String) -> Bool) {
+invokedFilter = true
+invokedFilterCount += 1
+if let result = stubbedFilterClosureResult {
+_ = closure(result.0)
+}
+}
+}
+"""
     }
 
     private func getFormattedMethod() -> String {
-        return "class FormatExample {" + "\n" +
-            "var invokedReadWriteSetter = false" + "\n" +
-            "var invokedReadWriteSetterCount = 0" + "\n" +
-            "var invokedReadWrite: String?" + "\n" +
-            "var invokedReadWriteList = [String]()" + "\n" +
-            "var invokedReadWriteGetter = false" + "\n" +
-            "var invokedReadWriteGetterCount = 0" + "\n" +
-            "var stubbedReadWrite: String! = \"\"" + "\n" +
-            "var readWrite: String {" + "\n" +
-            "set {" + "\n" +
-            "invokedReadWriteSetter = true" + "\n" +
-            "invokedReadWriteSetterCount += 1" + "\n" +
-            "invokedReadWrite = newValue" + "\n" +
-            "invokedReadWriteList.append(newValue)" + "\n" +
-            "}" + "\n" +
-            "get {" + "\n" +
-            "invokedReadWriteGetter = true" + "\n" +
-            "invokedReadWriteGetterCount += 1" + "\n" +
-            "return stubbedReadWrite" + "\n" +
-            "}" + "\n" +
-            "}" + "\n" +
-            "var invokedFilter = false" + "\n" +
-            "var invokedFilterCount = 0" + "\n" +
-            "var stubbedFilterClosureResult: (String, Void)?" + "\n" +
-            "    func filter(closure: (String) -> Bool) {" + "\n" +
-            "        invokedFilter = true" + "\n" +
-            "        invokedFilterCount += 1" + "\n" +
-            "        if let result = stubbedFilterClosureResult {" + "\n" +
-            "            _ = closure(result.0)" + "\n" +
-            "        }" + "\n" +
-            "    }" + "\n" +
-            "}"
+        return """
+class FormatExample {
+var invokedReadWriteSetter = false
+var invokedReadWriteSetterCount = 0
+var invokedReadWrite: String?
+var invokedReadWriteList = [String]()
+var invokedReadWriteGetter = false
+var invokedReadWriteGetterCount = 0
+var stubbedReadWrite: String! = \"\"
+var readWrite: String {
+set {
+invokedReadWriteSetter = true
+invokedReadWriteSetterCount += 1
+invokedReadWrite = newValue
+invokedReadWriteList.append(newValue)
+}
+get {
+invokedReadWriteGetter = true
+invokedReadWriteGetterCount += 1
+return stubbedReadWrite
+}
+}
+var invokedFilter = false
+var invokedFilterCount = 0
+var stubbedFilterClosureResult: (String, Void)?
+    func filter(closure: (String) -> Bool) {
+        invokedFilter = true
+        invokedFilterCount += 1
+        if let result = stubbedFilterClosureResult {
+            _ = closure(result.0)
+        }
+    }
+}
+"""
     }
 
     func getUTF16Class() -> String {
         // "✋️".utf8.count = 3
         // "💐".utf8.count = 4
-        return "class 💐A {" + "\n" +
-            "var var✋A = \"\"" + "\n" +
-            "func method💐A() {}" + "\n" +
-            "}"
+        return """
+class 💐A {
+var var✋A = \"\"
+func method💐A() {}
+}
+"""
     }
 
     func getFormattedUTF16Class() -> String {
-        return "class 💐A {" + "\n" +
-            "    var var✋A = \"\"" + "\n" +
-            "    func method💐A() {}" + "\n" +
-            "}"
+        return """
+class 💐A {
+    var var✋A = \"\"
+    func method💐A() {}
+}
+"""
     }
 }

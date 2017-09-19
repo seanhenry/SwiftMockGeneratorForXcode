@@ -55,14 +55,18 @@ class ResolveUtilTests: XCTestCase {
     }
 
     private func getResolveClassString() -> String {
-        return "class MockResolveTest: ResolveTest { }"
+        return """
+class MockResolveTest: ResolveTest { }
+"""
     }
 
     private func getResolvedProtocolString() -> String {
-        return "protocol ResolveTest { " + "\n" +
-            "" + "\n" +
-            "  func method() {}" + "\n" +
-            "}"
+        return """
+protocol ResolveTest {
+
+  func method() {}
+}
+"""
     }
 
     private func writeUTF16ResolveClassesToFile() {
@@ -73,13 +77,17 @@ class ResolveUtilTests: XCTestCase {
     }
 
     private func getUTF16ResolveClassString() -> String {
-        return "class MockResolve💐Test: Resolve💐Test { }"
+        return """
+class MockResolve💐Test: Resolve💐Test { }
+"""
     }
 
     private func getUTF16ResolvedProtocolString() -> String {
-        return "protocol Resolve💐Test { " + "\n" +
-            "" + "\n" +
-            "  func method💐() {}" + "\n" +
-            "}"
+        return """
+protocol Resolve💐Test {
+
+  func method💐() {}
+}
+"""
     }
 }
