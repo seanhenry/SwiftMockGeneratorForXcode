@@ -38,7 +38,7 @@ class LocationConverter {
     }
 
     private static func getOffset(atLine line: Int, in lines: [String]) -> Int64 {
-        return lines[0..<line].reduce(0, addCharacters)
+        return lines[..<line].reduce(0, addCharacters)
     }
 
     private static func addCharacters(count: Int64, string: String) -> Int64 {

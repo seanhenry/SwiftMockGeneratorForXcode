@@ -28,9 +28,8 @@ class SwiftPropertyElementBuilder: NamedSwiftElementBuilderTemplate {
         let attributes = data["key.attributes"] as? [[String: SourceKitRepresentable]]
         let attribute = attributes?.first?["key.attribute"] as? String
         if attribute == "source.decl.attribute.weak" {
-            let startIndex = fileText.startIndex
-            let endIndex = fileText.index(startIndex, offsetBy: Int(offset))
-            let pretext = fileText[startIndex..<endIndex].trimmingCharacters(in: .whitespacesAndNewlines)
+            let endIndex = fileText.index(fileText.startIndex, offsetBy: Int(offset))
+            let pretext = fileText[..<endIndex].trimmingCharacters(in: .whitespacesAndNewlines)
             if pretext.hasSuffix("weak") {
                 return "weak"
             } else if pretext.hasSuffix("unowned") {

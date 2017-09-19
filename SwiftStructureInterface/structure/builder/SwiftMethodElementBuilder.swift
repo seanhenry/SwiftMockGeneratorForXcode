@@ -41,7 +41,7 @@ class SwiftMethodElementBuilder: NamedSwiftElementBuilderTemplate {
             guard let firstBracketOffset = firstBracketIndex(text: text) else { break }
             openBracketCount += isOpenBracket(bracket: text[firstBracketOffset]) ? 1 : -1
             let offset = text.index(after: firstBracketOffset)
-            text = String(text[offset..<text.endIndex])!.utf8
+            text = String(text[offset...])!.utf8
         } while openBracketCount > 0
         return String(text)
     }

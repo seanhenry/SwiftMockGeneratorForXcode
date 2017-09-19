@@ -31,8 +31,8 @@ class DeleteBodyUtil {
             let fileUTF8Text = fileText.utf8
             let bodyStartIndex = fileUTF8Text.index(fileUTF8Text.startIndex, offsetBy: bodyOffset)
             let bodyEndIndex = fileUTF8Text.index(bodyStartIndex, offsetBy: bodyLength)
-            let beforeString = String(fileUTF8Text[fileUTF8Text.startIndex..<bodyStartIndex])!
-            let afterString = String(fileUTF8Text[bodyEndIndex..<fileUTF8Text.endIndex])!
+            let beforeString = String(fileUTF8Text[..<bodyStartIndex])!
+            let afterString = String(fileUTF8Text[bodyEndIndex...])!
             fileString = beforeString + "\n" + afterString
         }
 
