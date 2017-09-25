@@ -1,11 +1,3 @@
-//
-//  TestProject.h
-//  TestProject
-//
-//  Created by Sean Henry on 25/08/2017.
-//  Copyright © 2017 Sean Henry. All rights reserved.
-//
-
 #import <Cocoa/Cocoa.h>
 
 //! Project version number for TestProject.
