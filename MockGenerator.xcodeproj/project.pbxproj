@@ -24,6 +24,7 @@
 		143254331F636788001D8A1C /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
 		143254341F636788001D8A1C /* MockGenerator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14451D351F5F05C500833C61 /* MethodGatheringVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A9B1705ADFFC0CB415 /* MethodGatheringVisitorTests.swift */; };
+		147437B61F79746A00241B8A /* TestProject in Copy Test Project */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
 		147C181C1F6589F000F0A60B /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		147C181D1F6589F000F0A60B /* SWXMLHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		147C181E1F6589F000F0A60B /* Yams.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -268,6 +269,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		147437681F79737600241B8A /* Copy Test Project */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				147437B61F79746A00241B8A /* TestProject in Copy Test Project */,
+			);
+			name = "Copy Test Project";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		149DEC671F65198B007DF43E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -338,6 +350,7 @@
 		143254261F636729001D8A1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		143254291F636729001D8A1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1432542B1F636729001D8A1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		147437B51F79746000241B8A /* TestProject */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestProject; sourceTree = SOURCE_ROOT; };
 		14872E7B1F59DBC50017AF3F /* MockGeneratorAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MockGeneratorAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14872E7F1F59DBC50017AF3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		149287331F560D7800E1D4B3 /* JavaEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaEnvironment.h; sourceTree = "<group>"; };
@@ -550,6 +563,7 @@
 		14276C6D1F4F312E00EA7753 /* MockGeneratorTests */ = {
 			isa = PBXGroup;
 			children = (
+				147437B51F79746000241B8A /* TestProject */,
 				35CDF7A9B1705ADFFC0CB415 /* MethodGatheringVisitorTests.swift */,
 				14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */,
 				14276C701F4F312E00EA7753 /* Info.plist */,
@@ -972,6 +986,7 @@
 				14276C661F4F312E00EA7753 /* Frameworks */,
 				14276C671F4F312E00EA7753 /* Resources */,
 				1410E0991F4F75FB0075503B /* CopyFiles */,
+				147437681F79737600241B8A /* Copy Test Project */,
 			);
 			buildRules = (
 			);

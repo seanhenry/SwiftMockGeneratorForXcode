@@ -3,7 +3,8 @@ import XCTest
 
 class MockGeneratorTests: XCTestCase {
     
-    let testProject = "/Users/sean/source/plugins/MockGenerator/TestProject"
+    // The test project is copied to the resources directoruy build phases
+    let testProject = Bundle(for: MockGeneratorTests.self).resourcePath! + "/TestProject"
     
     func test_generatesSimpleMock() {
         assertMockGeneratesExpected("SimpleProtocolMock")
