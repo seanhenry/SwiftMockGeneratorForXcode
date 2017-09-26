@@ -64,7 +64,12 @@ usecases: mkavian mklib mkclasses avian kotlin
 
 	cd $(USECASES_SRC_PATH)/UseCases; \
 	kotlinc src -include-runtime -jdk-home $(JAVA_HOME) -d $(BUILD_PATH)/usecases_kotlin.jar; \
-	find src -name "*.java" -print | xargs $(JAVAC) -d $(JAVA_BUILD_PATH)
+	find src -name "*.java" -print | xargs $(JAVAC) -d $(JAVA_BUILD_PATH) -classpath $(BUILD_PATH)/usecases_kotlin.jar; \
+	cd src; \
+	find . -name "*.properties" -print0 | while IFS= read -r -d $$'\0' file; do \
+	  mkdir -p $$(dirname "$(JAVA_BUILD_PATH)/$$file"); \
+	  cp -f "$$file" "$(JAVA_BUILD_PATH)/$$file"; \
+	done;
 
 	cd $(JAVA_BUILD_PATH); \
 	unzip -n $(AVIAN_BUILD_PATH)/classpath.jar; \
