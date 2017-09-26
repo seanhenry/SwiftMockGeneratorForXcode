@@ -5,7 +5,7 @@ class MockDataStore: DataStore {
     var invokedSaveCount = 0
     var invokedSaveParameters: (data: Data, file: URL)?
     var invokedSaveParametersList = [(data: Data, file: URL)]()
-    var stubbedSaveResult: Bool!
+    var stubbedSaveResult: Bool! = false
     func save(_ data: Data, to file: URL) -> Bool {
         invokedSave = true
         invokedSaveCount += 1
