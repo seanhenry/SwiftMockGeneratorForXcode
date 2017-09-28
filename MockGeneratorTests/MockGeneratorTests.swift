@@ -30,6 +30,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("MethodParameterProtocolMock")
     }
 
+    func test_addsDefaultValuesToStubsWherePossible() {
+        assertMockGeneratesExpected("DefaultValuesMock")
+    }
+
     func test_handlesOverloadedMethodsAndProperties() {
         assertMockGeneratesExpected("OverloadProtocolMock")
     }
