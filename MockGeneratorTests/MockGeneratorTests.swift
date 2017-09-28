@@ -30,6 +30,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("MethodParameterProtocolMock")
     }
 
+    func test_handlesOverloadedMethodsAndProperties() {
+        assertMockGeneratesExpected("OverloadProtocolMock")
+    }
+
     func test_generatesMockForAllCaretPositions() {
         let expected = readFile(named: "SimpleProtocolMock_expected.swift")
         let caretFile = readFile(named: "CaretSuccessTest.swift")

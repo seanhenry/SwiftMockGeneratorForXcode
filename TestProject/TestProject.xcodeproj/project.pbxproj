@@ -17,6 +17,8 @@
 		35CDF407B8C8E5D4025834B1 /* DeleteBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF6B7AB385DAB7DB13909 /* DeleteBody.swift */; };
 		35CDF42B7AA08717DC70E915 /* ReturnProtocolMock_expected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFD9D7D6D149629157D3D /* ReturnProtocolMock_expected.swift */; };
 		35CDF7C0AD5C0F5321749190 /* ReturnProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFAC5164619072A790872 /* ReturnProtocol.swift */; };
+		35CDF7C80E1F5B30624A5FCB /* OverloadProtocolMock_expected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF3634855FC13EBE41AA9 /* OverloadProtocolMock_expected.swift */; };
+		35CDFA01BF4D8E71275902A1 /* OverloadProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF60DEE6187008D9FD03 /* OverloadProtocol.swift */; };
 		35CDFA86776AE6A642CEDA1E /* DeleteBodyMock_expected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF6E7D5D4FEB7A5E661E8 /* DeleteBodyMock_expected.swift */; };
 		35CDFBF08BD544D2BD0738B5 /* MethodParameterProtocolMock_expected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFB1E83F7DCECF616A5E2 /* MethodParameterProtocolMock_expected.swift */; };
 		35CDFBF6D0DFE621434AAE3A /* PropertyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFD26A075B8634633A6C4 /* PropertyProtocol.swift */; };
@@ -42,8 +44,10 @@
 		14AA09841F50D9D000968958 /* SimpleProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleProtocol.swift; sourceTree = "<group>"; };
 		14AA09861F50D9F200968958 /* SimpleProtocolMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleProtocolMock.swift; sourceTree = "<group>"; };
 		14AA09881F50DA0900968958 /* SimpleProtocolMock_expected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleProtocolMock_expected.swift; sourceTree = "<group>"; };
+		35CDF10EE3848FC727939A8D /* OverloadProtocolMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverloadProtocolMock.swift; sourceTree = "<group>"; };
 		35CDF1A971104ECE6638592C /* CaretSuccessTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaretSuccessTest.swift; sourceTree = "<group>"; };
 		35CDF2AE83BFFCA90B7AE860 /* DeleteBodyMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBodyMock.swift; sourceTree = "<group>"; };
+		35CDF3634855FC13EBE41AA9 /* OverloadProtocolMock_expected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverloadProtocolMock_expected.swift; sourceTree = "<group>"; };
 		35CDF5A882520CC5FCF55BDA /* ReturnProtocolMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnProtocolMock.swift; sourceTree = "<group>"; };
 		35CDF6B7AB385DAB7DB13909 /* DeleteBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBody.swift; sourceTree = "<group>"; };
 		35CDF6E7D5D4FEB7A5E661E8 /* DeleteBodyMock_expected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBodyMock_expected.swift; sourceTree = "<group>"; };
@@ -58,6 +62,7 @@
 		35CDFD9D7D6D149629157D3D /* ReturnProtocolMock_expected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnProtocolMock_expected.swift; sourceTree = "<group>"; };
 		35CDFEF93F199A49D8E96C3C /* PropertyProtocolMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyProtocolMock.swift; sourceTree = "<group>"; };
 		35CDFF1B5AF5D25D7BD0DB62 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		35CDFF60DEE6187008D9FD03 /* OverloadProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverloadProtocol.swift; sourceTree = "<group>"; };
 		35CDFF84EEF0815E97572479 /* PropertyProtocolMock_expected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyProtocolMock_expected.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +111,9 @@
 				35CDFB1E83F7DCECF616A5E2 /* MethodParameterProtocolMock_expected.swift */,
 				35CDFD50D34A65932758643F /* MockDataStore.swift */,
 				35CDFF1B5AF5D25D7BD0DB62 /* DataStore.swift */,
+				35CDFF60DEE6187008D9FD03 /* OverloadProtocol.swift */,
+				35CDF10EE3848FC727939A8D /* OverloadProtocolMock.swift */,
+				35CDF3634855FC13EBE41AA9 /* OverloadProtocolMock_expected.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -252,6 +260,7 @@
 				35CDFBF6D0DFE621434AAE3A /* PropertyProtocol.swift in Sources */,
 				35CDF0D296D4E9C72F040860 /* MethodParameterProtocol.swift in Sources */,
 				35CDFC3894E7CF5A54DC7F14 /* DataStore.swift in Sources */,
+				35CDFA01BF4D8E71275902A1 /* OverloadProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +274,7 @@
 				35CDF0C706C584AAEE79391A /* PropertyProtocolMock_expected.swift in Sources */,
 				35CDFBF08BD544D2BD0738B5 /* MethodParameterProtocolMock_expected.swift in Sources */,
 				35CDF2E3DC332C74BE036050 /* MockDataStore.swift in Sources */,
+				35CDF7C80E1F5B30624A5FCB /* OverloadProtocolMock_expected.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
