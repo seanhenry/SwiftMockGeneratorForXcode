@@ -102,4 +102,24 @@ class MockOverloadProtocol: OverloadProtocol {
         invokedAnimateWithDurationDelayParameters = (duration, delay)
         invokedAnimateWithDurationDelayParametersList.append((duration, delay))
     }
+    var invokedSpecialCharactersStringInt = false
+    var invokedSpecialCharactersStringIntCount = 0
+    var invokedSpecialCharactersStringIntParameters: (tuple: (String, Int), Void)?
+    var invokedSpecialCharactersStringIntParametersList = [(tuple: (String, Int), Void)]()
+    func specialCharacters(_ tuple: (String, Int)) {
+        invokedSpecialCharactersStringInt = true
+        invokedSpecialCharactersStringIntCount += 1
+        invokedSpecialCharactersStringIntParameters = (tuple, ())
+        invokedSpecialCharactersStringIntParametersList.append((tuple, ()))
+    }
+    var invokedSpecialCharactersUIntFloat = false
+    var invokedSpecialCharactersUIntFloatCount = 0
+    var invokedSpecialCharactersUIntFloatParameters: (tuple: (UInt, Float), Void)?
+    var invokedSpecialCharactersUIntFloatParametersList = [(tuple: (UInt, Float), Void)]()
+    func specialCharacters(_ tuple: (UInt, Float)) {
+        invokedSpecialCharactersUIntFloat = true
+        invokedSpecialCharactersUIntFloatCount += 1
+        invokedSpecialCharactersUIntFloatParameters = (tuple, ())
+        invokedSpecialCharactersUIntFloatParametersList.append((tuple, ()))
+    }
 }
