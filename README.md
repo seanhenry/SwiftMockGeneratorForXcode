@@ -55,10 +55,10 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 | Captures invoked method parameters.|✅|✅|
 | Captures invoked property values.|✅|✅|
 | Stubs values for your mocks to return.|✅|✅|
-| Stubs a default value for return values where possible.||✅|
+| Stubs a default value for return values where possible.|✅|✅|
 | Automatically calls closure parameters with stubbed values.||✅|
 | Supports mocks conforming to one or many protocols.||✅|
-| Handles overloaded method declarations.||✅|
+| Handles overloaded method declarations.|✅|✅|
 | Regenerate your mock in one action.|✅|✅|
 | Supports associated types.||✅|
 | Supports parameter type-annotation attributes and inout.||✅|
