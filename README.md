@@ -56,7 +56,7 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 | Captures invoked property values.|✅|✅|
 | Stubs values for your mocks to return.|✅|✅|
 | Stubs a default value for return values where possible.|✅|✅|
-| Automatically calls closure parameters with stubbed values.||✅|
+| Automatically calls closure parameters with stubbed values.|✅|✅|
 | Supports mocks conforming to one or many protocols.||✅|
 | Handles overloaded method declarations.|✅|✅|
 | Regenerate your mock in one action.|✅|✅|
@@ -160,6 +160,15 @@ func testMyMethodReturnsTrueWhenSaveWasSuccessful() {
     XCTAssertTrue(result)
 }
 ```
+Stub the `progress` closure and it is called with the stubbed value:
+
+```
+func testStubProgressClosure() {
+    mockDataStore.stubbedSaveProgressResult = (0.5, ())
+    object.writeSomeData()
+}
+```
+Closures without arguments are called automatically.
 
 ## Disable or remove the plugin
 

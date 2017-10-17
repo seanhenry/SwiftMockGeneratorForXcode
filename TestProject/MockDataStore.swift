@@ -5,12 +5,16 @@ class MockDataStore: DataStore {
     var invokedSaveCount = 0
     var invokedSaveParameters: (data: Data, file: URL)?
     var invokedSaveParametersList = [(data: Data, file: URL)]()
+    var stubbedSaveProgressResult: (TimeInterval, Void)?
     var stubbedSaveResult: Bool! = false
-    func save(_ data: Data, to file: URL) -> Bool {
+    func save(_ data: Data, to file: URL, progress: (TimeInterval) -> ()) -> Bool {
         invokedSave = true
         invokedSaveCount += 1
         invokedSaveParameters = (data, file)
         invokedSaveParametersList.append((data, file))
+        if let result = stubbedSaveProgressResult {
+            progress(result.0)
+        }
         return stubbedSaveResult
     }
 }
@@ -70,5 +74,10 @@ class ExampleTest: XCTestCase {
         mockDataStore.stubbedSaveResult = true
         let result = object.writeSomeData()
         XCTAssertTrue(result)
+    }
+
+    func testStubProgressClosure() {
+        mockDataStore.stubbedSaveProgressResult = (0.5, ())
+        object.writeSomeData()
     }
 }
