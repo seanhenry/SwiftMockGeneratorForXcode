@@ -42,6 +42,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("ClosureProtocolMock")
     }
 
+    func test_annotationSupport() {
+        assertMockGeneratesExpected("ParameterAnnotationMock")
+    }
+
     func test_generatesMockForAllCaretPositions() {
         let expected = readFile(named: "SimpleProtocolMock_expected.swift")
         let caretFile = readFile(named: "CaretSuccessTest.swift")
