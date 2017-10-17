@@ -53,22 +53,6 @@ class ClosureProtocolMock: ClosureProtocol {
             completion?(result.0)
         }
     }
-    var invokedReturnClosure = false
-    var invokedReturnClosureCount = 0
-    var stubbedReturnClosureResult: (() -> ())!
-    func returnClosure() -> (() -> ()) {
-        invokedReturnClosure = true
-        invokedReturnClosureCount += 1
-        return stubbedReturnClosureResult
-    }
-    var invokedReturnClosureArgs = false
-    var invokedReturnClosureArgsCount = 0
-    var stubbedReturnClosureArgsResult: ((Int, String) -> (String))!
-    func returnClosureArgs() -> (Int, String) -> (String) {
-        invokedReturnClosureArgs = true
-        invokedReturnClosureArgsCount += 1
-        return stubbedReturnClosureArgsResult
-    }
     var invokedOptionalParam = false
     var invokedOptionalParamCount = 0
     var stubbedOptionalParamClosureResult: (String?, Void)?
@@ -98,16 +82,6 @@ class ClosureProtocolMock: ClosureProtocol {
         if let result = stubbedOptionalArrayParamsClosureResult {
             closure(result.0, result.1)
         }
-    }
-    var invokedParse = false
-    var invokedParseCount = 0
-    var invokedParseParameters: (data: Data, Void)?
-    var invokedParseParametersList = [(data: Data, Void)]()
-    func parse(response data: Data) {
-        invokedParse = true
-        invokedParseCount += 1
-        invokedParseParameters = (data, ())
-        invokedParseParametersList.append((data, ()))
     }
     var invokedDoNotSuppressWarning1 = false
     var invokedDoNotSuppressWarning1Count = 0

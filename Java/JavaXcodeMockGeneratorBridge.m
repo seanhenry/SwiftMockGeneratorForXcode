@@ -34,6 +34,11 @@
 - (NSString *)generate {
     jmethodID methodID = (*env)->GetMethodID(env, xcodeMockGeneratorClass, "generate", "()Ljava/lang/String;");
     jstring result = (*env)->CallObjectMethod(env, instance, methodID);
+    if ((*env)->ExceptionCheck(env) == JNI_TRUE) {
+        (*env)->ExceptionDescribe(env);
+        NSAssert(NO, @"A Java exception was thrown.");
+        return @"";
+    }
     jboolean shouldCopy = true;
     return [NSString stringWithUTF8String:(*env)->GetStringUTFChars(env, result, &shouldCopy)];
 }

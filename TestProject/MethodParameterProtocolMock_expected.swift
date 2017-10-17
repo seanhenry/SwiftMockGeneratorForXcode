@@ -66,5 +66,6 @@ class MethodParameterProtocolMock: MethodParameterProtocol {
     func closureParam(param0: () -> ()) {
         invokedClosureParam = true
         invokedClosureParamCount += 1
+        param0()
     }
 }

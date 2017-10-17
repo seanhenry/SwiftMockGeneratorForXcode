@@ -3,7 +3,7 @@ import XCTest
 
 class MockGeneratorTests: XCTestCase {
     
-    // The test project is copied to the resources directoruy build phases
+    // The test project is copied to the resources directory build phases
     let testProject = Bundle(for: MockGeneratorTests.self).resourcePath! + "/TestProject"
     
     func test_generatesSimpleMock() {
@@ -36,6 +36,10 @@ class MockGeneratorTests: XCTestCase {
 
     func test_handlesOverloadedMethodsAndProperties() {
         assertMockGeneratesExpected("OverloadProtocolMock")
+    }
+
+    func test_closureSupport() {
+        assertMockGeneratesExpected("ClosureProtocolMock")
     }
 
     func test_generatesMockForAllCaretPositions() {
