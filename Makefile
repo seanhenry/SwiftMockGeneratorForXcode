@@ -21,7 +21,7 @@ YAMS_FRAMEWORK=$(SOURCEKITTEN_PRODUCTS)/Yams.framework
 DEST_PATH=$(ROOT)/lib
 AVIAN_DEST_PATH=$(DEST_PATH)/avian
 
-.PHONY: test bootstrap clean cleanbuild sourcekitten usecases avian kotlin mklib mkavian lnjavahome
+.PHONY: test bootstrap clean cleanbuild sourcekitten usecases avian kotlin mklib mkavian lnjavahome cleansourcekitten
 
 bootstrap: cleanbuild sourcekitten usecases lnjavahome
 
@@ -32,7 +32,7 @@ cleanbuild:
 clean: cleanbuild
 	rm -rf $(SRC_PATH) || true
 
-sourcekitten: mkclasses mklib
+sourcekitten: cleansourcekitten mkclasses mklib
 
 	if [ -d "$(SOURCEKITTEN_SRC_PATH)/.git" ]; \
 	then \
@@ -123,3 +123,6 @@ mkavian:
 mkclasses:
 	rm -rf $(JAVA_BUILD_PATH) || true
 	mkdir -p $(JAVA_BUILD_PATH)
+
+cleansourcekitten:
+	rm -rf $(SOURCEKITTEN_BUILD_PATH) || true
