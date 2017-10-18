@@ -2,11 +2,13 @@ import AppKit
 
 class PreferencesView: NSView {
     
-    @IBOutlet var projectPathField: NSTextField!
+    @IBOutlet var projectPathHistory: NSPopUpButton!
     
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
-        projectPathField.stringValue = Preferences().projectPath?.path ?? ""
+        refreshHistory()
+        projectPathHistory.target = self
+        projectPathHistory.action = #selector(didChangeSelection(_:))
     }
     
     @IBAction func didTapProjectPathButton(_ sender: Any?) {
@@ -14,14 +16,27 @@ class PreferencesView: NSView {
         panel.allowsMultipleSelection = false
         panel.canChooseDirectories = true
         panel.canChooseFiles = false
-        var startingDirectory = projectPathField.stringValue
-        if startingDirectory == "" {
-            startingDirectory = NSHomeDirectory()
-        }
+        let startingDirectory = self.startingDirectory()
         panel.directoryURL = URL(fileURLWithPath: startingDirectory)
         if panel.runModal() == NSApplication.ModalResponse.OK {
             Preferences().projectPath = panel.directoryURL
-            projectPathField.stringValue = panel.directoryURL?.path ?? ""
+            refreshHistory()
         }
+    }
+
+    private func startingDirectory() -> String {
+        return projectPathHistory.selectedItem?.title ?? NSHomeDirectory()
+    }
+
+    private func refreshHistory() {
+        let paths = Preferences().projectPathHistory.map { $0.path }
+        projectPathHistory.removeAllItems()
+        projectPathHistory.addItems(withTitles: paths)
+    }
+
+    @objc private func didChangeSelection(_ sender: Any?) {
+        guard let title = projectPathHistory.selectedItem?.title else { return }
+        Preferences().projectPath = URL(fileURLWithPath: title)
+        refreshHistory()
     }
 }

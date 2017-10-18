@@ -5,11 +5,12 @@ class PreferencesTests: XCTestCase {
 
     var preferences: Preferences!
     let testURL = URL(string: "path")!
+    let testURL2 = URL(string: "path2")!
     var defaults: UserDefaults!
 
     override func setUp() {
         super.setUp()
-        defaults = UserDefaults()
+        defaults = UserDefaults(suiteName: UUID().uuidString)
         preferences = Preferences(userDefaults: defaults)
     }
 
@@ -24,5 +25,27 @@ class PreferencesTests: XCTestCase {
     func test_projectPath_shouldRememberProjectPath() {
         preferences.projectPath = testURL
         XCTAssertEqual(Preferences().projectPath, testURL)
+    }
+
+    func test_projectPath_shouldAppendToHistory() {
+        preferences.projectPath = testURL
+        XCTAssertEqual(preferences.projectPathHistory, [testURL])
+    }
+
+    func test_projectPath_shouldInsertAtBeginningOfHistory() {
+        preferences.projectPath = testURL
+        preferences.projectPath = testURL2
+        XCTAssertEqual(preferences.projectPathHistory, [testURL2, testURL])
+    }
+
+    func test_projectPath_shouldInsertAtBeginning_andRemoveDuplicates() {
+        preferences.projectPath = testURL
+        preferences.projectPath = testURL2
+        preferences.projectPath = testURL
+        preferences.projectPath = testURL2
+        preferences.projectPath = testURL
+        preferences.projectPath = testURL2
+        preferences.projectPath = testURL
+        XCTAssertEqual(preferences.projectPathHistory, [testURL, testURL2])
     }
 }
