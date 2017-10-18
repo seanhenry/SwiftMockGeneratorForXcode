@@ -5,14 +5,17 @@ class PreferencesTests: XCTestCase {
 
     var preferences: Preferences!
     let testURL = URL(string: "path")!
+    var defaults: UserDefaults!
 
     override func setUp() {
         super.setUp()
-        preferences = Preferences()
+        defaults = UserDefaults()
+        preferences = Preferences(userDefaults: defaults)
     }
 
     override func tearDown() {
         preferences = nil
+        defaults = nil
         super.tearDown()
     }
 

@@ -1,9 +1,13 @@
 import Foundation
 
 class Preferences {
-    
-    private lazy var userDefaults = UserDefaults(suiteName: "group.codes.seanhenry.MockGenerator")!
+
+    private let userDefaults: UserDefaults
     private let projectPathKey = "project.path"
+
+    init(userDefaults: UserDefaults = UserDefaults(suiteName: "group.codes.seanhenry.MockGenerator")!) {
+        self.userDefaults = userDefaults
+    }
 
     var projectPath: URL? {
         set {
