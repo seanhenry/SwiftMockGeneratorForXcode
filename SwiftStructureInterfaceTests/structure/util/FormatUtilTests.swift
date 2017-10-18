@@ -23,16 +23,10 @@ class FormatUtilTests: XCTestCase {
         StringCompareTestHelper.assertEqualStrings(outFile.text, getFormattedString())
     }
 
-    func test_format_shouldFormatSingleProperty() {
+    func test_format_shouldFormatClassesAndMethods_whenSubElementIsProvided() {
         let file = SKElementFactoryTestHelper.build(from: getExampleString())!
         let outFile = util.format(file.children[0].children[0])
-        StringCompareTestHelper.assertEqualStrings(outFile.text, getFormattedProperty())
-    }
-
-    func test_format_shouldFormatSingleMethod() {
-        let file = SKElementFactoryTestHelper.build(from: getExampleString())!
-        let outFile = util.format(file.children[0].children[13])
-        StringCompareTestHelper.assertEqualStrings(outFile.text, getFormattedMethod())
+        StringCompareTestHelper.assertEqualStrings(outFile.text, getFormattedString())
     }
 
     func test_format_shouldNotFormatElementWithoutFile() {
@@ -119,80 +113,7 @@ class FormatExample {
         }
     }
 }
-"""
-    }
 
-    private func getFormattedProperty() -> String {
-        return """
-class FormatExample {
-    var invokedReadWriteSetter = false
-var invokedReadWriteSetterCount = 0
-var invokedReadWrite: String?
-var invokedReadWriteList = [String]()
-var invokedReadWriteGetter = false
-var invokedReadWriteGetterCount = 0
-var stubbedReadWrite: String! = \"\"
-var readWrite: String {
-set {
-invokedReadWriteSetter = true
-invokedReadWriteSetterCount += 1
-invokedReadWrite = newValue
-invokedReadWriteList.append(newValue)
-}
-get {
-invokedReadWriteGetter = true
-invokedReadWriteGetterCount += 1
-return stubbedReadWrite
-}
-}
-var invokedFilter = false
-var invokedFilterCount = 0
-var stubbedFilterClosureResult: (String, Void)?
-func filter(closure: (String) -> Bool) {
-invokedFilter = true
-invokedFilterCount += 1
-if let result = stubbedFilterClosureResult {
-_ = closure(result.0)
-}
-}
-}
-"""
-    }
-
-    private func getFormattedMethod() -> String {
-        return """
-class FormatExample {
-var invokedReadWriteSetter = false
-var invokedReadWriteSetterCount = 0
-var invokedReadWrite: String?
-var invokedReadWriteList = [String]()
-var invokedReadWriteGetter = false
-var invokedReadWriteGetterCount = 0
-var stubbedReadWrite: String! = \"\"
-var readWrite: String {
-set {
-invokedReadWriteSetter = true
-invokedReadWriteSetterCount += 1
-invokedReadWrite = newValue
-invokedReadWriteList.append(newValue)
-}
-get {
-invokedReadWriteGetter = true
-invokedReadWriteGetterCount += 1
-return stubbedReadWrite
-}
-}
-var invokedFilter = false
-var invokedFilterCount = 0
-var stubbedFilterClosureResult: (String, Void)?
-    func filter(closure: (String) -> Bool) {
-        invokedFilter = true
-        invokedFilterCount += 1
-        if let result = stubbedFilterClosureResult {
-            _ = closure(result.0)
-        }
-    }
-}
 """
     }
 
@@ -213,6 +134,7 @@ class 💐A {
     var var✋A = \"\"
     func method💐A() {}
 }
+
 """
     }
 }
