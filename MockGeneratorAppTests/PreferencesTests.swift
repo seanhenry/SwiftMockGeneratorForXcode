@@ -24,7 +24,7 @@ class PreferencesTests: XCTestCase {
 
     func test_projectPath_shouldRememberProjectPath() {
         preferences.projectPath = testURL
-        XCTAssertEqual(Preferences().projectPath, testURL)
+        XCTAssertEqual(preferences.projectPath, testURL)
     }
 
     func test_projectPath_shouldAppendToHistory() {
@@ -47,5 +47,19 @@ class PreferencesTests: XCTestCase {
         preferences.projectPath = testURL2
         preferences.projectPath = testURL
         XCTAssertEqual(preferences.projectPathHistory, [testURL, testURL2])
+    }
+
+    // MARK: - clearProjectPathHistory
+
+    func test_clearProjectPathHistory_shouldRemoveURLs() {
+        preferences.projectPath = testURL
+        preferences.projectPath = testURL2
+        preferences.clearProjectPathHistory()
+        XCTAssert(preferences.projectPathHistory.isEmpty)
+    }
+
+    func test_clearProjectPathHistory_shouldDoNothing_whenAlreadyEmpty() {
+        preferences.clearProjectPathHistory()
+        XCTAssert(preferences.projectPathHistory.isEmpty)
     }
 }

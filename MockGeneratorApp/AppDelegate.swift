@@ -10,6 +10,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             mask.remove(.resizable)
             window.styleMask = mask
             window.title = name
+            window.setContentSize(NSSize(width: 600, height: 200))
         }
     }
 

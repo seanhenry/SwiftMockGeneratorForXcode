@@ -3,6 +3,9 @@ import AppKit
 class PreferencesView: NSView {
     
     @IBOutlet var projectPathHistory: NSPopUpButton!
+    private static let clearTitle = "Clear history"
+    private static let browseTitle = "Browse..."
+    private let preferences = Preferences()
     
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
@@ -19,9 +22,14 @@ class PreferencesView: NSView {
         let startingDirectory = self.startingDirectory()
         panel.directoryURL = URL(fileURLWithPath: startingDirectory)
         if panel.runModal() == NSApplication.ModalResponse.OK {
-            Preferences().projectPath = panel.directoryURL
+            preferences.projectPath = panel.directoryURL
             refreshHistory()
         }
+    }
+
+    @IBAction func didTapClearHistoryButton(_ sender: Any?) {
+        preferences.clearProjectPathHistory()
+        refreshHistory()
     }
 
     private func startingDirectory() -> String {
@@ -29,14 +37,27 @@ class PreferencesView: NSView {
     }
 
     private func refreshHistory() {
-        let paths = Preferences().projectPathHistory.map { $0.path }
+        let paths = preferences.projectPathHistory.map { $0.path }
         projectPathHistory.removeAllItems()
+        if paths.isEmpty {
+            projectPathHistory.addItem(withTitle: PreferencesView.browseTitle)
+            return
+        }
         projectPathHistory.addItems(withTitles: paths)
+        projectPathHistory.menu?.addItem(.separator())
+        projectPathHistory.addItem(withTitle: PreferencesView.clearTitle)
     }
 
     @objc private func didChangeSelection(_ sender: Any?) {
         guard let title = projectPathHistory.selectedItem?.title else { return }
-        Preferences().projectPath = URL(fileURLWithPath: title)
+        if title == PreferencesView.clearTitle {
+            preferences.clearProjectPathHistory()
+            preferences.projectPath = nil
+        } else if title == PreferencesView.browseTitle {
+            didTapProjectPathButton(nil)
+        } else {
+            preferences.projectPath = URL(fileURLWithPath: title)
+        }
         refreshHistory()
     }
 }

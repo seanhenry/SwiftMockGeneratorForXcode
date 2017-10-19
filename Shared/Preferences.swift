@@ -27,6 +27,11 @@ class Preferences {
             ?? []
     }
 
+    func clearProjectPathHistory() {
+        userDefaults.removeObject(forKey: projectPathHistoryKey)
+        userDefaults.synchronize()
+    }
+
     private func appendToProjectPathHistory(path: URL?) {
         guard let path = path else { return }
         var history = projectPathHistory

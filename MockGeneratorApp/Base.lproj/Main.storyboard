@@ -706,7 +706,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="X6l-7z-ih7">
-                                                <rect key="frame" x="-2" y="30" width="457" height="28"/>
+                                                <rect key="frame" x="-2" y="30" width="461" height="28"/>
                                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3l5-3e-Uj7">
                                                     <font key="font" metaFont="systemLight" size="11"/>
                                                     <string key="title">Select the root folder of your project. The mock generator will scan this directory when you generate a mock. Your data will never be stored or shared.</string>
@@ -757,7 +757,9 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="X6l-7z-ih7" secondAttribute="trailing" id="IJt-cd-uOs"/>
                                             <constraint firstItem="kf8-Tc-urf" firstAttribute="leading" secondItem="s4D-w1-Fmx" secondAttribute="leading" id="hMp-yZ-DWQ"/>
+                                            <constraint firstItem="X6l-7z-ih7" firstAttribute="leading" secondItem="s4D-w1-Fmx" secondAttribute="leading" id="quH-gw-CMP"/>
                                             <constraint firstAttribute="trailing" secondItem="kf8-Tc-urf" secondAttribute="trailing" id="xca-EN-wqV"/>
                                         </constraints>
                                         <visibilityPriorities>
@@ -803,7 +805,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="31.5" y="614.5"/>
+            <point key="canvasLocation" x="75" y="672"/>
         </scene>
     </scenes>
     <resources>
