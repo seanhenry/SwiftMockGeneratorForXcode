@@ -61,7 +61,7 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 | Handles overloaded method declarations.|✅|✅|
 | Regenerate your mock in one action.|✅|✅|
 | Supports associated types.||✅|
-| Supports parameter type-annotation attributes and inout.||✅|
+| Supports parameter type-annotation attributes and inout.|✅|✅|
 | Respects public and open mocks and makes queries publicly available.||✅|
 | Records multiple invocations of methods.|✅|✅|
 | Records multiple invocations of method parameters.|✅|✅|
