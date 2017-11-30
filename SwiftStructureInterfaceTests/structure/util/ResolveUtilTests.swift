@@ -14,11 +14,11 @@ class ResolveUtilTests: XCTestCase {
         // SourceKit caches files
         resolveFile = NSTemporaryDirectory() + UUID().uuidString + "_resolve.swift"
         resolvedFile = NSTemporaryDirectory() + UUID().uuidString + "_resolved.swift"
-        ResolveUtil.files = [resolveFile, resolvedFile]
+        ResolveUtil.cursorInfoRequest = SKCursorInfoRequest(files: [resolveFile, resolvedFile])
     }
 
     override func tearDown() {
-        ResolveUtil.files = []
+        ResolveUtil.cursorInfoRequest = SKCursorInfoRequest(files: [])
         util = nil
         super.tearDown()
     }
@@ -45,7 +45,22 @@ class ResolveUtilTests: XCTestCase {
         XCTAssertEqual(method?.name, "method💐")
     }
 
+    func test_resolve_shouldReturnNil_whenNoCursorInfo() {
+        ResolveUtil.cursorInfoRequest = ThrowingCursorInfoRequest()
+        writeResolveClassesToFile()
+        let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
+        let reference = (file.children[0] as! SwiftTypeElement).inheritedTypes[0]
+        XCTAssertNil(ResolveUtil().resolve(reference))
+    }
+
     // MARK: - Helpers
+
+    class ThrowingCursorInfoRequest: CursorInfoRequest {
+        class Error: Swift.Error {}
+        func getCursorInfo(filePath: String, offset: Int64) throws -> [String: Any] {
+            throw Error()
+        }
+    }
 
     private func writeResolveClassesToFile() {
         try! getResolveClassString().data(using: .utf8)!

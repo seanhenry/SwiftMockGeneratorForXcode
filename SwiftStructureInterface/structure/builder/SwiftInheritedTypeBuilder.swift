@@ -1,12 +1,10 @@
-import SourceKittenFramework
-
 class SwiftInheritedTypeBuilder: NamedSwiftElementBuilderTemplate {
     
     static let kind = "SwiftInheritedTypeBuilder.inheritedType"
-    let data: [String: SourceKitRepresentable]
+    let data: [String: Any]
     let fileText: String
 
-    init(data: [String: SourceKitRepresentable], fileText: String) {
+    init(data: [String: Any], fileText: String) {
         self.data = data
         self.fileText = fileText
     }

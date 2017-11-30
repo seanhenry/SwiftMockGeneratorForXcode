@@ -1,11 +1,9 @@
-import SourceKittenFramework
-
 class SwiftFileBuilder: SwiftElementBuilderTemplate {
 
     let fileText: String
-    let data: [String: SourceKitRepresentable]
+    let data: [String: Any]
 
-    init(data: [String: SourceKitRepresentable], fileText: String) {
+    init(data: [String: Any], fileText: String) {
         self.data = data
         self.fileText = fileText
     }

@@ -7,6 +7,7 @@ class FormatUtilTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        FormatUtil.formatRequest = SKFormatRequest()
         util = FormatUtil()
     }
 
@@ -40,7 +41,21 @@ class FormatUtilTests: XCTestCase {
         StringCompareTestHelper.assertEqualStrings(outFile.text, getFormattedUTF16Class())
     }
 
+    func test_format_shouldReturnOriginalElement_whenFormattingFails() {
+        FormatUtil.formatRequest = MockFormatRequest()
+        let inFile = SKElementFactoryTestHelper.build(from: getExampleString())!
+        let outFile = util.format(inFile)
+        XCTAssert(outFile === inFile)
+    }
+
     // MARK: - Helpers
+
+    class MockFormatRequest: FormatRequest {
+        class Error: Swift.Error {}
+        func format(filePath: String) throws -> String {
+            throw Error()
+        }
+    }
 
     private func getExampleString() -> String {
         return """

@@ -17,7 +17,7 @@ class BodySwiftElementBuilderTemplateTests: XCTestCase {
     // MARK: - Helpers
 
     private func assertNoBodyOffsetElementIsIgnored(_ string: String, line: UInt = #line) {
-        var fileData = Structure(file: File(contents: string)).dictionary
+        var fileData = try! Structure(file: File(contents: string)).dictionary
         var substructureData = fileData["key.substructure"] as! [[String: SourceKitRepresentable]]
         substructureData[0]["key.bodyoffset"] = nil
         fileData["key.substructure"] = substructureData
@@ -26,7 +26,7 @@ class BodySwiftElementBuilderTemplateTests: XCTestCase {
     }
 
     private func assertNoBodyLengthElementIsIgnored(_ string: String, line: UInt = #line) {
-        var fileData = Structure(file: File(contents: string)).dictionary
+        var fileData = try! Structure(file: File(contents: string)).dictionary
         var substructureData = fileData["key.substructure"] as! [[String: SourceKitRepresentable]]
         substructureData[0]["key.bodylength"] = nil
         fileData["key.substructure"] = substructureData

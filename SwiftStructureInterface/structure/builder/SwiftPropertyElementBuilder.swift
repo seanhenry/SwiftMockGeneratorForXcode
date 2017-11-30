@@ -1,11 +1,9 @@
-import SourceKittenFramework
-
 class SwiftPropertyElementBuilder: NamedSwiftElementBuilderTemplate {
 
     let fileText: String
-    let data: [String: SourceKitRepresentable]
+    let data: [String: Any]
 
-    init(data: [String: SourceKitRepresentable], fileText: String) {
+    init(data: [String: Any], fileText: String) {
         self.data = data
         self.fileText = fileText
     }
@@ -25,7 +23,7 @@ class SwiftPropertyElementBuilder: NamedSwiftElementBuilderTemplate {
     }
 
     private func getAttributeString(offset: Int64) -> String? {
-        let attributes = data["key.attributes"] as? [[String: SourceKitRepresentable]]
+        let attributes = data["key.attributes"] as? [[String: Any]]
         let attribute = attributes?.first?["key.attribute"] as? String
         if attribute == "source.decl.attribute.weak" {
             let endIndex = fileText.index(fileText.startIndex, offsetBy: Int(offset))

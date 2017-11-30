@@ -1,30 +1,31 @@
-import SourceKittenFramework
-
 class SKElementFactory {
 
+    static var structureRequest: StructureRequest = SKStructureRequest()
+
     func build(from string: String) -> Element? {
-        let dictionary = Structure(file: SourceKittenFramework.File(contents: string)).dictionary
-        return build(data: dictionary, fileText: string)
+        if let dictionary = try? SKElementFactory.structureRequest.getStructure(contents: string) {
+            return build(data: dictionary, fileText: string)
+        }
+        return nil
     }
 
     func build(fromPath path: String) -> Element? {
-        guard let file = SourceKittenFramework.File(path: path) else { return nil }
-        let dictionary = Structure(file: file).dictionary
-        return build(data: dictionary, fileText: file.contents)
+        guard let (dictionary, contents) = try? SKElementFactory.structureRequest.getStructure(filePath: path) else { return nil }
+        return build(data: dictionary, fileText: contents)
     }
 
-    func build(data: [String: SourceKitRepresentable], fileText: String) -> Element? {
+    func build(data: [String: Any], fileText: String) -> Element? {
         guard isFileData(data) else {
             return buildElement(data, fileText: fileText)
         }
         return SwiftFileBuilder(data: data, fileText: fileText).build()
     }
 
-    private func isFileData(_ data: [String: SourceKitRepresentable]) -> Bool {
+    private func isFileData(_ data: [String: Any]) -> Bool {
         return data["key.diagnostic_stage"] != nil
     }
 
-    private func buildElement(_ data: [String: SourceKitRepresentable], fileText: String) -> Element? {
+    private func buildElement(_ data: [String: Any], fileText: String) -> Element? {
         guard let kind = data["key.kind"] as? String else {
             return SwiftElementBuilder(data: data, fileText: fileText).build()
         }

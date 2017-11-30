@@ -1,11 +1,9 @@
-import SourceKittenFramework
-
 class SwiftTypeElementBuilder: BodySwiftElementBuilderTemplate {
 
     let fileText: String
-    let data: [String: SourceKitRepresentable]
+    let data: [String: Any]
 
-    init(data: [String: SourceKitRepresentable], fileText: String) {
+    init(data: [String: Any], fileText: String) {
         self.data = data
         self.fileText = fileText
     }
@@ -15,14 +13,14 @@ class SwiftTypeElementBuilder: BodySwiftElementBuilderTemplate {
     }
 
     private func getInheritedTypes() -> [SwiftInheritedType] {
-        guard let typeData = data["key.inheritedtypes"] as? [[String: SourceKitRepresentable]],
+        guard let typeData = data["key.inheritedtypes"] as? [[String: Any]],
               let declarationText = getDeclarationText() else { return [] }
         let typesTextStrings = getInheritedTypesStrings(declarationText: declarationText)
         let offsetAndLengths = getInheritedTypesTextOffsets(typeTexts: typesTextStrings, declarationText: declarationText)
         return augmentAndBuildInheritedTypes(offsetAndLengths: offsetAndLengths, typeData: typeData)
     }
 
-    private func augmentAndBuildInheritedTypes(offsetAndLengths: [(offset: Int64, length: Int64)], typeData: [[String: SourceKitRepresentable]]) -> [SwiftInheritedType] {
+    private func augmentAndBuildInheritedTypes(offsetAndLengths: [(offset: Int64, length: Int64)], typeData: [[String: Any]]) -> [SwiftInheritedType] {
         return zip(offsetAndLengths, typeData).flatMap { (offsetAndLength, data) in
             var newData = data
             newData["key.kind"] = SwiftInheritedTypeBuilder.kind

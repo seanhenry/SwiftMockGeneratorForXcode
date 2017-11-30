@@ -6,7 +6,8 @@ public class Generator {
 
     public static func generateMock(fromFileContents contents: String, projectURL: URL, line: Int, column: Int) -> ([String]?, Error?) {
         // TODO: put files elsewhere
-        ResolveUtil.files = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
+        let sourceFiles = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
+        ResolveUtil.cursorInfoRequest = SKCursorInfoRequest(files: sourceFiles)
         guard let file = SKElementFactory().build(from: contents) else {
             return reply(with: "Could not parse Swift file")
         }
@@ -72,6 +73,7 @@ public class Generator {
     private static func format(_ lines: [String]) -> [String] {
         let newFileText = lines.joined(separator: "\n")
         guard let newFile = SKElementFactory().build(from: newFileText) else { return lines }
+        FormatUtil.formatRequest = SKFormatRequest()
         let formatted = FormatUtil().format(newFile).text
         return formatted.components(separatedBy: .newlines)
     }

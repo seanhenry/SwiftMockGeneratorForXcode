@@ -1,7 +1,5 @@
-import SourceKittenFramework
-
 protocol SwiftElementBuilderTemplate {
-    var data: [String: SourceKitRepresentable] { get }
+    var data: [String: Any] { get }
     var fileText: String { get }
     func build(text: String, offset: Int64, length: Int64) -> Element?
 }
@@ -38,8 +36,8 @@ extension SwiftElementBuilderTemplate {
         } ?? []
     }
 
-    func getSubStructure() -> [[String: SourceKitRepresentable]]? {
-        return data["key.substructure"] as? [[String: SourceKitRepresentable]]
+    func getSubStructure() -> [[String: Any]]? {
+        return data["key.substructure"] as? [[String: Any]]
     }
 
     func getOffset() -> Int64? {
