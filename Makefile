@@ -1,3 +1,6 @@
+SOURCE_KITTEN_SHA=d841db12a0911239ba4071ea729b79c946f2bdd8
+USE_CASE_SHA=ba362f5ff22e2b593a523e114ecdac167d6631b0
+
 JAVA_HOME?=$$(/usr/libexec/java_home)
 JAVAC=$(JAVA_HOME)/bin/javac
 ROOT=$(shell pwd)
@@ -38,10 +41,11 @@ sourcekitten: cleansourcekitten mkclasses mklib
 	then \
 	cd $(SOURCEKITTEN_SRC_PATH); \
 	git fetch; \
-	git pull; \
 	else \
 	git clone https://github.com/jpsim/SourceKitten.git $(SOURCEKITTEN_SRC_PATH); \
-	fi;
+	cd $(SOURCEKITTEN_SRC_PATH); \
+	fi; \
+	git checkout $(SOURCE_KITTEN_SHA); \
 
 	cd $(SOURCEKITTEN_SRC_PATH); \
 	make bootstrap; \
@@ -55,12 +59,11 @@ usecases: mkavian mklib mkclasses avian kotlin
 	then \
 	cd $(USECASES_SRC_PATH); \
 	git fetch; \
-	git pull; \
 	else git \
 	clone https://github.com/seanhenry/MockGenerator.git $(USECASES_SRC_PATH); \
 	cd $(USECASES_SRC_PATH); \
-	git checkout -b refactor origin/refactor; \
-	fi
+	fi; \
+	git checkout $(USE_CASE_SHA)
 
 	cd $(USECASES_SRC_PATH)/UseCases; \
 	kotlinc src -include-runtime -jdk-home $(JAVA_HOME) -d $(BUILD_PATH)/usecases_kotlin.jar; \

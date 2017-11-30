@@ -14,7 +14,7 @@
     self = [super init];
     if (self != nil) {
         env = environment.env;
-        xcodeMockGeneratorClass = (*env)->FindClass(env, "codes/seanhenry/mockgenerator/xcode/XcodeMockGenerator");
+        xcodeMockGeneratorClass = (*env)->FindClass(env, "codes/seanhenry/mockgenerator/generator/MockGenerator");
         jmethodID constructor = (*env)->GetMethodID(env, xcodeMockGeneratorClass, "<init>", "()V");
         instance = (*env)->NewObject(env, xcodeMockGeneratorClass, constructor);
     }
