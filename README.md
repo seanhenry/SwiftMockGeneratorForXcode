@@ -48,29 +48,44 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 
 ## Features
 
-| Feature | Xcode | AppCode
-|---|---|---|
-| Captures invocation status of methods.|✅|✅|
-| Captures invocation status of properties.|✅|✅|
-| Captures invoked method parameters.|✅|✅|
-| Captures invoked property values.|✅|✅|
-| Stubs values for your mocks to return.|✅|✅|
-| Stubs a default value for return values where possible.|✅|✅|
-| Automatically calls closure parameters with stubbed values.|✅|✅|
-| Supports mocks conforming to one or many protocols.||✅|
-| Handles overloaded method declarations.|✅|✅|
-| Regenerate your mock in one action.|✅|✅|
-| Supports associated types.||✅|
-| Supports parameter type-annotation attributes and inout.|✅|✅|
-| Respects public and open mocks and makes queries publicly available.||✅|
-| Records multiple invocations of methods.|✅|✅|
-| Records multiple invocations of method parameters.|✅|✅|
-| Generate mocks from protocols in 3rd party frameworks.||✅|
-| Generate mocks from classes|||
+| Feature | Supported |
+|---|---|
+| Swift 3 and 4.|✅|
+| Generate and regenerate your mock in one action.|✅|
+| **Classes and protocols** |
+| Generates mock conforming to one protocol.|✅|
+| Generates mock conforming to a class.||
+| Generates mock conforming to both classes and protocols.||
+| **Recording methods and properties** |
+| Captures invocation status of methods.|✅|
+| Captures invocation status of properties.|✅|
+| Records multiple invocations of methods.|✅|
+| Records multiple invocations of properties.|✅|
+| Captures invoked method parameters.|✅|
+| Records multiple invocations of method parameters.|✅|
+| **Stubbing return values and closures** |
+| Stubs values for your mocks to return.|✅|
+| Stubs a default value for return values where possible.|✅|
+| Automatically calls closure parameters with stubbed values.|✅|
+| **Initializers** |
+| Generates convenience initializers requiring no parameters.||
+| Supports initializers with arguments.||
+| Supports failable initializers.||
+| Supports required initializers.||
+| **Throws** |
+| Stub an error for your mock method to throw. ||
+| Supports throwing initializers. ||
+| Supports throwing closures. ||
+| **Scope, keywords, and more** |
+| Avoids naming clashes from overloaded methods.|✅|
+| Generates generic mocks from protocols with associated types.||
+| Supports parameter type-annotation attributes and `inout`.|✅|
+| Respects the mock scope and generates `public` and `open` methods and properties.||
+| Generate mock inheriting from items in 3rd party frameworks.||
 
 ## Feature requests
 
-As shown above, the AppCode plugin is much more feature-rich. If there is a feature you need, check for an existing GitHub issue and make a comment or, if no issue exists, raise a new issue.
+If there is a feature you need, check for an existing GitHub issue and make a comment or, if no issue exists, raise a new issue.
 
 ## Usage example
 
