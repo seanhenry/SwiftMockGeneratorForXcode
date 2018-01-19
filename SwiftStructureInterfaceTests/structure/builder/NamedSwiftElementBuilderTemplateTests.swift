@@ -20,7 +20,7 @@ class NamedSwiftElementBuilderTemplateTests: XCTestCase {
     // MARK: - Helpers
 
     private func assertNoNameElementIsIgnored(_ string: String, line: UInt = #line) {
-        var fileData = try! Structure(file: File(contents: string)).dictionary
+        var fileData = Structure(file: File(contents: string)).dictionary
         var substructureData = fileData["key.substructure"] as! [[String: SourceKitRepresentable]]
         substructureData[0]["key.name"] = nil
         fileData["key.substructure"] = substructureData

@@ -5,27 +5,27 @@ import SourceKittenFramework
 class SwiftElementBuilderTemplateTests: XCTestCase {
 
     func test_build_shouldNotCreateFile_whenTextIsSmallerThanData() {
-        let protocolData = try! Structure(file: File(contents: "protocol P {}")).dictionary
+        let protocolData = Structure(file: File(contents: "protocol P {}")).dictionary
         let file = SKElementFactory().build(data: protocolData, fileText: "protocol P {")
         XCTAssertNil(file)
     }
 
     func test_build_shouldNotCreateFile_whenNoOffset() {
-        var fileData = try! Structure(file: File(contents: "protocol P {}")).dictionary
+        var fileData = Structure(file: File(contents: "protocol P {}")).dictionary
         fileData["key.offset"] = nil
         let file = SKElementFactory().build(data: fileData, fileText: "protocol P {}")
         XCTAssertNil(file)
     }
 
     func test_build_shouldNotCreateFile_whenNoLength() {
-        var fileData = try! Structure(file: File(contents: "protocol P {}")).dictionary
+        var fileData = Structure(file: File(contents: "protocol P {}")).dictionary
         fileData["key.length"] = nil
         let file = SKElementFactory().build(data: fileData, fileText: "protocol P {}")
         XCTAssertNil(file)
     }
 
     func test_build_shouldNotCreateFile_whenOffsetIsOutOfBounds() {
-        var fileData = try! Structure(file: File(contents: "protocol P {}")).dictionary
+        var fileData = Structure(file: File(contents: "protocol P {}")).dictionary
         fileData["key.offset"] = Int64(14)
         let file = SKElementFactory().build(data: fileData, fileText: "protocol P {}")
         XCTAssertNil(file)

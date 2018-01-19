@@ -1,4 +1,4 @@
-SOURCE_KITTEN_SHA=d841db12a0911239ba4071ea729b79c946f2bdd8
+SOURCE_KITTEN_SHA=71e8297e5d95118588f8aa8e1de892762346dc9d
 USE_CASE_SHA=dec8feee235651720ab043fbd6e1b3ce828f50b0
 KOTLIN_NATIVE_SHA=eae130e246dff2502a3f79ee146e333cdc5024bf
 
@@ -47,7 +47,6 @@ sourcekitten: cleansourcekitten mklib
 	make bootstrap; \
 	xcrun xcodebuild -workspace SourceKitten.xcworkspace -scheme SourceKittenFramework -configuration Debug -derivedDataPath $(SOURCEKITTEN_BUILD_PATH) clean build
 
-	rm -rf $(DEST_PATH)/*.framework
 	cp -Rf $(SOURCEKITTEN_FRAMEWORK) $(SOURCEKITTEN_DSYM) $(SWXMLHASH_FRAMEWORK) $(YAMS_FRAMEWORK) $(DEST_PATH)
 
 usecases: mklib mkkotlinnative
