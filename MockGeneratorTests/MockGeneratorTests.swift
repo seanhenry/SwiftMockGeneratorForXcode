@@ -34,6 +34,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("DefaultValuesMock")
     }
 
+    func test_escapesKeywords() {
+        assertMockGeneratesExpected("KeywordsMock")
+    }
+
     func test_handlesOverloadedMethodsAndProperties() {
         assertMockGeneratesExpected("OverloadProtocolMock")
     }
