@@ -50,7 +50,7 @@ sourcekitten: cleansourcekitten mklib
 	rm -rf $(DEST_PATH)/*.framework
 	cp -Rf $(SOURCEKITTEN_FRAMEWORK) $(SOURCEKITTEN_DSYM) $(SWXMLHASH_FRAMEWORK) $(YAMS_FRAMEWORK) $(DEST_PATH)
 
-usecases: mklib
+usecases: mklib mkkotlinnative
 	if [ -d "$(USECASES_SRC_PATH)/.git" ]; \
 	then \
 	cd $(USECASES_SRC_PATH); \

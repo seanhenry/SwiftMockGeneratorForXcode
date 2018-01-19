@@ -1,6 +1,5 @@
 #import <Foundation/Foundation.h>
 #import "MockGeneratorXPC-Swift.h"
-#import "JavaEnvironment.h"
 
 @interface ServiceDelegate : NSObject <NSXPCListenerDelegate>
 @end
@@ -29,7 +28,6 @@
 
 int main(int argc, const char *argv[])
 {
-    [JavaEnvironment shared];
     // Create the delegate for the service.
     ServiceDelegate *delegate = [ServiceDelegate new];
     
