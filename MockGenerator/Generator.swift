@@ -1,4 +1,5 @@
 import Foundation
+import UseCases
 // TODO: remove testable when API becomes more clear
 @testable import SwiftStructureInterface
 
@@ -44,12 +45,11 @@ public class Generator {
     }
     
     private static func getMockBody(fromResolvedProtocol resolvedProtocol: Element) -> [String] {
-        let environment = JavaEnvironment.shared
-        let generator = JavaXcodeMockGeneratorBridge(javaEnvironment: environment)
-        let visitor = MethodGatheringVisitor(environment: environment)
+        let generator = UseCasesMockGenerator()
+        let visitor = MethodGatheringVisitor()
         resolvedProtocol.accept(RecursiveElementVisitor(visitor: visitor))
-        visitor.properties.forEach { generator.addProtocolProperty($0) }
-        visitor.methods.forEach { generator.addProtocolMethod($0) }
+        visitor.properties.forEach { generator.add(property: $0) }
+        visitor.methods.forEach { generator.add(method: $0) }
         let mockString = generator.generate()
         return mockString.components(separatedBy: .newlines)
     }

@@ -1,14 +1,10 @@
+import UseCases
 @testable import SwiftStructureInterface
 
 class MethodGatheringVisitor: ElementVisitor {
 
-    private let environment: JavaEnvironment
-    private(set) var methods = [JavaProtocolMethodBridge]()
-    private(set) var properties = [JavaProtocolPropertyBridge]()
-
-    init(environment: JavaEnvironment) {
-        self.environment = environment
-    }
+    private(set) var methods = [UseCasesProtocolMethod]()
+    private(set) var properties = [UseCasesProtocolProperty]()
 
     func visit(_ element: SwiftElement) {
     }
@@ -21,7 +17,7 @@ class MethodGatheringVisitor: ElementVisitor {
 
     func visit(_ element: SwiftMethodElement) {
         let parameterString = getParametersText(element: element)
-        methods.append(JavaProtocolMethodBridge(javaEnvironment: environment, name: element.name, returnType: element.returnType, parameters: parameterString ?? "", signature: element.text))
+        methods.append(UseCasesProtocolMethod(name: element.name, returnType: element.returnType, parameters: parameterString ?? "", signature: element.text))
     }
 
     private func getParametersText(element: SwiftMethodElement) -> String? {
@@ -40,6 +36,6 @@ class MethodGatheringVisitor: ElementVisitor {
         if let elementAttribute = element.attribute {
             attribute = elementAttribute + " "
         }
-        properties.append(JavaProtocolPropertyBridge(javaEnvironment: environment, name: element.name, type: element.type, isWritable: element.isWritable, signature: attribute + element.text))
+        properties.append(UseCasesProtocolProperty(name: element.name, type: element.type, isWritable: element.isWritable, signature: attribute + element.text))
     }
 }

@@ -1,18 +1,15 @@
 SOURCE_KITTEN_SHA=d841db12a0911239ba4071ea729b79c946f2bdd8
-USE_CASE_SHA=ba362f5ff22e2b593a523e114ecdac167d6631b0
+USE_CASE_SHA=dec8feee235651720ab043fbd6e1b3ce828f50b0
+KOTLIN_NATIVE_SHA=eae130e246dff2502a3f79ee146e333cdc5024bf
 
-JAVA_HOME?=$$(/usr/libexec/java_home)
-JAVAC=$(JAVA_HOME)/bin/javac
 ROOT=$(shell pwd)
 
 SRC_PATH=$(ROOT)/lib-src
-AVIAN_SRC_PATH=$(SRC_PATH)/avian
+KOTLIN_NATIVE_SRC_PATH=$(SRC_PATH)/kotlinnative
 USECASES_SRC_PATH=$(SRC_PATH)/usecases
 SOURCEKITTEN_SRC_PATH=$(SRC_PATH)/sourcekitten
 
 BUILD_PATH=$(ROOT)/lib-build
-AVIAN_BUILD_PATH=$(AVIAN_SRC_PATH)/build/macosx-x86_64
-JAVA_BUILD_PATH=$(BUILD_PATH)/classes
 SOURCEKITTEN_BUILD_PATH=$(BUILD_PATH)/sourcekitten
 
 SOURCEKITTEN_PRODUCTS=$(SOURCEKITTEN_BUILD_PATH)/Build/Products/Debug
@@ -22,11 +19,10 @@ SWXMLHASH_FRAMEWORK=$(SOURCEKITTEN_PRODUCTS)/SWXMLHash.framework
 YAMS_FRAMEWORK=$(SOURCEKITTEN_PRODUCTS)/Yams.framework
 
 DEST_PATH=$(ROOT)/lib
-AVIAN_DEST_PATH=$(DEST_PATH)/avian
 
-.PHONY: test bootstrap clean cleanbuild sourcekitten usecases avian kotlin mklib mkavian lnjavahome cleansourcekitten
+.PHONY: test bootstrap clean cleanbuild sourcekitten usecases mklib cleansourcekitten mkkotlinnative
 
-bootstrap: cleanbuild sourcekitten usecases lnjavahome
+bootstrap: cleanbuild sourcekitten usecases
 
 cleanbuild:
 	rm -rf $(BUILD_PATH) || true
@@ -35,7 +31,7 @@ cleanbuild:
 clean: cleanbuild
 	rm -rf $(SRC_PATH) || true
 
-sourcekitten: cleansourcekitten mkclasses mklib
+sourcekitten: cleansourcekitten mklib
 
 	if [ -d "$(SOURCEKITTEN_SRC_PATH)/.git" ]; \
 	then \
@@ -54,78 +50,37 @@ sourcekitten: cleansourcekitten mkclasses mklib
 	rm -rf $(DEST_PATH)/*.framework
 	cp -Rf $(SOURCEKITTEN_FRAMEWORK) $(SOURCEKITTEN_DSYM) $(SWXMLHASH_FRAMEWORK) $(YAMS_FRAMEWORK) $(DEST_PATH)
 
-usecases: mkavian mklib mkclasses avian kotlin
+usecases: mklib
 	if [ -d "$(USECASES_SRC_PATH)/.git" ]; \
 	then \
 	cd $(USECASES_SRC_PATH); \
 	git fetch; \
-	else git \
-	clone https://github.com/seanhenry/MockGenerator.git $(USECASES_SRC_PATH); \
+	else \
+	git clone https://github.com/seanhenry/MockGenerator.git $(USECASES_SRC_PATH); \
 	cd $(USECASES_SRC_PATH); \
 	fi; \
 	git checkout $(USE_CASE_SHA)
 
+	source ~/.bash_profile; \
+	export PATH=$(KOTLIN_NATIVE_SRC_PATH)/dist/bin:$$PATH; \
 	cd $(USECASES_SRC_PATH)/UseCases; \
-	kotlinc src -include-runtime -jdk-home $(JAVA_HOME) -d $(BUILD_PATH)/usecases_kotlin.jar; \
-	find src -name "*.java" -print | xargs $(JAVAC) -d $(JAVA_BUILD_PATH) -classpath $(BUILD_PATH)/usecases_kotlin.jar; \
-	cd src; \
-	find . -name "*.properties" -print0 | while IFS= read -r -d $$'\0' file; do \
-	  mkdir -p $$(dirname "$(JAVA_BUILD_PATH)/$$file"); \
-	  cp -f "$$file" "$(JAVA_BUILD_PATH)/$$file"; \
-	done;
+	kotlinc -nomain -p framework -o $(DEST_PATH)/UseCases src;
 
-	cd $(JAVA_BUILD_PATH); \
-	unzip -n $(AVIAN_BUILD_PATH)/classpath.jar; \
-	unzip -o $(BUILD_PATH)/usecases_kotlin.jar; \
-	cd ..; \
-	rm $(BUILD_PATH)/usecases_kotlin.jar; \
-	jar -c0vf boot.jar -C $(JAVA_BUILD_PATH) .; \
-	$(AVIAN_BUILD_PATH)/binaryToObject/binaryToObject boot.jar boot-jar.o _binary_boot_jar_start _binary_boot_jar_end macosx x86_64; \
-	rm libs.list || true; \
-	touch libs.list; \
-	for filename in *.o; do \
-	echo $(AVIAN_DEST_PATH)/$$filename >> libs.list; \
-	done; \
-	mv -f libs.list *.o $(AVIAN_DEST_PATH)
-
-
-avian:
-	if [ -d "$(AVIAN_SRC_PATH)/.git" ]; \
-	then \
-	cd $(AVIAN_SRC_PATH); \
-	git fetch; \
-	git pull; \
-	else \
-	git clone https://github.com/ReadyTalk/avian.git $(AVIAN_SRC_PATH); \
-	fi;
-
-	cd $(AVIAN_SRC_PATH); \
-	export JAVA_HOME=$(JAVA_HOME); \
-	make
-
-	cd $(BUILD_PATH); \
-	ar x $(AVIAN_BUILD_PATH)/libavian.a
-
-kotlin:
-	brew update
-	if hash kotlinc 2>/dev/null; then \
-        brew upgrade kotlin || true; \
+mkkotlinnative:
+	if [ -d "$(KOTLIN_NATIVE_SRC_PATH)/.git" ]; \
+    then \
+    cd $(KOTLIN_NATIVE_SRC_PATH); \
+    git fetch; \
     else \
-        brew install kotlin; \
-    fi
-
-lnjavahome:
-	ln -sfh $(JAVA_HOME) Java/Home
+    git clone https://github.com/JetBrains/kotlin-native.git $(KOTLIN_NATIVE_SRC_PATH); \
+    cd $(KOTLIN_NATIVE_SRC_PATH); \
+    fi; \
+    git checkout $(KOTLIN_NATIVE_SHA); \
+    ./gradlew dependencies:update; \
+    ./gradlew dist distPlatformLibs;
 
 mklib:
 	mkdir -p $(DEST_PATH)
-
-mkavian:
-	mkdir -p $(AVIAN_DEST_PATH)
-
-mkclasses:
-	rm -rf $(JAVA_BUILD_PATH) || true
-	mkdir -p $(JAVA_BUILD_PATH)
 
 cleansourcekitten:
 	rm -rf $(SOURCEKITTEN_BUILD_PATH) || true

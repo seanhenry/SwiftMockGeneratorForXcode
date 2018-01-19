@@ -32,10 +32,6 @@
 		147C181F1F6589FC00F0A60B /* SwiftStructureInterface.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		147C18201F6589FC00F0A60B /* MockGenerator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14872E851F59F7050017AF3F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
-		149287361F560D7B00E1D4B3 /* JavaEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 149287341F560D7800E1D4B3 /* JavaEnvironment.m */; };
-		149287391F56158B00E1D4B3 /* JavaXcodeMockGeneratorBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BC8AFD1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1492873A1F56158B00E1D4B3 /* JavaProtocolMethodBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BC8B011F538CAC005B4F09 /* JavaProtocolMethodBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1492873B1F56158B00E1D4B3 /* JavaEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 149287331F560D7800E1D4B3 /* JavaEnvironment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		149DEC711F651B0C007DF43E /* MockGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		149DEC721F651B74007DF43E /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		149DEC731F651B74007DF43E /* SWXMLHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -52,8 +48,6 @@
 		14AB7E2D1F43E65B0001E6C3 /* SourceKittenFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14AB7E2E1F43E65B0001E6C3 /* SWXMLHash.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14AB7E2F1F43E65B0001E6C3 /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14BC8B001F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC8AFE1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m */; };
-		14BC8B041F538CAC005B4F09 /* JavaProtocolMethodBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC8B021F538CAC005B4F09 /* JavaProtocolMethodBridge.m */; };
 		14CA2D571F40007000900937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D561F40007000900937 /* AppDelegate.swift */; };
 		14CA2D591F40007000900937 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D581F40007000900937 /* ViewController.swift */; };
 		14CA2D5B1F40007000900937 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14CA2D5A1F40007000900937 /* Assets.xcassets */; };
@@ -69,6 +63,11 @@
 		14CA2DAD1F41351200900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
 		14E132281F58E6D300D75943 /* MethodGatheringVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDB834B634E694CF658C /* MethodGatheringVisitor.swift */; };
 		14E1322B1F58E88F00D75943 /* SKElementFactoryTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF935B41E2DAED50B8D54 /* SKElementFactoryTestHelper.swift */; };
+		14ECA5DC2011855C00C849CF /* UseCases.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14ECA5DB2011855C00C849CF /* UseCases.framework */; };
+		14ECA5DE2011857B00C849CF /* UseCases.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14ECA5DB2011855C00C849CF /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14ECA5DF201187C800C849CF /* UseCases.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14ECA5DB2011855C00C849CF /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14ECA5E0201187FE00C849CF /* UseCases.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14ECA5DB2011855C00C849CF /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		14ECA5E120119A1200C849CF /* UseCases.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14ECA5DB2011855C00C849CF /* UseCases.framework */; };
 		35CDF0068DB237A15D5F0802 /* StringCompareTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9A9E9859C405A1E3B06 /* StringCompareTestHelper.swift */; };
 		35CDF00958415FBD9AA9D798 /* SwiftInheritedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF8B58C428555C8B6B8E7 /* SwiftInheritedType.swift */; };
 		35CDF0511F897CF1F43B80B4 /* MethodParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDB3A06E93A1EE64B196 /* MethodParameter.swift */; };
@@ -119,7 +118,6 @@
 		35CDFAE2030784DF47F2D04C /* ElementVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF33961A5167417B7B98C /* ElementVisitor.swift */; };
 		35CDFAE466EC5CFD96A86BDF /* NamedSwiftElementBuilderTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF309B1A4EF19F20BFE43 /* NamedSwiftElementBuilderTemplateTests.swift */; };
 		35CDFB0C5784DBAB1651F1EB /* TypeDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF8244EF3871B469A7F10 /* TypeDeclaration.swift */; };
-		35CDFB2521AFC61B588398C3 /* JavaProtocolPropertyBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9501C3AB85D6387804C /* JavaProtocolPropertyBridge.m */; };
 		35CDFB5D13BE10480E65CA94 /* SwiftTypeElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF642179591FC59A8BF6D /* SwiftTypeElementTests.swift */; };
 		35CDFBEE697BA9EA2262CC2B /* LocationConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF505E0EFBD4E9D7524F /* LocationConverter.swift */; };
 		35CDFC6478D84B8839E5FAA3 /* StructureRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDB519EE4C283AA1D9DF /* StructureRequest.swift */; };
@@ -142,7 +140,6 @@
 		35CDFF85ACE8EFD8BB8E3821 /* SwiftPropertyElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF1226A4B510884846203 /* SwiftPropertyElementTests.swift */; };
 		35CDFFA99D7813A4D10E6E72 /* SwiftMethodElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFBD5666F5CFC66BE57FC /* SwiftMethodElementTests.swift */; };
 		35CDFFBDF2E7B9CF25213BB7 /* RecursiveElementVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF56AA2864F89BCC2B13D /* RecursiveElementVisitor.swift */; };
-		35CDFFCB666517029E57989D /* JavaProtocolPropertyBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 35CDFE8698B906F13887BD02 /* JavaProtocolPropertyBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		35CDFFD4FEE85F54F1EDB391 /* TempFileWriterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A321BB4D6C4F3BBFBF /* TempFileWriterUtil.swift */; };
 /* End PBXBuildFile section */
 
@@ -242,6 +239,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				14ECA5DF201187C800C849CF /* UseCases.framework in CopyFiles */,
 				149DEC711F651B0C007DF43E /* MockGenerator.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,6 +250,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				14ECA5DE2011857B00C849CF /* UseCases.framework in Embed Frameworks */,
 				147C181F1F6589FC00F0A60B /* SwiftStructureInterface.framework in Embed Frameworks */,
 				147C18201F6589FC00F0A60B /* MockGenerator.framework in Embed Frameworks */,
 				147C181C1F6589F000F0A60B /* SourceKittenFramework.framework in Embed Frameworks */,
@@ -267,6 +266,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				14ECA5E0201187FE00C849CF /* UseCases.framework in Embed Frameworks */,
 				149DEC721F651B74007DF43E /* SourceKittenFramework.framework in Embed Frameworks */,
 				149DEC731F651B74007DF43E /* SWXMLHash.framework in Embed Frameworks */,
 				149DEC741F651B74007DF43E /* Yams.framework in Embed Frameworks */,
@@ -361,17 +361,11 @@
 		147437B51F79746000241B8A /* TestProject */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestProject; sourceTree = SOURCE_ROOT; };
 		14872E7B1F59DBC50017AF3F /* MockGeneratorAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MockGeneratorAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14872E7F1F59DBC50017AF3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		149287331F560D7800E1D4B3 /* JavaEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaEnvironment.h; sourceTree = "<group>"; };
-		149287341F560D7800E1D4B3 /* JavaEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaEnvironment.m; sourceTree = "<group>"; };
 		14A81E271F436941001A6221 /* SwiftStructureInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftStructureInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A81E291F436941001A6221 /* SwiftStructureInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftStructureInterface.h; sourceTree = "<group>"; };
 		14A81E2A1F436941001A6221 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14A81E2F1F436941001A6221 /* SwiftStructureInterfaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftStructureInterfaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14A81E361F436941001A6221 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14BC8AFD1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaXcodeMockGeneratorBridge.h; sourceTree = "<group>"; };
-		14BC8AFE1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaXcodeMockGeneratorBridge.m; sourceTree = "<group>"; };
-		14BC8B011F538CAC005B4F09 /* JavaProtocolMethodBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaProtocolMethodBridge.h; sourceTree = "<group>"; };
-		14BC8B021F538CAC005B4F09 /* JavaProtocolMethodBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaProtocolMethodBridge.m; sourceTree = "<group>"; };
 		14CA2D531F40007000900937 /* Swift Mock Generator for Xcode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift Mock Generator for Xcode.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CA2D561F40007000900937 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14CA2D581F40007000900937 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -396,6 +390,7 @@
 		14CA2D9C1F40049700900937 /* MockGeneratorXPC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MockGeneratorXPC-Bridging-Header.h"; sourceTree = "<group>"; };
 		14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGeneratorXPC.swift; sourceTree = "<group>"; };
 		14CA2DAB1F41349500900937 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preferences.swift; path = Shared/Preferences.swift; sourceTree = "<group>"; };
+		14ECA5DB2011855C00C849CF /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UseCases.framework; path = lib/UseCases.framework; sourceTree = "<group>"; };
 		35CDF081A1A734EEC26D9892 /* SwiftMethodParameterBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMethodParameterBuilderTests.swift; sourceTree = "<group>"; };
 		35CDF087FFEDD3FD8F68133F /* readlog */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text; path = readlog; sourceTree = "<group>"; };
 		35CDF1226A4B510884846203 /* SwiftPropertyElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPropertyElementTests.swift; sourceTree = "<group>"; };
@@ -443,7 +438,6 @@
 		35CDF8C7624DBE51669019E0 /* SwiftElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftElementTests.swift; sourceTree = "<group>"; };
 		35CDF9105A02896D0A18B904 /* ElementTreeUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementTreeUtilTests.swift; sourceTree = "<group>"; };
 		35CDF935B41E2DAED50B8D54 /* SKElementFactoryTestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKElementFactoryTestHelper.swift; sourceTree = "<group>"; };
-		35CDF9501C3AB85D6387804C /* JavaProtocolPropertyBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JavaProtocolPropertyBridge.m; sourceTree = "<group>"; };
 		35CDF972F898CB60BD896524 /* SKElementFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKElementFactory.swift; sourceTree = "<group>"; };
 		35CDF9A9DDF892650697EF1C /* SwiftMethodElementBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMethodElementBuilder.swift; sourceTree = "<group>"; };
 		35CDF9A9E9859C405A1E3B06 /* StringCompareTestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCompareTestHelper.swift; sourceTree = "<group>"; };
@@ -469,7 +463,6 @@
 		35CDFDBA69D15F512927BA6F /* SwiftPropertyElementBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPropertyElementBuilderTests.swift; sourceTree = "<group>"; };
 		35CDFE4746A0EE0B2C45867B /* SwiftElementBuilderTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftElementBuilderTemplate.swift; sourceTree = "<group>"; };
 		35CDFE6E16D1DEC831955535 /* SwiftInheritedTypeBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftInheritedTypeBuilderTests.swift; sourceTree = "<group>"; };
-		35CDFE8698B906F13887BD02 /* JavaProtocolPropertyBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaProtocolPropertyBridge.h; sourceTree = "<group>"; };
 		35CDFF0F73058A06313F9DB0 /* SwiftInheritedTypeBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftInheritedTypeBuilder.swift; sourceTree = "<group>"; };
 		35CDFF505E0EFBD4E9D7524F /* LocationConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationConverter.swift; sourceTree = "<group>"; };
 		35CDFF626768CFA150C8AC4A /* DeleteBodyUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBodyUtilTests.swift; sourceTree = "<group>"; };
@@ -485,6 +478,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14ECA5DC2011855C00C849CF /* UseCases.framework in Frameworks */,
 				14276C811F4F340800EA7753 /* SWXMLHash.framework in Frameworks */,
 				14276C821F4F340800EA7753 /* Yams.framework in Frameworks */,
 				14276C7B1F4F332100EA7753 /* SourceKittenFramework.framework in Frameworks */,
@@ -496,6 +490,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14ECA5E120119A1200C849CF /* UseCases.framework in Frameworks */,
 				14276C6A1F4F312E00EA7753 /* MockGenerator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -639,25 +634,9 @@
 			path = SwiftStructureInterfaceTests;
 			sourceTree = "<group>";
 		};
-		14BC8AFA1F538B73005B4F09 /* Java */ = {
-			isa = PBXGroup;
-			children = (
-				14BC8AFD1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.h */,
-				14BC8AFE1F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m */,
-				14BC8B011F538CAC005B4F09 /* JavaProtocolMethodBridge.h */,
-				14BC8B021F538CAC005B4F09 /* JavaProtocolMethodBridge.m */,
-				149287331F560D7800E1D4B3 /* JavaEnvironment.h */,
-				149287341F560D7800E1D4B3 /* JavaEnvironment.m */,
-				35CDF9501C3AB85D6387804C /* JavaProtocolPropertyBridge.m */,
-				35CDFE8698B906F13887BD02 /* JavaProtocolPropertyBridge.h */,
-			);
-			path = Java;
-			sourceTree = "<group>";
-		};
 		14CA2D4A1F40007000900937 = {
 			isa = PBXGroup;
 			children = (
-				14BC8AFA1F538B73005B4F09 /* Java */,
 				14CA2DAA1F41348100900937 /* Shared */,
 				14CA2D551F40007000900937 /* MockGeneratorApp */,
 				14872E7C1F59DBC50017AF3F /* MockGeneratorAppTests */,
@@ -710,6 +689,7 @@
 		14CA2D6A1F40008F00900937 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14ECA5DB2011855C00C849CF /* UseCases.framework */,
 				14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */,
 				14CA2D971F4003EA00900937 /* SWXMLHash.framework */,
 				14CA2D981F4003EA00900937 /* Yams.framework */,
@@ -968,11 +948,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1492873A1F56158B00E1D4B3 /* JavaProtocolMethodBridge.h in Headers */,
 				14276C711F4F312E00EA7753 /* MockGenerator.h in Headers */,
-				1492873B1F56158B00E1D4B3 /* JavaEnvironment.h in Headers */,
-				149287391F56158B00E1D4B3 /* JavaXcodeMockGeneratorBridge.h in Headers */,
-				35CDFFCB666517029E57989D /* JavaProtocolPropertyBridge.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1338,11 +1314,7 @@
 				14276C791F4F314600EA7753 /* Generator.swift in Sources */,
 				14872E851F59F7050017AF3F /* Preferences.swift in Sources */,
 				35CDF3051C92D783E99E519D /* SourceFileFinder.swift in Sources */,
-				14BC8B001F538C36005B4F09 /* JavaXcodeMockGeneratorBridge.m in Sources */,
 				14E132281F58E6D300D75943 /* MethodGatheringVisitor.swift in Sources */,
-				14BC8B041F538CAC005B4F09 /* JavaProtocolMethodBridge.m in Sources */,
-				149287361F560D7B00E1D4B3 /* JavaEnvironment.m in Sources */,
-				35CDFB2521AFC61B588398C3 /* JavaProtocolPropertyBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1585,10 +1557,7 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = (
-					"$(SOURCE_ROOT)/Java/Home/include",
-					"$(SOURCE_ROOT)/Java/Home/include/darwin",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -1597,9 +1566,6 @@
 					"-lz",
 					"-ldl",
 					"-lpthread",
-					"-D_JNI_IMPLEMENTATION_",
-					"-filelist",
-					lib/avian/libs.list,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1627,10 +1593,7 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = (
-					"$(SOURCE_ROOT)/Java/Home/include",
-					"$(SOURCE_ROOT)/Java/Home/include/darwin",
-				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -1639,9 +1602,6 @@
 					"-lz",
 					"-ldl",
 					"-lpthread",
-					"-D_JNI_IMPLEMENTATION_",
-					"-filelist",
-					lib/avian/libs.list,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";

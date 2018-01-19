@@ -1,22 +1,20 @@
 import XCTest
 import SourceKittenFramework
+import UseCases
 @testable import SwiftStructureInterface
 @testable import MockGenerator
 
 class MethodGatheringVisitorTests: XCTestCase {
 
     var visitor: MethodGatheringVisitor!
-    var environment: JavaEnvironment!
 
     override func setUp() {
         super.setUp()
-        environment = JavaEnvironment.shared
-        visitor = MethodGatheringVisitor(environment: environment)
+        visitor = MethodGatheringVisitor()
     }
 
     override func tearDown() {
         visitor = nil
-        environment = nil
         super.tearDown()
     }
 
@@ -26,7 +24,7 @@ class MethodGatheringVisitorTests: XCTestCase {
         getMethodProtocol().accept(RecursiveElementVisitor(visitor: visitor))
         XCTAssertEqual(visitor.methods.map { $0.name }, ["method", "method2", "method3"])
         XCTAssertEqual(visitor.methods.map { $0.signature }, ["func method()", "func method2(label name: Type) -> String", "func method3(label name: Type, param: OtherType) -> String"])
-        XCTAssertEqual(visitor.methods.map { $0.parameters }, ["", "label name: Type", "label name: Type, param: OtherType"])
+        XCTAssertEqual(visitor.methods.map { getParametersString($0) }, ["", "label name: Type", "label name: Type, param: OtherType"])
     }
 
     func test_visit_shouldGetAllPropertiesFromProtocol() {
@@ -66,5 +64,10 @@ class MethodGatheringVisitorTests: XCTestCase {
               weak var prop3: NSObject? { set get }
             }
         """
+    }
+
+    private func getParametersString(_ method: UseCasesProtocolMethod) -> String {
+        let parameters = method.parametersList as! [UseCasesParameter]
+        return parameters.map { $0.text }.joined(separator: ", ")
     }
 }
