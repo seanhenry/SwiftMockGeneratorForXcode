@@ -1,8 +1,9 @@
-typealias Completion = (Int) -> (String)
+typealias TypealiasProtocolCompletion = (Int) -> (String)
+typealias TypealiasedTypealiasProtocolCompletion = TypealiasProtocolCompletion
 
-// TODO: ready to be implemented
 protocol TypealiasProtocol {
     typealias T = (String) -> ()
-    func typealiasClosure(closure: Completion)
+    func typealiasClosure(closure: TypealiasProtocolCompletion)
+    func typealiasedTypealiasClosure(closure: TypealiasedTypealiasProtocolCompletion)
     func internalTypealiasClosure(closure: T)
 }
