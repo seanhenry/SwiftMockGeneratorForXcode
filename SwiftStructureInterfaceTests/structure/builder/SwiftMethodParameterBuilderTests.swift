@@ -16,9 +16,15 @@ class SwiftMethodParameterBuilderTests: XCTestCase {
         assertChildMethodParameterText(protocolType, at: 2, atParameter: 1, equals: "param1: String")
         assertChildMethodParameterText(protocolType, at: 3, atParameter: 0, equals: "_ name0: Int")
         assertChildMethodParameterText(protocolType, at: 4, atParameter: 0, equals: "param0 : Type0")
+        assertParameterType(protocolType, at: 1, atParameter: 0, offset: 66, length: 3, text: "Int")
+        assertParameterType(protocolType, at: 2, atParameter: 0, offset: 95, length: 3, text: "Int")
+        assertParameterType(protocolType, at: 2, atParameter: 1, offset: 108, length: 6, text: "String")
+        assertParameterType(protocolType, at: 3, atParameter: 0, offset: 145, length: 3, text: "Int")
+        assertParameterType(protocolType, at: 4, atParameter: 0, offset: 183, length: 5, text: "Type0")
         let classType = file.children[1] as! SwiftTypeElement
         assertChildMethodParameterCount(classType, at: 0, equals: 1)
         assertChildMethodParameterText(classType, at: 0, atParameter: 0, equals: "param0: String")
+        assertParameterType(classType, at: 0, atParameter: 0, offset: 241, length: 6, text: "String")
     }
 
     // MARK: - Helpers
@@ -31,6 +37,13 @@ class SwiftMethodParameterBuilderTests: XCTestCase {
     private func assertChildMethodParameterText(_ parent: Element?, at index: Int, atParameter paramIndex: Int, equals expected: String, line: UInt = #line) {
         let method = parent?.children[index] as? SwiftMethodElement
         XCTAssertEqual(method?.parameters[paramIndex].text, expected, line: line)
+    }
+
+    private func assertParameterType(_ parent: Element?, at index: Int, atParameter paramIndex: Int, offset expectedOffset: Int64, length expectedLength: Int64, text expectedText: String, line: UInt = #line) {
+        let method = parent?.children[index] as? SwiftMethodElement
+        XCTAssertEqual(method?.parameters[paramIndex].type.offset, expectedOffset, line: line)
+        XCTAssertEqual(method?.parameters[paramIndex].type.length, expectedLength, line: line)
+        XCTAssertEqual(method?.parameters[paramIndex].type.text, expectedText, line: line)
     }
 
     private func getMethodParametersExampleString() -> String {

@@ -15,6 +15,7 @@ class ResolveUtilTests: XCTestCase {
         resolveFile = NSTemporaryDirectory() + UUID().uuidString + "_resolve.swift"
         resolvedFile = NSTemporaryDirectory() + UUID().uuidString + "_resolved.swift"
         ResolveUtil.cursorInfoRequest = SKCursorInfoRequest(files: [resolveFile, resolvedFile])
+        ResolveUtil.sameFileCursorInfoRequest = SKCursorInfoRequest(files: [])
     }
 
     override func tearDown() {
@@ -29,6 +30,16 @@ class ResolveUtilTests: XCTestCase {
         writeResolveClassesToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
         let reference = (file.children[0] as! SwiftTypeElement).inheritedTypes[0]
+        let resolved = util.resolve(reference) as? NamedElement
+        XCTAssertEqual(resolved?.name, "ResolveTest")
+        let method = resolved?.namedChild(at: 0)
+        XCTAssertEqual(method?.name, "method")
+    }
+
+    func test_resolve_shouldResolveElementInSameFile() {
+        writeResolveClassesToSingleFile()
+        let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
+        let reference = (file.children[1] as! SwiftTypeElement).inheritedTypes[0]
         let resolved = util.resolve(reference) as? NamedElement
         XCTAssertEqual(resolved?.name, "ResolveTest")
         let method = resolved?.namedChild(at: 0)
@@ -104,5 +115,20 @@ protocol Resolve💐Test {
   func method💐() {}
 }
 """
+    }
+
+    private func writeResolveClassesToSingleFile() {
+        try! getResolveClassAndProtocolString().data(using: .utf8)!
+            .write(to: URL(fileURLWithPath: resolveFile))
+    }
+
+    private func getResolveClassAndProtocolString() -> String {
+        return """
+        protocol ResolveTest {
+
+            func method() {}
+        }
+        class MockResolveTest: ResolveTest { }
+        """
     }
 }

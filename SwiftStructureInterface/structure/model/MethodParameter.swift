@@ -1,1 +1,3 @@
-protocol MethodParameter: Element {}
+protocol MethodParameter: Element {
+    var type: Element { get }
+}

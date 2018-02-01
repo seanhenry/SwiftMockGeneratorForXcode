@@ -8,6 +8,7 @@ public class Generator {
     public static func generateMock(fromFileContents contents: String, projectURL: URL, line: Int, column: Int) -> ([String]?, Error?) {
         // TODO: put files elsewhere
         let sourceFiles = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
+        ResolveUtil.sameFileCursorInfoRequest = SKCursorInfoRequest(files: [])
         ResolveUtil.cursorInfoRequest = SKCursorInfoRequest(files: sourceFiles)
         guard let file = SKElementFactory().build(from: contents) else {
             return reply(with: "Could not parse Swift file")

@@ -33,6 +33,10 @@ class SwiftFile: SwiftElement, File {
         }
 
         func visit(_ element: SwiftMethodElement) {
+            element.parameters.forEach { parameter in
+                parameter.file = file
+                parameter.type.file = file
+            }
         }
 
         func visit(_ element: SwiftPropertyElement) {

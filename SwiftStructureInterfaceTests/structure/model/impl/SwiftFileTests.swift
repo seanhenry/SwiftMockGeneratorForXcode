@@ -32,13 +32,18 @@ class SwiftFileTests: XCTestCase {
     func test_init_shouldAddCopyOfItselfToAllChildren() {
         file = SKElementFactoryTestHelper.build(from: getNestedClassString())!
         assertFilesAreEquivalent(file.file, file)
-        assertFilesAreEquivalent(file.children[0].file, file)
-        let classB = file.children[0].children[0] as! SwiftTypeElement
+        let classA = file.children[0]
+        assertFilesAreEquivalent(classA.file, file)
+        let classB = classA.children[0] as! SwiftTypeElement
         assertFilesAreEquivalent(classB.file, file)
         assertFilesAreEquivalent(classB.inheritedTypes[0].file, file)
         assertFilesAreEquivalent(classB.inheritedTypes[1].file, file)
         assertFilesAreEquivalent(classB.children[0].file, file)
-        assertFilesAreEquivalent(file.children[0].children[1].file, file)
+        let methodA = classA.children[1] as! SwiftMethodElement
+        let methodAParam = methodA.parameters[0]
+        assertFilesAreEquivalent(methodA.file, file)
+        assertFilesAreEquivalent(methodAParam.file, file)
+        assertFilesAreEquivalent(methodAParam.type.file, file)
     }
 
     func test_init_copyingFileToChildren_shouldNotCauseRetainCycle() {
@@ -88,7 +93,7 @@ class A {
         func innerMethodA() {}
     }
 
-    func methodA() {}
+    func methodA(a: A) {}
 }
 """
     }
