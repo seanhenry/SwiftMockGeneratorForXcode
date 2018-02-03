@@ -11,6 +11,8 @@ class MethodGatheringVisitorTests: XCTestCase {
     override func setUp() {
         super.setUp()
         visitor = MethodGatheringVisitor()
+        ResolveUtil.sameFileCursorInfoRequest = SKCursorInfoRequest(files: [])
+        ResolveUtil.cursorInfoRequest = SKCursorInfoRequest(files: [])
     }
 
     override func tearDown() {

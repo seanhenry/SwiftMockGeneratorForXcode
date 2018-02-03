@@ -13,11 +13,11 @@ class TypealiasProtocolMock: TypealiasProtocol {
     }
     var invokedTypealiasedTypealiasClosure = false
     var invokedTypealiasedTypealiasClosureCount = 0
-    var stubbedTypealiasedTypealiasClosureResult: (Int, Void)?
+    var stubbedTypealiasedTypealiasClosureClosureResult: (Int, Void)?
     func typealiasedTypealiasClosure(closure: TypealiasedTypealiasProtocolCompletion) {
         invokedTypealiasedTypealiasClosure = true
         invokedTypealiasedTypealiasClosureCount += 1
-        if let result = stubbedTypealiasedTypealiasClosureResult {
+        if let result = stubbedTypealiasedTypealiasClosureClosureResult {
             _ = closure(result.0)
         }
     }

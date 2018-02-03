@@ -21,6 +21,8 @@ class ResolveUtilTests: XCTestCase {
     override func tearDown() {
         ResolveUtil.cursorInfoRequest = SKCursorInfoRequest(files: [])
         util = nil
+        resolveFile = nil
+        resolvedFile = nil
         super.tearDown()
     }
 
@@ -62,6 +64,23 @@ class ResolveUtilTests: XCTestCase {
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
         let reference = (file.children[0] as! SwiftTypeElement).inheritedTypes[0]
         XCTAssertNil(ResolveUtil().resolve(reference))
+    }
+
+    // MARK: - resolveTypealias
+
+    func test_resolveTypealias_shouldReturnType() {
+        writeResolveTypealiasClassToFile()
+        let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
+        let method = file.children[0] as! SwiftMethodElement
+        let resolved = ResolveUtil().resolveTypealias(method.parameters[0].type)
+        XCTAssertEqual(resolved, "(String) -> ()")
+    }
+
+    func test_resolveTypealias_shouldReturnNil_whenNotATypealias() {
+        writeResolveClassesToFile()
+        let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
+        let resolved = ResolveUtil().resolveTypealias(file)
+        XCTAssertNil(resolved)
     }
 
     // MARK: - Helpers
@@ -129,6 +148,18 @@ protocol Resolve💐Test {
             func method() {}
         }
         class MockResolveTest: ResolveTest { }
+        """
+    }
+
+    private func writeResolveTypealiasClassToFile() {
+        try! getTypealiasString().data(using: .utf8)!
+            .write(to: URL(fileURLWithPath: resolveFile))
+    }
+
+    private func getTypealiasString() -> String {
+        return """
+        typealias Alias = (String) -> ()
+        func method(a: Alias) {}
         """
     }
 }
