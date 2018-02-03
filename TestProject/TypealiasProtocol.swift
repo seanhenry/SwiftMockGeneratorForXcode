@@ -6,4 +6,5 @@ protocol TypealiasProtocol {
     func typealiasClosure(closure: TypealiasProtocolCompletion)
     func typealiasedTypealiasClosure(closure: TypealiasedTypealiasProtocolCompletion)
     func internalTypealiasClosure(closure: T)
+    func escapingClosure(closure: @escaping TypealiasProtocolCompletion)
 }

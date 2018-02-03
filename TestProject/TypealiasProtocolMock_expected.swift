@@ -31,4 +31,14 @@ class TypealiasProtocolMock: TypealiasProtocol {
             closure(result.0)
         }
     }
+    var invokedEscapingClosure = false
+    var invokedEscapingClosureCount = 0
+    var stubbedEscapingClosureClosureResult: (String, Void)?
+    func escapingClosure(closure: @escaping TypealiasProtocolCompletion) {
+        invokedEscapingClosure = true
+        invokedEscapingClosureCount += 1
+        if let result = stubbedEscapingClosureClosureResult {
+            closure(result.0)
+        }
+    }
 }
