@@ -27,6 +27,19 @@ class SwiftMethodParameterBuilderTests: XCTestCase {
         assertParameterType(classType, at: 0, atParameter: 0, offset: 241, length: 6, text: "String")
     }
 
+    func test_build_shouldRemoveAttributesFromType() {
+        var file = SKElementFactoryTestHelper.build(from: "func f(a: @escaping () -> ()) {}")!
+        assertParameterType(file, at: 0, atParameter: 0, offset: 20, length: 8, text: "() -> ()")
+        file = SKElementFactoryTestHelper.build(from: "func f(a: @autoclosure () -> ()) {}")!
+        assertParameterType(file, at: 0, atParameter: 0, offset: 23, length: 8, text: "() -> ()")
+        file = SKElementFactoryTestHelper.build(from: "func f(a: @convention ( swift ) () -> ()) {}")!
+        assertParameterType(file, at: 0, atParameter: 0, offset: 32, length: 8, text: "() -> ()")
+        file = SKElementFactoryTestHelper.build(from: "func f(a: @convention(c) () -> ()) {}")!
+        assertParameterType(file, at: 0, atParameter: 0, offset: 25, length: 8, text: "() -> ()")
+        file = SKElementFactoryTestHelper.build(from: "func f(a: @convention(block) () -> ()) {}")!
+        assertParameterType(file, at: 0, atParameter: 0, offset: 29, length: 8, text: "() -> ()")
+    }
+
     // MARK: - Helpers
 
     private func assertChildMethodParameterCount(_ parent: Element?, at index: Int, equals expected: Int, line: UInt = #line) {
