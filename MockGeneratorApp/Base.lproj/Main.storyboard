@@ -691,7 +691,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="473" height="176"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="VQz-9A-PX1">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="VQz-9A-PX1" customClass="PreferencesView" customModule="MockGeneratorApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="473" height="176"/>
                                 <subviews>
                                     <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="geP-s4-QHR">
@@ -711,6 +711,9 @@
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
+                                                <connections>
+                                                    <action selector="didChangeAutomaticPathCheckbox:" target="VQz-9A-PX1" id="UK8-7l-A76"/>
+                                                </connections>
                                             </button>
                                             <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qoq-TC-fWq" userLabel="Auto detect stack view">
                                                 <rect key="frame" x="0.0" y="66" width="457" height="14"/>
@@ -844,6 +847,11 @@
                                     <constraint firstItem="geP-s4-QHR" firstAttribute="leading" secondItem="VQz-9A-PX1" secondAttribute="leading" constant="8" id="nSl-Zv-Gjf"/>
                                     <constraint firstAttribute="trailing" secondItem="geP-s4-QHR" secondAttribute="trailing" constant="8" id="zAe-8S-Uba"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="automaticContainer" destination="qoq-TC-fWq" id="RWp-Sd-2aK"/>
+                                    <outlet property="automaticPathCheckbox" destination="Phs-LO-OP4" id="IrX-BE-MLD"/>
+                                    <outlet property="manualContainer" destination="s4D-w1-Fmx" id="3Yi-e8-eSp"/>
+                                </connections>
                             </customView>
                         </subviews>
                         <constraints>
