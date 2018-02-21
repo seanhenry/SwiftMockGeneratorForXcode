@@ -1,6 +1,6 @@
 import AppKit
 
-class PreferencesView: NSView {
+class ManualProjectPathView: NSStackView {
     
     @IBOutlet var projectPathHistory: NSPopUpButton!
     private static let clearTitle = "Clear history"
@@ -27,11 +27,6 @@ class PreferencesView: NSView {
         }
     }
 
-    @IBAction func didTapClearHistoryButton(_ sender: Any?) {
-        preferences.clearProjectPathHistory()
-        refreshHistory()
-    }
-
     private func startingDirectory() -> String {
         return projectPathHistory.selectedItem?.title ?? NSHomeDirectory()
     }
@@ -40,20 +35,20 @@ class PreferencesView: NSView {
         let paths = preferences.projectPathHistory.map { $0.path }
         projectPathHistory.removeAllItems()
         if paths.isEmpty {
-            projectPathHistory.addItem(withTitle: PreferencesView.browseTitle)
+            projectPathHistory.addItem(withTitle: ManualProjectPathView.browseTitle)
             return
         }
         projectPathHistory.addItems(withTitles: paths)
         projectPathHistory.menu?.addItem(.separator())
-        projectPathHistory.addItem(withTitle: PreferencesView.clearTitle)
+        projectPathHistory.addItem(withTitle: ManualProjectPathView.clearTitle)
     }
 
     @objc private func didChangeSelection(_ sender: Any?) {
         guard let title = projectPathHistory.selectedItem?.title else { return }
-        if title == PreferencesView.clearTitle {
+        if title == ManualProjectPathView.clearTitle {
             preferences.clearProjectPathHistory()
             preferences.projectPath = nil
-        } else if title == PreferencesView.browseTitle {
+        } else if title == ManualProjectPathView.browseTitle {
             didTapProjectPathButton(nil)
         } else {
             preferences.projectPath = URL(fileURLWithPath: title)
