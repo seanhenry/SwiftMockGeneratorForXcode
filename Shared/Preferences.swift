@@ -5,6 +5,7 @@ class Preferences {
     private let userDefaults: UserDefaults
     private let projectPathKey = "project.path"
     private let projectPathHistoryKey = "project.path.history"
+    private let automaticallyDetectProjectPathKey = "project.path.autoDetect"
 
     init(userDefaults: UserDefaults = UserDefaults(suiteName: "group.codes.seanhenry.MockGenerator")!) {
         self.userDefaults = userDefaults
@@ -40,5 +41,15 @@ class Preferences {
         }
         history.insert(path, at: 0)
         userDefaults.set(history.map { $0.absoluteString }, forKey: projectPathHistoryKey)
+    }
+
+    var automaticallyDetectProjectPath: Bool {
+        set {
+            userDefaults.set(newValue, forKey: automaticallyDetectProjectPathKey)
+            userDefaults.synchronize()
+        }
+        get {
+            return userDefaults.object(forKey: automaticallyDetectProjectPathKey) as? Bool ?? true
+        }
     }
 }

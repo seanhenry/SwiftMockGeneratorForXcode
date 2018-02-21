@@ -62,4 +62,17 @@ class PreferencesTests: XCTestCase {
         preferences.clearProjectPathHistory()
         XCTAssert(preferences.projectPathHistory.isEmpty)
     }
+
+    // MARK: - automaticallyDetectProjectPath
+
+    func test_automaticallyDetectProjectPath_shouldBeTrueByDefault() {
+        XCTAssert(preferences.automaticallyDetectProjectPath)
+    }
+
+    func test_automaticallyDetectProjectPath_shouldChangeValue() {
+        preferences.automaticallyDetectProjectPath = false
+        XCTAssertFalse(preferences.automaticallyDetectProjectPath)
+        preferences.automaticallyDetectProjectPath = true
+        XCTAssert(preferences.automaticallyDetectProjectPath)
+    }
 }
