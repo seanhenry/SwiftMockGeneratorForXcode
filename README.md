@@ -11,7 +11,6 @@ An Xcode extension (plugin) to generate mock classes automatically.
 - Download the latest release [here](https://github.com/seanhenry/SwiftMockGeneratorForXcode/releases)
 - Copy the app to the `Applications` folder.
 - Open the app
-- Select the path to your project ([Why do I have to do this?](#why-do-i-have-to-set-a-path-to-my-project))
 - Go to `System Preferences -> Extensions -> Xcode Source Editor` and make sure `Mock Generator` is enabled.
 - Open Xcode
 
@@ -198,12 +197,6 @@ Delete the app.
 ## Nomenclature
 
 Despite being called a Mock Generator, this plugin actually generates something closer to a spy and stub. The word 'mock', whilst not technically correct, has been used because test doubles such as spies, mocks, and stubs have become colloquially known as mocks.
-
-## Why do I have to set a path to my project?
-
-The plugin uses SourceKit which needs a list of your Swift files to index.
-
-You have to set the path to your code because there is no way to derive it from an Xcode extension.
 
 ## Build
 
