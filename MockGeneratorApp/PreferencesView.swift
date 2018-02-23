@@ -40,8 +40,8 @@ class PreferencesView: NSView {
     }
 
     @objc private func detectProjectPath() {
-        if let path = XcodeProjectPathFinder().findOpenProjectPath() {
-            projectPathField.stringValue = path
+        if let project = XcodeProjectPathFinder().findOpenProjectPath() {
+            projectPathField.stringValue = project.path
         } else {
             projectPathField.stringValue = "Cannot find a project. Make sure a project is open in Xcode."
         }

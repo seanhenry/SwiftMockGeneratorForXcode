@@ -3,9 +3,9 @@ import AppleScriptObjC
 
 class XcodeProjectPathFinder {
 
-    func findOpenProjectPath() -> String? {
+    func findOpenProjectPath() -> URL? {
         if let workspace = findOpenWorkspacePath(), workspace.hasPrefix("/") {
-            return URL(fileURLWithPath: workspace).deletingLastPathComponent().path
+            return URL(fileURLWithPath: workspace).deletingLastPathComponent()
         }
         return nil
     }
