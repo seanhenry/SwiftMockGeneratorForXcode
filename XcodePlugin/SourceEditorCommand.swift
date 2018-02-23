@@ -42,18 +42,8 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
             finish(with: createError("First selection was not a text range"), handler: completionHandler)
             return
         }
-        proxy.detectProjectPath { [weak self] (projectPath) in
-            self?.generateMock(projectPath: projectPath, range: range, proxy: proxy, invocation: invocation, completionHandler: completionHandler)
-        }
-    }
-
-    private func generateMock(projectPath: URL?, range: XCSourceTextRange, proxy: MockGeneratorXPCProtocol, invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) {
-        guard let projectURL = projectPath else {
-            finish(with: createError("Set the project path in the Mock Generator companion app"), handler: completionHandler)
-            return
-        }
         let actualLineNumber = range.start.line + 1
-        proxy.generateMock(fromFileContents: invocation.buffer.completeBuffer, projectURL: projectURL, line: actualLineNumber, column: range.start.column) { [weak self] (result, error) in
+        proxy.generateMock(fromFileContents: invocation.buffer.completeBuffer, line: actualLineNumber, column: range.start.column) { [weak self] (result, error) in
             DispatchQueue.main.async {
                 self?.handleGenerateMock(invocation: invocation, result: result, error: error, completionHandler: completionHandler)
             }

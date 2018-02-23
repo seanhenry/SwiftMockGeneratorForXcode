@@ -32,7 +32,7 @@ public class Generator {
     }
     
     private static func reply(with message: String) -> ([String]?, Error?) {
-        let nsError = NSError(domain: "", code: 1, userInfo: [NSLocalizedDescriptionKey : message])
+        let nsError = NSError(domain: "MockGenerator.Generator", code: 1, userInfo: [NSLocalizedDescriptionKey : message])
         return (nil, nsError)
     }
     
