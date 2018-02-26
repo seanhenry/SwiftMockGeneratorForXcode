@@ -1,4 +1,4 @@
-@testable import MockableTypes
+@testable import TestProject
 
 class KeywordsMock: Keywords {
     var invokedClassSetter = false
