@@ -1,4 +1,5 @@
 # Swift Mock Generator Xcode Source Editor Extension
+![Mock Generator Icon](readme/AppIcon_256.png)
 
 An Xcode extension (plugin) to generate mock classes automatically.
 
