@@ -54,6 +54,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("TypealiasProtocolMock")
     }
 
+    func test_handlesGenericMethods() {
+        assertMockGeneratesExpected("GenericMethodMock")
+    }
+
     func test_generatesMockForAllCaretPositions() {
         let expected = readFile(named: "SimpleProtocolMock_expected.swift")
         let caretFile = readFile(named: "CaretSuccessTest.swift")
