@@ -43,6 +43,8 @@ class SKElementFactory {
             return SwiftPropertyElementBuilder(data: data, fileText: fileText).build()
         case SwiftInheritedTypeBuilder.kind:
             return SwiftInheritedTypeBuilder(data: data, fileText: fileText).build()
+        case "source.lang.swift.ref.typealias":
+            return SwiftTypealiasBuilder(data: data, fileText: fileText).build()
         default:
             return SwiftElementBuilder(data: data, fileText: fileText).build()
         }

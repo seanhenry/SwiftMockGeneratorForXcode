@@ -41,11 +41,20 @@ extension SwiftElementBuilderTemplate {
     }
 
     func getOffset() -> Int64? {
-        return data["key.offset"] as? Int64
+        return getLargeInt(data["key.offset"])
     }
 
     func getLength() -> Int64? {
-        return data["key.length"] as? Int64
+        return getLargeInt(data["key.length"])
+    }
+
+    private func getLargeInt(_ any: Any?) -> Int64? {
+        if let bigNumber = any as? Int64 {
+            return bigNumber
+        } else if let littleNumber = any as? Int {
+            return Int64(littleNumber)
+        }
+        return nil
     }
 
     func getDeclarationText() -> String? {
