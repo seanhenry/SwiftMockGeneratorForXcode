@@ -45,6 +45,8 @@ class SKElementFactory {
             return SwiftInheritedTypeBuilder(data: data, fileText: fileText).build()
         case "source.lang.swift.ref.typealias":
             return SwiftTypealiasBuilder(data: data, fileText: fileText).build()
+        case "source.lang.swift.ref.generic_type_param":
+            return SwiftGenericParameterTypeDeclarationBuilder(data: data, fileText: fileText).build()
         default:
             return SwiftElementBuilder(data: data, fileText: fileText).build()
         }

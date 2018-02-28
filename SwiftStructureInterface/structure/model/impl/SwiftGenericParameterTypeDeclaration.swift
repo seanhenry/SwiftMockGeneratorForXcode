@@ -1,0 +1,2 @@
+class SwiftGenericParameterTypeDeclaration: SwiftElement, GenericParameterTypeDeclaration {
+}

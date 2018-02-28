@@ -3,19 +3,6 @@ import XCTest
 
 class SwiftTypealiasBuilderTests: XCTestCase {
 
-    var builder: SwiftTypealiasBuilder!
-
-    override func setUp() {
-        super.setUp()
-
-        builder = SwiftTypealiasBuilder(data: [:], fileText: "")
-    }
-
-    override func tearDown() {
-        builder = nil
-        super.tearDown()
-    }
-
     // MARK: - build
 
     func test_build_shouldBuildTypealias() {

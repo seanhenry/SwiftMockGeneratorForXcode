@@ -68,6 +68,8 @@ class ResolveUtilTests: XCTestCase {
 
     // MARK: - resolveToElement
 
+    // Required because typealiases and generic parameters do not show in the file structure (only in the resolved structure)
+
     func test_resolveToElement_shouldResolveAndBuildSingleElement() {
         writeResolveTypealiasClassToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!

@@ -14,7 +14,7 @@ class SwiftTypealiasBuilder: SwiftElementBuilderTemplate {
     }
 
     private func removeTypeSuffix(_ typeName: String) -> String {
-        if typeName.hasSuffix(").Type") {
+        if typeName.hasSuffix(".Type") {
             let index = typeName.index(typeName.endIndex, offsetBy: -5)
             return String(typeName[..<index])
         }
