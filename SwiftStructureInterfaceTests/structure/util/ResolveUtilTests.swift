@@ -66,21 +66,16 @@ class ResolveUtilTests: XCTestCase {
         XCTAssertNil(ResolveUtil().resolve(reference))
     }
 
-    // MARK: - resolveTypealias
+    // MARK: - resolveToElement
 
-    func test_resolveTypealias_shouldReturnType() {
+    func test_resolveToElement_shouldResolveAndBuildSingleElement() {
         writeResolveTypealiasClassToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
         let method = file.children[0] as! SwiftMethodElement
-        let resolved = ResolveUtil().resolveTypealias(method.parameters[0].type)
-        XCTAssertEqual(resolved, "(String) -> ()")
-    }
-
-    func test_resolveTypealias_shouldReturnNil_whenNotATypealias() {
-        writeResolveClassesToFile()
-        let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let resolved = ResolveUtil().resolveTypealias(file)
-        XCTAssertNil(resolved)
+        let resolved = ResolveUtil().resolveToElement(method.parameters[0].type) as? Typealias
+        XCTAssertEqual(resolved?.typeName, "(String) -> ()")
+        XCTAssertNil(resolved?.parent)
+        XCTAssertNil(resolved?.file)
     }
 
     // MARK: - Helpers

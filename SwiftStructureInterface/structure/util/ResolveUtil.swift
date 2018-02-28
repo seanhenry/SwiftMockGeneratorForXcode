@@ -7,8 +7,8 @@ class ResolveUtil {
 
     func resolve(_ element: Element) -> Element? {
         guard writeToFile(element) else { return nil }
-        return getResolvedElement(from: resolveFromSameFile(element))
-            ?? getResolvedElement(from: resolveFromAllFiles(element))
+        return getResolvedElementInFile(from: resolveFromSameFile(element))
+            ?? getResolvedElementInFile(from: resolveFromAllFiles(element))
     }
 
     private func writeToFile(_ element: Element) -> Bool {
@@ -25,7 +25,7 @@ class ResolveUtil {
         return try? ResolveUtil.cursorInfoRequest.getCursorInfo(filePath: tempFile, offset: element.offset)
     }
 
-    private func getResolvedElement(from data: [String: Any]?) -> Element? {
+    private func getResolvedElementInFile(from data: [String: Any]?) -> Element? {
         if let path = data?["key.filepath"] as? String,
            let offset = data?["key.offset"] as? Int64,
            let resolvedFile = SKElementFactory().build(fromPath: path) {
@@ -34,22 +34,19 @@ class ResolveUtil {
         return nil
     }
 
-    func resolveTypealias(_ element: Element) -> String? {
+
+    func resolveToElement(_ element: Element) -> Element? {
         guard writeToFile(element) else { return nil }
-        return getResolvedTypeName(resolveFromSameFile(element))
-            ?? getResolvedTypeName(resolveFromAllFiles(element))
+        return getResolvedElement(from: resolveFromSameFile(element))
+            ?? getResolvedElement(from: resolveFromAllFiles(element))
     }
 
-    private func getResolvedTypeName(_ data: [String: Any]?) -> String? {
-        guard let typeName = data?["key.typename"] as? String else { return nil }
-        return removeTypeSuffix(typeName)
-    }
-
-    private func removeTypeSuffix(_ typeName: String) -> String {
-        if typeName.hasSuffix(".Type") {
-            let index = typeName.index(typeName.endIndex, offsetBy: -5)
-            return String(typeName[..<index])
+    private func getResolvedElement(from data: [String: Any]?) -> Element? {
+        if let data = data,
+           let path = data["key.filepath"] as? String,
+           let resolvedFile = SKElementFactory().build(fromPath: path) {
+            return SKElementFactory().build(data: data, fileText: resolvedFile.text)
         }
-        return typeName
+        return nil
     }
 }

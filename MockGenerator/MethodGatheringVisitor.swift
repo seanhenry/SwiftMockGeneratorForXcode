@@ -31,7 +31,10 @@ class MethodGatheringVisitor: ElementVisitor {
     }
 
     private func getResolvedParameterTypeNames(element: SwiftMethodElement) -> [String?] {
-        return element.parameters.map { ResolveUtil().resolveTypealias($0.type) }
+        return element.parameters
+            .map { ResolveUtil().resolveToElement($0.type) }
+            .map { $0 as? Typealias }
+            .map { $0?.typeName }
     }
 
     private func mapResolvedTypes(_ resolvedNames: [String?], to method: UseCasesProtocolMethod) -> [UseCasesParameter] {
