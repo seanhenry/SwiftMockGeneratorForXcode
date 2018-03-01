@@ -16,54 +16,63 @@ class MethodGatheringVisitor: ElementVisitor {
     }
 
     func visit(_ element: SwiftMethodElement) {
-        let method = mapToUseCasesMethod(element: element)
-        let resolved = getResolvedParameterTypeNames(element: element)
-        let parameters = mapResolvedTypes(resolved, to: method)
-        methods.append(addResolvedParameters(parameters, to: method))
+        methods.append(transform(element))
     }
 
-    private func mapToUseCasesMethod(element: SwiftMethodElement) -> UseCasesProtocolMethod {
+    private func transform(_ method: SwiftMethodElement) -> UseCasesProtocolMethod {
         return UseCasesProtocolMethod(
-            name: element.name,
-            returnType: element.returnType,
-            parameters: getParametersText(element: element) ?? "",
-            signature: element.text)
+            name: method.name,
+            returnType: method.returnType,
+            resolvedReturnType: nil,
+            parametersList: transformParameters(from: method),
+            signature: method.text,
+            throws: false
+        )
     }
 
-    private func getResolvedParameterTypeNames(element: SwiftMethodElement) -> [String?] {
-        return element.parameters
-            .map { ResolveUtil().resolveToElement($0.type) }
-            .map { $0 as? Typealias }
-            .map { $0?.typeName }
+    private func transformParameters(from method: SwiftMethodElement) -> [UseCasesParameter] {
+        let parameters = parseParameters(from: method)
+        let resolvedTypes = getResolvedParameterTypes(from: method)
+        return transformParameters(parameters, resolvedTypes: resolvedTypes)
     }
 
-    private func mapResolvedTypes(_ resolvedNames: [String?], to method: UseCasesProtocolMethod) -> [UseCasesParameter] {
-        let parametersAndTypes = zip(method.parametersList as! [UseCasesParameter], resolvedNames)
-        return parametersAndTypes.map { (param, resolved) in
+    private func parseParameters(from method: SwiftMethodElement) -> [UseCasesParameter] {
+        return UseCasesProtocolMethod( // Kotlin native doesn't give access to ParameterUtil
+            name: "",
+            returnType: nil,
+            parameters: getParametersText(element:  method),
+            signature: ""
+        ).parametersList as! [UseCasesParameter]
+    }
+
+    private func getParametersText(element: SwiftMethodElement) -> String {
+        return element.parameters.map { $0.text }.joined(separator: ", ")
+    }
+
+    private func getResolvedParameterTypes(from element: SwiftMethodElement) -> [UseCasesType?] {
+        return element.parameters.map(transformToParameterType)
+    }
+
+    private func transformToParameterType(_ parameter: MethodParameter) -> UseCasesType? {
+        var result: UseCasesType?
+        let resolved = ResolveUtil().resolveToElement(parameter.type)
+        if let alias = resolved as? Typealias {
+            result = UseCasesType(typeName: alias.typeName)
+        } else if let genericType = resolved as? GenericParameterTypeDeclaration {
+            result = UseCasesGenericType(typeName: genericType.text)
+        }
+        return result
+    }
+
+    private func transformParameters(_ parameters: [UseCasesParameter], resolvedTypes: [UseCasesType?]) -> [UseCasesParameter] {
+        let parametersAndTypes = zip(parameters, resolvedTypes)
+        return parametersAndTypes.map { param, resolved in
             UseCasesParameter(label: param.label,
                 name: param.name,
                 type: param.type,
-                resolvedType: resolved ?? param.type,
-                text: param.text)
+                resolvedType: resolved ?? UseCasesType(typeName: param.type),
+                text_: param.text)
         }
-    }
-
-    private func addResolvedParameters(_ parameters: [UseCasesParameter], to element: UseCasesProtocolMethod) -> UseCasesProtocolMethod {
-        return UseCasesProtocolMethod(name: element.name,
-            returnType: element.returnType,
-            parametersList: parameters,
-            signature: element.signature)
-    }
-
-    private func getParametersText(element: SwiftMethodElement) -> String? {
-        var parameterString: String?
-        if let firstParamStartIndex = element.parameters.first?.offset,
-           let lastParam = element.parameters.last,
-           let fileText = element.file?.text {
-            let lastParamEndIndex = lastParam.offset - firstParamStartIndex + lastParam.length
-            parameterString = getSubstring(from: fileText, offset: firstParamStartIndex, length: lastParamEndIndex)
-        }
-        return parameterString
     }
 
     func visit(_ element: SwiftPropertyElement) {
