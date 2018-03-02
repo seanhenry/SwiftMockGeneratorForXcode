@@ -36,7 +36,7 @@ class SwiftMethodElementBuilderTests: XCTestCase {
 
     func assertChildMethodReturnType(_ parent: Element?, at index: Int, equals expected: String?, line: UInt = #line) {
         let method = parent?.children[index] as? SwiftMethodElement
-        XCTAssertEqual(method?.returnType, expected, line: line)
+        XCTAssertEqual(method?.returnType?.text, expected, line: line)
     }
 
     func assertChildMethodName(_ parent: Element?, at index: Int, equals expected: String?, line: UInt = #line) {
@@ -79,7 +79,7 @@ class SwiftMethodElementBuilderTests: XCTestCase {
               func inlineBraces() -> Type0 {}
               func nextLineBrace() -> Type0
               {}
-              func paramsOnNewlines(var: String,
+              func paramsOnNewlines(var1: String,
               var2: Int,
               closure: (Int) -> ((Int) -> ())
               ) -> Type0 {}

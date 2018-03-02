@@ -9,8 +9,9 @@ class SwiftMethodElementBuilder: NamedSwiftElementBuilderTemplate {
     }
 
     func build(text: String, offset: Int64, length: Int64, name: String) -> Element? {
-        let returnType = getMethodReturnType()
-        return SwiftMethodElement(name: name, text: text, children: buildChildren(), offset: offset, length: length, returnType: returnType, parameters: buildParameters())
+        let parameters = buildParameters()
+        let returnType = buildReturnType(methodOffset: offset, parameters: parameters)
+        return SwiftMethodElement(name: name, text: text, children: buildChildren(), offset: offset, length: length, returnType: returnType, parameters: parameters)
     }
 
     private func buildParameters() -> [MethodParameter] {
@@ -20,45 +21,19 @@ class SwiftMethodElementBuilder: NamedSwiftElementBuilderTemplate {
             .flatMap { $0 as? MethodParameter }
     }
 
-    private func getMethodReturnType() -> String? {
-        let returnStatementText = getReturnStatementText()
-        let returnMarker = "->"
-        if let components = returnStatementText?.components(separatedBy: returnMarker),
-           components.count >= 2 {
-            return components[1..<components.count]
-                .joined(separator: returnMarker)
-                .trimmingCharacters(in: .whitespacesAndNewlines)
+    private func buildReturnType(methodOffset: Int64, parameters: [MethodParameter]) -> Element? {
+        var returnType: Element?
+        if let declarationText = getDeclarationText() {
+            returnType = getMethodReturnType(methodOffset: methodOffset, parameters: parameters, methodText: declarationText)
         }
-        return nil
+        return returnType
     }
 
-    private func getReturnStatementText() -> String? {
-        guard var text = getDeclarationText()?.utf8 else { return nil }
-        var openBracketCount = 0
-        repeat {
-            guard let firstBracketOffset = firstBracketIndex(text: text) else { break }
-            openBracketCount += isOpenBracket(bracket: text[firstBracketOffset]) ? 1 : -1
-            let offset = text.index(after: firstBracketOffset)
-            text = String(text[offset...])!.utf8
-        } while openBracketCount > 0
-        return String(text)
+    private func getMethodReturnType(methodOffset: Int64, parameters: [MethodParameter], methodText: String) -> Element? {
+        let offset: Int64 = parameters.first?.offset ?? methodOffset
+        let length: Int64 = parameters.last.map { $0.offset + $0.length - offset } ?? 0
+        return SwiftMethodReturnTypeBuilder(methodDeclarationText: getDeclarationText()!,
+            endOfParametersOffset: offset + length,
+            methodDeclarationOffset: methodOffset).build()
     }
-
-    private func isOpenBracket(bracket: UTF8.CodeUnit) -> Bool {
-        return bracket == openBracketUTF8
-    }
-
-    private func firstBracketIndex(text: String.UTF8View) -> String.UTF8View.Index? {
-        return text.index { $0 == openBracketUTF8 || $0 == closedBracketUTF8 }
-    }
-
-    private let closedBracketUTF8: UTF8.CodeUnit = {
-        let closedBracket = ")".utf8
-        return closedBracket[closedBracket.startIndex]
-    }()
-
-    private let openBracketUTF8: UTF8.CodeUnit = {
-        let openBracket = "(".utf8
-        return openBracket[openBracket.startIndex]
-    }()
 }

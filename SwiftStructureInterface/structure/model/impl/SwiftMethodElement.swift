@@ -1,10 +1,10 @@
 class SwiftMethodElement: SwiftElement, NamedElement {
 
     let name: String
-    let returnType: String?
+    let returnType: Element?
     let parameters: [MethodParameter]
 
-    init(name: String, text: String, children: [Element], offset: Int64, length: Int64, returnType: String?, parameters: [MethodParameter]) {
+    init(name: String, text: String, children: [Element], offset: Int64, length: Int64, returnType: Element?, parameters: [MethodParameter]) {
         self.name = name
         self.returnType = returnType
         self.parameters = parameters
