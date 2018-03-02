@@ -37,6 +37,7 @@ class SwiftFile: SwiftElement, File {
                 parameter.file = file
                 parameter.type.file = file
             }
+            element.returnType?.file = file
         }
 
         func visit(_ element: SwiftPropertyElement) {

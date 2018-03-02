@@ -22,12 +22,21 @@ class MethodGatheringVisitor: ElementVisitor {
     private func transform(_ method: SwiftMethodElement) -> UseCasesProtocolMethod {
         return UseCasesProtocolMethod(
             name: method.name,
-            returnType: method.returnType,
-            resolvedReturnType: nil,
+            returnType: method.returnType?.text,
+            resolvedReturnType: resolveReturnType(method.returnType),
             parametersList: transformParameters(from: method),
             signature: method.text,
             throws: false
         )
+    }
+
+    private func resolveReturnType(_ type: Element?) -> UseCasesType? {
+        guard let type = type else { return nil }
+        let resolved = ResolveUtil().resolveToElement(type)
+        if let generic = resolved as? GenericParameterTypeDeclaration {
+            return UseCasesGenericType(typeName: generic.text)
+        }
+        return UseCasesType(typeName: type.text)
     }
 
     private func transformParameters(from method: SwiftMethodElement) -> [UseCasesParameter] {

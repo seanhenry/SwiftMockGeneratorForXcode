@@ -44,6 +44,7 @@ class SwiftFileTests: XCTestCase {
         assertFilesAreEquivalent(methodA.file, file)
         assertFilesAreEquivalent(methodAParam.file, file)
         assertFilesAreEquivalent(methodAParam.type.file, file)
+        assertFilesAreEquivalent(methodA.returnType?.file, file)
     }
 
     func test_init_copyingFileToChildren_shouldNotCauseRetainCycle() {
@@ -74,14 +75,14 @@ class SwiftFileTests: XCTestCase {
     }
 
     private func assertFilesAreEquivalent(_ lhs: Element?, _ rhs: Element?, line: UInt = #line) {
-        XCTAssertNotNil(lhs)
-        XCTAssertNotNil(rhs)
+        XCTAssertNotNil(lhs, line: line)
+        XCTAssertNotNil(rhs, line: line)
         guard let lhs = lhs, let rhs = rhs else { return }
-        XCTAssertEqual(lhs.offset, rhs.offset)
-        XCTAssertEqual(lhs.length, rhs.length)
-        XCTAssertEqual(lhs.text, rhs.text)
-        XCTAssertEqual(lhs.children.count, rhs.children.count)
-        zip(lhs.children, rhs.children).forEach { XCTAssert($0 === $1) }
+        XCTAssertEqual(lhs.offset, rhs.offset, line: line)
+        XCTAssertEqual(lhs.length, rhs.length, line: line)
+        XCTAssertEqual(lhs.text, rhs.text, line: line)
+        XCTAssertEqual(lhs.children.count, rhs.children.count, line: line)
+        zip(lhs.children, rhs.children).forEach { XCTAssert($0 === $1, line: line) }
     }
 
     private func getNestedClassString() -> String {
@@ -93,7 +94,7 @@ class A {
         func innerMethodA() {}
     }
 
-    func methodA(a: A) {}
+    func methodA(a: A) -> T {}
 }
 """
     }
