@@ -8,6 +8,7 @@ class SwiftMethodReturnTypeBuilderTests: XCTestCase {
 
     override func tearDown() {
         builder = nil
+        element = nil
         super.tearDown()
     }
 
@@ -90,6 +91,15 @@ class SwiftMethodReturnTypeBuilderTests: XCTestCase {
         XCTAssertEqual(element?.offset, 23)
         XCTAssertEqual(element?.length, 3)
         assertReturnTypeString("Int")
+    }
+
+    func test_findReturnTypeRange_shouldIgnoreWhereClause() {
+        let string = "func a<T>() -> T where T.Type == String"
+        builder = SwiftMethodReturnTypeBuilder(methodDeclarationText: string, endOfParametersOffset: 10)
+        element = builder.build()
+        XCTAssertEqual(element?.offset, 15)
+        XCTAssertEqual(element?.length, 1)
+        assertReturnTypeString("T")
     }
 
     func test_findReturnTypeRange_shouldReturnRange_whenUTF16Characters() {

@@ -7,7 +7,7 @@ class SwiftMethodReturnTypeBuilder {
     init(methodDeclarationText: String, endOfParametersOffset: Int64, methodDeclarationOffset: Int64 = 0) {
         self.endOfParametersOffset = endOfParametersOffset
         self.methodDeclarationOffset = methodDeclarationOffset
-        self.returnText = getSubstring(fromUTF8Offset: Int(endOfParametersOffset - methodDeclarationOffset), from: methodDeclarationText)
+        self.returnText = getSubstring(fromUTF8Offset: Int(endOfParametersOffset - methodDeclarationOffset), in: methodDeclarationText)
     }
 
     func build() -> Element? {
@@ -23,33 +23,39 @@ class SwiftMethodReturnTypeBuilder {
 
     private func findRangeOfReturnType() -> Range<Int>? {
         if let returnMarkerRange = returnText.range(of: "->") {
-            let returnMarkerUpperBound = returnMarkerRange.upperBound.encodedOffset
-            return findType(after: returnMarkerUpperBound)
+            let returnTypeLowestBound = returnMarkerRange.upperBound.encodedOffset
+            let returnTypeHighestBound = findReturnTypeEnd()
+            return findType(between: returnTypeLowestBound..<returnTypeHighestBound)
         }
         return nil
     }
 
-    private func findType(after offset: Int) -> Range<Int>? {
+    private func findReturnTypeEnd() -> Int {
+        return returnText.range(of: " where ")?.lowerBound.encodedOffset ?? returnText.count
+    }
+
+    private func findType(between range: Range<Int>) -> Range<Int>? {
+        let offset = range.lowerBound
         if let first = findFirstTypeOffset(after: offset),
-           let last = findLastTypeOffset(after: offset) {
+           let last = findLastTypeOffset(between: range) {
             return first..<last
         }
         return nil
     }
 
     private func findFirstTypeOffset(after offset: Int) -> Int? {
-        let substring = getSubstring(from: offset, from: returnText)
+        let substring = getSubstring(from: offset, in: returnText)
         if let firstOffset = firstNonWhitespaceIndex(in: String(substring)) {
             return offset + firstOffset
         }
         return nil
     }
 
-    private func findLastTypeOffset(after offset: Int) -> Int? {
-        let substring = getSubstring(from: offset, from: returnText)
+    private func findLastTypeOffset(between range: Range<Int>) -> Int? {
+        let substring = getSubstring(between: range, in: returnText)
             .reversed()
         if let firstOffset = firstNonWhitespaceIndex(in: String(substring)) {
-            return returnText.count - firstOffset
+            return range.upperBound - firstOffset
         }
         return nil
     }
@@ -60,14 +66,20 @@ class SwiftMethodReturnTypeBuilder {
         }?.encodedOffset
     }
 
-    private func getSubstring(fromUTF8Offset offset: Int, from string: String) -> String {
+    private func getSubstring(fromUTF8Offset offset: Int, in string: String) -> String {
         let index = string.utf8.index(string.utf8.startIndex, offsetBy: offset)
         return String(string[index...])
     }
 
-    private func getSubstring(from offset: Int, from string: String) -> String {
+    private func getSubstring(from offset: Int, `in` string: String) -> String {
         let index = string.index(string.startIndex, offsetBy: offset)
         return String(string[index...])
+    }
+
+    private func getSubstring(between range: Range<Int>, in string: String) -> String {
+        let start = string.index(string.startIndex, offsetBy: range.lowerBound)
+        let end = string.index(string.startIndex, offsetBy: range.upperBound)
+        return String(string[start..<end])
     }
 
     private func convertReturnTypeRange(range: Range<Int>) -> (Range<String.Index>, Int, Int) {
