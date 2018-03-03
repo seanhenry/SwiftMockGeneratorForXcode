@@ -16,12 +16,12 @@ import Foundation
     }
 
     private func generateMock(projectURL: URL, contents: String, line: Int, column: Int, reply: ([String]?, Error?) -> Void) {
-        let mock = Generator.generateMock(fromFileContents: contents,
+        let (lines, error) = Generator.generateMock(fromFileContents: contents,
             projectURL: projectURL,
             line: line,
             column: column)
-        track(mock.1)
-        reply(mock.0, mock.1)
+        track(error)
+        reply(lines, error)
     }
 
     private func track(_ error: Error?) {
