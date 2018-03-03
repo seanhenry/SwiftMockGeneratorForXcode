@@ -1,4 +1,5 @@
 SOURCE_KITTEN_SHA=71e8297e5d95118588f8aa8e1de892762346dc9d
+SWIFTAST_SHA=87888a78bc264a57536e6c628f4ad4ad02eadd06
 USE_CASE_SHA=6e25d0a542ac588a488aade9098a29dd372936f4
 KOTLIN_NATIVE_SHA=eae130e246dff2502a3f79ee146e333cdc5024bf
 
@@ -8,6 +9,7 @@ SRC_PATH=$(ROOT)/lib-src
 KOTLIN_NATIVE_SRC_PATH=$(SRC_PATH)/kotlinnative
 USECASES_SRC_PATH=$(SRC_PATH)/usecases
 SOURCEKITTEN_SRC_PATH=$(SRC_PATH)/sourcekitten
+SWIFTAST_SRC_PATH=$(SRC_PATH)/swift-ast
 
 BUILD_PATH=$(ROOT)/lib-build
 SOURCEKITTEN_BUILD_PATH=$(BUILD_PATH)/sourcekitten
@@ -20,9 +22,9 @@ YAMS_FRAMEWORK=$(SOURCEKITTEN_PRODUCTS)/Yams.framework
 
 DEST_PATH=$(ROOT)/lib
 
-.PHONY: test bootstrap clean cleanbuild sourcekitten usecases mklib cleansourcekitten mkkotlinnative
+.PHONY: test bootstrap clean cleanbuild sourcekitten usecases mklib cleansourcekitten mkkotlinnative swiftast
 
-bootstrap: cleanbuild sourcekitten usecases
+bootstrap: cleanbuild sourcekitten swiftast usecases
 
 cleanbuild:
 	rm -rf $(BUILD_PATH) || true
@@ -32,7 +34,6 @@ clean: cleanbuild
 	rm -rf $(SRC_PATH) || true
 
 sourcekitten: cleansourcekitten mklib
-
 	if [ -d "$(SOURCEKITTEN_SRC_PATH)/.git" ]; \
 	then \
 	cd $(SOURCEKITTEN_SRC_PATH); \
@@ -48,6 +49,21 @@ sourcekitten: cleansourcekitten mklib
 	xcrun xcodebuild -workspace SourceKitten.xcworkspace -scheme SourceKittenFramework -configuration Debug -derivedDataPath $(SOURCEKITTEN_BUILD_PATH) clean build
 
 	cp -Rf $(SOURCEKITTEN_FRAMEWORK) $(SOURCEKITTEN_DSYM) $(SWXMLHASH_FRAMEWORK) $(YAMS_FRAMEWORK) $(DEST_PATH)
+
+swiftast:
+	if [ -d "$(SWIFTAST_SRC_PATH)/.git" ]; \
+	then \
+	cd $(SWIFTAST_SRC_PATH); \
+	git fetch; \
+	else \
+	git clone https://github.com/yanagiba/swift-ast.git $(SWIFTAST_SRC_PATH); \
+	cd $(SWIFTAST_SRC_PATH); \
+	fi; \
+	git checkout $(SWIFTAST_SHA); \
+	make xcodegen; \
+	xcodebuild -scheme SwiftAST -derivedDataPath build clean build; \
+	cp -rf build/Build/Products/Debug/*.framework $(DEST_PATH);
+
 
 usecases: mklib mkkotlinnative
 	if [ -d "$(USECASES_SRC_PATH)/.git" ]; \
