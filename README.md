@@ -76,12 +76,17 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 | Stub an error for your mock method to throw. ||
 | Supports throwing initializers. ||
 | Supports throwing closures. ||
+| **Generics** |
+| Generates generic mocks from protocols with associated types.||
+| Captures invoked generic parameters. |✅ \*|
+| Captures invoked generic return values. |✅ \*|
 | **Scope, keywords, and more** |
 | Avoids naming clashes from overloaded methods.|✅|
-| Generates generic mocks from protocols with associated types.||
 | Supports parameter type-annotation attributes and `inout`.|✅|
 | Respects the mock scope and generates `public` and `open` methods and properties.||
 | Generate mock inheriting from items in 3rd party frameworks.||
+
+\* `where` clause not supported
 
 ## Feature requests
 
