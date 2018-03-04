@@ -21,14 +21,12 @@ class LocationConverter {
     }
 
     private static func findOffset(atLine line: Int, atColumn column: Int, in lines: [String]) -> Int64? {
-        var offset = getOffset(atLine: line, in: lines)
-        var columnCount = 0
-        for character in lines[line].unicodeScalars {
-            if columnCount == column {
-                return offset
-            }
-            columnCount += 1
-            offset += getOffset(character)
+        let offset = getOffset(atLine: line, in: lines)
+        let scalars = lines[line].unicodeScalars
+        let scalarIndex = scalars.index(scalars.startIndex, offsetBy: column, limitedBy: scalars.endIndex)
+        let utf8 = lines[line].utf8
+        if let utf8Index = scalarIndex?.samePosition(in: utf8) {
+            return offset + Int64(utf8.distance(from: utf8.startIndex, to: utf8Index))
         }
         return nil
     }

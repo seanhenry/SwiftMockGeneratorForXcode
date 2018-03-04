@@ -12,13 +12,13 @@ class LocationConverterTests: XCTestCase {
     }
 
     func test_convert_shouldConvertOneLineToOffset() {
-        XCTAssertEqual(LocationConverter.convert(line: 1, column: 5, in: "012345"), 5)
+        XCTAssertEqual(LocationConverter.convert(line: 1, column: 6, in: "012345"), 6)
     }
 
     func test_convert_shouldBeNil_whenColumnOutOfBounds() {
-        XCTAssertNil(LocationConverter.convert(line: 1, column: 6, in: "012345"))
+        XCTAssertNil(LocationConverter.convert(line: 1, column: 7, in: "012345"))
         XCTAssertNil(LocationConverter.convert(line: 1, column: -1, in: "012345"))
-        XCTAssertNil(LocationConverter.convert(line: 2, column: 6, in: "012345\n012345"))
+        XCTAssertNil(LocationConverter.convert(line: 2, column: 7, in: "012345\n012345"))
         XCTAssertNil(LocationConverter.convert(line: 2, column: -1, in: "012345\n012345"))
     }
 
@@ -30,7 +30,7 @@ class LocationConverterTests: XCTestCase {
     func test_convert_shouldCountNewlinesAndConvertToOffset() {
         XCTAssertEqual(LocationConverter.convert(line: 2, column: 0, in: "012345\n012345"), 7)
         XCTAssertEqual(LocationConverter.convert(line: 1, column: 6, in: "012345\n012345"), 6)
-        XCTAssertEqual(LocationConverter.convert(line: 2, column: 5, in: "0123\n012345"), 10)
+        XCTAssertEqual(LocationConverter.convert(line: 2, column: 6, in: "0123\n012345"), 11)
     }
 
     func test_convert_shouldCountLongerUnicodeScalarsAsManyOffsets() {
@@ -41,8 +41,8 @@ class LocationConverterTests: XCTestCase {
         XCTAssertEqual(LocationConverter.convert(line: 1, column: 1, in: string), 2)
         XCTAssertEqual(LocationConverter.convert(line: 1, column: 2, in: string), 6)
         XCTAssertEqual(LocationConverter.convert(line: 2, column: 0, in: string), 7)
-        XCTAssertEqual(LocationConverter.convert(line: 2, column: 1, in: string), 9)
-        XCTAssertNil(LocationConverter.convert(line: 2, column: 2, in: string))
+        XCTAssertEqual(LocationConverter.convert(line: 2, column: 2, in: string), 13)
+        XCTAssertNil(LocationConverter.convert(line: 2, column: 3, in: string))
     }
 
     // MARK: - convert(caretOffset:)
