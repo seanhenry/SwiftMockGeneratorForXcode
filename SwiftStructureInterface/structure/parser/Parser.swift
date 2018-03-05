@@ -56,16 +56,27 @@ class Parser {
     }
 
     private func parseInheritanceClause() -> [NamedElement]? {
-        if isNext(.colon) {
+        guard isNext(.colon) else { return [] }
+        var types = [NamedElement]()
+        repeat {
             advance()
-            let start = getCurrentStartLocation()
-            if let identifier = peekAtNextIdentifier() {
-                advance()
-                let offset = convert(start)!
-                return [SwiftInheritedType(name: identifier, text: identifier, children: [], offset: offset, length: getLength(identifier))]
-            }
+            parseInheritanceType().map { types.append($0) }
+        } while isNext(.comma)
+        return types
+    }
+
+    private func parseInheritanceType() -> NamedElement? {
+        let start = getCurrentStartLocation()
+        if let identifier = peekAtNextIdentifier() {
+            advance()
+            let offset = convert(start)!
+            return SwiftInheritedType(name: identifier,
+                text: identifier,
+                children: [],
+                offset: offset,
+                length: getLength(identifier))
         }
-        return []
+        return nil
     }
 
     private func parseTypeCodeBlock() -> (offset: Int64, length: Int64, bodyEnd: Int64, declarations: [Element])? {
@@ -107,7 +118,7 @@ class Parser {
     }
 
     private func peekAtNextIdentifier() -> String? {
-        return lexer.look().kind.structName
+        return lexer.look().kind.namedIdentifier
     }
 
     private func isNext(_ kind: Token.Kind) -> Bool {
