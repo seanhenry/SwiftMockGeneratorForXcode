@@ -27,7 +27,8 @@ class Parser {
     private func parseDeclarations() -> [Element] {
         let start = getCurrentStartLocation()
         var elements = [Element]()
-        if case .protocol = lexer.read(.protocol) {
+        if isNext(.protocol) {
+            advance()
             parseProtocol(start: start).map { elements.append($0) }
         }
         return elements
@@ -35,7 +36,9 @@ class Parser {
 
     private func parseProtocol(start: SourceLocation) -> Element? {
         let offset = convert(start)!
-        if let name = getNextName(),
+        guard let name = peekAtNextIdentifier() else { return nil }
+        advance()
+        if let inheritanceClause = parseInheritanceClause(),
            let (bodyOffset, bodyLength, bodyEnd, declarations) = parseTypeCodeBlock() {
             let length = bodyEnd - offset
             let text = getSubstring(from: sourceFile.content, offset: offset, length: length)!
@@ -43,7 +46,7 @@ class Parser {
                 name: name,
                 text: text,
                 children: declarations,
-                inheritedTypes: [],
+                inheritedTypes: inheritanceClause,
                 offset: offset,
                 length: length,
                 bodyOffset: bodyOffset,
@@ -52,25 +55,34 @@ class Parser {
         return nil
     }
 
+    private func parseInheritanceClause() -> [NamedElement]? {
+        if isNext(.colon) {
+            advance()
+            let start = getCurrentStartLocation()
+            if let identifier = peekAtNextIdentifier() {
+                advance()
+                let offset = convert(start)!
+                return [SwiftInheritedType(name: identifier, text: identifier, children: [], offset: offset, length: getLength(identifier))]
+            }
+        }
+        return []
+    }
+
     private func parseTypeCodeBlock() -> (offset: Int64, length: Int64, bodyEnd: Int64, declarations: [Element])? {
         let bodyStart = getCurrentEndLocation()
-        _ = lexer.match(.leftBrace)
+        advance(if: .leftBrace)
         let bodyOffset = convert(bodyStart)!
 
         // TODO: only parse declarations if body is complete (need to add method/var parser first)
         let declarations = parseDeclarations()
 
         let bodyLength = convert(getCurrentStartLocation())! - bodyOffset
-        let rightBraceLength: Int64 = lexer.read(.rightBrace) == .rightBrace ? 1 : 0
-        return (bodyOffset, bodyLength, bodyOffset + bodyLength + rightBraceLength, declarations)
-    }
-
-    private func getNextName() -> String? {
-        if let name = lexer.look().kind.structName {
-            lexer.advance()
-            return name
+        var rightBraceLength: Int64 = 0
+        if isNext(.rightBrace) {
+            rightBraceLength = 1
+            advance()
         }
-        return nil
+        return (bodyOffset, bodyLength, bodyOffset + bodyLength + rightBraceLength, declarations)
     }
 
     private func convert(_ location: SourceLocation) -> Int64? {
@@ -90,4 +102,25 @@ class Parser {
         return lexer.look().sourceRange
     }
 
+    private func getLength(_ string: String) -> Int64 {
+        return Int64(string.utf8.count)
+    }
+
+    private func peekAtNextIdentifier() -> String? {
+        return lexer.look().kind.structName
+    }
+
+    private func isNext(_ kind: Token.Kind) -> Bool {
+        return lexer.look().kind == kind
+    }
+
+    private func advance() {
+        lexer.advance()
+    }
+
+    private func advance(if kind: Token.Kind) {
+        if isNext(kind) {
+            advance()
+        }
+    }
 }

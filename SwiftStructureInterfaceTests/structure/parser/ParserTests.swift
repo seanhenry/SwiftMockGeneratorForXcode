@@ -64,4 +64,20 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(`protocol`?.bodyLength, 0)
     }
 
+    func test_parse_shouldParseInheritanceClause() {
+        parser = Parser(fileContents: "protocol A: B {}")
+        let file = parser.parse()
+        let `protocol` = file?.children[0] as? SwiftTypeElement
+        XCTAssertEqual(`protocol`?.text, "protocol A: B {}")
+        XCTAssertEqual(`protocol`?.name, "A")
+        XCTAssertEqual(`protocol`?.offset, 0)
+        XCTAssertEqual(`protocol`?.length, 16)
+        XCTAssertEqual(`protocol`?.bodyOffset, 15)
+        XCTAssertEqual(`protocol`?.bodyLength, 0)
+        XCTAssertEqual(`protocol`?.inheritedTypes.count, 1)
+        XCTAssertEqual(`protocol`?.inheritedTypes[0].name, "B")
+        XCTAssertEqual(`protocol`?.inheritedTypes[0].text, "B")
+        XCTAssertEqual(`protocol`?.inheritedTypes[0].offset, 12)
+        XCTAssertEqual(`protocol`?.inheritedTypes[0].length, 1)
+    }
 }
