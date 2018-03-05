@@ -26,17 +26,18 @@ class Parser {
 
     private func parseDeclarations() -> [Element] {
         let start = getCurrentStartLocation()
+        var elements = [Element]()
         if case .protocol = lexer.read(.protocol) {
-            return parseProtocol(start: start).map { [$0] } ?? []
+            parseProtocol(start: start).map { elements.append($0) }
         }
-        return []
+        return elements
     }
 
     private func parseProtocol(start: SourceLocation) -> Element? {
         let offset = convert(start)!
         if let name = getNextName(),
-           let (bodyOffset, bodyLength, declarations) = parseTypeCodeBlock() {
-            let length = bodyOffset + bodyLength + 1
+           let (bodyOffset, bodyLength, bodyEnd, declarations) = parseTypeCodeBlock() {
+            let length = bodyEnd - offset
             let text = getSubstring(from: sourceFile.content, offset: offset, length: length)!
             return SwiftTypeElement(
                 name: name,
@@ -51,17 +52,17 @@ class Parser {
         return nil
     }
 
-    private func parseTypeCodeBlock() -> (offset: Int64, length: Int64, declarations: [Element])? {
+    private func parseTypeCodeBlock() -> (offset: Int64, length: Int64, bodyEnd: Int64, declarations: [Element])? {
         let bodyStart = getCurrentEndLocation()
-        if lexer.match(.leftBrace) {
-            let bodyOffset = convert(bodyStart)!
-            let bodyEnd = getCurrentStartLocation()
-            if lexer.match(.rightBrace) {
-                let bodyEnd = convert(bodyEnd)!
-                return (bodyOffset, bodyEnd - bodyOffset, [])
-            }
-        }
-        return nil
+        _ = lexer.match(.leftBrace)
+        let bodyOffset = convert(bodyStart)!
+
+        // TODO: only parse declarations if body is complete (need to add method/var parser first)
+        let declarations = parseDeclarations()
+
+        let bodyLength = convert(getCurrentStartLocation())! - bodyOffset
+        let rightBraceLength: Int64 = lexer.read(.rightBrace) == .rightBrace ? 1 : 0
+        return (bodyOffset, bodyLength, bodyOffset + bodyLength + rightBraceLength, declarations)
     }
 
     private func getNextName() -> String? {
