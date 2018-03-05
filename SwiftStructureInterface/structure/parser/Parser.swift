@@ -53,4 +53,12 @@ class Parser<ResultType> {
             advance()
         }
     }
+
+    func parseInheritanceClause() -> [NamedElement]? {
+        return InheritanceClauseParser(lexer: lexer, sourceFile: sourceFile).parse()
+    }
+
+    func parseInheritanceType() -> NamedElement? {
+        return TypeIdentifierParser(lexer: lexer, sourceFile: sourceFile).parse()
+    }
 }

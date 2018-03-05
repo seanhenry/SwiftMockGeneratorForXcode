@@ -54,20 +54,6 @@ class FileParser: Parser<File> {
         return nil
     }
 
-    private func parseInheritanceClause() -> [NamedElement]? {
-        guard isNext(.colon) else { return [] }
-        var types = [NamedElement]()
-        repeat {
-            advance()
-            parseInheritanceType().map { types.append($0) }
-        } while isNext(.comma)
-        return types
-    }
-
-    private func parseInheritanceType() -> NamedElement? {
-        return TypeIdentifierParser(lexer: lexer, sourceFile: sourceFile).parse()
-    }
-
     private func parseTypeCodeBlock() -> (offset: Int64, length: Int64, bodyEnd: Int64, declarations: [Element])? {
         let bodyStart = getCurrentEndLocation()
         advance(if: .leftBrace)
