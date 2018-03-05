@@ -3,12 +3,14 @@ import Source
 
 class FileParser: Parser<File> {
 
-    private var currentOffset: Int64
 
-    init(fileContents: String) {
+    convenience init(fileContents: String) {
         let sourceFile = SourceFile(content: fileContents)
         let lexer = Lexer(source: sourceFile)
-        currentOffset = 0
+        self.init(lexer: lexer, sourceFile: sourceFile)
+    }
+
+    required init(lexer: Lexer, sourceFile: SourceFile) {
         super.init(lexer: lexer, sourceFile: sourceFile)
     }
 

@@ -7,7 +7,7 @@ class Parser<ResultType> {
     private let lexer: Lexer
     private let accessLevelModifiers = Token.Kind.accessLevelModifiers
 
-    init(lexer: Lexer, sourceFile: SourceFile) {
+    required init(lexer: Lexer, sourceFile: SourceFile) {
         self.lexer = lexer
         self.sourceFile = sourceFile
     }
