@@ -1,8 +1,15 @@
+import Source
+
 class ProtocolParser: Parser<SwiftTypeElement> {
 
     override func parse() -> SwiftTypeElement {
-        guard isNext(.protocol) else { fatalError("Expected a protocol. Check isNext(.protocol) before parsing a protocol") }
         let start = getCurrentStartLocation()
+        skipAccessModifier()
+        return parseDeclaration(start: start)
+    }
+
+    func parseDeclaration(start: SourceLocation) -> SwiftTypeElement {
+        guard isNext(.protocol) else { fatalError("Expected a protocol. Check isNext(.protocol) before parsing a protocol") }
         advance()
         let offset = convert(start)!
         var name = ""

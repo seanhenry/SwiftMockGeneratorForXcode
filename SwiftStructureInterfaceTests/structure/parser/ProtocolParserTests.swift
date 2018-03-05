@@ -101,6 +101,32 @@ class ProtocolParserTests: XCTestCase {
         XCTAssertEqual(`protocol`?.inheritedTypes[0].length, 12)
     }
 
+    func test_parse_shouldParseProtocolWithAccessModifier() {
+        parser = FileParser(fileContents: "public protocol A {}")
+        let file = parser.parse()
+        let `protocol` = file.children[0] as? SwiftTypeElement
+        XCTAssertEqual(`protocol`?.text, "public protocol A {}")
+        XCTAssertEqual(`protocol`?.name, "A")
+        XCTAssertEqual(`protocol`?.offset, 0)
+        XCTAssertEqual(`protocol`?.length, 20)
+        XCTAssertEqual(`protocol`?.bodyOffset, 19)
+        XCTAssertEqual(`protocol`?.bodyLength, 0)
+    }
+
+    func test_parse_shouldParseProtocolWithMisspelledAccessModifier() {
+        parser = FileParser(fileContents: "publi protocol A {}")
+        let file = parser.parse()
+        let `protocol` = file.children[0] as? SwiftTypeElement
+        XCTAssertEqual(`protocol`?.text, "protocol A {}")
+        XCTAssertEqual(`protocol`?.name, "A")
+        XCTAssertEqual(`protocol`?.offset, 6)
+        XCTAssertEqual(`protocol`?.length, 13)
+        XCTAssertEqual(`protocol`?.bodyOffset, 18)
+        XCTAssertEqual(`protocol`?.bodyLength, 0)
+    }
+        XCTAssertEqual(`protocol`?.bodyLength, 0)
+    }
+
     func test_parse_shouldParseInheritanceClauseWithNestedTypes() {
         parser = FileParser(fileContents: "protocol A: Nested.Type, Deep.Nested.Type {}")
         let file = parser.parse()

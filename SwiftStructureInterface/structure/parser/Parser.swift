@@ -5,6 +5,7 @@ class Parser<ResultType> {
 
     private let sourceFile: SourceFile
     private let lexer: Lexer
+    private let accessLevelModifiers = Token.Kind.accessLevelModifiers
 
     init(lexer: Lexer, sourceFile: SourceFile) {
         self.lexer = lexer
@@ -44,6 +45,10 @@ class Parser<ResultType> {
         return lexer.look().kind == kind
     }
 
+    func isNext(_ kind: [Token.Kind]) -> Bool {
+        return kind.contains(lexer.look().kind)
+    }
+
     func advance() {
         lexer.advance()
     }
@@ -80,5 +85,19 @@ class Parser<ResultType> {
 
     func parseProtocol() -> Element {
         return ProtocolParser(lexer: lexer, sourceFile: sourceFile).parse()
+    }
+
+    func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
+        let c = lexer.checkPoint()
+        skipAccessModifier()
+        let isNext = self.isNext(declaration)
+        lexer.restore(fromCheckpoint: c)
+        return isNext
+    }
+
+    func skipAccessModifier() {
+        if isNext(accessLevelModifiers) {
+            advance()
+        }
     }
 }
