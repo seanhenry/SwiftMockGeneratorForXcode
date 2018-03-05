@@ -19,17 +19,18 @@ class ProtocolParser: Parser<SwiftTypeElement> {
             name = n
         }
         let inheritanceClause = parseInheritanceClause()
-        let (bodyOffset, bodyLength, bodyEnd, declarations) = parseTypeCodeBlock()
-        let length = bodyEnd - offset
+        _ = parseWhereClause()
+        let codeBlock = parseTypeCodeBlock()
+        let length = codeBlock.bodyEnd - offset
         let text = getString(offset: offset, length: length)!
         return SwiftTypeElement(
             name: name,
             text: text,
-            children: declarations,
+            children: codeBlock.declarations,
             inheritedTypes: inheritanceClause,
             offset: offset,
             length: length,
-            bodyOffset: bodyOffset,
-            bodyLength: bodyLength)
+            bodyOffset: codeBlock.offset,
+            bodyLength: codeBlock.length)
     }
 }

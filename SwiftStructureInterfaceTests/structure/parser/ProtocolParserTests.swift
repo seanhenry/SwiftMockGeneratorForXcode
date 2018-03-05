@@ -137,6 +137,18 @@ class ProtocolParserTests: XCTestCase {
         XCTAssertEqual(`protocol`?.bodyLength, 0)
     }
 
+    func test_parse_shouldParseProtocolWithWhereClause() {
+        parser = FileParser(fileContents: "protocol A where B: C {}")
+        let file = parser.parse()
+        let `protocol` = file.children[0] as? SwiftTypeElement
+        XCTAssertEqual(`protocol`?.text, "protocol A where B: C {}")
+        XCTAssertEqual(`protocol`?.name, "A")
+        XCTAssertEqual(`protocol`?.offset, 0)
+        XCTAssertEqual(`protocol`?.length, 24)
+        XCTAssertEqual(`protocol`?.bodyOffset, 23)
+        XCTAssertEqual(`protocol`?.bodyLength, 0)
+    }
+
     func test_parse_shouldParseInheritanceClauseWithNestedTypes() {
         parser = FileParser(fileContents: "protocol A: Nested.Type, Deep.Nested.Type {}")
         let file = parser.parse()

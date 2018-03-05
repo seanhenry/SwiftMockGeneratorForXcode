@@ -87,30 +87,38 @@ class Parser<ResultType> {
     }
 
     func parseInheritanceClause() -> [NamedElement] {
-        return InheritanceClauseParser(lexer: lexer, sourceFile: sourceFile).parse()
+        return parse(InheritanceClauseParser.self)
     }
 
     func parseInheritanceType() -> NamedElement {
-        return TypeIdentifierParser(lexer: lexer, sourceFile: sourceFile).parse()
+        return parse(TypeIdentifierParser.self)
     }
 
     func parseTypeCodeBlock() -> CodeBlock {
-        return CodeBlockParser(lexer: lexer, sourceFile: sourceFile).parse()
+        return parse(CodeBlockParser.self)
     }
 
     func parseDeclarations() -> [Element] {
-        return DeclarationsParser(lexer: lexer, sourceFile: sourceFile).parse()
+        return parse(DeclarationsParser.self)
     }
 
     func parseProtocol() -> Element {
-        return ProtocolParser(lexer: lexer, sourceFile: sourceFile).parse()
+        return parse(ProtocolParser.self)
     }
 
     func parseAttributes() -> String {
-        return AttributeParser(lexer: lexer, sourceFile: sourceFile).parse()
+        return parse(AttributeParser.self)
     }
 
     func parseRequirementList() -> String {
-        return RequirementListParser(lexer: lexer, sourceFile: sourceFile).parse()
+        return parse(RequirementListParser.self)
+    }
+
+    func parseWhereClause() -> String {
+        return parse(GenericWhereClauseParser.self)
+    }
+
+    private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {
+        return P(lexer: lexer, sourceFile: sourceFile).parse()
     }
 }
