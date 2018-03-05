@@ -11,7 +11,7 @@ class Parser<ResultType> {
         self.sourceFile = sourceFile
     }
 
-    func parse() -> ResultType? {
+    func parse() -> ResultType {
         fatalError("override me")
     }
 
@@ -62,23 +62,23 @@ class Parser<ResultType> {
         return sourceFile.content
     }
 
-    func parseInheritanceClause() -> [NamedElement]? {
+    func parseInheritanceClause() -> [NamedElement] {
         return InheritanceClauseParser(lexer: lexer, sourceFile: sourceFile).parse()
     }
 
-    func parseInheritanceType() -> NamedElement? {
+    func parseInheritanceType() -> NamedElement {
         return TypeIdentifierParser(lexer: lexer, sourceFile: sourceFile).parse()
     }
 
-    func parseTypeCodeBlock() -> CodeBlock? {
+    func parseTypeCodeBlock() -> CodeBlock {
         return CodeBlockParser(lexer: lexer, sourceFile: sourceFile).parse()
     }
 
     func parseDeclarations() -> [Element] {
-        return DeclarationsParser(lexer: lexer, sourceFile: sourceFile).parse()!
+        return DeclarationsParser(lexer: lexer, sourceFile: sourceFile).parse()
     }
 
-    func parseProtocol() -> Element? {
+    func parseProtocol() -> Element {
         return ProtocolParser(lexer: lexer, sourceFile: sourceFile).parse()
     }
 }

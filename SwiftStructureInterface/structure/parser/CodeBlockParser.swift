@@ -2,7 +2,7 @@ typealias CodeBlock = (offset: Int64, length: Int64, bodyEnd: Int64, declaration
 
 class CodeBlockParser: Parser<CodeBlock> {
 
-    override func parse() -> CodeBlock? {
+    override func parse() -> CodeBlock {
         let bodyStart = getCurrentEndLocation()
         advance(if: .leftBrace)
         let bodyOffset = convert(bodyStart)!

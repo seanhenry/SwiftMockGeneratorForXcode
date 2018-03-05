@@ -1,6 +1,6 @@
 class TypeIdentifierParser: Parser<NamedElement> {
 
-    override func parse() -> NamedElement? {
+    override func parse() -> NamedElement {
         let start = getCurrentStartLocation()
         if var identifier = peekAtNextIdentifier() {
             advance()
@@ -11,7 +11,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
                 offset: convert(start)!,
                 length: getLength(identifier))
         }
-        return nil
+        return SwiftInheritedType.error
     }
 
     private func parseSubTypes() -> String {

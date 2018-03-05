@@ -12,11 +12,11 @@ class FileParser: Parser<File> {
         super.init(lexer: lexer, sourceFile: sourceFile)
     }
 
-    override func parse() -> File? {
+    override func parse() -> File {
         return parseFile()
     }
 
-    private func parseFile() -> File? {
+    private func parseFile() -> File {
         return SwiftFile(text: getFileContents(),
             children: parseDeclarations(),
             offset: 0,

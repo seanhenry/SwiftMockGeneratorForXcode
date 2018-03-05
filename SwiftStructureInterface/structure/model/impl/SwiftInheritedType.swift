@@ -1,4 +1,6 @@
 class SwiftInheritedType: SwiftElement, NamedElement {
+
+    static let error = SwiftInheritedType(name: "", text: "", children: [], offset: -1, length: -1)
     let name: String
 
     init(name: String, text: String, children: [Element], offset: Int64, length: Int64) {
