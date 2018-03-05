@@ -3,13 +3,6 @@ import XCTest
 
 class AttributeParserTests: XCTestCase {
 
-    var parser: Parser<String>!
-
-    override func tearDown() {
-        parser = nil
-        super.tearDown()
-    }
-
     // MARK: - parse
 
     func test_parse_shouldParseAttribute() {

@@ -38,15 +38,19 @@ class Parser<ResultType> {
     }
 
     func peekAtNextIdentifier() -> String? {
-        return lexer.look().kind.namedIdentifier
+        return peekAtNextKind().namedIdentifier
     }
 
     func isNext(_ kind: Token.Kind) -> Bool {
-        return lexer.look().kind == kind
+        return peekAtNextKind() == kind
     }
 
     func isNext(_ kind: [Token.Kind]) -> Bool {
-        return kind.contains(lexer.look().kind)
+        return kind.contains(peekAtNextKind())
+    }
+
+    func peekAtNextKind() -> Token.Kind {
+        return lexer.look().kind
     }
 
     func advance() {
@@ -104,5 +108,9 @@ class Parser<ResultType> {
 
     func parseAttributes() -> String {
         return AttributeParser(lexer: lexer, sourceFile: sourceFile).parse()
+    }
+
+    func parseRequirementList() -> String {
+        return RequirementListParser(lexer: lexer, sourceFile: sourceFile).parse()
     }
 }

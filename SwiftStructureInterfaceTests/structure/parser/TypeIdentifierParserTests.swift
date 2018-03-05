@@ -3,13 +3,6 @@ import XCTest
 
 class TypeIdentifierParserTests: XCTestCase {
 
-    var parser: Parser<String>!
-
-    override func tearDown() {
-        parser = nil
-        super.tearDown()
-    }
-
     // MARK: - parse
 
     func test_parse_shouldParseSimpleType() {
@@ -28,7 +21,7 @@ class TypeIdentifierParserTests: XCTestCase {
     func test_parse_shouldParseDeeplyNestedType() {
         assertTypeName("Swift.Deep.Nested.Type", "Swift.Deep.Nested.Type")
     }
-    
+
     // MARK: - Helpers
 
     func assertTypeName(_ input: String, _ expected: String, line: UInt = #line) {
