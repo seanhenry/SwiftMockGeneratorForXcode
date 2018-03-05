@@ -14,9 +14,14 @@ class RequirementListParser: Parser<String> {
     private func parseRequirement() -> String {
         var requirement = ""
         appendIdentifier(to: &requirement)
-        appendSameTypeOperator(to: &requirement)
-        append(.colon, value: ":", to: &requirement)
-        appendIdentifier(to: &requirement)
+        let isConformanceRequirement = isNext(.colon)
+        if isConformanceRequirement {
+            append(.colon, value: ":", to: &requirement)
+            appendConformanceRequirementRHS(to: &requirement)
+        } else {
+            appendSameTypeOperator(to: &requirement)
+            appendIdentifier(to: &requirement)
+        }
         return requirement
     }
 
@@ -37,5 +42,13 @@ class RequirementListParser: Parser<String> {
             advance()
             string.append("==")
         }
+    }
+
+    private func appendConformanceRequirementRHS(to string: inout String) {
+        let composition = parseProtocolComposition()
+        if composition != "" {
+            string.append(composition)
+        }
+        appendIdentifier(to: &string)
     }
 }

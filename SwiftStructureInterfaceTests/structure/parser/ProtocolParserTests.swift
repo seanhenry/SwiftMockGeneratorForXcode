@@ -187,4 +187,17 @@ class ProtocolParserTests: XCTestCase {
         XCTAssertEqual(`protocol`?.bodyOffset, 10)
         XCTAssertEqual(`protocol`?.bodyLength, 0)
     }
+
+    func test_parse_shouldParseComplicatedProtocol() {
+        let text = "@objc(NSMyProtocol) @abc fileprivate protocol MyProtocol : InheritedType1, Deep.Nested.Type where Type : A & B , Type2 == N.T {}"
+        parser = FileParser(fileContents: text)
+        let file = parser.parse()
+        let `protocol` = file.children[0] as? SwiftTypeElement
+        XCTAssertEqual(`protocol`?.name, "MyProtocol")
+        XCTAssertEqual(`protocol`?.text, text)
+        XCTAssertEqual(`protocol`?.offset, 0)
+        XCTAssertEqual(`protocol`?.length, Int64(text.utf8.count))
+        XCTAssertEqual(`protocol`?.bodyOffset, Int64(text.utf8.count) - 1)
+        XCTAssertEqual(`protocol`?.bodyLength, 0)
+    }
 }

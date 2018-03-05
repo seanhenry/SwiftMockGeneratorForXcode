@@ -4,8 +4,8 @@ class ProtocolParser: Parser<SwiftTypeElement> {
 
     override func parse() -> SwiftTypeElement {
         let start = getCurrentStartLocation()
-        skipAccessModifier()
         _ = parseAttributes()
+        skipAccessModifier()
         return parseDeclaration(start: start)
     }
 

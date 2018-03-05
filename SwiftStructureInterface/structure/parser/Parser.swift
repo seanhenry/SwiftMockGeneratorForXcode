@@ -73,8 +73,8 @@ class Parser<ResultType> {
 
     func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
         let c = setCheckPoint()
-        skipAccessModifier()
         _ = parseAttributes()
+        skipAccessModifier()
         let isNext = self.isNext(declaration)
         restoreCheckPoint(c)
         return isNext
@@ -124,6 +124,10 @@ class Parser<ResultType> {
 
     func parseWhereClause() -> String {
         return parse(GenericWhereClauseParser.self)
+    }
+
+    func parseProtocolComposition() -> String {
+        return parse(ProtocolCompositionParser.self)
     }
 
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {
