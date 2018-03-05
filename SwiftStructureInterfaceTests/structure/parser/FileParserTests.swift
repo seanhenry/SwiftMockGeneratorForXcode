@@ -1,9 +1,9 @@
 import XCTest
 @testable import SwiftStructureInterface
 
-class ParserTests: XCTestCase {
+class FileParserTests: XCTestCase {
 
-    var parser: Parser!
+    var parser: FileParser!
 
     override func tearDown() {
         parser = nil
@@ -13,7 +13,7 @@ class ParserTests: XCTestCase {
     // MARK: - parse
 
     func test_parse_shouldParseFile() {
-        parser = Parser(fileContents: "protocol P {}")
+        parser = FileParser(fileContents: "protocol P {}")
         let file = parser.parse()
         XCTAssertEqual(file?.text, "protocol P {}")
         XCTAssertEqual(file?.offset, 0)
@@ -21,7 +21,7 @@ class ParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseUTF16File() {
-        parser = Parser(fileContents: "protocol 💐 {}")
+        parser = FileParser(fileContents: "protocol 💐 {}")
         let file = parser.parse()
         XCTAssertEqual(file?.text, "protocol 💐 {}")
         XCTAssertEqual(file?.offset, 0)
@@ -29,7 +29,7 @@ class ParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseProtocol() {
-        parser = Parser(fileContents: "protocol P {}")
+        parser = FileParser(fileContents: "protocol P {}")
         let file = parser.parse()
         let `protocol` = file?.children[0] as? SwiftTypeElement
         XCTAssertEqual(`protocol`?.text, "protocol P {}")
@@ -41,7 +41,7 @@ class ParserTests: XCTestCase {
     }
 
     func test_parse_shouldParsePartialProtocolWithoutClosingBrace() {
-        parser = Parser(fileContents: "protocol A {")
+        parser = FileParser(fileContents: "protocol A {")
         let file = parser.parse()
         let `protocol` = file?.children[0] as? SwiftTypeElement
         XCTAssertEqual(`protocol`?.text, "protocol A {")
@@ -53,7 +53,7 @@ class ParserTests: XCTestCase {
     }
 
     func test_parse_shouldParsePartialProtocolWithoutOpeningBrace() {
-        parser = Parser(fileContents: "protocol A")
+        parser = FileParser(fileContents: "protocol A")
         let file = parser.parse()
         let `protocol` = file?.children[0] as? SwiftTypeElement
         XCTAssertEqual(`protocol`?.text, "protocol A")
@@ -65,7 +65,7 @@ class ParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseInheritanceClause() {
-        parser = Parser(fileContents: "protocol A: B {}")
+        parser = FileParser(fileContents: "protocol A: B {}")
         let file = parser.parse()
         let `protocol` = file?.children[0] as? SwiftTypeElement
         XCTAssertEqual(`protocol`?.text, "protocol A: B {}")
@@ -79,5 +79,39 @@ class ParserTests: XCTestCase {
         XCTAssertEqual(`protocol`?.inheritedTypes[0].text, "B")
         XCTAssertEqual(`protocol`?.inheritedTypes[0].offset, 12)
         XCTAssertEqual(`protocol`?.inheritedTypes[0].length, 1)
+    }
+
+    func test_parse_shouldParseInheritanceClauseWithMultipleInheritanceTypes() {
+        parser = FileParser(fileContents: "protocol A: class, ProtocolB, P💐C {}")
+        let file = parser.parse()
+        let `protocol` = file?.children[0] as? SwiftTypeElement
+        XCTAssertEqual(`protocol`?.inheritedTypes.count, 3)
+        XCTAssertEqual(`protocol`?.inheritedTypes[0].name, "class")
+        XCTAssertEqual(`protocol`?.inheritedTypes[0].text, "class")
+        XCTAssertEqual(`protocol`?.inheritedTypes[0].offset, 12)
+        XCTAssertEqual(`protocol`?.inheritedTypes[0].length, 5)
+        XCTAssertEqual(`protocol`?.inheritedTypes[1].name, "ProtocolB")
+        XCTAssertEqual(`protocol`?.inheritedTypes[1].text, "ProtocolB")
+        XCTAssertEqual(`protocol`?.inheritedTypes[1].offset, 19)
+        XCTAssertEqual(`protocol`?.inheritedTypes[1].length, 9)
+        XCTAssertEqual(`protocol`?.inheritedTypes[2].name, "P💐C")
+        XCTAssertEqual(`protocol`?.inheritedTypes[2].text, "P💐C")
+        XCTAssertEqual(`protocol`?.inheritedTypes[2].offset, 30)
+        XCTAssertEqual(`protocol`?.inheritedTypes[2].length, 6)
+    }
+
+    func test_parse_shouldParseInheritanceClauseWithNestedTypes() {
+        parser = FileParser(fileContents: "protocol A: Nested.Type, Deep.Nested.Type {}")
+        let file = parser.parse()
+        let `protocol` = file?.children[0] as? SwiftTypeElement
+        XCTAssertEqual(`protocol`?.inheritedTypes.count, 2)
+        XCTAssertEqual(`protocol`?.inheritedTypes[0].name, "Nested.Type")
+        XCTAssertEqual(`protocol`?.inheritedTypes[0].text, "Nested.Type")
+        XCTAssertEqual(`protocol`?.inheritedTypes[0].offset, 12)
+        XCTAssertEqual(`protocol`?.inheritedTypes[0].length, 11)
+        XCTAssertEqual(`protocol`?.inheritedTypes[1].name, "Deep.Nested.Type")
+        XCTAssertEqual(`protocol`?.inheritedTypes[1].text, "Deep.Nested.Type")
+        XCTAssertEqual(`protocol`?.inheritedTypes[1].offset, 25)
+        XCTAssertEqual(`protocol`?.inheritedTypes[1].length, 16)
     }
 }
