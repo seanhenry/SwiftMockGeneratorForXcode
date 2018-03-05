@@ -67,33 +67,12 @@ class Parser<ResultType> {
     }
 
     func parseDeclarations() -> [Element] {
-        let start = getCurrentStartLocation()
         var elements = [Element]()
-        if isNext(.protocol) {
-            advance()
-            parseProtocol(start: start).map { elements.append($0) }
-        }
+        parseProtocol().map { elements.append($0) }
         return elements
     }
 
-    func parseProtocol(start: SourceLocation) -> Element? {
-        let offset = convert(start)!
-        guard let name = peekAtNextIdentifier() else { return nil }
-        advance()
-        if let inheritanceClause = parseInheritanceClause(),
-           let (bodyOffset, bodyLength, bodyEnd, declarations) = parseTypeCodeBlock() {
-            let length = bodyEnd - offset
-            let text = getSubstring(from: sourceFile.content, offset: offset, length: length)!
-            return SwiftTypeElement(
-                name: name,
-                text: text,
-                children: declarations,
-                inheritedTypes: inheritanceClause,
-                offset: offset,
-                length: length,
-                bodyOffset: bodyOffset,
-                bodyLength: bodyLength)
-        }
-        return nil
+    func parseProtocol() -> Element? {
+        return ProtocolParser(lexer: lexer, sourceFile: sourceFile).parse()
     }
 }
