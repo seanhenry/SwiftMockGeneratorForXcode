@@ -67,6 +67,21 @@ class Parser<ResultType> {
         return sourceFile.content
     }
 
+    func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
+        let c = lexer.checkPoint()
+        skipAccessModifier()
+        _ = parseAttributes()
+        let isNext = self.isNext(declaration)
+        lexer.restore(fromCheckpoint: c)
+        return isNext
+    }
+
+    func skipAccessModifier() {
+        if isNext(accessLevelModifiers) {
+            advance()
+        }
+    }
+
     func parseInheritanceClause() -> [NamedElement] {
         return InheritanceClauseParser(lexer: lexer, sourceFile: sourceFile).parse()
     }
@@ -87,17 +102,7 @@ class Parser<ResultType> {
         return ProtocolParser(lexer: lexer, sourceFile: sourceFile).parse()
     }
 
-    func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
-        let c = lexer.checkPoint()
-        skipAccessModifier()
-        let isNext = self.isNext(declaration)
-        lexer.restore(fromCheckpoint: c)
-        return isNext
-    }
-
-    func skipAccessModifier() {
-        if isNext(accessLevelModifiers) {
-            advance()
-        }
+    func parseAttributes() -> String {
+        return AttributeParser(lexer: lexer, sourceFile: sourceFile).parse()
     }
 }

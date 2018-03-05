@@ -124,6 +124,16 @@ class ProtocolParserTests: XCTestCase {
         XCTAssertEqual(`protocol`?.bodyOffset, 18)
         XCTAssertEqual(`protocol`?.bodyLength, 0)
     }
+
+    func test_parse_shouldParseProtocolWithAttribute() {
+        parser = FileParser(fileContents: "@objc(NS) protocol A {}")
+        let file = parser.parse()
+        let `protocol` = file.children[0] as? SwiftTypeElement
+        XCTAssertEqual(`protocol`?.text, "@objc(NS) protocol A {}")
+        XCTAssertEqual(`protocol`?.name, "A")
+        XCTAssertEqual(`protocol`?.offset, 0)
+        XCTAssertEqual(`protocol`?.length, 23)
+        XCTAssertEqual(`protocol`?.bodyOffset, 22)
         XCTAssertEqual(`protocol`?.bodyLength, 0)
     }
 
