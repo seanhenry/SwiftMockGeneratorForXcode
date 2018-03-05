@@ -3,8 +3,8 @@ import Source
 
 class Parser<ResultType> {
 
-    let sourceFile: SourceFile
-     let lexer: Lexer // TODO: make private
+    private let sourceFile: SourceFile
+    private let lexer: Lexer
 
     init(lexer: Lexer, sourceFile: SourceFile) {
         self.lexer = lexer
@@ -54,6 +54,14 @@ class Parser<ResultType> {
         }
     }
 
+    func getString(offset: Int64, length: Int64) -> String? {
+        return getSubstring(from: getFileContents(), offset: offset, length: length)
+    }
+
+    func getFileContents() -> String {
+        return sourceFile.content
+    }
+
     func parseInheritanceClause() -> [NamedElement]? {
         return InheritanceClauseParser(lexer: lexer, sourceFile: sourceFile).parse()
     }
@@ -67,9 +75,7 @@ class Parser<ResultType> {
     }
 
     func parseDeclarations() -> [Element] {
-        var elements = [Element]()
-        parseProtocol().map { elements.append($0) }
-        return elements
+        return DeclarationsParser(lexer: lexer, sourceFile: sourceFile).parse()!
     }
 
     func parseProtocol() -> Element? {

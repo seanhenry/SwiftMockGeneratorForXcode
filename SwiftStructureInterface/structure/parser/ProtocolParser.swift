@@ -10,7 +10,7 @@ class ProtocolParser: Parser<SwiftTypeElement> {
         if let inheritanceClause = parseInheritanceClause(),
            let (bodyOffset, bodyLength, bodyEnd, declarations) = parseTypeCodeBlock() {
             let length = bodyEnd - offset
-            let text = getSubstring(from: sourceFile.content, offset: offset, length: length)!
+            let text = getString(offset: offset, length: length)!
             return SwiftTypeElement(
                 name: name,
                 text: text,

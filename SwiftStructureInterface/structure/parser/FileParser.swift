@@ -17,9 +17,9 @@ class FileParser: Parser<File> {
     }
 
     private func parseFile() -> File? {
-        return SwiftFile(text: sourceFile.content,
+        return SwiftFile(text: getFileContents(),
             children: parseDeclarations(),
             offset: 0,
-            length: Int64(sourceFile.content.utf8.count))
+            length: Int64(getFileContents().utf8.count))
     }
 }
