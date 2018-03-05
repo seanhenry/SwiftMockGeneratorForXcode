@@ -72,12 +72,20 @@ class Parser<ResultType> {
     }
 
     func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
-        let c = lexer.checkPoint()
+        let c = setCheckPoint()
         skipAccessModifier()
         _ = parseAttributes()
         let isNext = self.isNext(declaration)
-        lexer.restore(fromCheckpoint: c)
+        restoreCheckPoint(c)
         return isNext
+    }
+
+    func setCheckPoint() -> String {
+        return lexer.checkPoint()
+    }
+
+    func restoreCheckPoint(_ id: String) {
+        lexer.restore(fromCheckpoint: id)
     }
 
     func skipAccessModifier() {
