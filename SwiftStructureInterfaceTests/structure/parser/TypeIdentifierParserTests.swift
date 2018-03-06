@@ -63,6 +63,14 @@ class TypeIdentifierParserTests: XCTestCase {
         assertOffsetLength("A < B,C > next element", 0, 9)
     }
 
+    func test_parse_shouldParseGenericWithArrayType() {
+        assertTypeName("Generic<[Int]>", "Generic<[Int]>")
+    }
+
+    func test_parse_shouldParseGenericWithDictionaryType() {
+        assertTypeName("Generic<[Int:String]>", "Generic<[Int:String]>")
+    }
+
     // MARK: - Array
 
     func test_parse_shouldParseArray() {
@@ -88,6 +96,24 @@ class TypeIdentifierParserTests: XCTestCase {
 
     func test_parse_shouldParse3DArray() {
         assertTypeName("[[[Int]]]", "[[[Int]]]")
+    }
+
+    // MARK: - Dictionary
+
+    func test_parse_shouldParseDictionary() {
+        assertTypeName("[A:B]", "[A:B]")
+    }
+
+    func test_parse_shouldParseDictionaryWithNestedTypes() {
+        assertTypeName("[A.B.C:D.E.F]", "[A.B.C:D.E.F]")
+    }
+
+    func test_parse_shouldParseDictionaryWithGenericTypes() {
+        assertTypeName("[Generic<Type>:Generic<Type>]", "[Generic<Type>:Generic<Type>]")
+    }
+
+    func test_parse_shouldParseDictionaryWithArray() {
+        assertTypeName("[[Int]:[String]]", "[[Int]:[String]]")
     }
 
     // MARK: - Helpers

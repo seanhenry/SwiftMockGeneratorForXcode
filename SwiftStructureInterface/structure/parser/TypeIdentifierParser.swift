@@ -19,7 +19,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
     }
 
     private func parseType() -> String? {
-        if let type = parsePlainType() ?? parseArrayType() {
+        if let type = parsePlainType() ?? parseArrayType() ?? parseDictionaryType() {
             return type + parseGenericClause()
         }
         return nil
@@ -105,12 +105,30 @@ class TypeIdentifierParser: Parser<NamedElement> {
     // MARK: - Array
 
     private func parseArrayType() -> String? {
+        let cp = setCheckPoint()
         do {
             var array = ""
             try append(.leftSquare, value: "[", to: &array)
             appendType(to: &array)
             try append(.rightSquare, value: "]", to: &array)
             return array
+        } catch {
+            restoreCheckPoint(cp)
+        }
+        return nil
+    }
+
+    // MARK: - Dictionary
+
+    private func parseDictionaryType() -> String? {
+        do {
+            var dictionary = ""
+            try append(.leftSquare, value: "[", to: &dictionary)
+            appendType(to: &dictionary)
+            try append(.colon, value: ":", to: &dictionary)
+            appendType(to: &dictionary)
+            try append(.rightSquare, value: "]", to: &dictionary)
+            return dictionary
         } catch {} // ignored
         return nil
     }
