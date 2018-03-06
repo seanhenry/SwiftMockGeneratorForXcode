@@ -177,7 +177,7 @@ class ProtocolParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseInheritanceClauseWithGenerics() {
-        let text = "protocol A: Generic<Type> where Type.Type == Another<Generic> {}"
+        let text = "protocol A: Generic<Type> where Type.Type : Another<Generic> {}"
         parser = createParser(text, ProtocolParser.self)
         let `protocol` = parser.parse()
         XCTAssertEqual(`protocol`.name, "A")

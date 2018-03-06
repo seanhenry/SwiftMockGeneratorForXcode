@@ -47,8 +47,16 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeName("Generic< >", "Generic<>")
     }
 
+    func test_parse_shouldParseGenericWithMultipleArguments() {
+        assertTypeName("Generic<A, B>", "Generic<A, B>")
+    }
+
     func test_parse_shouldParseComplicatedType() {
-        assertTypeName("Nested.Generic<With.Nested.Generic<Inside.Another>>", "Nested.Generic<With.Nested.Generic<Inside.Another>>")
+        assertTypeName("Nested.Generic<With.Nested.Generic<Inside.Another>, Side.By<Side, Again>>", "Nested.Generic<With.Nested.Generic<Inside.Another>, Side.By<Side, Again>>")
+    }
+
+    func test_parse_shouldCalculateLengthWhenDifferentFormatting() {
+        assertOffsetLength("A < B,C > next element", 0, 9)
     }
 
     // MARK: - Helpers
@@ -56,5 +64,11 @@ class TypeIdentifierParserTests: XCTestCase {
     func assertTypeName(_ input: String, _ expected: String, line: UInt = #line) {
         let element = createParser(input, TypeIdentifierParser.self).parse()
         XCTAssertEqual(element.name, expected, line: line)
+    }
+
+    func assertOffsetLength(_ input: String, _ expectedOffset: Int64, _ expectedLength: Int64, line: UInt = #line) {
+        let element = createParser(input, TypeIdentifierParser.self).parse()
+        XCTAssertEqual(element.offset, expectedOffset, line: line)
+        XCTAssertEqual(element.length, expectedLength, line: line)
     }
 }

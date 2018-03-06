@@ -6,10 +6,12 @@ class Parser<ResultType> {
     private let sourceFile: SourceFile
     private let lexer: Lexer
     private let accessLevelModifiers = Token.Kind.accessLevelModifiers
+    private var lastRange: SourceRange
 
     required init(lexer: Lexer, sourceFile: SourceFile) {
         self.lexer = lexer
         self.sourceFile = sourceFile
+        lastRange = lexer.look().sourceRange
     }
 
     func parse() -> ResultType {
@@ -27,6 +29,10 @@ class Parser<ResultType> {
 
     func getCurrentEndLocation() -> SourceLocation {
         return getCurrentRange().end
+    }
+
+    func getPreviousEndLocation() -> SourceLocation {
+        return lastRange.end
     }
 
     func getCurrentRange() -> SourceRange {
@@ -60,6 +66,7 @@ class Parser<ResultType> {
     }
 
     func advance() {
+        lastRange = getCurrentRange()
         lexer.advance()
     }
 
