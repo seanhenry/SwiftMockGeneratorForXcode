@@ -14,6 +14,8 @@ class TypeIdentifierParserTests: XCTestCase {
         XCTAssert(element === SwiftInheritedType.error)
     }
 
+    // MARK: - Nested
+
     func test_parse_shouldParseNestedType() {
         assertTypeName("Swift.Type", "Swift.Type")
     }
@@ -21,6 +23,8 @@ class TypeIdentifierParserTests: XCTestCase {
     func test_parse_shouldParseDeeplyNestedType() {
         assertTypeName("Swift.Deep.Nested.Type", "Swift.Deep.Nested.Type")
     }
+
+    // MARK: - Generic
 
     func test_parse_shouldParseGenericType() {
         assertTypeName("Generic<Type>", "Generic<Type>")
@@ -57,6 +61,33 @@ class TypeIdentifierParserTests: XCTestCase {
 
     func test_parse_shouldCalculateLengthWhenDifferentFormatting() {
         assertOffsetLength("A < B,C > next element", 0, 9)
+    }
+
+    // MARK: - Array
+
+    func test_parse_shouldParseArray() {
+        assertTypeName("[Int]", "[Int]")
+    }
+
+    func test_parse_shouldParseArrayWithNestedType() {
+        assertTypeName("[Nested.Type]", "[Nested.Type]")
+    }
+
+    func test_parse_shouldParseArrayWithGenericType() {
+        assertTypeName("[Generic<Type>]", "[Generic<Type>]")
+        assertTypeName("[Nested.Generic<Nested.Type>]", "[Nested.Generic<Nested.Type>]")
+    }
+
+    func test_parse_shouldParseArrayWithEmptyType() {
+        assertTypeName("[]", "[]")
+    }
+
+    func test_parse_shouldNotParseArrayWithBadClosingType() {
+        assertTypeName("[Type)", "")
+    }
+
+    func test_parse_shouldParse3DArray() {
+        assertTypeName("[[[Int]]]", "[[[Int]]]")
     }
 
     // MARK: - Helpers

@@ -23,15 +23,6 @@ class ProtocolCompositionParser: Parser<String> {
         try appendIdentifier(to: &string)
     }
 
-    private func appendIdentifier(to string: inout String) throws {
-        if let identifier = peekAtNextIdentifier() {
-            advance()
-            string.append(identifier)
-        } else {
-            throw Error()
-        }
-    }
-
     private func appendAmpBinaryOperator(to string: inout String) throws {
         if isNextAmpBinaryOperator() {
             advance()

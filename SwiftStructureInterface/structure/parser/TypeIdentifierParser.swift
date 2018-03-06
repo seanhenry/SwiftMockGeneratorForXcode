@@ -1,3 +1,5 @@
+import Lexer
+
 class TypeIdentifierParser: Parser<NamedElement> {
 
     private class Error: Swift.Error {}
@@ -17,9 +19,16 @@ class TypeIdentifierParser: Parser<NamedElement> {
     }
 
     private func parseType() -> String? {
+        if let type = parsePlainType() ?? parseArrayType() {
+            return type + parseGenericClause()
+        }
+        return nil
+    }
+
+    private func parsePlainType() -> String? {
         guard let identifier = peekAtNextIdentifier() else { return nil }
         advance()
-        return identifier + parseSubTypes() + parseGenericClause()
+        return identifier + parseSubTypes()
     }
 
     // MARK: - Nested
@@ -29,16 +38,9 @@ class TypeIdentifierParser: Parser<NamedElement> {
         while isNext(.dot) {
             advance()
             identifier.append(".")
-            appendIdentifier(to: &identifier)
+            tryToAppendIdentifier(to: &identifier)
         }
         return identifier
-    }
-
-    private func appendIdentifier(to string: inout String) {
-        if let nextID = peekAtNextIdentifier() {
-            advance()
-            string.append(nextID)
-        }
     }
 
     // MARK: - Generic
@@ -47,7 +49,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
         var clause = ""
         do {
             try appendGenericClauseStart(to: &clause)
-            appendGenericArgument(to: &clause)
+            appendType(to: &clause)
             appendGenericArgumentList(to: &clause)
             try appendGenericClauseEnd(to: &clause)
         } catch {} // ignored
@@ -63,7 +65,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
         }
     }
 
-    private func appendGenericArgument(to string: inout String) {
+    private func appendType(to string: inout String) {
         string.append(parseType() ?? "")
     }
 
@@ -71,7 +73,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
         while isNext(.comma) {
             advance()
             string.append(", ")
-            appendGenericArgument(to: &string)
+            appendType(to: &string)
         }
     }
 
@@ -98,5 +100,18 @@ class TypeIdentifierParser: Parser<NamedElement> {
             return op == ">>"
         }
         return false
+    }
+
+    // MARK: - Array
+
+    private func parseArrayType() -> String? {
+        do {
+            var array = ""
+            try append(.leftSquare, value: "[", to: &array)
+            appendType(to: &array)
+            try append(.rightSquare, value: "]", to: &array)
+            return array
+        } catch {} // ignored
+        return nil
     }
 }

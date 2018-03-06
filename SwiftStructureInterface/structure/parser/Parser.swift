@@ -7,6 +7,7 @@ class Parser<ResultType> {
     private let lexer: Lexer
     private let accessLevelModifiers = Token.Kind.accessLevelModifiers
     private var lastRange: SourceRange
+    private class Error: Swift.Error {}
 
     required init(lexer: Lexer, sourceFile: SourceFile) {
         self.lexer = lexer
@@ -104,6 +105,38 @@ class Parser<ResultType> {
     func skipAccessModifier() {
         if isNext(accessLevelModifiers) {
             advance()
+        }
+    }
+
+    func append(_ kind: Token.Kind, value: String, to string: inout String) throws {
+        if isNext(kind) {
+            advance()
+            string.append(value)
+        } else {
+            throw Error()
+        }
+    }
+
+    func tryToAppend(_ kind: Token.Kind, value: String, to string: inout String) {
+        if isNext(kind) {
+            advance()
+            string.append(value)
+        }
+    }
+
+    func appendIdentifier(to string: inout String) throws {
+        if let argument = peekAtNextIdentifier() {
+            advance()
+            string += argument
+        } else {
+            throw Error()
+        }
+    }
+
+    func tryToAppendIdentifier(to string: inout String) {
+        if let argument = peekAtNextIdentifier() {
+            advance()
+            string += argument
         }
     }
 

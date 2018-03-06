@@ -1,8 +1,4 @@
-import Lexer
-
 class AttributeParser: Parser<String> {
-
-    private class Error: Swift.Error {}
 
     override func parse() -> String {
         var attributes = [String]()
@@ -22,23 +18,5 @@ class AttributeParser: Parser<String> {
             try append(.rightParen, value: ")", to: &attribute)
         } catch {} // ignored
         return attribute
-    }
-
-    private func append(_ kind: Token.Kind, value: String, to string: inout String) throws {
-        if isNext(kind) {
-            advance()
-            string += value
-        } else {
-            throw Error()
-        }
-    }
-
-    private func appendIdentifier(to string: inout String) throws {
-        if let argument = peekAtNextIdentifier() {
-            advance()
-            string += argument
-        } else {
-            throw Error()
-        }
     }
 }
