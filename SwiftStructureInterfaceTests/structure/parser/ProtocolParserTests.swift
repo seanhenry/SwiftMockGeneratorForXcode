@@ -175,4 +175,21 @@ class ProtocolParserTests: XCTestCase {
         XCTAssertEqual(`protocol`.bodyOffset, Int64(text.utf8.count) - 1)
         XCTAssertEqual(`protocol`.bodyLength, 0)
     }
+
+    func test_parse_shouldParseInheritanceClauseWithGenerics() {
+        let text = "protocol A: Generic<Type> where Type.Type == Another<Generic> {}"
+        parser = createParser(text, ProtocolParser.self)
+        let `protocol` = parser.parse()
+        XCTAssertEqual(`protocol`.name, "A")
+        XCTAssertEqual(`protocol`.text, text)
+        XCTAssertEqual(`protocol`.offset, 0)
+        XCTAssertEqual(`protocol`.length, Int64(text.utf8.count))
+        XCTAssertEqual(`protocol`.bodyOffset, Int64(text.utf8.count) - 1)
+        XCTAssertEqual(`protocol`.bodyLength, 0)
+        XCTAssertEqual(`protocol`.inheritedTypes.count, 1)
+        XCTAssertEqual(`protocol`.inheritedTypes[0].name, "Generic<Type>")
+        XCTAssertEqual(`protocol`.inheritedTypes[0].text, "Generic<Type>")
+        XCTAssertEqual(`protocol`.inheritedTypes[0].offset, 12)
+        XCTAssertEqual(`protocol`.inheritedTypes[0].length, 13)
+    }
 }

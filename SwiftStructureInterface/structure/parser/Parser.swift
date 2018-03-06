@@ -49,6 +49,12 @@ class Parser<ResultType> {
         return kind.contains(peekAtNextKind())
     }
 
+    func isNext(_ scalar: UnicodeScalar) -> Bool {
+        let cp = setCheckPoint()
+        defer { restoreCheckPoint(cp) }
+        return lexer.matchUnicodeScalar(scalar)
+    }
+
     func peekAtNextKind() -> Token.Kind {
         return lexer.look().kind
     }
