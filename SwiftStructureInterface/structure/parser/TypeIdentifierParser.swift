@@ -84,6 +84,8 @@ class TypeIdentifierParser: Parser<NamedElement> {
                 string.append(">?")
             } else if isDoubleGenericClauseEnd() {
                 string.append(">>")
+            } else if isIUOGenericClauseEnd() {
+                string.append(">!")
             } else {
                 string.append(">")
             }
@@ -103,18 +105,17 @@ class TypeIdentifierParser: Parser<NamedElement> {
 
     private func isDoubleGenericClauseEnd() -> Bool {
         // a '>>' postfix operator is detected when generics are nested (Generic<Type<InnerType>>)
-        if case let .postfixOperator(op) = peekAtNextKind() {
-            return op == ">>"
-        }
-        return false
+        return isPostfixOperator(">>")
     }
 
     private func isOptionalGenericClauseEnd() -> Bool {
         // a '>?' postfix operator is detected for optional generics (Generic<Type>?)
-        if case let .postfixOperator(op) = peekAtNextKind() {
-            return op == ">?"
-        }
-        return false
+        return isPostfixOperator(">?")
+    }
+
+    private func isIUOGenericClauseEnd() -> Bool {
+        // a '>!' postfix operator is detected for IUO generics (Generic<Type>!)
+        return isPostfixOperator(">!")
     }
 
     // MARK: - Array
@@ -146,9 +147,18 @@ class TypeIdentifierParser: Parser<NamedElement> {
     // MARK: - Optional
 
     private func appendOptional(to string: inout String) {
-        if isNext("?") {
+        if isNext(.postfixQuestion) {
             advance()
             string.append("?")
+        } else if isNext(.postfixExclaim) {
+            advance()
+            string.append("!")
+        } else if isPostfixOperator("??") {
+            advance()
+            string.append("??")
+        } else if isPostfixOperator("!!") {
+            advance()
+            string.append("!!")
         }
     }
 }

@@ -138,6 +138,36 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeName("[[String?:Int?]?:Int?]?", "[[String?:Int?]?:Int?]?")
     }
 
+    func test_parse_shouldDoubleOptional() {
+        assertTypeName("Int??", "Int??")
+    }
+
+    // MARK: - IUO
+
+    func test_parse_shouldParseIUO() {
+        assertTypeName("Int!", "Int!")
+    }
+
+    func test_parse_shouldParseNestedTypeIUO() {
+        assertTypeName("A.B.C!", "A.B.C!")
+    }
+
+    func test_parse_shouldParseGenericIUO() {
+        assertTypeName("Generic<Type>!", "Generic<Type>!")
+    }
+
+    func test_parse_shouldParseIUOArray() {
+        assertTypeName("[Int!]!", "[Int!]!")
+    }
+
+    func test_parse_shouldParseIUODictionary() {
+        assertTypeName("[[String!:Int!]!:Int!]!", "[[String!:Int!]!:Int!]!")
+    }
+
+    func test_parse_shouldDoubleIUO() {
+        assertTypeName("Int!!", "Int!!")
+    }
+
     // MARK: - Helpers
 
     func assertTypeName(_ input: String, _ expected: String, line: UInt = #line) {

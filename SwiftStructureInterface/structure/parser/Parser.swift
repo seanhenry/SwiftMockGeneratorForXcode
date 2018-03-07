@@ -85,6 +85,13 @@ class Parser<ResultType> {
         return sourceFile.content
     }
 
+    func isPostfixOperator(_ string: String) -> Bool {
+        if case let .postfixOperator(op) = peekAtNextKind() {
+            return op == string
+        }
+        return false
+    }
+
     func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
         let c = setCheckPoint()
         _ = parseAttributes()
