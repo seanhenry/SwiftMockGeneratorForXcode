@@ -15,11 +15,10 @@ class RequirementListParser: Parser<String> {
         let isConformanceRequirement = isNext(.colon)
         if isConformanceRequirement {
             tryToAppend(.colon, value: ":", to: &requirement)
-            appendConformanceRequirementRHS(to: &requirement)
         } else {
             appendSameTypeOperator(to: &requirement)
-            appendType(to: &requirement)
         }
+        appendType(to: &requirement)
         return requirement
     }
 
@@ -29,17 +28,6 @@ class RequirementListParser: Parser<String> {
     }
 
     private func appendSameTypeOperator(to string: inout String) {
-        if case let .binaryOperator(op) = peekAtNextKind(), op == "==" {
-            advance()
-            string.append("==")
-        }
-    }
-
-    private func appendConformanceRequirementRHS(to string: inout String) {
-        let composition = parseProtocolComposition()
-        if composition != "" {
-            string.append(composition)
-        }
-        appendType(to: &string)
+        tryToAppendBinaryOperator("==", value: "==", to: &string)
     }
 }

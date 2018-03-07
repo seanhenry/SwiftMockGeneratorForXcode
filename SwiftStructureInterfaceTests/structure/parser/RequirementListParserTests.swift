@@ -46,8 +46,8 @@ class RequirementListParserTests: XCTestCase {
         assertText("A:B & C & D", "A:B & C & D")
     }
 
-    func test_parse_shouldNotParseProtocolCompositionInSameTypeRequirement() {
-        assertText("A==B & C & D", "A==B")
+    func test_parse_shouldParseProtocolCompositionInSameTypeRequirement() {
+        assertText("A==B & C & D", "A==B & C & D")
     }
 
     // MARK: - Helpers

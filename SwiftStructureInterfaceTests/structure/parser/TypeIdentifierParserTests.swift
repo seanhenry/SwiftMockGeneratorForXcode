@@ -168,6 +168,33 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeName("Int!!", "Int!!")
     }
 
+    // MARK: - Protocol composition
+
+    func test_parse_shouldParseComposition() {
+        assertTypeName("A & B", "A & B")
+    }
+
+    func test_parse_shouldNotParseIncomplete() {
+        assertTypeName("A &", "A")
+    }
+
+    func test_parse_shouldNotParseIncorrectComposition() {
+        assertTypeName("A & 0", "A")
+    }
+
+    func test_parse_shouldNotParseIncorrectBinaryOperator() {
+        assertTypeName("A | B", "A")
+    }
+
+    func test_parse_shouldParseMultipleComposition() {
+        assertTypeName("A & B & C & D", "A & B & C & D")
+    }
+
+    func test_parse_shouldParseWhenFirstIsCorrectButNextIsWrong() {
+        assertTypeName("A & B | C", "A & B")
+        assertTypeName("A & B & 0", "A & B & ")
+    }
+
     // MARK: - Helpers
 
     func assertTypeName(_ input: String, _ expected: String, line: UInt = #line) {

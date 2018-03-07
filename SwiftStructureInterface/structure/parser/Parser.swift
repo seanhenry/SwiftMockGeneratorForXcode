@@ -92,6 +92,13 @@ class Parser<ResultType> {
         return false
     }
 
+    func isBinaryOperator(_ string: String) -> Bool {
+        if case let .binaryOperator(op) = peekAtNextKind() {
+            return op == string
+        }
+        return false
+    }
+
     func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
         let c = setCheckPoint()
         _ = parseAttributes()
@@ -126,6 +133,22 @@ class Parser<ResultType> {
 
     func tryToAppend(_ kind: Token.Kind, value: String, to string: inout String) {
         if isNext(kind) {
+            advance()
+            string.append(value)
+        }
+    }
+
+    func appendBinaryOperator(_ op: String, value: String, to string: inout String) throws {
+        if isBinaryOperator(op) {
+            advance()
+            string.append(value)
+        } else {
+            throw Error()
+        }
+    }
+
+    func tryToAppendBinaryOperator(_ op: String, value: String, to string: inout String) {
+        if isBinaryOperator(op) {
             advance()
             string.append(value)
         }
@@ -187,10 +210,6 @@ class Parser<ResultType> {
 
     func parseWhereClause() -> String {
         return parse(GenericWhereClauseParser.self)
-    }
-
-    func parseProtocolComposition() -> String {
-        return parse(ProtocolCompositionParser.self)
     }
 
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {

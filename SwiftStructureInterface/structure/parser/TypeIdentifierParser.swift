@@ -19,7 +19,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
     }
 
     private func parseType() -> String? {
-        if var type = parsePlainType() ?? parseArrayType() ?? parseDictionaryType() {
+        if var type = parseProtocolCompositionType() ?? parsePlainType() ?? parseArrayType() ?? parseDictionaryType() {
             appendOptional(to: &type)
             return type + parseGenericClause()
         }
@@ -160,5 +160,32 @@ class TypeIdentifierParser: Parser<NamedElement> {
             advance()
             string.append("!!")
         }
+    }
+
+    // MARK: - Protocol composition
+
+    func parseProtocolCompositionType() -> String? {
+        return tryToParse {
+            var composition = ""
+            try appendIdentifier(to: &composition)
+            try appendCompositionRHS(to: &composition)
+            repeat {
+                try? appendCompositionRHS(to: &composition)
+            } while isNextAmpBinaryOperator()
+            return composition
+        }
+    }
+
+    private func appendCompositionRHS(to string: inout String) throws {
+        try appendAmpBinaryOperator(to: &string)
+        try appendIdentifier(to: &string)
+    }
+
+    private func appendAmpBinaryOperator(to string: inout String) throws {
+        try appendBinaryOperator("&", value: " & ", to: &string)
+    }
+
+    private func isNextAmpBinaryOperator() -> Bool {
+        return isBinaryOperator("&")
     }
 }
