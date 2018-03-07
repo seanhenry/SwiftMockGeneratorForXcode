@@ -19,7 +19,8 @@ class TypeIdentifierParser: Parser<NamedElement> {
     }
 
     private func parseType() -> String? {
-        if let type = parsePlainType() ?? parseArrayType() ?? parseDictionaryType() {
+        if var type = parsePlainType() ?? parseArrayType() ?? parseDictionaryType() {
+            appendOptional(to: &type)
             return type + parseGenericClause()
         }
         return nil
@@ -79,7 +80,13 @@ class TypeIdentifierParser: Parser<NamedElement> {
 
     private func appendGenericClauseEnd(to string: inout String) throws {
         if isGenericClauseEnd() {
-            string.append(isDoubleGenericClauseEnd() ? ">>" : ">")
+            if isOptionalGenericClauseEnd() {
+                string.append(">?")
+            } else if isDoubleGenericClauseEnd() {
+                string.append(">>")
+            } else {
+                string.append(">")
+            }
             advance()
         } else {
             throw Error()
@@ -102,26 +109,30 @@ class TypeIdentifierParser: Parser<NamedElement> {
         return false
     }
 
+    private func isOptionalGenericClauseEnd() -> Bool {
+        // a '>?' postfix operator is detected for optional generics (Generic<Type>?)
+        if case let .postfixOperator(op) = peekAtNextKind() {
+            return op == ">?"
+        }
+        return false
+    }
+
     // MARK: - Array
 
     private func parseArrayType() -> String? {
-        let cp = setCheckPoint()
-        do {
+        return tryToParse {
             var array = ""
             try append(.leftSquare, value: "[", to: &array)
             appendType(to: &array)
             try append(.rightSquare, value: "]", to: &array)
             return array
-        } catch {
-            restoreCheckPoint(cp)
         }
-        return nil
     }
 
     // MARK: - Dictionary
 
     private func parseDictionaryType() -> String? {
-        do {
+        return tryToParse {
             var dictionary = ""
             try append(.leftSquare, value: "[", to: &dictionary)
             appendType(to: &dictionary)
@@ -129,7 +140,15 @@ class TypeIdentifierParser: Parser<NamedElement> {
             appendType(to: &dictionary)
             try append(.rightSquare, value: "]", to: &dictionary)
             return dictionary
-        } catch {} // ignored
-        return nil
+        }
+    }
+
+    // MARK: - Optional
+
+    private func appendOptional(to string: inout String) {
+        if isNext("?") {
+            advance()
+            string.append("?")
+        }
     }
 }

@@ -124,6 +124,16 @@ class Parser<ResultType> {
         }
     }
 
+    func tryToParse<T>(_ parse: () throws -> T) -> T? {
+        let cp = setCheckPoint()
+        do {
+            return try parse()
+        } catch {
+            restoreCheckPoint(cp)
+        }
+        return nil
+    }
+
     func appendIdentifier(to string: inout String) throws {
         if let argument = peekAtNextIdentifier() {
             advance()
