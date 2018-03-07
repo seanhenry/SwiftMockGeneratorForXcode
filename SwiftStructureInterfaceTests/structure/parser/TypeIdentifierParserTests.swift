@@ -195,6 +195,16 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeName("A & B & 0", "A & B & ")
     }
 
+    // MARK: Keywords
+
+    func test_parse_shouldParseAny() {
+        assertTypeName("Any", "Any")
+    }
+
+    func test_parse_shouldParseSelf() {
+        assertTypeName("Self", "Self")
+    }
+
     // MARK: - Helpers
 
     func assertTypeName(_ input: String, _ expected: String, line: UInt = #line) {
