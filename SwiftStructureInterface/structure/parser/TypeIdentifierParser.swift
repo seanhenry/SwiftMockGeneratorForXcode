@@ -27,14 +27,37 @@ class TypeIdentifierParser: Parser<NamedElement> {
     }
 
     private func parseTypeIdentifier() -> String? {
-        guard let identifier = peekAtNextIdentifier() else { return nil }
-        advance()
-        return identifier + parseSubTypes() + parseGenericClause()
+        guard let typeName = parseTypeName() else { return nil }
+        return typeName + parseGenericClause()
+    }
+
+    private func parseTypeName() -> String? {
+        return parseIdentifier()
+    }
+
+    private func parseIdentifier() -> String? {
+        if let implicit = parseImplicitParameterName() {
+            return implicit
+        } else if let identifier = peekAtNextIdentifier() {
+            advance()
+            return identifier + parseNestedTypes()
+        }
+        return nil
+    }
+
+    // MARK: - Implicit
+
+    private func parseImplicitParameterName() -> String? {
+        if let implicitName = peekAtNextImplicitParameterName() {
+            advance()
+            return implicitName
+        }
+        return nil
     }
 
     // MARK: - Nested
 
-    private func parseSubTypes() -> String {
+    private func parseNestedTypes() -> String {
         var identifier = ""
         while isNext(.dot) {
             advance()
@@ -53,7 +76,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
             appendType(to: &clause)
             appendGenericArgumentList(to: &clause)
             try appendGenericClauseEnd(to: &clause)
-            clause.append(parseSubTypes())
+            clause.append(parseNestedTypes())
             clause.append(parseGenericClause())
         } catch {} // ignored
         return clause

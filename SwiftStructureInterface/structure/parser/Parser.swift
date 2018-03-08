@@ -99,6 +99,13 @@ class Parser<ResultType> {
         return false
     }
 
+    func peekAtNextImplicitParameterName() -> String? {
+        if case let .implicitParameterName(name) = peekAtNextKind() {
+            return "$" + String(name)
+        }
+        return nil
+    }
+
     func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
         let c = setCheckPoint()
         _ = parseAttributes()

@@ -224,6 +224,18 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeName("MyType.Protocol", "MyType.Protocol")
     }
 
+    // MARK: - Implicit
+
+    func test_parse_shouldParseImplicitType() {
+        assertTypeName("$0", "$0")
+        assertTypeName("$10", "$10")
+    }
+
+    func test_parse_shouldAssumeZeroWhenIncompleteImplicitType() {
+        assertTypeName("$", "$0")
+        assertTypeName("$a", "$0")
+    }
+
     // MARK: - Helpers
 
     func assertTypeName(_ input: String, _ expected: String, line: UInt = #line) {
