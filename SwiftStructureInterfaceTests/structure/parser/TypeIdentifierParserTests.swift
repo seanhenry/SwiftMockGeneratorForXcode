@@ -236,6 +236,12 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeName("$a", "$0")
     }
 
+    // MARK: - Escaped
+
+    func test_parse_shouldParseEscapedIdentifier() {
+        assertTypeName("`Type`", "Type")
+    }
+
     // MARK: - Tuple
 
     func test_parse_shouldParseEmptyImplicitArgumentTuple() {
@@ -284,6 +290,37 @@ class TypeIdentifierParserTests: XCTestCase {
 
     func test_parse_shouldParseTupleWithInoutAndAttributes() {
         assertTypeName("(a: @a @b inout A, @c inout B)", "(a: @a @b inout A, @c inout B)")
+    }
+
+    // MARK: - Function type
+
+    func test_parse_shouldParseEmptyFunction() {
+        assertTypeName("() -> ()", "() -> ()")
+    }
+
+    func test_parse_shouldParseFunctionWithReturnType() {
+        assertTypeName("() -> Void", "() -> Void")
+        assertTypeName("() -> String", "() -> String")
+    }
+
+    func test_parse_shouldParseFunctionWithWildcardArgument() {
+        assertTypeName("(_ a: A) -> ()", "(_ a: A) -> ()")
+    }
+
+    func test_parse_shouldParseFunctionWithMissingReturnType() {
+        assertTypeName("() -> ", "() -> ")
+    }
+
+    func test_parse_shouldParseThrowingFunction() {
+        assertTypeName("() throws -> ()", "() throws -> ()")
+    }
+
+    func test_parse_shouldParseRethrowingFunction() {
+        assertTypeName("() rethrows -> ()", "() rethrows -> ()")
+    }
+
+    func test_parse_shouldParseComplexFunction() {
+        assertTypeName("@escaping @autoclosure (_ gen: @a inout Generic.Type<Inner>?, opt: Int?, @a inout T) rethrows -> [(String, returnType: Int):Int]", "@escaping @autoclosure (_ gen: @a inout Generic.Type<Inner>?, opt: Int?, @a inout T) rethrows -> [(String, returnType: Int):Int]")
     }
 
     // MARK: - Helpers

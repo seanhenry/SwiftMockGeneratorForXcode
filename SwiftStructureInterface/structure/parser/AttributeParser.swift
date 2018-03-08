@@ -13,10 +13,19 @@ class AttributeParser: Parser<String> {
         do {
             try append(.at, value: "@", to: &attribute)
             try appendIdentifier(to: &attribute)
-            try append(.leftParen, value: "(", to: &attribute)
-            try appendIdentifier(to: &attribute)
-            try append(.rightParen, value: ")", to: &attribute)
+            tryToAppendAttributeArguments(to: &attribute)
         } catch {} // ignored
         return attribute
+    }
+
+    private func tryToAppendAttributeArguments(to string: inout String) {
+        let arguments: String? = tryToParse {
+            var arguments = ""
+            try append(.leftParen, value: "(", to: &arguments)
+            try appendIdentifier(to: &arguments)
+            try append(.rightParen, value: ")", to: &arguments)
+            return arguments
+        }
+        arguments.map { string.append($0) }
     }
 }

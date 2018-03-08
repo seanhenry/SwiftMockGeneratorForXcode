@@ -19,7 +19,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
     }
 
     private func parseType() -> String? {
-        if var type = parseProtocolCompositionType() ?? parseTypeIdentifier() ?? parseArrayType() ?? parseDictionaryType() ?? parseTupleType() {
+        if var type = parseProtocolCompositionType() ?? parseTypeIdentifier() ?? parseArrayType() ?? parseDictionaryType() ?? parseFunctionType() ?? parseTupleType() {
             appendOptional(to: &type)
             return type
         }
@@ -239,10 +239,18 @@ class TypeIdentifierParser: Parser<NamedElement> {
     }
 
     private func tryToAppendTupleArgument(to string: inout String) {
+        tryToAppendWildcard(to: &string)
         tryToAppendTupleArgumentName(to: &string)
         tryToAppendAttributes(to: &string)
         tryToAppendInout(to: &string)
         appendType(to: &string)
+    }
+
+    private func tryToAppendWildcard(to string: inout String) {
+        if isNext(.underscore) {
+            advance()
+            string.append("_ ")
+        }
     }
 
     private func tryToAppendTupleArgumentName(to string: inout String) {
@@ -264,5 +272,28 @@ class TypeIdentifierParser: Parser<NamedElement> {
 
     private func tryToAppendInout(to string: inout String) {
         tryToAppend(.inout, value: "inout ", to: &string)
+    }
+
+    // MARK: - Function type
+
+    private func parseFunctionType() -> String? {
+        return tryToParse {
+            var function = ""
+            tryToAppendAttributes(to: &function)
+            try appendTupleType(to: &function)
+            tryToAppend(.throws, value: " throws", to: &function)
+            tryToAppend(.rethrows, value: " rethrows", to: &function)
+            try append(.arrow, value: " -> ", to: &function)
+            appendType(to: &function)
+            return function
+        }
+    }
+
+    private func appendTupleType(to string: inout String) throws {
+        if let tuple = parseTupleType() {
+            string.append(tuple)
+        } else {
+            throw Error()
+        }
     }
 }

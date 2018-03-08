@@ -37,6 +37,10 @@ class AttributeParserTests: XCTestCase {
         assertAttributes("@abc @convention(c)", "@abc @convention(c)")
     }
 
+    func test_parse_shouldNotParseClosure() {
+        assertAttributes("@escaping () -> ()", "@escaping")
+    }
+
     // MARK: - Helpers
 
     func assertAttributes(_ input: String, _ expected: String, line: UInt = #line) {
