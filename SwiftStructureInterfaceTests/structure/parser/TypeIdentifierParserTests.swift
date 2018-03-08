@@ -236,6 +236,56 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeName("$a", "$0")
     }
 
+    // MARK: - Tuple
+
+    func test_parse_shouldParseEmptyImplicitArgumentTuple() {
+        assertTypeName("()", "()")
+    }
+
+    func test_parse_shouldParseSingleBracketedType() {
+        assertTypeName("(Type)", "(Type)")
+        assertTypeName("(Generic<Type>.Nested)", "(Generic<Type>.Nested)")
+        assertTypeName("([Int])", "([Int])")
+        assertTypeName("([Int:String])", "([Int:String])")
+    }
+
+    func test_parse_shouldParseMultipleTypeImplicitArgumentTuple() {
+        assertTypeName("(TypeA, TypeB)", "(TypeA, TypeB)")
+        assertTypeName("(Generic<Type>.Nested, Nested.Type)", "(Generic<Type>.Nested, Nested.Type)")
+        assertTypeName("([Int], [String:Int])", "([Int], [String:Int])")
+    }
+
+    func test_parse_shouldParseOptionalImplicitArgumentTuple() {
+        assertTypeName("()?", "()?")
+        assertTypeName("(TypeA)?", "(TypeA)?")
+        assertTypeName("(TypeA, TypeB)?", "(TypeA, TypeB)?")
+        assertTypeName("(Generic<Type>.Nested?, Nested.Type?)?", "(Generic<Type>.Nested?, Nested.Type?)?")
+        assertTypeName("([Int?], [String?:Int?]?)?", "([Int?], [String?:Int?]?)?")
+    }
+
+    func test_parse_shouldParseExplicitArgumentTuple() {
+        assertTypeName("(a: A)", "(a: A)")
+        assertTypeName("(a: A, b: B)", "(a: A, b: B)")
+        assertTypeName("(a: [Int?]!, b: B.C<D>?)", "(a: [Int?]!, b: B.C<D>?)")
+    }
+
+    func test_parse_shouldParseMixedExplicitAndImplicitArgumentTuple() {
+        assertTypeName("(a: A, B)", "(a: A, B)")
+        assertTypeName("(A, b: B)", "(A, b: B)")
+    }
+
+    func test_parse_shouldParseTupleWithAttributes() {
+        assertTypeName("(a: @objc(a) @another A, @a B)", "(a: @objc(a) @another A, @a B)")
+    }
+
+    func test_parse_shouldParseTupleWithInout() {
+        assertTypeName("(a: inout A, inout B)", "(a: inout A, inout B)")
+    }
+
+    func test_parse_shouldParseTupleWithInoutAndAttributes() {
+        assertTypeName("(a: @a @b inout A, @c inout B)", "(a: @a @b inout A, @c inout B)")
+    }
+
     // MARK: - Helpers
 
     func assertTypeName(_ input: String, _ expected: String, line: UInt = #line) {

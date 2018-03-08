@@ -19,7 +19,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
     }
 
     private func parseType() -> String? {
-        if var type = parseProtocolCompositionType() ?? parseTypeIdentifier() ?? parseArrayType() ?? parseDictionaryType() {
+        if var type = parseProtocolCompositionType() ?? parseTypeIdentifier() ?? parseArrayType() ?? parseDictionaryType() ?? parseTupleType() {
             appendOptional(to: &type)
             return type
         }
@@ -220,5 +220,49 @@ class TypeIdentifierParser: Parser<NamedElement> {
 
     private func isNextAmpBinaryOperator() -> Bool {
         return isBinaryOperator("&")
+    }
+
+    // MARK: - Tuple
+
+    private func parseTupleType() -> String? {
+        return tryToParse {
+            var tuple = ""
+            try append(.leftParen, value: "(", to: &tuple)
+            tryToAppendTupleArgument(to: &tuple)
+            repeat {
+                try? append(.comma, value: ", ", to: &tuple)
+                tryToAppendTupleArgument(to: &tuple)
+            } while isNext(.comma)
+            try append(.rightParen, value: ")", to: &tuple)
+            return tuple
+        }
+    }
+
+    private func tryToAppendTupleArgument(to string: inout String) {
+        tryToAppendTupleArgumentName(to: &string)
+        tryToAppendAttributes(to: &string)
+        tryToAppendInout(to: &string)
+        appendType(to: &string)
+    }
+
+    private func tryToAppendTupleArgumentName(to string: inout String) {
+        let name = tryToParse { () -> String in
+            var name = ""
+            try appendIdentifier(to: &name)
+            try append(.colon, value: ": ", to: &name)
+            return name
+        }
+        name.map { string.append($0) }
+    }
+
+    private func tryToAppendAttributes(to string: inout String) {
+        let attributes = parseAttributes()
+        if attributes != "" {
+            string.append(attributes + " ")
+        }
+    }
+
+    private func tryToAppendInout(to string: inout String) {
+        tryToAppend(.inout, value: "inout ", to: &string)
     }
 }
