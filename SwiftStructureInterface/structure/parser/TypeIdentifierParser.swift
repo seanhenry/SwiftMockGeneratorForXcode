@@ -19,17 +19,17 @@ class TypeIdentifierParser: Parser<NamedElement> {
     }
 
     private func parseType() -> String? {
-        if var type = parseProtocolCompositionType() ?? parsePlainType() ?? parseArrayType() ?? parseDictionaryType() {
+        if var type = parseProtocolCompositionType() ?? parseTypeIdentifier() ?? parseArrayType() ?? parseDictionaryType() {
             appendOptional(to: &type)
-            return type + parseGenericClause()
+            return type
         }
         return nil
     }
 
-    private func parsePlainType() -> String? {
+    private func parseTypeIdentifier() -> String? {
         guard let identifier = peekAtNextIdentifier() else { return nil }
         advance()
-        return identifier + parseSubTypes()
+        return identifier + parseSubTypes() + parseGenericClause()
     }
 
     // MARK: - Nested
@@ -53,6 +53,8 @@ class TypeIdentifierParser: Parser<NamedElement> {
             appendType(to: &clause)
             appendGenericArgumentList(to: &clause)
             try appendGenericClauseEnd(to: &clause)
+            clause.append(parseSubTypes())
+            clause.append(parseGenericClause())
         } catch {} // ignored
         return clause
     }
@@ -167,7 +169,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
     func parseProtocolCompositionType() -> String? {
         return tryToParse {
             var composition = ""
-            try appendIdentifier(to: &composition)
+            try appendTypeIdentifier(to: &composition)
             try appendCompositionRHS(to: &composition)
             repeat {
                 try? appendCompositionRHS(to: &composition)
@@ -176,9 +178,17 @@ class TypeIdentifierParser: Parser<NamedElement> {
         }
     }
 
+    private func appendTypeIdentifier(to string: inout String) throws {
+        if let type = parseTypeIdentifier() {
+            string.append(type)
+        } else {
+            throw Error()
+        }
+    }
+
     private func appendCompositionRHS(to string: inout String) throws {
         try appendAmpBinaryOperator(to: &string)
-        try appendIdentifier(to: &string)
+        try appendTypeIdentifier(to: &string)
     }
 
     private func appendAmpBinaryOperator(to string: inout String) throws {

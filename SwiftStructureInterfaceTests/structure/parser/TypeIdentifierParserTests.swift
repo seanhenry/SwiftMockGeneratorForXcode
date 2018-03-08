@@ -55,7 +55,7 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeName("Generic<A, B>", "Generic<A, B>")
     }
 
-    func test_parse_shouldParseComplicatedType() {
+    func test_parse_shouldParseComplicatedGenericType() {
         assertTypeName("Nested.Generic<With.Nested.Generic<Inside.Another>, Side.By<Side, Again>>", "Nested.Generic<With.Nested.Generic<Inside.Another>, Side.By<Side, Again>>")
     }
 
@@ -69,6 +69,10 @@ class TypeIdentifierParserTests: XCTestCase {
 
     func test_parse_shouldParseGenericWithDictionaryType() {
         assertTypeName("Generic<[Int:String]>", "Generic<[Int:String]>")
+    }
+
+    func test_parse_shouldParseNestedGeneric() {
+        assertTypeName("Generic<Type>.Another<Generic>", "Generic<Type>.Another<Generic>")
     }
 
     // MARK: - Array
@@ -193,6 +197,14 @@ class TypeIdentifierParserTests: XCTestCase {
     func test_parse_shouldParseWhenFirstIsCorrectButNextIsWrong() {
         assertTypeName("A & B | C", "A & B")
         assertTypeName("A & B & 0", "A & B & ")
+    }
+
+    func test_parse_shouldParseGenericTypes() {
+        assertTypeName("A<T> & B<U>", "A<T> & B<U>")
+    }
+
+    func test_parse_shouldParseNestedTypes() {
+        assertTypeName("A.B<T.U> & C.D<V.W>", "A.B<T.U> & C.D<V.W>")
     }
 
     // MARK: - Keywords
