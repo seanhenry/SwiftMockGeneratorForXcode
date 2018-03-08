@@ -11,7 +11,7 @@ class TypeIdentifierParserTests: XCTestCase {
 
     func test_parse_shouldParseEmptyTypeAsError() {
         let element = createParser("", TypeIdentifierParser.self).parse()
-        XCTAssert(element === SwiftInheritedType.error)
+        XCTAssert(element === SwiftInheritedType.errorInheritedType)
     }
 
     // MARK: - Nested

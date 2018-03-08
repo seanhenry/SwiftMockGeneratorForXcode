@@ -1,25 +1,12 @@
 import Source
 
-class ProtocolParser: Parser<SwiftTypeElement> {
+class ProtocolParser: DeclarationParser<SwiftTypeElement> {
 
-    override func parse() -> SwiftTypeElement {
-        let start = getCurrentStartLocation()
-        _ = parseAttributes()
-        skipAccessModifier()
-        return parseDeclaration(start: start)
-    }
-
-    func parseDeclaration(start: SourceLocation) -> SwiftTypeElement {
-        guard isNext(.protocol) else { fatalError("Expected a protocol. Check isNext(.protocol) before parsing a protocol") }
-        advance()
-        let offset = convert(start)!
+    override func parseDeclaration(offset: Int64) -> SwiftTypeElement {
         var name = ""
-        if let n = peekAtNextIdentifier() {
-            advance()
-            name = n
-        }
+        tryToAppendIdentifier(to: &name)
         let inheritanceClause = parseInheritanceClause()
-        _ = parseWhereClause()
+        skipWhereClause()
         let codeBlock = parseTypeCodeBlock()
         let length = codeBlock.bodyEnd - offset
         let text = getString(offset: offset, length: length)!
@@ -32,5 +19,9 @@ class ProtocolParser: Parser<SwiftTypeElement> {
             length: length,
             bodyOffset: codeBlock.offset,
             bodyLength: codeBlock.length)
+    }
+
+    private func skipWhereClause() {
+        _ = parseWhereClause()
     }
 }

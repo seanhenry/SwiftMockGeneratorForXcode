@@ -187,11 +187,33 @@ class Parser<ResultType> {
         }
     }
 
+    func tryToAppendTypeAnnotation(to string: inout String) {
+        tryToAppend(.colon, value: ": ", to: &string)
+        tryToAppendAttributes(to: &string)
+        tryToAppendInout(to: &string)
+        tryToAppendType(to: &string)
+    }
+
+    func tryToAppendAttributes(to string: inout String) {
+        let attributes = parseAttributes()
+        if attributes != "" {
+            string.append(attributes + " ")
+        }
+    }
+
+    func tryToAppendType(to string: inout String) {
+        string.append(parseTypeIdentifier().text)
+    }
+
+    private func tryToAppendInout(to string: inout String) {
+        tryToAppend(.inout, value: "inout ", to: &string)
+    }
+
     func parseInheritanceClause() -> [NamedElement] {
         return parse(InheritanceClauseParser.self)
     }
 
-    func parseInheritanceType() -> NamedElement {
+    func parseTypeIdentifier() -> NamedElement {
         return parse(TypeIdentifierParser.self)
     }
 
@@ -204,7 +226,7 @@ class Parser<ResultType> {
     }
 
     func parseProtocol() -> Element {
-        return parse(ProtocolParser.self)
+        return parseDeclaration(ProtocolParser.self, .protocol)
     }
 
     func parseAttributes() -> String {
@@ -219,7 +241,19 @@ class Parser<ResultType> {
         return parse(GenericWhereClauseParser.self)
     }
 
+    func parseFunctionDeclaration() -> NamedElement {
+        return parse(FunctionDeclarationParser.self)
+    }
+
+    func parseFunctionDeclarationParameter() -> MethodParameter {
+        return parse(FunctionDeclarationParser.ParameterParser.self)
+    }
+
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {
         return P(lexer: lexer, sourceFile: sourceFile).parse()
+    }
+
+    private func parseDeclaration<T, P: DeclarationParser<T>>(_ parserType: P.Type, _ token: Token.Kind) -> T {
+        return P(lexer: lexer, sourceFile: sourceFile, declarationToken: token).parse()
     }
 }

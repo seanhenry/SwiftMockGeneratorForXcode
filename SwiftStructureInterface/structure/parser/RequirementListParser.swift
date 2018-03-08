@@ -11,19 +11,19 @@ class RequirementListParser: Parser<String> {
 
     private func parseRequirement() -> String {
         var requirement = ""
-        appendType(to: &requirement)
+        tryToAppendType(to: &requirement)
         let isConformanceRequirement = isNext(.colon)
         if isConformanceRequirement {
             tryToAppend(.colon, value: ":", to: &requirement)
         } else {
             appendSameTypeOperator(to: &requirement)
         }
-        appendType(to: &requirement)
+        tryToAppendType(to: &requirement)
         return requirement
     }
 
     private func appendType(to string: inout String) {
-        let type = parseInheritanceType().text
+        let type = parseTypeIdentifier().text
         string.append(type)
     }
 

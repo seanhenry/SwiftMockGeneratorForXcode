@@ -1,5 +1,6 @@
 class SwiftMethodElement: SwiftElement, NamedElement {
 
+    static let errorMethodElement = SwiftMethodElement(name: "", text: "", children: [], offset: -1, length: -1, returnType: nil, parameters: [])
     let name: String
     let returnType: Element?
     let parameters: [MethodParameter]

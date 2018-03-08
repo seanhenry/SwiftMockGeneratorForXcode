@@ -2,6 +2,7 @@ import SourceKittenFramework
 
 class SwiftElement: Element, PositionedElement {
 
+    static let errorElement = SwiftElement(text: "", children: [], offset: -1, length: -1)
     let text: String
     let children: [Element]
     let offset: Int64

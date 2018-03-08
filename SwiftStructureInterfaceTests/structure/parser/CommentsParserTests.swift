@@ -16,7 +16,7 @@ class CommentsParserTests: XCTestCase {
         let text = "/* comment */protocol/* comment */P/* comment */{/* comment */}/* comment */"
         let expected = "protocol/* comment */P/* comment */{/* comment */}"
         let commentLength = Int64("/* comment */".utf8.count)
-        parser = createParser(text, ProtocolParser.self)
+        parser = createDeclarationParser(text, .protocol, ProtocolParser.self)
         let `protocol` = parser.parse()
         XCTAssertEqual(`protocol`.name, "P")
         XCTAssertEqual(`protocol`.text, expected)
@@ -30,7 +30,7 @@ class CommentsParserTests: XCTestCase {
         let text = "// comment\nprotocol// comment\nP// comment\n{// comment\n}// comment\n"
         let expected = "protocol// comment\nP// comment\n{// comment\n}"
         let commentLength = Int64("// comment\n".utf8.count)
-        parser = createParser(text, ProtocolParser.self)
+        parser = createDeclarationParser(text, .protocol, ProtocolParser.self)
         let `protocol` = parser.parse()
         XCTAssertEqual(`protocol`.name, "P")
         XCTAssertEqual(`protocol`.text, expected)

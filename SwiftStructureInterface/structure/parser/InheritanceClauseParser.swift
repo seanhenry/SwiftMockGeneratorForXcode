@@ -5,7 +5,7 @@ class InheritanceClauseParser: Parser<[NamedElement]> {
         var types = [NamedElement]()
         repeat {
             advance()
-            types.append(parseInheritanceType())
+            types.append(parseTypeIdentifier())
         } while isNext(.comma)
         return types
     }

@@ -15,7 +15,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
                 offset: offset,
                 length: length)
         }
-        return SwiftInheritedType.error
+        return SwiftInheritedType.errorInheritedType
     }
 
     private func parseType() -> String? {
@@ -73,7 +73,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
         var clause = ""
         do {
             try appendGenericClauseStart(to: &clause)
-            appendType(to: &clause)
+            tryToAppendType(to: &clause)
             appendGenericArgumentList(to: &clause)
             try appendGenericClauseEnd(to: &clause)
             clause.append(parseNestedTypes())
@@ -91,15 +91,11 @@ class TypeIdentifierParser: Parser<NamedElement> {
         }
     }
 
-    private func appendType(to string: inout String) {
-        string.append(parseType() ?? "")
-    }
-
     private func appendGenericArgumentList(to string: inout String) {
         while isNext(.comma) {
             advance()
             string.append(", ")
-            appendType(to: &string)
+            tryToAppendType(to: &string)
         }
     }
 
@@ -149,7 +145,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
         return tryToParse {
             var array = ""
             try append(.leftSquare, value: "[", to: &array)
-            appendType(to: &array)
+            tryToAppendType(to: &array)
             try append(.rightSquare, value: "]", to: &array)
             return array
         }
@@ -161,9 +157,9 @@ class TypeIdentifierParser: Parser<NamedElement> {
         return tryToParse {
             var dictionary = ""
             try append(.leftSquare, value: "[", to: &dictionary)
-            appendType(to: &dictionary)
+            tryToAppendType(to: &dictionary)
             try append(.colon, value: ":", to: &dictionary)
-            appendType(to: &dictionary)
+            tryToAppendType(to: &dictionary)
             try append(.rightSquare, value: "]", to: &dictionary)
             return dictionary
         }
@@ -241,9 +237,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
     private func tryToAppendTupleArgument(to string: inout String) {
         tryToAppendWildcard(to: &string)
         tryToAppendTupleArgumentName(to: &string)
-        tryToAppendAttributes(to: &string)
-        tryToAppendInout(to: &string)
-        appendType(to: &string)
+        tryToAppendTypeAnnotation(to: &string)
     }
 
     private func tryToAppendWildcard(to string: inout String) {
@@ -257,21 +251,12 @@ class TypeIdentifierParser: Parser<NamedElement> {
         let name = tryToParse { () -> String in
             var name = ""
             try appendIdentifier(to: &name)
-            try append(.colon, value: ": ", to: &name)
+            if !isNext(.colon) {
+                throw Error()
+            }
             return name
         }
         name.map { string.append($0) }
-    }
-
-    private func tryToAppendAttributes(to string: inout String) {
-        let attributes = parseAttributes()
-        if attributes != "" {
-            string.append(attributes + " ")
-        }
-    }
-
-    private func tryToAppendInout(to string: inout String) {
-        tryToAppend(.inout, value: "inout ", to: &string)
     }
 
     // MARK: - Function type
@@ -284,7 +269,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
             tryToAppend(.throws, value: " throws", to: &function)
             tryToAppend(.rethrows, value: " rethrows", to: &function)
             try append(.arrow, value: " -> ", to: &function)
-            appendType(to: &function)
+            tryToAppendType(to: &function)
             return function
         }
     }
