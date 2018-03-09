@@ -12,7 +12,7 @@ class ModifierParser: Parser<String> {
 
     override func parse() -> String {
         var modifiers = [String]()
-        while let modifier = parseArgumentModifiers() ?? parseOtherModifiers() {
+        while let modifier = parseArgumentModifiers() ?? parseSimpleModifiers() {
             modifiers.append(modifier)
         }
         return modifiers.joined(separator: " ")
@@ -39,7 +39,7 @@ class ModifierParser: Parser<String> {
         }
     }
 
-    private func parseOtherModifiers() -> String? {
+    private func parseSimpleModifiers() -> String? {
         for (kind, string) in modifiers {
             if isNext(kind) {
                 advance()
