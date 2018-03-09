@@ -76,11 +76,27 @@ class FunctionDeclarationParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseFuncWithDeclarationModifiers() {
-        let function = parse("@a @objc(NS) public override mutating func a() rethrows")
-        XCTAssertEqual(function.text, "@a @objc(NS) public override mutating func a() rethrows")
+        let function = parse("@a @objc(NS) public override mutating func a()")
+        XCTAssertEqual(function.text, "@a @objc(NS) public override mutating func a()")
         XCTAssertEqual(function.name, "a")
         XCTAssertEqual(function.offset, 0)
-        XCTAssertEqual(function.length, 55)
+        XCTAssertEqual(function.length, 46)
+    }
+
+    func test_parse_shouldParseFuncWithWhereClause() {
+        let function = parse("func a() where T: Type")
+        XCTAssertEqual(function.text, "func a() where T: Type")
+        XCTAssertEqual(function.name, "a")
+        XCTAssertEqual(function.offset, 0)
+        XCTAssertEqual(function.length, 22)
+    }
+
+    func test_parse_shouldParseFuncWithWhereClauseAndReturnStatement() {
+        let function = parse("func a() -> A where T: Type")
+        XCTAssertEqual(function.text, "func a() -> A where T: Type")
+        XCTAssertEqual(function.name, "a")
+        XCTAssertEqual(function.offset, 0)
+        XCTAssertEqual(function.length, 27)
     }
 
     // MARK: - Helpers

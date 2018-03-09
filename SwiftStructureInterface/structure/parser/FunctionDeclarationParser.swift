@@ -8,6 +8,7 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
         let parameters = parseParameterClause()
         let `throws` = parseThrows()
         let returnType = parseReturnType()
+        skipWhereClause()
         let end = convert(getPreviousEndLocation())!
         let length = end - offset
         let text = getString(offset: offset, length: length)!
@@ -32,6 +33,10 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
             return result
         }
         return nil
+    }
+
+    private func skipWhereClause() {
+        _ = parseWhereClause()
     }
 
     class ParameterClauseParser: Parser<[MethodParameter]> {
