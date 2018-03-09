@@ -18,12 +18,13 @@ class DeclarationModifierParser: ModifierParser {
             (.static, "static"),
             (.unowned, "unowned"),
             (.weak, "weak")
-        ]
+        ] + AccessLevelModifierParser.modifiers
+          + MutationModifierParser.modifiers
     }
 
     override var argumentModifiers: [(Token.Kind, String)] {
         return [
             (.unowned, "unowned")
-        ]
+        ] + AccessLevelModifierParser.argumentModifiers
     }
 }

@@ -39,6 +39,10 @@ class DeclarationModifierParserTests: XCTestCase {
         XCTAssertEqual(parse("unowned(unsafe) required override"), "unowned(unsafe) required override")
     }
 
+    func test_parse_shouldParseMutationAndAccessLevelModifiers() {
+        XCTAssertEqual(parse("open public(set) override class mutating"), "open public(set) override class mutating")
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) -> String {
