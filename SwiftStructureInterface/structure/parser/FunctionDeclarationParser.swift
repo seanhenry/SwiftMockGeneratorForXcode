@@ -99,4 +99,16 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
             }
         }
     }
+
+    class ResultParser: Parser<Element> {
+
+        override func parse() -> Element {
+            _ = parseAttributes()
+            guard isNext(.arrow) else {
+                return SwiftInheritedType.errorInheritedType
+            }
+            advance()
+            return parseTypeIdentifier()
+        }
+    }
 }
