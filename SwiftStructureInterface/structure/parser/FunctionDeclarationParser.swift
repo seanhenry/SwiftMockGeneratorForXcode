@@ -5,11 +5,11 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
     override func parseDeclaration(offset: Int64) -> NamedElement {
         var name = ""
         try! appendIdentifier(to: &name)
-        _ = parseParameterClause()
+        let parameters = parseParameterClause()
         let end = convert(getPreviousEndLocation())!
         let length = end - offset
         let text = getString(offset: offset, length: length)!
-        return SwiftMethodElement(name: name, text: text, children: [], offset: offset, length: length, returnType: nil, parameters: [])
+        return SwiftMethodElement(name: name, text: text, children: [], offset: offset, length: length, returnType: nil, parameters: parameters)
     }
 
     private func parseParameterClause() -> [MethodParameter] {
