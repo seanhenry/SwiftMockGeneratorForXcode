@@ -5,13 +5,13 @@ class DeclarationParser<ResultType>: Parser<ResultType> {
 
     private let declarationToken: Token.Kind
 
-    required init(lexer: Lexer, sourceFile: SourceFile, declarationToken: Token.Kind) {
+    required init(lexer: SwiftLexer, fileContents: String, declarationToken: Token.Kind) {
         self.declarationToken = declarationToken
-        super.init(lexer: lexer, sourceFile: sourceFile)
+        super.init(lexer: lexer, fileContents: fileContents)
     }
 
-    required init(lexer: Lexer, sourceFile: SourceFile) {
-        fatalError("Use init(lexer:sourceFile:declarationToken:)")
+    required init(lexer: SwiftLexer, fileContents: String) {
+        fatalError("Use init(lexer:fileContents:declarationToken:)")
     }
 
     override func parse() -> ResultType {

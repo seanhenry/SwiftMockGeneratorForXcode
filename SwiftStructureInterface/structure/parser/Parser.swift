@@ -1,80 +1,25 @@
 import Lexer
-import Source
 
 class Parser<ResultType> {
 
-    private let sourceFile: SourceFile
-    private let lexer: Lexer
+    private let fileContents: String
+    private let lexer: SwiftLexer
     private let accessLevelModifiers = Token.Kind.accessLevelModifiers
-    private var lastRange: SourceRange
     private class Error: Swift.Error {}
 
-    required init(lexer: Lexer, sourceFile: SourceFile) {
+    required init(lexer: SwiftLexer, fileContents: String) {
         self.lexer = lexer
-        self.sourceFile = sourceFile
-        lastRange = lexer.look().sourceRange
+        self.fileContents = fileContents
     }
 
     func parse() -> ResultType {
         fatalError("override me")
     }
 
-    func convert(_ location: SourceLocation) -> Int64? {
-        let zeroBasedColumn = location.column - 1
-        return LocationConverter.convert(line: location.line, column: zeroBasedColumn, in: sourceFile.content)!
-    }
-
-    func getCurrentStartLocation() -> SourceLocation {
-        return getCurrentRange().start
-    }
-
-    func getCurrentEndLocation() -> SourceLocation {
-        return getCurrentRange().end
-    }
-
-    func getPreviousEndLocation() -> SourceLocation {
-        return lastRange.end
-    }
-
-    func getCurrentRange() -> SourceRange {
-        return lexer.look().sourceRange
-    }
+    // MARK: - Strings
 
     func getLength(_ string: String) -> Int64 {
         return Int64(string.utf8.count)
-    }
-
-    func peekAtNextIdentifier() -> String? {
-        return peekAtNextKind().namedIdentifier
-    }
-
-    func isNext(_ kind: Token.Kind) -> Bool {
-        return peekAtNextKind() == kind
-    }
-
-    func isNext(_ kind: [Token.Kind]) -> Bool {
-        return kind.contains(peekAtNextKind())
-    }
-
-    func isNext(_ scalar: UnicodeScalar) -> Bool {
-        let cp = setCheckPoint()
-        defer { restoreCheckPoint(cp) }
-        return lexer.matchUnicodeScalar(scalar)
-    }
-
-    func peekAtNextKind() -> Token.Kind {
-        return lexer.look().kind
-    }
-
-    func advance() {
-        lastRange = getCurrentRange()
-        lexer.advance()
-    }
-
-    func advance(if kind: Token.Kind) {
-        if isNext(kind) {
-            advance()
-        }
     }
 
     func getString(offset: Int64, length: Int64) -> String? {
@@ -82,7 +27,67 @@ class Parser<ResultType> {
     }
 
     func getFileContents() -> String {
-        return sourceFile.content
+        return fileContents
+    }
+
+    // MARK: - Locations
+
+    func convert(_ location: LineColumn) -> Int64? {
+        return LocationConverter.convert(line: location.line, column: location.column, in: getFileContents())!
+    }
+
+    // MARK: - Lexer
+
+    func getCurrentStartLocation() -> LineColumn {
+        return lexer.getCurrentStartLocation()
+    }
+
+    func getCurrentEndLocation() -> LineColumn {
+        return lexer.getCurrentEndLocation()
+    }
+
+    func getPreviousEndLocation() -> LineColumn {
+        return lexer.getPreviousEndLocation()
+    }
+
+    func peekAtNextIdentifier() -> String? {
+        return peekAtNextKind().namedIdentifier
+    }
+
+    func isNext(_ kind: Token.Kind) -> Bool {
+        return lexer.isNext(kind)
+    }
+
+    func isNext(_ kinds: [Token.Kind]) -> Bool {
+        return lexer.isNext(kinds)
+    }
+
+    func isNext(_ scalar: UnicodeScalar) -> Bool {
+        return lexer.isNext(scalar)
+    }
+
+    func peekAtNextKind() -> Token.Kind {
+        return lexer.peekAtNextKind()
+    }
+
+    func advance() {
+        lexer.advance()
+    }
+
+    func setCheckPoint() -> String {
+        return lexer.setCheckPoint()
+    }
+
+    func restoreCheckPoint(_ id: String) {
+        lexer.restoreCheckPoint(id)
+    }
+
+    // MARK: - Helpers
+
+    func advance(if kind: Token.Kind) {
+        if isNext(kind) {
+            advance()
+        }
     }
 
     func isPrefixOperator(_ string: String) -> Bool {
@@ -106,13 +111,6 @@ class Parser<ResultType> {
         return false
     }
 
-    func peekAtNextImplicitParameterName() -> String? {
-        if case let .implicitParameterName(name) = peekAtNextKind() {
-            return "$" + String(name)
-        }
-        return nil
-    }
-
     func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
         let c = setCheckPoint()
         _ = parseAttributes()
@@ -122,12 +120,11 @@ class Parser<ResultType> {
         return isNext
     }
 
-    func setCheckPoint() -> String {
-        return lexer.checkPoint()
-    }
-
-    func restoreCheckPoint(_ id: String) {
-        lexer.restore(fromCheckpoint: id)
+    func peekAtNextImplicitParameterName() -> String? {
+        if case let .implicitParameterName(name) = peekAtNextKind() {
+            return "$" + String(name)
+        }
+        return nil
     }
 
     func skipAccessModifier() {
@@ -216,6 +213,8 @@ class Parser<ResultType> {
         tryToAppend(.inout, value: "inout ", to: &string)
     }
 
+    // MARK: - Parsers
+
     func parseInheritanceClause() -> [NamedElement] {
         return parse(InheritanceClauseParser.self)
     }
@@ -252,15 +251,19 @@ class Parser<ResultType> {
         return parse(FunctionDeclarationParser.self)
     }
 
+    func parseFunctionDeclarationParameterClause() -> [MethodParameter] {
+        return parse(FunctionDeclarationParser.ParameterClauseParser.self)
+    }
+
     func parseFunctionDeclarationParameter() -> MethodParameter {
         return parse(FunctionDeclarationParser.ParameterParser.self)
     }
 
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {
-        return P(lexer: lexer, sourceFile: sourceFile).parse()
+        return P(lexer: lexer, fileContents: fileContents).parse()
     }
 
     private func parseDeclaration<T, P: DeclarationParser<T>>(_ parserType: P.Type, _ token: Token.Kind) -> T {
-        return P(lexer: lexer, sourceFile: sourceFile, declarationToken: token).parse()
+        return P(lexer: lexer, fileContents: fileContents, declarationToken: token).parse()
     }
 }
