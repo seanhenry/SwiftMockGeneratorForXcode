@@ -245,7 +245,7 @@ class Parser<ResultType> {
     }
 
     func parseFunctionDeclaration() -> NamedElement {
-        return parse(FunctionDeclarationParser.self)
+        return parseDeclaration(FunctionDeclarationParser.self, .func)
     }
 
     func parseFunctionDeclarationParameterClause() -> [MethodParameter] {

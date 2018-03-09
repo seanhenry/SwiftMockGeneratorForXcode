@@ -4,6 +4,8 @@ class DeclarationsParser: Parser<[Element]> {
         var elements = [Element]()
         if isNextDeclaration(.protocol) {
             elements.append(parseProtocol())
+        } else if isNextDeclaration(.func) {
+            elements.append(parseFunctionDeclaration())
         } else if isUnexpectedToken() {
             advance()
             return parse()
