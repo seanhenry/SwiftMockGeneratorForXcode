@@ -6,14 +6,23 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
         var name = ""
         try! appendIdentifier(to: &name)
         let parameters = parseParameterClause()
+        let returnType = parseReturnType()
         let end = convert(getPreviousEndLocation())!
         let length = end - offset
         let text = getString(offset: offset, length: length)!
-        return SwiftMethodElement(name: name, text: text, children: [], offset: offset, length: length, returnType: nil, parameters: parameters)
+        return SwiftMethodElement(name: name, text: text, children: [], offset: offset, length: length, returnType: returnType, parameters: parameters)
     }
 
     private func parseParameterClause() -> [MethodParameter] {
         return parseFunctionDeclarationParameterClause()
+    }
+
+    private func parseReturnType() -> Element? {
+        let result = parseFunctionDeclarationResult()
+        if result !== SwiftInheritedType.errorInheritedType {
+            return result
+        }
+        return nil
     }
 
     class ParameterClauseParser: Parser<[MethodParameter]> {

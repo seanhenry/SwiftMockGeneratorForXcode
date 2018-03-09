@@ -20,6 +20,7 @@ class FunctionDeclarationParserTests: XCTestCase {
         XCTAssertEqual(function.name, "a")
         XCTAssertEqual(function.offset, 0)
         XCTAssertEqual(function.length, 8)
+        XCTAssertNil(function.returnType)
     }
 
     func test_parse_shouldParseFuncWithParameters() {
@@ -40,6 +41,18 @@ class FunctionDeclarationParserTests: XCTestCase {
         XCTAssertEqual(param.localParameterName, "b")
         XCTAssertEqual(param.offset, 13)
         XCTAssertEqual(param.length, 6)
+    }
+
+    func test_parse_shouldParseFuncWithReturnType() {
+        let function = parse("func a() -> Type")
+        XCTAssertEqual(function.text, "func a() -> Type")
+        XCTAssertEqual(function.name, "a")
+        XCTAssertEqual(function.offset, 0)
+        XCTAssertEqual(function.length, 16)
+        let type = function.returnType
+        XCTAssertEqual(type?.text, "Type")
+        XCTAssertEqual(type?.offset, 12)
+        XCTAssertEqual(type?.length, 4)
     }
 
     // MARK: - Helpers

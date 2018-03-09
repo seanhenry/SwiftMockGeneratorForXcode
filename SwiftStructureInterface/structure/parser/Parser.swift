@@ -259,6 +259,10 @@ class Parser<ResultType> {
         return parse(FunctionDeclarationParser.ParameterParser.self)
     }
 
+    func parseFunctionDeclarationResult() -> Element {
+        return parse(FunctionDeclarationParser.ResultParser.self)
+    }
+
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {
         return P(lexer: lexer, fileContents: fileContents).parse()
     }
