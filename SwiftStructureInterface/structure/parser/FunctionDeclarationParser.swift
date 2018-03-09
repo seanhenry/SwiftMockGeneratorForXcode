@@ -5,6 +5,7 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
     override func parseDeclaration(offset: Int64) -> NamedElement {
         var name = ""
         try! appendIdentifier(to: &name)
+        skipGenericParameterClause()
         let parameters = parseParameterClause()
         let `throws` = parseThrows()
         let returnType = parseReturnType()
@@ -13,6 +14,10 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
         let length = end - offset
         let text = getString(offset: offset, length: length)!
         return SwiftMethodElement(name: name, text: text, children: [], offset: offset, length: length, returnType: returnType, parameters: parameters, throws: `throws`)
+    }
+
+    private func skipGenericParameterClause() {
+        _ = parseGenericParameterClause()
     }
 
     private func parseParameterClause() -> [MethodParameter] {

@@ -99,6 +99,14 @@ class FunctionDeclarationParserTests: XCTestCase {
         XCTAssertEqual(function.length, 27)
     }
 
+    func test_parse_shouldParseFuncWithGenericParameterClause() {
+        let function = parse("func a<T, U: A & B>()")
+        XCTAssertEqual(function.text, "func a<T, U: A & B>()")
+        XCTAssertEqual(function.name, "a")
+        XCTAssertEqual(function.offset, 0)
+        XCTAssertEqual(function.length, 21)
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) -> SwiftMethodElement {
