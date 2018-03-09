@@ -3,7 +3,7 @@ import XCTest
 
 class FunctionDeclarationParserTests: XCTestCase {
 
-    var parser: Parser<SwiftMethodElement>!
+    var parser: Parser<NamedElement>!
 
     override func tearDown() {
         parser = nil

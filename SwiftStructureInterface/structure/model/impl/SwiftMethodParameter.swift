@@ -2,8 +2,16 @@ class SwiftMethodParameter: SwiftElement, MethodParameter {
 
     static let errorMethodParameter = SwiftMethodParameter(text: "", children: [], offset: -1, length: -1, type: SwiftElement.errorElement)
     let type: Element
+    let externalParameterName: String?
+    let localParameterName: String
 
-    init(text: String, children: [Element], offset: Int64, length: Int64, type: Element) {
+    convenience init(text: String, children: [Element], offset: Int64, length: Int64, type: Element) {
+        self.init(text: text, children: children, offset: offset, length: length, externalParameterName: nil, localParameterName: "", type: type)
+    }
+
+    init(text: String, children: [Element], offset: Int64, length: Int64, externalParameterName: String?, localParameterName: String, type: Element) {
+        self.externalParameterName = externalParameterName
+        self.localParameterName = localParameterName
         self.type = type
         super.init(text: text, children: children, offset: offset, length: length)
     }

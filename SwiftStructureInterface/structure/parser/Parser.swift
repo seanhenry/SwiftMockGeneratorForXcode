@@ -85,6 +85,13 @@ class Parser<ResultType> {
         return sourceFile.content
     }
 
+    func isPrefixOperator(_ string: String) -> Bool {
+        if case let .prefixOperator(op) = peekAtNextKind() {
+            return op == string
+        }
+        return false
+    }
+
     func isPostfixOperator(_ string: String) -> Bool {
         if case let .postfixOperator(op) = peekAtNextKind() {
             return op == string
@@ -205,7 +212,7 @@ class Parser<ResultType> {
         string.append(parseTypeIdentifier().text)
     }
 
-    private func tryToAppendInout(to string: inout String) {
+    func tryToAppendInout(to string: inout String) {
         tryToAppend(.inout, value: "inout ", to: &string)
     }
 
