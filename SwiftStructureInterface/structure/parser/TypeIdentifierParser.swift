@@ -2,8 +2,6 @@ import Lexer
 
 class TypeIdentifierParser: Parser<NamedElement> {
 
-    private class Error: Swift.Error {}
-
     override func parse() -> NamedElement {
         let start = getCurrentStartLocation()
         if let identifier = parseType() {
@@ -87,7 +85,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
             advance()
             string.append("<")
         } else {
-            throw Error()
+            throw LookAheadError()
         }
     }
 
@@ -112,7 +110,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
             }
             advance()
         } else {
-            throw Error()
+            throw LookAheadError()
         }
     }
 
@@ -201,7 +199,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
         if let type = parseTypeIdentifier() {
             string.append(type)
         } else {
-            throw Error()
+            throw LookAheadError()
         }
     }
 
@@ -252,7 +250,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
             var name = ""
             try appendIdentifier(to: &name)
             if !isNext(.colon) {
-                throw Error()
+                throw LookAheadError()
             }
             return name
         }
@@ -278,7 +276,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
         if let tuple = parseTupleType() {
             string.append(tuple)
         } else {
-            throw Error()
+            throw LookAheadError()
         }
     }
 }

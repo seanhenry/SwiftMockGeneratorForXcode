@@ -5,7 +5,7 @@ class Parser<ResultType> {
     private let fileContents: String
     private let lexer: SwiftLexer
     private let accessLevelModifiers = Token.Kind.accessLevelModifiers
-    private class Error: Swift.Error {}
+    class LookAheadError: Swift.Error {}
 
     required init(lexer: SwiftLexer, fileContents: String) {
         self.lexer = lexer
@@ -138,7 +138,7 @@ class Parser<ResultType> {
             advance()
             string.append(value)
         } else {
-            throw Error()
+            throw LookAheadError()
         }
     }
 
@@ -154,7 +154,7 @@ class Parser<ResultType> {
             advance()
             string.append(value)
         } else {
-            throw Error()
+            throw LookAheadError()
         }
     }
 
@@ -180,7 +180,7 @@ class Parser<ResultType> {
             advance()
             string += argument
         } else {
-            throw Error()
+            throw LookAheadError()
         }
     }
 
