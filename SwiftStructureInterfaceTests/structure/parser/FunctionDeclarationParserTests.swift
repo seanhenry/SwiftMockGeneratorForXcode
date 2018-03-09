@@ -2,6 +2,7 @@ import XCTest
 @testable import SwiftStructureInterface
 
 // TODO: Parse code block
+// TODO: Support operator name
 
 class FunctionDeclarationParserTests: XCTestCase {
 
@@ -21,6 +22,7 @@ class FunctionDeclarationParserTests: XCTestCase {
         XCTAssertEqual(function.offset, 0)
         XCTAssertEqual(function.length, 8)
         XCTAssertNil(function.returnType)
+        XCTAssertFalse(function.throws)
     }
 
     func test_parse_shouldParseFuncWithParameters() {
@@ -53,6 +55,24 @@ class FunctionDeclarationParserTests: XCTestCase {
         XCTAssertEqual(type?.text, "Type")
         XCTAssertEqual(type?.offset, 12)
         XCTAssertEqual(type?.length, 4)
+    }
+
+    func test_parse_shouldParseThrowingFunc() {
+        let function = parse("func a() throws")
+        XCTAssertEqual(function.text, "func a() throws")
+        XCTAssertEqual(function.name, "a")
+        XCTAssertEqual(function.offset, 0)
+        XCTAssertEqual(function.length, 15)
+        XCTAssert(function.throws)
+    }
+
+    func test_parse_shouldParseRethrowingFunc() {
+        let function = parse("func a() rethrows")
+        XCTAssertEqual(function.text, "func a() rethrows")
+        XCTAssertEqual(function.name, "a")
+        XCTAssertEqual(function.offset, 0)
+        XCTAssertEqual(function.length, 17)
+        XCTAssert(function.throws)
     }
 
     // MARK: - Helpers
