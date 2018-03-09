@@ -17,7 +17,7 @@ class DeclarationParser<ResultType>: Parser<ResultType> {
     override func parse() -> ResultType {
         let start = getCurrentStartLocation()
         _ = parseAttributes()
-        skipAccessModifier()
+        skipDeclarationModifiers()
         guard isNext(declarationToken) else { fatalError("Expected a \(declarationToken). Check isNext(.\(declarationToken)) before parsing a protocol") }
         advance()
         return parseDeclaration(offset: convert(start)!)

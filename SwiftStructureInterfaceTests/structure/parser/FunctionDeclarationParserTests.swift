@@ -75,6 +75,14 @@ class FunctionDeclarationParserTests: XCTestCase {
         XCTAssert(function.throws)
     }
 
+    func test_parse_shouldParseFuncWithDeclarationModifiers() {
+        let function = parse("@a @objc(NS) public override mutating func a() rethrows")
+        XCTAssertEqual(function.text, "@a @objc(NS) public override mutating func a() rethrows")
+        XCTAssertEqual(function.name, "a")
+        XCTAssertEqual(function.offset, 0)
+        XCTAssertEqual(function.length, 55)
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) -> SwiftMethodElement {

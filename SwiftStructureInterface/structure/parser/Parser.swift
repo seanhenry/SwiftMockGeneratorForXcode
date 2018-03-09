@@ -4,7 +4,6 @@ class Parser<ResultType> {
 
     private let fileContents: String
     private let lexer: SwiftLexer
-    private let accessLevelModifiers = Token.Kind.accessLevelModifiers
     class LookAheadError: Swift.Error {}
 
     required init(lexer: SwiftLexer, fileContents: String) {
@@ -114,7 +113,7 @@ class Parser<ResultType> {
     func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
         let c = setCheckPoint()
         _ = parseAttributes()
-        skipAccessModifier()
+        skipDeclarationModifiers()
         let isNext = self.isNext(declaration)
         restoreCheckPoint(c)
         return isNext
@@ -127,10 +126,8 @@ class Parser<ResultType> {
         return nil
     }
 
-    func skipAccessModifier() {
-        if isNext(accessLevelModifiers) {
-            advance()
-        }
+    func skipDeclarationModifiers() {
+        _ = parseDeclarationModifiers()
     }
 
     func append(_ kind: Token.Kind, value: String, to string: inout String) throws {
@@ -261,6 +258,10 @@ class Parser<ResultType> {
 
     func parseFunctionDeclarationResult() -> Element {
         return parse(FunctionDeclarationParser.ResultParser.self)
+    }
+
+    func parseDeclarationModifiers() -> String {
+        return parse(DeclarationModifierParser.self)
     }
 
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {
