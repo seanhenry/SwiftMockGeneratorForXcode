@@ -13,22 +13,34 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
     }
 
     private func parseParameterClause() -> [MethodParameter] {
-        if isNext(.leftParen) {
-            advance()
-        }
-        parseParameter()
-        if isNext(.rightParen) {
-            advance()
-        }
-        return []
+        return parseFunctionDeclarationParameterClause()
     }
 
-    private func a(a: String...) {
+    class ParameterClauseParser: Parser<[MethodParameter]> {
 
-    }
+        override func parse() -> [MethodParameter] {
+            advance(if: .leftParen)
+            if isNext(.rightParen) {
+                advance()
+                return []
+            }
+            var parameters = [MethodParameter]()
+            tryToAppendParameter(to: &parameters)
+            while isNext(.comma) {
+                advance()
+                tryToAppendParameter(to: &parameters)
+            }
+            advance(if: .rightParen)
+            return parameters
+        }
 
-    private func parseParameter() -> MethodParameter {
-        return parseFunctionDeclarationParameter()
+        private func tryToAppendParameter(to parameters: inout [MethodParameter]) {
+            parameters.append(parseParameter())
+        }
+
+        private func parseParameter() -> MethodParameter {
+            return parseFunctionDeclarationParameter()
+        }
     }
 
     class ParameterParser: Parser<MethodParameter> {
