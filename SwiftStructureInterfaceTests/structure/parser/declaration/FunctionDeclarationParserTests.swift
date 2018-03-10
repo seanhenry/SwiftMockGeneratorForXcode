@@ -6,13 +6,6 @@ import XCTest
 
 class FunctionDeclarationParserTests: XCTestCase {
 
-    var parser: Parser<NamedElement>!
-
-    override func tearDown() {
-        parser = nil
-        super.tearDown()
-    }
-
     // MARK: - parse
 
     func test_parse_shouldParseFuncWithEmptyParameterClause() {
