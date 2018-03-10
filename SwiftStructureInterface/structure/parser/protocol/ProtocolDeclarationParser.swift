@@ -1,6 +1,6 @@
 import Source
 
-class ProtocolParser: DeclarationParser<SwiftTypeElement> {
+class ProtocolDeclarationParser: DeclarationParser<SwiftTypeElement> {
 
     override func parseDeclaration(offset: Int64) -> SwiftTypeElement {
         var name = ""

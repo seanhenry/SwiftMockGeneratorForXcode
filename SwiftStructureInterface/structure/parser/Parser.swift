@@ -229,7 +229,7 @@ class Parser<ResultType> {
     }
 
     func parseProtocol() -> Element {
-        return parseDeclaration(ProtocolParser.self, .protocol)
+        return parseDeclaration(ProtocolDeclarationParser.self, .protocol)
     }
 
     func parseAttributes() -> String {

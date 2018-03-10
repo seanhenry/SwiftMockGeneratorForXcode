@@ -1,7 +1,7 @@
 import XCTest
 @testable import SwiftStructureInterface
 
-class ProtocolParserTests: XCTestCase {
+class ProtocolDeclarationParserTests: XCTestCase {
 
     var parser: Parser<SwiftTypeElement>!
 
@@ -13,8 +13,7 @@ class ProtocolParserTests: XCTestCase {
     // MARK: - parse
 
     func test_parse_shouldParseProtocol() {
-        let parser = createDeclarationParser("protocol P {}", .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse("protocol P {}")
         XCTAssertEqual(`protocol`.text, "protocol P {}")
         XCTAssertEqual(`protocol`.name, "P")
         XCTAssertEqual(`protocol`.offset, 0)
@@ -24,8 +23,7 @@ class ProtocolParserTests: XCTestCase {
     }
 
     func test_parse_shouldParsePartialProtocolWithoutClosingBrace() {
-        parser = createDeclarationParser("protocol A {", .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse("protocol A {")
         XCTAssertEqual(`protocol`.text, "protocol A {")
         XCTAssertEqual(`protocol`.name, "A")
         XCTAssertEqual(`protocol`.offset, 0)
@@ -35,8 +33,7 @@ class ProtocolParserTests: XCTestCase {
     }
 
     func test_parse_shouldParsePartialProtocolWithoutOpeningBrace() {
-        parser = createDeclarationParser("protocol A", .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse("protocol A")
         XCTAssertEqual(`protocol`.text, "protocol A")
         XCTAssertEqual(`protocol`.name, "A")
         XCTAssertEqual(`protocol`.offset, 0)
@@ -46,8 +43,7 @@ class ProtocolParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseInheritanceClause() {
-        parser = createDeclarationParser("protocol A: B {}", .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse("protocol A: B {}")
         XCTAssertEqual(`protocol`.text, "protocol A: B {}")
         XCTAssertEqual(`protocol`.name, "A")
         XCTAssertEqual(`protocol`.offset, 0)
@@ -62,8 +58,7 @@ class ProtocolParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseInheritanceClauseWithMultipleInheritanceTypes() {
-        parser = createDeclarationParser("protocol A: class, ProtocolB, P💐C {}", .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse("protocol A: class, ProtocolB, P💐C {}")
         XCTAssertEqual(`protocol`.inheritedTypes.count, 3)
         XCTAssertEqual(`protocol`.inheritedTypes[0].name, "class")
         XCTAssertEqual(`protocol`.inheritedTypes[0].text, "class")
@@ -80,8 +75,7 @@ class ProtocolParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseProtocolWithUTF16Characters() {
-        parser = createDeclarationParser("protocol Na💐me: Pro💐tocol {}", .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse("protocol Na💐me: Pro💐tocol {}")
         XCTAssertEqual(`protocol`.text, "protocol Na💐me: Pro💐tocol {}")
         XCTAssertEqual(`protocol`.name, "Na💐me")
         XCTAssertEqual(`protocol`.offset, 0)
@@ -96,8 +90,7 @@ class ProtocolParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseProtocolWithAccessModifier() {
-        parser = createDeclarationParser("public protocol A {}", .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse("public protocol A {}")
         XCTAssertEqual(`protocol`.text, "public protocol A {}")
         XCTAssertEqual(`protocol`.name, "A")
         XCTAssertEqual(`protocol`.offset, 0)
@@ -107,8 +100,7 @@ class ProtocolParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseProtocolWithAttribute() {
-        parser = createDeclarationParser("@objc(NS) protocol A {}", .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse("@objc(NS) protocol A {}")
         XCTAssertEqual(`protocol`.text, "@objc(NS) protocol A {}")
         XCTAssertEqual(`protocol`.name, "A")
         XCTAssertEqual(`protocol`.offset, 0)
@@ -118,8 +110,7 @@ class ProtocolParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseProtocolWithWhereClause() {
-        parser = createDeclarationParser("protocol A where B: C {}", .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse("protocol A where B: C {}")
         XCTAssertEqual(`protocol`.text, "protocol A where B: C {}")
         XCTAssertEqual(`protocol`.name, "A")
         XCTAssertEqual(`protocol`.offset, 0)
@@ -129,8 +120,7 @@ class ProtocolParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseInheritanceClauseWithNestedTypes() {
-        parser = createDeclarationParser("protocol A: Nested.Type, Deep.Nested.Type {}", .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse("protocol A: Nested.Type, Deep.Nested.Type {}")
         XCTAssertEqual(`protocol`.inheritedTypes.count, 2)
         XCTAssertEqual(`protocol`.inheritedTypes[0].name, "Nested.Type")
         XCTAssertEqual(`protocol`.inheritedTypes[0].text, "Nested.Type")
@@ -143,8 +133,7 @@ class ProtocolParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseInheritanceTypeAsError_whenTypeIsMissing() {
-        parser = createDeclarationParser("protocol A: {}", .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse("protocol A: {}")
         XCTAssertEqual(`protocol`.inheritedTypes.count, 1)
         XCTAssert(`protocol`.inheritedTypes[0] === SwiftInheritedType.errorInheritedType)
         XCTAssertEqual(`protocol`.offset, 0)
@@ -154,8 +143,7 @@ class ProtocolParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseProtocolWithoutName() {
-        parser = createDeclarationParser("protocol {}", .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse("protocol {}")
         XCTAssertEqual(`protocol`.name, "")
         XCTAssertEqual(`protocol`.text, "protocol {}")
         XCTAssertEqual(`protocol`.offset, 0)
@@ -166,8 +154,7 @@ class ProtocolParserTests: XCTestCase {
 
     func test_parse_shouldParseComplicatedProtocol() {
         let text = "@objc(NSMyProtocol) @abc fileprivate protocol MyProtocol : InheritedType1, Deep.Nested.Type where Type : A & B , Type2 == N.T {}"
-        parser = createDeclarationParser(text, .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse(text)
         XCTAssertEqual(`protocol`.name, "MyProtocol")
         XCTAssertEqual(`protocol`.text, text)
         XCTAssertEqual(`protocol`.offset, 0)
@@ -178,8 +165,7 @@ class ProtocolParserTests: XCTestCase {
 
     func test_parse_shouldParseInheritanceClauseWithGenerics() {
         let text = "protocol A: Generic<Type> where Type.Type : Another<Generic> {}"
-        parser = createDeclarationParser(text, .protocol, ProtocolParser.self)
-        let `protocol` = parser.parse()
+        let `protocol` = parse(text)
         XCTAssertEqual(`protocol`.name, "A")
         XCTAssertEqual(`protocol`.text, text)
         XCTAssertEqual(`protocol`.offset, 0)
@@ -191,5 +177,12 @@ class ProtocolParserTests: XCTestCase {
         XCTAssertEqual(`protocol`.inheritedTypes[0].text, "Generic<Type>")
         XCTAssertEqual(`protocol`.inheritedTypes[0].offset, 12)
         XCTAssertEqual(`protocol`.inheritedTypes[0].length, 13)
+    }
+
+    // MARK: - Helpers
+
+    func parse(_ text: String) -> SwiftTypeElement {
+        let parser = createDeclarationParser(text, .protocol, ProtocolDeclarationParser.self)
+        return parser.parse()
     }
 }
