@@ -3,13 +3,6 @@ import XCTest
 
 class CommentsParserTests: XCTestCase {
 
-    var parser: Parser<SwiftTypeElement>!
-
-    override func tearDown() {
-        parser = nil
-        super.tearDown()
-    }
-
     // MARK: - parse
 
     func test_parse_shouldParseCommentBlocks() {

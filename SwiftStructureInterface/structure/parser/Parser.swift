@@ -268,6 +268,10 @@ class Parser<ResultType> {
         return parse(GenericParameterClauseParser.self)
     }
 
+    func parseTypealiasAssignment() -> Element {
+        return parse(TypeAliasAssignmentParser.self)
+    }
+
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {
         return P(lexer: lexer, fileContents: fileContents).parse()
     }

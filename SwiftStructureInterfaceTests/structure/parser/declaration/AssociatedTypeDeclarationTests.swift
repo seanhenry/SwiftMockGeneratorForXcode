@@ -3,13 +3,6 @@ import XCTest
 
 class AssociatedTypeDeclarationParserTests: XCTestCase {
 
-    var parser: Parser<SwiftTypeElement>!
-
-    override func tearDown() {
-        parser = nil
-        super.tearDown()
-    }
-
     // MARK: - parse
 
     func test_parse_shouldAssociatedTypeWithName() {
@@ -38,6 +31,14 @@ class AssociatedTypeDeclarationParserTests: XCTestCase {
 
     func test_parse_shouldAssociatedTypeWithTypeInheritanceClause() {
         let text = "associatedtype Name: Type, List<Of.Types>"
+        let associatedType = parse(text)
+        XCTAssertEqual(associatedType.text, text)
+        XCTAssertEqual(associatedType.offset, 0)
+        XCTAssertEqual(associatedType.length, Int64(text.utf8.count))
+    }
+
+    func test_parse_shouldAssociatedTypeWithTypealiasAssignment() {
+        let text = "associatedtype Name = Type"
         let associatedType = parse(text)
         XCTAssertEqual(associatedType.text, text)
         XCTAssertEqual(associatedType.offset, 0)
