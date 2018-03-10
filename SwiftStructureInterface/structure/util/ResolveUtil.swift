@@ -28,13 +28,13 @@ class ResolveUtil {
     private func getResolvedElementInFile(from data: [String: Any]?) -> Element? {
         if let path = data?["key.filepath"] as? String,
            let offset = data?["key.offset"] as? Int64,
-           let resolvedFile = SKElementFactory().build(fromPath: path) {
+           let resolvedFile = FileParser(filePath: path)?.parse() {
             return CaretUtil().findElementUnderCaret(in: resolvedFile, cursorOffset: offset)
         }
         return nil
     }
 
-
+    // TODO: remove this and use `resolve` when generic param and typealias are supported
     func resolveToElement(_ element: Element) -> Element? {
         guard writeToFile(element) else { return nil }
         return getResolvedElement(from: resolveFromSameFile(element))

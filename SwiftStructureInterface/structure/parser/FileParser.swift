@@ -9,6 +9,11 @@ class FileParser: Parser<File> {
         self.init(lexer: lexer, fileContents: fileContents)
     }
 
+    convenience init?(filePath: String) {
+        guard let contents = try? String(contentsOfFile: filePath) else { return nil }
+        self.init(fileContents: contents)
+    }
+
     required init(lexer: SwiftLexer, fileContents: String) {
         super.init(lexer: lexer, fileContents: fileContents)
     }
