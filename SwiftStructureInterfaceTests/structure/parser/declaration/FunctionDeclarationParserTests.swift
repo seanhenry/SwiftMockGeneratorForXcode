@@ -72,7 +72,7 @@ class FunctionDeclarationParserTests: XCTestCase {
         XCTAssertEqual(function.name, "a")
         XCTAssertEqual(function.offset, 0)
         XCTAssertEqual(function.length, 17)
-        XCTAssert(function.throws)
+        XCTAssertFalse(function.throws)
     }
 
     func test_parse_shouldParseFuncWithDeclarationModifiers() {

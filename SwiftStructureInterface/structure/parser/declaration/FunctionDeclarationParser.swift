@@ -8,6 +8,7 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
         skipGenericParameterClause()
         let parameters = parseParameterClause()
         let `throws` = parseThrows()
+        skipRethrows()
         let returnType = parseReturnType()
         skipWhereClause()
         let end = convert(getPreviousEndLocation())!
@@ -25,11 +26,15 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
     }
 
     private func parseThrows() -> Bool {
-        if isNext(.throws) || isNext(.rethrows) {
+        if isNext(.throws) {
             advance()
             return true
         }
         return false
+    }
+
+    private func skipRethrows() {
+        advance(if: .rethrows)
     }
 
     private func parseReturnType() -> Element? {

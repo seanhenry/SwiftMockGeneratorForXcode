@@ -28,4 +28,11 @@ class ThrowingProtocolMock: ThrowingProtocol {
             _ = try? closure(result.0)
         }
     }
+    var invokedRethrowsMethod = false
+    var invokedRethrowsMethodCount = 0
+    func rethrowsMethod(closure: () throws -> ()) rethrows {
+        invokedRethrowsMethod = true
+        invokedRethrowsMethodCount += 1
+        try? closure()
+    }
 }
