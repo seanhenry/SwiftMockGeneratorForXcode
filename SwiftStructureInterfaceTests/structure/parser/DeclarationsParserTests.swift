@@ -27,6 +27,10 @@ class DeclarationsParserTests: XCTestCase {
         XCTAssertEqual(function1.text, getFunction())
         XCTAssertEqual(function1.offset, 34)
         XCTAssertEqual(function1.length, Int64(getFunction().utf8.count))
+        let function2 = `protocol`?.children[1] as! SwiftMethodElement
+        XCTAssertEqual(function2.text, getFunction())
+        XCTAssertEqual(function2.offset, function1.offset + function1.length + 3)
+        XCTAssertEqual(function2.length, Int64(getFunction().utf8.count))
     }
 
     // MARK: - Helpers
@@ -34,6 +38,7 @@ class DeclarationsParserTests: XCTestCase {
     func getProtocolWithMethods() -> String {
         return """
         protocol ProtocolWithMethod() {
+          \(getFunction())
           \(getFunction())
         }
         """
