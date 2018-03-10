@@ -1,4 +1,4 @@
-class TypeAliasAssignmentParser: Parser<Element> {
+class TypealiasAssignmentParser: Parser<Element> {
 
     override func parse() -> Element {
         let start = getCurrentStartLocation()

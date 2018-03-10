@@ -269,7 +269,7 @@ class Parser<ResultType> {
     }
 
     func parseTypealiasAssignment() -> Element {
-        return parse(TypeAliasAssignmentParser.self)
+        return parse(TypealiasAssignmentParser.self)
     }
 
     func parseAssociatedTypeDeclaration() -> Element {
