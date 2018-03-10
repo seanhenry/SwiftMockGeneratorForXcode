@@ -4,6 +4,7 @@ class AssociatedTypeDeclarationParser: DeclarationParser<Element> {
         if peekAtNextIdentifier() != nil {
             advance()
         }
+        _ = parseTypeInheritanceClause()
         let length = convert(getCurrentEndLocation())!
         let text = getString(offset: offset, length: length)!
         return SwiftElement(text: text, children: [], offset: offset, length: length)

@@ -5,7 +5,7 @@ class ProtocolDeclarationParser: DeclarationParser<SwiftTypeElement> {
     override func parseDeclaration(offset: Int64) -> SwiftTypeElement {
         var name = ""
         tryToAppendIdentifier(to: &name)
-        let inheritanceClause = parseInheritanceClause()
+        let inheritanceClause = parseTypeInheritanceClause()
         skipWhereClause()
         let codeBlock = parseTypeCodeBlock()
         let length = codeBlock.bodyEnd - offset

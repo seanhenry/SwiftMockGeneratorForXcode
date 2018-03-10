@@ -212,8 +212,8 @@ class Parser<ResultType> {
 
     // MARK: - Parsers
 
-    func parseInheritanceClause() -> [NamedElement] {
-        return parse(InheritanceClauseParser.self)
+    func parseTypeInheritanceClause() -> [NamedElement] {
+        return parse(TypeInheritanceClauseParser.self)
     }
 
     func parseTypeIdentifier() -> NamedElement {

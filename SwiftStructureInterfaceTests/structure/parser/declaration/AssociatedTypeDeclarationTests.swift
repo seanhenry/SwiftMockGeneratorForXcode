@@ -36,6 +36,14 @@ class AssociatedTypeDeclarationParserTests: XCTestCase {
         XCTAssertEqual(associatedType.length, Int64(text.utf8.count))
     }
 
+    func test_parse_shouldAssociatedTypeWithTypeInheritanceClause() {
+        let text = "associatedtype Name: Type, List<Of.Types>"
+        let associatedType = parse(text)
+        XCTAssertEqual(associatedType.text, text)
+        XCTAssertEqual(associatedType.offset, 0)
+        XCTAssertEqual(associatedType.length, Int64(text.utf8.count))
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) -> SwiftElement {

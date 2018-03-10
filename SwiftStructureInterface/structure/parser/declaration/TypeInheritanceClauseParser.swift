@@ -1,4 +1,4 @@
-class InheritanceClauseParser: Parser<[NamedElement]> {
+class TypeInheritanceClauseParser: Parser<[NamedElement]> {
 
     override func parse() -> [NamedElement] {
         guard isNext(.colon) else { return [] }
