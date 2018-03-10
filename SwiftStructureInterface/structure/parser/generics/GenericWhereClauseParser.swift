@@ -4,7 +4,8 @@ class GenericWhereClauseParser: Parser<String> {
         var clause = ""
         if isNext(.where) {
             advance()
-            clause += "where \(parseRequirementList())"
+            clause.append("where ")
+            clause.append(parseRequirementList())
         }
         return clause
     }

@@ -6,6 +6,7 @@ class AssociatedTypeDeclarationParser: DeclarationParser<Element> {
         }
         _ = parseTypeInheritanceClause()
         _ = parseTypealiasAssignment()
+        _ = parseWhereClause()
         let length = convert(getCurrentEndLocation())!
         let text = getString(offset: offset, length: length)!
         return SwiftElement(text: text, children: [], offset: offset, length: length)
