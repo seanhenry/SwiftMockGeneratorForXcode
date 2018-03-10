@@ -5,11 +5,10 @@ class CodeBlockParser: Parser<CodeBlock> {
     override func parse() -> CodeBlock {
         let bodyStart = getCurrentEndLocation()
         advance(if: .leftBrace)
-        let bodyOffset = convert(bodyStart)!
 
-        // TODO: only parse declarations if body is complete (need to add method/var parser first)
         let declarations = parseDeclarations()
 
+        let bodyOffset = convert(bodyStart)!
         let bodyLength = convert(getCurrentStartLocation())! - bodyOffset
         var rightBraceLength: Int64 = 0
         if isNext(.rightBrace) {

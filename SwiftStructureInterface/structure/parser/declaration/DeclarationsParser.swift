@@ -15,6 +15,8 @@ class DeclarationsParser: Parser<[Element]> {
             return parseProtocol()
         } else if isNextDeclaration(.func) {
             return parseFunctionDeclaration()
+        } else if isNextDeclaration(.identifier("associatedtype")) {
+            return parseAssociatedTypeDeclaration()
         } else {
             advance()
             return parseDeclaration()

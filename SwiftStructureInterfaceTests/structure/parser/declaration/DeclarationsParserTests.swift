@@ -3,6 +3,8 @@ import XCTest
 
 class DeclarationsParserTests: XCTestCase {
 
+    let newlineToNextDeclaration: Int64 = 3
+
     func test_parse_shouldParseProtocolWithMisspelledAccessModifier() {
         let parser = FileParser(fileContents: "publi protocol A {}")
         let file = parser.parse()
@@ -15,21 +17,29 @@ class DeclarationsParserTests: XCTestCase {
         XCTAssertEqual(`protocol`?.bodyLength, 0)
     }
 
-    func test_parse_shouldParseProtocolWithMethods() {
+    func test_parse_shouldParseProtocol() {
         let parser = FileParser(fileContents: getProtocolWithMethods())
         let file = parser.parse()
-        let `protocol` = file.children[0] as? SwiftTypeElement
-        XCTAssertEqual(`protocol`?.text, getProtocolWithMethods())
-        XCTAssertEqual(`protocol`?.name, "ProtocolWithMethod")
-        XCTAssertEqual(`protocol`?.offset, 0)
-        XCTAssertEqual(`protocol`?.length, Int64(getProtocolWithMethods().utf8.count))
-        let function1 = `protocol`?.children[0] as! SwiftMethodElement
+        let `protocol` = file.children[0] as! SwiftTypeElement
+        XCTAssertEqual(`protocol`.text, getProtocolWithMethods())
+        XCTAssertEqual(`protocol`.name, "MyProtocol")
+        XCTAssertEqual(`protocol`.offset, 0)
+        XCTAssertEqual(`protocol`.length, Int64(getProtocolWithMethods().utf8.count))
+        XCTAssertEqual(`protocol`.bodyOffset, 21)
+        let bodyLength: Int64 = calculateBodyLength(`protocol`)
+        XCTAssertEqual(`protocol`.bodyLength, bodyLength)
+        let bodyOffset = `protocol`.bodyOffset
+        let associatedType = `protocol`.children[0]
+        XCTAssertEqual(associatedType.text, getAssociatedType())
+        XCTAssertEqual(associatedType.offset, bodyOffset + newlineToNextDeclaration)
+        XCTAssertEqual(associatedType.length, Int64(getAssociatedType().utf8.count))
+        let function1 = `protocol`.children[1] as! SwiftMethodElement
         XCTAssertEqual(function1.text, getFunction())
-        XCTAssertEqual(function1.offset, 34)
+        XCTAssertEqual(function1.offset, associatedType.offset + associatedType.length + newlineToNextDeclaration)
         XCTAssertEqual(function1.length, Int64(getFunction().utf8.count))
-        let function2 = `protocol`?.children[1] as! SwiftMethodElement
+        let function2 = `protocol`.children[2] as! SwiftMethodElement
         XCTAssertEqual(function2.text, getFunction())
-        XCTAssertEqual(function2.offset, function1.offset + function1.length + 3)
+        XCTAssertEqual(function2.offset, function1.offset + function1.length + newlineToNextDeclaration)
         XCTAssertEqual(function2.length, Int64(getFunction().utf8.count))
     }
 
@@ -37,7 +47,8 @@ class DeclarationsParserTests: XCTestCase {
 
     func getProtocolWithMethods() -> String {
         return """
-        protocol ProtocolWithMethod() {
+        protocol MyProtocol {
+          \(getAssociatedType())
           \(getFunction())
           \(getFunction())
         }
@@ -48,5 +59,18 @@ class DeclarationsParserTests: XCTestCase {
         return """
         @a public mutating func aFunc(_ a: A, b c: D<E>) throws -> [String: Int]?
         """
+    }
+
+    func getAssociatedType() -> String {
+        return """
+        @a fileprivate associatedtype = A<T> where T.Type == String
+        """
+    }
+
+    private func calculateBodyLength(_ element: Element) -> Int64 {
+        let newlineToClosingBrace: Int64 = 1
+        return element.children.reduce(Int64(0)) { result, element in
+            result + element.length + newlineToNextDeclaration
+        } + newlineToClosingBrace
     }
 }

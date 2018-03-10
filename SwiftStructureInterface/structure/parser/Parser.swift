@@ -272,6 +272,10 @@ class Parser<ResultType> {
         return parse(TypeAliasAssignmentParser.self)
     }
 
+    func parseAssociatedTypeDeclaration() -> Element {
+        return parseDeclaration(AssociatedTypeDeclarationParser.self, .identifier("associatedtype"))
+    }
+
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {
         return P(lexer: lexer, fileContents: fileContents).parse()
     }
