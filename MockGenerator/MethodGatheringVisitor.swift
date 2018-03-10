@@ -26,7 +26,7 @@ class MethodGatheringVisitor: ElementVisitor {
             resolvedReturnType: resolveType(method.returnType),
             parametersList: transformParameters(from: method),
             signature: method.text,
-            throws: false
+            throws: method.throws
         )
     }
 
