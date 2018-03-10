@@ -73,9 +73,9 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 | Supports failable initializers.||
 | Supports required initializers.||
 | **Throws** |
-| Stub an error for your mock method to throw. ||
+| Stub an error for your mock method to throw. |✅|
 | Supports throwing initializers. ||
-| Supports throwing closures. ||
+| Supports throwing closures. |✅|
 | **Generics** |
 | Generates generic mocks from protocols with associated types.||
 | Captures invoked generic parameters. |✅ \*|
