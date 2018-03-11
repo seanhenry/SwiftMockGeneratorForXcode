@@ -1,5 +1,5 @@
 protocol VariableDeclaration: NamedElement {
-    var type: String { get }
+    var type: Type { get }
     var isWritable: Bool { get }
     var attribute: String? { get }
 }

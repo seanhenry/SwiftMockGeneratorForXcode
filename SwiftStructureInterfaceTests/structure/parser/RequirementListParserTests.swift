@@ -17,9 +17,6 @@ class RequirementListParserTests: XCTestCase {
         assertText("A==B", "A==B")
     }
 
-    func test_parse_shouldPartialParseWrongOperator() {
-        assertText("A!=B", "A")
-    }
 
     func test_parse_shouldPartialParseWrongColon() {
         assertText("A;B", "A")

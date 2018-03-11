@@ -105,10 +105,8 @@ class FunctionDeclarationParserTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> SwiftFunctionDeclaration {
+    func parse(_ text: String) -> FunctionDeclaration {
         let parser = createDeclarationParser(text, .func, FunctionDeclarationParser.self)
-        return parser.parse() as! SwiftFunctionDeclaration
+        return parser.parse()
     }
-    // TODO: change parser design to decorator pattern?
-    // TODO: parse attributes @available, etc. Look at SwiftAST
 }

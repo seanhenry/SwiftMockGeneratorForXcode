@@ -4,7 +4,7 @@ let emptyTypeDeclaration = SwiftTypeElement(name: "", text: "", children: [], in
 let emptyElement = SwiftElement(text: "", children: [], offset: 0, length: 0)
 let emptyFile = SwiftFile(text: "", children: [], offset: 0, length: 0)
 let emptyFunctionDeclaration = SwiftFunctionDeclaration(name: "", text: "", children: [], offset: 0, length: 0, returnType: nil, parameters: [])
-let emptyVariableDeclaration = SwiftVariableDeclaration(name: "", text: "", children: [], offset: 0, length: 0, type: "", isWritable: false, attribute: nil)
+let emptyVariableDeclaration = SwiftVariableDeclaration(name: "", text: "", children: [], offset: 0, length: 0, type: testType, isWritable: false, attribute: nil)
 
 let testType = SwiftType(text: "Int", children: [], offset: 0, length: 3)
 let testTypealiasAssignment = SwiftTypealiasAssignment(text: "= Type", children: [testType], offset: 0, length: 6, type: testType)

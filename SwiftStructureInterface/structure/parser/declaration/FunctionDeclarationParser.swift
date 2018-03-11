@@ -1,8 +1,8 @@
 import Source
 
-class FunctionDeclarationParser: DeclarationParser<NamedElement> {
+class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
-    override func parseDeclaration(offset: Int64) -> NamedElement {
+    override func parseDeclaration(offset: Int64) -> FunctionDeclaration {
         var name = ""
         try! appendIdentifier(to: &name)
         let genericParameterClause = parseGenericParameterClause()

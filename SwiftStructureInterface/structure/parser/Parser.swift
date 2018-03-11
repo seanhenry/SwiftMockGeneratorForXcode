@@ -236,6 +236,10 @@ class Parser<ResultType> {
         tryToAppend(.inout, value: "inout ", to: &string)
     }
 
+    func skipInout() {
+        advance(if: .inout)
+    }
+
     // MARK: - Parsers
 
     func parseTypeInheritanceClause() -> [Element] {
@@ -270,7 +274,7 @@ class Parser<ResultType> {
         return parse(GenericWhereClauseParser.self)
     }
 
-    func parseFunctionDeclaration() -> NamedElement {
+    func parseFunctionDeclaration() -> FunctionDeclaration {
         return parseDeclaration(FunctionDeclarationParser.self, .func)
     }
 
