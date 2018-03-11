@@ -46,14 +46,10 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     }
 
     override func visitVariableDeclaration(_ element: VariableDeclaration) {
-        var attribute = ""
-        if let elementAttribute = element.attribute {
-            attribute = elementAttribute + " "
-        }
         properties.append(UseCasesProtocolProperty(name: element.name,
             type: element.type,
             isWritable: element.isWritable,
-            signature: attribute + element.text))
+            signature: element.text))
         super.visitVariableDeclaration(element)
     }
 }

@@ -10,8 +10,7 @@ class SwiftPropertyElementBuilder: NamedSwiftElementBuilderTemplate {
 
     func build(text: String, offset: Int64, length: Int64, name: String) -> Element? {
         let isWritable = getPropertyIsWritable()
-        let attributeString = getAttributeString(offset: offset)
-        return SwiftVariableDeclaration(name: name, text: text, children: buildChildren(), offset: offset, length: length, type: getType(), isWritable: isWritable, attribute: attributeString)
+        return SwiftVariableDeclaration(name: name, text: text, children: buildChildren(), offset: offset, length: length, type: getType(), isWritable: isWritable)
     }
 
     private func getType() -> Type {
@@ -24,24 +23,5 @@ class SwiftPropertyElementBuilder: NamedSwiftElementBuilderTemplate {
 
     private func getPropertyIsWritable() -> Bool {
         return data["key.setter_accessibility"] != nil
-    }
-
-    private func getAttributeString(offset: Int64) -> String? {
-        let attributes = data["key.attributes"] as? [[String: Any]]
-        let attribute = attributes?.first?["key.attribute"] as? String
-        if attribute == "source.decl.attribute.weak" {
-            let endIndex = fileText.index(fileText.startIndex, offsetBy: Int(offset))
-            let pretext = fileText[..<endIndex].trimmingCharacters(in: .whitespacesAndNewlines)
-            if pretext.hasSuffix("weak") {
-                return "weak"
-            } else if pretext.hasSuffix("unowned") {
-                return "unowned"
-            } else if pretext.hasSuffix("unowned(safe)") {
-                return "unowned(safe)"
-            } else if pretext.hasSuffix("unowned(unsafe)") {
-                return "unowned(unsafe)"
-            }
-        }
-        return nil
     }
 }

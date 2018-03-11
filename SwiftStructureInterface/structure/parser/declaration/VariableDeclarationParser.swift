@@ -6,6 +6,7 @@ class VariableDeclarationParser: DeclarationParser<VariableDeclaration> {
         var name = ""
         tryToAppendIdentifier(to: &name)
         let type = parseTypeAnnotation()
+        let block = parseGetterSetterBlock()
         let length = convert(getPreviousEndLocation())!
         let text = getString(offset: offset, length: length)!
         return SwiftVariableDeclaration(
@@ -15,8 +16,7 @@ class VariableDeclarationParser: DeclarationParser<VariableDeclaration> {
             offset: offset,
             length: length,
             type: type,
-            isWritable: false,
-            attribute: nil)
+            isWritable: block.isWritable)
     }
 
     private func parseTypeAnnotation() -> Type {
@@ -24,9 +24,5 @@ class VariableDeclarationParser: DeclarationParser<VariableDeclaration> {
         _ = parseAttributes()
         skipInout()
         return parseType()
-    }
-
-    private func skipWhereClause() {
-        _ = parseWhereClause()
     }
 }

@@ -45,6 +45,26 @@ class VariableDeclarationParserTests: XCTestCase {
         XCTAssertEqual(variable.length, Int64(text.utf8.count))
     }
 
+    func test_parse_shouldParseVariableWithGetterSetter() {
+        let text = "var a: @a inout Int { mutating set @a nonmutating get }"
+        let variable = parse(text)
+        XCTAssertEqual(variable.text, text)
+        XCTAssertEqual(variable.name, "a")
+        XCTAssertEqual(variable.offset, 0)
+        XCTAssertEqual(variable.length, Int64(text.utf8.count))
+        XCTAssert(variable.isWritable)
+    }
+
+    func test_parse_shouldParseVariableWithGetter() {
+        let text = "var a: @a inout Int { get }"
+        let variable = parse(text)
+        XCTAssertEqual(variable.text, text)
+        XCTAssertEqual(variable.name, "a")
+        XCTAssertEqual(variable.offset, 0)
+        XCTAssertEqual(variable.length, Int64(text.utf8.count))
+        XCTAssertFalse(variable.isWritable)
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) -> VariableDeclaration {

@@ -93,6 +93,12 @@ class Parser<ResultType> {
         }
     }
 
+    func advance(if kinds: [Token.Kind]) {
+        if isNext(kinds) {
+            advance()
+        }
+    }
+
     func advance(if scalar: UnicodeScalar) {
         if isNext(scalar) {
             advanceOperator(scalar)
@@ -292,6 +298,14 @@ class Parser<ResultType> {
 
     func parseDeclarationModifiers() -> String {
         return parse(DeclarationModifierParser.self)
+    }
+
+    func parseMutationModifiers() -> String {
+        return parse(MutationModifierParser.self)
+    }
+
+    func parseGetterSetterBlock() -> GetterSetterBlock {
+        return parse(GetterSetterBlockParser.self)
     }
 
     func parseGenericParameterClause() -> GenericParameterClause {
