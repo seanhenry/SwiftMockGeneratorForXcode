@@ -93,6 +93,28 @@ class Parser<ResultType> {
         }
     }
 
+    func advance(if scalar: UnicodeScalar) {
+        if isNext(scalar) {
+            advanceOperator(scalar)
+        }
+    }
+
+    func advanceOrFail(if kind: Token.Kind) throws {
+        if isNext(kind) {
+            advance()
+        } else {
+            throw LookAheadError()
+        }
+    }
+
+    func advanceOrFail(if scalar: UnicodeScalar) throws {
+        if isNext(scalar) {
+            advanceOperator(scalar)
+        } else {
+            throw LookAheadError()
+        }
+    }
+
     func isPrefixOperator(_ string: String) -> Bool {
         if case let .prefixOperator(op) = peekAtNextKind() {
             return op == string
@@ -132,14 +154,6 @@ class Parser<ResultType> {
 
     func skipDeclarationModifiers() {
         _ = parseDeclarationModifiers()
-    }
-
-    func advanceOrFail(if kind: Token.Kind) throws {
-        if isNext(kind) {
-            advance()
-        } else {
-            throw LookAheadError()
-        }
     }
 
     func append(_ kind: Token.Kind, value: String, to string: inout String) throws {

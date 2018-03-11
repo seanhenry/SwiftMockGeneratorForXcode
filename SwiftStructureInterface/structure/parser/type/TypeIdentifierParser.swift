@@ -40,34 +40,49 @@ class TypeIdentifierParser: Parser<Type> {
         return nil
     }
 
+    // MARK: - Type identifier
+
     private func _parseTypeIdentifier() -> Type? {
-        guard let type = parseTypeName() else { return nil }
-        return parseGenericClause(type)
-    }
-
-    private func parseTypeName() -> Type? {
-        return parseIdentifier()
-    }
-
-    private func parseIdentifier() -> Type? {
-        if let implicit = parseImplicitParameterName() {
-            return implicit
-        } else if peekAtNextIdentifier() != nil {
+        guard let type = parseTypeName().last else { return nil }
+        let genericArguments = parseGenericClause(type)
+        if isNext(.dot) {
             advance()
-            skipNestedTypes()
-            return createSwiftType()
+            return _parseTypeIdentifier()
+        } else {
+            let element = createPartialElement()
+            return SwiftTypeIdentifier(
+                text: element.text,
+                children: [type] + genericArguments,
+                offset: element.offset,
+                length: element.length,
+                type: type,
+                genericArguments: genericArguments)
         }
-        return nil
     }
 
-    // MARK: - Implicit
+    // MARK: - Nested
 
-    private func parseImplicitParameterName() -> Type? {
-        if peekAtNextImplicitParameterName() != nil {
+    private func parseTypeName() -> [Type] {
+        return parseNestedTypes()
+    }
+
+    private func parseNestedTypes() -> [Type] {
+        var types = [Type]()
+        appendIdentifier(to: &types)
+        while isNext(.dot) {
             advance()
-            return createSwiftType()
+            appendIdentifier(to: &types)
         }
-        return nil
+        return types
+    }
+
+    private func appendIdentifier(to types: inout [Type]) {
+        startStack.append(getCurrentStartLocation())
+        defer { startStack.removeLast() }
+        if peekAtNextIdentifier() != nil {
+            advance()
+            types.append(createSwiftType())
+        }
     }
 
     private func createSwiftType() -> Type {
@@ -75,64 +90,23 @@ class TypeIdentifierParser: Parser<Type> {
         return SwiftType(text: element.text, children: [], offset: element.offset, length: element.length)
     }
 
-    // MARK: - Nested
-
-    private func skipNestedTypes() {
-        while isNext(.dot) {
-            advance()
-            skipIdentifier()
-        }
-    }
-
     // MARK: - Generic
 
-    private func skipIdentifier() {
-        if peekAtNextIdentifier() != nil {
-            advance()
-        }
-    }
-
-    private func parseGenericClause(_ type: Type) -> Type {
-        var clause = "" // TODO: remove
+    private func parseGenericClause(_ type: Type) -> [Type] {
+        var clause = [Type]()
         do {
-            try appendGenericClauseStart(to: &clause)
-            tryToAppendType(to: &clause)
+            try advanceOrFail(if: "<")
+            clause.append(parse())
             appendGenericArgumentList(to: &clause)
-            try? appendGenericClauseEnd(to: &clause)
-            skipNestedTypes()
-            _ = parseGenericClause(type)
-            return createSwiftType()
+            advance(if: ">")
         } catch {} // ignored
-        return type
+        return clause
     }
 
-    private func appendGenericClauseStart(to string: inout String) throws {
-        if isGenericClauseStart() {
-            advanceOperator("<")
-            string.append("<")
-        } else {
-            throw LookAheadError()
-        }
-    }
-
-    private func skipType() {
-        _ = parse()
-    }
-
-    private func appendGenericArgumentList(to string: inout String) {
+    private func appendGenericArgumentList(to clause: inout [Type]) {
         while isNext(.comma) {
             advance()
-            string.append(", ")
-            tryToAppendType(to: &string)
-        }
-    }
-
-    private func appendGenericClauseEnd(to string: inout String) throws {
-        if isGenericClauseEnd() {
-            string.append(">")
-            advanceOperator(">")
-        } else {
-            throw LookAheadError()
+            clause.append(parse())
         }
     }
 
@@ -199,24 +173,6 @@ class TypeIdentifierParser: Parser<Type> {
                 innerType = createOptional(innerType)
             }
             return innerType
-        }
-    }
-
-    private func appendOptional(to type: Type) -> Type {
-        if isNext(.postfixQuestion) {
-            advance()
-            return createOptional(type)
-        } else if isNext(.postfixExclaim) {
-            advance()
-            return createOptional(type)
-        } else if isNext("!") {
-            advanceOperator("!")
-            return createOptional(type)
-        } else if isNext("?") {
-            advanceOperator("?")
-            return createOptional(type)
-        } else {
-            return type
         }
     }
 

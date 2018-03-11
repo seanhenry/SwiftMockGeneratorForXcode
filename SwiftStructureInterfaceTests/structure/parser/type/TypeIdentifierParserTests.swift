@@ -24,6 +24,20 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeText("Swift.Deep.Nested.Type", "Swift.Deep.Nested.Type")
     }
 
+    func test_parse_shouldParseTypeCompositionElement() {
+        let text = "Swift.Type"
+        let type = parse(text) as? TypeIdentifier
+        XCTAssertEqual(type?.offset, 0)
+        XCTAssertEqual(type?.length, 10)
+        XCTAssertEqual(type?.children.count, 1)
+        XCTAssertEqual(type?.genericArguments.count, 0)
+        let element = type?.type
+        XCTAssert(type?.children.first === element)
+        XCTAssertEqual(element?.text, "Type")
+        XCTAssertEqual(element?.offset, 6)
+        XCTAssertEqual(element?.length, 4)
+    }
+
     // MARK: - Generic
 
     func test_parse_shouldParseGenericType() {
@@ -71,8 +85,73 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeText("Generic<[Int:String]>", "Generic<[Int:String]>")
     }
 
+    func test_parse_shouldParseGenericElement() {
+        let text = "Generic<Type>"
+        let type = parse(text) as? TypeIdentifier
+        XCTAssertEqual(type?.offset, 0)
+        XCTAssertEqual(type?.length, 13)
+        XCTAssertEqual(type?.children.count, 2)
+        XCTAssertEqual(type?.genericArguments.count, 1)
+        let element = type?.genericArguments.first
+        XCTAssert(type?.children.last === element)
+        XCTAssertEqual(element?.text, "Type")
+        XCTAssertEqual(element?.offset, 8)
+        XCTAssertEqual(element?.length, 4)
+    }
+
+    func test_parse_shouldParseOptionalGenericElement() {
+        let text = "Generic<Type>?"
+        let type = parse(text) as? OptionalType
+        let genericType = type?.type as? TypeIdentifier
+        XCTAssertEqual(genericType?.offset, 0)
+        XCTAssertEqual(genericType?.length, 13)
+        XCTAssertEqual(genericType?.children.count, 2)
+        XCTAssertEqual(genericType?.genericArguments.count, 1)
+        let element = genericType?.genericArguments.first
+        XCTAssert(genericType?.children.last === element)
+        XCTAssertEqual(element?.text, "Type")
+        XCTAssertEqual(element?.offset, 8)
+        XCTAssertEqual(element?.length, 4)
+    }
+
     func test_parse_shouldParseNestedGeneric() {
-        assertTypeText("Generic<Type>.Another<Generic>", "Generic<Type>.Another<Generic>")
+        let text = "G<T>.H<U>"
+        let type = parse(text) as? TypeIdentifier
+        XCTAssertEqual(type?.text, text)
+        XCTAssertEqual(type?.offset, 0)
+        XCTAssertEqual(type?.length, 9)
+        XCTAssertEqual(type?.children.count, 2)
+        XCTAssertEqual(type?.genericArguments.count, 1)
+        let nestedType = type?.type
+        XCTAssert(type?.children.first === nestedType)
+        XCTAssertEqual(nestedType?.text, "H")
+        XCTAssertEqual(nestedType?.offset, 5)
+        XCTAssertEqual(nestedType?.length, 1)
+        let generic = type?.genericArguments.first
+        XCTAssert(type?.children.last === generic)
+        XCTAssertEqual(generic?.text, "U")
+        XCTAssertEqual(generic?.offset, 7)
+        XCTAssertEqual(generic?.length, 1)
+    }
+
+    func test_parse_shouldParseDeepNestedGeneric() {
+        let text = "G<T>.H<U>.I<V>"
+        let type = parse(text) as? TypeIdentifier
+        XCTAssertEqual(type?.text, text)
+        XCTAssertEqual(type?.offset, 0)
+        XCTAssertEqual(type?.length, 14)
+        XCTAssertEqual(type?.children.count, 2)
+        XCTAssertEqual(type?.genericArguments.count, 1)
+        let nestedType = type?.type
+        XCTAssert(type?.children.first === nestedType)
+        XCTAssertEqual(nestedType?.text, "I")
+        XCTAssertEqual(nestedType?.offset, 10)
+        XCTAssertEqual(nestedType?.length, 1)
+        let generic = type?.genericArguments.first
+        XCTAssert(type?.children.last === generic)
+        XCTAssertEqual(generic?.text, "V")
+        XCTAssertEqual(generic?.offset, 12)
+        XCTAssertEqual(generic?.length, 1)
     }
 
     // MARK: - Array
