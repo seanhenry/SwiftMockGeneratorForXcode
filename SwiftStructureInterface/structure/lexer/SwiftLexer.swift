@@ -10,6 +10,7 @@ protocol SwiftLexer {
     func isNext(_ kind: [Token.Kind]) -> Bool
     func peekAtNextKind() -> Token.Kind
     func advance()
+    func advanceOperator(_ scalar: UnicodeScalar)
     func setCheckPoint() -> String
     func restoreCheckPoint(_ id: String)
 }

@@ -73,6 +73,10 @@ class Parser<ResultType> {
         lexer.advance()
     }
 
+    func advanceOperator(_ scalar: UnicodeScalar) {
+        lexer.advanceOperator(scalar)
+    }
+
     func setCheckPoint() -> String {
         return lexer.setCheckPoint()
     }
@@ -128,6 +132,14 @@ class Parser<ResultType> {
 
     func skipDeclarationModifiers() {
         _ = parseDeclarationModifiers()
+    }
+
+    func advanceOrFail(if kind: Token.Kind) throws {
+        if isNext(kind) {
+            advance()
+        } else {
+            throw LookAheadError()
+        }
     }
 
     func append(_ kind: Token.Kind, value: String, to string: inout String) throws {
@@ -212,11 +224,11 @@ class Parser<ResultType> {
 
     // MARK: - Parsers
 
-    func parseTypeInheritanceClause() -> [NamedElement] {
+    func parseTypeInheritanceClause() -> [Element] {
         return parse(TypeInheritanceClauseParser.self)
     }
 
-    func parseTypeIdentifier() -> NamedElement {
+    func parseTypeIdentifier() -> Type {
         return parse(TypeIdentifierParser.self)
     }
 

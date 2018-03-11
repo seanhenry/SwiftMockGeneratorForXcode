@@ -39,7 +39,7 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
 
     private func parseReturnType() -> Element? {
         let result = parseFunctionDeclarationResult()
-        if result !== SwiftInheritedType.errorInheritedType {
+        if result !== SwiftType.errorType {
             return result
         }
         return nil
@@ -112,7 +112,7 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
             return nil
         }
 
-        private func parseType() -> NamedElement {
+        private func parseType() -> Element {
             skipTypeAnnotation()
             let type = parseTypeIdentifier()
             skipVarArgs()
@@ -138,7 +138,7 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
         override func parse() -> Element {
             _ = parseAttributes()
             guard isNext(.arrow) else {
-                return SwiftInheritedType.errorInheritedType
+                return SwiftType.errorType
             }
             advance()
             return parseTypeIdentifier()

@@ -41,6 +41,11 @@ class SwiftASTLexer: SwiftLexer {
         return lexer.matchUnicodeScalar(scalar)
     }
 
+    func advanceOperator(_ scalar: UnicodeScalar) {
+        lastRange = getCurrentRange()
+        _ = lexer.matchUnicodeScalar(scalar, splitOperator: true)
+    }
+
     func isNext(_ kind: Token.Kind) -> Bool {
         return peekAtNextKind() == kind
     }

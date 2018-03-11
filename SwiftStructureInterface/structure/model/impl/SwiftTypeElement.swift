@@ -3,11 +3,11 @@ import SourceKittenFramework
 class SwiftTypeElement: SwiftElement, NamedElement, TypeDeclaration, CodeBlockContainer {
 
     let name: String
-    let inheritedTypes: [NamedElement]
+    let inheritedTypes: [Element]
     let bodyOffset: Int64
     let bodyLength: Int64
 
-    init(name: String, text: String, children: [Element], inheritedTypes: [NamedElement], offset: Int64, length: Int64, bodyOffset: Int64, bodyLength: Int64) {
+    init(name: String, text: String, children: [Element], inheritedTypes: [Element], offset: Int64, length: Int64, bodyOffset: Int64, bodyLength: Int64) {
         self.name = name
         self.inheritedTypes = inheritedTypes
         self.bodyOffset = bodyOffset

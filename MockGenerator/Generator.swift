@@ -26,7 +26,7 @@ public class Generator {
             return reply(with: "Could not find a protocol on \(typeElement.name)")
         }
         guard let resolved = ResolveUtil().resolve(inheritedType) else {
-            return reply(with: "\(inheritedType.name) element could not be resolved")
+            return reply(with: "\(inheritedType.text) element could not be resolved")
         }
         return buildMock(toFile: file, atElement: typeElement, resolvedProtocol: resolved)
     }

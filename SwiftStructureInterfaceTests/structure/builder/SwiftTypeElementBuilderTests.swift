@@ -9,7 +9,7 @@ class SwiftTypeElementBuilderTests: XCTestCase {
         let element = file?.children.first as? SwiftTypeElement
         XCTAssertEqual(element?.name, "Protocol")
         XCTAssertEqual(element?.inheritedTypes.count, 1)
-        XCTAssertEqual(element?.inheritedTypes[0].name, "Inherited")
+        XCTAssertEqual(element?.inheritedTypes[0].text, "Inherited")
         XCTAssertEqual(element?.children.count, 2)
         XCTAssertEqual(element?.namedChild(at: 0)?.name, "property")
         XCTAssertEqual(element?.namedChild(at: 1)?.name, "method")
@@ -29,7 +29,7 @@ class SwiftTypeElementBuilderTests: XCTestCase {
         let element = file?.children.first as? SwiftTypeElement
         XCTAssertEqual(element?.name, "A")
         XCTAssertEqual(element?.inheritedTypes.count, 1)
-        XCTAssertEqual(element?.inheritedTypes[0].name, "B")
+        XCTAssertEqual(element?.inheritedTypes[0].text, "B")
         XCTAssertEqual(element?.children.count, 5)
         XCTAssertEqual(element?.namedChild(at: 0)?.name, "varA")
         XCTAssertEqual(element?.namedChild(at: 1)?.name, "varB")
@@ -49,8 +49,8 @@ class SwiftTypeElementBuilderTests: XCTestCase {
         let innerElement = element?.children[0] as? SwiftTypeElement
         XCTAssertEqual(innerElement?.name, "B")
         XCTAssertEqual(innerElement?.inheritedTypes.count, 2)
-        XCTAssertEqual(innerElement?.inheritedTypes[0].name, "C")
-        XCTAssertEqual(innerElement?.inheritedTypes[1].name, "D")
+        XCTAssertEqual(innerElement?.inheritedTypes[0].text, "C")
+        XCTAssertEqual(innerElement?.inheritedTypes[1].text, "D")
         XCTAssertEqual(innerElement?.children.count, 1)
         XCTAssertEqual(innerElement?.namedChild(at: 0)?.name, "innerMethodA")
         XCTAssertEqual(file?.text, getNestedClassString())

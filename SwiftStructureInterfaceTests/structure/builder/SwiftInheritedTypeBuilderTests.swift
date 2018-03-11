@@ -46,7 +46,7 @@ class SwiftInheritedTypeBuilderTests: XCTestCase {
         let element = file?.children[0] as! SwiftTypeElement
         let inheritedType = element.inheritedTypes[0]
         XCTAssertEqual(element.name, "MockProtocol")
-        XCTAssertEqual(inheritedType.name, "Protocol")
+        XCTAssertEqual(inheritedType.text, "Protocol")
         XCTAssertEqual(inheritedType.offset, 20)
         XCTAssertEqual(inheritedType.length, 8)
     }
@@ -57,10 +57,10 @@ class SwiftInheritedTypeBuilderTests: XCTestCase {
         let inheritedType = element.inheritedTypes[0]
         let inheritedType2 = element.inheritedTypes[1]
         XCTAssertEqual(element.name, "AClass")
-        XCTAssertEqual(inheritedType.name, "ProtocolA")
+        XCTAssertEqual(inheritedType.text, "ProtocolA")
         XCTAssertEqual(inheritedType.offset, 14)
         XCTAssertEqual(inheritedType.length, 9)
-        XCTAssertEqual(inheritedType2.name, "Prot")
+        XCTAssertEqual(inheritedType2.text, "Prot")
         XCTAssertEqual(inheritedType2.offset, 26)
         XCTAssertEqual(inheritedType2.length, 4)
     }
@@ -72,7 +72,7 @@ class SwiftInheritedTypeBuilderTests: XCTestCase {
         let secondType = file?.children[1] as! SwiftTypeElement
         let inheritedType = secondType.inheritedTypes[0]
         XCTAssertEqual(secondType.name, "ClassA")
-        XCTAssertEqual(inheritedType.name, "ProtocolA")
+        XCTAssertEqual(inheritedType.text, "ProtocolA")
         XCTAssertEqual(inheritedType.offset, 37)
         XCTAssertEqual(inheritedType.length, 9)
     }

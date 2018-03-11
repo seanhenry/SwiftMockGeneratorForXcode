@@ -1,0 +1,3 @@
+protocol Type: Element {
+
+}

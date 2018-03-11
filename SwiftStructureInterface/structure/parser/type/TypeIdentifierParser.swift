@@ -1,92 +1,108 @@
 import Lexer
 
-class TypeIdentifierParser: Parser<NamedElement> {
+class TypeIdentifierParser: Parser<Type> {
 
-    override func parse() -> NamedElement {
-        let start = getCurrentStartLocation()
-        if let identifier = parseType() {
-            let offset = convert(start)!
-            let length = convert(getPreviousEndLocation())! - offset
-            return SwiftInheritedType(name: identifier,
-                text: identifier,
-                children: [],
-                offset: offset,
-                length: length)
+    private var startStack = [LineColumn]()
+
+    override func parse() -> Type {
+        if let type = parseType() {
+            return type
         }
-        return SwiftInheritedType.errorInheritedType
+        return SwiftType.errorType
     }
 
-    private func parseType() -> String? {
-        if var type = parseProtocolCompositionType() ?? parseTypeIdentifier() ?? parseArrayType() ?? parseDictionaryType() ?? parseFunctionType() ?? parseTupleType() {
-            appendOptional(to: &type)
-            return type
+    private func createPartialElement() -> (offset: Int64, length: Int64, text: String) {
+        let offset = convert(startStack.last!)!
+        let length = convert(getPreviousEndLocation())! - offset
+        return (offset, length, getString(offset: offset, length: length)!)
+    }
+
+    private func parseType() -> Type? {
+        startStack.append(getCurrentStartLocation())
+        defer { startStack.removeLast() }
+        if var type = parseProtocolCompositionType() ?? _parseTypeIdentifier() ?? parseArrayType() ?? parseDictionaryType() ?? parseFunctionType() ?? parseTupleType() {
+            return appendOptional(to: type)
         }
         return nil
     }
 
-    private func parseTypeIdentifier() -> String? {
-        guard let typeName = parseTypeName() else { return nil }
-        return typeName + parseGenericClause()
+    private func _parseTypeIdentifier() -> Type? {
+        guard let type = parseTypeName() else { return nil }
+        return parseGenericClause(type)
     }
 
-    private func parseTypeName() -> String? {
+    private func parseTypeName() -> Type? {
         return parseIdentifier()
     }
 
-    private func parseIdentifier() -> String? {
+    private func parseIdentifier() -> Type? {
         if let implicit = parseImplicitParameterName() {
             return implicit
-        } else if let identifier = peekAtNextIdentifier() {
+        } else if peekAtNextIdentifier() != nil {
             advance()
-            return identifier + parseNestedTypes()
+            skipNestedTypes()
+            return createSwiftType()
         }
         return nil
     }
 
     // MARK: - Implicit
 
-    private func parseImplicitParameterName() -> String? {
+    private func parseImplicitParameterName() -> Type? {
         if let implicitName = peekAtNextImplicitParameterName() {
             advance()
-            return implicitName
+            return createSwiftType()
         }
         return nil
     }
 
+    private func createSwiftType() -> Type {
+        let element = createPartialElement()
+        return SwiftType(text: element.text, children: [], offset: element.offset, length: element.length)
+    }
+
     // MARK: - Nested
 
-    private func parseNestedTypes() -> String {
-        var identifier = ""
+    private func skipNestedTypes() {
         while isNext(.dot) {
             advance()
-            identifier.append(".")
-            tryToAppendIdentifier(to: &identifier)
+            skipIdentifier()
         }
-        return identifier
     }
 
     // MARK: - Generic
 
-    private func parseGenericClause() -> String {
-        var clause = ""
+    private func skipIdentifier() {
+        if let argument = peekAtNextIdentifier() {
+            advance()
+        }
+    }
+
+    private func parseGenericClause(_ type: Type) -> Type {
+        var clause = "" // TODO: remove
         do {
             try appendGenericClauseStart(to: &clause)
             tryToAppendType(to: &clause)
             appendGenericArgumentList(to: &clause)
-            try appendGenericClauseEnd(to: &clause)
-            clause.append(parseNestedTypes())
-            clause.append(parseGenericClause())
+            try? appendGenericClauseEnd(to: &clause)
+            skipNestedTypes()
+            _ = parseGenericClause(type)
+            return createSwiftType()
         } catch {} // ignored
-        return clause
+        return type
     }
 
     private func appendGenericClauseStart(to string: inout String) throws {
         if isGenericClauseStart() {
-            advance()
+            advanceOperator("<")
             string.append("<")
         } else {
             throw LookAheadError()
         }
+    }
+
+    private func skipType() {
+        _ = parse()
     }
 
     private func appendGenericArgumentList(to string: inout String) {
@@ -99,16 +115,8 @@ class TypeIdentifierParser: Parser<NamedElement> {
 
     private func appendGenericClauseEnd(to string: inout String) throws {
         if isGenericClauseEnd() {
-            if isOptionalGenericClauseEnd() {
-                string.append(">?")
-            } else if isDoubleGenericClauseEnd() {
-                string.append(">>")
-            } else if isIUOGenericClauseEnd() {
-                string.append(">!")
-            } else {
-                string.append(">")
-            }
-            advance()
+            string.append(">")
+            advanceOperator(">")
         } else {
             throw LookAheadError()
         }
@@ -122,103 +130,127 @@ class TypeIdentifierParser: Parser<NamedElement> {
         return isNext(">")
     }
 
-    private func isDoubleGenericClauseEnd() -> Bool {
-        // a '>>' postfix operator is detected when generics are nested (Generic<Type<InnerType>>)
-        return isPostfixOperator(">>")
-    }
-
-    private func isOptionalGenericClauseEnd() -> Bool {
-        // a '>?' postfix operator is detected for optional generics (Generic<Type>?)
-        return isPostfixOperator(">?")
-    }
-
-    private func isIUOGenericClauseEnd() -> Bool {
-        // a '>!' postfix operator is detected for IUO generics (Generic<Type>!)
-        return isPostfixOperator(">!")
-    }
-
     // MARK: - Array
 
-    private func parseArrayType() -> String? {
+    private func parseArrayType() -> Type? {
         return tryToParse {
-            var array = ""
-            try append(.leftSquare, value: "[", to: &array)
-            tryToAppendType(to: &array)
-            try append(.rightSquare, value: "]", to: &array)
-            return array
+            try advanceOrFail(if: .leftSquare)
+            let type = parseTypeIdentifier()
+            try advanceOrFail(if: .rightSquare)
+            return createArrayType(type)
         }
+    }
+
+    private func createArrayType(_ type: Type) -> Type {
+        let element = createPartialElement()
+        return SwiftArrayType(text: element.text, children: [type], offset: element.offset, length: element.length, elementType: type)
     }
 
     // MARK: - Dictionary
 
-    private func parseDictionaryType() -> String? {
+    private func parseDictionaryType() -> Type? {
         return tryToParse {
-            var dictionary = ""
-            try append(.leftSquare, value: "[", to: &dictionary)
-            tryToAppendType(to: &dictionary)
-            try append(.colon, value: ":", to: &dictionary)
-            tryToAppendType(to: &dictionary)
-            try append(.rightSquare, value: "]", to: &dictionary)
-            return dictionary
+            try advanceOrFail(if: .leftSquare)
+            let keyType = parseTypeIdentifier()
+            try advanceOrFail(if: .colon)
+            let valueType = parseTypeIdentifier()
+            try advanceOrFail(if: .rightSquare)
+            return createDictionaryType(keyType, valueType)
         }
+    }
+
+    private func createDictionaryType(_ key: Type, _ value: Type) -> DictionaryType {
+        let element = createPartialElement()
+        return SwiftDictionaryType(
+            text: element.text,
+            children: [key, value],
+            offset: element.offset,
+            length: element.length,
+            keyType: key,
+            valueType: value)
     }
 
     // MARK: - Optional
 
-    private func appendOptional(to string: inout String) {
+    private func appendOptional(to type: Type) -> Type {
         if isNext(.postfixQuestion) {
             advance()
-            string.append("?")
         } else if isNext(.postfixExclaim) {
             advance()
-            string.append("!")
-        } else if isPostfixOperator("??") {
-            advance()
-            string.append("??")
-        } else if isPostfixOperator("!!") {
-            advance()
-            string.append("!!")
+        } else if isNext("?") {
+            advanceOperator("?")
+        } else if isNext("!") {
+            advanceOperator("!")
+        } else {
+            return type
         }
+        return createOptional(type)
+    }
+
+    private func createOptional(_ type: Type) -> OptionalType {
+        let element = createPartialElement()
+        return SwiftOptionalType(
+            text: element.text,
+            children: [type],
+            offset: element.offset,
+            length: element.length,
+            type: type)
     }
 
     // MARK: - Protocol composition
 
-    func parseProtocolCompositionType() -> String? {
+    func parseProtocolCompositionType() -> Type? {
         return tryToParse {
-            var composition = ""
-            try appendTypeIdentifier(to: &composition)
-            try appendCompositionRHS(to: &composition)
+            var types = [Type]()
+            try appendTypeIdentifier(to: &types)
+            try appendCompositionRHS(to: &types)
             repeat {
-                try? appendCompositionRHS(to: &composition)
+                try? appendCompositionRHS(to: &types)
             } while isNextAmpBinaryOperator()
-            return composition
+            return createProtocolComposition(types)
         }
     }
 
-    private func appendTypeIdentifier(to string: inout String) throws {
-        if let type = parseTypeIdentifier() {
+    private func appendTypeIdentifier(to string: inout [Type]) throws {
+        startStack.append(getCurrentStartLocation())
+        defer { startStack.removeLast() }
+        if let type = _parseTypeIdentifier() {
             string.append(type)
         } else {
             throw LookAheadError()
         }
     }
 
-    private func appendCompositionRHS(to string: inout String) throws {
-        try appendAmpBinaryOperator(to: &string)
-        try appendTypeIdentifier(to: &string)
+    private func appendCompositionRHS(to types: inout [Type]) throws {
+        try assertAmpBinaryOperator()
+        try appendTypeIdentifier(to: &types)
     }
 
-    private func appendAmpBinaryOperator(to string: inout String) throws {
-        try appendBinaryOperator("&", value: " & ", to: &string)
+    private func assertAmpBinaryOperator() throws {
+        if isNextAmpBinaryOperator() {
+            advanceOperator("&")
+        } else {
+            throw LookAheadError()
+        }
     }
 
     private func isNextAmpBinaryOperator() -> Bool {
-        return isBinaryOperator("&")
+        return isNext("&")
+    }
+
+    private func createProtocolComposition(_ types: [Type]) -> Type {
+        let element = createPartialElement()
+        return SwiftProtocolCompositionType(
+            text: element.text,
+            children: types,
+            offset: element.offset,
+            length: element.length,
+            types: types)
     }
 
     // MARK: - Tuple
 
-    private func parseTupleType() -> String? {
+    private func parseTupleType() -> Type? {
         return tryToParse {
             var tuple = ""
             try append(.leftParen, value: "(", to: &tuple)
@@ -228,7 +260,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
                 tryToAppendTupleArgument(to: &tuple)
             } while isNext(.comma)
             try append(.rightParen, value: ")", to: &tuple)
-            return tuple
+            return createSwiftType()
         }
     }
 
@@ -259,7 +291,7 @@ class TypeIdentifierParser: Parser<NamedElement> {
 
     // MARK: - Function type
 
-    private func parseFunctionType() -> String? {
+    private func parseFunctionType() -> Type? {
         return tryToParse {
             var function = ""
             tryToAppendAttributes(to: &function)
@@ -268,15 +300,19 @@ class TypeIdentifierParser: Parser<NamedElement> {
             tryToAppend(.rethrows, value: " rethrows", to: &function)
             try append(.arrow, value: " -> ", to: &function)
             tryToAppendType(to: &function)
-            return function
+            return createSwiftType()
         }
     }
 
     private func appendTupleType(to string: inout String) throws {
         if let tuple = parseTupleType() {
-            string.append(tuple)
+            string.append(tuple.text)
         } else {
             throw LookAheadError()
         }
+    }
+
+    override func tryToAppendType(to string: inout String) {
+        string.append(parse().text)
     }
 }
