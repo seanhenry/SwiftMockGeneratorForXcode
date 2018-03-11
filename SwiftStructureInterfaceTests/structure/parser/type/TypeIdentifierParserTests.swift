@@ -173,10 +173,6 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeText("[[String?:Int?]?:Int?]?", "[[String?:Int?]?:Int?]?")
     }
 
-    func test_parse_shouldDoubleOptional() {
-        assertTypeText("Int??", "Int??")
-    }
-
     func test_parse_shouldParseOptionalElement() {
         let text = "Int?"
         let type = parse(text) as? OptionalType
@@ -185,6 +181,26 @@ class TypeIdentifierParserTests: XCTestCase {
         XCTAssertEqual(type?.children.count, 1)
         let innerType = type?.type
         XCTAssert(type?.children.first === innerType)
+        XCTAssertEqual(innerType?.text, "Int")
+        XCTAssertEqual(innerType?.offset, 0)
+        XCTAssertEqual(innerType?.length, 3)
+    }
+
+    func test_parse_shouldParseDoubleOptionalElement() {
+        let text = "Int??"
+        let type = parse(text) as? OptionalType
+        XCTAssertEqual(type?.text, "Int??")
+        XCTAssertEqual(type?.offset, 0)
+        XCTAssertEqual(type?.length, 5)
+        XCTAssertEqual(type?.children.count, 1)
+        let innerOptional = type?.type as? OptionalType
+        XCTAssert(type?.children.first === innerOptional)
+        XCTAssertEqual(innerOptional?.text, "Int?")
+        XCTAssertEqual(innerOptional?.offset, 0)
+        XCTAssertEqual(innerOptional?.length, 4)
+        XCTAssertEqual(innerOptional?.children.count, 1)
+        let innerType = innerOptional?.type
+        XCTAssert(innerOptional?.children.first === innerType)
         XCTAssertEqual(innerType?.text, "Int")
         XCTAssertEqual(innerType?.offset, 0)
         XCTAssertEqual(innerType?.length, 3)
@@ -212,8 +228,44 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeText("[[String!:Int!]!:Int!]!", "[[String!:Int!]!:Int!]!")
     }
 
-    func test_parse_shouldDoubleIUO() {
-        assertTypeText("Int!!", "Int!!")
+    func test_parse_shouldParseDoubleIUOElement() {
+        let text = "Int!!"
+        let type = parse(text) as? OptionalType
+        XCTAssertEqual(type?.text, "Int!!")
+        XCTAssertEqual(type?.offset, 0)
+        XCTAssertEqual(type?.length, 5)
+        XCTAssertEqual(type?.children.count, 1)
+        let innerOptional = type?.type as? OptionalType
+        XCTAssert(type?.children.first === innerOptional)
+        XCTAssertEqual(innerOptional?.text, "Int!")
+        XCTAssertEqual(innerOptional?.offset, 0)
+        XCTAssertEqual(innerOptional?.length, 4)
+        XCTAssertEqual(innerOptional?.children.count, 1)
+        let innerType = innerOptional?.type
+        XCTAssert(innerOptional?.children.first === innerType)
+        XCTAssertEqual(innerType?.text, "Int")
+        XCTAssertEqual(innerType?.offset, 0)
+        XCTAssertEqual(innerType?.length, 3)
+    }
+
+    func test_parse_shouldParseDoubleOptionalAndIUOElement() {
+        let text = "Int?!"
+        let type = parse(text) as? OptionalType
+        XCTAssertEqual(type?.text, "Int?!")
+        XCTAssertEqual(type?.offset, 0)
+        XCTAssertEqual(type?.length, 5)
+        XCTAssertEqual(type?.children.count, 1)
+        let innerOptional = type?.type as? OptionalType
+        XCTAssert(type?.children.first === innerOptional)
+        XCTAssertEqual(innerOptional?.text, "Int?")
+        XCTAssertEqual(innerOptional?.offset, 0)
+        XCTAssertEqual(innerOptional?.length, 4)
+        XCTAssertEqual(innerOptional?.children.count, 1)
+        let innerType = innerOptional?.type
+        XCTAssert(innerOptional?.children.first === innerType)
+        XCTAssertEqual(innerType?.text, "Int")
+        XCTAssertEqual(innerType?.offset, 0)
+        XCTAssertEqual(innerType?.length, 3)
     }
 
     // MARK: - Protocol composition

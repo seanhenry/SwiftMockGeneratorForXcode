@@ -20,8 +20,22 @@ class TypeIdentifierParser: Parser<Type> {
     private func parseType() -> Type? {
         startStack.append(getCurrentStartLocation())
         defer { startStack.removeLast() }
-        if var type = parseProtocolCompositionType() ?? _parseTypeIdentifier() ?? parseArrayType() ?? parseDictionaryType() ?? parseFunctionType() ?? parseTupleType() {
-            return appendOptional(to: type)
+        return parseOptional()
+    }
+
+    private func parseTypeExcludingOptional() -> Type? {
+        if let protocolCompositionType = parseProtocolCompositionType() {
+            return protocolCompositionType
+        } else if let typeIdentifier = _parseTypeIdentifier() {
+            return typeIdentifier
+        } else if let arrayType = parseArrayType() {
+            return arrayType
+        } else if let dictionaryType = parseDictionaryType() {
+            return dictionaryType
+        } else if let functionType = parseFunctionType() {
+            return functionType
+        } else if let tupleType = parseTupleType() {
+            return tupleType
         }
         return nil
     }
@@ -49,7 +63,7 @@ class TypeIdentifierParser: Parser<Type> {
     // MARK: - Implicit
 
     private func parseImplicitParameterName() -> Type? {
-        if let implicitName = peekAtNextImplicitParameterName() {
+        if peekAtNextImplicitParameterName() != nil {
             advance()
             return createSwiftType()
         }
@@ -73,7 +87,7 @@ class TypeIdentifierParser: Parser<Type> {
     // MARK: - Generic
 
     private func skipIdentifier() {
-        if let argument = peekAtNextIdentifier() {
+        if peekAtNextIdentifier() != nil {
             advance()
         }
     }
@@ -172,19 +186,38 @@ class TypeIdentifierParser: Parser<Type> {
 
     // MARK: - Optional
 
+    private func parseOptional() -> Type? {
+        return tryToParse {
+            guard let type = parseTypeExcludingOptional() else { throw LookAheadError() }
+            var innerType = type
+            while isNext("?") || isNext("!") {
+                if isNext("?") {
+                    advanceOperator("?")
+                } else {
+                    advanceOperator("!")
+                }
+                innerType = createOptional(innerType)
+            }
+            return innerType
+        }
+    }
+
     private func appendOptional(to type: Type) -> Type {
         if isNext(.postfixQuestion) {
             advance()
+            return createOptional(type)
         } else if isNext(.postfixExclaim) {
             advance()
-        } else if isNext("?") {
-            advanceOperator("?")
+            return createOptional(type)
         } else if isNext("!") {
             advanceOperator("!")
+            return createOptional(type)
+        } else if isNext("?") {
+            advanceOperator("?")
+            return createOptional(type)
         } else {
             return type
         }
-        return createOptional(type)
     }
 
     private func createOptional(_ type: Type) -> OptionalType {

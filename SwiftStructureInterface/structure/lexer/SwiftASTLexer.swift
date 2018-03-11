@@ -42,8 +42,12 @@ class SwiftASTLexer: SwiftLexer {
     }
 
     func advanceOperator(_ scalar: UnicodeScalar) {
-        lastRange = getCurrentRange()
-        _ = lexer.matchUnicodeScalar(scalar, splitOperator: true)
+        var end = getCurrentStartLocation()
+        end.column += 1
+        let didAdvance = lexer.matchUnicodeScalar(scalar, splitOperator: true)
+        if didAdvance {
+            lastRange = LineColumnRange(start: getCurrentStartLocation(), end: end)
+        }
     }
 
     func isNext(_ kind: Token.Kind) -> Bool {

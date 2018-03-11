@@ -39,6 +39,27 @@ class SwiftASTLexerTests: XCTestCase {
         lexer.advanceOperator("!")
         XCTAssert(lexer.isNext(.identifier("test")))
     }
+
+    func test_advanceOperator_shouldPreserveCorrectPreviousLocation() {
+        let lexer = createLexer("Int??")
+        lexer.advance()
+        XCTAssertEqual(lexer.getPreviousEndLocation().column, 3)
+        XCTAssert(lexer.isNext("?"))
+        lexer.advanceOperator("?")
+        XCTAssertEqual(lexer.getPreviousEndLocation().column, 4)
+        XCTAssert(lexer.isNext("?"))
+        lexer.advanceOperator("?")
+        XCTAssertEqual(lexer.getPreviousEndLocation().column, 5)
+    }
+
+    func test_advanceOperator_shouldNotAdvancePreviousLocationWhenOperatorDoesNotMatch() {
+        let lexer = createLexer("Int??")
+        lexer.advance()
+        XCTAssertEqual(lexer.getPreviousEndLocation().column, 3)
+        XCTAssert(lexer.isNext("?"))
+        lexer.advanceOperator("!")
+        XCTAssertEqual(lexer.getPreviousEndLocation().column, 3)
+    }
     
     // MARK: - Helpers
     
