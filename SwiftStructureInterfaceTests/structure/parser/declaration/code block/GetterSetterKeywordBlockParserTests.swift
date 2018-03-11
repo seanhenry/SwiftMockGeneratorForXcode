@@ -52,8 +52,8 @@ class GetterSetterKeywordBlockParserTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> GetterSetterBlock {
-        let parser = createParser(text, GetterSetterBlockParser.self)
+    func parse(_ text: String) -> GetterSetterKeywordBlock {
+        let parser = createParser(text, GetterSetterKeywordBlockParser.self)
         return parser.parse()
     }
 }

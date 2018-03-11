@@ -65,6 +65,16 @@ class VariableDeclarationParserTests: XCTestCase {
         XCTAssertFalse(variable.isWritable)
     }
 
+    func test_parse_shouldParseVariableWithAttributesAndModifiers() {
+        let text = "@a public weak unowned(safe) var a: Int { get }"
+        let variable = parse(text)
+        XCTAssertEqual(variable.text, text)
+        XCTAssertEqual(variable.name, "a")
+        XCTAssertEqual(variable.offset, 0)
+        XCTAssertEqual(variable.length, Int64(text.utf8.count))
+        XCTAssertFalse(variable.isWritable)
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) -> VariableDeclaration {
