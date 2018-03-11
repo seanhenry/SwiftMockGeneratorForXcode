@@ -10,7 +10,7 @@ protocol GenericMethod {
     func testReturn2<T>() -> T
     func testReturn3<T: NSObject>() -> T
     func test<T: AssociatedTypeProtocol>(d: T)
-//    func test<T: AssociatedTypeProtocol>(e: T) where T.SomeType == NSObject // TODO: not yet supported
+    func test<T: AssociatedTypeProtocol>(e: T) where T.SomeType == NSObject
     func test<T, U>(f: T!, g: U?)
 }
 

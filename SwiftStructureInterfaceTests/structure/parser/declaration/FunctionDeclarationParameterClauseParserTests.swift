@@ -3,7 +3,7 @@ import XCTest
 
 class FunctionDeclarationParameterClauseParserTests: XCTestCase {
 
-    var parser: Parser<[MethodParameter]>!
+    var parser: Parser<[Parameter]>!
 
     override func tearDown() {
         parser = nil

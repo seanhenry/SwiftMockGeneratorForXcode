@@ -8,4 +8,8 @@ class SwiftTypealias: SwiftElement, Typealias {
         self.typealiasAssignment = typealiasAssignment
         super.init(text: text, children: children, offset: offset, length: length)
     }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitTypealias(self)
+    }
 }

@@ -23,7 +23,8 @@ class SwiftElement: Element, PositionedElement {
     }
 
     func accept(_ visitor: ElementVisitor) {
-        visitor.visit(self)
+        precondition(type(of: self) == SwiftElement.self)
+        visitor.visitElement(self)
     }
 
     private func copyFile() -> File? {

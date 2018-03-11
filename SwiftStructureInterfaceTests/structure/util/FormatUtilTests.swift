@@ -31,8 +31,8 @@ class FormatUtilTests: XCTestCase {
     }
 
     func test_format_shouldNotFormatElementWithoutFile() {
-        let out = util.format(emptySwiftElement) as! SwiftElement
-        XCTAssert(out === emptySwiftElement)
+        let out = util.format(emptyElement) as! SwiftElement
+        XCTAssert(out === emptyElement)
     }
     
     func test_format_shouldCorrectlyCountUTF16Character() {

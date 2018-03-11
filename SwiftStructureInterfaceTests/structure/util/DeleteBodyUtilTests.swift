@@ -33,7 +33,7 @@ class DeleteBodyUtilTests: XCTestCase {
     }
 
     func test_deleteClassBody_returnsNil_whenElementHasNoFile() {
-        XCTAssertNil(util.deleteClassBody(from: emptySwiftTypeElement))
+        XCTAssertNil(util.deleteClassBody(from: emptyTypeDeclaration))
     }
 
     func test_deleteClassBody_returnsNil_whenClassElementHasBadOffsets() {

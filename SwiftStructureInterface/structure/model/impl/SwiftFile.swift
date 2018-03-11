@@ -3,15 +3,14 @@ class SwiftFile: SwiftElement, File {
     override init(text: String, children: [Element], offset: Int64, length: Int64) {
         super.init(text: text, children: children, offset: offset, length: length)
         let visitor = FileSettingVisitor(file: WeakChildrenSwiftFile(text: text, children: children, offset: offset, length: length))
-        accept(RecursiveElementVisitor(visitor: visitor))
+        accept(visitor)
     }
 
     override func accept(_ visitor: ElementVisitor) {
-        visitor.visit(self)
-        super.accept(visitor)
+        visitor.visitFile(self)
     }
 
-    private class FileSettingVisitor: ElementVisitor {
+    private class FileSettingVisitor: RecursiveElementVisitor {
 
         let file: File
 
@@ -19,28 +18,13 @@ class SwiftFile: SwiftElement, File {
             self.file = file
         }
 
-        func visit(_ element: SwiftElement) {
+        override func visitElement(_ element: Element) {
             element.file = file
+            super.visitElement(element)
         }
 
-        func visit(_ element: SwiftTypeElement) {
-            element.inheritedTypes.forEach { type in
-                type.file = file
-            }
-        }
-
-        func visit(_ element: SwiftFile) {
-        }
-
-        func visit(_ element: SwiftMethodElement) {
-            element.parameters.forEach { parameter in
-                parameter.file = file
-                parameter.type.file = file
-            }
-            element.returnType?.file = file
-        }
-
-        func visit(_ element: SwiftPropertyElement) {
+        override func visitParameter(_ element: Parameter) {
+            super.visitParameter(element)
         }
     }
 

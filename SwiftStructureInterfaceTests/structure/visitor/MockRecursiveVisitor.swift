@@ -1,6 +1,6 @@
 @testable import SwiftStructureInterface
 
-class MockElementVisitor: ElementVisitor {
+class MockRecursiveVisitor: RecursiveElementVisitor {
 
     var invokedVisitElement = false
     var invokedVisitElementCount = 0
@@ -12,6 +12,7 @@ class MockElementVisitor: ElementVisitor {
         invokedVisitElementCount += 1
         invokedVisitElementParameters = (element, ())
         invokedVisitElementParametersList.append((element, ()))
+        super.visitElement(element)
     }
 
     var invokedVisitTypeDeclaration = false
@@ -24,6 +25,7 @@ class MockElementVisitor: ElementVisitor {
         invokedVisitTypeDeclarationCount += 1
         invokedVisitTypeDeclarationParameters = (element, ())
         invokedVisitTypeDeclarationParametersList.append((element, ()))
+        super.visitTypeDeclaration(element)
     }
 
     var invokedVisitFile = false
@@ -36,6 +38,7 @@ class MockElementVisitor: ElementVisitor {
         invokedVisitFileCount += 1
         invokedVisitFileParameters = (element, ())
         invokedVisitFileParametersList.append((element, ()))
+        super.visitFile(element)
     }
 
     var invokedVisitFunctionDeclaration = false
@@ -48,6 +51,7 @@ class MockElementVisitor: ElementVisitor {
         invokedVisitFunctionDeclarationCount += 1
         invokedVisitFunctionDeclarationParameters = (element, ())
         invokedVisitFunctionDeclarationParametersList.append((element, ()))
+        super.visitFunctionDeclaration(element)
     }
 
     var invokedVisitVariableDeclaration = false
@@ -60,6 +64,7 @@ class MockElementVisitor: ElementVisitor {
         invokedVisitVariableDeclarationCount += 1
         invokedVisitVariableDeclarationParameters = (element, ())
         invokedVisitVariableDeclarationParametersList.append((element, ()))
+        super.visitVariableDeclaration(element)
     }
 
     var invokedVisitGenericParameterClause = false
@@ -72,5 +77,6 @@ class MockElementVisitor: ElementVisitor {
         invokedVisitGenericParameterClauseCount += 1
         invokedVisitGenericParameterClauseParameters = (element, ())
         invokedVisitGenericParameterClauseParametersList.append((element, ()))
+        super.visitGenericParameterClause(element)
     }
 }

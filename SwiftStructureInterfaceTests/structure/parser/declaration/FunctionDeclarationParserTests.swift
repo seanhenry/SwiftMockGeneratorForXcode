@@ -24,13 +24,13 @@ class FunctionDeclarationParserTests: XCTestCase {
         XCTAssertEqual(function.name, "a")
         XCTAssertEqual(function.offset, 0)
         XCTAssertEqual(function.length, 20)
-        var param = function.parameters[0] as! SwiftMethodParameter
+        var param = function.parameters[0] as! SwiftParameter
         XCTAssertEqual(param.text, "a: A")
         XCTAssertEqual(param.externalParameterName, nil)
         XCTAssertEqual(param.localParameterName, "a")
         XCTAssertEqual(param.offset, 7)
         XCTAssertEqual(param.length, 4)
-        param = function.parameters[1] as! SwiftMethodParameter
+        param = function.parameters[1] as! SwiftParameter
         XCTAssertEqual(param.text, "_ b: B")
         XCTAssertEqual(param.externalParameterName, "_")
         XCTAssertEqual(param.localParameterName, "b")
@@ -98,12 +98,17 @@ class FunctionDeclarationParserTests: XCTestCase {
         XCTAssertEqual(function.name, "a")
         XCTAssertEqual(function.offset, 0)
         XCTAssertEqual(function.length, 21)
+        XCTAssertEqual(function.genericParameterClause?.text , "<T, U: A & B>")
+        XCTAssertEqual(function.genericParameterClause?.offset , 6)
+        XCTAssertEqual(function.genericParameterClause?.length , 13)
     }
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> SwiftMethodElement {
+    func parse(_ text: String) -> SwiftFunctionDeclaration {
         let parser = createDeclarationParser(text, .func, FunctionDeclarationParser.self)
-        return parser.parse() as! SwiftMethodElement
+        return parser.parse() as! SwiftFunctionDeclaration
     }
+    // TODO: change parser design to decorator pattern?
+    // TODO: parse attributes @available, etc. Look at SwiftAST
 }

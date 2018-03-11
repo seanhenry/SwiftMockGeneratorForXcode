@@ -1,14 +1,21 @@
-class GenericParameterClauseParser: Parser<String> {
+class GenericParameterClauseParser: Parser<GenericParameterClause> {
 
-    override func parse() -> String {
-        var clause = ""
+    override func parse() -> GenericParameterClause {
+        let start = getCurrentStartLocation()
         if isNext("<") {
             advanceOperator("<")
-            clause.append("<")
-            clause.append(parseGenericParameterList())
-            tryToAppendGenericClosingBracket(to: &clause)
+            _ = parseGenericParameterList()
+            parseGenericClosingBracket()
+        } else {
+            return SwiftGenericParameterClause.errorGenericParameterClause
         }
-        return clause
+        let offset = convert(start)!
+        let length = convert(getPreviousEndLocation())! - offset
+        return SwiftGenericParameterClause(
+            text: getString(offset: offset, length: length)!,
+            children: [],
+            offset: offset,
+            length: length)
     }
 
     private func parseGenericParameterList() -> String {
@@ -29,10 +36,9 @@ class GenericParameterClauseParser: Parser<String> {
         return parameter
     }
 
-    private func tryToAppendGenericClosingBracket(to clause: inout String) {
+    private func parseGenericClosingBracket() {
         if isNext(">") {
             advanceOperator(">")
-            clause.append(">")
         }
     }
 }

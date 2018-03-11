@@ -4,18 +4,15 @@ import SourceKittenFramework
 
 class RecursiveElementVisitorTests: XCTestCase {
 
-    var visitor: RecursiveElementVisitor!
-    var mockInnerVisitor: MockElementVisitor!
+    var mockVisitor: MockRecursiveVisitor!
 
     override func setUp() {
         super.setUp()
-        mockInnerVisitor = MockElementVisitor()
-        visitor = RecursiveElementVisitor(visitor: mockInnerVisitor)
+        mockVisitor = MockRecursiveVisitor()
     }
 
     override func tearDown() {
-        visitor = nil
-        mockInnerVisitor = nil
+        mockVisitor = nil
         super.tearDown()
     }
 
@@ -23,21 +20,21 @@ class RecursiveElementVisitorTests: XCTestCase {
 
     func test_visit_shouldRecursivelyForwardToInnerVisitor() {
         let file = getClassFile() as! SwiftFile
-        let classElement = file.children[0] as! SwiftElement
-        let innerClass = classElement.children[0] as! SwiftElement
-        let innerMethod = innerClass.children[0] as! SwiftElement
-        let innerProperty = innerClass.children[1] as! SwiftElement
-        let method = classElement.children[1] as! SwiftElement
-        let property = classElement.children[2] as! SwiftElement
-        file.accept(visitor)
-        XCTAssertEqual(getInvokedSwiftElementCount(), 7)
+        let classElement = file.namedChildren[0]
+        let innerClass = classElement.namedChildren[0]
+        let innerMethod = innerClass.namedChildren[0]
+        let innerProperty = innerClass.namedChildren[1]
+        let method = classElement.namedChildren[1]
+        let property = classElement.namedChildren[2]
+        file.accept(mockVisitor)
+        XCTAssertEqual(getInvokedSwiftElementCount(), 9)
         XCTAssert(getInvokedSwiftElement(at: 0) === file)
         XCTAssert(getInvokedSwiftElement(at: 1) === classElement)
         XCTAssert(getInvokedSwiftElement(at: 2) === innerClass)
-        XCTAssert(getInvokedSwiftElement(at: 3) === innerMethod)
-        XCTAssert(getInvokedSwiftElement(at: 4) === innerProperty)
-        XCTAssert(getInvokedSwiftElement(at: 5) === method)
-        XCTAssert(getInvokedSwiftElement(at: 6) === property)
+        XCTAssert(getInvokedSwiftElement(at: 5) === innerMethod)
+        XCTAssert(getInvokedSwiftElement(at: 6) === innerProperty)
+        XCTAssert(getInvokedSwiftElement(at: 7) === method)
+        XCTAssert(getInvokedSwiftElement(at: 8) === property)
 
         XCTAssertEqual(getInvokedSwiftTypeElementCount(), 2)
         XCTAssert(getInvokedSwiftTypeElement(at: 0) === classElement)
@@ -57,44 +54,44 @@ class RecursiveElementVisitorTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func getInvokedSwiftElement(at index: Int) -> SwiftElement {
-        return mockInnerVisitor.invokedVisitSwiftElementParametersList[index].element
+    private func getInvokedSwiftElement(at index: Int) -> Element {
+        return mockVisitor.invokedVisitElementParametersList[index].element
     }
 
-    private func getInvokedSwiftTypeElement(at index: Int) -> SwiftTypeElement {
-        return mockInnerVisitor.invokedVisitSwiftTypeElementParametersList[index].element
+    private func getInvokedSwiftTypeElement(at index: Int) -> TypeDeclaration {
+        return mockVisitor.invokedVisitTypeDeclarationParametersList[index].element
     }
 
-    private func getInvokedSwiftFile(at index: Int) -> SwiftFile {
-        return mockInnerVisitor.invokedVisitSwiftFileParametersList[index].element
+    private func getInvokedSwiftFile(at index: Int) -> SwiftStructureInterface.File {
+        return mockVisitor.invokedVisitFileParametersList[index].element
     }
 
-    private func getInvokedSwiftMethodElement(at index: Int) -> SwiftMethodElement {
-        return mockInnerVisitor.invokedVisitSwiftMethodElementParametersList[index].element
+    private func getInvokedSwiftMethodElement(at index: Int) -> FunctionDeclaration {
+        return mockVisitor.invokedVisitFunctionDeclarationParametersList[index].element
     }
 
-    private func getInvokedSwiftPropertyElement(at index: Int) -> SwiftPropertyElement {
-        return mockInnerVisitor.invokedVisitSwiftPropertyElementParametersList[index].element
+    private func getInvokedSwiftPropertyElement(at index: Int) -> VariableDeclaration {
+        return mockVisitor.invokedVisitVariableDeclarationParametersList[index].element
     }
 
     private func getInvokedSwiftElementCount() -> Int {
-        return mockInnerVisitor.invokedVisitSwiftElementCount
+        return mockVisitor.invokedVisitElementCount
     }
 
     private func getInvokedSwiftTypeElementCount() -> Int {
-        return mockInnerVisitor.invokedVisitSwiftTypeElementCount
+        return mockVisitor.invokedVisitTypeDeclarationCount
     }
 
     private func getInvokedSwiftFileCount() -> Int {
-        return mockInnerVisitor.invokedVisitSwiftFileCount
+        return mockVisitor.invokedVisitFileCount
     }
 
     private func getInvokedSwiftMethodElementCount() -> Int {
-        return mockInnerVisitor.invokedVisitSwiftMethodElementCount
+        return mockVisitor.invokedVisitFunctionDeclarationCount
     }
 
     private func getInvokedSwiftPropertyElementCount() -> Int {
-        return mockInnerVisitor.invokedVisitSwiftPropertyElementCount
+        return mockVisitor.invokedVisitVariableDeclarationCount
     }
 
     private func getClassFile() -> Element {

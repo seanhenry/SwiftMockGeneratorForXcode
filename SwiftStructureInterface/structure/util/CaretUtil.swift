@@ -2,11 +2,11 @@ class CaretUtil {
 
     func findElementUnderCaret(in element: Element, cursorOffset: Int64) -> Element? {
         let visitor = CaretFindingVisitor(offset: cursorOffset)
-        element.accept(RecursiveElementVisitor(visitor: visitor))
+        element.accept(visitor)
         return visitor.result
     }
 
-    private class CaretFindingVisitor: ElementVisitor {
+    private class CaretFindingVisitor: RecursiveElementVisitor {
 
         let offset: Int64
         var result: Element?
@@ -15,22 +15,12 @@ class CaretUtil {
             self.offset = offset
         }
 
-        func visit(_ element: SwiftElement) {
+        override func visitElement(_ element: Element) {
             if element.offset <= offset
             && offset < element.offset + element.length {
                 result = element
             }
-        }
-
-        func visit(_ element: SwiftTypeElement) {
-        }
-
-        func visit(_ element: SwiftFile) {
-        }
-
-        func visit(_ element: SwiftMethodElement) {
-        }
-        func visit(_ element: SwiftPropertyElement) {
+            super.visitElement(element)
         }
     }
 }

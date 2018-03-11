@@ -3,6 +3,10 @@
 extension Element {
 
     func namedChild(at index: Int) -> NamedElement? {
-        return children[index] as? NamedElement
+        return namedChildren[index]
+    }
+
+    var namedChildren: [NamedElement] {
+        return children.flatMap { $0 as? NamedElement }
     }
 }

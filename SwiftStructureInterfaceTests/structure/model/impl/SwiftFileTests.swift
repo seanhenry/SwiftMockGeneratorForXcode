@@ -5,26 +5,15 @@ import SourceKittenFramework
 class SwiftFileTests: XCTestCase {
 
     var file: SwiftFile!
-    private var mockVisitor: MockElementVisitor!
 
     override func setUp() {
         super.setUp()
-        mockVisitor = MockElementVisitor()
-        file = emptySwiftFile
+        file = emptyFile
     }
 
     override func tearDown() {
         file = nil
-        mockVisitor = nil
         super.tearDown()
-    }
-
-    // MARK: - accept
-
-    func test_accept_shouldSendItself() {
-        file.accept(mockVisitor)
-        XCTAssert(mockVisitor.invokedVisitSwiftFileParameters?.element === file)
-        XCTAssert(mockVisitor.invokedVisitSwiftElementParameters?.element === file)
     }
 
     // MARK: - init
@@ -39,7 +28,7 @@ class SwiftFileTests: XCTestCase {
         assertFilesAreEquivalent(classB.inheritedTypes[0].file, file)
         assertFilesAreEquivalent(classB.inheritedTypes[1].file, file)
         assertFilesAreEquivalent(classB.children[0].file, file)
-        let methodA = classA.children[1] as! SwiftMethodElement
+        let methodA = classA.children[1] as! SwiftFunctionDeclaration
         let methodAParam = methodA.parameters[0]
         assertFilesAreEquivalent(methodA.file, file)
         assertFilesAreEquivalent(methodAParam.file, file)

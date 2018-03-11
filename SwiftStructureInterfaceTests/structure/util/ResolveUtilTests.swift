@@ -32,7 +32,7 @@ class ResolveUtilTests: XCTestCase {
         writeResolveClassesToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
         let reference = (file.children[0] as! SwiftTypeElement).inheritedTypes[0]
-        let resolved = util.resolve(reference) as? NamedElement
+        let resolved = util.resolve(reference) as? TypeDeclaration
         XCTAssertEqual(resolved?.name, "ResolveTest")
         let method = resolved?.namedChild(at: 0)
         XCTAssertEqual(method?.name, "method")
@@ -42,7 +42,7 @@ class ResolveUtilTests: XCTestCase {
         writeResolveClassesToSingleFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
         let reference = (file.children[1] as! SwiftTypeElement).inheritedTypes[0]
-        let resolved = util.resolve(reference) as? NamedElement
+        let resolved = util.resolve(reference) as? TypeDeclaration
         XCTAssertEqual(resolved?.name, "ResolveTest")
         let method = resolved?.namedChild(at: 0)
         XCTAssertEqual(method?.name, "method")
@@ -52,7 +52,7 @@ class ResolveUtilTests: XCTestCase {
         writeUTF16ResolveClassesToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
         let reference = (file.children[0] as! SwiftTypeElement).inheritedTypes[0]
-        let resolved = ResolveUtil().resolve(reference) as? NamedElement
+        let resolved = ResolveUtil().resolve(reference) as? TypeDeclaration
         XCTAssertEqual(resolved?.name, "Resolve💐Test")
         let method = resolved?.namedChild(at: 0)
         XCTAssertEqual(method?.name, "method💐")
@@ -64,20 +64,6 @@ class ResolveUtilTests: XCTestCase {
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
         let reference = (file.children[0] as! SwiftTypeElement).inheritedTypes[0]
         XCTAssertNil(ResolveUtil().resolve(reference))
-    }
-
-    // MARK: - resolveToElement
-
-    // Required because typealiases and generic parameters do not show in the file structure (only in the resolved structure)
-
-    func test_resolveToElement_shouldResolveAndBuildSingleElement() {
-        writeResolveTypealiasClassToFile()
-        let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let method = file.children[0] as! SwiftMethodElement
-        let resolved = ResolveUtil().resolveToElement(method.parameters[0].type) as? Typealias
-        XCTAssertEqual(resolved?.name, "(String) -> ()")
-        XCTAssertNil(resolved?.parent)
-        XCTAssertNil(resolved?.file)
     }
 
     // MARK: - Helpers
@@ -145,18 +131,6 @@ protocol Resolve💐Test {
             func method() {}
         }
         class MockResolveTest: ResolveTest { }
-        """
-    }
-
-    private func writeResolveTypealiasClassToFile() {
-        try! getTypealiasString().data(using: .utf8)!
-            .write(to: URL(fileURLWithPath: resolveFile))
-    }
-
-    private func getTypealiasString() -> String {
-        return """
-        typealias Alias = (String) -> ()
-        func method(a: Alias) {}
         """
     }
 }

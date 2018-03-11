@@ -1,6 +1,6 @@
 import Foundation
 
-class SwiftPropertyElement: SwiftElement, NamedElement {
+class SwiftVariableDeclaration: SwiftElement, VariableDeclaration {
 
     let name: String
     let type: String
@@ -16,7 +16,6 @@ class SwiftPropertyElement: SwiftElement, NamedElement {
     }
 
     override func accept(_ visitor: ElementVisitor) {
-        visitor.visit(self)
-        super.accept(visitor)
+        visitor.visitVariableDeclaration(self)
     }
 }

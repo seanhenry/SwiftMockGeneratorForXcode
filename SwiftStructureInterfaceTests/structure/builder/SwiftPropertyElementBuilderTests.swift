@@ -28,7 +28,7 @@ class SwiftPropertyElementBuilderTests: XCTestCase {
     // MARK: - Helpers
 
     func assertChildProperty(_ parent: Element?, name: String, type: String, isWritable: Bool, attributes: String? = nil, at index: Int, line: UInt = #line) {
-        let property = parent?.children[index] as? SwiftPropertyElement
+        let property = parent?.children[index] as? VariableDeclaration
         XCTAssertEqual(property?.name, name, line: line)
         XCTAssertEqual(property?.type, type, line: line)
         XCTAssertEqual(property?.isWritable, isWritable, line: line)

@@ -1,6 +1,6 @@
-class SwiftMethodParameter: SwiftElement, MethodParameter {
+class SwiftParameter: SwiftElement, Parameter {
 
-    static let errorMethodParameter = SwiftMethodParameter(text: "", children: [], offset: -1, length: -1, type: SwiftElement.errorElement)
+    static let errorMethodParameter = SwiftParameter(text: "", children: [], offset: -1, length: -1, type: SwiftElement.errorElement)
     let type: Element
     let externalParameterName: String?
     let localParameterName: String
@@ -14,5 +14,9 @@ class SwiftMethodParameter: SwiftElement, MethodParameter {
         self.localParameterName = localParameterName
         self.type = type
         super.init(text: text, children: children, offset: offset, length: length)
+    }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitParameter(self)
     }
 }

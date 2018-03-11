@@ -19,10 +19,7 @@ class DeleteBodyUtil {
 
         var fileString: String?
 
-        func visit(_ element: SwiftElement) {
-        }
-
-        func visit(_ element: SwiftTypeElement) {
+        override func visitTypeDeclaration(_ element: TypeDeclaration) {
             let bodyOffset = Int(element.bodyOffset)
             let bodyLength = Int(element.bodyLength)
             guard let fileText = element.file?.text,
@@ -34,15 +31,6 @@ class DeleteBodyUtil {
             let beforeString = String(fileUTF8Text[..<bodyStartIndex])!
             let afterString = String(fileUTF8Text[bodyEndIndex...])!
             fileString = beforeString + "\n" + afterString
-        }
-
-        func visit(_ element: SwiftFile) {
-        }
-
-        func visit(_ element: SwiftMethodElement) {
-        }
-
-        func visit(_ element: SwiftPropertyElement) {
         }
     }
 }

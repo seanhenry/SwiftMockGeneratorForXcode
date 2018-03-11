@@ -33,20 +33,4 @@ class ResolveUtil {
         }
         return nil
     }
-
-    // TODO: remove this and use `resolve` when generic param and typealias are supported
-    func resolveToElement(_ element: Element) -> Element? {
-        guard writeToFile(element) else { return nil }
-        return getResolvedElement(from: resolveFromSameFile(element))
-            ?? getResolvedElement(from: resolveFromAllFiles(element))
-    }
-
-    private func getResolvedElement(from data: [String: Any]?) -> Element? {
-        if let data = data,
-           let path = data["key.filepath"] as? String,
-           let resolvedFile = SKElementFactory().build(fromPath: path) {
-            return SKElementFactory().build(data: data, fileText: resolvedFile.text)
-        }
-        return nil
-    }
 }

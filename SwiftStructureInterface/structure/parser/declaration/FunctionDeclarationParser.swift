@@ -5,7 +5,7 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
     override func parseDeclaration(offset: Int64) -> NamedElement {
         var name = ""
         try! appendIdentifier(to: &name)
-        skipGenericParameterClause()
+        let genericParameterClause = parseGenericParameterClause()
         let parameters = parseParameterClause()
         let `throws` = parseThrows()
         skipRethrows()
@@ -14,14 +14,13 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
         let end = convert(getPreviousEndLocation())!
         let length = end - offset
         let text = getString(offset: offset, length: length)!
-        return SwiftMethodElement(name: name, text: text, children: [], offset: offset, length: length, returnType: returnType, parameters: parameters, throws: `throws`)
+        var children = [genericParameterClause] as [Element]
+        children.append(contentsOf: parameters as [Element])
+        returnType.map { children.append($0) }
+        return SwiftFunctionDeclaration(name: name, text: text, children: children, offset: offset, length: length, returnType: returnType, genericParameterClause: genericParameterClause, parameters: parameters, throws: `throws`)
     }
 
-    private func skipGenericParameterClause() {
-        _ = parseGenericParameterClause()
-    }
-
-    private func parseParameterClause() -> [MethodParameter] {
+    private func parseParameterClause() -> [Parameter] {
         return parseFunctionDeclarationParameterClause()
     }
 
@@ -49,15 +48,15 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
         _ = parseWhereClause()
     }
 
-    class ParameterClauseParser: Parser<[MethodParameter]> {
+    class ParameterClauseParser: Parser<[Parameter]> {
 
-        override func parse() -> [MethodParameter] {
+        override func parse() -> [Parameter] {
             advance(if: .leftParen)
             if isNext(.rightParen) {
                 advance()
                 return []
             }
-            var parameters = [MethodParameter]()
+            var parameters = [Parameter]()
             tryToAppendParameter(to: &parameters)
             while isNext(.comma) {
                 advance()
@@ -67,26 +66,26 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
             return parameters
         }
 
-        private func tryToAppendParameter(to parameters: inout [MethodParameter]) {
+        private func tryToAppendParameter(to parameters: inout [Parameter]) {
             parameters.append(parseParameter())
         }
 
-        private func parseParameter() -> MethodParameter {
+        private func parseParameter() -> Parameter {
             return parseFunctionDeclarationParameter()
         }
     }
 
-    class ParameterParser: Parser<MethodParameter> {
+    class ParameterParser: Parser<Parameter> {
 
-        override func parse() -> MethodParameter {
+        override func parse() -> Parameter {
             let start = getCurrentStartLocation()
-            guard let (externalParameterName, localParameterName) = parseParameterNames() else { return SwiftMethodParameter.errorMethodParameter }
+            guard let (externalParameterName, localParameterName) = parseParameterNames() else { return SwiftParameter.errorMethodParameter }
             let type = parseParameterType()
             let offset = convert(start)!
             let length = convert(getCurrentStartLocation())! - offset
-            return SwiftMethodParameter(
+            return SwiftParameter(
                 text: getString(offset: offset, length: length)!,
-                children: [],
+                children: [type],
                 offset: offset,
                 length: length,
                 externalParameterName: externalParameterName,

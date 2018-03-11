@@ -1,25 +1,17 @@
 import UseCases
 @testable import SwiftStructureInterface
 
-class MethodGatheringVisitor: ElementVisitor {
+class MethodGatheringVisitor: RecursiveElementVisitor {
 
     private(set) var methods = [UseCasesProtocolMethod]()
     private(set) var properties = [UseCasesProtocolProperty]()
 
-    func visit(_ element: SwiftElement) {
-    }
-
-    func visit(_ element: SwiftTypeElement) {
-    }
-
-    func visit(_ element: SwiftFile) {
-    }
-
-    func visit(_ element: SwiftMethodElement) {
+    override func visitFunctionDeclaration(_ element: FunctionDeclaration) {
         methods.append(transform(element))
+        super.visitFunctionDeclaration(element)
     }
 
-    private func transform(_ method: SwiftMethodElement) -> UseCasesProtocolMethod {
+    private func transform(_ method: FunctionDeclaration) -> UseCasesProtocolMethod {
         return UseCasesProtocolMethod(
             name: method.name,
             returnType: method.returnType?.text,
@@ -30,7 +22,7 @@ class MethodGatheringVisitor: ElementVisitor {
         )
     }
 
-    private func transformParameters(from method: SwiftMethodElement) -> [UseCasesParameter] {
+    private func transformParameters(from method: FunctionDeclaration) -> [UseCasesParameter] {
         return method.parameters.map { p in
             UseCasesParameter(
                 label: p.externalParameterName ?? p.localParameterName,
@@ -44,16 +36,16 @@ class MethodGatheringVisitor: ElementVisitor {
     private func resolveType(_ type: Element?) -> UseCasesType? {
         guard let type = type else { return nil }
         var result: UseCasesType?
-        let resolved = ResolveUtil().resolveToElement(type)
+        let resolved = ResolveUtil().resolve(type)
         if let alias = resolved as? Typealias {
-            result = UseCasesType(typeName: alias.typeName)
-        } else if let genericType = resolved as? GenericParameterTypeDeclaration {
-            result = UseCasesGenericType(typeName: genericType.text)
+            result = resolveType(alias.typealiasAssignment.type) ?? UseCasesType(typeName: alias.typealiasAssignment.type.text)
+        } else if resolved is GenericParameterClause {
+            result = UseCasesGenericType(typeName: type.text)
         }
         return result
     }
 
-    func visit(_ element: SwiftPropertyElement) {
+    override func visitVariableDeclaration(_ element: VariableDeclaration) {
         var attribute = ""
         if let elementAttribute = element.attribute {
             attribute = elementAttribute + " "
@@ -62,5 +54,6 @@ class MethodGatheringVisitor: ElementVisitor {
             type: element.type,
             isWritable: element.isWritable,
             signature: attribute + element.text))
+        super.visitVariableDeclaration(element)
     }
 }

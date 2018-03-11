@@ -10,7 +10,7 @@ class SwiftTypeElementBuilderTests: XCTestCase {
         XCTAssertEqual(element?.name, "Protocol")
         XCTAssertEqual(element?.inheritedTypes.count, 1)
         XCTAssertEqual(element?.inheritedTypes[0].text, "Inherited")
-        XCTAssertEqual(element?.children.count, 2)
+        XCTAssertEqual(element?.namedChildren.count, 2)
         XCTAssertEqual(element?.namedChild(at: 0)?.name, "property")
         XCTAssertEqual(element?.namedChild(at: 1)?.name, "method")
     }
@@ -30,7 +30,7 @@ class SwiftTypeElementBuilderTests: XCTestCase {
         XCTAssertEqual(element?.name, "A")
         XCTAssertEqual(element?.inheritedTypes.count, 1)
         XCTAssertEqual(element?.inheritedTypes[0].text, "B")
-        XCTAssertEqual(element?.children.count, 5)
+        XCTAssertEqual(element?.namedChildren.count, 5)
         XCTAssertEqual(element?.namedChild(at: 0)?.name, "varA")
         XCTAssertEqual(element?.namedChild(at: 1)?.name, "varB")
         XCTAssertEqual(element?.namedChild(at: 2)?.name, "varC")
@@ -51,7 +51,7 @@ class SwiftTypeElementBuilderTests: XCTestCase {
         XCTAssertEqual(innerElement?.inheritedTypes.count, 2)
         XCTAssertEqual(innerElement?.inheritedTypes[0].text, "C")
         XCTAssertEqual(innerElement?.inheritedTypes[1].text, "D")
-        XCTAssertEqual(innerElement?.children.count, 1)
+        XCTAssertEqual(innerElement?.namedChildren.count, 1)
         XCTAssertEqual(innerElement?.namedChild(at: 0)?.name, "innerMethodA")
         XCTAssertEqual(file?.text, getNestedClassString())
     }
@@ -60,8 +60,8 @@ class SwiftTypeElementBuilderTests: XCTestCase {
         let file = SKElementFactoryTestHelper.build(from: getProtocolString())
         let `protocol` = file?.children.first as? SwiftTypeElement
         let inheritedType = `protocol`?.inheritedTypes.first
-        let property = `protocol`?.children[0]
-        let method = `protocol`?.children[1]
+        let property = `protocol`?.namedChildren[0]
+        let method = `protocol`?.namedChildren[1]
         XCTAssertEqual(file?.text, getProtocolString())
         XCTAssertEqual(`protocol`?.text, getProtocolString())
         XCTAssertEqual(inheritedType?.text, "Inherited")

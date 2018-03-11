@@ -23,14 +23,14 @@ class MethodGatheringVisitorTests: XCTestCase {
     // MARK: - visit
 
     func test_visit_shouldGetAllMethodsFromProtocol() {
-        getMethodProtocol().accept(RecursiveElementVisitor(visitor: visitor))
+        getMethodProtocol().accept(visitor)
         XCTAssertEqual(visitor.methods.map { $0.name }, ["method", "method2", "method3"])
         XCTAssertEqual(visitor.methods.map { $0.signature }, ["func method()", "func method2(label name: Type) -> String", "func method3(label name: Type, param: OtherType) -> String"])
         XCTAssertEqual(visitor.methods.map { getParametersString($0) }, ["", "label name: Type", "label name: Type, param: OtherType"])
     }
 
     func test_visit_shouldGetAllPropertiesFromProtocol() {
-        getPropertyProtocol().accept(RecursiveElementVisitor(visitor: visitor))
+        getPropertyProtocol().accept(visitor)
         XCTAssertEqual(visitor.properties.map { $0.name }, ["prop1", "prop2", "prop3"])
         XCTAssertEqual(visitor.properties.map { $0.type }, ["Int", "String!", "NSObject?"])
         XCTAssertEqual(visitor.properties.map { $0.signature }, ["var prop1: Int { get set }", "var prop2: String! { get }", "weak var prop3: NSObject? { set get }"])

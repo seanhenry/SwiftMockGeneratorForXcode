@@ -1,6 +1,6 @@
 import SourceKittenFramework
 
-class SwiftTypeElement: SwiftElement, NamedElement, TypeDeclaration, CodeBlockContainer {
+class SwiftTypeElement: SwiftElement, TypeDeclaration {
 
     let name: String
     let inheritedTypes: [Element]
@@ -16,7 +16,6 @@ class SwiftTypeElement: SwiftElement, NamedElement, TypeDeclaration, CodeBlockCo
     }
 
     override func accept(_ visitor: ElementVisitor) {
-        visitor.visit(self)
-        super.accept(visitor)
+        visitor.visitTypeDeclaration(self)
     }
 }

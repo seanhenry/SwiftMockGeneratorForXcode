@@ -25,13 +25,19 @@ class GenericParameterClauseParserTests: XCTestCase {
         assertText("<T, U: A, V: A & B>", "<T, U: A, V: A & B>")
     }
 
+    func test_parse_shouldParseOffsetAndLength() {
+        let element = parse("<A, B: C, D: E & F>")
+        XCTAssertEqual(element.offset, 0)
+        XCTAssertEqual(element.length, 19)
+    }
+
     // MARK: - Helpers
 
     func assertText(_ input: String, _ expected: String, line: UInt = #line) {
-        XCTAssertEqual(parse(input), expected, line: line)
+        XCTAssertEqual(parse(input).text, expected, line: line)
     }
 
-    func parse(_ text: String) -> String {
+    func parse(_ text: String) -> Element {
         let parser = createParser(text, GenericParameterClauseParser.self)
         return parser.parse()
     }

@@ -274,11 +274,11 @@ class Parser<ResultType> {
         return parseDeclaration(FunctionDeclarationParser.self, .func)
     }
 
-    func parseFunctionDeclarationParameterClause() -> [MethodParameter] {
+    func parseFunctionDeclarationParameterClause() -> [Parameter] {
         return parse(FunctionDeclarationParser.ParameterClauseParser.self)
     }
 
-    func parseFunctionDeclarationParameter() -> MethodParameter {
+    func parseFunctionDeclarationParameter() -> Parameter {
         return parse(FunctionDeclarationParser.ParameterParser.self)
     }
 
@@ -290,7 +290,7 @@ class Parser<ResultType> {
         return parse(DeclarationModifierParser.self)
     }
 
-    func parseGenericParameterClause() -> String {
+    func parseGenericParameterClause() -> GenericParameterClause {
         return parse(GenericParameterClauseParser.self)
     }
 

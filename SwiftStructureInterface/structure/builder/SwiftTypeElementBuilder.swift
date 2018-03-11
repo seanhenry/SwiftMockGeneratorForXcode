@@ -9,7 +9,8 @@ class SwiftTypeElementBuilder: BodySwiftElementBuilderTemplate {
     }
 
     func build(text: String, offset: Int64, length: Int64, name: String, bodyOffset: Int64, bodyLength: Int64) -> Element? {
-        return SwiftTypeElement(name: name, text: text, children: buildChildren(), inheritedTypes: getInheritedTypes(), offset: offset, length: length, bodyOffset: bodyOffset, bodyLength: bodyLength)
+        let inheritedTypes = getInheritedTypes()
+        return SwiftTypeElement(name: name, text: text, children: inheritedTypes + buildChildren(), inheritedTypes: inheritedTypes, offset: offset, length: length, bodyOffset: bodyOffset, bodyLength: bodyLength)
     }
 
     private func getInheritedTypes() -> [SwiftType] {

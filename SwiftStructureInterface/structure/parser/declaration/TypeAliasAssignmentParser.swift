@@ -8,7 +8,7 @@ class TypealiasAssignmentParser: Parser<TypealiasAssignment> {
         advance()
         let type = parseType()
         let offset = convert(start)!
-        let length = convert(getCurrentEndLocation())! - offset
+        let length = convert(getPreviousEndLocation())! - offset
         return SwiftTypealiasAssignment(
             text: getString(offset: offset, length: length)!,
             children: [type],

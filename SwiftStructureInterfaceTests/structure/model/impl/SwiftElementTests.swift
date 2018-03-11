@@ -9,20 +9,13 @@ class SwiftElementTests: XCTestCase {
     override func setUp() {
         super.setUp()
         mockVisitor = MockElementVisitor()
-        element = emptySwiftElement
+        element = emptyElement
     }
 
     override func tearDown() {
         element = nil
         mockVisitor = nil
         super.tearDown()
-    }
-
-    // MARK: - accept
-
-    func test_accept_shouldSendItself() {
-        element.accept(mockVisitor)
-        XCTAssert(mockVisitor.invokedVisitSwiftElementParameters?.element === element)
     }
 
     // MARK: - init
