@@ -6,7 +6,7 @@ class VariableDeclarationParser: DeclarationParser<VariableDeclaration> {
         var name = ""
         tryToAppendIdentifier(to: &name)
         let type = parseTypeAnnotation()
-        let block = parseGetterSetterBlock()
+        let block = parseGetterSetterKeywordBlock()
         let length = convert(getPreviousEndLocation())! - offset
         let text = getString(offset: offset, length: length)!
         return SwiftVariableDeclaration(

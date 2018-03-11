@@ -1,7 +1,7 @@
 import XCTest
 @testable import SwiftStructureInterface
 
-class GetterSetterBlockParserTests: XCTestCase {
+class GetterSetterKeywordBlockParserTests: XCTestCase {
 
     // MARK: - parse
 

@@ -2,9 +2,9 @@ import Source
 
 // TODO: Parse setter-name (class only)
 
-class GetterSetterBlockParser: Parser<GetterSetterBlock> {
+class GetterSetterKeywordBlockParser: Parser<GetterSetterKeywordBlock> {
 
-    override func parse() -> GetterSetterBlock {
+    override func parse() -> GetterSetterKeywordBlock {
         let offset = convert(getCurrentStartLocation())!
         var isWritable = false
         advance(if: .leftBrace)
@@ -12,7 +12,7 @@ class GetterSetterBlockParser: Parser<GetterSetterBlock> {
         parseGetSet(isWritable: &isWritable)
         advance(if: .rightBrace)
         let length = convert(getPreviousEndLocation())! - offset
-        return SwiftGetterSetterBlock(
+        return SwiftGetterSetterKeywordBlock(
             text: getString(offset: offset, length: length)!,
             children: [],
             offset: offset,

@@ -308,8 +308,8 @@ class Parser<ResultType> {
         return parse(MutationModifierParser.self)
     }
 
-    func parseGetterSetterBlock() -> GetterSetterBlock {
-        return parse(GetterSetterBlockParser.self)
+    func parseGetterSetterKeywordBlock() -> GetterSetterKeywordBlock {
+        return parse(GetterSetterKeywordBlockParser.self)
     }
 
     func parseGenericParameterClause() -> GenericParameterClause {
