@@ -284,6 +284,10 @@ class Parser<ResultType> {
         return parseDeclaration(FunctionDeclarationParser.self, .func)
     }
 
+    func parseVariableDeclaration() -> VariableDeclaration {
+        return parseDeclaration(VariableDeclarationParser.self, .var)
+    }
+
     func parseFunctionDeclarationParameterClause() -> [Parameter] {
         return parse(FunctionDeclarationParser.ParameterClauseParser.self)
     }
