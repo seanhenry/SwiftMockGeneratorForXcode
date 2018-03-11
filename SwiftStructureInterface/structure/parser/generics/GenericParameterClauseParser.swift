@@ -3,7 +3,7 @@ class GenericParameterClauseParser: Parser<String> {
     override func parse() -> String {
         var clause = ""
         if isNext("<") {
-            advance()
+            advanceOperator("<")
             clause.append("<")
             clause.append(parseGenericParameterList())
             tryToAppendGenericClosingBracket(to: &clause)
@@ -31,7 +31,7 @@ class GenericParameterClauseParser: Parser<String> {
 
     private func tryToAppendGenericClosingBracket(to clause: inout String) {
         if isNext(">") {
-            advance()
+            advanceOperator(">")
             clause.append(">")
         }
     }

@@ -1,14 +1,19 @@
-class TypealiasAssignmentParser: Parser<Element> {
+class TypealiasAssignmentParser: Parser<TypealiasAssignment> {
 
-    override func parse() -> Element {
+    override func parse() -> TypealiasAssignment {
         let start = getCurrentStartLocation()
         guard isNext(.assignmentOperator) else {
-            return SwiftElement.errorElement
+            return SwiftTypealiasAssignment.errorTypealiasAssignment
         }
         advance()
-        _ = parseType()
+        let type = parseType()
         let offset = convert(start)!
         let length = convert(getCurrentEndLocation())! - offset
-        return SwiftElement(text: getString(offset: offset, length: length)!, children: [], offset: offset, length: length)
+        return SwiftTypealiasAssignment(
+            text: getString(offset: offset, length: length)!,
+            children: [type],
+            offset: offset,
+            length: length,
+            type: type)
     }
 }

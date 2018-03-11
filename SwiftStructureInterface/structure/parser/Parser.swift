@@ -294,12 +294,16 @@ class Parser<ResultType> {
         return parse(GenericParameterClauseParser.self)
     }
 
-    func parseTypealiasAssignment() -> Element {
+    func parseTypealiasAssignment() -> TypealiasAssignment {
         return parse(TypealiasAssignmentParser.self)
     }
 
     func parseAssociatedTypeDeclaration() -> Element {
         return parseDeclaration(AssociatedTypeDeclarationParser.self, .identifier("associatedtype"))
+    }
+
+    func parseTypealiasDeclaration() -> Element {
+        return parseDeclaration(TypealiasDeclarationParser.self, .typealias)
     }
 
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {

@@ -75,7 +75,7 @@ class ResolveUtilTests: XCTestCase {
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
         let method = file.children[0] as! SwiftMethodElement
         let resolved = ResolveUtil().resolveToElement(method.parameters[0].type) as? Typealias
-        XCTAssertEqual(resolved?.typeName, "(String) -> ()")
+        XCTAssertEqual(resolved?.name, "(String) -> ()")
         XCTAssertNil(resolved?.parent)
         XCTAssertNil(resolved?.file)
     }

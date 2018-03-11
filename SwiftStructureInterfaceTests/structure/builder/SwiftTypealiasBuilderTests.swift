@@ -7,12 +7,12 @@ class SwiftTypealiasBuilderTests: XCTestCase {
 
     func test_build_shouldBuildTypealias() {
         let alias = SKElementFactory().build(data: getTypealiasData(), fileText: getTypealiasString()) as! Typealias
-        XCTAssertEqual(alias.typeName, "Type")
+        XCTAssertEqual(alias.name, "Type")
     }
 
     func test_build_shouldBuildTypealiasShouldRemoveTypeFromClosures() {
         let alias = SKElementFactory().build(data: getTypealiasClosureData(), fileText: getTypealiasClosureString()) as! Typealias
-        XCTAssertEqual(alias.typeName, "() -> ()")
+        XCTAssertEqual(alias.name, "() -> ()")
     }
 
     func test_build_shouldBuildOtherElementProperties() {
