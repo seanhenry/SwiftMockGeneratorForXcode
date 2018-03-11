@@ -23,7 +23,7 @@ class RequirementListParser: Parser<String> {
     }
 
     private func appendType(to string: inout String) {
-        let type = parseTypeIdentifier().text
+        let type = parseType().text
         string.append(type)
     }
 

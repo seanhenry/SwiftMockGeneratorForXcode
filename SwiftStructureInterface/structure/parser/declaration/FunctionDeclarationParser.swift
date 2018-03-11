@@ -81,7 +81,7 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
         override func parse() -> MethodParameter {
             let start = getCurrentStartLocation()
             guard let (externalParameterName, localParameterName) = parseParameterNames() else { return SwiftMethodParameter.errorMethodParameter }
-            let type = parseType()
+            let type = parseParameterType()
             let offset = convert(start)!
             let length = convert(getCurrentStartLocation())! - offset
             return SwiftMethodParameter(
@@ -112,9 +112,9 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
             return nil
         }
 
-        private func parseType() -> Element {
+        private func parseParameterType() -> Element {
             skipTypeAnnotation()
-            let type = parseTypeIdentifier()
+            let type = parseType()
             skipVarArgs()
             return type
         }
@@ -141,7 +141,7 @@ class FunctionDeclarationParser: DeclarationParser<NamedElement> {
                 return SwiftType.errorType
             }
             advance()
-            return parseTypeIdentifier()
+            return parseType()
         }
     }
 }

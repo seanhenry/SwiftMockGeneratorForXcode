@@ -1,7 +1,7 @@
 import XCTest
 @testable import SwiftStructureInterface
 
-class TypeIdentifierParserTests: XCTestCase {
+class TypeParserTests: XCTestCase {
 
     // MARK: - parse
 
@@ -10,7 +10,7 @@ class TypeIdentifierParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseEmptyTypeAsError() {
-        let element = createParser("", TypeIdentifierParser.self).parse()
+        let element = createParser("", TypeParser.self).parse()
         XCTAssert(element === SwiftType.errorType)
     }
 
@@ -417,18 +417,6 @@ class TypeIdentifierParserTests: XCTestCase {
         assertTypeText("MyType.Protocol", "MyType.Protocol")
     }
 
-    // MARK: - Implicit
-
-    func test_parse_shouldParseImplicitType() {
-        assertTypeText("$0", "$0")
-        assertTypeText("$10", "$10")
-    }
-
-    func test_parse_shouldParseWhenIncompleteImplicitType() {
-        assertTypeText("$", "$")
-        assertTypeText("$a", "$")
-    }
-
     // MARK: - Escaped
 
     func test_parse_shouldParseEscapedIdentifier() {
@@ -530,6 +518,6 @@ class TypeIdentifierParserTests: XCTestCase {
     }
 
     func parse(_ text: String) -> SwiftType {
-        return createParser(text, TypeIdentifierParser.self).parse() as! SwiftType
+        return createParser(text, TypeParser.self).parse() as! SwiftType
     }
 }

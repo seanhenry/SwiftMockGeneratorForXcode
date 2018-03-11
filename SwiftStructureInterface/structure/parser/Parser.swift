@@ -229,7 +229,7 @@ class Parser<ResultType> {
     }
 
     func tryToAppendType(to string: inout String) {
-        string.append(parseTypeIdentifier().text)
+        string.append(parseType().text)
     }
 
     func tryToAppendInout(to string: inout String) {
@@ -242,8 +242,8 @@ class Parser<ResultType> {
         return parse(TypeInheritanceClauseParser.self)
     }
 
-    func parseTypeIdentifier() -> Type {
-        return parse(TypeIdentifierParser.self)
+    func parseType() -> Type {
+        return parse(TypeParser.self)
     }
 
     func parseTypeCodeBlock() -> CodeBlock {

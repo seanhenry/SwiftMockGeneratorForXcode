@@ -1,14 +1,20 @@
 import Lexer
 
-class TypeIdentifierParser: Parser<Type> {
+class TypeParser: Parser<Type> {
 
     private var startStack = [LineColumn]()
 
     override func parse() -> Type {
-        if let type = parseType() {
+        if let type = parseSwiftType() {
             return type
         }
         return SwiftType.errorType
+    }
+
+    private func parseSwiftType() -> Type? {
+        startStack.append(getCurrentStartLocation())
+        defer { startStack.removeLast() }
+        return parseOptional()
     }
 
     private func createPartialElement() -> (offset: Int64, length: Int64, text: String) {
@@ -17,16 +23,10 @@ class TypeIdentifierParser: Parser<Type> {
         return (offset, length, getString(offset: offset, length: length)!)
     }
 
-    private func parseType() -> Type? {
-        startStack.append(getCurrentStartLocation())
-        defer { startStack.removeLast() }
-        return parseOptional()
-    }
-
     private func parseTypeExcludingOptional() -> Type? {
         if let protocolCompositionType = parseProtocolCompositionType() {
             return protocolCompositionType
-        } else if let typeIdentifier = _parseTypeIdentifier() {
+        } else if let typeIdentifier = parseTypeIdentifier() {
             return typeIdentifier
         } else if let arrayType = parseArrayType() {
             return arrayType
@@ -42,12 +42,12 @@ class TypeIdentifierParser: Parser<Type> {
 
     // MARK: - Type identifier
 
-    private func _parseTypeIdentifier() -> Type? {
+    private func parseTypeIdentifier() -> Type? {
         guard let type = parseTypeName().last else { return nil }
         let genericArguments = parseGenericClause(type)
         if isNext(.dot) {
             advance()
-            return _parseTypeIdentifier()
+            return parseTypeIdentifier()
         } else {
             let element = createPartialElement()
             return SwiftTypeIdentifier(
@@ -123,7 +123,7 @@ class TypeIdentifierParser: Parser<Type> {
     private func parseArrayType() -> Type? {
         return tryToParse {
             try advanceOrFail(if: .leftSquare)
-            let type = parseTypeIdentifier()
+            let type = parse()
             try advanceOrFail(if: .rightSquare)
             return createArrayType(type)
         }
@@ -139,9 +139,9 @@ class TypeIdentifierParser: Parser<Type> {
     private func parseDictionaryType() -> Type? {
         return tryToParse {
             try advanceOrFail(if: .leftSquare)
-            let keyType = parseTypeIdentifier()
+            let keyType = parse()
             try advanceOrFail(if: .colon)
-            let valueType = parseTypeIdentifier()
+            let valueType = parse()
             try advanceOrFail(if: .rightSquare)
             return createDictionaryType(keyType, valueType)
         }
@@ -203,7 +203,7 @@ class TypeIdentifierParser: Parser<Type> {
     private func appendTypeIdentifier(to string: inout [Type]) throws {
         startStack.append(getCurrentStartLocation())
         defer { startStack.removeLast() }
-        if let type = _parseTypeIdentifier() {
+        if let type = parseTypeIdentifier() {
             string.append(type)
         } else {
             throw LookAheadError()

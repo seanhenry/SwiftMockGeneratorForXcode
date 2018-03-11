@@ -6,7 +6,7 @@ class TypealiasAssignmentParser: Parser<Element> {
             return SwiftElement.errorElement
         }
         advance()
-        _ = parseTypeIdentifier()
+        _ = parseType()
         let offset = convert(start)!
         let length = convert(getCurrentEndLocation())! - offset
         return SwiftElement(text: getString(offset: offset, length: length)!, children: [], offset: offset, length: length)

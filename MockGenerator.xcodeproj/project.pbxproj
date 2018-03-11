@@ -101,7 +101,7 @@
 		35CDF20A263B211CBF427FDC /* SwiftTypeElementBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFCD982124DFA56FC2763 /* SwiftTypeElementBuilderTests.swift */; };
 		35CDF23785F8638042864254 /* ResolveUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFFE183347682F0523AEC /* ResolveUtil.swift */; };
 		35CDF26B05A866EF1D0CBA3E /* ResolveUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF67FD332DFA012E4AFD1 /* ResolveUtilTests.swift */; };
-		35CDF2CCFFDA52FD451EBEC3 /* TypeIdentifierParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF11896E7FDE479C1D716 /* TypeIdentifierParserTests.swift */; };
+		35CDF2CCFFDA52FD451EBEC3 /* TypeParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF11896E7FDE479C1D716 /* TypeParserTests.swift */; };
 		35CDF2D28B44872B813303BC /* SwiftTypealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFC482F76B0E3404DD648 /* SwiftTypealias.swift */; };
 		35CDF3051C92D783E99E519D /* SourceFileFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF4695C73C787CC3952DB /* SourceFileFinder.swift */; };
 		35CDF3270B837BA5C8C37BB2 /* NamedSwiftElementBuilderTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFBCF807CB8DBB43C9647 /* NamedSwiftElementBuilderTemplate.swift */; };
@@ -146,7 +146,7 @@
 		35CDF77EBDF6ED0F08B184D7 /* SwiftType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF6EEB39DE818601D1665 /* SwiftType.swift */; };
 		35CDF7A5A88CC4FB9B3D4B46 /* SwiftPropertyElementBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDBA69D15F512927BA6F /* SwiftPropertyElementBuilderTests.swift */; };
 		35CDF7CC43284E5D7E50D365 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFA651F3CC48921FAC53C /* File.swift */; };
-		35CDF82EA3EE326B4ED75E98 /* TypeIdentifierParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF5646BAA490CF1EC7B23 /* TypeIdentifierParser.swift */; };
+		35CDF82EA3EE326B4ED75E98 /* TypeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF5646BAA490CF1EC7B23 /* TypeParser.swift */; };
 		35CDF8565148EA9D669DF970 /* SwiftPropertyElementBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF1BE911C7FDF07E89F57 /* SwiftPropertyElementBuilder.swift */; };
 		35CDF8734632D23A68316A26 /* DictionaryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF00E5605D03871771C1E /* DictionaryType.swift */; };
 		35CDF87BB86A3B12776113ED /* SwiftInheritedTypeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF0F73058A06313F9DB0 /* SwiftInheritedTypeBuilder.swift */; };
@@ -470,7 +470,7 @@
 		35CDF087FFEDD3FD8F68133F /* readlog */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text; path = readlog; sourceTree = "<group>"; };
 		35CDF088F6AFB0D6DE50B712 /* CodeBlockParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockParser.swift; sourceTree = "<group>"; };
 		35CDF0A3EED0623521D5E9A9 /* SwiftOptionalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOptionalType.swift; sourceTree = "<group>"; };
-		35CDF11896E7FDE479C1D716 /* TypeIdentifierParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeIdentifierParserTests.swift; sourceTree = "<group>"; };
+		35CDF11896E7FDE479C1D716 /* TypeParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeParserTests.swift; sourceTree = "<group>"; };
 		35CDF1226A4B510884846203 /* SwiftPropertyElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPropertyElementTests.swift; sourceTree = "<group>"; };
 		35CDF14DD45E8554072A9C62 /* SwiftFileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftFileTests.swift; sourceTree = "<group>"; };
 		35CDF1647AB7FA499E01C6FA /* GenericParameterClauseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericParameterClauseParser.swift; sourceTree = "<group>"; };
@@ -517,7 +517,7 @@
 		35CDF51BAA9B0427E72C8CBE /* SwiftFileBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftFileBuilder.swift; sourceTree = "<group>"; };
 		35CDF5233283389F936081DF /* MockElementVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockElementVisitor.swift; sourceTree = "<group>"; };
 		35CDF55A2F9EFDC3DE2DAF78 /* FormatUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatUtilTests.swift; sourceTree = "<group>"; };
-		35CDF5646BAA490CF1EC7B23 /* TypeIdentifierParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeIdentifierParser.swift; sourceTree = "<group>"; };
+		35CDF5646BAA490CF1EC7B23 /* TypeParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeParser.swift; sourceTree = "<group>"; };
 		35CDF567461E77D30F36AED9 /* Element+TestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Element+TestHelper.swift"; sourceTree = "<group>"; };
 		35CDF5690154C9A374C4AF51 /* runxcode */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text; path = runxcode; sourceTree = "<group>"; };
 		35CDF56AA2864F89BCC2B13D /* RecursiveElementVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecursiveElementVisitor.swift; sourceTree = "<group>"; };
@@ -922,7 +922,7 @@
 		35CDF3816246BECED687A89C /* type */ = {
 			isa = PBXGroup;
 			children = (
-				35CDF5646BAA490CF1EC7B23 /* TypeIdentifierParser.swift */,
+				35CDF5646BAA490CF1EC7B23 /* TypeParser.swift */,
 			);
 			path = type;
 			sourceTree = "<group>";
@@ -964,7 +964,7 @@
 		35CDF5EACE79F06F41AA3850 /* type */ = {
 			isa = PBXGroup;
 			children = (
-				35CDF11896E7FDE479C1D716 /* TypeIdentifierParserTests.swift */,
+				35CDF11896E7FDE479C1D716 /* TypeParserTests.swift */,
 			);
 			path = type;
 			sourceTree = "<group>";
@@ -1680,7 +1680,7 @@
 				35CDF1983E0E8016F79BD5B6 /* GenericParameterClauseParser.swift in Sources */,
 				35CDF09CDEE461BDA4E54687 /* ProtocolDeclarationParser.swift in Sources */,
 				35CDF6445830A0DDB5CAA632 /* AssociatedTypeDeclaration.swift in Sources */,
-				35CDF82EA3EE326B4ED75E98 /* TypeIdentifierParser.swift in Sources */,
+				35CDF82EA3EE326B4ED75E98 /* TypeParser.swift in Sources */,
 				35CDFD3F057FB268422C1835 /* DeclarationParser.swift in Sources */,
 				35CDFD7482B9ECB86D150E5E /* DeclarationsParser.swift in Sources */,
 				35CDFF4472816F6FDC92C6D1 /* FunctionDeclarationParser.swift in Sources */,
@@ -1749,7 +1749,7 @@
 				35CDFEE0DC8F1ED639346893 /* GenericParameterClauseParserTests.swift in Sources */,
 				35CDFD6B30A5D27BDDCAB7E8 /* ProtocolDeclarationParserTests.swift in Sources */,
 				35CDF11E15C98EB1F323E54B /* AssociatedTypeDeclarationTests.swift in Sources */,
-				35CDF2CCFFDA52FD451EBEC3 /* TypeIdentifierParserTests.swift in Sources */,
+				35CDF2CCFFDA52FD451EBEC3 /* TypeParserTests.swift in Sources */,
 				35CDF6469A191EBCD90CD7BC /* FunctionDeclarationParameterParserTests.swift in Sources */,
 				35CDF446FF7FB588CFFAF54D /* FunctionDeclarationParameterClauseParserTests.swift in Sources */,
 				35CDFCAD883DFEDFE03744C4 /* FunctionDeclarationParserTests.swift in Sources */,
