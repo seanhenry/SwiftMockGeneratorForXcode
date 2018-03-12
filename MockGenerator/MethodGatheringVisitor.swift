@@ -24,11 +24,13 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
 
     private func transformParameters(from method: FunctionDeclaration) -> [UseCasesParameter] {
         return method.parameters.map { p in
-            UseCasesParameter(
+            let visitor = GenericTypeTransformerVisitor(resolveUtil: ResolveUtil())
+            p.type.accept(visitor)
+            return UseCasesParameter(
                 label: p.externalParameterName ?? p.localParameterName,
                 name: p.localParameterName,
-                type: p.type.text,
-                resolvedType: resolveType(p.type) ?? UseCasesType(typeName: p.type.text),
+                type: visitor.type?.typeName ?? p.type.text,
+                resolvedType: visitor.type ?? UseCasesType(typeName: p.type.text),
                 text_: p.text)
         }
     }
