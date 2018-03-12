@@ -94,7 +94,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
         }
 
         private func parseParameterNames() -> (externalParameterName: String?, localParameterName: String)? {
-            guard let firstIdentifier = peekAtNextIdentifier() ?? peekAtNextWildcard() else { return nil }
+            guard let firstIdentifier = peekAtNextParameterIdentifier() ?? peekAtNextWildcard() else { return nil }
             advance()
             if let secondIdentifier = peekAtNextIdentifier() {
                 advance()

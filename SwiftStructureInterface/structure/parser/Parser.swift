@@ -49,6 +49,26 @@ class Parser<ResultType> {
         return lexer.getPreviousEndLocation()
     }
 
+    func peekAtNextParameterIdentifier() -> String? {
+        if let name = peekAtNextKind().namedIdentifier {
+            return escapeParameterIdentifier(name)
+        } else if isNext(.booleanLiteral(false)) {
+            return "false"
+        } else if isNext(.booleanLiteral(true)) {
+            return "true"
+        } else {
+            return nil
+        }
+    }
+
+    private func escapeParameterIdentifier(_ name: String) -> String {
+        let keywords = ["inout", "let", "var"]
+        if keywords.contains(name) {
+            return "`\(name)`"
+        }
+        return name
+    }
+
     func peekAtNextIdentifier() -> String? {
         return peekAtNextKind().namedIdentifier
     }

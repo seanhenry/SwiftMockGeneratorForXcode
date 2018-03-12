@@ -90,6 +90,28 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
         XCTAssertEqual(type.length, 1)
     }
 
+    func test_parse_shouldEscapeKeywords() {
+        let keywords = ["inout", "var", "let"]
+        keywords.forEach { keyword in
+            let text = "`\(keyword)`: A"
+            let parameter = parse(text)
+            XCTAssertEqual(parameter.text, text)
+            XCTAssertNil(parameter.externalParameterName)
+            XCTAssertEqual(parameter.localParameterName, "`\(keyword)`")
+        }
+    }
+
+    func test_parse_shouldAllowBooleanIdentifiers() {
+        let keywords = ["false", "true"]
+        keywords.forEach { keyword in
+            let text = "\(keyword): A"
+            let parameter = parse(text)
+            XCTAssertEqual(parameter.text, text)
+            XCTAssertNil(parameter.externalParameterName)
+            XCTAssertEqual(parameter.localParameterName, "\(keyword)")
+        }
+    }
+
     // MARK: - Helpers
 
     func parse(_ string: String) -> SwiftParameter {
