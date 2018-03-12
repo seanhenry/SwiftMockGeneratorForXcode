@@ -75,14 +75,60 @@ class GenericMethodMock: GenericMethod {
         invokedTestEParameters = (e, ())
         invokedTestEParametersList.append((e, ()))
     }
-    var invokedTestF = false
-    var invokedTestFCount = 0
-    var invokedTestFParameters: (f: Any?, g: Any?)?
-    var invokedTestFParametersList = [(f: Any?, g: Any?)]()
-    func test<T, U>(f: T!, g: U?) {
-        invokedTestF = true
-        invokedTestFCount += 1
-        invokedTestFParameters = (f, g)
-        invokedTestFParametersList.append((f, g))
+    var invokedTestOptional = false
+    var invokedTestOptionalCount = 0
+    var invokedTestOptionalParameters: (optional: Any?, iuo: Any?)?
+    var invokedTestOptionalParametersList = [(optional: Any?, iuo: Any?)]()
+    func test<T, U>(optional: T?, iuo: U!) {
+        invokedTestOptional = true
+        invokedTestOptionalCount += 1
+        invokedTestOptionalParameters = (optional, iuo)
+        invokedTestOptionalParametersList.append((optional, iuo))
+    }
+    var invokedTestArray = false
+    var invokedTestArrayCount = 0
+    var invokedTestArrayParameters: (array: Any, Void)?
+    var invokedTestArrayParametersList = [(array: Any, Void)]()
+    func test<T>(array: [T]) {
+        invokedTestArray = true
+        invokedTestArrayCount += 1
+        invokedTestArrayParameters = (array, ())
+        invokedTestArrayParametersList.append((array, ()))
+    }
+    var invokedTestDictionary = false
+    var invokedTestDictionaryCount = 0
+    var invokedTestDictionaryParameters: (dictionary: Any, Void)?
+    var invokedTestDictionaryParametersList = [(dictionary: Any, Void)]()
+    func test<T, U>(dictionary: [T: U]) {
+        invokedTestDictionary = true
+        invokedTestDictionaryCount += 1
+        invokedTestDictionaryParameters = (dictionary, ())
+        invokedTestDictionaryParametersList.append((dictionary, ()))
+    }
+    var invokedTestClosure = false
+    var invokedTestClosureCount = 0
+    var stubbedTestClosureClosureResult: (Any, Void)?
+    func test<T, U>(closure: (T) -> U) {
+        invokedTestClosure = true
+        invokedTestClosureCount += 1
+        if let result = stubbedTestClosureClosureResult {
+            _ = closure(result.0 as! T)
+        }
+    }
+    var invokedTestTypeIdentifier = false
+    var invokedTestTypeIdentifierCount = 0
+    func test<T>(typeIdentifier: Generic<T>) {
+        invokedTestTypeIdentifier = true
+        invokedTestTypeIdentifierCount += 1
+    }
+    var invokedTestTuple = false
+    var invokedTestTupleCount = 0
+    var invokedTestTupleParameters: (tuple: Any, Void)?
+    var invokedTestTupleParametersList = [(tuple: Any, Void)]()
+    func test<T, U>(tuple: (T, U)) {
+        invokedTestTuple = true
+        invokedTestTupleCount += 1
+        invokedTestTupleParameters = (tuple, ())
+        invokedTestTupleParametersList.append((tuple, ()))
     }
 }

@@ -20,8 +20,19 @@ class MockDataStore: DataStore {
 }
 
 class MyObject {
-    init(dataStore: DataStore) {}
-    @discardableResult func writeSomeData() -> Bool { return true }
+
+    let dataStore: DataStore, data: Data, file: URL
+
+    init(dataStore: DataStore, data: Data, file: URL) {
+        self.dataStore = dataStore
+        self.data = data
+        self.file = file
+    }
+
+    @discardableResult func writeSomeData() -> Bool {
+        _ = dataStore.save(data, to: file) { _ in /* do something with progress */ }
+        return true
+    }
 }
 
 import XCTest
@@ -30,14 +41,13 @@ class ExampleTest: XCTestCase {
 
     var mockDataStore: MockDataStore!
     var object: MyObject!
-    let expectedData = "some data".data(using: .utf8)
+    let expectedData = "some data".data(using: .utf8)!
     let expectedFile = URL(fileURLWithPath: "/test/file/1")
-    let anotherExpectedFile = URL(fileURLWithPath: "/test/file/2")
 
     override func setUp() {
         super.setUp()
         mockDataStore = MockDataStore()
-        object = MyObject(dataStore: mockDataStore)
+        object = MyObject(dataStore: mockDataStore, data: expectedData, file: expectedFile)
     }
 
     override func tearDown() {
@@ -67,7 +77,7 @@ class ExampleTest: XCTestCase {
         object.writeSomeData()
         object.writeSomeData()
         XCTAssertEqual(mockDataStore.invokedSaveParametersList[0].file, expectedFile)
-        XCTAssertEqual(mockDataStore.invokedSaveParametersList[1].file, anotherExpectedFile)
+        XCTAssertEqual(mockDataStore.invokedSaveParametersList[1].file, expectedFile)
     }
 
     func testMyMethodReturnsTrueWhenSaveWasSuccessful() {

@@ -1,7 +1,3 @@
-protocol AssociatedTypeProtocol {
-    associatedtype SomeType
-}
-
 protocol GenericMethod {
     func test<T>(a: T)
     func test<T: NSObject>(b: T)
@@ -11,6 +7,10 @@ protocol GenericMethod {
     func testReturn3<T: NSObject>() -> T
     func test<T: AssociatedTypeProtocol>(d: T)
     func test<T: AssociatedTypeProtocol>(e: T) where T.SomeType == NSObject
-    func test<T, U>(f: T!, g: U?)
+    func test<T, U>(optional: T?, iuo: U!)
+    func test<T>(array: [T])
+    func test<T, U>(dictionary: [T: U])
+    func test<T, U>(closure: (T) -> U)
+//    func test<T>(typeIdentifier: Generic<T>)
+    func test<T, U>(tuple: (T, U))
 }
-
