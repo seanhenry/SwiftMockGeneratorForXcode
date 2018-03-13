@@ -29,6 +29,11 @@ class GenericTypeTransformerVisitor: ElementVisitor {
         type = UseCasesType(typeName: "[\(keyType): \(valueType)]")
     }
 
+    override func visitOptionalType(_ element: OptionalType) {
+        let elementType = resolveType(element.type)?.typeName ?? element.type.text
+        type = UseCasesType(typeName: "\(elementType)?")
+    }
+
     private func resolveType(_ element: Type) -> UseCasesType? {
         let visitor = GenericTypeTransformerVisitor(resolveUtil: resolveUtil)
         element.accept(visitor)

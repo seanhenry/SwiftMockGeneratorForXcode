@@ -11,6 +11,7 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
     var type: Type!
     var array: ArrayType!
     var dictionary: DictionaryType!
+    var optional: OptionalType!
     var mockResolveUtil: MockResolveUtil!
 
     override func setUp() {
@@ -20,6 +21,7 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         type = SwiftType(text: "T", children: [], offset: 0, length: 0)
         array = createArray("[T]", type)
         dictionary = createDictionary("[T: T]", type, type)
+        optional = createOptional("T?", type)
         mockResolveUtil = MockResolveUtil()
         visitor = GenericTypeTransformerVisitor(resolveUtil: mockResolveUtil)
     }
@@ -33,6 +35,7 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         array = nil
         type = nil
         dictionary = nil
+        optional = nil
         super.tearDown()
     }
 
@@ -81,6 +84,19 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         XCTAssertEqual(visitor.type?.typeName, dictionary.text)
     }
 
+    // MARK: - optional
+
+    func test_visit_shouldTransformOptionalTypeToAnyWhenResolvingToGenericType() {
+        stubResolveToGenericClause()
+        optional.accept(visitor)
+        XCTAssertEqual(visitor.type?.typeName, "Any?")
+    }
+
+    func test_visit_shouldTransformOptionalTypeToAnyWhenResolvingToNormalType() {
+        optional.accept(visitor)
+        XCTAssertEqual(visitor.type?.typeName, optional.text)
+    }
+
     // MARK: - Nested
 
     func test_visit_shouldTransformNestedDictionaryType() {
@@ -122,6 +138,10 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
 
     private func createArray(_ name: String, _ elementType: Type) -> ArrayType {
         return SwiftArrayType(text: name, children: [], offset: 0, length: 0, elementType: elementType)
+    }
+
+    private func createOptional(_ name: String, _ type: Type) -> OptionalType {
+        return SwiftOptionalType(text: name, children: [], offset: 0, length: 0, type: type)
     }
 
     private func stubResolveToGenericClause() {

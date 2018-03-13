@@ -23,6 +23,10 @@ class ElementVisitor {
         visitType(element)
     }
 
+    func visitOptionalType(_ element: OptionalType) {
+        visitType(element)
+    }
+
     func visitFunctionDeclaration(_ element: FunctionDeclaration) {
         visitElement(element)
     }

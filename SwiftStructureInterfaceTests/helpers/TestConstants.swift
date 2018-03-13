@@ -14,3 +14,4 @@ let testFunctionDeclaration = SwiftFunctionDeclaration(name: "myMethod", text: "
 let testFunctionParameter = SwiftParameter(text: "a: Int", children: [testType], offset: 0, length: 6, externalParameterName: nil, localParameterName: "a", type: testType)
 let testArrayType = SwiftArrayType(text: "[Int]", children: [], offset: 0, length: 5, elementType: testType)
 let testDictionaryType = SwiftDictionaryType(text: "[Int: Int]", children: [], offset: 0, length: 10, keyType: testType, valueType: testType)
+let testOptionalType = SwiftOptionalType(text: "[Int: Int]", children: [], offset: 0, length: 10, type: testType)

@@ -71,16 +71,23 @@ class ElementVisitorTests: XCTestCase {
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
-    func test_visit_functionArrayTypeShouldVisitAncestors() {
+    func test_visit_arrayTypeShouldVisitAncestors() {
         testArrayType.accept(visitor)
         XCTAssertEqual(visitor.invokedVisitArrayTypeCount, 1)
         XCTAssertEqual(visitor.invokedVisitTypeCount, 1)
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
-    func test_visit_functionDictionaryTypeShouldVisitAncestors() {
+    func test_visit_dictionaryTypeShouldVisitAncestors() {
         testDictionaryType.accept(visitor)
         XCTAssertEqual(visitor.invokedVisitDictionaryTypeCount, 1)
+        XCTAssertEqual(visitor.invokedVisitTypeCount, 1)
+        XCTAssertEqual(visitor.invokedVisitElementCount, 1)
+    }
+
+    func test_visit_optionalTypeShouldVisitAncestors() {
+        testOptionalType.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitOptionalTypeCount, 1)
         XCTAssertEqual(visitor.invokedVisitTypeCount, 1)
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
@@ -204,6 +211,19 @@ class ElementVisitorTests: XCTestCase {
             invokedVisitDictionaryTypeCount += 1
             invokedVisitDictionaryTypeParameters = (element, ())
             invokedVisitDictionaryTypeParametersList.append((element, ()))
+        }
+
+        var invokedVisitOptionalType = false
+        var invokedVisitOptionalTypeCount = 0
+        var invokedVisitOptionalTypeParameters: (element: OptionalType, Void)?
+        var invokedVisitOptionalTypeParametersList = [(element: OptionalType, Void)]()
+
+        override func visitOptionalType(_ element: OptionalType) {
+            super.visitOptionalType(element)
+            invokedVisitOptionalType = true
+            invokedVisitOptionalTypeCount += 1
+            invokedVisitOptionalTypeParameters = (element, ())
+            invokedVisitOptionalTypeParametersList.append((element, ()))
         }
 
         var invokedVisitTypealias = false
