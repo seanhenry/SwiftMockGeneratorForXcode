@@ -6,28 +6,20 @@ import UseCases
 class GenericTypeTransformerVisitorTests: XCTestCase {
 
     var visitor: GenericTypeTransformerVisitor!
-    var genericClause: SwiftGenericParameterClause!
-    var classType: SwiftTypeIdentifier!
-    var genericType: SwiftType!
-    var genericType2: SwiftType!
-    var genericArrayType: SwiftArrayType!
-    var nestedArrayType: SwiftArrayType!
-    var genericDictionaryType: SwiftDictionaryType!
-    var nestedDictionaryType: SwiftDictionaryType!
-    var type: SwiftType!
+    var genericClause: GenericParameterClause!
+    var classType: TypeIdentifier!
+    var type: Type!
+    var array: ArrayType!
+    var dictionary: DictionaryType!
     var mockResolveUtil: MockResolveUtil!
 
     override func setUp() {
         super.setUp()
         genericClause = SwiftGenericParameterClause(text: "<T>", children: [], offset: 0, length: 0)
         classType = SwiftTypeIdentifier(text: "Int", children: [], offset: 0, length: 0, type: SwiftType.errorType, genericArguments: [])
-        genericType = SwiftType(text: "T", children: [], offset: 0, length: 0)
-        genericType2 = SwiftType(text: "U", children: [], offset: 0, length: 0)
-        genericArrayType = SwiftArrayType(text: "[T]", children: [], offset: 0, length: 0, elementType: genericType)
-        genericDictionaryType = SwiftDictionaryType(text: "[T: U]", children: [], offset: 0, length: 0, keyType: genericType, valueType: genericType2)
-        nestedDictionaryType = SwiftDictionaryType(text: "[T: [U]]", children: [], offset: 0, length: 0, keyType: genericType, valueType: genericArrayType)
-        nestedArrayType = SwiftArrayType(text: "[[T: U]]", children: [], offset: 0, length: 0, elementType: genericDictionaryType)
-        type = SwiftType(text: "Int", children: [], offset: 0, length: 0)
+        type = SwiftType(text: "T", children: [], offset: 0, length: 0)
+        array = createArray("[T]", type)
+        dictionary = createDictionary("[T: T]", type, type)
         mockResolveUtil = MockResolveUtil()
         visitor = GenericTypeTransformerVisitor(resolveUtil: mockResolveUtil)
     }
@@ -37,75 +29,71 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         mockResolveUtil = nil
         genericClause = nil
         classType = nil
-        genericType = nil
-        genericArrayType = nil
         type = nil
-        genericType2 = nil
-        genericDictionaryType = nil
-        nestedArrayType = nil
-        nestedDictionaryType = nil
+        array = nil
+        type = nil
+        dictionary = nil
         super.tearDown()
     }
 
     // MARK: - visit
 
     func test_visit_shouldTransformTypeToAnyWhenResolvingToGenericType() {
-        mockResolveUtil.stubbedResolveResult = genericClause
-        visitor.visitType(genericType)
+        stubResolveToGenericClause()
+        type.accept(visitor)
         XCTAssertEqual(visitor.type?.typeName, "Any")
     }
 
     func test_visit_shouldTransformToSameTypeWhenNotResolvingToGenericType() {
         mockResolveUtil.stubbedResolveResult = classType
-        visitor.visitType(type)
+        type.accept(visitor)
         XCTAssertEqual(visitor.type?.typeName, type.text)
     }
 
     func test_visit_shouldTransformToSameTypeWhenCannotResolveType() {
-        mockResolveUtil.stubbedResolveResult = nil
-        visitor.visitType(type)
+        type.accept(visitor)
         XCTAssertEqual(visitor.type?.typeName, type.text)
     }
 
     // MARK: - array
 
     func test_visit_shouldTransformArrayTypeToAnyWhenResolvingToGenericType() {
-        mockResolveUtil.stubbedResolveResult = genericClause
-        visitor.visitArrayType(genericArrayType)
+        stubResolveToGenericClause()
+        array.accept(visitor)
         XCTAssertEqual(visitor.type?.typeName, "[Any]")
     }
 
     func test_visit_shouldTransformArrayTypeToAnyWhenResolvingToNormalType() {
-        mockResolveUtil.stubbedResolveResult = nil
-        visitor.visitArrayType(genericArrayType)
-        XCTAssertEqual(visitor.type?.typeName, genericArrayType.text)
+        array.accept(visitor)
+        XCTAssertEqual(visitor.type?.typeName, array.text)
     }
 
     // MARK: - dictionary
 
     func test_visit_shouldTransformDictionaryTypeToAnyWhenResolvingToGenericType() {
-        mockResolveUtil.stubbedResolveResult = genericClause
-        visitor.visitDictionaryType(genericDictionaryType)
+        stubResolveToGenericClause()
+        dictionary.accept(visitor)
         XCTAssertEqual(visitor.type?.typeName, "[Any: Any]")
     }
 
     func test_visit_shouldTransformDictionaryTypeToAnyWhenResolvingToNormalType() {
-        mockResolveUtil.stubbedResolveResult = nil
-        visitor.visitDictionaryType(genericDictionaryType)
-        XCTAssertEqual(visitor.type?.typeName, genericDictionaryType.text)
+        dictionary.accept(visitor)
+        XCTAssertEqual(visitor.type?.typeName, dictionary.text)
     }
 
     // MARK: - Nested
 
     func test_visit_shouldTransformNestedDictionaryType() {
-        mockResolveUtil.stubbedResolveResult = genericClause
-        visitor.visitDictionaryType(nestedDictionaryType)
+        let dictContainingArray = createDictionary("[T: [U]]", type, array)
+        stubResolveToGenericClause()
+        dictContainingArray.accept(visitor)
         XCTAssertEqual(visitor.type?.typeName, "[Any: [Any]]")
     }
 
     func test_visit_shouldTransformNestedArrayType() {
-        mockResolveUtil.stubbedResolveResult = genericClause
-        visitor.visitArrayType(nestedArrayType)
+        let arrayContainingDict = createArray("[[T: U]]", dictionary)
+        stubResolveToGenericClause()
+        arrayContainingDict.accept(visitor)
         XCTAssertEqual(visitor.type?.typeName, "[[Any: Any]]")
     }
 
@@ -126,5 +114,17 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
             invokedResolveParametersList.append((element, ()))
             return stubbedResolveResult
         }
+    }
+
+    private func createDictionary(_ name: String, _ keyType: Type, _ valueType: Type) -> DictionaryType {
+        return SwiftDictionaryType(text: name, children: [], offset: 0, length: 0, keyType: keyType, valueType: valueType)
+    }
+
+    private func createArray(_ name: String, _ elementType: Type) -> ArrayType {
+        return SwiftArrayType(text: name, children: [], offset: 0, length: 0, elementType: elementType)
+    }
+
+    private func stubResolveToGenericClause() {
+        mockResolveUtil.stubbedResolveResult = genericClause
     }
 }
