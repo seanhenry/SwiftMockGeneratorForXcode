@@ -105,6 +105,32 @@ class GenericMethodMock: GenericMethod {
         invokedTestDictionaryParameters = (dictionary, ())
         invokedTestDictionaryParametersList.append((dictionary, ()))
     }
+    var invokedTestClosure = false
+    var invokedTestClosureCount = 0
+    var stubbedTestClosureClosureResult: (Any, Void)?
+    func test<T, U>(closure: (T) -> U) {
+        invokedTestClosure = true
+        invokedTestClosureCount += 1
+        if let result = stubbedTestClosureClosureResult {
+            _ = closure(result.0 as! T)
+        }
+    }
+    var invokedTestTypeIdentifier = false
+    var invokedTestTypeIdentifierCount = 0
+    func test<T>(typeIdentifier: Generic<T>) {
+        invokedTestTypeIdentifier = true
+        invokedTestTypeIdentifierCount += 1
+    }
+    var invokedTestTuple = false
+    var invokedTestTupleCount = 0
+    var invokedTestTupleParameters: (tuple: Any, Void)?
+    var invokedTestTupleParametersList = [(tuple: Any, Void)]()
+    func test<T, U>(tuple: (T, U)) {
+        invokedTestTuple = true
+        invokedTestTupleCount += 1
+        invokedTestTupleParameters = (tuple, ())
+        invokedTestTupleParametersList.append((tuple, ()))
+    }
     var invokedTestNested = false
     var invokedTestNestedCount = 0
     var invokedTestNestedParameters: (nested: [Any: [Any?]], Void)?
