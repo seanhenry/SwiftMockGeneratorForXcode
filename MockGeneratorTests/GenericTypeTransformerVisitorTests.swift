@@ -9,7 +9,9 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
     var genericClause: SwiftGenericParameterClause!
     var classType: SwiftTypeIdentifier!
     var genericType: SwiftType!
+    var genericType2: SwiftType!
     var genericArrayType: SwiftArrayType!
+    var genericDictionaryType: SwiftDictionaryType!
     var type: SwiftType!
     var mockResolveUtil: MockResolveUtil!
 
@@ -18,7 +20,9 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         genericClause = SwiftGenericParameterClause(text: "<T>", children: [], offset: 0, length: 0)
         classType = SwiftTypeIdentifier(text: "Int", children: [], offset: 0, length: 0, type: SwiftType.errorType, genericArguments: [])
         genericType = SwiftType(text: "T", children: [], offset: 0, length: 0)
+        genericType2 = SwiftType(text: "U", children: [], offset: 0, length: 0)
         genericArrayType = SwiftArrayType(text: "[T]", children: [], offset: 0, length: 0, elementType: genericType)
+        genericDictionaryType = SwiftDictionaryType(text: "[T: U]", children: [], offset: 0, length: 0, keyType: genericType, valueType: genericType2)
         type = SwiftType(text: "Int", children: [], offset: 0, length: 0)
         mockResolveUtil = MockResolveUtil()
         visitor = GenericTypeTransformerVisitor(resolveUtil: mockResolveUtil)
@@ -32,6 +36,8 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         genericType = nil
         genericArrayType = nil
         type = nil
+        genericType2 = nil
+        genericDictionaryType = nil
         super.tearDown()
     }
 
@@ -61,6 +67,26 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         mockResolveUtil.stubbedResolveResult = genericClause
         visitor.visitArrayType(genericArrayType)
         XCTAssertEqual(visitor.type?.typeName, "[Any]")
+    }
+
+    func test_visit_shouldTransformArrayTypeToAnyWhenResolvingToNormalType() {
+        mockResolveUtil.stubbedResolveResult = nil
+        visitor.visitArrayType(genericArrayType)
+        XCTAssertEqual(visitor.type?.typeName, genericArrayType.text)
+    }
+
+    // MARK: - dictionary
+
+    func test_visit_shouldTransformDictionaryTypeToAnyWhenResolvingToGenericType() {
+        mockResolveUtil.stubbedResolveResult = genericClause
+        visitor.visitDictionaryType(genericDictionaryType)
+        XCTAssertEqual(visitor.type?.typeName, "[Any: Any]")
+    }
+
+    func test_visit_shouldTransformDictionaryTypeToAnyWhenResolvingToNormalType() {
+        mockResolveUtil.stubbedResolveResult = nil
+        visitor.visitDictionaryType(genericDictionaryType)
+        XCTAssertEqual(visitor.type?.typeName, genericDictionaryType.text)
     }
 
     // MARK: - Helpers

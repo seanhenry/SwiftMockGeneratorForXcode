@@ -19,6 +19,10 @@ class ElementVisitor {
         visitType(element)
     }
 
+    func visitDictionaryType(_ element: DictionaryType) {
+        visitType(element)
+    }
+
     func visitFunctionDeclaration(_ element: FunctionDeclaration) {
         visitElement(element)
     }

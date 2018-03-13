@@ -78,6 +78,13 @@ class ElementVisitorTests: XCTestCase {
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
+    func test_visit_functionDictionaryTypeShouldVisitAncestors() {
+        testDictionaryType.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitDictionaryTypeCount, 1)
+        XCTAssertEqual(visitor.invokedVisitTypeCount, 1)
+        XCTAssertEqual(visitor.invokedVisitElementCount, 1)
+    }
+
     // MARK: - Helpers
 
     class PartialMockVisitor: ElementVisitor {
@@ -184,6 +191,19 @@ class ElementVisitorTests: XCTestCase {
             invokedVisitArrayTypeCount += 1
             invokedVisitArrayTypeParameters = (element, ())
             invokedVisitArrayTypeParametersList.append((element, ()))
+        }
+
+        var invokedVisitDictionaryType = false
+        var invokedVisitDictionaryTypeCount = 0
+        var invokedVisitDictionaryTypeParameters: (element: DictionaryType, Void)?
+        var invokedVisitDictionaryTypeParametersList = [(element: DictionaryType, Void)]()
+
+        override func visitDictionaryType(_ element: DictionaryType) {
+            super.visitDictionaryType(element)
+            invokedVisitDictionaryType = true
+            invokedVisitDictionaryTypeCount += 1
+            invokedVisitDictionaryTypeParameters = (element, ())
+            invokedVisitDictionaryTypeParametersList.append((element, ()))
         }
 
         var invokedVisitTypealias = false
