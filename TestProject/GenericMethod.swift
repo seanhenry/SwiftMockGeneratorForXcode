@@ -13,4 +13,5 @@ protocol GenericMethod {
     func test<T, U>(closure: (T) -> U)
     func test<T>(typeIdentifier: Generic<T>)
     func test<T, U>(tuple: (T, U))
+    func test<T, U>(nested: [T: [U?]])
 }

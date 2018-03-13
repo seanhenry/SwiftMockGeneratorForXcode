@@ -131,4 +131,14 @@ class GenericMethodMock: GenericMethod {
         invokedTestTupleParameters = (tuple, ())
         invokedTestTupleParametersList.append((tuple, ()))
     }
+    var invokedTestNested = false
+    var invokedTestNestedCount = 0
+    var invokedTestNestedParameters: (nested: [Any: [Any?]], Void)?
+    var invokedTestNestedParametersList = [(nested: [Any: [Any?]], Void)]()
+    func test<T, U>(nested: [T: [U?]]) {
+        invokedTestNested = true
+        invokedTestNestedCount += 1
+        invokedTestNestedParameters = (nested, ())
+        invokedTestNestedParametersList.append((nested, ()))
+    }
 }
