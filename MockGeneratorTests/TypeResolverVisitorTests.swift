@@ -3,9 +3,9 @@ import UseCases
 @testable import SwiftStructureInterface
 @testable import MockGenerator
 
-class GenericTypeTransformerVisitorTests: XCTestCase {
+class TypeResolverVisitorTests: XCTestCase {
 
-    var visitor: GenericTypeTransformerVisitor!
+    var visitor: TypeResolverVisitor!
     var genericClause: GenericParameterClause!
     var classType: TypeIdentifier!
     var type: Type!
@@ -18,12 +18,12 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         super.setUp()
         genericClause = SwiftGenericParameterClause(text: "<T>", children: [], offset: 0, length: 0)
         classType = SwiftTypeIdentifier(text: "Int", children: [], offset: 0, length: 0, type: SwiftType.errorType, genericArguments: [])
-        type = SwiftType(text: "T", children: [], offset: 0, length: 0)
+        type = createType("T")
         array = createArray("[T]", type)
         dictionary = createDictionary("[T: T]", type, type)
         optional = createOptional("T?", type)
         mockResolveUtil = MockResolveUtil()
-        visitor = GenericTypeTransformerVisitor(resolveUtil: mockResolveUtil)
+        visitor = TypeResolverVisitor(resolveUtil: mockResolveUtil)
     }
 
     override func tearDown() {
@@ -44,18 +44,21 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
     func test_visit_shouldTransformTypeToAnyWhenResolvingToGenericType() {
         stubResolveToGenericClause()
         type.accept(visitor)
-        XCTAssertEqual(visitor.type?.typeName, "Any")
+        XCTAssertEqual(visitor.transformedType, "Any")
+        XCTAssertEqual(visitor.resolvedType, type.text)
     }
 
     func test_visit_shouldTransformToSameTypeWhenNotResolvingToGenericType() {
-        mockResolveUtil.stubbedResolveResult = classType
+        stubResolveToNormalType()
         type.accept(visitor)
-        XCTAssertEqual(visitor.type?.typeName, type.text)
+        XCTAssertNil(visitor.transformedType)
+        XCTAssertEqual(visitor.resolvedType, type.text)
     }
 
-    func test_visit_shouldTransformToSameTypeWhenCannotResolveType() {
+    func test_visit_shouldTransformToNilWhenCannotResolveType() {
         type.accept(visitor)
-        XCTAssertEqual(visitor.type?.typeName, type.text)
+        XCTAssertNil(visitor.transformedType)
+        XCTAssertNil(visitor.resolvedType)
     }
 
     // MARK: - array
@@ -63,12 +66,21 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
     func test_visit_shouldTransformArrayTypeToAnyWhenResolvingToGenericType() {
         stubResolveToGenericClause()
         array.accept(visitor)
-        XCTAssertEqual(visitor.type?.typeName, "[Any]")
+        XCTAssertEqual(visitor.transformedType, "[Any]")
+        XCTAssertEqual(visitor.resolvedType, array.text)
     }
 
-    func test_visit_shouldTransformArrayTypeToAnyWhenResolvingToNormalType() {
+    func test_visit_shouldNotTransformArrayWhenResolvingToNormalType() {
+        stubResolveToNormalType()
         array.accept(visitor)
-        XCTAssertEqual(visitor.type?.typeName, array.text)
+        XCTAssertEqual(visitor.transformedType, array.text)
+        XCTAssertEqual(visitor.resolvedType, array.text)
+    }
+
+    func test_visit_shouldTransformArrayToSameTypeWhenCannotResolveType() {
+        array.accept(visitor)
+        XCTAssertEqual(visitor.transformedType, array.text)
+        XCTAssertNil(visitor.resolvedType)
     }
 
     // MARK: - dictionary
@@ -76,12 +88,21 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
     func test_visit_shouldTransformDictionaryTypeToAnyWhenResolvingToGenericType() {
         stubResolveToGenericClause()
         dictionary.accept(visitor)
-        XCTAssertEqual(visitor.type?.typeName, "[Any: Any]")
+        XCTAssertEqual(visitor.transformedType, "[AnyHashable: Any]")
+        XCTAssertEqual(visitor.resolvedType, dictionary.text)
     }
 
-    func test_visit_shouldTransformDictionaryTypeToAnyWhenResolvingToNormalType() {
+    func test_visit_shouldNotTransformDictionaryTypeWhenResolvingToNormalType() {
+        stubResolveToNormalType()
         dictionary.accept(visitor)
-        XCTAssertEqual(visitor.type?.typeName, dictionary.text)
+        XCTAssertEqual(visitor.transformedType, dictionary.text)
+        XCTAssertEqual(visitor.resolvedType, dictionary.text)
+    }
+
+    func test_visit_shouldTransformDictionaryToSameTypeWhenCannotResolveType() {
+        dictionary.accept(visitor)
+        XCTAssertEqual(visitor.transformedType, dictionary.text)
+        XCTAssertNil(visitor.resolvedType)
     }
 
     // MARK: - optional
@@ -89,12 +110,30 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
     func test_visit_shouldTransformOptionalTypeToAnyWhenResolvingToGenericType() {
         stubResolveToGenericClause()
         optional.accept(visitor)
-        XCTAssertEqual(visitor.type?.typeName, "Any?")
+        XCTAssertEqual(visitor.transformedType, "Any?")
+        XCTAssertEqual(visitor.resolvedType, optional.text)
     }
 
-    func test_visit_shouldTransformOptionalTypeToAnyWhenResolvingToNormalType() {
+    func test_visit_shouldNotTransformOptionalTypeToAnyWhenResolvingToNormalType() {
         optional.accept(visitor)
-        XCTAssertEqual(visitor.type?.typeName, optional.text)
+        XCTAssertEqual(visitor.transformedType, optional.text)
+        XCTAssertNil(visitor.resolvedType)
+    }
+
+    // MARK: - Typealias
+
+    func test_visit_shouldHaveNilTypeWhenCannotResolve() {
+        type.accept(visitor)
+        XCTAssertNil(visitor.transformedType)
+    }
+
+    func test_visit_shouldTransformToTypealiasType() {
+        let assignment = SwiftTypealiasAssignment(text: "= T", children: [], offset: 0, length: 0, type: type)
+        let typeAlias = SwiftTypealias(text: "typealias A = T", children: [], offset: 0, length: 0, name: "A", typealiasAssignment: assignment)
+        mockResolveUtil.stubbedResolveResult = typeAlias
+        let aliasedType = createType("A")
+        aliasedType.accept(visitor)
+        XCTAssertEqual(visitor.resolvedType, "T")
     }
 
     // MARK: - Nested
@@ -103,14 +142,14 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         let dictContainingArray = createDictionary("[T: [U]]", type, array)
         stubResolveToGenericClause()
         dictContainingArray.accept(visitor)
-        XCTAssertEqual(visitor.type?.typeName, "[Any: [Any]]")
+        XCTAssertEqual(visitor.transformedType, "[AnyHashable: [Any]]")
     }
 
     func test_visit_shouldTransformNestedArrayType() {
         let arrayContainingDict = createArray("[[T: U]]", dictionary)
         stubResolveToGenericClause()
         arrayContainingDict.accept(visitor)
-        XCTAssertEqual(visitor.type?.typeName, "[[Any: Any]]")
+        XCTAssertEqual(visitor.transformedType, "[[AnyHashable: Any]]")
     }
 
     // MARK: - Helpers
@@ -132,6 +171,10 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         }
     }
 
+    private func createType(_ name: String) -> Type {
+        return SwiftType(text: name, children: [], offset: 0, length: 0)
+    }
+
     private func createDictionary(_ name: String, _ keyType: Type, _ valueType: Type) -> DictionaryType {
         return SwiftDictionaryType(text: name, children: [], offset: 0, length: 0, keyType: keyType, valueType: valueType)
     }
@@ -146,5 +189,9 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
 
     private func stubResolveToGenericClause() {
         mockResolveUtil.stubbedResolveResult = genericClause
+    }
+
+    private func stubResolveToNormalType() {
+        mockResolveUtil.stubbedResolveResult = classType
     }
 }

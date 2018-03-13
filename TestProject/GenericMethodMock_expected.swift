@@ -55,6 +55,22 @@ class GenericMethodMock: GenericMethod {
         invokedTestReturn3Count += 1
         return stubbedTestReturn3Result as! T
     }
+    var invokedTestReturnArray = false
+    var invokedTestReturnArrayCount = 0
+    var stubbedTestReturnArrayResult: [Any]! = []
+    func testReturnArray<T>() -> [T] {
+        invokedTestReturnArray = true
+        invokedTestReturnArrayCount += 1
+        return stubbedTestReturnArrayResult as! [T]
+    }
+    var invokedTestReturnDictionary = false
+    var invokedTestReturnDictionaryCount = 0
+    var stubbedTestReturnDictionaryResult: [AnyHashable: Any]! = [:]
+    func testReturnDictionary<T, U>() -> [T: U] {
+        invokedTestReturnDictionary = true
+        invokedTestReturnDictionaryCount += 1
+        return stubbedTestReturnDictionaryResult as! [T: U]
+    }
     var invokedTestD = false
     var invokedTestDCount = 0
     var invokedTestDParameters: (d: Any, Void)?
@@ -97,18 +113,28 @@ class GenericMethodMock: GenericMethod {
     }
     var invokedTestDictionary = false
     var invokedTestDictionaryCount = 0
-    var invokedTestDictionaryParameters: (dictionary: [Any: Any], Void)?
-    var invokedTestDictionaryParametersList = [(dictionary: [Any: Any], Void)]()
+    var invokedTestDictionaryParameters: (dictionary: [AnyHashable: Any], Void)?
+    var invokedTestDictionaryParametersList = [(dictionary: [AnyHashable: Any], Void)]()
     func test<T, U>(dictionary: [T: U]) {
         invokedTestDictionary = true
         invokedTestDictionaryCount += 1
         invokedTestDictionaryParameters = (dictionary, ())
         invokedTestDictionaryParametersList.append((dictionary, ()))
     }
+    var invokedTestDictionary2 = false
+    var invokedTestDictionary2Count = 0
+    var invokedTestDictionary2Parameters: (dictionary2: [String: Any], Void)?
+    var invokedTestDictionary2ParametersList = [(dictionary2: [String: Any], Void)]()
+    func test<T>(dictionary2: [String: T]) {
+        invokedTestDictionary2 = true
+        invokedTestDictionary2Count += 1
+        invokedTestDictionary2Parameters = (dictionary2, ())
+        invokedTestDictionary2ParametersList.append((dictionary2, ()))
+    }
     var invokedTestNested = false
     var invokedTestNestedCount = 0
-    var invokedTestNestedParameters: (nested: [Any: [Any?]], Void)?
-    var invokedTestNestedParametersList = [(nested: [Any: [Any?]], Void)]()
+    var invokedTestNestedParameters: (nested: [AnyHashable: [Any?]], Void)?
+    var invokedTestNestedParametersList = [(nested: [AnyHashable: [Any?]], Void)]()
     func test<T, U>(nested: [T: [U?]]) {
         invokedTestNested = true
         invokedTestNestedCount += 1
