@@ -19,23 +19,20 @@ class GenericTypeTransformerVisitor: ElementVisitor {
     }
 
     override func visitArrayType(_ element: ArrayType) {
-        if isResolvedAsGenericParameter(element.elementType) {
-            type = UseCasesType(typeName: "[Any]")
-        } else {
-            type = UseCasesType(typeName: element.text)
-        }
+        let elementType = resolveType(element.elementType)?.typeName ?? element.elementType.text
+        type = UseCasesType(typeName: "[\(elementType)]")
     }
 
     override func visitDictionaryType(_ element: DictionaryType) {
-        var keyType = element.keyType.text
-        var valueType = element.valueType.text
-        if isResolvedAsGenericParameter(element.keyType) {
-            keyType = "Any"
-        }
-        if isResolvedAsGenericParameter(element.valueType) {
-            valueType = "Any"
-        }
+        let keyType = resolveType(element.keyType)?.typeName ?? element.keyType.text
+        let valueType = resolveType(element.valueType)?.typeName ?? element.valueType.text
         type = UseCasesType(typeName: "[\(keyType): \(valueType)]")
+    }
+
+    private func resolveType(_ element: Type) -> UseCasesType? {
+        let visitor = GenericTypeTransformerVisitor(resolveUtil: resolveUtil)
+        element.accept(visitor)
+        return visitor.type
     }
 
     private func isResolvedAsGenericParameter(_ type: Type) -> Bool {

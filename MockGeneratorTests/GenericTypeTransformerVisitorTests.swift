@@ -11,7 +11,9 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
     var genericType: SwiftType!
     var genericType2: SwiftType!
     var genericArrayType: SwiftArrayType!
+    var nestedArrayType: SwiftArrayType!
     var genericDictionaryType: SwiftDictionaryType!
+    var nestedDictionaryType: SwiftDictionaryType!
     var type: SwiftType!
     var mockResolveUtil: MockResolveUtil!
 
@@ -23,6 +25,8 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         genericType2 = SwiftType(text: "U", children: [], offset: 0, length: 0)
         genericArrayType = SwiftArrayType(text: "[T]", children: [], offset: 0, length: 0, elementType: genericType)
         genericDictionaryType = SwiftDictionaryType(text: "[T: U]", children: [], offset: 0, length: 0, keyType: genericType, valueType: genericType2)
+        nestedDictionaryType = SwiftDictionaryType(text: "[T: [U]]", children: [], offset: 0, length: 0, keyType: genericType, valueType: genericArrayType)
+        nestedArrayType = SwiftArrayType(text: "[[T: U]]", children: [], offset: 0, length: 0, elementType: genericDictionaryType)
         type = SwiftType(text: "Int", children: [], offset: 0, length: 0)
         mockResolveUtil = MockResolveUtil()
         visitor = GenericTypeTransformerVisitor(resolveUtil: mockResolveUtil)
@@ -38,6 +42,8 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         type = nil
         genericType2 = nil
         genericDictionaryType = nil
+        nestedArrayType = nil
+        nestedDictionaryType = nil
         super.tearDown()
     }
 
@@ -87,6 +93,20 @@ class GenericTypeTransformerVisitorTests: XCTestCase {
         mockResolveUtil.stubbedResolveResult = nil
         visitor.visitDictionaryType(genericDictionaryType)
         XCTAssertEqual(visitor.type?.typeName, genericDictionaryType.text)
+    }
+
+    // MARK: - Nested
+
+    func test_visit_shouldTransformNestedDictionaryType() {
+        mockResolveUtil.stubbedResolveResult = genericClause
+        visitor.visitDictionaryType(nestedDictionaryType)
+        XCTAssertEqual(visitor.type?.typeName, "[Any: [Any]]")
+    }
+
+    func test_visit_shouldTransformNestedArrayType() {
+        mockResolveUtil.stubbedResolveResult = genericClause
+        visitor.visitArrayType(nestedArrayType)
+        XCTAssertEqual(visitor.type?.typeName, "[[Any: Any]]")
     }
 
     // MARK: - Helpers
