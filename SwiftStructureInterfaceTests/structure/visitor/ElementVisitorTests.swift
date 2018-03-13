@@ -19,6 +19,7 @@ class ElementVisitorTests: XCTestCase {
 
     func test_visit_fileShouldVisitAncestors() {
         emptyFile.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitFileCount, 1)
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
@@ -30,36 +31,50 @@ class ElementVisitorTests: XCTestCase {
 
     func test_visit_functionDeclarationShouldVisitAncestors() {
         emptyFunctionDeclaration.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitFunctionDeclarationCount, 1)
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
     func test_visit_variableDeclarationShouldVisitAncestors() {
         emptyVariableDeclaration.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitVariableDeclarationCount, 1)
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
     func test_visit_genericParameterClauseShouldVisitAncestors() {
         testGenericParameterClause.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitGenericParameterClauseCount, 1)
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
     func test_visit_typeShouldVisitAncestors() {
         testType.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitTypeCount, 1)
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
     func test_visit_typealiasShouldVisitAncestors() {
         testTypealias.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitTypealiasCount, 1)
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
     func test_visit_typealiasAssignmentShouldVisitAncestors() {
         testTypealiasAssignment.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitTypealiasAssignmentCount, 1)
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
-    func test_visit_functionParameterShouldVisitAncestors() {
+    func test_visit_parameterShouldVisitAncestors() {
         testFunctionParameter.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitParameterCount, 1)
+        XCTAssertEqual(visitor.invokedVisitElementCount, 1)
+    }
+
+    func test_visit_functionArrayTypeShouldVisitAncestors() {
+        testArrayType.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitArrayTypeCount, 1)
+        XCTAssertEqual(visitor.invokedVisitTypeCount, 1)
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
@@ -119,17 +134,17 @@ class ElementVisitorTests: XCTestCase {
             invokedVisitFunctionDeclarationParametersList.append((element, ()))
         }
 
-        var invokedVisitSwiftVariableDeclaration = false
-        var invokedVisitSwiftVariableDeclarationCount = 0
-        var invokedVisitSwiftVariableDeclarationParameters: (element: VariableDeclaration, Void)?
-        var invokedVisitSwiftVariableDeclarationParametersList = [(element: VariableDeclaration, Void)]()
+        var invokedVisitVariableDeclaration = false
+        var invokedVisitVariableDeclarationCount = 0
+        var invokedVisitVariableDeclarationParameters: (element: VariableDeclaration, Void)?
+        var invokedVisitVariableDeclarationParametersList = [(element: VariableDeclaration, Void)]()
 
         override func visitVariableDeclaration(_ element: VariableDeclaration) {
             super.visitVariableDeclaration(element)
-            invokedVisitSwiftVariableDeclaration = true
-            invokedVisitSwiftVariableDeclarationCount += 1
-            invokedVisitSwiftVariableDeclarationParameters = (element, ())
-            invokedVisitSwiftVariableDeclarationParametersList.append((element, ()))
+            invokedVisitVariableDeclaration = true
+            invokedVisitVariableDeclarationCount += 1
+            invokedVisitVariableDeclarationParameters = (element, ())
+            invokedVisitVariableDeclarationParametersList.append((element, ()))
         }
 
         var invokedVisitGenericParameterClause = false
@@ -156,6 +171,19 @@ class ElementVisitorTests: XCTestCase {
             invokedVisitTypeCount += 1
             invokedVisitTypeParameters = (element, ())
             invokedVisitTypeParametersList.append((element, ()))
+        }
+
+        var invokedVisitArrayType = false
+        var invokedVisitArrayTypeCount = 0
+        var invokedVisitArrayTypeParameters: (element: ArrayType, Void)?
+        var invokedVisitArrayTypeParametersList = [(element: ArrayType, Void)]()
+
+        override func visitArrayType(_ element: ArrayType) {
+            super.visitArrayType(element)
+            invokedVisitArrayType = true
+            invokedVisitArrayTypeCount += 1
+            invokedVisitArrayTypeParameters = (element, ())
+            invokedVisitArrayTypeParametersList.append((element, ()))
         }
 
         var invokedVisitTypealias = false

@@ -15,6 +15,10 @@ class ElementVisitor {
         visitElement(element)
     }
 
+    func visitArrayType(_ element: ArrayType) {
+        visitType(element)
+    }
+
     func visitFunctionDeclaration(_ element: FunctionDeclaration) {
         visitElement(element)
     }

@@ -6,4 +6,8 @@ class SwiftArrayType: SwiftType, ArrayType {
         self.elementType = elementType
         super.init(text: text, children: children, offset: offset, length: length)
     }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitArrayType(self)
+    }
 }

@@ -87,8 +87,8 @@ class GenericMethodMock: GenericMethod {
     }
     var invokedTestArray = false
     var invokedTestArrayCount = 0
-    var invokedTestArrayParameters: (array: Any, Void)?
-    var invokedTestArrayParametersList = [(array: Any, Void)]()
+    var invokedTestArrayParameters: (array: [Any], Void)?
+    var invokedTestArrayParametersList = [(array: [Any], Void)]()
     func test<T>(array: [T]) {
         invokedTestArray = true
         invokedTestArrayCount += 1
@@ -97,8 +97,8 @@ class GenericMethodMock: GenericMethod {
     }
     var invokedTestDictionary = false
     var invokedTestDictionaryCount = 0
-    var invokedTestDictionaryParameters: (dictionary: Any, Void)?
-    var invokedTestDictionaryParametersList = [(dictionary: Any, Void)]()
+    var invokedTestDictionaryParameters: (dictionary: [Any: Any], Void)?
+    var invokedTestDictionaryParametersList = [(dictionary: [Any: Any], Void)]()
     func test<T, U>(dictionary: [T: U]) {
         invokedTestDictionary = true
         invokedTestDictionaryCount += 1
