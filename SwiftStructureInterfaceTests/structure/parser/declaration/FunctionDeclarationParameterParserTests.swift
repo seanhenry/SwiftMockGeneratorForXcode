@@ -20,43 +20,37 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
     }
 
     func test_parse_shouldReturnMinimumParameter() {
-        let parameter = parse("a: A")
-        XCTAssertEqual(parameter.text, "a: A")
+        let text = "a: A"
+        let parameter = parse(text)
+        assertElementText(parameter, text)
         XCTAssertNil(parameter.externalParameterName)
         XCTAssertEqual(parameter.localParameterName, "a")
-        XCTAssertEqual(parameter.offset, 0)
-        XCTAssertEqual(parameter.length, 4)
     }
 
     func test_parse_shouldReturnParameterWithExternalName() {
-        let parameter = parse("ex a: A")
-        XCTAssertEqual(parameter.text, "ex a: A")
+        let text = "ex a: A"
+        let parameter = parse(text)
+        assertElementText(parameter, text)
         XCTAssertEqual(parameter.externalParameterName, "ex")
         XCTAssertEqual(parameter.localParameterName, "a")
-        XCTAssertEqual(parameter.offset, 0)
-        XCTAssertEqual(parameter.length, 7)
     }
 
     func test_parse_shouldReturnParameterWithWildcard() {
-        let parameter = parse("_ a: A")
-        XCTAssertEqual(parameter.text, "_ a: A")
+        let text = "_ a: A"
+        let parameter = parse(text)
+        assertElementText(parameter, text)
         XCTAssertEqual(parameter.externalParameterName, "_")
         XCTAssertEqual(parameter.localParameterName, "a")
-        XCTAssertEqual(parameter.offset, 0)
-        XCTAssertEqual(parameter.length, 6)
     }
 
     func test_parse_shouldReturnParameterWithComplicatedType() {
-        let parameter = parse("_ a: Generic<[Type]>.Nested?")
-        XCTAssertEqual(parameter.text, "_ a: Generic<[Type]>.Nested?")
+        let text = "_ a: Generic<[Type]>.Nested?"
+        let parameter = parse(text)
+        assertElementText(parameter, text)
         XCTAssertEqual(parameter.externalParameterName, "_")
         XCTAssertEqual(parameter.localParameterName, "a")
-        XCTAssertEqual(parameter.offset, 0)
-        XCTAssertEqual(parameter.length, 28)
         let type: Element = parameter.type
-        XCTAssertEqual(type.text, "Generic<[Type]>.Nested?")
-        XCTAssertEqual(type.offset, 5)
-        XCTAssertEqual(type.length, 23)
+        assertElementText(type, "Generic<[Type]>.Nested?", offset: 5)
     }
 
     func test_parse_shouldReturnErrorParameterWithNoParameterName() {
@@ -65,29 +59,23 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
     }
 
     func test_parse_shouldReturnParameterWithTypeAnnotation() {
-        let parameter = parse("a: @a @b(c) inout A")
-        XCTAssertEqual(parameter.text, "a: @a @b(c) inout A")
+        let text = "a: @a @b(c) inout A"
+        let parameter = parse(text)
+        assertElementText(parameter, text)
         XCTAssertNil(parameter.externalParameterName)
         XCTAssertEqual(parameter.localParameterName, "a")
-        XCTAssertEqual(parameter.offset, 0)
-        XCTAssertEqual(parameter.length, 19)
         let type: Element = parameter.type
-        XCTAssertEqual(type.text, "A")
-        XCTAssertEqual(type.offset, 18)
-        XCTAssertEqual(type.length, 1)
+        assertElementText(type, "A", offset: 18)
     }
 
     func test_parse_shouldReturnParameterWithVarArgs() {
-        let parameter = parse("a: A...")
-        XCTAssertEqual(parameter.text, "a: A...")
+        let text = "a: A..."
+        let parameter = parse(text)
+        assertElementText(parameter, text)
         XCTAssertNil(parameter.externalParameterName)
         XCTAssertEqual(parameter.localParameterName, "a")
-        XCTAssertEqual(parameter.offset, 0)
-        XCTAssertEqual(parameter.length, 7)
         let type: Element = parameter.type
-        XCTAssertEqual(type.text, "A")
-        XCTAssertEqual(type.offset, 3)
-        XCTAssertEqual(type.length, 1)
+        assertElementText(type, "A", offset: 3)
     }
 
     func test_parse_shouldEscapeKeywords() {
@@ -95,7 +83,7 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
         keywords.forEach { keyword in
             let text = "`\(keyword)`: A"
             let parameter = parse(text)
-            XCTAssertEqual(parameter.text, text)
+            assertElementText(parameter, text)
             XCTAssertNil(parameter.externalParameterName)
             XCTAssertEqual(parameter.localParameterName, "`\(keyword)`")
         }
@@ -106,7 +94,7 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
         keywords.forEach { keyword in
             let text = "\(keyword): A"
             let parameter = parse(text)
-            XCTAssertEqual(parameter.text, text)
+            assertElementText(parameter, text)
             XCTAssertNil(parameter.externalParameterName)
             XCTAssertEqual(parameter.localParameterName, "\(keyword)")
         }

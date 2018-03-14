@@ -30,33 +30,19 @@ class DeclarationsParserTests: XCTestCase {
         XCTAssertEqual(`protocol`.bodyLength, bodyLength)
         let bodyOffset = `protocol`.bodyOffset
         let associatedType = `protocol`.children[0]
-        XCTAssertEqual(associatedType.text, getAssociatedType())
-        XCTAssertEqual(associatedType.offset, bodyOffset + newlineToNextDeclaration)
-        XCTAssertEqual(associatedType.length, Int64(getAssociatedType().utf8.count))
+        assertElementText(associatedType, getAssociatedType(), offset: bodyOffset + newlineToNextDeclaration)
         let alias = `protocol`.children[1] as! Typealias
-        XCTAssertEqual(alias.text, getTypealias())
-        XCTAssertEqual(alias.offset, associatedType.offset + associatedType.length + newlineToNextDeclaration)
-        XCTAssertEqual(alias.length, Int64(getTypealias().utf8.count))
+        assertElementText(alias, getTypealias(), offset: associatedType.offset + associatedType.length + newlineToNextDeclaration)
         let initialiser = `protocol`.children[2] as! InitialiserDeclaration
-        XCTAssertEqual(initialiser.text, getInitialiser())
-        XCTAssertEqual(initialiser.offset, alias.offset + alias.length + newlineToNextDeclaration)
-        XCTAssertEqual(initialiser.length, Int64(getInitialiser().utf8.count))
+        assertElementText(initialiser, getInitialiser(), offset: alias.offset + alias.length + newlineToNextDeclaration)
         let variable = `protocol`.children[3] as! VariableDeclaration
-        XCTAssertEqual(variable.text, getVariable())
-        XCTAssertEqual(variable.offset, initialiser.offset + initialiser.length + newlineToNextDeclaration)
-        XCTAssertEqual(variable.length, Int64(getVariable().utf8.count))
+        assertElementText(variable, getVariable(), offset: initialiser.offset + initialiser.length + newlineToNextDeclaration)
         let function1 = `protocol`.children[4] as! FunctionDeclaration
-        XCTAssertEqual(function1.text, getFunction())
-        XCTAssertEqual(function1.offset, variable.offset + variable.length + newlineToNextDeclaration)
-        XCTAssertEqual(function1.length, Int64(getFunction().utf8.count))
+        assertElementText(function1, getFunction(), offset: variable.offset + variable.length + newlineToNextDeclaration)
         let function2 = `protocol`.children[5] as! FunctionDeclaration
-        XCTAssertEqual(function2.text, getFunction())
-        XCTAssertEqual(function2.offset, function1.offset + function1.length + newlineToNextDeclaration)
-        XCTAssertEqual(function2.length, Int64(getFunction().utf8.count))
+        assertElementText(function2, getFunction(), offset: function1.offset + function1.length + newlineToNextDeclaration)
         let subscriptDeclaration = `protocol`.children[6] as! SubscriptDeclaration
-        XCTAssertEqual(subscriptDeclaration.text, getSubscript())
-        XCTAssertEqual(subscriptDeclaration.offset, function2.offset + function2.length + newlineToNextDeclaration)
-        XCTAssertEqual(subscriptDeclaration.length, Int64(getSubscript().utf8.count))
+        assertElementText(subscriptDeclaration, getSubscript(), offset: function2.offset + function2.length + newlineToNextDeclaration)
     }
 
     // MARK: - Helpers

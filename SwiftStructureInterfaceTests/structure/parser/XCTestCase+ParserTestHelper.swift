@@ -5,6 +5,16 @@ import Lexer
 
 extension XCTestCase {
 
+    func assertElementText(_ element: Element?, _ text: String, offset: Int64 = 0, file: StaticString = #file, line: UInt = #line) {
+        guard let e = element else {
+            XCTAssertNotNil(element, file: file, line: line)
+            return
+        }
+        XCTAssertEqual(e.text, text, file: file, line: line)
+        XCTAssertEqual(e.offset, offset, file: file, line: line)
+        XCTAssertEqual(e.length, Int64(text.utf8.count), file: file, line: line)
+    }
+
     func createParser<T, P: Parser<T>>(_ text: String, _ `class`: P.Type) -> P {
         let sourceFile = SourceFile(content: text)
         let lexer = SwiftASTLexer(lexer: Lexer(source: sourceFile))

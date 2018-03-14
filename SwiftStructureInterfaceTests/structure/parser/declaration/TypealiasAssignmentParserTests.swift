@@ -8,9 +8,7 @@ class TypealiasAssignmentParserTests: XCTestCase {
     func test_parse_shouldParseAssignment() {
         let text = "= Any.Type<You.Like>"
         let associatedType = parse(text)
-        XCTAssertEqual(associatedType.text, text)
-        XCTAssertEqual(associatedType.offset, 0)
-        XCTAssertEqual(associatedType.length, Int64(text.utf8.count))
+        assertElementText(associatedType, text)
     }
 
     func test_parse_shouldNotParseAssignmentWithoutEqualsOperator() {

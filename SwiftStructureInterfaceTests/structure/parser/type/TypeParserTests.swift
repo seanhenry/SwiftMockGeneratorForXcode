@@ -27,15 +27,12 @@ class TypeParserTests: XCTestCase {
     func test_parse_shouldParseTypeCompositionElement() {
         let text = "Swift.Type"
         let type = parse(text) as? TypeIdentifier
-        XCTAssertEqual(type?.offset, 0)
-        XCTAssertEqual(type?.length, 10)
+        assertElementText(type, text)
         XCTAssertEqual(type?.children.count, 1)
         XCTAssertEqual(type?.genericArguments.count, 0)
         let element = type?.type
         XCTAssert(type?.children.first === element)
-        XCTAssertEqual(element?.text, "Type")
-        XCTAssertEqual(element?.offset, 6)
-        XCTAssertEqual(element?.length, 4)
+        assertElementText(element, "Type", offset: 6)
     }
 
     // MARK: - Generic
@@ -88,70 +85,52 @@ class TypeParserTests: XCTestCase {
     func test_parse_shouldParseGenericElement() {
         let text = "Generic<Type>"
         let type = parse(text) as? TypeIdentifier
-        XCTAssertEqual(type?.offset, 0)
-        XCTAssertEqual(type?.length, 13)
+        assertElementText(type, text)
         XCTAssertEqual(type?.children.count, 2)
         XCTAssertEqual(type?.genericArguments.count, 1)
         let element = type?.genericArguments.first
         XCTAssert(type?.children.last === element)
-        XCTAssertEqual(element?.text, "Type")
-        XCTAssertEqual(element?.offset, 8)
-        XCTAssertEqual(element?.length, 4)
+        assertElementText(element, "Type", offset: 8)
     }
 
     func test_parse_shouldParseOptionalGenericElement() {
         let text = "Generic<Type>?"
         let type = parse(text) as? OptionalType
         let genericType = type?.type as? TypeIdentifier
-        XCTAssertEqual(genericType?.offset, 0)
-        XCTAssertEqual(genericType?.length, 13)
+        assertElementText(genericType, "Generic<Type>")
         XCTAssertEqual(genericType?.children.count, 2)
         XCTAssertEqual(genericType?.genericArguments.count, 1)
         let element = genericType?.genericArguments.first
         XCTAssert(genericType?.children.last === element)
-        XCTAssertEqual(element?.text, "Type")
-        XCTAssertEqual(element?.offset, 8)
-        XCTAssertEqual(element?.length, 4)
+        assertElementText(element, "Type", offset: 8)
     }
 
     func test_parse_shouldParseNestedGeneric() {
         let text = "G<T>.H<U>"
         let type = parse(text) as? TypeIdentifier
-        XCTAssertEqual(type?.text, text)
-        XCTAssertEqual(type?.offset, 0)
-        XCTAssertEqual(type?.length, 9)
+        assertElementText(type, text)
         XCTAssertEqual(type?.children.count, 2)
         XCTAssertEqual(type?.genericArguments.count, 1)
         let nestedType = type?.type
         XCTAssert(type?.children.first === nestedType)
-        XCTAssertEqual(nestedType?.text, "H")
-        XCTAssertEqual(nestedType?.offset, 5)
-        XCTAssertEqual(nestedType?.length, 1)
+        assertElementText(nestedType, "H", offset: 5)
         let generic = type?.genericArguments.first
         XCTAssert(type?.children.last === generic)
-        XCTAssertEqual(generic?.text, "U")
-        XCTAssertEqual(generic?.offset, 7)
-        XCTAssertEqual(generic?.length, 1)
+        assertElementText(generic, "U", offset: 7)
     }
 
     func test_parse_shouldParseDeepNestedGeneric() {
         let text = "G<T>.H<U>.I<V>"
         let type = parse(text) as? TypeIdentifier
-        XCTAssertEqual(type?.text, text)
-        XCTAssertEqual(type?.offset, 0)
-        XCTAssertEqual(type?.length, 14)
+        assertElementText(type, text)
         XCTAssertEqual(type?.children.count, 2)
         XCTAssertEqual(type?.genericArguments.count, 1)
         let nestedType = type?.type
         XCTAssert(type?.children.first === nestedType)
-        XCTAssertEqual(nestedType?.text, "I")
-        XCTAssertEqual(nestedType?.offset, 10)
-        XCTAssertEqual(nestedType?.length, 1)
+        assertElementText(nestedType, "I", offset: 10)
         let generic = type?.genericArguments.first
         XCTAssert(type?.children.last === generic)
-        XCTAssertEqual(generic?.text, "V")
-        XCTAssertEqual(generic?.offset, 12)
-        XCTAssertEqual(generic?.length, 1)
+        assertElementText(generic, "V", offset: 12)
     }
 
     // MARK: - Array
@@ -174,7 +153,7 @@ class TypeParserTests: XCTestCase {
     }
 
     func test_parse_shouldNotParseArrayWithBadClosingType() {
-        assertTypeText("[Type)", "")
+        assertErrorType("[Type)")
     }
 
     func test_parse_shouldParse3DArray() {
@@ -185,13 +164,10 @@ class TypeParserTests: XCTestCase {
         let text = "[Int]"
         let type = parse(text) as? ArrayType
         let element = type?.elementType
-        XCTAssertEqual(type?.offset, 0)
-        XCTAssertEqual(type?.length, 5)
+        assertElementText(type, text)
         XCTAssertEqual(type?.children.count, 1)
         XCTAssert(type?.children.first === element)
-        XCTAssertEqual(element?.text, "Int")
-        XCTAssertEqual(element?.offset, 1)
-        XCTAssertEqual(element?.length, 3)
+        assertElementText(element, "Int", offset: 1)
     }
 
     // MARK: - Dictionary
@@ -215,19 +191,14 @@ class TypeParserTests: XCTestCase {
     func test_parse_shouldParseDictionaryElement() {
         let text = "[Int: String]"
         let type = parse(text) as? DictionaryType
-        XCTAssertEqual(type?.offset, 0)
-        XCTAssertEqual(type?.length, 13)
+        assertElementText(type, text)
         XCTAssertEqual(type?.children.count, 2)
         let key = type?.keyType
         XCTAssert(type?.children.first === key)
-        XCTAssertEqual(key?.text, "Int")
-        XCTAssertEqual(key?.offset, 1)
-        XCTAssertEqual(key?.length, 3)
+        assertElementText(key, "Int", offset: 1)
         let value = type?.valueType
         XCTAssert(type?.children.last === value)
-        XCTAssertEqual(value?.text, "String")
-        XCTAssertEqual(value?.offset, 6)
-        XCTAssertEqual(value?.length, 6)
+        assertElementText(value, "String", offset: 6)
     }
 
     // MARK: - Optional
@@ -255,34 +226,25 @@ class TypeParserTests: XCTestCase {
     func test_parse_shouldParseOptionalElement() {
         let text = "Int?"
         let type = parse(text) as? OptionalType
-        XCTAssertEqual(type?.offset, 0)
-        XCTAssertEqual(type?.length, 4)
+        assertElementText(type, text)
         XCTAssertEqual(type?.children.count, 1)
         let innerType = type?.type
         XCTAssert(type?.children.first === innerType)
-        XCTAssertEqual(innerType?.text, "Int")
-        XCTAssertEqual(innerType?.offset, 0)
-        XCTAssertEqual(innerType?.length, 3)
+        assertElementText(innerType, "Int")
     }
 
     func test_parse_shouldParseDoubleOptionalElement() {
         let text = "Int??"
         let type = parse(text) as? OptionalType
-        XCTAssertEqual(type?.text, "Int??")
-        XCTAssertEqual(type?.offset, 0)
-        XCTAssertEqual(type?.length, 5)
+        assertElementText(type, text)
         XCTAssertEqual(type?.children.count, 1)
         let innerOptional = type?.type as? OptionalType
         XCTAssert(type?.children.first === innerOptional)
-        XCTAssertEqual(innerOptional?.text, "Int?")
-        XCTAssertEqual(innerOptional?.offset, 0)
-        XCTAssertEqual(innerOptional?.length, 4)
+        assertElementText(innerOptional, "Int?")
         XCTAssertEqual(innerOptional?.children.count, 1)
         let innerType = innerOptional?.type
         XCTAssert(innerOptional?.children.first === innerType)
-        XCTAssertEqual(innerType?.text, "Int")
-        XCTAssertEqual(innerType?.offset, 0)
-        XCTAssertEqual(innerType?.length, 3)
+        assertElementText(innerType, "Int")
     }
 
     // MARK: - IUO
@@ -310,41 +272,29 @@ class TypeParserTests: XCTestCase {
     func test_parse_shouldParseDoubleIUOElement() {
         let text = "Int!!"
         let type = parse(text) as? OptionalType
-        XCTAssertEqual(type?.text, "Int!!")
-        XCTAssertEqual(type?.offset, 0)
-        XCTAssertEqual(type?.length, 5)
+        assertElementText(type, "Int!!")
         XCTAssertEqual(type?.children.count, 1)
         let innerOptional = type?.type as? OptionalType
         XCTAssert(type?.children.first === innerOptional)
-        XCTAssertEqual(innerOptional?.text, "Int!")
-        XCTAssertEqual(innerOptional?.offset, 0)
-        XCTAssertEqual(innerOptional?.length, 4)
+        assertElementText(innerOptional, "Int!")
         XCTAssertEqual(innerOptional?.children.count, 1)
         let innerType = innerOptional?.type
         XCTAssert(innerOptional?.children.first === innerType)
-        XCTAssertEqual(innerType?.text, "Int")
-        XCTAssertEqual(innerType?.offset, 0)
-        XCTAssertEqual(innerType?.length, 3)
+        assertElementText(innerType, "Int")
     }
 
     func test_parse_shouldParseDoubleOptionalAndIUOElement() {
         let text = "Int?!"
         let type = parse(text) as? OptionalType
-        XCTAssertEqual(type?.text, "Int?!")
-        XCTAssertEqual(type?.offset, 0)
-        XCTAssertEqual(type?.length, 5)
+        assertElementText(type, "Int?!")
         XCTAssertEqual(type?.children.count, 1)
         let innerOptional = type?.type as? OptionalType
         XCTAssert(type?.children.first === innerOptional)
-        XCTAssertEqual(innerOptional?.text, "Int?")
-        XCTAssertEqual(innerOptional?.offset, 0)
-        XCTAssertEqual(innerOptional?.length, 4)
+        assertElementText(innerOptional, "Int?")
         XCTAssertEqual(innerOptional?.children.count, 1)
         let innerType = innerOptional?.type
         XCTAssert(innerOptional?.children.first === innerType)
-        XCTAssertEqual(innerType?.text, "Int")
-        XCTAssertEqual(innerType?.offset, 0)
-        XCTAssertEqual(innerType?.length, 3)
+        assertElementText(innerType, "Int")
     }
 
     // MARK: - Protocol composition
@@ -387,17 +337,11 @@ class TypeParserTests: XCTestCase {
         XCTAssertEqual(composition.children.count, 3)
         XCTAssertEqual(composition.types.count, 3)
         XCTAssert(composition.children[0] === composition.types[0])
-        XCTAssertEqual(composition.types[0].text, "A")
-        XCTAssertEqual(composition.types[0].offset, 0)
-        XCTAssertEqual(composition.types[0].length, 1)
+        assertElementText(composition.types[0], "A")
         XCTAssert(composition.children[1] === composition.types[1])
-        XCTAssertEqual(composition.types[1].text, "B")
-        XCTAssertEqual(composition.types[1].offset, 4)
-        XCTAssertEqual(composition.types[1].length, 1)
+        assertElementText(composition.types[1], "B", offset: 4)
         XCTAssert(composition.children[2] === composition.types[2])
-        XCTAssertEqual(composition.types[2].text, "C")
-        XCTAssertEqual(composition.types[2].offset, 8)
-        XCTAssertEqual(composition.types[2].length, 1)
+        assertElementText(composition.types[2], "C", offset: 8)
     }
 
     // MARK: - Keywords
@@ -508,7 +452,12 @@ class TypeParserTests: XCTestCase {
 
     func assertTypeText(_ input: String, _ expected: String, line: UInt = #line) {
         let element = parse(input)
-        XCTAssertEqual(element.text, expected, line: line)
+        assertElementText(element, expected, line: line)
+    }
+
+    func assertErrorType(_ input: String, line: UInt = #line) {
+        let element = parse(input)
+        XCTAssertEqual(element.offset, -1)
     }
 
     func assertOffsetLength(_ input: String, _ expectedOffset: Int64, _ expectedLength: Int64, line: UInt = #line) {

@@ -31,15 +31,11 @@ class SubscriptDeclarationParserTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> SubscriptDeclaration {
-        let parser = createDeclarationParser(text, .subscript, SubscriptDeclarationParser.self)
-        return parser.parse()
+    func createParser(_ text: String) -> Parser<SubscriptDeclaration> {
+        return createDeclarationParser(text, .subscript, SubscriptDeclarationParser.self)
     }
 
     func assertElementIsParsed(_ text: String, line: UInt = #line) {
-        let initialiser = parse(text)
-        XCTAssertEqual(initialiser.text, text, line: line)
-        XCTAssertEqual(initialiser.offset, 0, line: line)
-        XCTAssertEqual(initialiser.length, Int64(text.utf8.count), line: line)
+        assertElementText(createParser(text).parse(), text, line: line)
     }
 }

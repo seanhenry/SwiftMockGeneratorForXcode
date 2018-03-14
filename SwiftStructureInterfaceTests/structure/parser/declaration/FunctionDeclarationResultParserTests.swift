@@ -20,9 +20,7 @@ class FunctionDeclarationResultParserTests: XCTestCase {
 
     func test_parse_shouldParseSimpleResult() {
         let result = parse("-> A")
-        XCTAssertEqual(result.text, "A")
-        XCTAssertEqual(result.offset, 3)
-        XCTAssertEqual(result.length, 1)
+        assertElementText(result, "A", offset: 3)
     }
 
     func test_parse_shouldNotParseWithMissingArrow() {
@@ -32,16 +30,12 @@ class FunctionDeclarationResultParserTests: XCTestCase {
 
     func test_parse_shouldParseComplexType() {
         let result = parse("-> A.B<[Type?]>?")
-        XCTAssertEqual(result.text, "A.B<[Type?]>?")
-        XCTAssertEqual(result.offset, 3)
-        XCTAssertEqual(result.length, 13)
+        assertElementText(result, "A.B<[Type?]>?", offset: 3)
     }
 
     func test_parse_shouldParseAttributesBeforeType() {
         let result = parse("-> @a @b(c) Type")
-        XCTAssertEqual(result.text, "Type")
-        XCTAssertEqual(result.offset, 12)
-        XCTAssertEqual(result.length, 4)
+        assertElementText(result, "Type", offset: 12)
     }
 
     // MARK: - Helpers
