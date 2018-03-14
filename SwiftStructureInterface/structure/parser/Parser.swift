@@ -284,7 +284,7 @@ class Parser<ResultType> {
         return parse(DeclarationsParser.self)
     }
 
-    func parseProtocol() -> Element {
+    func parseProtocolDeclaration() -> Element {
         return parseDeclaration(ProtocolDeclarationParser.self, .protocol)
     }
 
@@ -346,6 +346,10 @@ class Parser<ResultType> {
 
     func parseTypealiasDeclaration() -> Element {
         return parseDeclaration(TypealiasDeclarationParser.self, .typealias)
+    }
+
+    func parseInitialiserDeclaration() -> Element {
+        return parseDeclaration(InitialiserDeclarationParser.self, .init)
     }
 
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {

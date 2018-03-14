@@ -50,4 +50,8 @@ class ElementVisitor {
     func visitParameter(_ element: Parameter) {
         visitElement(element)
     }
+
+    func visitInitialiserDeclaration(_ element: InitialiserDeclaration) {
+        visitElement(element)
+    }
 }

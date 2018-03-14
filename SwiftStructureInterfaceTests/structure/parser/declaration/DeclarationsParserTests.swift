@@ -37,15 +37,19 @@ class DeclarationsParserTests: XCTestCase {
         XCTAssertEqual(alias.text, getTypealias())
         XCTAssertEqual(alias.offset, associatedType.offset + associatedType.length + newlineToNextDeclaration)
         XCTAssertEqual(alias.length, Int64(getTypealias().utf8.count))
-        let variable = `protocol`.children[2] as! VariableDeclaration
+        let initialiser = `protocol`.children[2] as! InitialiserDeclaration
+        XCTAssertEqual(initialiser.text, getInitialiser())
+        XCTAssertEqual(initialiser.offset, alias.offset + alias.length + newlineToNextDeclaration)
+        XCTAssertEqual(initialiser.length, Int64(getInitialiser().utf8.count))
+        let variable = `protocol`.children[3] as! VariableDeclaration
         XCTAssertEqual(variable.text, getVariable())
-        XCTAssertEqual(variable.offset, alias.offset + alias.length + newlineToNextDeclaration)
+        XCTAssertEqual(variable.offset, initialiser.offset + initialiser.length + newlineToNextDeclaration)
         XCTAssertEqual(variable.length, Int64(getVariable().utf8.count))
-        let function1 = `protocol`.children[3] as! FunctionDeclaration
+        let function1 = `protocol`.children[4] as! FunctionDeclaration
         XCTAssertEqual(function1.text, getFunction())
         XCTAssertEqual(function1.offset, variable.offset + variable.length + newlineToNextDeclaration)
         XCTAssertEqual(function1.length, Int64(getFunction().utf8.count))
-        let function2 = `protocol`.children[4] as! FunctionDeclaration
+        let function2 = `protocol`.children[5] as! FunctionDeclaration
         XCTAssertEqual(function2.text, getFunction())
         XCTAssertEqual(function2.offset, function1.offset + function1.length + newlineToNextDeclaration)
         XCTAssertEqual(function2.length, Int64(getFunction().utf8.count))
@@ -58,6 +62,7 @@ class DeclarationsParserTests: XCTestCase {
         protocol MyProtocol {
           \(getAssociatedType())
           \(getTypealias())
+          \(getInitialiser())
           \(getVariable())
           \(getFunction())
           \(getFunction())
@@ -83,6 +88,10 @@ class DeclarationsParserTests: XCTestCase {
 
     func getVariable() -> String {
         return "@a internal nonmutating var a: @a inout Generic<Type> { @a mutating set @b nonmutating get }"
+    }
+
+    func getInitialiser() -> String {
+        return "@a public init?<T, U: V>(a: T, b: U.Type) throws where T.Type == U.Element"
     }
 
     private func calculateBodyLength(_ element: Element) -> Int64 {

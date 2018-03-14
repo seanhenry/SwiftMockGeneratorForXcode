@@ -6,37 +6,52 @@ class InitialiserDeclarationParserTests: XCTestCase {
     // MARK: - parse
 
     func test_parse_shouldParseEmptyInit() {
-        let initialiser = parse("init()")
-        XCTAssertEqual(initialiser.text, "init()")
-        XCTAssertEqual(initialiser.offset, 0)
-        XCTAssertEqual(initialiser.length, 6)
+        assertElementIsParsed("init()")
     }
 
     func test_parse_shouldParseEmptyOptionalInit() {
-        let initialiser = parse("init?()")
-        XCTAssertEqual(initialiser.text, "init?()")
-        XCTAssertEqual(initialiser.offset, 0)
-        XCTAssertEqual(initialiser.length, 7)
+        assertElementIsParsed("init?()")
     }
 
     func test_parse_shouldParseEmptyIUOInit() {
-        let initialiser = parse("init!()")
-        XCTAssertEqual(initialiser.text, "init!()")
-        XCTAssertEqual(initialiser.offset, 0)
-        XCTAssertEqual(initialiser.length, 7)
+        assertElementIsParsed("init!()")
     }
 
     func test_parse_shouldParseEmptyAttributesAndModifiers() {
-        let initialiser = parse("@a public init()")
-        XCTAssertEqual(initialiser.text, "@a public init()")
-        XCTAssertEqual(initialiser.offset, 0)
-        XCTAssertEqual(initialiser.length, 16)
+        assertElementIsParsed("@a public init()")
+    }
+
+    func test_parse_shouldParseGenericParameterClause() {
+        assertElementIsParsed("init<T, U: Element>()")
+        assertElementIsParsed("init?<T, U: Element>()")
+        assertElementIsParsed("init!<T, U: Element>()")
+    }
+
+    func test_parse_shouldParseParameterClause() {
+        assertElementIsParsed("init(a: A, b: B)")
+    }
+
+    func test_parse_shouldParseThrows() {
+        assertElementIsParsed("init() throws")
+        assertElementIsParsed("init() rethrows")
+    }
+
+    func test_parse_shouldParseGenericWhereClause() {
+        assertElementIsParsed("init() where A.Type: Element, B.C == A.Type")
+        assertElementIsParsed("init() where A.Type: Element, B.C == A.Type")
     }
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> Initialiser {
+    func parse(_ text: String) -> InitialiserDeclaration {
         let parser = createDeclarationParser(text, .init, InitialiserDeclarationParser.self)
         return parser.parse()
+    }
+
+    func assertElementIsParsed(_ text: String, line: UInt = #line) {
+        let initialiser = parse(text)
+        XCTAssertEqual(initialiser.text, text, line: line)
+        XCTAssertEqual(initialiser.offset, 0, line: line)
+        XCTAssertEqual(initialiser.length, Int64(text.utf8.count), line: line)
     }
 }

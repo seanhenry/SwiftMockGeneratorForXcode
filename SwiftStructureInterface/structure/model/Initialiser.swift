@@ -1,2 +1,0 @@
-protocol Initialiser: Element {
-}

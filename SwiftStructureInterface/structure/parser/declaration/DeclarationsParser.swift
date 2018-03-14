@@ -12,7 +12,7 @@ class DeclarationsParser: Parser<[Element]> {
         if isEndOfParsing() {
             return nil
         } else if isNextDeclaration(.protocol) {
-            return parseProtocol()
+            return parseProtocolDeclaration()
         } else if isNextDeclaration(.func) {
             return parseFunctionDeclaration()
         } else if isNextDeclaration(.var) {
@@ -21,6 +21,8 @@ class DeclarationsParser: Parser<[Element]> {
             return parseAssociatedTypeDeclaration()
         } else if isNextDeclaration(.typealias) {
             return parseTypealiasDeclaration()
+        } else if isNextDeclaration(.init) {
+            return parseInitialiserDeclaration()
         } else {
             advance()
             return parseDeclaration()
