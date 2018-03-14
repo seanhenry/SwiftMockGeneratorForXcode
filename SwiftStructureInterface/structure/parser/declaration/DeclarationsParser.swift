@@ -1,5 +1,7 @@
 class DeclarationsParser: Parser<[Element]> {
 
+    private var braceLevel = 0
+
     override func parse(offset: Int64) -> [Element] {
         var elements = [Element]()
         while let element = parseDeclaration() {
@@ -26,6 +28,7 @@ class DeclarationsParser: Parser<[Element]> {
         } else if isNextDeclaration(.subscript) {
             return parseSubscriptDeclaration()
         } else {
+            adjustBraceLevel()
             advance()
             return parseDeclaration()
         }
@@ -35,8 +38,16 @@ class DeclarationsParser: Parser<[Element]> {
         return isEndOfParentDeclaration() || isEndOfFile()
     }
 
+    private func adjustBraceLevel() {
+        if isNext(.leftBrace) {
+            braceLevel += 1
+        } else if isNext(.rightBrace) {
+            braceLevel -= 1
+        }
+    }
+
     private func isEndOfParentDeclaration() -> Bool {
-        return isNext(.rightBrace)
+        return braceLevel == 0 && isNext(.rightBrace)
     }
 
     private func isEndOfFile() -> Bool {

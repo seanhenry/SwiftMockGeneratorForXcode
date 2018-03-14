@@ -45,6 +45,27 @@ class DeclarationsParserTests: XCTestCase {
         assertElementText(subscriptDeclaration, getSubscript(), offset: function2.offset + function2.length + newlineToNextDeclaration)
     }
 
+    func test_shouldParseSideBySideProtocols() {
+        let file = FileParser(fileContents: getMultipleProtocols()).parse()
+        let protocolA = file.children[0] as! TypeDeclaration
+        XCTAssertEqual(protocolA.children.count, 1)
+        let funcA = protocolA.children[0] as! FunctionDeclaration
+        XCTAssertEqual(funcA.name, "a")
+        let protocolB = file.children[1] as! TypeDeclaration
+        XCTAssertEqual(protocolB.children.count, 1)
+        let funcB = protocolB.children[0] as! FunctionDeclaration
+        XCTAssertEqual(funcB.name, "b")
+    }
+
+    func test_shouldSkipAllUnsupportedDeclarations() {
+        let protocolStart = getAll().range(of: "protocol P {")!.lowerBound
+        let offset = Int64(protocolStart.encodedOffset)
+        let file = FileParser(fileContents: getAll()).parse()
+        XCTAssert(file.children.last is SwiftTypeElement, String(describing: file.children.last))
+        XCTAssertEqual(file.children.last?.children.count, 1)
+        XCTAssertEqual(file.children.last?.offset, offset)
+    }
+
     // MARK: - Helpers
 
     func getProtocolWithMethods() -> String {
@@ -94,5 +115,70 @@ class DeclarationsParserTests: XCTestCase {
         return element.children.reduce(Int64(0)) { result, element in
             result + element.length + newlineToNextDeclaration
         } + newlineToClosingBrace
+    }
+
+    func getMultipleProtocols() -> String {
+        return """
+        protocol A {
+        func a()
+        }
+        
+        protocol B {
+        func b()
+        }
+        """
+    }
+
+    func getAll() -> String {
+        return """
+        @testable import protocol TestProject.InnerProject
+        @a public let const: Constant = 123
+        @a open lazy var variable: Type = { return test }()
+        @a open var variable2: Type = { 
+            set {}
+            get { return "abc" }
+        }
+        @a fileprivate typealias Type<T> = Generic<T>
+        func test(_ a: A, b: [String: Int]) throws -> ReturnType where Some.Type == Element {
+        let o = 0
+        var a = 1
+        func innerFunc() {
+        }
+        return something
+        }
+        enum A: B {
+        case a, b
+        case c(Int, String)
+        
+        func innerFunc() {}
+        var computed: Int { return 0 }
+        }
+        
+        struct Name: Prot {
+        var i = 0
+        func a() -> String { return "\\(i)" } 
+        }
+        
+        class Test: A, B<C> where C.Type == String {
+        class Inner: TestClass {}
+        struct InnerStruct {}
+        }
+        
+        extension P: A where A: B & C {}
+
+        init?() { return nil }
+        
+        prefix operator ++: Group
+        
+        precedencegroup A {
+        higherThan: A, B
+        assignment: false
+        associativity: left
+        }
+        
+        protocol P {
+        var a: A { get }
+        }
+        """
     }
 }
