@@ -23,6 +23,8 @@ class DeclarationsParser: Parser<[Element]> {
             return parseTypealiasDeclaration()
         } else if isNextDeclaration(.init) {
             return parseInitialiserDeclaration()
+        } else if isNextDeclaration(.subscript) {
+            return parseSubscriptDeclaration()
         } else {
             advance()
             return parseDeclaration()

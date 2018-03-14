@@ -98,6 +98,12 @@ class ElementVisitorTests: XCTestCase {
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
+    func test_visit_subscriptDeclarationShouldVisitAncestors() {
+        testSubscriptDeclaration.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitSubscriptDeclarationCount, 1)
+        XCTAssertEqual(visitor.invokedVisitElementCount, 1)
+    }
+
     // MARK: - Helpers
 
     class PartialMockVisitor: ElementVisitor {
@@ -282,6 +288,19 @@ class ElementVisitorTests: XCTestCase {
             invokedVisitInitialiserDeclarationCount += 1
             invokedVisitInitialiserDeclarationParameters = (element, ())
             invokedVisitInitialiserDeclarationParametersList.append((element, ()))
+        }
+
+        var invokedVisitSubscriptDeclaration = false
+        var invokedVisitSubscriptDeclarationCount = 0
+        var invokedVisitSubscriptDeclarationParameters: (element: SubscriptDeclaration, Void)?
+        var invokedVisitSubscriptDeclarationParametersList = [(element: SubscriptDeclaration, Void)]()
+
+        override func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
+            super.visitSubscriptDeclaration(element)
+            invokedVisitSubscriptDeclaration = true
+            invokedVisitSubscriptDeclarationCount += 1
+            invokedVisitSubscriptDeclarationParameters = (element, ())
+            invokedVisitSubscriptDeclarationParametersList.append((element, ()))
         }
     }
 }

@@ -38,7 +38,7 @@ class FunctionDeclarationResultParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseAttributesBeforeType() {
-        let result = parse("@a @b(c) -> Type")
+        let result = parse("-> @a @b(c) Type")
         XCTAssertEqual(result.text, "Type")
         XCTAssertEqual(result.offset, 12)
         XCTAssertEqual(result.length, 4)

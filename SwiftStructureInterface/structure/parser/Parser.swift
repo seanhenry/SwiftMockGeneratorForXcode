@@ -352,6 +352,10 @@ class Parser<ResultType> {
         return parseDeclaration(InitialiserDeclarationParser.self, .init)
     }
 
+    func parseSubscriptDeclaration() -> Element {
+        return parseDeclaration(SubscriptDeclarationParser.self, .subscript)
+    }
+
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {
         return P(lexer: lexer, fileContents: fileContents).parse()
     }

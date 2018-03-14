@@ -53,6 +53,10 @@ class DeclarationsParserTests: XCTestCase {
         XCTAssertEqual(function2.text, getFunction())
         XCTAssertEqual(function2.offset, function1.offset + function1.length + newlineToNextDeclaration)
         XCTAssertEqual(function2.length, Int64(getFunction().utf8.count))
+        let subscriptDeclaration = `protocol`.children[6] as! SubscriptDeclaration
+        XCTAssertEqual(subscriptDeclaration.text, getSubscript())
+        XCTAssertEqual(subscriptDeclaration.offset, function2.offset + function2.length + newlineToNextDeclaration)
+        XCTAssertEqual(subscriptDeclaration.length, Int64(getSubscript().utf8.count))
     }
 
     // MARK: - Helpers
@@ -66,6 +70,7 @@ class DeclarationsParserTests: XCTestCase {
           \(getVariable())
           \(getFunction())
           \(getFunction())
+          \(getSubscript())
         }
         """
     }
@@ -92,6 +97,10 @@ class DeclarationsParserTests: XCTestCase {
 
     func getInitialiser() -> String {
         return "@a public init?<T, U: V>(a: T, b: U.Type) throws where T.Type == U.Element"
+    }
+
+    func getSubscript() -> String {
+        return "@obj(SUB) public final subscript<T: U>(_ a: Int) -> @objc(NS) A where T.Type == U { @a nonmutating get @b mutating set }"
     }
 
     private func calculateBodyLength(_ element: Element) -> Int64 {

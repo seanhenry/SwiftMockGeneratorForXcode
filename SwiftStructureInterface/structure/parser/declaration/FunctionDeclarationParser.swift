@@ -135,11 +135,11 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
     class ResultParser: Parser<Element> {
 
         override func parse() -> Element {
-            _ = parseAttributes()
             guard isNext(.arrow) else {
                 return SwiftType.errorType
             }
             advance()
+            _ = parseAttributes()
             return parseType()
         }
     }

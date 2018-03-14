@@ -16,3 +16,4 @@ let testArrayType = SwiftArrayType(text: "[Int]", children: [], offset: 0, lengt
 let testDictionaryType = SwiftDictionaryType(text: "[Int: Int]", children: [], offset: 0, length: 10, keyType: testType, valueType: testType)
 let testOptionalType = SwiftOptionalType(text: "[Int: Int]", children: [], offset: 0, length: 10, type: testType)
 let testInitialiserDeclaration = SwiftInitialiserDeclaration(text: "init()", children: [], offset: 0, length: 6)
+let testSubscriptDeclaration = SwiftSubscriptDeclaration(text: "init()", children: [], offset: 0, length: 6)

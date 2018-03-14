@@ -54,4 +54,8 @@ class ElementVisitor {
     func visitInitialiserDeclaration(_ element: InitialiserDeclaration) {
         visitElement(element)
     }
+
+    func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
+        visitElement(element)
+    }
 }
