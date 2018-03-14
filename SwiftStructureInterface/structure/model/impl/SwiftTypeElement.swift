@@ -2,6 +2,7 @@ import SourceKittenFramework
 
 class SwiftTypeElement: SwiftElement, TypeDeclaration {
 
+    static let errorTypeElement = SwiftTypeElement(name: "", text: "", children: [], inheritedTypes: [], offset: -1, length: -1, bodyOffset: -1, bodyLength: -1)
     let name: String
     let inheritedTypes: [Element]
     let bodyOffset: Int64

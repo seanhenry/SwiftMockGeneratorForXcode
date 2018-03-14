@@ -12,16 +12,25 @@ class Parser<ResultType> {
     }
 
     func parse() -> ResultType {
+        let offset = convert(getCurrentStartLocation())!
+        return parse(offset: offset)
+    }
+
+    func parse(offset: Int64) -> ResultType {
         fatalError("override me")
+    }
+
+    func createElement(offset: Int64, parameters: (Int64, String) -> ResultType) -> ResultType? {
+        if let end = convert(getPreviousEndLocation()),
+           let text = getString(offset: offset, length: end - offset) {
+            return parameters(end - offset, text)
+        }
+        return nil
     }
 
     // MARK: - Strings
 
-    func getLength(_ string: String) -> Int64 {
-        return Int64(string.utf8.count)
-    }
-
-    func getString(offset: Int64, length: Int64) -> String? {
+    private func getString(offset: Int64, length: Int64) -> String? {
         return getSubstring(from: getFileContents(), offset: offset, length: length)
     }
 

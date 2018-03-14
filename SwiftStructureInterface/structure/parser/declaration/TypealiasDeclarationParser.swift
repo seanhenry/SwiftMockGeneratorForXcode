@@ -5,13 +5,14 @@ class TypealiasDeclarationParser: DeclarationParser<Typealias> {
         tryToAppendIdentifier(to: &name)
         _ = parseGenericParameterClause()
         let assignment = parseTypealiasAssignment()
-        let length = convert(getPreviousEndLocation())! - offset
-        return SwiftTypealias(
-            text: getString(offset: offset, length: length)!,
-            children: [assignment],
-            offset: offset,
-            length: length,
-            name: name,
-            typealiasAssignment: assignment)
+        return createElement(offset: offset) { length, text in
+            return SwiftTypealias(
+                text: text,
+                children: [assignment],
+                offset: offset,
+                length: length,
+                name: name,
+                typealiasAssignment: assignment)
+        } ?? SwiftTypealias.errorTypealias
     }
 }

@@ -1,6 +1,6 @@
 class AttributeParser: Parser<String> {
 
-    override func parse() -> String {
+    override func parse(offset: Int64) -> String {
         var attributes = [String]()
         while isNext(.at) {
             attributes.append(parseAttribute())

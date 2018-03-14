@@ -13,8 +13,8 @@ class InitialiserDeclarationParser: DeclarationParser<InitialiserDeclaration> {
         advance(if: .throws)
         advance(if: .rethrows)
         _ = parseWhereClause()
-        let length = convert(getPreviousEndLocation())! - offset
-        let text = getString(offset: offset, length: length)!
-        return SwiftInitialiserDeclaration(text: text, children: [], offset: offset, length: length)
+        return createElement(offset: offset) { length, text in
+            return SwiftInitialiserDeclaration(text: text, children: [], offset: offset, length: length)
+        } ?? SwiftInitialiserDeclaration.errorInitialiserDeclaration
     }
 }

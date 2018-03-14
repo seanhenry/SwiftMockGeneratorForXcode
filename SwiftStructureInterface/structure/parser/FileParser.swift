@@ -18,7 +18,7 @@ class FileParser: Parser<File> {
         super.init(lexer: lexer, fileContents: fileContents)
     }
 
-    override func parse() -> File {
+    override func parse(offset: Int64) -> File {
         return parseFile()
     }
 

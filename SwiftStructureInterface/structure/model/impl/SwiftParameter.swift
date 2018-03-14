@@ -1,6 +1,6 @@
 class SwiftParameter: SwiftElement, Parameter {
 
-    static let errorMethodParameter = SwiftParameter(text: "", children: [], offset: -1, length: -1, type: SwiftElement.errorElement)
+    static let errorParameter = SwiftParameter(text: "", children: [], offset: -1, length: -1, type: SwiftElement.errorElement)
     let type: Element
     let externalParameterName: String?
     let localParameterName: String

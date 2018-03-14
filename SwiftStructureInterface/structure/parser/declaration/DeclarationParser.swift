@@ -14,13 +14,12 @@ class DeclarationParser<ResultType>: Parser<ResultType> {
         fatalError("Use init(lexer:fileContents:declarationToken:)")
     }
 
-    override func parse() -> ResultType {
-        let start = getCurrentStartLocation()
+    override func parse(offset: Int64) -> ResultType {
         _ = parseAttributes()
         skipDeclarationModifiers()
         guard isNext(declarationToken) else { fatalError("Expected a \(declarationToken). Check isNext(.\(declarationToken)) before parsing a protocol") }
         advance()
-        return parseDeclaration(offset: convert(start)!)
+        return parseDeclaration(offset: offset)
     }
 
     func parseDeclaration(offset: Int64) -> ResultType {

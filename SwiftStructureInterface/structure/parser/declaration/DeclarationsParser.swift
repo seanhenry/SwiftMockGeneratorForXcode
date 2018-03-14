@@ -1,6 +1,6 @@
 class DeclarationsParser: Parser<[Element]> {
 
-    override func parse() -> [Element] {
+    override func parse(offset: Int64) -> [Element] {
         var elements = [Element]()
         while let element = parseDeclaration() {
             elements.append(element)

@@ -4,7 +4,7 @@ class TypeParser: Parser<Type> {
 
     private var startStack = [LineColumn]()
 
-    override func parse() -> Type {
+    override func parse(offset: Int64) -> Type {
         if let type = parseSwiftType() {
             return type
         }
@@ -17,10 +17,14 @@ class TypeParser: Parser<Type> {
         return parseOptional()
     }
 
-    private func createPartialElement() -> (offset: Int64, length: Int64, text: String) {
-        let offset = convert(startStack.last!)!
-        let length = convert(getPreviousEndLocation())! - offset
-        return (offset, length, getString(offset: offset, length: length)!)
+    private func createTypeElement<T: Type>(closure: (Int64, Int64, String) -> T) -> T? {
+        if let start = startStack.last,
+           let offset = convert(start) {
+            return createElement(offset: offset) { length, text in
+                return closure(offset, length, text)
+            } as? T
+        }
+        return nil
     }
 
     private func parseTypeExcludingOptional() -> Type? {
@@ -49,14 +53,15 @@ class TypeParser: Parser<Type> {
             advance()
             return parseTypeIdentifier()
         } else {
-            let element = createPartialElement()
-            return SwiftTypeIdentifier(
-                text: element.text,
-                children: [type] + genericArguments,
-                offset: element.offset,
-                length: element.length,
-                type: type,
-                genericArguments: genericArguments)
+            return createTypeElement() { offset, length, text in
+                return SwiftTypeIdentifier(
+                    text: text,
+                    children: [type] + genericArguments,
+                    offset: offset,
+                    length: length,
+                    type: type,
+                    genericArguments: genericArguments)
+            }
         }
     }
 
@@ -86,8 +91,9 @@ class TypeParser: Parser<Type> {
     }
 
     private func createSwiftType() -> Type {
-        let element = createPartialElement()
-        return SwiftType(text: element.text, children: [], offset: element.offset, length: element.length)
+        return createTypeElement() { offset, length, text in
+            return SwiftType(text: text, children: [], offset: offset, length: length)
+        } ?? SwiftType.errorType
     }
 
     // MARK: - Generic
@@ -130,8 +136,9 @@ class TypeParser: Parser<Type> {
     }
 
     private func createArrayType(_ type: Type) -> Type {
-        let element = createPartialElement()
-        return SwiftArrayType(text: element.text, children: [type], offset: element.offset, length: element.length, elementType: type)
+        return createTypeElement() { offset, length, text in
+            return SwiftArrayType(text: text, children: [type], offset: offset, length: length, elementType: type)
+        } ?? SwiftArrayType.errorArrayType
     }
 
     // MARK: - Dictionary
@@ -148,14 +155,15 @@ class TypeParser: Parser<Type> {
     }
 
     private func createDictionaryType(_ key: Type, _ value: Type) -> DictionaryType {
-        let element = createPartialElement()
-        return SwiftDictionaryType(
-            text: element.text,
-            children: [key, value],
-            offset: element.offset,
-            length: element.length,
-            keyType: key,
-            valueType: value)
+        return createTypeElement() { offset, length, text in
+            return SwiftDictionaryType(
+                text: text,
+                children: [key, value],
+                offset: offset,
+                length: length,
+                keyType: key,
+                valueType: value)
+        } ?? SwiftDictionaryType.errorDictionaryType
     }
 
     // MARK: - Optional
@@ -177,13 +185,14 @@ class TypeParser: Parser<Type> {
     }
 
     private func createOptional(_ type: Type) -> OptionalType {
-        let element = createPartialElement()
-        return SwiftOptionalType(
-            text: element.text,
-            children: [type],
-            offset: element.offset,
-            length: element.length,
-            type: type)
+        return createTypeElement() { offset, length, text in
+            return SwiftOptionalType(
+                text: text,
+                children: [type],
+                offset: offset,
+                length: length,
+                type: type)
+        } ?? SwiftOptionalType.errorOptionalType
     }
 
     // MARK: - Protocol composition
@@ -228,13 +237,14 @@ class TypeParser: Parser<Type> {
     }
 
     private func createProtocolComposition(_ types: [Type]) -> Type {
-        let element = createPartialElement()
-        return SwiftProtocolCompositionType(
-            text: element.text,
-            children: types,
-            offset: element.offset,
-            length: element.length,
-            types: types)
+        return createTypeElement() { offset, length, text in
+            return SwiftProtocolCompositionType(
+                text: text,
+                children: types,
+                offset: offset,
+                length: length,
+                types: types)
+        } ?? SwiftProtocolCompositionType.errorProtocolCompositionType
     }
 
     // MARK: - Tuple

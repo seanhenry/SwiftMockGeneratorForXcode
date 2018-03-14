@@ -1,5 +1,6 @@
 class SwiftTypealias: SwiftElement, Typealias {
 
+    static let errorTypealias = SwiftTypealias(text: "", children: [], offset: -1, length: -1, name: "", typealiasAssignment: SwiftTypealiasAssignment.errorTypealiasAssignment)
     let typealiasAssignment: TypealiasAssignment
     let name: String
 

@@ -11,13 +11,20 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
         skipRethrows()
         let returnType = parseReturnType()
         skipWhereClause()
-        let end = convert(getPreviousEndLocation())!
-        let length = end - offset
-        let text = getString(offset: offset, length: length)!
         var children = [genericParameterClause] as [Element]
         children.append(contentsOf: parameters as [Element])
         returnType.map { children.append($0) }
-        return SwiftFunctionDeclaration(name: name, text: text, children: children, offset: offset, length: length, returnType: returnType, genericParameterClause: genericParameterClause, parameters: parameters, throws: `throws`)
+        return createElement(offset: offset) { length, text in
+            return SwiftFunctionDeclaration(name: name,
+                text: text,
+                children: children,
+                offset: offset,
+                length: length,
+                returnType: returnType,
+                genericParameterClause: genericParameterClause,
+                parameters: parameters,
+                throws: `throws`)
+        } ?? SwiftFunctionDeclaration.errorFunctionDeclaration
     }
 
     private func parseParameterClause() -> [Parameter] {
@@ -50,7 +57,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
     class ParameterClauseParser: Parser<[Parameter]> {
 
-        override func parse() -> [Parameter] {
+        override func parse(offset: Int64) -> [Parameter] {
             advance(if: .leftParen)
             if isNext(.rightParen) {
                 advance()
@@ -77,20 +84,19 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
     class ParameterParser: Parser<Parameter> {
 
-        override func parse() -> Parameter {
-            let start = getCurrentStartLocation()
-            guard let (externalParameterName, localParameterName) = parseParameterNames() else { return SwiftParameter.errorMethodParameter }
+        override func parse(offset: Int64) -> Parameter {
+            guard let (externalParameterName, localParameterName) = parseParameterNames() else { return SwiftParameter.errorParameter }
             let type = parseParameterType()
-            let offset = convert(start)!
-            let length = convert(getCurrentStartLocation())! - offset
-            return SwiftParameter(
-                text: getString(offset: offset, length: length)!,
-                children: [type],
-                offset: offset,
-                length: length,
-                externalParameterName: externalParameterName,
-                localParameterName: localParameterName,
-                type: type)
+            return createElement(offset: offset) { length, text in
+                SwiftParameter(
+                    text: text,
+                    children: [type],
+                    offset: offset,
+                    length: length,
+                    externalParameterName: externalParameterName,
+                    localParameterName: localParameterName,
+                    type: type)
+            } ?? SwiftParameter.errorParameter
         }
 
         private func parseParameterNames() -> (externalParameterName: String?, localParameterName: String)? {
@@ -134,7 +140,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
     class ResultParser: Parser<Element> {
 
-        override func parse() -> Element {
+        override func parse(offset: Int64) -> Element {
             guard isNext(.arrow) else {
                 return SwiftType.errorType
             }

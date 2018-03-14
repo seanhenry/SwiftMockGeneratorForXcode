@@ -8,17 +8,17 @@ class ProtocolDeclarationParser: DeclarationParser<SwiftTypeElement> {
         let inheritanceClause = parseTypeInheritanceClause()
         skipWhereClause()
         let codeBlock = parseTypeCodeBlock()
-        let length = codeBlock.bodyEnd - offset
-        let text = getString(offset: offset, length: length)!
-        return SwiftTypeElement(
-            name: name,
-            text: text,
-            children: codeBlock.declarations,
-            inheritedTypes: inheritanceClause,
-            offset: offset,
-            length: length,
-            bodyOffset: codeBlock.offset,
-            bodyLength: codeBlock.length)
+        return createElement(offset: offset) { length, text in
+            return SwiftTypeElement(
+                name: name,
+                text: text,
+                children: codeBlock.declarations,
+                inheritedTypes: inheritanceClause,
+                offset: offset,
+                length: length,
+                bodyOffset: codeBlock.offset,
+                bodyLength: codeBlock.length)
+        } ?? SwiftTypeElement.errorTypeElement
     }
 
     private func skipWhereClause() {
