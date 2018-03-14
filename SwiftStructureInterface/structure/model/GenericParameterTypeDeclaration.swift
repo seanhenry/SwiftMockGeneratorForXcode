@@ -1,3 +1,3 @@
-protocol GenericParameterTypeDeclaration: Element {
+public protocol GenericParameterTypeDeclaration: Element {
 
 }

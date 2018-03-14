@@ -1,3 +1,3 @@
-protocol NamedElement: Element {
+public protocol NamedElement: Element {
     var name: String { get }
 }

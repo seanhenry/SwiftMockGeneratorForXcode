@@ -1,2 +1,2 @@
-protocol File: Element {
+public protocol File: Element {
 }

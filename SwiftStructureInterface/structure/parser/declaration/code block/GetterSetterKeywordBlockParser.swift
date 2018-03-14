@@ -1,7 +1,5 @@
 import Source
 
-// TODO: Parse setter-name (class only)
-
 class GetterSetterKeywordBlockParser: Parser<GetterSetterKeywordBlock> {
 
     override func parse(offset: Int64) -> GetterSetterKeywordBlock {

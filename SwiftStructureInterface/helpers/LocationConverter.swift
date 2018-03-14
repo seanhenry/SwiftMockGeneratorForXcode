@@ -1,8 +1,8 @@
-class LocationConverter {
+public class LocationConverter {
 
     private static let newLineCharacterCount = 1
 
-    static func convert(line: Int, column: Int, in string: String) -> Int64? {
+    public static func convert(line: Int, column: Int, in string: String) -> Int64? {
         let zeroBasedLine = line - 1
         var lines = string.components(separatedBy: .newlines)
         lines = appendNewlines(to: lines)
@@ -47,7 +47,7 @@ class LocationConverter {
         return Int64(String(character).utf8.count)
     }
 
-    static func convert(caretOffset: Int64, in string: String) -> (line: Int, column: Int)? {
+    public static func convert(caretOffset: Int64, in string: String) -> (line: Int, column: Int)? {
         guard isOffsetValid(Int(caretOffset), in: string) else { return nil }
         let strings = string.components(separatedBy: .newlines)
         var remainingOffset = Int(caretOffset)

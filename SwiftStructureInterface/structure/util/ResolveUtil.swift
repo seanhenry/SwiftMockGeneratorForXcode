@@ -1,11 +1,13 @@
-class ResolveUtil {
+public class ResolveUtil {
 
-    static var sameFileCursorInfoRequest: CursorInfoRequest!
-    static var cursorInfoRequest: CursorInfoRequest!
+    public static var sameFileCursorInfoRequest: CursorInfoRequest!
+    public static var cursorInfoRequest: CursorInfoRequest!
     private let tempFileWriter = TempFileWriterUtil()
     private var tempFile: String { return tempFileWriter.tempFile }
 
-    func resolve(_ element: Element) -> Element? {
+    public init() {}
+
+    public func resolve(_ element: Element) -> Element? {
         guard writeToFile(element) else { return nil }
         return getResolvedElementInFile(from: resolveFromSameFile(element))
             ?? getResolvedElementInFile(from: resolveFromAllFiles(element))

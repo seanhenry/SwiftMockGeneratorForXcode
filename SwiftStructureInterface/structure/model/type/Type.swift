@@ -1,3 +1,3 @@
-protocol Type: Element {
+public protocol Type: Element {
 
 }

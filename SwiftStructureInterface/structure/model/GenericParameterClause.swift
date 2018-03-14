@@ -1,3 +1,3 @@
-protocol GenericParameterClause: Element {
+public protocol GenericParameterClause: Element {
 
 }

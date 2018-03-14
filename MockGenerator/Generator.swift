@@ -1,7 +1,6 @@
 import Foundation
 import UseCases
-// TODO: remove testable when API becomes more clear
-@testable import SwiftStructureInterface
+import SwiftStructureInterface
 
 public class Generator {
 
@@ -19,7 +18,7 @@ public class Generator {
         guard let elementUnderCaret = CaretUtil().findElementUnderCaret(in: file, cursorOffset: cursorOffset) else {
             return reply(with: "No Swift element found under the cursor")
         }
-        guard let typeElement = (elementUnderCaret as? SwiftTypeElement) ?? ElementTreeUtil().findParentType(elementUnderCaret) else {
+        guard let typeElement = (elementUnderCaret as? TypeDeclaration) ?? ElementTreeUtil().findParentType(elementUnderCaret) else {
             return reply(with: "Place the cursor on a mock class declaration")
         }
         guard let inheritedType = typeElement.inheritedTypes.first else {
@@ -36,7 +35,7 @@ public class Generator {
         return (nil, nsError)
     }
     
-    private static func buildMock(toFile file: Element, atElement element: SwiftTypeElement, resolvedProtocol: Element) -> ([String]?, Error?) {
+    private static func buildMock(toFile file: Element, atElement element: TypeDeclaration, resolvedProtocol: Element) -> ([String]?, Error?) {
         let mockLines = getMockBody(fromResolvedProtocol: resolvedProtocol)
         guard let (newFile, newTypeElement) = delete(contentsOf: element) else {
             return reply(with: "Could not delete body from: \(element.text)")
@@ -55,14 +54,14 @@ public class Generator {
         return mockString.components(separatedBy: .newlines)
     }
     
-    private static func delete(contentsOf typeElement: SwiftTypeElement) -> (SwiftFile, SwiftTypeElement)? {
-        guard let (newFile, newTypeElement) = DeleteBodyUtil().deleteClassBody(from: typeElement) as? (SwiftFile, SwiftTypeElement) else {
+    private static func delete(contentsOf typeElement: TypeDeclaration) -> (File, TypeDeclaration)? {
+        guard let (newFile, newTypeElement) = DeleteBodyUtil().deleteClassBody(from: typeElement) as? (File, TypeDeclaration) else {
             return nil
         }
         return (newFile, newTypeElement)
     }
     
-    private static func insert(_ mockBody: [String], atTypeElement typeElement: SwiftTypeElement, in file: Element) -> [String] {
+    private static func insert(_ mockBody: [String], atTypeElement typeElement: TypeDeclaration, in file: Element) -> [String] {
         var fileLines = file.text.components(separatedBy: .newlines)
         let lineColumn = LocationConverter.convert(caretOffset: typeElement.bodyOffset + typeElement.bodyLength, in: file.text)!
         let zeroBasedLine = lineColumn.line - 1

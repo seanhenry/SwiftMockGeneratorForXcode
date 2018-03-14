@@ -1,5 +1,5 @@
 import UseCases
-@testable import SwiftStructureInterface
+import SwiftStructureInterface
 
 class TypeResolverVisitor: ElementVisitor {
 

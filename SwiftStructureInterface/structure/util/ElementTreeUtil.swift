@@ -1,11 +1,13 @@
 
-class ElementTreeUtil {
+public class ElementTreeUtil {
 
-    func findParentType(_ element: Element) -> SwiftTypeElement? {
+    public init() {}
+
+    public func findParentType(_ element: Element) -> TypeDeclaration? {
         var parent = element.parent
-        while parent != nil && !(parent is SwiftTypeElement) {
+        while parent != nil && !(parent is TypeDeclaration) {
             parent = parent?.parent
         }
-        return parent as? SwiftTypeElement
+        return parent as? TypeDeclaration
     }
 }

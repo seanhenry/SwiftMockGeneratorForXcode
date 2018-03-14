@@ -1,3 +1,3 @@
-protocol ArrayType: Type {
+public protocol ArrayType: Type {
     var elementType: Type { get }
 }

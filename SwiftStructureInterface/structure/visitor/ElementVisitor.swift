@@ -1,61 +1,63 @@
-class ElementVisitor {
+open class ElementVisitor {
 
-    func visitElement(_ element: Element) {
+    public init() {}
+
+    open func visitElement(_ element: Element) {
     }
 
-    func visitTypeDeclaration(_ element: TypeDeclaration) {
+    open func visitTypeDeclaration(_ element: TypeDeclaration) {
         visitElement(element)
     }
 
-    func visitFile(_ element: File) {
+    open func visitFile(_ element: File) {
         visitElement(element)
     }
 
-    func visitType(_ element: Type) {
+    open func visitType(_ element: Type) {
         visitElement(element)
     }
 
-    func visitArrayType(_ element: ArrayType) {
+    open func visitArrayType(_ element: ArrayType) {
         visitType(element)
     }
 
-    func visitDictionaryType(_ element: DictionaryType) {
+    open func visitDictionaryType(_ element: DictionaryType) {
         visitType(element)
     }
 
-    func visitOptionalType(_ element: OptionalType) {
+    open func visitOptionalType(_ element: OptionalType) {
         visitType(element)
     }
 
-    func visitFunctionDeclaration(_ element: FunctionDeclaration) {
+    open func visitFunctionDeclaration(_ element: FunctionDeclaration) {
         visitElement(element)
     }
 
-    func visitVariableDeclaration(_ element: VariableDeclaration) {
+    open func visitVariableDeclaration(_ element: VariableDeclaration) {
         visitElement(element)
     }
 
-    func visitGenericParameterClause(_ element: GenericParameterClause) {
+    open func visitGenericParameterClause(_ element: GenericParameterClause) {
         visitElement(element)
     }
 
-    func visitTypealias(_ element: Typealias) {
+    open func visitTypealias(_ element: Typealias) {
         visitElement(element)
     }
 
-    func visitTypealiasAssignment(_ element: TypealiasAssignment) {
+    open func visitTypealiasAssignment(_ element: TypealiasAssignment) {
         visitElement(element)
     }
 
-    func visitParameter(_ element: Parameter) {
+    open func visitParameter(_ element: Parameter) {
         visitElement(element)
     }
 
-    func visitInitialiserDeclaration(_ element: InitialiserDeclaration) {
+    open func visitInitialiserDeclaration(_ element: InitialiserDeclaration) {
         visitElement(element)
     }
 
-    func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
+    open func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
         visitElement(element)
     }
 }

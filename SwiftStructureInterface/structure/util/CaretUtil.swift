@@ -1,6 +1,8 @@
-class CaretUtil {
+public class CaretUtil {
 
-    func findElementUnderCaret(in element: Element, cursorOffset: Int64) -> Element? {
+    public init() {}
+
+    public func findElementUnderCaret(in element: Element, cursorOffset: Int64) -> Element? {
         let visitor = CaretFindingVisitor(offset: cursorOffset)
         element.accept(visitor)
         return visitor.result

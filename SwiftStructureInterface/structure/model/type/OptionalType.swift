@@ -1,3 +1,3 @@
-protocol OptionalType: Type {
+public protocol OptionalType: Type {
     var type: Type { get }
 }

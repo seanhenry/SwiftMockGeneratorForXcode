@@ -1,1 +1,1 @@
-protocol SubscriptDeclaration: Element {}
+public protocol SubscriptDeclaration: Element {}

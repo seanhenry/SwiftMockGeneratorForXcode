@@ -1,8 +1,10 @@
-class SKElementFactory {
+public class SKElementFactory {
 
     static var structureRequest: StructureRequest = SKStructureRequest()
 
-    func build(from string: String) -> Element? {
+    public init() {}
+
+    public func build(from string: String) -> Element? {
         if let dictionary = try? SKElementFactory.structureRequest.getStructure(contents: string) {
             return build(data: dictionary, fileText: string)
         }

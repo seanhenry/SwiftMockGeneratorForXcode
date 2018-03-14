@@ -1,10 +1,12 @@
-class FormatUtil {
+public class FormatUtil {
 
-    static var formatRequest: FormatRequest!
+    public static var formatRequest: FormatRequest!
     private let tempFileWriter = TempFileWriterUtil()
     private var tempFile: String { return tempFileWriter.tempFile }
 
-    func format(_ element: Element) -> Element {
+    public init() {}
+
+    public func format(_ element: Element) -> Element {
         guard let file = element.file else { return element }
         tempFileWriter.write(file.text)
         if let formatted = format() {

@@ -1,8 +1,10 @@
 import SourceKittenFramework
 
-class DeleteBodyUtil {
+public class DeleteBodyUtil {
 
-    func deleteClassBody(from element: Element) -> (file: Element, element: Element)? {
+    public init() {}
+
+    public func deleteClassBody(from element: Element) -> (file: Element, element: Element)? {
         guard let fileString = getFileStringRemovingBody(from: element),
               let file = SKElementFactory().build(from: fileString) else { return nil }
         let elementEquivalent = CaretUtil().findElementUnderCaret(in: file, cursorOffset: element.offset)!

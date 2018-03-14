@@ -1,3 +1,3 @@
-protocol TypeDeclaration: NamedElement, CodeBlockContainer {
+public protocol TypeDeclaration: NamedElement, CodeBlockContainer {
     var inheritedTypes: [Element] { get }
 }

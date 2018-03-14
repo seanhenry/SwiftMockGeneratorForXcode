@@ -1,3 +1,3 @@
-protocol Typealias: NamedElement {
+public protocol Typealias: NamedElement {
     var typealiasAssignment: TypealiasAssignment { get }
 }

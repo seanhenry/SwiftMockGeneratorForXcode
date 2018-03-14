@@ -1,2 +1,2 @@
-protocol InitialiserDeclaration: Element {
+public protocol InitialiserDeclaration: Element {
 }

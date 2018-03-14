@@ -86,7 +86,7 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 | Respects the mock scope and generates `public` and `open` methods and properties.||
 | Generate mock inheriting from items in 3rd party frameworks.||
 
-\* `where` clause not supported
+\* generic arguments in closures and generic types are not supported
 
 ## Feature requests
 
