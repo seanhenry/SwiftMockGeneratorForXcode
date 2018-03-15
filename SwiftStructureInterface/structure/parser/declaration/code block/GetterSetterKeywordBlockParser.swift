@@ -2,14 +2,13 @@ import Source
 
 class GetterSetterKeywordBlockParser: Parser<GetterSetterKeywordBlock> {
 
-    override func parse(offset: Int64) -> GetterSetterKeywordBlock {
-        let offset = convert(getCurrentStartLocation())!
+    override func parse(start: LineColumn) -> GetterSetterKeywordBlock {
         var isWritable = false
         advance(if: .leftBrace)
         parseGetSet(isWritable: &isWritable)
         parseGetSet(isWritable: &isWritable)
         advance(if: .rightBrace)
-        return createElement(offset: offset) { length, text in
+        return createElement(start: start) { offset, length, text in
             return SwiftGetterSetterKeywordBlock(
                 text: text,
                 children: [],

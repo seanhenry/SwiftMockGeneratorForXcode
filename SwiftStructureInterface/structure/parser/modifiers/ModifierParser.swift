@@ -10,7 +10,7 @@ class ModifierParser: Parser<String> {
         fatalError("Override me")
     }
 
-    override func parse(offset: Int64) -> String {
+    override func parse(start: LineColumn) -> String {
         var modifiers = [String]()
         while let modifier = parseArgumentModifiers() ?? parseSimpleModifiers() {
             modifiers.append(modifier)

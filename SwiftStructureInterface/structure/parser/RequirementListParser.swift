@@ -1,6 +1,6 @@
 class RequirementListParser: Parser<String> {
 
-    override func parse(offset: Int64) -> String {
+    override func parse(start: LineColumn) -> String {
         var requirements = ""
         repeat {
             tryToAppend(.comma, value: ", ", to: &requirements)

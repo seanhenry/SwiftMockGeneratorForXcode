@@ -5,24 +5,24 @@ class DeclarationParser<ResultType>: Parser<ResultType> {
 
     private let declarationToken: Token.Kind
 
-    required init(lexer: SwiftLexer, fileContents: String, declarationToken: Token.Kind) {
+    required init(lexer: SwiftLexer, fileContents: String, declarationToken: Token.Kind, locationConverter: CachedLocationConverter) {
         self.declarationToken = declarationToken
-        super.init(lexer: lexer, fileContents: fileContents)
+        super.init(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter)
     }
 
-    required init(lexer: SwiftLexer, fileContents: String) {
-        fatalError("Use init(lexer:fileContents:declarationToken:)")
+    required init(lexer: SwiftLexer, fileContents: String, locationConverter: CachedLocationConverter) {
+        fatalError("Use init(lexer:fileContents:declarationToken:locationConverter:)")
     }
 
-    override func parse(offset: Int64) -> ResultType {
+    override func parse(start: LineColumn) -> ResultType {
         _ = parseAttributes()
         skipDeclarationModifiers()
         guard isNext(declarationToken) else { fatalError("Expected a \(declarationToken). Check isNext(.\(declarationToken)) before parsing a protocol") }
         advance()
-        return parseDeclaration(offset: offset)
+        return parseDeclaration(start: start)
     }
 
-    func parseDeclaration(offset: Int64) -> ResultType {
+    func parseDeclaration(start: LineColumn) -> ResultType {
         fatalError("Override me")
     }
 }

@@ -1,6 +1,6 @@
 class TypeInheritanceClauseParser: Parser<[Element]> {
 
-    override func parse(offset: Int64) -> [Element] {
+    override func parse(start: LineColumn) -> [Element] {
         guard isNext(.colon) else { return [] }
         var types = [Element]()
         repeat {

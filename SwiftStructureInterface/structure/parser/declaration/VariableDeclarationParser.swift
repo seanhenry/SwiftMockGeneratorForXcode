@@ -2,12 +2,12 @@ import Source
 
 class VariableDeclarationParser: DeclarationParser<VariableDeclaration> {
 
-    override func parseDeclaration(offset: Int64) -> VariableDeclaration {
+    override func parseDeclaration(start: LineColumn) -> VariableDeclaration {
         var name = ""
         tryToAppendIdentifier(to: &name)
         let type = parseTypeAnnotation()
         let block = parseGetterSetterKeywordBlock()
-        return createElement(offset: offset) { length, text in
+        return createElement(start: start) { offset, length, text in
             return SwiftVariableDeclaration(
                 name: name,
                 text: text,

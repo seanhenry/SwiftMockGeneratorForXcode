@@ -2,13 +2,13 @@ import Source
 
 class ProtocolDeclarationParser: DeclarationParser<SwiftTypeElement> {
 
-    override func parseDeclaration(offset: Int64) -> SwiftTypeElement {
+    override func parseDeclaration(start: LineColumn) -> SwiftTypeElement {
         var name = ""
         tryToAppendIdentifier(to: &name)
         let inheritanceClause = parseTypeInheritanceClause()
         skipWhereClause()
         let codeBlock = parseTypeCodeBlock()
-        return createElement(offset: offset) { length, text in
+        return createElement(start: start) { offset, length, text in
             return SwiftTypeElement(
                 name: name,
                 text: text,

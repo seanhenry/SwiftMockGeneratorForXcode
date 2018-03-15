@@ -1,6 +1,6 @@
 class GenericWhereClauseParser: Parser<String> {
 
-    override func parse(offset: Int64) -> String {
+    override func parse(start: LineColumn) -> String {
         var clause = ""
         if isNext(.where) {
             advance()

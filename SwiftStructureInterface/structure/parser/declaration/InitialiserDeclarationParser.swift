@@ -1,6 +1,6 @@
 class InitialiserDeclarationParser: DeclarationParser<InitialiserDeclaration> {
 
-    override func parseDeclaration(offset: Int64) -> InitialiserDeclaration {
+    override func parseDeclaration(start: LineColumn) -> InitialiserDeclaration {
         if isNext("!") {
             advanceOperator("!")
         } else if isNext("?") {
@@ -13,7 +13,7 @@ class InitialiserDeclarationParser: DeclarationParser<InitialiserDeclaration> {
         advance(if: .throws)
         advance(if: .rethrows)
         _ = parseWhereClause()
-        return createElement(offset: offset) { length, text in
+        return createElement(start: start) { offset, length, text in
             return SwiftInitialiserDeclaration(text: text, children: [], offset: offset, length: length)
         } ?? SwiftInitialiserDeclaration.errorInitialiserDeclaration
     }

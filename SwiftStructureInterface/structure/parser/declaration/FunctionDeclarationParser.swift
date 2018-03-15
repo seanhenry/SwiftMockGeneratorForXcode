@@ -2,7 +2,7 @@ import Source
 
 class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
-    override func parseDeclaration(offset: Int64) -> FunctionDeclaration {
+    override func parseDeclaration(start: LineColumn) -> FunctionDeclaration {
         var name = ""
         try! appendIdentifier(to: &name)
         let genericParameterClause = parseGenericParameterClause()
@@ -14,7 +14,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
         var children = [genericParameterClause] as [Element]
         children.append(contentsOf: parameters as [Element])
         returnType.map { children.append($0) }
-        return createElement(offset: offset) { length, text in
+        return createElement(start: start) { offset, length, text in
             return SwiftFunctionDeclaration(name: name,
                 text: text,
                 children: children,
@@ -57,7 +57,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
     class ParameterClauseParser: Parser<[Parameter]> {
 
-        override func parse(offset: Int64) -> [Parameter] {
+        override func parse(start: LineColumn) -> [Parameter] {
             advance(if: .leftParen)
             if isNext(.rightParen) {
                 advance()
@@ -84,10 +84,10 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
     class ParameterParser: Parser<Parameter> {
 
-        override func parse(offset: Int64) -> Parameter {
+        override func parse(start: LineColumn) -> Parameter {
             guard let (externalParameterName, localParameterName) = parseParameterNames() else { return SwiftParameter.errorParameter }
             let type = parseParameterType()
-            return createElement(offset: offset) { length, text in
+            return createElement(start: start) { offset, length, text in
                 SwiftParameter(
                     text: text,
                     children: [type],
@@ -140,7 +140,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
     class ResultParser: Parser<Element> {
 
-        override func parse(offset: Int64) -> Element {
+        override func parse(start: LineColumn) -> Element {
             guard isNext(.arrow) else {
                 return SwiftType.errorType
             }

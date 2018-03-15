@@ -2,7 +2,7 @@ class DeclarationsParser: Parser<[Element]> {
 
     private var braceLevel = 0
 
-    override func parse(offset: Int64) -> [Element] {
+    override func parse(start: LineColumn) -> [Element] {
         var elements = [Element]()
         while let element = parseDeclaration() {
             elements.append(element)

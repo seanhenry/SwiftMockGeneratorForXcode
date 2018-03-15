@@ -22,10 +22,6 @@ class SwiftFile: SwiftElement, File {
             element.file = file
             super.visitElement(element)
         }
-
-        override func visitParameter(_ element: Parameter) {
-            super.visitParameter(element)
-        }
     }
 
     private class WeakChildrenSwiftFile: File {

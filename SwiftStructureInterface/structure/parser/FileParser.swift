@@ -6,7 +6,8 @@ class FileParser: Parser<File> {
     convenience init(fileContents: String) {
         let sourceFile = SourceFile(content: fileContents)
         let lexer = SwiftASTLexer(lexer: Lexer(source: sourceFile))
-        self.init(lexer: lexer, fileContents: fileContents)
+        let locationConverter = CachedLocationConverter(fileContents)
+        self.init(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter)
     }
 
     convenience init?(filePath: String) {
@@ -14,11 +15,11 @@ class FileParser: Parser<File> {
         self.init(fileContents: contents)
     }
 
-    required init(lexer: SwiftLexer, fileContents: String) {
-        super.init(lexer: lexer, fileContents: fileContents)
+    required init(lexer: SwiftLexer, fileContents: String, locationConverter: CachedLocationConverter) {
+        super.init(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter)
     }
 
-    override func parse(offset: Int64) -> File {
+    override func parse(start: LineColumn) -> File {
         return parseFile()
     }
 

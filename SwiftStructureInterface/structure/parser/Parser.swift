@@ -3,35 +3,44 @@ import Lexer
 class Parser<ResultType> {
 
     private let fileContents: String
-    private let lexer: SwiftLexer
+    private var lexer: SwiftLexer
+    private let locationConverter: CachedLocationConverter
     class LookAheadError: Swift.Error {}
 
-    required init(lexer: SwiftLexer, fileContents: String) {
+    required init(lexer: SwiftLexer, fileContents: String, locationConverter: CachedLocationConverter) {
         self.lexer = lexer
         self.fileContents = fileContents
+        self.locationConverter = locationConverter
     }
 
     func parse() -> ResultType {
-        let offset = convert(getCurrentStartLocation())!
-        return parse(offset: offset)
+        let start = getCurrentStartLocation()
+        return parse(start: start)
     }
 
-    func parse(offset: Int64) -> ResultType {
+    func parse(start: LineColumn) -> ResultType {
         fatalError("override me")
     }
 
-    func createElement(offset: Int64, parameters: (Int64, String) -> ResultType) -> ResultType? {
-        if let end = convert(getPreviousEndLocation()),
-           let text = getString(offset: offset, length: end - offset) {
-            return parameters(end - offset, text)
+    func createElement(start: LineColumn, parameters: (Int64, Int64, String) -> ResultType) -> ResultType? {
+        let end = getPreviousEndLocation()
+        if let offset = convert(start),
+           let endOffset = convert(end),
+           let text = getSubstring(start, end) {
+            return parameters(offset, endOffset - offset, text)
         }
         return nil
     }
 
     // MARK: - Strings
 
-    private func getString(offset: Int64, length: Int64) -> String? {
-        return getSubstring(from: getFileContents(), offset: offset, length: length)
+    private func getSubstring(_ start: LineColumn, _ end: LineColumn) -> String? {
+        if let startIndex = locationConverter.convertToIndex(line: start.line, column: start.column),
+           let endIndex = locationConverter.convertToIndex(line: end.line, column: end.column),
+           startIndex <= endIndex {
+            return String(getFileContents().utf8[startIndex..<endIndex])
+        }
+        return nil
     }
 
     func getFileContents() -> String {
@@ -41,7 +50,7 @@ class Parser<ResultType> {
     // MARK: - Locations
 
     func convert(_ location: LineColumn) -> Int64? {
-        return LocationConverter.convert(line: location.line, column: location.column, in: getFileContents())!
+        return locationConverter.convertToOffset(line: location.line, column: location.column)
     }
 
     // MARK: - Lexer
@@ -366,10 +375,10 @@ class Parser<ResultType> {
     }
 
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {
-        return P(lexer: lexer, fileContents: fileContents).parse()
+        return P(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
     }
 
     private func parseDeclaration<T, P: DeclarationParser<T>>(_ parserType: P.Type, _ token: Token.Kind) -> T {
-        return P(lexer: lexer, fileContents: fileContents, declarationToken: token).parse()
+        return P(lexer: lexer, fileContents: fileContents, declarationToken: token, locationConverter: locationConverter).parse()
     }
 }

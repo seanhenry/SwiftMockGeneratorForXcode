@@ -1,6 +1,6 @@
 class GenericParameterClauseParser: Parser<GenericParameterClause> {
 
-    override func parse(offset: Int64) -> GenericParameterClause {
+    override func parse(start: LineColumn) -> GenericParameterClause {
         if isNext("<") {
             advanceOperator("<")
             _ = parseGenericParameterList()
@@ -8,7 +8,7 @@ class GenericParameterClauseParser: Parser<GenericParameterClause> {
         } else {
             return SwiftGenericParameterClause.errorGenericParameterClause
         }
-        return createElement(offset: offset) { length, text in
+        return createElement(start: start) { offset, length, text in
             return SwiftGenericParameterClause(
                 text: text,
                 children: [],

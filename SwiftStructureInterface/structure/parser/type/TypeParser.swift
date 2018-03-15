@@ -4,7 +4,7 @@ class TypeParser: Parser<Type> {
 
     private var startStack = [LineColumn]()
 
-    override func parse(offset: Int64) -> Type {
+    override func parse(start: LineColumn) -> Type {
         if let type = parseSwiftType() {
             return type
         }
@@ -18,9 +18,8 @@ class TypeParser: Parser<Type> {
     }
 
     private func createTypeElement<T: Type>(closure: (Int64, Int64, String) -> T) -> T? {
-        if let start = startStack.last,
-           let offset = convert(start) {
-            return createElement(offset: offset) { length, text in
+        if let start = startStack.last {
+            return createElement(start: start) { offset, length, text in
                 return closure(offset, length, text)
             } as? T
         }
