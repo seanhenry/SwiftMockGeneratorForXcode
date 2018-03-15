@@ -217,6 +217,8 @@ Many thanks to the contributors of [SourceKitten](https://github.com/jpsim/Sourc
 
 Many thanks to the contributors of [swift-ast](https://github.com/yanagiba/swift-ast) for a great lexer which has made writing a parser much easier.
 
+Many thanks to the contributors of [kotlin-native](https://github.com/JetBrains/kotlin-native) for a Kotlin LLVM backend which enables code sharing between the Xcode and AppCode plugins.
+
 And special thanks to everyone who is contributing by raising issues and feature requests.
 
 This tool wouldn't exist without you all!
