@@ -62,7 +62,7 @@ swiftast:
 	git checkout $(SWIFTAST_SHA); \
 	make xcodegen; \
 	xcodebuild -scheme SwiftAST -derivedDataPath build clean build; \
-	cp -rf build/Build/Products/Debug/*.framework $(DEST_PATH);
+	cp -Rf build/Build/Products/Debug/*.framework $(DEST_PATH);
 
 
 usecases: mklib mkkotlinnative
