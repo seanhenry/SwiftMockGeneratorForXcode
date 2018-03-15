@@ -210,3 +210,13 @@ To bootstrap the project's dependencies use:
 ```
 make
 ```
+
+# Credits
+
+Many thanks to the contributors of [SourceKitten](https://github.com/jpsim/SourceKitten) for making such an easy-to-use wrapper around SourceKit.
+
+Many thanks to the contributors of [swift-ast](https://github.com/yanagiba/swift-ast) for a great lexer which has made writing a parser much easier.
+
+And special thanks to everyone who is contributing by raising issues and feature requests.
+
+This tool wouldn't exist without you all!
