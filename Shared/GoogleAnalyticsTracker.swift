@@ -2,8 +2,11 @@ import Foundation
 
 class GoogleAnalyticsTracker {
 
-    private let tid = "UA-114749580-3"
-//    private let tid = "UA-114749580-1" // Debug
+    #if DEBUG
+        private let tid = "UA-114749580-1"
+    #else
+        private let tid = "UA-114749580-3"
+    #endif
 
     func track(action: String, value: Int = 0) {
         var request = URLRequest(url: URL(string: "https://www.google-analytics.com/collect")!)

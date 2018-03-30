@@ -36,6 +36,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
     }
 
     private func finish(with error: Error?, handler: (Error?) -> ()) {
+        track(error)
         connection.suspendConnection()
         handler(error)
     }
@@ -87,10 +88,25 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
     }
 
     private func handleGenerateMock(invocation: XCSourceEditorCommandInvocation, result: [String]?, error: Error?, completionHandler: @escaping (Error?) -> Void) {
+        track(result)
         if let result = result {
             invocation.buffer.completeBuffer = result.joined(separator: "\n")
         }
         finish(with: error, handler: completionHandler)
+    }
+
+    private func track(_ lines: [String]?) {
+        let tracker = GoogleAnalyticsTracker()
+        if let lines = lines {
+            tracker.track(action: "generated", value: lines.count)
+        }
+    }
+
+    private func track(_ error: Error?) {
+        let tracker = GoogleAnalyticsTracker()
+        if let error = error {
+            tracker.track(action: error.localizedDescription)
+        }
     }
     
     private func createError(_ message: String) -> Error {

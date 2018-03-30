@@ -88,6 +88,7 @@
 		35CDF09CDEE461BDA4E54687 /* ProtocolDeclarationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF31750602F25C2AADB8E /* ProtocolDeclarationParser.swift */; };
 		35CDF0BA3F278A564ED3053F /* SKElementFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF972F898CB60BD896524 /* SKElementFactory.swift */; };
 		35CDF0D3FC61A003EA1D67D0 /* SKFormatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFCCC35680D08069E17BC /* SKFormatRequest.swift */; };
+		35CDF0E6B885BB475EF964AB /* GoogleAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFD267465101B0B67217F /* GoogleAnalyticsTracker.swift */; };
 		35CDF108A42F4167ED043CC1 /* LineColumnRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF4A0C76C67955F2A8BAD /* LineColumnRange.swift */; };
 		35CDF11E15C98EB1F323E54B /* AssociatedTypeDeclarationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF874CD8316DA564E8305 /* AssociatedTypeDeclarationTests.swift */; };
 		35CDF1646330D2D9CD076C67 /* SwiftSubscriptDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFC82276895114899B5F1 /* SwiftSubscriptDeclaration.swift */; };
@@ -171,7 +172,6 @@
 		35CDF968BA0BD51F8FD6D5A1 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF23A60D172E18808A8B0 /* Parser.swift */; };
 		35CDF994EBA6E68B9B7989F1 /* OptionalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7900A444C0DF48BEAAA /* OptionalType.swift */; };
 		35CDF9ADB3779505107CA6B3 /* GetterSetterKeywordBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF818B343088A2937A072 /* GetterSetterKeywordBlock.swift */; };
-		35CDF9BAF13CEF58144BE088 /* GoogleAnalyticsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF693B01926A65245239 /* GoogleAnalyticsTracker.swift */; };
 		35CDF9C218695895CC90FE1C /* SwiftOptionalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF0A3EED0623521D5E9A9 /* SwiftOptionalType.swift */; };
 		35CDF9E4AF9580EF15A8B63A /* SKElementFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF7FC5D86D0B008DD7A4 /* SKElementFactoryTests.swift */; };
 		35CDFA13A42ECC6BDDA4B1C2 /* CommentsParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF4995EC1F113B0DB951F /* CommentsParserTests.swift */; };
@@ -475,7 +475,7 @@
 		14CA2D981F4003EA00900937 /* Yams.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yams.framework; path = lib/Yams.framework; sourceTree = "<group>"; };
 		14CA2D9C1F40049700900937 /* MockGeneratorXPC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MockGeneratorXPC-Bridging-Header.h"; sourceTree = "<group>"; };
 		14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGeneratorXPC.swift; sourceTree = "<group>"; };
-		14CA2DAB1F41349500900937 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Preferences.swift; path = Shared/Preferences.swift; sourceTree = "<group>"; };
+		14CA2DAB1F41349500900937 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		14ECA5DB2011855C00C849CF /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UseCases.framework; path = lib/UseCases.framework; sourceTree = "<group>"; };
 		35CDF00E5605D03871771C1E /* DictionaryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryType.swift; sourceTree = "<group>"; };
 		35CDF021BEB7062CFB674324 /* LineColumn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineColumn.swift; sourceTree = "<group>"; };
@@ -621,6 +621,7 @@
 		35CDFCCC35680D08069E17BC /* SKFormatRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKFormatRequest.swift; sourceTree = "<group>"; };
 		35CDFCD982124DFA56FC2763 /* SwiftTypeElementBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTypeElementBuilderTests.swift; sourceTree = "<group>"; };
 		35CDFD17D307EAAF76CE7C96 /* InitialiserDeclaration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialiserDeclaration.swift; sourceTree = "<group>"; };
+		35CDFD267465101B0B67217F /* GoogleAnalyticsTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalyticsTracker.swift; sourceTree = "<group>"; };
 		35CDFD36D7DFDAD1ABC9417D /* ArrayType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayType.swift; sourceTree = "<group>"; };
 		35CDFD4D281485706D982DFE /* SwiftMethodParameterBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMethodParameterBuilder.swift; sourceTree = "<group>"; };
 		35CDFD52CD219150135E7502 /* SwiftFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftFile.swift; sourceTree = "<group>"; };
@@ -645,7 +646,6 @@
 		35CDFF505E0EFBD4E9D7524F /* LocationConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationConverter.swift; sourceTree = "<group>"; };
 		35CDFF58BC32261961ADCA82 /* ProtocolCompositionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolCompositionType.swift; sourceTree = "<group>"; };
 		35CDFF626768CFA150C8AC4A /* DeleteBodyUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteBodyUtilTests.swift; sourceTree = "<group>"; };
-		35CDFF693B01926A65245239 /* GoogleAnalyticsTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalyticsTracker.swift; sourceTree = "<group>"; };
 		35CDFF76AF338D84655E5142 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		35CDFF790C9B97835CC38B63 /* CaretTestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaretTestHelper.swift; sourceTree = "<group>"; };
 		35CDFF7FC5D86D0B008DD7A4 /* SKElementFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKElementFactoryTests.swift; sourceTree = "<group>"; };
@@ -889,7 +889,6 @@
 				14CA2D881F4000AB00900937 /* Info.plist */,
 				14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */,
 				14CA2D9C1F40049700900937 /* MockGeneratorXPC-Bridging-Header.h */,
-				35CDFF693B01926A65245239 /* GoogleAnalyticsTracker.swift */,
 			);
 			path = MockGeneratorXPC;
 			sourceTree = "<group>";
@@ -899,8 +898,9 @@
 			children = (
 				14CA2DAB1F41349500900937 /* Preferences.swift */,
 				35CDF66A5D6E3857898A5E23 /* XcodeProjectPathFinder.swift */,
+				35CDFD267465101B0B67217F /* GoogleAnalyticsTracker.swift */,
 			);
-			name = Shared;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		35CDF01BCD7D710B81CF36B2 /* modifiers */ = {
@@ -1883,6 +1883,7 @@
 				14CA2DAD1F41351200900937 /* Preferences.swift in Sources */,
 				35CDFAD232988DCA52DE1FD8 /* XcodeProjectPathFinder.swift in Sources */,
 				144BC86B206DFD7F00FDFE50 /* ProjectFinder.swift in Sources */,
+				35CDF0E6B885BB475EF964AB /* GoogleAnalyticsTracker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1892,7 +1893,6 @@
 			files = (
 				14CA2D871F4000AB00900937 /* main.m in Sources */,
 				14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */,
-				35CDF9BAF13CEF58144BE088 /* GoogleAnalyticsTracker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2259,6 +2259,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2311,6 +2312,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSION_NUMBER = 0.11;
