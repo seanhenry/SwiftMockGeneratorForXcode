@@ -19,6 +19,7 @@ class ProjectFinderTests: XCTestCase {
     override func tearDown() {
         finder = nil
         preferences = nil
+        mockProjectFinder = nil
         super.tearDown()
     }
 
@@ -64,15 +65,16 @@ class ProjectFinderTests: XCTestCase {
     }
 
     func assertEqualProjectPath(_ expected: String, line: UInt = #line) {
-        let result = finder.getProjectPath()
-        XCTAssertEqual(result.path?.path, expected, line: line)
-        XCTAssertNil(result.error, line: line)
+        let result = try? finder.getProjectPath()
+        XCTAssertEqual(result?.path, expected, line: line)
     }
 
     func assertEqualError(_ expected: String, line: UInt = #line) {
-        let result = finder.getProjectPath()
-        let nsError = result.error as NSError?
-        XCTAssertNil(result.path, line: line)
-        XCTAssertEqual(nsError?.localizedDescription, expected, line: line)
+        do {
+            _ = try finder.getProjectPath()
+            XCTFail("Should have thrown an error")
+        } catch {
+            XCTAssertEqual((error as NSError).localizedDescription, expected, line: line)
+        }
     }
 }

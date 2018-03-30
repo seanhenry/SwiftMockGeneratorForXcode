@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1413D6A0203E400B0013817C /* XcodeProjectPathFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF66A5D6E3857898A5E23 /* XcodeProjectPathFinder.swift */; };
 		14276C6A1F4F312E00EA7753 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
 		14276C6F1F4F312E00EA7753 /* MockGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */; };
 		14276C711F4F312E00EA7753 /* MockGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 14276C631F4F312E00EA7753 /* MockGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -18,6 +17,10 @@
 		14276C811F4F340800EA7753 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; };
 		14276C821F4F340800EA7753 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; };
 		14451D351F5F05C500833C61 /* MethodGatheringVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A9B1705ADFFC0CB415 /* MethodGatheringVisitorTests.swift */; };
+		144BC86B206DFD7F00FDFE50 /* ProjectFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF8E7D46854DB4BBE72BE /* ProjectFinder.swift */; };
+		144BC86C206E063B00FDFE50 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
+		144BC86D206E063B00FDFE50 /* XcodeProjectPathFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF66A5D6E3857898A5E23 /* XcodeProjectPathFinder.swift */; };
+		144BC86E206E067700FDFE50 /* ProjectFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF8E7D46854DB4BBE72BE /* ProjectFinder.swift */; };
 		145290EA1F981ED600947144 /* VersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145290E91F981ED600947144 /* VersionView.swift */; };
 		1454A55D204B59A300741047 /* Diagnostic.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1454A55C204B59A300741047 /* Diagnostic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1454A55F204B59C100741047 /* Source.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1454A55E204B59C000741047 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -37,7 +40,6 @@
 		147C181E1F6589F000F0A60B /* Yams.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		147C181F1F6589FC00F0A60B /* SwiftStructureInterface.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		147C18201F6589FC00F0A60B /* MockGenerator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14872E851F59F7050017AF3F /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
 		149DEC711F651B0C007DF43E /* MockGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14A81E301F436941001A6221 /* SwiftStructureInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A81E271F436941001A6221 /* SwiftStructureInterface.framework */; };
 		14A81E371F436941001A6221 /* SwiftStructureInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A81E291F436941001A6221 /* SwiftStructureInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -181,7 +183,6 @@
 		35CDFA916036A0CDDB609CEF /* SwiftInheritedTypeBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFE6E16D1DEC831955535 /* SwiftInheritedTypeBuilderTests.swift */; };
 		35CDFAA5F8A245F89D5CC8A0 /* CachedLocationConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9DF7C97223DC08329A7 /* CachedLocationConverter.swift */; };
 		35CDFAB0E1C74924C4A89FB3 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF458B46DF20A5586E8CA /* Typealias.swift */; };
-		35CDFACA9CD155E519FFDB81 /* ProjectFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF8E7D46854DB4BBE72BE /* ProjectFinder.swift */; };
 		35CDFAD232988DCA52DE1FD8 /* XcodeProjectPathFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF66A5D6E3857898A5E23 /* XcodeProjectPathFinder.swift */; };
 		35CDFADD45C7DCEF213C6613 /* AccessLevelModifierParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFC6719E6B2DF31401B09 /* AccessLevelModifierParserTests.swift */; };
 		35CDFAE02852F36895E33BBC /* DeleteBodyUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF626768CFA150C8AC4A /* DeleteBodyUtilTests.swift */; };
@@ -1657,11 +1658,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				14276C791F4F314600EA7753 /* Generator.swift in Sources */,
-				14872E851F59F7050017AF3F /* Preferences.swift in Sources */,
-				1413D6A0203E400B0013817C /* XcodeProjectPathFinder.swift in Sources */,
 				35CDF3051C92D783E99E519D /* SourceFileFinder.swift in Sources */,
+				144BC86C206E063B00FDFE50 /* Preferences.swift in Sources */,
+				144BC86E206E067700FDFE50 /* ProjectFinder.swift in Sources */,
 				14E132281F58E6D300D75943 /* MethodGatheringVisitor.swift in Sources */,
-				35CDFACA9CD155E519FFDB81 /* ProjectFinder.swift in Sources */,
+				144BC86D206E063B00FDFE50 /* XcodeProjectPathFinder.swift in Sources */,
 				35CDF6B3B8F080E7AE114743 /* TypeResolverVisitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1881,6 +1882,7 @@
 				14CA2D731F40009000900937 /* SourceEditorCommand.swift in Sources */,
 				14CA2DAD1F41351200900937 /* Preferences.swift in Sources */,
 				35CDFAD232988DCA52DE1FD8 /* XcodeProjectPathFinder.swift in Sources */,
+				144BC86B206DFD7F00FDFE50 /* ProjectFinder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

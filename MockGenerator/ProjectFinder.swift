@@ -10,27 +10,27 @@ class ProjectFinder {
         self.preferences = preferences
     }
 
-    func getProjectPath() -> (path: URL?, error: Error?) {
+    func getProjectPath() throws -> URL {
         if preferences.automaticallyDetectProjectPath {
-            return findProjectPath()
+            return try findProjectPath()
         } else {
-            return getManualProjectPath()
+            return try getManualProjectPath()
         }
     }
 
-    private func findProjectPath() -> (URL?, Error?) {
+    private func findProjectPath() throws -> URL {
         if let path = projectFinder.findOpenProjectPath() {
-            return (path, nil)
+            return path
         } else {
-            return (nil, error("Could not detect your project. Enter one in the companion app."))
+            throw error("Could not detect your project. Enter one in the companion app.")
         }
     }
 
-    private func getManualProjectPath() -> (URL?, Error?) {
+    private func getManualProjectPath() throws -> URL {
         if let path = preferences.projectPath {
-            return (path, nil)
+            return path
         } else {
-            return (nil, error("Set the project path in the Mock Generator companion app."))
+            throw error("Set the project path in the Mock Generator companion app.")
         }
     }
 

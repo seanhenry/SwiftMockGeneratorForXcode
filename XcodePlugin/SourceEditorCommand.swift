@@ -39,10 +39,25 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         connection.suspendConnection()
         handler(error)
     }
+
+    private func getProjectURLOnMainThread() throws -> URL {
+        if Thread.isMainThread {
+            return try getProjectURL()
+        }
+        return try DispatchQueue.main.sync {
+            return try getProjectURL()
+        }
+    }
+
+    private func getProjectURL() throws -> URL {
+        return try ProjectFinder(projectFinder: XcodeProjectPathFinder(), preferences: Preferences())
+            .getProjectPath()
+    }
     
     private func generateMock(proxy: MockGeneratorXPCProtocol, invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) {
         do {
-            try tryToGenerateMock(proxy: proxy, invocation: invocation) { [weak self] (result, error) in
+            let projectURL = try getProjectURLOnMainThread()
+            try tryToGenerateMock(atProjectURL: projectURL, proxy: proxy, invocation: invocation) { [weak self] (result, error) in
                 self?.handleGenerateMock(invocation: invocation, result: result, error: error, completionHandler: completionHandler)
             }
         } catch {
@@ -50,10 +65,10 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
         }
     }
 
-    private func tryToGenerateMock(proxy: MockGeneratorXPCProtocol, invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping ([String]?, Error?) -> Void) throws {
+    private func tryToGenerateMock(atProjectURL projectURL: URL, proxy: MockGeneratorXPCProtocol, invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping ([String]?, Error?) -> Void) throws {
         let range = try getRange(selections: try getSelection(invocation: invocation))
         let actualLineNumber = range.start.line + 1
-        proxy.generateMock(fromFileContents: invocation.buffer.completeBuffer, line: actualLineNumber, column: range.start.column, withReply: completionHandler)
+        proxy.generateMock(fromFileContents: invocation.buffer.completeBuffer, projectURL: projectURL, line: actualLineNumber, column: range.start.column, withReply: completionHandler)
     }
 
     private func getSelection(invocation: XCSourceEditorCommandInvocation) throws -> NSMutableArray {
