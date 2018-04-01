@@ -1,6 +1,26 @@
 #!/usr/bin/env bash -e
 
-rm -rf build || true
-xcrun xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath build -scheme SwiftStructureInterface test | xcpretty -t
-xcrun xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath build -scheme MockGenerator test | xcpretty -t
-xcrun xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath build -scheme MockGeneratorApp test | xcpretty -t
+prettyprint() {
+  while read line; do
+    red="\033[1;31m"
+    normal="\033[0m"
+    time=$(awk '{print $1}' <<< $line)
+    file=$(grep -oE '\w+\.swift:[0-9]+' <<< $line)
+    item=$(cut -d' ' -f3- <<< $line)
+    echo -e $red$time" "$file"\t$item"$normal
+  done
+}
+
+echo 'Building'
+xcrun xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath /tmp/build -scheme 'All Tests' clean build-for-testing OTHER_SWIFT_FLAGS="-Xfrontend -debug-time-function-bodies" | grep -E '[0-9\.]+ms' | sort -Vr | head | prettyprint | column -ts $'\t'
+BUILDTIME=$SECONDS
+SECONDS=0
+echo "Running tests"
+xcrun xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath /tmp/build -scheme SwiftStructureInterface test-without-building | xcpretty -t
+
+blue="\033[1;34m"
+normal="\033[0m"
+
+echo
+echo -e $blue$BUILDTIME"s for clean build"$normal
+echo -e $blue$SECONDS"s to run all tests"$normal
