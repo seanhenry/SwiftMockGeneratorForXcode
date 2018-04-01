@@ -27,7 +27,7 @@ extension SwiftElementBuilderTemplate {
     }
 
     func buildChildren() -> [Element] {
-        return getSubStructure()?.flatMap {
+        return getSubStructure()?.compactMap {
             SKElementFactory().build(data: $0, fileText: fileText)
         } ?? []
     }

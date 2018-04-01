@@ -157,6 +157,7 @@
 		35CDF7F6524EC221BE5ED5E7 /* GetterSetterKeywordBlockParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9A5F5EDFF3B46144AE1 /* GetterSetterKeywordBlockParser.swift */; };
 		35CDF8211817BFEEC7A18664 /* VariableDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF3151A8261DBAF65150F /* VariableDeclaration.swift */; };
 		35CDF82EA3EE326B4ED75E98 /* TypeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF5646BAA490CF1EC7B23 /* TypeParser.swift */; };
+		35CDF82EC48F5BFF714DC938 /* String+Optimisations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF006F0A42DD5D3E4F434 /* String+Optimisations.swift */; };
 		35CDF8565148EA9D669DF970 /* SwiftPropertyElementBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF1BE911C7FDF07E89F57 /* SwiftPropertyElementBuilder.swift */; };
 		35CDF8734632D23A68316A26 /* DictionaryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF00E5605D03871771C1E /* DictionaryType.swift */; };
 		35CDF87BB86A3B12776113ED /* SwiftInheritedTypeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF0F73058A06313F9DB0 /* SwiftInheritedTypeBuilder.swift */; };
@@ -477,6 +478,7 @@
 		14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGeneratorXPC.swift; sourceTree = "<group>"; };
 		14CA2DAB1F41349500900937 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		14ECA5DB2011855C00C849CF /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UseCases.framework; path = lib/UseCases.framework; sourceTree = "<group>"; };
+		35CDF006F0A42DD5D3E4F434 /* String+Optimisations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Optimisations.swift"; sourceTree = "<group>"; };
 		35CDF00E5605D03871771C1E /* DictionaryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryType.swift; sourceTree = "<group>"; };
 		35CDF021BEB7062CFB674324 /* LineColumn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineColumn.swift; sourceTree = "<group>"; };
 		35CDF081A1A734EEC26D9892 /* SwiftMethodParameterBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMethodParameterBuilderTests.swift; sourceTree = "<group>"; };
@@ -1063,6 +1065,7 @@
 			children = (
 				35CDFF505E0EFBD4E9D7524F /* LocationConverter.swift */,
 				35CDF9DF7C97223DC08329A7 /* CachedLocationConverter.swift */,
+				35CDF006F0A42DD5D3E4F434 /* String+Optimisations.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -1507,7 +1510,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Sean Henry";
 				TargetAttributes = {
 					14276C601F4F312E00EA7753 = {
@@ -1794,6 +1797,7 @@
 				35CDFDA51916CCD4050EF36C /* SubscriptDeclaration.swift in Sources */,
 				35CDF1646330D2D9CD076C67 /* SwiftSubscriptDeclaration.swift in Sources */,
 				35CDFAA5F8A245F89D5CC8A0 /* CachedLocationConverter.swift in Sources */,
+				35CDF82EC48F5BFF714DC938 /* String+Optimisations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2223,6 +2227,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -2230,6 +2235,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -2259,7 +2265,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2281,6 +2286,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -2288,6 +2294,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

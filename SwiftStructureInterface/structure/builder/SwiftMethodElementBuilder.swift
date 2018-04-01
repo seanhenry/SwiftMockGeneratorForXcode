@@ -20,7 +20,7 @@ class SwiftMethodElementBuilder: NamedSwiftElementBuilderTemplate {
         return (getSubStructure() ?? [])
             .filter { $0["key.kind"] as? String == "source.lang.swift.decl.var.parameter" }
             .map { SwiftMethodParameterBuilder(data: $0, fileText: fileText).build() }
-            .flatMap { $0 as? Parameter }
+            .compactMap { $0 as? Parameter }
     }
 
     private func buildReturnType(methodOffset: Int64, parameters: [Parameter]) -> Element? {

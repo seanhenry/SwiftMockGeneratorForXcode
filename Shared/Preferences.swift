@@ -24,7 +24,7 @@ class Preferences {
 
     var projectPathHistory: [URL] {
         return userDefaults.stringArray(forKey: projectPathHistoryKey)?
-            .flatMap { URL(string: $0) }
+            .compactMap { URL(string: $0) }
             ?? []
     }
 

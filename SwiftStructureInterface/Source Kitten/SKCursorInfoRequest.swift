@@ -10,6 +10,6 @@ public class SKCursorInfoRequest: CursorInfoRequest {
 
     public func getCursorInfo(filePath: String, offset: Int64) throws -> [String: Any] {
         let arguments = files + [filePath]
-        return Request.cursorInfo(file: filePath, offset: offset, arguments: arguments).send()
+        return try Request.cursorInfo(file: filePath, offset: offset, arguments: arguments).send()
     }
 }

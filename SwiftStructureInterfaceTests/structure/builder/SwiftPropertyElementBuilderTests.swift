@@ -2,10 +2,6 @@ import XCTest
 import SourceKittenFramework
 @testable import SwiftStructureInterface
 
-protocol P {
-    unowned(safe) var a : NSObject { get }
-    unowned(unsafe) var b : NSObject { get }
-}
 class SwiftPropertyElementBuilderTests: XCTestCase {
 
     // This is a trivial implementation so far. Enough to detect protocol properties.

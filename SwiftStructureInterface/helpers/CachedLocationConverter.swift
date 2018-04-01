@@ -8,7 +8,7 @@ class CachedLocationConverter {
 
     init(_ text: String) {
         self.text = text
-        lines = CachedLocationConverter.appendNewlines(to: text.components(separatedBy: .newlines))
+        lines = CachedLocationConverter.appendNewlines(to: text.getLines())
         lineOffsets = CachedLocationConverter.createUTF8LineStartOffsets(text, lines)
         lineScalarStartIndexes = CachedLocationConverter.createScalarLineStartIndexes(text, lines)
     }

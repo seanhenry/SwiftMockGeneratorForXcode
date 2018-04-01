@@ -4,7 +4,7 @@ public class LocationConverter {
 
     public static func convert(line: Int, column: Int, in string: String) -> Int64? {
         let zeroBasedLine = line - 1
-        var lines = string.components(separatedBy: .newlines)
+        var lines = string.getLines()
         lines = appendNewlines(to: lines)
         guard areLineAndColumnValid(zeroBasedLine, column, in: lines) else { return nil }
         return findOffset(atLine: zeroBasedLine, atColumn: column, in: lines)
@@ -49,7 +49,7 @@ public class LocationConverter {
 
     public static func convert(caretOffset: Int64, in string: String) -> (line: Int, column: Int)? {
         guard isOffsetValid(Int(caretOffset), in: string) else { return nil }
-        let strings = string.components(separatedBy: .newlines)
+        let strings = string.getLines()
         var remainingOffset = Int(caretOffset)
         let zeroBasedLine = findLineNumber(inLines: strings, remainingOffset: &remainingOffset)
         let column = findColumnNumber(inLine: strings[zeroBasedLine], remainingOffset: &remainingOffset)

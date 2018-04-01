@@ -29,7 +29,7 @@ class SwiftFile: SwiftElement, File {
         let text: String
         let offset: Int64
         let length: Int64
-        var children: [Element] { return weakChildren.flatMap { $0.contents } }
+        var children: [Element] { return weakChildren.compactMap { $0.contents } }
         var file: File? {
             set { }
             get { return nil }

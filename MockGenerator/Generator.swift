@@ -51,7 +51,7 @@ public class Generator {
         visitor.properties.forEach { generator.add(property: $0) }
         visitor.methods.forEach { generator.add(method: $0) }
         let mockString = generator.generate()
-        return mockString.components(separatedBy: .newlines)
+        return mockString.getLines()
     }
     
     private static func delete(contentsOf typeElement: TypeDeclaration) -> (File, TypeDeclaration)? {
@@ -62,7 +62,7 @@ public class Generator {
     }
     
     private static func insert(_ mockBody: [String], atTypeElement typeElement: TypeDeclaration, in file: Element) -> [String] {
-        var fileLines = file.text.components(separatedBy: .newlines)
+        var fileLines = file.text.getLines()
         let lineColumn = LocationConverter.convert(caretOffset: typeElement.bodyOffset + typeElement.bodyLength, in: file.text)!
         let zeroBasedLine = lineColumn.line - 1
         let insertIndex = zeroBasedLine
@@ -75,6 +75,6 @@ public class Generator {
         guard let newFile = SKElementFactory().build(from: newFileText) else { return lines }
         FormatUtil.formatRequest = SKFormatRequest()
         let formatted = FormatUtil().format(newFile).text
-        return formatted.components(separatedBy: .newlines)
+        return formatted.getLines()
     }
 }

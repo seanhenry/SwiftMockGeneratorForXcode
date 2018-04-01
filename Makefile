@@ -1,7 +1,7 @@
-SOURCE_KITTEN_SHA=71e8297e5d95118588f8aa8e1de892762346dc9d
+SOURCE_KITTEN_SHA=e06eb730499439ae32c5fbb6f72809ebec2371fd
 SWIFTAST_SHA=87888a78bc264a57536e6c628f4ad4ad02eadd06
 USE_CASE_SHA=c29cbac6631bdfaca299eab833d34b7e74f7abaa
-KOTLIN_NATIVE_SHA=eae130e246dff2502a3f79ee146e333cdc5024bf
+KOTLIN_NATIVE_SHA=e1e4a5ce82051b642511bef7299d6297f29ca2b4
 
 ROOT=$(shell pwd)
 
@@ -22,7 +22,7 @@ YAMS_FRAMEWORK=$(SOURCEKITTEN_PRODUCTS)/Yams.framework
 
 DEST_PATH=$(ROOT)/lib
 
-.PHONY: test bootstrap clean cleanbuild sourcekitten usecases mklib cleansourcekitten mkkotlinnative swiftast
+.PHONY: test bootstrap clean cleanbuild sourcekitten usecases mklib cleansourcekitten mkkotlinnative swiftast xcpretty
 
 bootstrap: cleanbuild sourcekitten swiftast usecases
 
@@ -33,7 +33,7 @@ cleanbuild:
 clean: cleanbuild
 	rm -rf $(SRC_PATH) || true
 
-sourcekitten: cleansourcekitten mklib
+sourcekitten: cleansourcekitten mklib xcpretty
 	if [ -d "$(SOURCEKITTEN_SRC_PATH)/.git" ]; \
 	then \
 	cd $(SOURCEKITTEN_SRC_PATH); \
@@ -46,11 +46,11 @@ sourcekitten: cleansourcekitten mklib
 
 	cd $(SOURCEKITTEN_SRC_PATH); \
 	make bootstrap; \
-	xcrun xcodebuild -workspace SourceKitten.xcworkspace -scheme SourceKittenFramework -configuration Debug -derivedDataPath $(SOURCEKITTEN_BUILD_PATH) clean build
+	xcrun xcodebuild -workspace SourceKitten.xcworkspace -scheme SourceKittenFramework -configuration Debug -derivedDataPath $(SOURCEKITTEN_BUILD_PATH) clean build | xcpretty
 
 	cp -Rf $(SOURCEKITTEN_FRAMEWORK) $(SOURCEKITTEN_DSYM) $(SWXMLHASH_FRAMEWORK) $(YAMS_FRAMEWORK) $(DEST_PATH)
 
-swiftast:
+swiftast: xcpretty
 	if [ -d "$(SWIFTAST_SRC_PATH)/.git" ]; \
 	then \
 	cd $(SWIFTAST_SRC_PATH); \
@@ -61,7 +61,7 @@ swiftast:
 	fi; \
 	git checkout $(SWIFTAST_SHA); \
 	make xcodegen; \
-	xcodebuild -scheme SwiftAST -derivedDataPath build clean build; \
+	xcodebuild -scheme SwiftAST -derivedDataPath build clean build | xcpretty; \
 	cp -Rf build/Build/Products/Debug/*.framework $(DEST_PATH);
 
 
@@ -99,3 +99,6 @@ mklib:
 
 cleansourcekitten:
 	rm -rf $(SOURCEKITTEN_BUILD_PATH) || true
+
+xcpretty:
+	gem install xcpretty || true

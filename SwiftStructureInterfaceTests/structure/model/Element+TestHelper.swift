@@ -7,6 +7,6 @@ extension Element {
     }
 
     var namedChildren: [NamedElement] {
-        return children.flatMap { $0 as? NamedElement }
+        return children.compactMap { $0 as? NamedElement }
     }
 }
