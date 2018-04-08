@@ -1,0 +1,13 @@
+#!/bin/bash -e
+xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath /tmp/build -scheme SwiftStructureInterface clean build-for-testing 1> /dev/null OTHER_SWIFT_FLAGS='-Onone'
+echo $SECONDS"s -Onone"
+SECONDS=0
+xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath /tmp/build -scheme SwiftStructureInterface clean build-for-testing 1> /dev/null SWIFT_WHOLE_MODULE_OPTIMIZATION=YES
+echo $SECONDS"s -whole-module-optimization -Onone"
+
+SECONDS=0
+xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath /tmp/build -scheme SwiftStructureInterface -UseNewBuildSystem=YES clean build-for-testing 1> /dev/null OTHER_SWIFT_FLAGS='-Onone'
+echo $SECONDS"s -Onone -UseNewBuildSystem=1"
+SECONDS=0
+xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath /tmp/build -scheme SwiftStructureInterface -UseNewBuildSystem=YES clean build-for-testing 1> /dev/null SWIFT_WHOLE_MODULE_OPTIMIZATION=YES
+echo $SECONDS"s -whole-module-optimization -Onone -UseNewBuildSystem=1"

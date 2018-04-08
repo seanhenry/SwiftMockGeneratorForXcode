@@ -12,7 +12,10 @@ prettyprint() {
 }
 
 echo 'Building'
+#xcrun xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath build -scheme MockGeneratorApp clean build OTHER_SWIFT_FLAGS="-Xfrontend -debug-time-function-bodies" | grep -E '[0-9\.]+ms' | sort -Vr | head | prettyprint | column -ts $'\t'
 xcrun xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath /tmp/build -scheme 'All Tests' clean build-for-testing OTHER_SWIFT_FLAGS="-Xfrontend -debug-time-function-bodies" | grep -E '[0-9\.]+ms' | sort -Vr | head | prettyprint | column -ts $'\t'
+#xcrun xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath build -scheme SwiftStructureInterface clean build OTHER_SWIFT_FLAGS="-Xfrontend -debug-time-function-bodies -Xfrontend -debug-time-compilation" | grep -E '[0-9\.]+ms'
+#exit 0
 BUILDTIME=$SECONDS
 SECONDS=0
 echo "Running tests"
