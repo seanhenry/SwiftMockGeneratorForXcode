@@ -1,6 +1,6 @@
 SOURCE_KITTEN_SHA=e06eb730499439ae32c5fbb6f72809ebec2371fd
 SWIFTAST_SHA=87888a78bc264a57536e6c628f4ad4ad02eadd06
-USE_CASE_SHA=c29cbac6631bdfaca299eab833d34b7e74f7abaa
+USE_CASE_SHA=1b8f92147545cfb7013699224ee35139acee9579
 KOTLIN_NATIVE_SHA=e1e4a5ce82051b642511bef7299d6297f29ca2b4
 
 ROOT=$(shell pwd)
@@ -78,8 +78,8 @@ usecases: mklib mkkotlinnative
 
 	source ~/.bash_profile; \
 	export PATH=$(KOTLIN_NATIVE_SRC_PATH)/dist/bin:$$PATH; \
-	cd $(USECASES_SRC_PATH)/UseCases; \
-	kotlinc -nomain -p framework -o $(DEST_PATH)/UseCases src;
+	cd $(USECASES_SRC_PATH)/UseCases/src/main/java; \
+	kotlinc -nomain -p framework -o $(DEST_PATH)/UseCases .;
 
 mkkotlinnative:
 	if [ -d "$(KOTLIN_NATIVE_SRC_PATH)/.git" ]; \
