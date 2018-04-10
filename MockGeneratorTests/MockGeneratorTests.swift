@@ -62,6 +62,22 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("ThrowingProtocolMock")
     }
 
+    func test_deepInheritance() {
+        assertMockGeneratesExpected("DeepInheritanceMock")
+    }
+
+    func test_diamondInheritance() {
+        assertMockGeneratesExpected("DiamondInheritanceMock")
+    }
+
+    func test_MultipleProtocol() {
+        assertMockGeneratesExpected("MultipleProtocolMock")
+    }
+
+    func test_overloadingAcrossProtocols() {
+        assertMockGeneratesExpected("RecursiveProtocolMock")
+    }
+
     func test_generatesMockForAllCaretPositions() {
         let expected = readFile(named: "SimpleProtocolMock_expected.swift")
         let caretFile = readFile(named: "CaretSuccessTest.swift")

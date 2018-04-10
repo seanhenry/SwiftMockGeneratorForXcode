@@ -309,6 +309,14 @@ class DefaultValuesMock: DefaultValues {
         invokedBoolCount += 1
         return stubbedBoolResult
     }
+    var invokedString = false
+    var invokedStringCount = 0
+    var stubbedStringResult: String! = ""
+    func string() -> String {
+        invokedString = true
+        invokedStringCount += 1
+        return stubbedStringResult
+    }
     var invokedUnicodeScalar = false
     var invokedUnicodeScalarCount = 0
     var stubbedUnicodeScalarResult: UnicodeScalar! = "!"
