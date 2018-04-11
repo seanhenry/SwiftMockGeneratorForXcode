@@ -21,19 +21,40 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     // MARK: - visit
-
-    func test_visit_shouldGetAllMethodsFromProtocol() {
-        getMethodProtocol().accept(visitor)
-        XCTAssertEqual(visitor.methods.map { $0.name }, ["method", "method2", "method3"])
-        XCTAssertEqual(visitor.methods.map { $0.signature }, ["func method()", "func method2(label name: Type) -> String", "func method3(label name: Type, param: OtherType) -> String"])
-        XCTAssertEqual(visitor.methods.map { getParametersString($0) }, ["", "label name: Type", "label name: Type, param: OtherType"])
+    
+    func test_shouldTransformTypeIdentifier() {
+        assertTypeIs("Type", UseCasesTypeIdentifier.self, "Type")
     }
 
-    func test_visit_shouldGetAllPropertiesFromProtocol() {
-        getPropertyProtocol().accept(visitor)
-        XCTAssertEqual(visitor.properties.map { $0.name }, ["prop1", "prop2", "prop3"])
-        XCTAssertEqual(visitor.properties.map { $0.type }, ["Int", "String!", "NSObject?"])
-        XCTAssertEqual(visitor.properties.map { $0.signature }, ["var prop1: Int { get set }", "var prop2: String! { get }", "weak var prop3: NSObject? { set get }"])
+    func test_shouldTransformGenericType() {
+        assertTypeIs("Type<A>", UseCasesGenericType.self, "Type<A>")
+    }
+
+    func test_shouldTransformGenericTypeWithMultipleArguments() {
+        assertTypeIs("Type<A, B>", UseCasesGenericType.self, "Type<A, B>")
+    }
+
+    func test_shouldTransformGenericTypeWithNestedTypes() {
+        assertTypeIs("Type<A.B>", UseCasesGenericType.self, "Type<A.B>")
+    }
+
+    func test_shouldTransformNestedTypes() {
+        assertTypeIs("A.B.C", UseCasesTypeIdentifier.self, "A.B.C")
+        let type = transform("A.B", UseCasesTypeIdentifier.self)
+        XCTAssertEqual(type.identifiers[0] as! String, "A")
+        XCTAssertEqual(type.identifiers[1] as! String, "B")
+    }
+
+    private func assertTypeIs<T: UseCasesType>(_ input: String, _ t: T.Type, _ text: String, line: UInt = #line) {
+        let type = FileParser(fileContents: input).parseType()
+        let result = MethodGatheringVisitor.transformType(type)
+        XCTAssert(result is T, line: line)
+        XCTAssertEqual(result.text, text, line: line)
+    }
+
+    private func transform<T: UseCasesType>(_ input: String, _ t: T.Type) -> T {
+        let type = FileParser(fileContents: input).parseType()
+        return MethodGatheringVisitor.transformType(type) as! T
     }
 
     // MARK: - Helpers
@@ -68,8 +89,8 @@ class MethodGatheringVisitorTests: XCTestCase {
         """
     }
 
-    private func getParametersString(_ method: UseCasesProtocolMethod) -> String {
-        let parameters = method.parametersList as! [UseCasesParameter]
+    private func getParametersString(_ method: UseCasesMethod) -> String {
+        let parameters = method.parametersList
         return parameters.map { $0.text }.joined(separator: ", ")
     }
 }

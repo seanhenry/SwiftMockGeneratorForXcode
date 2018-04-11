@@ -1,10 +1,37 @@
 import UseCases
 import SwiftStructureInterface
+import Foundation
 
 class MethodGatheringVisitor: RecursiveElementVisitor {
 
-    private(set) var methods = [UseCasesProtocolMethod]()
-    private(set) var properties = [UseCasesProtocolProperty]()
+    private(set) var methods = [UseCasesMethod]()
+    private(set) var properties = [UseCasesProperty]()
+    private(set) var type: UseCasesType = UseCasesTypeIdentifierBuilder(identifier: "").build()
+
+    static func transformType(_ element: Element) -> UseCasesType {
+        let visitor = MethodGatheringVisitor()
+        element.accept(visitor)
+        return visitor.type
+    }
+
+    override func visitTypeIdentifier(_ element: TypeIdentifier) {
+        if element.genericArguments.isEmpty {
+            let identifiers = transformToIdentifiers(element)
+            type = UseCasesTypeIdentifier(identifiers: NSMutableArray(array: identifiers as NSArray))
+        } else {
+            type = UseCasesGenericType(identifier: element.typeName, arguments: element.genericArguments.map { MethodGatheringVisitor.transformType($0) })
+        }
+    }
+
+    private func transformToIdentifiers(_ element: TypeIdentifier) -> [String] {
+        var typeIdentifier: TypeIdentifier? = element
+        var identifiers = [element.typeName]
+        while let parent = typeIdentifier?.parentType {
+            typeIdentifier = parent
+            identifiers.append(parent.typeName)
+        }
+        return identifiers.reversed()
+    }
 
     override func visitFunctionDeclaration(_ element: FunctionDeclaration) {
         methods.append(transform(element))
@@ -45,7 +72,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
         properties.append(UseCasesProtocolProperty(name: element.name,
             type: element.type.text,
             isWritable: element.isWritable,
-            signature: element.text))
+            declarationText: element.text))
         super.visitVariableDeclaration(element)
     }
 }
