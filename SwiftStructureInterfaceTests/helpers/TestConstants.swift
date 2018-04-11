@@ -17,3 +17,4 @@ let testDictionaryType = SwiftDictionaryType(text: "[Int: Int]", children: [], o
 let testOptionalType = SwiftOptionalType(text: "[Int: Int]", children: [], offset: 0, length: 10, type: testType)
 let testInitialiserDeclaration = SwiftInitialiserDeclaration(text: "init()", children: [], offset: 0, length: 6)
 let testSubscriptDeclaration = SwiftSubscriptDeclaration(text: "init()", children: [], offset: 0, length: 6)
+let testTypeIdentifier = SwiftTypeIdentifier(text: "Int", children: [], offset: 0, length: 3, typeName: "Int", genericArguments: [], parentType: nil)

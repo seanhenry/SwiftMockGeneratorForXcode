@@ -29,7 +29,7 @@ class TypeParser: Parser<Type> {
     private func parseTypeExcludingOptional() -> Type? {
         if let protocolCompositionType = parseProtocolCompositionType() {
             return protocolCompositionType
-        } else if let typeIdentifier = parseTypeIdentifier() {
+        } else if let typeIdentifier = parseTypeIdentifiers() {
             return typeIdentifier
         } else if let arrayType = parseArrayType() {
             return arrayType
@@ -45,39 +45,45 @@ class TypeParser: Parser<Type> {
 
     // MARK: - Type identifier
 
-    private func parseTypeIdentifier() -> Type? {
-        guard let type = parseTypeName().last else { return nil }
-        let genericArguments = parseGenericClause(type)
-        if isNext(.dot) {
-            advance()
-            return parseTypeIdentifier()
-        } else {
+    private func parseTypeIdentifiers() -> Type? {
+        var type: TypeIdentifier?
+        while let identifier = parseTypeIdentifier(type) {
+            type = identifier
+            do {
+                try advanceOrFail(if: .dot)
+            } catch {
+                break
+            }
+        }
+        return type
+    }
+
+    private func parseTypeIdentifier(_ parent: TypeIdentifier?) -> TypeIdentifier? {
+        if let identifier = parseIdentifier() {
+            let genericArguments = parseGenericClause()
+            let children = [parent].compactMap { $0 }
             return createTypeElement() { offset, length, text in
                 return SwiftTypeIdentifier(
                     text: text,
-                    children: [type] + genericArguments,
+                    children: children + genericArguments,
                     offset: offset,
                     length: length,
-                    type: type,
-                    genericArguments: genericArguments)
+                    typeName: identifier,
+                    genericArguments: genericArguments,
+                    parentType: parent)
             }
         }
+        return parent
     }
 
     // MARK: - Nested
 
-    private func parseTypeName() -> [Type] {
-        return parseNestedTypes()
-    }
-
-    private func parseNestedTypes() -> [Type] {
-        var types = [Type]()
-        appendIdentifier(to: &types)
-        while isNext(.dot) {
+    private func parseIdentifier() -> String? {
+        if let identifier = peekAtNextIdentifier() {
             advance()
-            appendIdentifier(to: &types)
+            return identifier
         }
-        return types
+        return nil
     }
 
     private func appendIdentifier(to types: inout [Type]) {
@@ -97,7 +103,7 @@ class TypeParser: Parser<Type> {
 
     // MARK: - Generic
 
-    private func parseGenericClause(_ type: Type) -> [Type] {
+    private func parseGenericClause() -> [Type] {
         var clause = [Type]()
         do {
             try advanceOrFail(if: "<")
@@ -199,7 +205,7 @@ class TypeParser: Parser<Type> {
     func parseProtocolCompositionType() -> Type? {
         return tryToParse {
             var types = [Type]()
-            try appendTypeIdentifier(to: &types)
+            try appendTypeIdentifiers(to: &types)
             try appendCompositionRHS(to: &types)
             repeat {
                 try? appendCompositionRHS(to: &types)
@@ -208,10 +214,10 @@ class TypeParser: Parser<Type> {
         }
     }
 
-    private func appendTypeIdentifier(to string: inout [Type]) throws {
+    private func appendTypeIdentifiers(to string: inout [Type]) throws {
         startStack.append(getCurrentStartLocation())
         defer { startStack.removeLast() }
-        if let type = parseTypeIdentifier() {
+        if let type = parseTypeIdentifiers() {
             string.append(type)
         } else {
             throw LookAheadError()
@@ -220,7 +226,7 @@ class TypeParser: Parser<Type> {
 
     private func appendCompositionRHS(to types: inout [Type]) throws {
         try assertAmpBinaryOperator()
-        try appendTypeIdentifier(to: &types)
+        try appendTypeIdentifiers(to: &types)
     }
 
     private func assertAmpBinaryOperator() throws {

@@ -29,6 +29,10 @@ open class ElementVisitor {
         visitType(element)
     }
 
+    open func visitTypeIdentifier(_ element: TypeIdentifier) {
+        visitType(element)
+    }
+
     open func visitFunctionDeclaration(_ element: FunctionDeclaration) {
         visitElement(element)
     }

@@ -1,4 +1,5 @@
 public protocol TypeIdentifier: Type {
-    var type: Type { get }
+    var parentType: TypeIdentifier? { get }
+    var typeName: String { get }
     var genericArguments: [Type] { get }
 }

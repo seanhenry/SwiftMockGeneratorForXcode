@@ -104,6 +104,13 @@ class ElementVisitorTests: XCTestCase {
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
+    func test_visit_typeIdentifierShouldVisitAncestors() {
+        testTypeIdentifier.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitTypeIdentifierCount, 1)
+        XCTAssertEqual(visitor.invokedVisitTypeCount, 1)
+        XCTAssertEqual(visitor.invokedVisitElementCount, 1)
+    }
+
     // MARK: - Helpers
 
     class PartialMockVisitor: ElementVisitor {
@@ -236,6 +243,19 @@ class ElementVisitorTests: XCTestCase {
             invokedVisitOptionalTypeCount += 1
             invokedVisitOptionalTypeParameters = (element, ())
             invokedVisitOptionalTypeParametersList.append((element, ()))
+        }
+
+        var invokedVisitTypeIdentifier = false
+        var invokedVisitTypeIdentifierCount = 0
+        var invokedVisitTypeIdentifierParameters: (element: TypeIdentifier, Void)?
+        var invokedVisitTypeIdentifierParametersList = [(element: TypeIdentifier, Void)]()
+
+        override func visitTypeIdentifier(_ element: TypeIdentifier) {
+            super.visitTypeIdentifier(element)
+            invokedVisitTypeIdentifier = true
+            invokedVisitTypeIdentifierCount += 1
+            invokedVisitTypeIdentifierParameters = (element, ())
+            invokedVisitTypeIdentifierParametersList.append((element, ()))
         }
 
         var invokedVisitTypealias = false
