@@ -88,9 +88,8 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
 
     override func visitVariableDeclaration(_ element: VariableDeclaration) {
         properties.append(UseCasesProperty(name: element.name,
-            type: element.type.text,
+            type: MethodGatheringVisitor.transformType(element.type),
             isWritable: element.isWritable,
-            declarationText: element.text))
-        super.visitVariableDeclaration(element)
+            declarationText_: element.text))
     }
 }

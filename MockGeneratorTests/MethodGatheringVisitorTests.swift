@@ -153,6 +153,47 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssertEqual(parameter.isEscaping, isEscaping)
     }
 
+    func test_visit_shouldTransformProtocolProperty() {
+        let property = transformProperty("var a: B { get }")
+        XCTAssertEqual(property.name, "a")
+        XCTAssertEqual(property.type.text, "B")
+        XCTAssertFalse(property.isWritable)
+    }
+
+    func test_visit_shouldTransformWritableProtocolProperty() {
+        let property = transformProperty("var a: B { get set }")
+        XCTAssertEqual(property.name, "a")
+        XCTAssertEqual(property.type.text, "B")
+        XCTAssert(property.isWritable)
+        XCTAssertEqual(property.declarationText, "var a: B { get set }")
+    }
+
+    func test_visit_shouldTransformComplexTypeProtocolProperty() {
+        let property = transformProperty("var a: [B] { get set }")
+        XCTAssert(property.type is UseCasesArrayType)
+        let array = property.type as! UseCasesArrayType
+        XCTAssertEqual(array.text, "[B]")
+        XCTAssert(array.type is UseCasesTypeIdentifier)
+        XCTAssertEqual(array.type.text, "B")
+    }
+
+    private func transformProperty(_ input: String) -> UseCasesProperty {
+        let property = FileParser(fileContents: input).parseVariableDeclaration()
+        let visitor = MethodGatheringVisitor()
+        property.accept(visitor)
+        return visitor.properties[0]
+    }
+
+    func test_visit_shouldGetAllMethodsFromProtocol() {
+        getMethodProtocol().accept(visitor)
+        XCTAssertEqual(visitor.methods.count, 3)
+    }
+
+    func test_visit_shouldGetAllPropertiesFromProtocol() {
+        getPropertyProtocol().accept(visitor)
+        XCTAssertEqual(visitor.properties.count, 3)
+    }
+
     // MARK: - Helpers
 
     private func getMethodProtocol() -> Element {
