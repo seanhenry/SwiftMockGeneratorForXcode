@@ -40,19 +40,19 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     func test_shouldTransformNestedTypes() {
         assertTypeIs("A.B.C", UseCasesTypeIdentifier.self, "A.B.C")
-        let type = transform("A.B", UseCasesTypeIdentifier.self)
+        let type = transformType("A.B", UseCasesTypeIdentifier.self)
         XCTAssertEqual(type.identifiers[0] as! String, "A")
         XCTAssertEqual(type.identifiers[1] as! String, "B")
     }
 
     func test_shouldTransformArrayType() {
-        let type = transform("[Type]", UseCasesArrayType.self)
+        let type = transformType("[Type]", UseCasesArrayType.self)
         XCTAssertEqual(type.text, "[Type]")
         XCTAssert(type.type is UseCasesTypeIdentifier)
     }
 
     func test_shouldTransformArrayTypeWithComplexType() {
-        let type = transform("[[Int]]", UseCasesArrayType.self)
+        let type = transformType("[[Int]]", UseCasesArrayType.self)
         XCTAssertEqual(type.text, "[[Int]]")
         XCTAssert(type.type is UseCasesArrayType)
         XCTAssertEqual(type.type.text, "[Int]")
@@ -61,33 +61,35 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     func test_shouldTransformDictionaryType() {
-        let type = transform("[A: B]", UseCasesDictionaryType.self)
+        let type = transformType("[A: B]", UseCasesDictionaryType.self)
         XCTAssertEqual(type.text, "[A: B]")
         XCTAssert(type.keyType is UseCasesTypeIdentifier)
         XCTAssert(type.valueType is UseCasesTypeIdentifier)
     }
 
     func test_shouldTransformDictionaryTypeWithComplexTypes() {
-        let type = transform("[[A]: [B: C]]", UseCasesDictionaryType.self)
+        let type = transformType("[[A]: [B: C]]", UseCasesDictionaryType.self)
         XCTAssertEqual(type.text, "[[A]: [B: C]]")
         XCTAssert(type.keyType is UseCasesArrayType)
         XCTAssert(type.valueType is UseCasesDictionaryType)
     }
 
     func test_shouldTransformOptionalType() {
-        let type = transform("A?", UseCasesOptionalType.self)
+        let type = transformType("A?", UseCasesOptionalType.self)
         XCTAssertEqual(type.text, "A?")
         XCTAssert(type.type is UseCasesTypeIdentifier)
     }
 
     func test_shouldTransformComplexOptionalType() {
-        let type = transform("[A]?", UseCasesOptionalType.self)
+        let type = transformType("[A]?", UseCasesOptionalType.self)
         XCTAssertEqual(type.text, "[A]?")
         XCTAssert(type.type is UseCasesArrayType)
     }
 
+    // TODO: support IUO properly
+    // TODO: support Optional<Style>
     func test_shouldTransformIUO() {
-        let type = transform("A!", UseCasesOptionalType.self)
+        let type = transformType("A!", UseCasesOptionalType.self)
         XCTAssertEqual(type.text, "A!")
         XCTAssert(type.isImplicitlyUnwrapped)
         XCTAssert(type.implicitlyUnwrapped)
@@ -100,9 +102,55 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssertEqual(result.text, text, line: line)
     }
 
-    private func transform<T: UseCasesType>(_ input: String, _ t: T.Type) -> T {
+    private func transformType<T: UseCasesType>(_ input: String, _ t: T.Type) -> T {
         let type = FileParser(fileContents: input).parseType()
         return MethodGatheringVisitor.transformType(type) as! T
+    }
+
+    func test_visit_shouldTransformProtocolMethod() {
+        let method = transformMethod("func a()")
+        XCTAssertEqual(method.name, "a")
+        XCTAssert(method.genericParameters.isEmpty)
+        XCTAssert(method.parametersList.isEmpty)
+        XCTAssertEqual(method.returnType.originalType.text, "")
+        XCTAssertEqual(method.returnType.resolvedType.text, "")
+        XCTAssertEqual(method.declarationText, "func a()")
+        XCTAssertFalse(method.throws)
+    }
+
+    func test_visit_shouldTransformProtocolMethodParameters() {
+        let method = transformMethod("func a(a: A, b c: D, _ e: @escaping F)")
+        assertParameter(method.parametersList[0], internalName: "a", type: "A")
+        assertParameter(method.parametersList[1], externalName: "b", internalName: "c", type: "D")
+        assertParameter(method.parametersList[2], externalName: "_", internalName: "e", type: "F") // TODO: support, isEscaping: true)
+        XCTAssertEqual(method.declarationText, "func a(a: A, b c: D, _ e: @escaping F)")
+    }
+
+    func test_visit_shouldTransformThrowingProtocolMethod() {
+        let method = transformMethod("func a() throws")
+        XCTAssert(method.throws)
+    }
+
+    func test_visit_shouldTransformReturningProtocolMethod() {
+        let method = transformMethod("func a() -> A")
+        XCTAssert(method.returnType.originalType is UseCasesTypeIdentifier)
+        XCTAssertEqual(method.returnType.originalType.text, "A")
+        XCTAssertEqual(method.returnType.resolvedType.text, "A")
+    }
+
+    private func transformMethod(_ input: String) -> UseCasesMethod {
+        let method = FileParser(fileContents: input).parseFunctionDeclaration()
+        let visitor = MethodGatheringVisitor()
+        method.accept(visitor)
+        return visitor.methods[0]
+    }
+
+    private func assertParameter(_ parameter: UseCasesParameter, externalName: String = "", internalName: String, type: String, isEscaping: Bool = false, line: UInt = #line) {
+        XCTAssertEqual(parameter.label, externalName)
+        XCTAssertEqual(parameter.name, internalName)
+        XCTAssertEqual(parameter.type.originalType.text, type)
+        XCTAssertEqual(parameter.type.resolvedType.text, type)
+        XCTAssertEqual(parameter.isEscaping, isEscaping)
     }
 
     // MARK: - Helpers

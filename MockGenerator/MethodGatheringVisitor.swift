@@ -54,27 +54,29 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
         super.visitFunctionDeclaration(element)
     }
 
-    private func transform(_ method: FunctionDeclaration) -> UseCasesProtocolMethod {
-        let resolvedReturnType = resolveType(method.returnType)
-        return UseCasesProtocolMethod(
-            name: method.name,
-            returnType: resolvedReturnType.transformedType ?? method.returnType?.text,
-            resolvedReturnType: resolvedReturnType.resolvedType.map { UseCasesType(typeName: $0) },
-            parametersList: transformParameters(from: method),
-            signature: method.text,
-            throws: method.throws
-        )
+    private func transform(_ element: FunctionDeclaration) -> UseCasesMethod {
+        let parameters = transformParameters(from: element)
+        let returnType = element.returnType.map { MethodGatheringVisitor.transformType($0) } ?? UseCasesTypeIdentifier(identifier: "")
+        return UseCasesMethod(name: element.name,
+            genericParameters: [],
+            returnType: UseCasesMethodType(originalType: returnType, resolvedType: returnType, erasedType: returnType),
+            parametersList: parameters,
+            declarationText: element.text,
+            throws: element.throws)
     }
 
-    private func transformParameters(from method: FunctionDeclaration) -> [UseCasesParameter] {
-        return method.parameters.map { p in
-            let (transformedType, resolvedType) = resolveType(p.type)
-            return UseCasesParameter(
-                label: p.externalParameterName ?? p.localParameterName,
-                name: p.localParameterName,
-                type: transformedType ?? p.type.text,
-                resolvedType: resolvedType.map { UseCasesType(typeName: $0) } ?? UseCasesType(typeName: p.type.text),
-                text_: p.text)
+    private func transformGenericParameters(from element: FunctionDeclaration) -> [String] {
+        return [] // TODO: support generic names
+    }
+
+    private func transformParameters(from element: FunctionDeclaration) -> [UseCasesParameter] {
+        return element.parameters.map { parameter in
+            UseCasesParameter(
+                label: parameter.externalParameterName ?? "",
+                name: parameter.localParameterName,
+                type: UseCasesMethodType(originalType: MethodGatheringVisitor.transformType(parameter.type), resolvedType: MethodGatheringVisitor.transformType(parameter.type), erasedType: UseCasesTypeIdentifier(identifier: "z")),
+                text: parameter.text,
+                isEscaping: false)
         }
     }
 
