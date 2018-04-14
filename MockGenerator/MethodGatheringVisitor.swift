@@ -23,6 +23,10 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
         }
     }
 
+    override func visitArrayType(_ element: ArrayType) {
+        type = UseCasesArrayType(type: MethodGatheringVisitor.transformType(element.elementType), useVerboseSyntax: false)
+    }
+
     private func transformToIdentifiers(_ element: TypeIdentifier) -> [String] {
         var typeIdentifier: TypeIdentifier? = element
         var identifiers = [element.typeName]
@@ -69,7 +73,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     }
 
     override func visitVariableDeclaration(_ element: VariableDeclaration) {
-        properties.append(UseCasesProtocolProperty(name: element.name,
+        properties.append(UseCasesProperty(name: element.name,
             type: element.type.text,
             isWritable: element.isWritable,
             declarationText: element.text))

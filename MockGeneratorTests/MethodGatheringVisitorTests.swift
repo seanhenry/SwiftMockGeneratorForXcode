@@ -45,6 +45,21 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssertEqual(type.identifiers[1] as! String, "B")
     }
 
+    func test_shouldTransformArrayType() {
+        let type = transform("[Type]", UseCasesArrayType.self)
+        XCTAssertEqual(type.text, "[Type]")
+        XCTAssert(type.type is UseCasesTypeIdentifier)
+    }
+
+    func test_shouldTransformArrayTypeWithComplexType() {
+        let type = transform("[[Int]]", UseCasesArrayType.self)
+        XCTAssertEqual(type.text, "[[Int]]")
+        XCTAssert(type.type is UseCasesArrayType)
+        XCTAssertEqual(type.type.text, "[Int]")
+        let inner = type.type as! UseCasesArrayType
+        XCTAssert(inner.type is UseCasesTypeIdentifier)
+    }
+
     private func assertTypeIs<T: UseCasesType>(_ input: String, _ t: T.Type, _ text: String, line: UInt = #line) {
         let type = FileParser(fileContents: input).parseType()
         let result = MethodGatheringVisitor.transformType(type)
