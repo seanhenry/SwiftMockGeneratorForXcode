@@ -33,6 +33,12 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
         type = UseCasesDictionaryType(keyType: key, valueType: value, useVerboseSyntax: false)
     }
 
+    override func visitOptionalType(_ element: OptionalType) {
+        let iuo = element.text.hasSuffix("!")
+        let type = MethodGatheringVisitor.transformType(element.type)
+        self.type = UseCasesOptionalType(type: type, isImplicitlyUnwrapped: iuo, useVerboseSyntax: false, implicitlyUnwrapped: iuo)
+    }
+
     private func transformToIdentifiers(_ element: TypeIdentifier) -> [String] {
         var typeIdentifier: TypeIdentifier? = element
         var identifiers = [element.typeName]

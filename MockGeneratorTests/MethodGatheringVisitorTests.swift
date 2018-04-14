@@ -74,6 +74,25 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssert(type.valueType is UseCasesDictionaryType)
     }
 
+    func test_shouldTransformOptionalType() {
+        let type = transform("A?", UseCasesOptionalType.self)
+        XCTAssertEqual(type.text, "A?")
+        XCTAssert(type.type is UseCasesTypeIdentifier)
+    }
+
+    func test_shouldTransformComplexOptionalType() {
+        let type = transform("[A]?", UseCasesOptionalType.self)
+        XCTAssertEqual(type.text, "[A]?")
+        XCTAssert(type.type is UseCasesArrayType)
+    }
+
+    func test_shouldTransformIUO() {
+        let type = transform("A!", UseCasesOptionalType.self)
+        XCTAssertEqual(type.text, "A!")
+        XCTAssert(type.isImplicitlyUnwrapped)
+        XCTAssert(type.implicitlyUnwrapped)
+    }
+
     private func assertTypeIs<T: UseCasesType>(_ input: String, _ t: T.Type, _ text: String, line: UInt = #line) {
         let type = FileParser(fileContents: input).parseType()
         let result = MethodGatheringVisitor.transformType(type)
