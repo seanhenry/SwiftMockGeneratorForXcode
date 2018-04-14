@@ -60,6 +60,20 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssert(inner.type is UseCasesTypeIdentifier)
     }
 
+    func test_shouldTransformDictionaryType() {
+        let type = transform("[A: B]", UseCasesDictionaryType.self)
+        XCTAssertEqual(type.text, "[A: B]")
+        XCTAssert(type.keyType is UseCasesTypeIdentifier)
+        XCTAssert(type.valueType is UseCasesTypeIdentifier)
+    }
+
+    func test_shouldTransformDictionaryTypeWithComplexTypes() {
+        let type = transform("[[A]: [B: C]]", UseCasesDictionaryType.self)
+        XCTAssertEqual(type.text, "[[A]: [B: C]]")
+        XCTAssert(type.keyType is UseCasesArrayType)
+        XCTAssert(type.valueType is UseCasesDictionaryType)
+    }
+
     private func assertTypeIs<T: UseCasesType>(_ input: String, _ t: T.Type, _ text: String, line: UInt = #line) {
         let type = FileParser(fileContents: input).parseType()
         let result = MethodGatheringVisitor.transformType(type)

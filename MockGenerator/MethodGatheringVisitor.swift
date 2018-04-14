@@ -27,6 +27,12 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
         type = UseCasesArrayType(type: MethodGatheringVisitor.transformType(element.elementType), useVerboseSyntax: false)
     }
 
+    override func visitDictionaryType(_ element: DictionaryType) {
+        let key = MethodGatheringVisitor.transformType(element.keyType)
+        let value = MethodGatheringVisitor.transformType(element.valueType)
+        type = UseCasesDictionaryType(keyType: key, valueType: value, useVerboseSyntax: false)
+    }
+
     private func transformToIdentifiers(_ element: TypeIdentifier) -> [String] {
         var typeIdentifier: TypeIdentifier? = element
         var identifiers = [element.typeName]
