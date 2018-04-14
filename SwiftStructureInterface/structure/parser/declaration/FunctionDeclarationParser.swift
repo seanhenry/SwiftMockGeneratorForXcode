@@ -132,7 +132,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
         }
 
         private func skipVarArgs() {
-            if isPrefixOperator("...") {
+            if isPostfixOperator("...") {
                 advance()
             }
         }

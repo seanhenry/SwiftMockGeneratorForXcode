@@ -22,6 +22,10 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     // MARK: - visit
     
+    func test_shouldTransformUnsupportedType() {
+        assertTypeIs("(A, B)", UseCasesTypeIdentifier.self, "(A, B)")
+    }
+
     func test_shouldTransformTypeIdentifier() {
         assertTypeIs("Type", UseCasesTypeIdentifier.self, "Type")
     }

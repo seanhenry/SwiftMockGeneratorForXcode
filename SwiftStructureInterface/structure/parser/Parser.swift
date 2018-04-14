@@ -68,7 +68,7 @@ class Parser<ResultType> {
     }
 
     func peekAtNextParameterIdentifier() -> String? {
-        if let name = peekAtNextKind().namedIdentifier {
+        if let name = peekAtNextKind().namedIdentifier?.text {
             return escapeParameterIdentifier(name)
         } else if isNext(.booleanLiteral(false)) {
             return "false"
@@ -88,7 +88,7 @@ class Parser<ResultType> {
     }
 
     func peekAtNextIdentifier() -> String? {
-        return peekAtNextKind().namedIdentifier
+        return peekAtNextKind().namedIdentifier?.text
     }
 
     func isNext(_ kind: Token.Kind) -> Bool {
@@ -359,7 +359,7 @@ class Parser<ResultType> {
     }
 
     func parseAssociatedTypeDeclaration() -> Element {
-        return parseDeclaration(AssociatedTypeDeclarationParser.self, .identifier("associatedtype"))
+        return parseDeclaration(AssociatedTypeDeclarationParser.self, .identifier("associatedtype", false))
     }
 
     func parseTypealiasDeclaration() -> Element {

@@ -14,6 +14,10 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
         return visitor.type
     }
 
+    override func visitType(_ element: Type) {
+        type = UseCasesTypeIdentifier(identifier: element.text)
+    }
+
     override func visitTypeIdentifier(_ element: TypeIdentifier) {
         if element.genericArguments.isEmpty {
             let identifiers = transformToIdentifiers(element)

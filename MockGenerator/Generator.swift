@@ -45,13 +45,18 @@ public class Generator {
     }
     
     private static func getMockBody(fromResolvedProtocol resolvedProtocol: Element) -> [String] {
-        let generator = UseCasesMockGenerator()
+        let view = UseCasesCallbackMockView { model in
+            let view = MustacheView()
+            view.render(model: model)
+            return view.result
+        }
+        let generator = UseCasesMockViewPresenter(view: view)
         let visitor = MethodGatheringVisitor()
         resolvedProtocol.accept(visitor)
         visitor.properties.forEach { generator.add(property: $0) }
         visitor.methods.forEach { generator.add(method: $0) }
-        let mockString = generator.generate()
-        return mockString.getLines()
+        generator.generate()
+        return view.result
     }
     
     private static func delete(contentsOf typeElement: TypeDeclaration) -> (File, TypeDeclaration)? {

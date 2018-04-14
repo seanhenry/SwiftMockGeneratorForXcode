@@ -37,7 +37,7 @@ class SwiftASTLexerTests: XCTestCase {
         lexer.advanceOperator(">")
         XCTAssert(lexer.isNext("!"))
         lexer.advanceOperator("!")
-        XCTAssert(lexer.isNext(.identifier("test")))
+        XCTAssert(lexer.isNext(.identifier("test", false)))
     }
 
     func test_advanceOperator_shouldPreserveCorrectPreviousLocation() {
