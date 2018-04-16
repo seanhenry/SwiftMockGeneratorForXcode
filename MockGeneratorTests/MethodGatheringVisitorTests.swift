@@ -166,6 +166,13 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssertEqual(method.returnType.resolvedType.text, "A")
     }
 
+    func test_visit_shouldTransformGenericParameters() {
+        let method = transformMethod("func a<T, U: A, V: B & C>()")
+        XCTAssertEqual(method.genericParameters[0], "T")
+        XCTAssertEqual(method.genericParameters[1], "U")
+        XCTAssertEqual(method.genericParameters[2], "V")
+    }
+
     private func transformMethod(_ input: String) -> UseCasesMethod {
         let method = FileParser(fileContents: input).parseFunctionDeclaration()
         let visitor = MethodGatheringVisitor()
