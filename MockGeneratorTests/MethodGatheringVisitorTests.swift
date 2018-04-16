@@ -22,10 +22,6 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     // MARK: - visit
     
-    func test_shouldTransformUnsupportedType() {
-        assertTypeIs("(A, B)", UseCasesTypeIdentifier.self, "(A, B)")
-    }
-
     func test_shouldTransformTypeIdentifier() {
         assertTypeIs("Type", UseCasesTypeIdentifier.self, "Type")
     }
@@ -118,6 +114,13 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssertEqual(type.text, "(A, [B]) -> ()")
         XCTAssertEqual(type.arguments[0].text, "A")
         XCTAssertEqual(type.arguments[1].text, "[B]")
+    }
+
+    func test_shouldTransformTupleType() {
+        let type = transformType("(a: A, b: [B])", UseCasesTupleType.self)
+        XCTAssertEqual(type.text, "(A, [B])")
+        XCTAssertEqual(type.elements[0].text, "A")
+        XCTAssertEqual(type.elements[1].text, "[B]")
     }
 
     private func assertTypeIs<T: UseCasesType>(_ input: String, _ t: T.Type, _ text: String, line: UInt = #line) {

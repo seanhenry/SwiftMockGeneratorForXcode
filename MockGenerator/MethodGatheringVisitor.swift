@@ -49,6 +49,10 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
             throws: element.throws)
     }
 
+    override func visitTupleType(_ element: TupleType) {
+        type = UseCasesTupleType(elements: element.elements.map { MethodGatheringVisitor.transformType($0.typeAnnotation.type) })
+    }
+
     private func transformToIdentifiers(_ element: TypeIdentifier) -> [String] {
         var typeIdentifier: TypeIdentifier? = element
         var identifiers = [element.typeName]
