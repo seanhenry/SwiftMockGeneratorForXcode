@@ -44,6 +44,6 @@ class AttributeParserTests: XCTestCase {
     // MARK: - Helpers
 
     func assertAttributes(_ input: String, _ expected: String, line: UInt = #line) {
-        XCTAssertEqual(createParser(input, AttributeParser.self).parse(), expected, line: line)
+        XCTAssertEqual(createParser(input, AttributeParser.self).parse().joined(separator: " "), expected, line: line)
     }
 }

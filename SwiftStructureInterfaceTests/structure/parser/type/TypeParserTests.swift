@@ -411,83 +411,146 @@ class TypeParserTests: XCTestCase {
 
     // MARK: - Tuple
 
-    func test_parse_shouldParseEmptyImplicitArgumentTuple() {
-        assertTypeText("()", "()")
+    func test_parse_shouldParseEmptyTuple() {
+        let type = parse("()") as! TupleType
+        XCTAssert(type.elements.isEmpty)
+        XCTAssertEqual(type.text, "()")
+        XCTAssertEqual(type.offset, 0)
+        XCTAssertEqual(type.length, 2)
     }
 
     func test_parse_shouldParseSingleBracketedType() {
-        assertTypeText("(Type)", "(Type)")
-        assertTypeText("(Generic<Type>.Nested)", "(Generic<Type>.Nested)")
-        assertTypeText("([Int])", "([Int])")
-        assertTypeText("([Int:String])", "([Int:String])")
+        let type = parse("(Type)") as! TupleType
+        XCTAssertEqual(type.elements.count, 1)
+        XCTAssertNil(type.elements[0].label)
+        XCTAssert(type.elements[0].typeAnnotation.attributes.isEmpty)
+        XCTAssertFalse(type.elements[0].typeAnnotation.isInout)
+        XCTAssertEqual(type.elements[0].typeAnnotation.type.text, "Type")
+        XCTAssertEqual(type.elements[0].typeAnnotation.text, "Type")
+        XCTAssertEqual(type.elements[0].typeAnnotation.offset, 1)
+        XCTAssertEqual(type.elements[0].typeAnnotation.length, 4)
     }
 
-    func test_parse_shouldParseMultipleTypeImplicitArgumentTuple() {
-        assertTypeText("(TypeA, TypeB)", "(TypeA, TypeB)")
-        assertTypeText("(Generic<Type>.Nested, Nested.Type)", "(Generic<Type>.Nested, Nested.Type)")
-        assertTypeText("([Int], [String:Int])", "([Int], [String:Int])")
+    func test_parse_shouldParseSingleBracketedTypeWithAttributes() {
+        let type = parse("(@a @b inout Type)") as! TupleType
+        XCTAssertEqual(type.elements.count, 1)
+        XCTAssertNil(type.elements[0].label)
+        XCTAssertEqual(type.elements[0].typeAnnotation.attributes, ["@a", "@b"])
+        XCTAssert(type.elements[0].typeAnnotation.isInout)
     }
 
-    func test_parse_shouldParseOptionalImplicitArgumentTuple() {
-        assertTypeText("()?", "()?")
-        assertTypeText("(TypeA)?", "(TypeA)?")
-        assertTypeText("(TypeA, TypeB)?", "(TypeA, TypeB)?")
-        assertTypeText("(Generic<Type>.Nested?, Nested.Type?)?", "(Generic<Type>.Nested?, Nested.Type?)?")
-        assertTypeText("([Int?], [String?:Int?]?)?", "([Int?], [String?:Int?]?)?")
+    func test_parse_shouldParseMultipleArgumentsTuple() {
+        let type = parse("(TypeA, [String:Int])") as! TupleType
+        XCTAssertEqual(type.elements.count, 2)
+        XCTAssertEqual(type.elements[0].text, "TypeA")
+        XCTAssertEqual(type.elements[0].offset, 1)
+        XCTAssertEqual(type.elements[1].text, "[String:Int]")
+        XCTAssertEqual(type.elements[1].offset, 8)
+    }
+
+    func test_parse_shouldParseOptionalEmptyTuple() {
+        let type = parse("()?") as! OptionalType
+        let tuple = type.type as! TupleType
+        XCTAssertEqual(type.text, "()?")
+        XCTAssertEqual(tuple.elements.count, 0)
+        XCTAssertEqual(tuple.text, "()")
+    }
+
+    func test_parse_shouldParseOptionalTuple() {
+        let type = parse("(TypeA, [Int])?") as! OptionalType
+        let tuple = type.type as! TupleType
+        XCTAssertEqual(type.text, "(TypeA, [Int])?")
+        XCTAssertEqual(tuple.text, "(TypeA, [Int])")
+        XCTAssertEqual(tuple.elements.count, 2)
+        XCTAssertEqual(tuple.elements[0].text, "TypeA")
+        XCTAssertEqual(tuple.elements[0].offset, 1)
+        XCTAssertEqual(tuple.elements[1].text, "[Int]")
+        XCTAssertEqual(tuple.elements[1].offset, 8)
     }
 
     func test_parse_shouldParseExplicitArgumentTuple() {
-        assertTypeText("(a: A)", "(a: A)")
-        assertTypeText("(a: A, b: B)", "(a: A, b: B)")
-        assertTypeText("(a: [Int?]!, b: B.C<D>?)", "(a: [Int?]!, b: B.C<D>?)")
+        let type = parse("(a: A, b, c: C.C<C>?)") as! TupleType
+        XCTAssertEqual(type.elements[0].label, "a")
+        XCTAssertNil(type.elements[1].label)
+        XCTAssertEqual(type.elements[2].label, "c")
     }
 
-    func test_parse_shouldParseMixedExplicitAndImplicitArgumentTuple() {
-        assertTypeText("(a: A, B)", "(a: A, B)")
-        assertTypeText("(A, b: B)", "(A, b: B)")
+    func test_parse_shouldIgnoreWildcardArgumentsInTuple() {
+        let type = parse("(_: A, _ b: B)") as! TupleType
+        XCTAssertNil(type.elements[0].label)
+        XCTAssertEqual(type.elements[1].label, "b")
+        XCTAssertEqual(type.text, "(_: A, _ b: B)")
     }
 
-    func test_parse_shouldParseTupleWithAttributes() {
-        assertTypeText("(a: @objc(a) @another A, @a B)", "(a: @objc(a) @another A, @a B)")
-    }
-
-    func test_parse_shouldParseTupleWithInout() {
-        assertTypeText("(a: inout A, inout B)", "(a: inout A, inout B)")
-    }
-
-    func test_parse_shouldParseTupleWithInoutAndAttributes() {
-        assertTypeText("(a: @a @b inout A, @c inout B)", "(a: @a @b inout A, @c inout B)")
+    func test_parse_shouldAddTupleTypesToTupleChildren() {
+        let type = parse("(a: A, b: B)") as! TupleType
+        XCTAssert(type.children[0] === type.elements[0])
+        XCTAssert(type.children[1] === type.elements[1])
+        XCTAssert(type.elements[0].children[0] === type.elements[0].typeAnnotation)
     }
 
     // MARK: - Function type
 
     func test_parse_shouldParseEmptyFunction() {
-        assertTypeText("() -> ()", "() -> ()")
+        let type = parse("() -> ()") as! FunctionType
+        XCTAssert(type.attributes.isEmpty)
+        XCTAssertEqual(type.arguments.text, "()")
+        XCTAssertEqual(type.returnType.text, "()")
+        XCTAssertFalse(type.throws)
+        XCTAssertFalse(type.rethrows)
+        XCTAssertEqual(type.offset, 0)
+        XCTAssertEqual(type.length, 8)
+        XCTAssertEqual(type.text, "() -> ()")
     }
 
     func test_parse_shouldParseFunctionWithReturnType() {
-        assertTypeText("() -> Void", "() -> Void")
-        assertTypeText("() -> String", "() -> String")
+        let type = parse("() -> String") as! FunctionType
+        XCTAssertEqual(type.returnType.text, "String")
+        XCTAssertEqual(type.returnType.offset, 6)
+        XCTAssertEqual(type.returnType.length, 6)
+    }
+
+    func test_parse_shouldParseFunctionWithArgument() {
+        let type = parse("(A) -> ()") as! FunctionType
+        XCTAssertEqual(type.arguments.text, "(A)")
     }
 
     func test_parse_shouldParseFunctionWithWildcardArgument() {
-        assertTypeText("(_ a: A) -> ()", "(_ a: A) -> ()")
+        let type = parse("(_ a: A) -> ()") as! FunctionType
+        XCTAssertEqual(type.arguments.text, "(_ a: A)")
     }
 
     func test_parse_shouldParseFunctionWithMissingReturnType() {
-        assertTypeText("() -> ", "() ->")
+        XCTAssertNotNil(parse("() -> ") as? FunctionType)
     }
 
     func test_parse_shouldParseThrowingFunction() {
-        assertTypeText("() throws -> ()", "() throws -> ()")
+        let type = parse("() throws -> ()") as! FunctionType
+        XCTAssert(type.throws)
     }
 
     func test_parse_shouldParseRethrowingFunction() {
-        assertTypeText("() rethrows -> ()", "() rethrows -> ()")
+        let type = parse("() rethrows -> ()") as! FunctionType
+        XCTAssert(type.rethrows)
+    }
+
+    func test_parse_shouldParseAttributes() {
+        let type = parse("@escaping @b () -> ()") as! FunctionType
+        XCTAssertEqual(type.attributes[0], "@escaping")
+        XCTAssertEqual(type.attributes[1], "@b")
     }
 
     func test_parse_shouldParseComplexFunction() {
-        assertTypeText("@escaping @autoclosure (_ gen: @a inout Generic.Type<Inner>?, opt: Int?, @a inout T) rethrows -> [(String, returnType: Int):Int]", "@escaping @autoclosure (_ gen: @a inout Generic.Type<Inner>?, opt: Int?, @a inout T) rethrows -> [(String, returnType: Int):Int]")
+        let text = "@escaping @autoclosure (_ gen: @a inout Generic.Type<Inner>?, opt: Int?, @a inout T) rethrows -> [(String, returnType: Int):Int]"
+        let type = parse(text)
+        XCTAssert(type is FunctionType)
+        XCTAssertEqual(type.text, text)
+    }
+
+    func test_parse_shouldSetFunctionChildren() {
+        let type = parse("(A) -> B") as! FunctionType
+        XCTAssert(type.children[0] === type.arguments)
+        XCTAssert(type.children[1] === type.returnType)
     }
 
     // MARK: - Helpers

@@ -1,11 +1,11 @@
-class AttributeParser: Parser<String> {
+class AttributeParser: Parser<[String]> {
 
-    override func parse(start: LineColumn) -> String {
+    override func parse(start: LineColumn) -> [String] {
         var attributes = [String]()
         while isNext(.at) {
             attributes.append(parseAttribute())
         }
-        return attributes.joined(separator: " ")
+        return attributes
     }
 
     private func parseAttribute() -> String {

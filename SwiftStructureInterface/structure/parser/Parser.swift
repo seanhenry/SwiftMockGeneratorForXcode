@@ -258,18 +258,9 @@ class Parser<ResultType> {
         }
     }
 
-    func tryToAppendTypeAnnotation(to string: inout String) {
-        tryToAppend(.colon, value: ": ", to: &string)
-        tryToAppendAttributes(to: &string)
-        tryToAppendInout(to: &string)
-        tryToAppendType(to: &string)
-    }
-
     func tryToAppendAttributes(to string: inout String) {
         let attributes = parseAttributes()
-        if attributes != "" {
-            string.append(attributes + " ")
-        }
+        string.append(attributes.joined(separator: " "))
     }
 
     func tryToAppendType(to string: inout String) {
@@ -294,6 +285,14 @@ class Parser<ResultType> {
         return parse(TypeParser.self)
     }
 
+    func parseTypeAnnotation() -> TypeAnnotation {
+        return parse(TypeAnnotationParser.self)
+    }
+
+    func parseTupleTypeElement() -> TupleTypeElement {
+        return parse(TypeParser.TupleTypeElementParser.self)
+    }
+
     func parseTypeCodeBlock() -> CodeBlock {
         return parse(CodeBlockParser.self)
     }
@@ -306,7 +305,7 @@ class Parser<ResultType> {
         return parseDeclaration(ProtocolDeclarationParser.self, .protocol)
     }
 
-    func parseAttributes() -> String {
+    func parseAttributes() -> [String] {
         return parse(AttributeParser.self)
     }
 
