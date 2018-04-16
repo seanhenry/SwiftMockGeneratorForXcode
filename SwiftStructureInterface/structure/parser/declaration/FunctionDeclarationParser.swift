@@ -117,7 +117,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
             return nil
         }
 
-        private func parseParameterType() -> Element {
+        private func parseParameterType() -> Type {
             skipTypeAnnotation()
             let type = parseType()
             skipVarArgs()

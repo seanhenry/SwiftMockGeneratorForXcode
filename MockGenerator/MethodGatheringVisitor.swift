@@ -91,16 +91,21 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
             UseCasesParameter(
                 label: parameter.externalParameterName ?? "",
                 name: parameter.localParameterName,
-                type: UseCasesMethodType(originalType: MethodGatheringVisitor.transformType(parameter.type), resolvedType: MethodGatheringVisitor.transformType(parameter.type), erasedType: UseCasesTypeIdentifier(identifier: "z")),
+                type: UseCasesMethodType(originalType: MethodGatheringVisitor.transformType(parameter.type), resolvedType: resolveAndTransform(parameter.type), erasedType: UseCasesTypeIdentifier(identifier: "z")),
                 text: parameter.text,
                 isEscaping: false)
         }
     }
 
-    private func resolveType(_ type: Element?) -> (transformedType: String?, resolvedType: String?) {
+    private func resolveAndTransform(_ type: Type) -> UseCasesType {
+        let resolved = resolveType(type)
+        return MethodGatheringVisitor.transformType(resolved)
+    }
+
+    private func resolveType(_ type: Type) -> Type {
         let visitor = TypeResolverVisitor(resolveUtil: ResolveUtil())
-        type?.accept(visitor)
-        return (visitor.transformedType, visitor.resolvedType)
+        type.accept(visitor)
+        return visitor.resolvedType ?? type
     }
 
     override func visitVariableDeclaration(_ element: VariableDeclaration) {
