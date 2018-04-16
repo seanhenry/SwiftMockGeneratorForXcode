@@ -61,6 +61,10 @@ open class ElementVisitor {
         visitElement(element)
     }
 
+    open func visitGenericParameter(_ element: GenericParameter) {
+        visitElement(element)
+    }
+
     open func visitTypealias(_ element: Typealias) {
         visitElement(element)
     }

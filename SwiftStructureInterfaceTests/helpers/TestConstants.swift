@@ -9,7 +9,8 @@ let emptyVariableDeclaration = SwiftVariableDeclaration(name: "", text: "", chil
 let testType = SwiftType(text: "Int", children: [], offset: 0, length: 3)
 let testTypealiasAssignment = SwiftTypealiasAssignment(text: "= Type", children: [testType], offset: 0, length: 6, type: testType)
 let testTypealias = SwiftTypealias(text: "Int", children: [], offset: 0, length: 3, name: "Type", typealiasAssignment: testTypealiasAssignment)
-let testGenericParameterClause = SwiftGenericParameterClause(text: "<T>", children: [], offset: 0, length: 3)
+let testGenericParameterClause = FileParser(fileContents: "<T>").parseGenericParameterClause()
+let testGenericParameter = testGenericParameterClause.parameters[0]
 let testFunctionDeclaration = SwiftFunctionDeclaration(name: "myMethod", text: "func myMethod()", children: [], offset: 0, length: 15, returnType: nil, genericParameterClause: testGenericParameterClause, parameters: [], throws: false)
 let testFunctionParameter = SwiftParameter(text: "a: Int", children: [testType], offset: 0, length: 6, externalParameterName: nil, localParameterName: "a", type: testType)
 let testArrayType = SwiftArrayType(text: "[Int]", children: [], offset: 0, length: 5, elementType: testType)

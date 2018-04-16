@@ -137,6 +137,12 @@ class ElementVisitorTests: XCTestCase {
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
+    func test_visit_genericParameterShouldVisitAncestors() {
+        testGenericParameter.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitGenericParameterCount, 1)
+        XCTAssertEqual(visitor.invokedVisitElementCount, 1)
+    }
+
     // MARK: - Helpers
 
     class PartialMockVisitor: ElementVisitor {
@@ -217,6 +223,19 @@ class ElementVisitorTests: XCTestCase {
             invokedVisitGenericParameterClauseCount += 1
             invokedVisitGenericParameterClauseParameters = (element, ())
             invokedVisitGenericParameterClauseParametersList.append((element, ()))
+        }
+
+        var invokedVisitGenericParameter = false
+        var invokedVisitGenericParameterCount = 0
+        var invokedVisitGenericParameterParameters: (element: GenericParameter, Void)?
+        var invokedVisitGenericParameterParametersList = [(element: GenericParameter, Void)]()
+
+        override func visitGenericParameter(_ element: GenericParameter) {
+            super.visitGenericParameter(element)
+            invokedVisitGenericParameter = true
+            invokedVisitGenericParameterCount += 1
+            invokedVisitGenericParameterParameters = (element, ())
+            invokedVisitGenericParameterParametersList.append((element, ()))
         }
 
         var invokedVisitType = false
