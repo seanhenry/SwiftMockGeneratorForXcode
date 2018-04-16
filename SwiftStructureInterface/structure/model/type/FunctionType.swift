@@ -1,4 +1,4 @@
-protocol FunctionType: Type {
+public protocol FunctionType: Type {
     var attributes: [String] { get }
     var arguments: TupleType { get }
     var returnType: Element { get }

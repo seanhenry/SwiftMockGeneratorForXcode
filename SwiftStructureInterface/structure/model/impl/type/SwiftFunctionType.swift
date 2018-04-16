@@ -14,4 +14,8 @@ class SwiftFunctionType: SwiftType, FunctionType {
         self.rethrows = `rethrows`
         super.init(text: text, children: children, offset: offset, length: length)
     }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitFunctionType(self)
+    }
 }

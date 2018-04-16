@@ -111,6 +111,32 @@ class ElementVisitorTests: XCTestCase {
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
+    func test_visit_tupleTypeShouldVisitAncestors() {
+        testTupleType.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitTupleTypeCount, 1)
+        XCTAssertEqual(visitor.invokedVisitTypeCount, 1)
+        XCTAssertEqual(visitor.invokedVisitElementCount, 1)
+    }
+
+    func test_visit_tupleTypeElementShouldVisitAncestors() {
+        testTupleTypeElement.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitTupleTypeElementCount, 1)
+        XCTAssertEqual(visitor.invokedVisitElementCount, 1)
+    }
+
+    func test_visit_typeAnnotationShouldVisitAncestors() {
+        testTypeAnnotation.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitTypeAnnotationCount, 1)
+        XCTAssertEqual(visitor.invokedVisitElementCount, 1)
+    }
+
+    func test_visit_functionTypeShouldVisitAncestors() {
+        testFunctionType.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitFunctionTypeCount, 1)
+        XCTAssertEqual(visitor.invokedVisitTypeCount, 1)
+        XCTAssertEqual(visitor.invokedVisitElementCount, 1)
+    }
+
     // MARK: - Helpers
 
     class PartialMockVisitor: ElementVisitor {
@@ -256,6 +282,58 @@ class ElementVisitorTests: XCTestCase {
             invokedVisitTypeIdentifierCount += 1
             invokedVisitTypeIdentifierParameters = (element, ())
             invokedVisitTypeIdentifierParametersList.append((element, ()))
+        }
+
+        var invokedVisitTupleType = false
+        var invokedVisitTupleTypeCount = 0
+        var invokedVisitTupleTypeParameters: (element: TupleType, Void)?
+        var invokedVisitTupleTypeParametersList = [(element: TupleType, Void)]()
+
+        override func visitTupleType(_ element: TupleType) {
+            super.visitTupleType(element)
+            invokedVisitTupleType = true
+            invokedVisitTupleTypeCount += 1
+            invokedVisitTupleTypeParameters = (element, ())
+            invokedVisitTupleTypeParametersList.append((element, ()))
+        }
+
+        var invokedVisitTupleTypeElement = false
+        var invokedVisitTupleTypeElementCount = 0
+        var invokedVisitTupleTypeElementParameters: (element: TupleTypeElement, Void)?
+        var invokedVisitTupleTypeElementParametersList = [(element: TupleTypeElement, Void)]()
+
+        override func visitTupleTypeElement(_ element: TupleTypeElement) {
+            super.visitTupleTypeElement(element)
+            invokedVisitTupleTypeElement = true
+            invokedVisitTupleTypeElementCount += 1
+            invokedVisitTupleTypeElementParameters = (element, ())
+            invokedVisitTupleTypeElementParametersList.append((element, ()))
+        }
+
+        var invokedVisitTypeAnnotation = false
+        var invokedVisitTypeAnnotationCount = 0
+        var invokedVisitTypeAnnotationParameters: (element: TypeAnnotation, Void)?
+        var invokedVisitTypeAnnotationParametersList = [(element: TypeAnnotation, Void)]()
+
+        override func visitTypeAnnotation(_ element: TypeAnnotation) {
+            super.visitTypeAnnotation(element)
+            invokedVisitTypeAnnotation = true
+            invokedVisitTypeAnnotationCount += 1
+            invokedVisitTypeAnnotationParameters = (element, ())
+            invokedVisitTypeAnnotationParametersList.append((element, ()))
+        }
+
+        var invokedVisitFunctionType = false
+        var invokedVisitFunctionTypeCount = 0
+        var invokedVisitFunctionTypeParameters: (element: FunctionType, Void)?
+        var invokedVisitFunctionTypeParametersList = [(element: FunctionType, Void)]()
+
+        override func visitFunctionType(_ element: FunctionType) {
+            super.visitFunctionType(element)
+            invokedVisitFunctionType = true
+            invokedVisitFunctionTypeCount += 1
+            invokedVisitFunctionTypeParameters = (element, ())
+            invokedVisitFunctionTypeParametersList.append((element, ()))
         }
 
         var invokedVisitTypealias = false

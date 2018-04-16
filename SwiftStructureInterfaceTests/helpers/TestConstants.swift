@@ -18,3 +18,7 @@ let testOptionalType = SwiftOptionalType(text: "[Int: Int]", children: [], offse
 let testInitialiserDeclaration = SwiftInitialiserDeclaration(text: "init()", children: [], offset: 0, length: 6)
 let testSubscriptDeclaration = SwiftSubscriptDeclaration(text: "init()", children: [], offset: 0, length: 6)
 let testTypeIdentifier = SwiftTypeIdentifier(text: "Int", children: [], offset: 0, length: 3, typeName: "Int", genericArguments: [], parentType: nil)
+let testTupleType = FileParser(fileContents: "(Int)").parseType() as! TupleType
+let testTupleTypeElement = testTupleType.elements[0]
+let testTypeAnnotation = testTupleTypeElement.typeAnnotation
+let testFunctionType = FileParser(fileContents: "() -> ()").parseType() as! FunctionType

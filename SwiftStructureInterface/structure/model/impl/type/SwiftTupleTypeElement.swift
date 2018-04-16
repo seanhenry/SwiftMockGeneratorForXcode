@@ -10,4 +10,8 @@ class SwiftTupleTypeElement: SwiftElement, TupleTypeElement {
         self.typeAnnotation = typeAnnotation
         super.init(text: text, children: children, offset: offset, length: length)
     }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitTupleTypeElement(self)
+    }
 }

@@ -1,3 +1,3 @@
-protocol TupleType: Type {
+public protocol TupleType: Type {
     var elements: [TupleTypeElement] { get }
 }
