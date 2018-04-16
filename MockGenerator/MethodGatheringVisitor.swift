@@ -43,6 +43,12 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
         self.type = UseCasesOptionalType(type: type, isImplicitlyUnwrapped: iuo, useVerboseSyntax: false, implicitlyUnwrapped: iuo)
     }
 
+    override func visitFunctionType(_ element: FunctionType) {
+        type = UseCasesFunctionType(arguments: element.arguments.elements.map { MethodGatheringVisitor.transformType($0.typeAnnotation.type) },
+            returnType: MethodGatheringVisitor.transformType(element.returnType),
+            throws: element.throws)
+    }
+
     private func transformToIdentifiers(_ element: TypeIdentifier) -> [String] {
         var typeIdentifier: TypeIdentifier? = element
         var identifiers = [element.typeName]

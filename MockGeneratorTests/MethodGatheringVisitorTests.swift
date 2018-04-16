@@ -99,6 +99,27 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssert(type.implicitlyUnwrapped)
     }
 
+    func test_shouldTransformFunctionType() {
+        let type = transformType("() -> ()", UseCasesFunctionType.self)
+        XCTAssertEqual(type.text, "() -> ()")
+        XCTAssertFalse(type.throws)
+        XCTAssertEqual(type.returnType.text, "()")
+        XCTAssertEqual(type.arguments.count, 0)
+    }
+
+    func test_shouldTransformThrowingFunctionType() {
+        let type = transformType("() throws -> ()", UseCasesFunctionType.self)
+        XCTAssertEqual(type.text, "() throws -> ()")
+        XCTAssertTrue(type.throws)
+    }
+
+    func test_shouldTransformFunctionTypeWithArguments() {
+        let type = transformType("(A, [B]) -> ()", UseCasesFunctionType.self)
+        XCTAssertEqual(type.text, "(A, [B]) -> ()")
+        XCTAssertEqual(type.arguments[0].text, "A")
+        XCTAssertEqual(type.arguments[1].text, "[B]")
+    }
+
     private func assertTypeIs<T: UseCasesType>(_ input: String, _ t: T.Type, _ text: String, line: UInt = #line) {
         let type = FileParser(fileContents: input).parseType()
         let result = MethodGatheringVisitor.transformType(type)

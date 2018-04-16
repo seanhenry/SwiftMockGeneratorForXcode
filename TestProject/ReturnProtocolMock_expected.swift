@@ -59,7 +59,7 @@ class ReturnProtocolMock: ReturnProtocol {
     }
     var invokedReturnClosure = false
     var invokedReturnClosureCount = 0
-    var stubbedReturnClosureResult: (() -> ())!
+    var stubbedReturnClosureResult: (() -> ())! = { }
     func returnClosure() -> () -> () {
         invokedReturnClosure = true
         invokedReturnClosureCount += 1
