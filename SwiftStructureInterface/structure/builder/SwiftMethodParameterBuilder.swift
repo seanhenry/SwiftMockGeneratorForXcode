@@ -10,6 +10,6 @@ class SwiftMethodParameterBuilder: SwiftElementBuilderTemplate {
 
     func build(text: String, offset: Int64, length: Int64) -> Element? {
         guard let type = SwiftTypeBuilder(data: data, fileText: fileText).build() else { return nil }
-        return SwiftParameter(text: text, children: [type], offset: offset, length: length, type: type as? Type ?? SwiftType.errorType)
+        return SwiftParameter(text: text, children: [type], offset: offset, length: length, type: type)
     }
 }

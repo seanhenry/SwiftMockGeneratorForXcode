@@ -91,10 +91,14 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
             UseCasesParameter(
                 label: parameter.externalParameterName ?? "",
                 name: parameter.localParameterName,
-                type: UseCasesMethodType(originalType: MethodGatheringVisitor.transformType(parameter.type), resolvedType: resolveAndTransform(parameter.type), erasedType: UseCasesTypeIdentifier(identifier: "z")),
+                type: UseCasesMethodType(originalType: MethodGatheringVisitor.transformType(parameter.typeAnnotation.type), resolvedType: resolveAndTransform(parameter.typeAnnotation.type), erasedType: UseCasesTypeIdentifier(identifier: "z")),
                 text: parameter.text,
-                isEscaping: false)
+                isEscaping: isEscaping(parameter))
         }
+    }
+
+    private func isEscaping(_ parameter: Parameter) -> Bool {
+        return parameter.typeAnnotation.attributes.contains("@escaping")
     }
 
     private func resolveAndTransform(_ type: Type) -> UseCasesType {

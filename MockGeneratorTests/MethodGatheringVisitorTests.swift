@@ -150,7 +150,7 @@ class MethodGatheringVisitorTests: XCTestCase {
         let method = transformMethod("func a(a: A, b c: D, _ e: @escaping F)")
         assertParameter(method.parametersList[0], internalName: "a", type: "A")
         assertParameter(method.parametersList[1], externalName: "b", internalName: "c", type: "D")
-        assertParameter(method.parametersList[2], externalName: "_", internalName: "e", type: "F") // TODO: support, isEscaping: true)
+        assertParameter(method.parametersList[2], externalName: "_", internalName: "e", type: "F", isEscaping: true)
         XCTAssertEqual(method.declarationText, "func a(a: A, b c: D, _ e: @escaping F)")
     }
 
@@ -181,11 +181,11 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func assertParameter(_ parameter: UseCasesParameter, externalName: String = "", internalName: String, type: String, isEscaping: Bool = false, line: UInt = #line) {
-        XCTAssertEqual(parameter.label, externalName)
-        XCTAssertEqual(parameter.name, internalName)
-        XCTAssertEqual(parameter.type.originalType.text, type)
-        XCTAssertEqual(parameter.type.resolvedType.text, type)
-        XCTAssertEqual(parameter.isEscaping, isEscaping)
+        XCTAssertEqual(parameter.label, externalName, line: line)
+        XCTAssertEqual(parameter.name, internalName, line: line)
+        XCTAssertEqual(parameter.type.originalType.text, type, line: line)
+        XCTAssertEqual(parameter.type.resolvedType.text, type, line: line)
+        XCTAssertEqual(parameter.isEscaping, isEscaping, line: line)
     }
 
     func test_visit_shouldTransformProtocolProperty() {

@@ -54,9 +54,9 @@ class SwiftMethodParameterBuilderTests: XCTestCase {
 
     private func assertParameterType(_ parent: Element?, at index: Int, atParameter paramIndex: Int, offset expectedOffset: Int64, length expectedLength: Int64, text expectedText: String, line: UInt = #line) {
         let method = parent?.children[index] as? SwiftFunctionDeclaration
-        XCTAssertEqual(method?.parameters[paramIndex].type.offset, expectedOffset, line: line)
-        XCTAssertEqual(method?.parameters[paramIndex].type.length, expectedLength, line: line)
-        XCTAssertEqual(method?.parameters[paramIndex].type.text, expectedText, line: line)
+        XCTAssertEqual(method?.parameters[paramIndex].typeAnnotation.type.offset, expectedOffset, line: line)
+        XCTAssertEqual(method?.parameters[paramIndex].typeAnnotation.type.length, expectedLength, line: line)
+        XCTAssertEqual(method?.parameters[paramIndex].typeAnnotation.type.text, expectedText, line: line)
     }
 
     private func getMethodParametersExampleString() -> String {

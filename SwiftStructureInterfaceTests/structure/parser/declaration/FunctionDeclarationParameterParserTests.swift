@@ -49,7 +49,7 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
         assertElementText(parameter, text)
         XCTAssertEqual(parameter.externalParameterName, "_")
         XCTAssertEqual(parameter.localParameterName, "a")
-        let type: Element = parameter.type
+        let type: Element = parameter.typeAnnotation.type
         assertElementText(type, "Generic<[Type]>.Nested?", offset: 5)
     }
 
@@ -64,7 +64,7 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
         assertElementText(parameter, text)
         XCTAssertNil(parameter.externalParameterName)
         XCTAssertEqual(parameter.localParameterName, "a")
-        let type: Element = parameter.type
+        let type: Element = parameter.typeAnnotation.type
         assertElementText(type, "A", offset: 18)
     }
 
@@ -74,7 +74,7 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
         assertElementText(parameter, text)
         XCTAssertNil(parameter.externalParameterName)
         XCTAssertEqual(parameter.localParameterName, "a")
-        let type: Element = parameter.type
+        let type: Element = parameter.typeAnnotation.type
         assertElementText(type, "A", offset: 3)
     }
 

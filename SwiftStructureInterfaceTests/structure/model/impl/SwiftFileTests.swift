@@ -32,14 +32,14 @@ class SwiftFileTests: XCTestCase {
         let methodAParam = methodA.parameters[0]
         assertFilesAreEquivalent(methodA.file, file)
         assertFilesAreEquivalent(methodAParam.file, file)
-        assertFilesAreEquivalent(methodAParam.type.file, file)
+        assertFilesAreEquivalent(methodAParam.typeAnnotation.type.file, file)
         assertFilesAreEquivalent(methodA.returnType?.file, file)
     }
 
-    func test_init_copyingFileToChildren_shouldNotCauseRetainCycle() {
+    func test_init_copyingFileToChildren_shouldNotCauseRetaiwnCycle() {
         weak var weakFile: Element?
         autoreleasepool {
-            let file = SKElementFactoryTestHelper.build(from: getNestedClassString())!
+            let file = SKElementFactoryTestHelper.build(from: getNestedClassString())
             weakFile = file
         }
         XCTAssertNil(weakFile)

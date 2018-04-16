@@ -86,16 +86,16 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
         override func parse(start: LineColumn) -> Parameter {
             guard let (externalParameterName, localParameterName) = parseParameterNames() else { return SwiftParameter.errorParameter }
-            let type = parseParameterType()
+            let typeAnnotation = parseParameterTypeAnnotation()
             return createElement(start: start) { offset, length, text in
                 SwiftParameter(
                     text: text,
-                    children: [type],
+                    children: [typeAnnotation],
                     offset: offset,
                     length: length,
                     externalParameterName: externalParameterName,
                     localParameterName: localParameterName,
-                    type: type)
+                    typeAnnotation: typeAnnotation)
             } ?? SwiftParameter.errorParameter
         }
 
@@ -117,18 +117,10 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
             return nil
         }
 
-        private func parseParameterType() -> Type {
-            skipTypeAnnotation()
-            let type = parseType()
+        private func parseParameterTypeAnnotation() -> TypeAnnotation {
+            let typeAnnotation = parseTypeAnnotation()
             skipVarArgs()
-            return type
-        }
-
-        private func skipTypeAnnotation() {
-            var string = ""
-            tryToAppend(.colon, value: ": ", to: &string)
-            tryToAppendAttributes(to: &string)
-            tryToAppendInout(to: &string)
+            return typeAnnotation
         }
 
         private func skipVarArgs() {
