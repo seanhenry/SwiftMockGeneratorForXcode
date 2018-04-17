@@ -2510,6 +2510,7 @@
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorXPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2532,6 +2533,7 @@
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorXPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
