@@ -229,6 +229,40 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssertEqual(visitor.properties.count, 3)
     }
 
+    func test_visit_shouldTransformInitializer() {
+        getInitializerProtocol().accept(visitor)
+        XCTAssertEqual(visitor.initializers.count, 3)
+    }
+
+    func test_visit_shouldTransformEmptyInitializer() {
+        getInitializerProtocol().accept(visitor)
+        let initializer = visitor.initializers[0]
+        XCTAssert(initializer.parametersList.isEmpty)
+        XCTAssertFalse(initializer.throws)
+        XCTAssertFalse(initializer.isFailable)
+        XCTAssert(initializer.isProtocol)
+    }
+
+    func test_visit_shouldTransformThrowingInitializerWithParameters() {
+        getInitializerProtocol().accept(visitor)
+        let initializer = visitor.initializers[1]
+        XCTAssertEqual(initializer.parametersList.count, 1)
+        XCTAssertEqual(initializer.parametersList[0].text, "a: A")
+        XCTAssert(initializer.throws)
+        XCTAssertFalse(initializer.isFailable)
+        XCTAssert(initializer.isProtocol)
+    }
+
+    func test_visit_shouldTransformFailableInitializer() {
+        getInitializerProtocol().accept(visitor)
+        let initializer = visitor.initializers[2]
+        XCTAssertEqual(initializer.parametersList.count, 1)
+        XCTAssertEqual(initializer.parametersList[0].text, "b: B")
+        XCTAssertFalse(initializer.throws)
+        XCTAssert(initializer.isFailable)
+        XCTAssert(initializer.isProtocol)
+    }
+
     // MARK: - Helpers
 
     private func getMethodProtocol() -> Element {
@@ -264,5 +298,20 @@ class MethodGatheringVisitorTests: XCTestCase {
     private func getParametersString(_ method: UseCasesMethod) -> String {
         let parameters = method.parametersList
         return parameters.map { $0.text }.joined(separator: ", ")
+    }
+
+    private func getInitializerProtocol() -> Element {
+        let file = FileParser(fileContents: getInitializerProtocolString()).parse()
+        return file.children[0]
+    }
+
+    private func getInitializerProtocolString() -> String {
+        return """
+            protocol TestProtocol {
+              init()
+              init(a: A) throws
+              init?(b: B)
+            }
+        """
     }
 }

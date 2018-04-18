@@ -6,15 +6,30 @@ class InitialiserDeclarationParserTests: XCTestCase {
     // MARK: - parse
 
     func test_parse_shouldParseEmptyInit() {
-        assertElementIsParsed("init()")
+        let initializer = parse("init()")
+        XCTAssert(initializer.parameters.isEmpty)
+        XCTAssertFalse(initializer.throws)
+        XCTAssertFalse(initializer.rethrows)
+        XCTAssertFalse(initializer.isFailable)
+        XCTAssertEqual(initializer.text, "init()")
     }
 
     func test_parse_shouldParseEmptyOptionalInit() {
-        assertElementIsParsed("init?()")
+        let initializer = parse("init?()")
+        XCTAssert(initializer.parameters.isEmpty)
+        XCTAssertFalse(initializer.throws)
+        XCTAssertFalse(initializer.rethrows)
+        XCTAssert(initializer.isFailable)
+        XCTAssertEqual(initializer.text, "init?()")
     }
 
     func test_parse_shouldParseEmptyIUOInit() {
-        assertElementIsParsed("init!()")
+        let initializer = parse("init!()")
+        XCTAssert(initializer.parameters.isEmpty)
+        XCTAssertFalse(initializer.throws)
+        XCTAssertFalse(initializer.rethrows)
+        XCTAssert(initializer.isFailable)
+        XCTAssertEqual(initializer.text, "init!()")
     }
 
     func test_parse_shouldParseEmptyAttributesAndModifiers() {
@@ -28,12 +43,25 @@ class InitialiserDeclarationParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseParameterClause() {
-        assertElementIsParsed("init(a: A, b: B)")
+        let initializer = parse("init(a: A, b: B)")
+        XCTAssertEqual(initializer.parameters.count, 2)
+        XCTAssertEqual(initializer.parameters[0].text, "a: A")
+        XCTAssertEqual(initializer.parameters[1].text, "b: B")
+        XCTAssert(initializer.children[0] === initializer.parameters[0])
+        XCTAssert(initializer.children[1] === initializer.parameters[1])
+        XCTAssertEqual(initializer.text, "init(a: A, b: B)")
     }
 
     func test_parse_shouldParseThrows() {
-        assertElementIsParsed("init() throws")
-        assertElementIsParsed("init() rethrows")
+        let initializer = parse("init() throws")
+        XCTAssert(initializer.throws)
+        XCTAssertFalse(initializer.rethrows)
+    }
+
+    func test_parse_shouldParseRethrows() {
+        let initializer = parse("init() rethrows")
+        XCTAssertFalse(initializer.throws)
+        XCTAssert(initializer.rethrows)
     }
 
     func test_parse_shouldParseGenericWhereClause() {

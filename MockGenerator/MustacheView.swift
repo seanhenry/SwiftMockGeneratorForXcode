@@ -18,8 +18,19 @@ extension UseCasesMockViewModel {
 
     fileprivate func toDictionary() -> NSDictionary {
         let dictionary = NSMutableDictionary()
+        dictionary["initializer"] = initializer.map { $0.toDictionary() }
         dictionary["property"] = property.map { $0.toDictionary() }
         dictionary["method"] = method.map { $0.toDictionary() }
+        return dictionary
+    }
+}
+
+extension UseCasesInitializerViewModel {
+
+    fileprivate func toDictionary() -> NSDictionary {
+        let dictionary = NSMutableDictionary()
+        dictionary["declarationText"] = declarationText
+        dictionary["initializerCall"] = initializerCall
         return dictionary
     }
 }

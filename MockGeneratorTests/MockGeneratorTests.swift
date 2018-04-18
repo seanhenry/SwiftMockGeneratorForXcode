@@ -77,6 +77,10 @@ class MockGeneratorTests: XCTestCase {
     func test_overloadingAcrossProtocols() {
         assertMockGeneratesExpected("RecursiveProtocolMock")
     }
+    func test_protocolInitializer() {
+        assertMockGeneratesExpected("InitialiserProtocolMock")
+    }
+
 
     func test_generatesMockForAllCaretPositions() {
         let expected = readFile(named: "SimpleProtocolMock_expected.swift")

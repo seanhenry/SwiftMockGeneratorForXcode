@@ -53,8 +53,9 @@ public class Generator {
         let generator = UseCasesMockViewPresenter(view: view)
         let visitor = MethodGatheringVisitor()
         resolvedProtocol.accept(visitor)
-        visitor.properties.forEach { generator.add(property: $0) }
-        visitor.methods.forEach { generator.add(method: $0) }
+        generator.addInitialisers(initializers: visitor.initializers)
+        generator.addProperties(properties: visitor.properties)
+        generator.addMethods(methods: visitor.methods)
         generator.generate()
         return view.result
     }

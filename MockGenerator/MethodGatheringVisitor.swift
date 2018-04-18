@@ -4,8 +4,9 @@ import Foundation
 
 class MethodGatheringVisitor: RecursiveElementVisitor {
 
-    private(set) var methods = [UseCasesMethod]()
+    private(set) var initializers = [UseCasesInitializer]()
     private(set) var properties = [UseCasesProperty]()
+    private(set) var methods = [UseCasesMethod]()
     private(set) var type: UseCasesType = UseCasesTypeIdentifierBuilder(identifier: "").build()
 
     static func transformType(_ element: Element) -> UseCasesType {
@@ -70,7 +71,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
 
     private func transform(_ element: FunctionDeclaration) -> UseCasesMethod {
         let genericParameter = transformGenericParameters(from: element)
-        let parameters = transformParameters(from: element)
+        let parameters = transformParameters(element.parameters)
         let returnType = element.returnType.map { MethodGatheringVisitor.transformType($0) } ?? UseCasesTypeIdentifier(identifier: "")
         return UseCasesMethod(name: element.name,
             genericParameters: genericParameter,
@@ -86,8 +87,8 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
         } ?? []
     }
 
-    private func transformParameters(from element: FunctionDeclaration) -> [UseCasesParameter] {
-        return element.parameters.map { parameter in
+    private func transformParameters(_ parameters: [Parameter]) -> [UseCasesParameter] {
+        return parameters.map { parameter in
             UseCasesParameter(
                 label: parameter.externalParameterName ?? "",
                 name: parameter.localParameterName,
@@ -117,5 +118,13 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
             type: MethodGatheringVisitor.transformType(element.type),
             isWritable: element.isWritable,
             declarationText_: element.text))
+    }
+
+    override func visitInitialiserDeclaration(_ element: InitialiserDeclaration) {
+        initializers.append(UseCasesInitializer(
+            parametersList: transformParameters(element.parameters),
+            isFailable: element.isFailable,
+            throws: element.throws,
+            isProtocol: true))
     }
 }
