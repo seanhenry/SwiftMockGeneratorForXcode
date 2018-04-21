@@ -1,5 +1,5 @@
 @testable import TestProject
 
-class MockDeepInheritance: TopMostProtocol, TopMostSiblingProtocol {
+class DeepInheritanceMock: TopMostProtocol, TopMostSiblingProtocol {
 <caret>
 }

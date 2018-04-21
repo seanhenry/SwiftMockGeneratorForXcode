@@ -36,7 +36,32 @@ class SwiftFileTests: XCTestCase {
         assertFilesAreEquivalent(methodA.returnType?.file, file)
     }
 
-    func test_init_copyingFileToChildren_shouldNotCauseRetaiwnCycle() {
+    func test_init_shouldAddCopyOfItselfToAllChildrenWithNewParser() {
+        file = ElementParser.parseFile(getProtocolString()) as! SwiftFile
+        assertFilesAreEquivalent(file.file, file)
+        let protocolA = file.children[0] as! TypeDeclaration
+        assertFilesAreEquivalent(protocolA.file, file)
+        assertFilesAreEquivalent(protocolA.inheritedTypes[0].file, file)
+        let initializer = protocolA.children[1] as! InitialiserDeclaration
+        assertFilesAreEquivalent(initializer.file, file)
+        assertFilesAreEquivalent(initializer.parameters[0].file, file)
+        assertFilesAreEquivalent(initializer.parameters[0].typeAnnotation.file, file)
+        assertFilesAreEquivalent(initializer.parameters[0].typeAnnotation.type.file, file)
+        let property = protocolA.children[2] as! VariableDeclaration
+        assertFilesAreEquivalent(property.file, file)
+        assertFilesAreEquivalent(property.type.file, file)
+        let method = protocolA.children[3] as! FunctionDeclaration
+        let methodParam = method.parameters[0]
+        assertFilesAreEquivalent(method.file, file)
+        assertFilesAreEquivalent(method.genericParameterClause?.file, file)
+        assertFilesAreEquivalent(method.genericParameterClause?.parameters[0].file, file)
+        assertFilesAreEquivalent(methodParam.file, file)
+        assertFilesAreEquivalent(methodParam.typeAnnotation.file, file)
+        assertFilesAreEquivalent(methodParam.typeAnnotation.type.file, file)
+        assertFilesAreEquivalent(method.returnType?.file, file)
+    }
+
+    func test_init_copyingFileToChildren_shouldNotCauseRetainCycle() {
         weak var weakFile: Element?
         autoreleasepool {
             let file = SKElementFactoryTestHelper.build(from: getNestedClassString())
@@ -84,6 +109,16 @@ class A {
     }
 
     func methodA(a: A) -> T {}
+}
+"""
+    }
+
+    private func getProtocolString() -> String {
+        return """
+protocol A: B {
+    init(i: Int)
+    var a: A { get set }
+    func b<T>(b: T) -> String
 }
 """
     }

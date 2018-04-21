@@ -15,7 +15,7 @@ class MockGeneratorTests: XCTestCase {
     }
 
     func test_doesNotDeleteMockBody_whenMockGenerateFails() {
-        assertMockGeneratesError("DoNotDeleteBodyMock", "NotAValidProtocol element could not be resolved")
+        assertMockGeneratesError("DoNotDeleteBodyMock", "Could not find a protocol on DoNotDeleteBodyMock")
     }
 
     func test_generatesReturnStubs() {
@@ -62,25 +62,25 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("ThrowingProtocolMock")
     }
 
+    func test_protocolInitializer() {
+        assertMockGeneratesExpected("InitialiserProtocolMock")
+    }
+
+    func test_multipleProtocol() {
+        assertMockGeneratesExpected("MultipleProtocolMock")
+    }
+
     func test_deepInheritance() {
         assertMockGeneratesExpected("DeepInheritanceMock")
     }
 
     func test_diamondInheritance() {
-        assertMockGeneratesExpected("DiamondInheritanceMock")
-    }
-
-    func test_MultipleProtocol() {
-        assertMockGeneratesExpected("MultipleProtocolMock")
+        assertMockGeneratesExpected("DiamondInheritanceProtocolMock")
     }
 
     func test_overloadingAcrossProtocols() {
         assertMockGeneratesExpected("RecursiveProtocolMock")
     }
-    func test_protocolInitializer() {
-        assertMockGeneratesExpected("InitialiserProtocolMock")
-    }
-
 
     func test_generatesMockForAllCaretPositions() {
         let expected = readFile(named: "SimpleProtocolMock_expected.swift")

@@ -164,6 +164,7 @@
 		35CDF8211817BFEEC7A18664 /* VariableDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF3151A8261DBAF65150F /* VariableDeclaration.swift */; };
 		35CDF82EA3EE326B4ED75E98 /* TypeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF5646BAA490CF1EC7B23 /* TypeParser.swift */; };
 		35CDF82EC48F5BFF714DC938 /* String+Optimisations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF006F0A42DD5D3E4F434 /* String+Optimisations.swift */; };
+		35CDF835689882E184836A14 /* TypeDeclarationTransformingVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF3F24BECA43B9E4A5014 /* TypeDeclarationTransformingVisitorTests.swift */; };
 		35CDF8565148EA9D669DF970 /* SwiftPropertyElementBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF1BE911C7FDF07E89F57 /* SwiftPropertyElementBuilder.swift */; };
 		35CDF8734632D23A68316A26 /* DictionaryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF00E5605D03871771C1E /* DictionaryType.swift */; };
 		35CDF87BB86A3B12776113ED /* SwiftInheritedTypeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF0F73058A06313F9DB0 /* SwiftInheritedTypeBuilder.swift */; };
@@ -220,6 +221,7 @@
 		35CDFCBD3149A396687A224F /* FormatUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF23686B80D1A8FF37150 /* FormatUtil.swift */; };
 		35CDFCC09E481D660288433B /* GenericParameterTypeDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF4E35EA985317D044FBF /* GenericParameterTypeDeclaration.swift */; };
 		35CDFCC702F552C5D7CF5FFC /* MockRecursiveVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF254FBF026F0236811CF /* MockRecursiveVisitor.swift */; };
+		35CDFCCC54AA20F2E8E375D6 /* TypeDeclarationTransformingVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF6D840276DE36906BC4C /* TypeDeclarationTransformingVisitor.swift */; };
 		35CDFCD0D9DC75912C53B2C6 /* SwiftTypeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF2572D3D186B81E54D0F /* SwiftTypeBuilder.swift */; };
 		35CDFCE0F520A29FD0C6D238 /* FunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFB5F7B112A841207CE04 /* FunctionType.swift */; };
 		35CDFCEE693690DC68E79049 /* AccessLevelModifierParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF3A2DCC09A1B76112A03 /* AccessLevelModifierParser.swift */; };
@@ -544,6 +546,7 @@
 		35CDF3C1F513307CAFB917E5 /* TypeIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeIdentifier.swift; sourceTree = "<group>"; };
 		35CDF3CEE72CF3E3517B3C6B /* SwiftASTLexerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftASTLexerTests.swift; sourceTree = "<group>"; };
 		35CDF3EAB85CD4D3FBD54BFA /* FunctionDeclarationParameterParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionDeclarationParameterParserTests.swift; sourceTree = "<group>"; };
+		35CDF3F24BECA43B9E4A5014 /* TypeDeclarationTransformingVisitorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeDeclarationTransformingVisitorTests.swift; sourceTree = "<group>"; };
 		35CDF4036C6F5AF89F352E40 /* NamedIdentifier+Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NamedIdentifier+Text.swift"; sourceTree = "<group>"; };
 		35CDF41BB007A5C1F4180748 /* ManualProjectPathView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualProjectPathView.swift; sourceTree = "<group>"; };
 		35CDF458B46DF20A5586E8CA /* Typealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
@@ -571,6 +574,7 @@
 		35CDF679E4688076A1CABF7E /* DeclarationParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarationParser.swift; sourceTree = "<group>"; };
 		35CDF67FD332DFA012E4AFD1 /* ResolveUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolveUtilTests.swift; sourceTree = "<group>"; };
 		35CDF6D2AF10B7355B6928BA /* FunctionDeclarationParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionDeclarationParser.swift; sourceTree = "<group>"; };
+		35CDF6D840276DE36906BC4C /* TypeDeclarationTransformingVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeDeclarationTransformingVisitor.swift; sourceTree = "<group>"; };
 		35CDF6EEB39DE818601D1665 /* SwiftType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftType.swift; sourceTree = "<group>"; };
 		35CDF6F2EEA53A388EBA2342 /* GetterSetterKeywordBlockParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetterSetterKeywordBlockParserTests.swift; sourceTree = "<group>"; };
 		35CDF70ED75448AAF4D0FD4F /* SKCursorInfoRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKCursorInfoRequest.swift; sourceTree = "<group>"; };
@@ -776,6 +780,7 @@
 				35CDFCB0E68CE74E1E1E031C /* TypeResolverVisitor.swift */,
 				35CDF33B8A857EED9FEB1F7A /* MustacheView.swift */,
 				35CDFC666DCA4A877FC4BCAE /* mock.mustache */,
+				35CDF6D840276DE36906BC4C /* TypeDeclarationTransformingVisitor.swift */,
 			);
 			path = MockGenerator;
 			sourceTree = "<group>";
@@ -789,6 +794,7 @@
 				14276C701F4F312E00EA7753 /* Info.plist */,
 				35CDF1BC33337C41B5594674 /* ProjectFinderTests.swift */,
 				35CDF1DB9536BCC5DE765E71 /* TypeResolverVisitorTests.swift */,
+				35CDF3F24BECA43B9E4A5014 /* TypeDeclarationTransformingVisitorTests.swift */,
 			);
 			path = MockGeneratorTests;
 			sourceTree = "<group>";
@@ -1721,6 +1727,7 @@
 				144BC86D206E063B00FDFE50 /* XcodeProjectPathFinder.swift in Sources */,
 				35CDF6B3B8F080E7AE114743 /* TypeResolverVisitor.swift in Sources */,
 				35CDF1D4B3EE5C1ED545361F /* MustacheView.swift in Sources */,
+				35CDFCCC54AA20F2E8E375D6 /* TypeDeclarationTransformingVisitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1735,6 +1742,7 @@
 				35CDF0068DB237A15D5F0802 /* StringCompareTestHelper.swift in Sources */,
 				35CDFFE9441923DB7259AB21 /* ProjectFinderTests.swift in Sources */,
 				35CDF466D42585C5E3ADB6F7 /* TypeResolverVisitorTests.swift in Sources */,
+				35CDF835689882E184836A14 /* TypeDeclarationTransformingVisitorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

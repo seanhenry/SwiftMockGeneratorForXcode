@@ -1,5 +1,5 @@
 @testable import TestProject
 
-class MockMultipleProtocol: ProtocolA, ProtocolB, ProtocolC {
+class MultipleProtocolMock: ProtocolA, ProtocolB, ProtocolC {
 <caret>
 }

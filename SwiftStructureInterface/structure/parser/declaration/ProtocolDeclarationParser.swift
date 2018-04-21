@@ -12,7 +12,7 @@ class ProtocolDeclarationParser: DeclarationParser<SwiftTypeElement> {
             return SwiftTypeElement(
                 name: name,
                 text: text,
-                children: codeBlock.declarations,
+                children: inheritanceClause + codeBlock.declarations,
                 inheritedTypes: inheritanceClause,
                 offset: offset,
                 length: length,

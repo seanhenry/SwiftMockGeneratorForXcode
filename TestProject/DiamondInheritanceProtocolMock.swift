@@ -1,5 +1,5 @@
 @testable import TestProject
 
-class MockDiamondInheritanceProtocol: DiamondC, DiamondB {
+class DiamondInheritanceProtocolMock: DiamondC, DiamondB {
 <caret>
 }

@@ -59,6 +59,12 @@ class VariableDeclarationParserTests: XCTestCase {
         XCTAssertFalse(variable.isWritable)
     }
 
+    func test_parse_shouldAddToChildren() {
+        let text = "var a: A { get }"
+        let variable = parse(text)
+        XCTAssert(variable.children[0] === variable.type)
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) -> VariableDeclaration {

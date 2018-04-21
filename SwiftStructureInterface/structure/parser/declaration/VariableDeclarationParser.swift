@@ -11,7 +11,7 @@ class VariableDeclarationParser: DeclarationParser<VariableDeclaration> {
             return SwiftVariableDeclaration(
                 name: name,
                 text: text,
-                children: [],
+                children: [type],
                 offset: offset,
                 length: length,
                 type: type,
