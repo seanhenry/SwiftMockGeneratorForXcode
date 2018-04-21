@@ -33,7 +33,7 @@ class CommentsParserTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> SwiftTypeElement {
+    func parse(_ text: String) -> TypeDeclaration {
         let parser = createDeclarationParser(text, .protocol, ProtocolDeclarationParser.self)
         return parser.parse()
     }

@@ -8,7 +8,7 @@ class DeclarationsParserTests: XCTestCase {
     func test_parse_shouldParseProtocolWithMisspelledAccessModifier() {
         let parser = FileParser(fileContents: "publi protocol A {}")
         let file = parser.parse()
-        let `protocol` = file.children[0] as? SwiftTypeElement
+        let `protocol` = file.children[0] as? SwiftTypeDeclaration
         XCTAssertEqual(`protocol`?.text, "protocol A {}")
         XCTAssertEqual(`protocol`?.name, "A")
         XCTAssertEqual(`protocol`?.offset, 6)
@@ -20,7 +20,7 @@ class DeclarationsParserTests: XCTestCase {
     func test_parse_shouldParseProtocol() {
         let parser = FileParser(fileContents: getProtocolWithMethods())
         let file = parser.parse()
-        let `protocol` = file.children[0] as! SwiftTypeElement
+        let `protocol` = file.children[0] as! SwiftTypeDeclaration
         XCTAssertEqual(`protocol`.text, getProtocolWithMethods())
         XCTAssertEqual(`protocol`.name, "MyProtocol")
         XCTAssertEqual(`protocol`.offset, 0)
@@ -61,7 +61,7 @@ class DeclarationsParserTests: XCTestCase {
         let protocolStart = getAll().range(of: "protocol P {")!.lowerBound
         let offset = Int64(protocolStart.encodedOffset)
         let file = FileParser(fileContents: getAll()).parse()
-        XCTAssert(file.children.last is SwiftTypeElement, String(describing: file.children.last))
+        XCTAssert(file.children.last is SwiftTypeDeclaration, String(describing: file.children.last))
         XCTAssertEqual(file.children.last?.children.count, 1)
         XCTAssertEqual(file.children.last?.offset, offset)
     }

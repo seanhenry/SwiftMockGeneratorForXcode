@@ -1,6 +1,6 @@
 @testable import SwiftStructureInterface
 
-let emptyTypeDeclaration = SwiftTypeElement(name: "", text: "", children: [], inheritedTypes: [], offset: 0, length: 0, bodyOffset: 0, bodyLength: 0)
+let emptyTypeDeclaration = SwiftTypeDeclaration(name: "", text: "", children: [], inheritedTypes: [], offset: 0, length: 0, bodyOffset: 0, bodyLength: 0)
 let emptyElement = SwiftElement(text: "", children: [], offset: 0, length: 0)
 let emptyFile = SwiftFile(text: "", children: [], offset: 0, length: 0)
 let emptyFunctionDeclaration = SwiftFunctionDeclaration(name: "", text: "", children: [], offset: 0, length: 0, returnType: nil, parameters: [])

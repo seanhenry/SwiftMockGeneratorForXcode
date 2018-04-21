@@ -5,7 +5,7 @@ class SwiftMethodParameterBuilderTests: XCTestCase {
 
     func test_build_shouldBuildParameters() {
         let file = SKElementFactoryTestHelper.build(from: getMethodParametersExampleString())!
-        let protocolType = file.children[0] as! SwiftTypeElement
+        let protocolType = file.children[0] as! SwiftTypeDeclaration
         assertChildMethodParameterCount(protocolType, at: 0, equals: 0)
         assertChildMethodParameterCount(protocolType, at: 1, equals: 1)
         assertChildMethodParameterCount(protocolType, at: 2, equals: 2)
@@ -21,7 +21,7 @@ class SwiftMethodParameterBuilderTests: XCTestCase {
         assertParameterType(protocolType, at: 2, atParameter: 1, offset: 108, length: 6, text: "String")
         assertParameterType(protocolType, at: 3, atParameter: 0, offset: 145, length: 3, text: "Int")
         assertParameterType(protocolType, at: 4, atParameter: 0, offset: 183, length: 5, text: "Type0")
-        let classType = file.children[1] as! SwiftTypeElement
+        let classType = file.children[1] as! SwiftTypeDeclaration
         assertChildMethodParameterCount(classType, at: 0, equals: 1)
         assertChildMethodParameterText(classType, at: 0, atParameter: 0, equals: "param0: String")
         assertParameterType(classType, at: 0, atParameter: 0, offset: 241, length: 6, text: "String")

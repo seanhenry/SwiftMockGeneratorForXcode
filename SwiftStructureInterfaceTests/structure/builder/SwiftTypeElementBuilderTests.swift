@@ -6,7 +6,7 @@ class SwiftTypeElementBuilderTests: XCTestCase {
 
     func test_build_shouldBuildProtocolFromDictionary() {
         let file = SKElementFactoryTestHelper.build(from: getProtocolString())
-        let element = file?.children.first as? SwiftTypeElement
+        let element = file?.children.first as? SwiftTypeDeclaration
         XCTAssertEqual(element?.name, "Protocol")
         XCTAssertEqual(element?.inheritedTypes.count, 1)
         XCTAssertEqual(element?.inheritedTypes[0].text, "Inherited")
@@ -17,7 +17,7 @@ class SwiftTypeElementBuilderTests: XCTestCase {
 
     func test_build_shouldPopulateProtocolTextOffsets() {
         let file = SKElementFactoryTestHelper.build(from: getProtocolString())
-        let element = file?.children.first as? SwiftTypeElement
+        let element = file?.children.first as? SwiftTypeDeclaration
         XCTAssertEqual(element?.offset, 0)
         XCTAssertEqual(element?.length, getProtocolLength())
         XCTAssertEqual(element?.bodyOffset, getProtocolBodyOffset())
@@ -26,7 +26,7 @@ class SwiftTypeElementBuilderTests: XCTestCase {
 
     func test_build_shouldBuildClassFromDictionary() {
         let file = SKElementFactoryTestHelper.build(from: getClassString())
-        let element = file?.children.first as? SwiftTypeElement
+        let element = file?.children.first as? SwiftTypeDeclaration
         XCTAssertEqual(element?.name, "A")
         XCTAssertEqual(element?.inheritedTypes.count, 1)
         XCTAssertEqual(element?.inheritedTypes[0].text, "B")
@@ -41,12 +41,12 @@ class SwiftTypeElementBuilderTests: XCTestCase {
 
     func test_build_shouldBuildNestedClassFromDictionary() {
         let file = SKElementFactoryTestHelper.build(from: getNestedClassString())
-        let element = file?.children.first as? SwiftTypeElement
+        let element = file?.children.first as? SwiftTypeDeclaration
         XCTAssertEqual(element?.name, "A")
         XCTAssertEqual(element?.inheritedTypes.count, 0)
         XCTAssertEqual(element?.children.count, 2)
         XCTAssertEqual(element?.namedChild(at: 1)?.name, "methodA")
-        let innerElement = element?.children[0] as? SwiftTypeElement
+        let innerElement = element?.children[0] as? SwiftTypeDeclaration
         XCTAssertEqual(innerElement?.name, "B")
         XCTAssertEqual(innerElement?.inheritedTypes.count, 2)
         XCTAssertEqual(innerElement?.inheritedTypes[0].text, "C")
@@ -58,7 +58,7 @@ class SwiftTypeElementBuilderTests: XCTestCase {
 
     func test_build_shouldSetTextOnProtocol() {
         let file = SKElementFactoryTestHelper.build(from: getProtocolString())
-        let `protocol` = file?.children.first as? SwiftTypeElement
+        let `protocol` = file?.children.first as? SwiftTypeDeclaration
         let inheritedType = `protocol`?.inheritedTypes.first
         let property = `protocol`?.namedChildren[0]
         let method = `protocol`?.namedChildren[1]

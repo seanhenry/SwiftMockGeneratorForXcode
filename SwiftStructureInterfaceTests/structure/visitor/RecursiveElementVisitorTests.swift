@@ -36,9 +36,9 @@ class RecursiveElementVisitorTests: XCTestCase {
         XCTAssert(getInvokedSwiftElement(at: 7) === method)
         XCTAssert(getInvokedSwiftElement(at: 8) === property)
 
-        XCTAssertEqual(getInvokedSwiftTypeElementCount(), 2)
-        XCTAssert(getInvokedSwiftTypeElement(at: 0) === classElement)
-        XCTAssert(getInvokedSwiftTypeElement(at: 1) === innerClass)
+        XCTAssertEqual(getInvokedSwiftTypeDeclarationCount(), 2)
+        XCTAssert(getInvokedSwiftTypeDeclaration(at: 0) === classElement)
+        XCTAssert(getInvokedSwiftTypeDeclaration(at: 1) === innerClass)
 
         XCTAssertEqual(getInvokedSwiftFileCount(), 1)
         XCTAssert(getInvokedSwiftFile(at: 0) === file)
@@ -58,7 +58,7 @@ class RecursiveElementVisitorTests: XCTestCase {
         return mockVisitor.invokedVisitElementParametersList[index].element
     }
 
-    private func getInvokedSwiftTypeElement(at index: Int) -> TypeDeclaration {
+    private func getInvokedSwiftTypeDeclaration(at index: Int) -> TypeDeclaration {
         return mockVisitor.invokedVisitTypeDeclarationParametersList[index].element
     }
 
@@ -78,7 +78,7 @@ class RecursiveElementVisitorTests: XCTestCase {
         return mockVisitor.invokedVisitElementCount
     }
 
-    private func getInvokedSwiftTypeElementCount() -> Int {
+    private func getInvokedSwiftTypeDeclarationCount() -> Int {
         return mockVisitor.invokedVisitTypeDeclarationCount
     }
 
