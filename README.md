@@ -53,7 +53,7 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 | Swift 3 and 4.|✅|
 | Generate and regenerate your mock in one action.|✅|
 | **Classes and protocols** |
-| Generates mock conforming to one protocol.|✅|
+| Generates mock conforming to one or many protocols.|✅|
 | Generates mock conforming to a class.||
 | Generates mock conforming to both classes and protocols.||
 | **Recording methods and properties** |
@@ -69,12 +69,12 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 | Automatically calls closure parameters with stubbed values.|✅|
 | **Initializers** |
 | Generates convenience initializers requiring no parameters.||
-| Supports initializers with arguments.||
-| Supports failable initializers.||
+| Supports initializers with arguments.|✅|
+| Supports failable initializers.|✅|
 | Supports required initializers.||
 | **Throws** |
 | Stub an error for your mock method to throw. |✅|
-| Supports throwing initializers. ||
+| Supports throwing initializers. |✅|
 | Supports throwing closures. |✅|
 | **Generics** |
 | Generates generic mocks from protocols with associated types.||
