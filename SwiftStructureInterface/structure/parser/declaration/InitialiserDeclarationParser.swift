@@ -1,20 +1,52 @@
 class InitialiserDeclarationParser: DeclarationParser<InitialiserDeclaration> {
 
     override func parseDeclaration(start: LineColumn) -> InitialiserDeclaration {
-        if isNext("!") {
-            advanceOperator("!")
-        } else if isNext("?") {
-            advanceOperator("?")
-        }
-        advance(if: .postfixQuestion)
-        advance(if: .postfixExclaim)
+        let isFailable = parseIsFailable()
         _ = parseGenericParameterClause()
-        _ = parseFunctionDeclarationParameterClause()
+        let parameters = parseFunctionDeclarationParameterClause()
+        let `throws` = parseThrows()
+        let `rethrows` = parseRethrows()
         advance(if: .throws)
         advance(if: .rethrows)
         _ = parseWhereClause()
         return createElement(start: start) { offset, length, text in
-            return SwiftInitialiserDeclaration(text: text, children: [], offset: offset, length: length)
+            return SwiftInitialiserDeclaration(
+                text: text,
+                children: parameters,
+                offset: offset,
+                length: length,
+                parameters: parameters,
+                throws: `throws`,
+                rethrows: `rethrows`,
+                isFailable: isFailable)
         } ?? SwiftInitialiserDeclaration.errorInitialiserDeclaration
+    }
+
+    private func parseIsFailable() -> Bool {
+        var isFailable = false
+        if isNext("?") {
+            advanceOperator("?")
+            isFailable = true
+        } else if isNext("!") {
+            advanceOperator("!")
+            isFailable = true
+        }
+        return isFailable
+    }
+
+    private func parseThrows() -> Bool {
+        if isNext(.throws) {
+            advance()
+            return true
+        }
+        return false
+    }
+
+    private func parseRethrows() -> Bool {
+        if isNext(.rethrows) {
+            advance()
+            return true
+        }
+        return false
     }
 }

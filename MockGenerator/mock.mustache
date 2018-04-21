@@ -1,0 +1,104 @@
+{{#initializer}}
+    {{{declarationText}}} {
+    {{{initializerCall}}}
+    }
+{{/initializer}}
+
+{{#property}}
+
+    {{#hasSetter}}
+        {{scope}} var invoked{{capitalizedUniqueName}}Setter = false
+        {{scope}} var invoked{{capitalizedUniqueName}}SetterCount = 0
+        {{scope}} var invoked{{capitalizedUniqueName}}: {{{optionalType}}}
+        {{scope}} var invoked{{capitalizedUniqueName}}List = [{{{type}}}]()
+    {{/hasSetter}}
+    {{scope}} var invoked{{capitalizedUniqueName}}Getter = false
+    {{scope}} var invoked{{capitalizedUniqueName}}GetterCount = 0
+    {{scope}} var stubbed{{capitalizedUniqueName}}: {{{iuoType}}} {{{defaultValueAssignment}}}
+
+    {{{declarationText}}} {
+
+    {{#hasSetter}}
+        set {
+        invoked{{capitalizedUniqueName}}Setter = true
+        invoked{{capitalizedUniqueName}}SetterCount += 1
+        invoked{{capitalizedUniqueName}} = newValue
+        invoked{{capitalizedUniqueName}}List.append(newValue)
+        }
+        get {
+        invoked{{capitalizedUniqueName}}Getter = true
+        invoked{{capitalizedUniqueName}}GetterCount += 1
+        return stubbed{{capitalizedUniqueName}}
+        }
+    {{/hasSetter}}
+    {{^hasSetter}}
+        invoked{{capitalizedUniqueName}}Getter = true
+        invoked{{capitalizedUniqueName}}GetterCount += 1
+        return stubbed{{capitalizedUniqueName}}
+    {{/hasSetter}}
+
+    }
+{{/property}}
+
+{{#method}}
+
+    {{scope}} var invoked{{capitalizedUniqueName}} = false
+    {{scope}} var invoked{{capitalizedUniqueName}}Count = 0
+
+    {{#escapingParameters}}
+        {{scope}} var invoked{{capitalizedUniqueName}}Parameters: {{{tupleRepresentation}}}?
+        {{scope}} var invoked{{capitalizedUniqueName}}ParametersList = [{{{tupleRepresentation}}}]()
+    {{/escapingParameters}}
+
+    {{#closureParameter}}
+        {{#hasArguments}}
+            {{scope}} var stubbed{{capitalizedUniqueName}}{{capitalizedName}}Result: {{{argumentsTupleRepresentation}}}?
+        {{/hasArguments}}
+        {{^hasArguments}}
+            {{scope}} var shouldInvoke{{capitalizedUniqueName}}{{capitalizedName}} = false
+        {{/hasArguments}}
+    {{/closureParameter}}
+
+    {{#throws}}
+        {{scope}} var stubbed{{capitalizedUniqueName}}Error: Error?
+    {{/throws}}
+
+    {{#resultType}}
+        {{scope}} var stubbed{{capitalizedUniqueName}}Result: {{{iuoType}}} {{{defaultValueAssignment}}}
+    {{/resultType}}
+
+    {{{declarationText}}} {
+
+    invoked{{capitalizedUniqueName}} = true
+    invoked{{capitalizedUniqueName}}Count += 1
+
+    {{#escapingParameters}}
+        invoked{{capitalizedUniqueName}}Parameters = {{{tupleAssignment}}}
+        invoked{{capitalizedUniqueName}}ParametersList.append({{{tupleAssignment}}})
+    {{/escapingParameters}}
+
+    {{#closureParameter}}
+        {{#hasArguments}}
+            if let result = stubbed{{capitalizedUniqueName}}{{capitalizedName}}Result {
+            {{{implicitClosureCall}}}
+            }
+        {{/hasArguments}}
+        {{^hasArguments}}
+            if shouldInvoke{{capitalizedUniqueName}}{{capitalizedName}} {
+            {{{implicitClosureCall}}}
+            }
+        {{/hasArguments}}
+    {{/closureParameter}}
+
+    {{#throws}}
+        if let error = stubbed{{capitalizedUniqueName}}Error {
+        throw error
+        }
+    {{/throws}}
+
+    {{#resultType}}
+        return stubbed{{capitalizedUniqueName}}Result{{returnCastStatement}}
+    {{/resultType}}
+
+    }
+{{/method}}

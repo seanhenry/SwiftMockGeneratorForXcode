@@ -29,7 +29,7 @@ class TypeParser: Parser<Type> {
     private func parseTypeExcludingOptional() -> Type? {
         if let protocolCompositionType = parseProtocolCompositionType() {
             return protocolCompositionType
-        } else if let typeIdentifier = parseTypeIdentifier() {
+        } else if let typeIdentifier = parseTypeIdentifiers() {
             return typeIdentifier
         } else if let arrayType = parseArrayType() {
             return arrayType
@@ -45,39 +45,45 @@ class TypeParser: Parser<Type> {
 
     // MARK: - Type identifier
 
-    private func parseTypeIdentifier() -> Type? {
-        guard let type = parseTypeName().last else { return nil }
-        let genericArguments = parseGenericClause(type)
-        if isNext(.dot) {
-            advance()
-            return parseTypeIdentifier()
-        } else {
+    private func parseTypeIdentifiers() -> Type? {
+        var type: TypeIdentifier?
+        while let identifier = parseTypeIdentifier(type) {
+            type = identifier
+            do {
+                try advanceOrFail(if: .dot)
+            } catch {
+                break
+            }
+        }
+        return type
+    }
+
+    private func parseTypeIdentifier(_ parent: TypeIdentifier?) -> TypeIdentifier? {
+        if let identifier = parseIdentifier() {
+            let genericArguments = parseGenericClause()
+            let children = [parent].compactMap { $0 }
             return createTypeElement() { offset, length, text in
                 return SwiftTypeIdentifier(
                     text: text,
-                    children: [type] + genericArguments,
+                    children: children + genericArguments,
                     offset: offset,
                     length: length,
-                    type: type,
-                    genericArguments: genericArguments)
+                    typeName: identifier,
+                    genericArguments: genericArguments,
+                    parentType: parent)
             }
         }
+        return parent
     }
 
     // MARK: - Nested
 
-    private func parseTypeName() -> [Type] {
-        return parseNestedTypes()
-    }
-
-    private func parseNestedTypes() -> [Type] {
-        var types = [Type]()
-        appendIdentifier(to: &types)
-        while isNext(.dot) {
+    private func parseIdentifier() -> String? {
+        if let identifier = peekAtNextIdentifier() {
             advance()
-            appendIdentifier(to: &types)
+            return identifier
         }
-        return types
+        return nil
     }
 
     private func appendIdentifier(to types: inout [Type]) {
@@ -97,7 +103,7 @@ class TypeParser: Parser<Type> {
 
     // MARK: - Generic
 
-    private func parseGenericClause(_ type: Type) -> [Type] {
+    private func parseGenericClause() -> [Type] {
         var clause = [Type]()
         do {
             try advanceOrFail(if: "<")
@@ -199,7 +205,7 @@ class TypeParser: Parser<Type> {
     func parseProtocolCompositionType() -> Type? {
         return tryToParse {
             var types = [Type]()
-            try appendTypeIdentifier(to: &types)
+            try appendTypeIdentifiers(to: &types)
             try appendCompositionRHS(to: &types)
             repeat {
                 try? appendCompositionRHS(to: &types)
@@ -208,10 +214,10 @@ class TypeParser: Parser<Type> {
         }
     }
 
-    private func appendTypeIdentifier(to string: inout [Type]) throws {
+    private func appendTypeIdentifiers(to string: inout [Type]) throws {
         startStack.append(getCurrentStartLocation())
         defer { startStack.removeLast() }
-        if let type = parseTypeIdentifier() {
+        if let type = parseTypeIdentifiers() {
             string.append(type)
         } else {
             throw LookAheadError()
@@ -220,7 +226,7 @@ class TypeParser: Parser<Type> {
 
     private func appendCompositionRHS(to types: inout [Type]) throws {
         try assertAmpBinaryOperator()
-        try appendTypeIdentifier(to: &types)
+        try appendTypeIdentifiers(to: &types)
     }
 
     private func assertAmpBinaryOperator() throws {
@@ -248,58 +254,103 @@ class TypeParser: Parser<Type> {
 
     // MARK: - Tuple
 
-    private func parseTupleType() -> Type? {
+    private func parseTupleType() -> TupleType? {
         return tryToParse {
-            var tuple = ""
-            try append(.leftParen, value: "(", to: &tuple)
-            tryToAppendTupleArgument(to: &tuple)
+            try advanceOrFail(if: .leftParen)
+            var elements = [TupleTypeElement]()
             repeat {
-                try? append(.comma, value: ", ", to: &tuple)
-                tryToAppendTupleArgument(to: &tuple)
+                advance(if: .comma)
+                parseTupleElement().map { elements.append($0) }
             } while isNext(.comma)
-            try append(.rightParen, value: ")", to: &tuple)
-            return createSwiftType()
+            try advanceOrFail(if: .rightParen)
+            return createTupleElement(elements: elements)
         }
     }
 
-    private func tryToAppendTupleArgument(to string: inout String) {
-        tryToAppendWildcard(to: &string)
-        tryToAppendTupleArgumentName(to: &string)
-        tryToAppendTypeAnnotation(to: &string)
+    private func createTupleElement(elements: [TupleTypeElement]) -> TupleType {
+        return createTypeElement { offset, length, text in
+            SwiftTupleType(text: text,
+                children: elements,
+                offset: offset,
+                length: length,
+                elements: elements)
+        } ?? SwiftTupleType.errorTupleType
     }
 
-    private func tryToAppendWildcard(to string: inout String) {
-        if isNext(.underscore) {
-            advance()
-            string.append("_ ")
+    private func parseTupleElement() -> TupleTypeElement? {
+        if isNext(.rightParen) {
+            return nil
         }
+        return parseTupleTypeElement()
     }
 
-    private func tryToAppendTupleArgumentName(to string: inout String) {
-        let name = tryToParse { () -> String in
-            var name = ""
-            try appendIdentifier(to: &name)
-            if !isNext(.colon) {
-                throw LookAheadError()
+    class TupleTypeElementParser: Parser<TupleTypeElement> {
+
+        override func parse(start: LineColumn) -> TupleTypeElement {
+            advance(if: .underscore)
+            let label = getArgumentName()
+            let typeAnnotation = parseTypeAnnotation()
+            return createElement(start: start) { offset, length, text in
+                SwiftTupleTypeElement(text: text,
+                    children: [typeAnnotation],
+                    offset: offset,
+                    length: length,
+                    label: label,
+                    typeAnnotation: typeAnnotation)
+            } ?? SwiftTupleTypeElement.errorTupleTypeElement
+        }
+
+        private func getArgumentName() -> String? {
+            return tryToParse { () -> String in
+                var name = ""
+                try appendIdentifier(to: &name)
+                if !isNext(.colon) {
+                    throw LookAheadError()
+                }
+                return name
             }
-            return name
         }
-        name.map { string.append($0) }
     }
 
     // MARK: - Function type
 
     private func parseFunctionType() -> Type? {
         return tryToParse {
-            var function = ""
-            tryToAppendAttributes(to: &function)
-            try appendTupleType(to: &function)
-            tryToAppend(.throws, value: " throws", to: &function)
-            tryToAppend(.rethrows, value: " rethrows", to: &function)
-            try append(.arrow, value: " -> ", to: &function)
-            tryToAppendType(to: &function)
-            return createSwiftType()
+            let attributes = parseAttributes()
+            let arguments = try parseTupleOrFail()
+            let `throws` = parseThrows()
+            let `rethrows` = parseRethrows()
+            try advanceOrFail(if: .arrow)
+            let returnType = parse()
+            return createTypeElement { offset, length, text in
+                SwiftFunctionType(text: text,
+                    children: [arguments, returnType],
+                    offset: offset,
+                    length: length,
+                    attributes: attributes,
+                    arguments: arguments,
+                    returnType: returnType,
+                    throws: `throws`,
+                    rethrows: `rethrows`)
+            }!
         }
+    }
+
+    private func parseTupleOrFail() throws -> TupleType {
+        guard let tuple = parseTupleType() else { throw LookAheadError() }
+        return tuple
+    }
+
+    private func parseThrows() -> Bool {
+        let `throws` = isNext(.throws)
+        advance(if: .throws)
+        return `throws`
+    }
+
+    private func parseRethrows() -> Bool {
+        let `rethrows` = isNext(.rethrows)
+        advance(if: .rethrows)
+        return `rethrows`
     }
 
     private func appendTupleType(to string: inout String) throws {
@@ -308,9 +359,5 @@ class TypeParser: Parser<Type> {
         } else {
             throw LookAheadError()
         }
-    }
-
-    override func tryToAppendType(to string: inout String) {
-        string.append(parse().text)
     }
 }

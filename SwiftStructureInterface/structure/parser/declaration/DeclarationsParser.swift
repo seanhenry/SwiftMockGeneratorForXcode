@@ -19,7 +19,7 @@ class DeclarationsParser: Parser<[Element]> {
             return parseFunctionDeclaration()
         } else if isNextDeclaration(.var) {
             return parseVariableDeclaration()
-        } else if isNextDeclaration(.identifier("associatedtype")) {
+        } else if isNextDeclaration(.identifier("associatedtype", false)) {
             return parseAssociatedTypeDeclaration()
         } else if isNextDeclaration(.typealias) {
             return parseTypealiasDeclaration()

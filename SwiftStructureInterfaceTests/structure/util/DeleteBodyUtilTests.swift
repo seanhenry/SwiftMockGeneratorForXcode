@@ -29,7 +29,7 @@ class DeleteBodyUtilTests: XCTestCase {
         let file = SKElementFactoryTestHelper.build(from: getSimpleClass())!
         let classElement = file.children[0]
         let result = util.deleteClassBody(from: classElement)!
-        XCTAssert(result.element is SwiftTypeElement)
+        XCTAssert(result.element is SwiftTypeDeclaration)
     }
 
     func test_deleteClassBody_returnsNil_whenElementHasNoFile() {
@@ -37,7 +37,7 @@ class DeleteBodyUtilTests: XCTestCase {
     }
 
     func test_deleteClassBody_returnsNil_whenClassElementHasBadOffsets() {
-        let element = SwiftTypeElement(name: "A", text: "class A { }", children: [], inheritedTypes: [], offset: -1, length: 0, bodyOffset: 100, bodyLength: 0)
+        let element = SwiftTypeDeclaration(name: "A", text: "class A { }", children: [], inheritedTypes: [], offset: -1, length: 0, bodyOffset: 100, bodyLength: 0)
         let file = SwiftFile(text: "class A { }", children: [element], offset: 0, length: 11)
         XCTAssertNil(util.deleteClassBody(from: file.children[0]))
     }

@@ -23,10 +23,6 @@ class SwiftASTLexer: SwiftLexer {
         return SwiftASTLexer.convert(sourceRange)
     }
 
-    private func convert(_ sourceLocation: SourceLocation) -> LineColumn {
-        return SwiftASTLexer.convert(sourceLocation)
-    }
-
     func getCurrentRange() -> LineColumnRange {
         return convert(lexer.look().sourceRange)
     }

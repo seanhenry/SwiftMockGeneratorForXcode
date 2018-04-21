@@ -1,5 +1,5 @@
 public protocol Parameter: Element {
-    var type: Element { get }
+    var typeAnnotation: TypeAnnotation { get }
     var externalParameterName: String? { get }
     var localParameterName: String { get }
 }

@@ -11,7 +11,7 @@ class ReturnProtocolMock: ReturnProtocol {
     }
     var invokedReturnTuple = false
     var invokedReturnTupleCount = 0
-    var stubbedReturnTupleResult: (String, Int?)!
+    var stubbedReturnTupleResult: (String, Int?)! = ("", nil)
     func returnTuple() -> (String, Int?) {
         invokedReturnTuple = true
         invokedReturnTupleCount += 1
@@ -19,7 +19,7 @@ class ReturnProtocolMock: ReturnProtocol {
     }
     var invokedReturnLabelledTuple = false
     var invokedReturnLabelledTupleCount = 0
-    var stubbedReturnLabelledTupleResult: (s: String, i: Int?)!
+    var stubbedReturnLabelledTupleResult: (String, Int?)! = ("", nil)
     func returnLabelledTuple() -> (s: String, i: Int?) {
         invokedReturnLabelledTuple = true
         invokedReturnLabelledTupleCount += 1
@@ -59,7 +59,7 @@ class ReturnProtocolMock: ReturnProtocol {
     }
     var invokedReturnClosure = false
     var invokedReturnClosureCount = 0
-    var stubbedReturnClosureResult: (() -> ())!
+    var stubbedReturnClosureResult: (() -> ())! = { }
     func returnClosure() -> () -> () {
         invokedReturnClosure = true
         invokedReturnClosureCount += 1
@@ -67,7 +67,7 @@ class ReturnProtocolMock: ReturnProtocol {
     }
     var invokedReturnComplicatedClosure = false
     var invokedReturnComplicatedClosureCount = 0
-    var stubbedReturnComplicatedClosureResult: ((String, Int?) -> (UInt))!
+    var stubbedReturnComplicatedClosureResult: ((String, Int?) -> (UInt))! = { _, _ in return 0 }
     func returnComplicatedClosure() -> ((String, Int?) -> (UInt)) {
         invokedReturnComplicatedClosure = true
         invokedReturnComplicatedClosureCount += 1

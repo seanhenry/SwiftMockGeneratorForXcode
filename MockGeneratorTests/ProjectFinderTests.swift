@@ -1,5 +1,5 @@
 import XCTest
-@testable import MockGenerator
+@testable import MockGeneratorApp
 
 class ProjectFinderTests: XCTestCase {
 

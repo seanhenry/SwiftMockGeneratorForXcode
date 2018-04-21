@@ -341,4 +341,44 @@ class DefaultValuesMock: DefaultValues {
         invokedStringCount += 1
         return stubbedStringResult
     }
+    var invokedClosureA = false
+    var invokedClosureACount = 0
+    var stubbedClosureAResult: (() -> ())! = { }
+    func closureA() -> () -> () {
+        invokedClosureA = true
+        invokedClosureACount += 1
+        return stubbedClosureAResult
+    }
+    var invokedClosureB = false
+    var invokedClosureBCount = 0
+    var stubbedClosureBResult: (() -> (Void))! = { }
+    func closureB() -> () -> (Void) {
+        invokedClosureB = true
+        invokedClosureBCount += 1
+        return stubbedClosureBResult
+    }
+    var invokedClosureC = false
+    var invokedClosureCCount = 0
+    var stubbedClosureCResult: (() -> Void)! = { }
+    func closureC() -> () -> Void {
+        invokedClosureC = true
+        invokedClosureCCount += 1
+        return stubbedClosureCResult
+    }
+    var invokedClosureD = false
+    var invokedClosureDCount = 0
+    var stubbedClosureDResult: ((String, Int) -> ())! = { _, _ in }
+    func closureD() -> (String, Int) -> () {
+        invokedClosureD = true
+        invokedClosureDCount += 1
+        return stubbedClosureDResult
+    }
+    var invokedClosureE = false
+    var invokedClosureECount = 0
+    var stubbedClosureEResult: (() -> (String))! = { return "" }
+    func closureE() -> () -> (String) {
+        invokedClosureE = true
+        invokedClosureECount += 1
+        return stubbedClosureEResult
+    }
 }

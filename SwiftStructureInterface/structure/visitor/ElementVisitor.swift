@@ -29,6 +29,26 @@ open class ElementVisitor {
         visitType(element)
     }
 
+    open func visitTypeIdentifier(_ element: TypeIdentifier) {
+        visitType(element)
+    }
+
+    open func visitTupleType(_ element: TupleType) {
+        visitType(element)
+    }
+
+    open func visitTupleTypeElement(_ element: TupleTypeElement) {
+        visitElement(element)
+    }
+
+    open func visitTypeAnnotation(_ element: TypeAnnotation) {
+        visitElement(element)
+    }
+
+    open func visitFunctionType(_ element: FunctionType) {
+        visitType(element)
+    }
+
     open func visitFunctionDeclaration(_ element: FunctionDeclaration) {
         visitElement(element)
     }
@@ -38,6 +58,10 @@ open class ElementVisitor {
     }
 
     open func visitGenericParameterClause(_ element: GenericParameterClause) {
+        visitElement(element)
+    }
+
+    open func visitGenericParameter(_ element: GenericParameter) {
         visitElement(element)
     }
 

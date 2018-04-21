@@ -5,8 +5,8 @@ class SwiftMethodElementBuilderTests: XCTestCase {
 
     func test_build_shouldDetectMethods() {
         let file = SKElementFactoryTestHelper.build(from: getMethodsExampleString())!
-        let protocolType = file.children[0] as? SwiftTypeElement
-        let classType = file.children[1] as? SwiftTypeElement
+        let protocolType = file.children[0] as? SwiftTypeDeclaration
+        let classType = file.children[1] as? SwiftTypeDeclaration
         let instanceMethod = classType?.children[0] as? SwiftFunctionDeclaration
         assertChildMethodName(protocolType, at: 0, equals: "protocolMethod")
         assertChildMethodName(classType, at: 0, equals: "method")
@@ -17,7 +17,7 @@ class SwiftMethodElementBuilderTests: XCTestCase {
 
     func test_build_shouldAddReturnTypeToMethods() {
         let file = SKElementFactoryTestHelper.build(from: getReturnMethodsExampleString())!
-        let protocolType = file.children[0] as! SwiftTypeElement
+        let protocolType = file.children[0] as! SwiftTypeDeclaration
         assertChildMethodReturnType(protocolType, at: 0, equals: nil)
         assertChildMethodReturnType(protocolType, at: 1, equals: "Type0")
         assertChildMethodReturnType(protocolType, at: 2, equals: "(Type0, Type1)")
@@ -25,7 +25,7 @@ class SwiftMethodElementBuilderTests: XCTestCase {
         assertChildMethodReturnType(protocolType, at: 4, equals: "Type0<Type1>")
         assertChildMethodReturnType(protocolType, at: 5, equals: "Type0")
         assertChildMethodReturnType(protocolType, at: 6, equals: "Type0")
-        let classType = file.children[1] as! SwiftTypeElement
+        let classType = file.children[1] as! SwiftTypeDeclaration
         assertChildMethodReturnType(classType, at: 0, equals: "Type0")
         assertChildMethodReturnType(classType, at: 1, equals: "Type0")
         assertChildMethodReturnType(classType, at: 2, equals: "Type0")

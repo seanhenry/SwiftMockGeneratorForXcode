@@ -41,4 +41,10 @@ protocol DefaultValues {
     func character() -> Character
     func staticString() -> StaticString
     func string() -> String
+
+    func closureA() -> () -> ()
+    func closureB() -> () -> (Void)
+    func closureC() -> () -> Void
+    func closureD() -> (String, Int) -> ()
+    func closureE() -> () -> (String)
 }

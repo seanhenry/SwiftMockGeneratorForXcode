@@ -28,10 +28,10 @@ class ResolveUtilTests: XCTestCase {
 
     // MARK: - resolve
 
-    func test_resolve_shouldResolveSwiftTypeElement() {
+    func test_resolve_shouldResolveSwiftTypeDeclaration() {
         writeResolveClassesToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = (file.children[0] as! SwiftTypeElement).inheritedTypes[0]
+        let reference = (file.children[0] as! SwiftTypeDeclaration).inheritedTypes[0]
         let resolved = util.resolve(reference) as? TypeDeclaration
         XCTAssertEqual(resolved?.name, "ResolveTest")
         let method = resolved?.namedChild(at: 0)
@@ -41,7 +41,7 @@ class ResolveUtilTests: XCTestCase {
     func test_resolve_shouldResolveElementInSameFile() {
         writeResolveClassesToSingleFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = (file.children[1] as! SwiftTypeElement).inheritedTypes[0]
+        let reference = (file.children[1] as! SwiftTypeDeclaration).inheritedTypes[0]
         let resolved = util.resolve(reference) as? TypeDeclaration
         XCTAssertEqual(resolved?.name, "ResolveTest")
         let method = resolved?.namedChild(at: 0)
@@ -51,7 +51,7 @@ class ResolveUtilTests: XCTestCase {
     func test_resolve_shouldResolveElementWithUTF16Characters() {
         writeUTF16ResolveClassesToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = (file.children[0] as! SwiftTypeElement).inheritedTypes[0]
+        let reference = (file.children[0] as! SwiftTypeDeclaration).inheritedTypes[0]
         let resolved = ResolveUtil().resolve(reference) as? TypeDeclaration
         XCTAssertEqual(resolved?.name, "Resolve💐Test")
         let method = resolved?.namedChild(at: 0)
@@ -62,7 +62,7 @@ class ResolveUtilTests: XCTestCase {
         ResolveUtil.cursorInfoRequest = ThrowingCursorInfoRequest()
         writeResolveClassesToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = (file.children[0] as! SwiftTypeElement).inheritedTypes[0]
+        let reference = (file.children[0] as! SwiftTypeDeclaration).inheritedTypes[0]
         XCTAssertNil(ResolveUtil().resolve(reference))
     }
 

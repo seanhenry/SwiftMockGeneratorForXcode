@@ -50,7 +50,7 @@ class AssociatedTypeDeclarationParserTests: XCTestCase {
     // MARK: - Helpers
 
     func parse(_ text: String) -> SwiftElement {
-        let parser = createDeclarationParser(text, .identifier("associatedtype"), AssociatedTypeDeclarationParser.self)
+        let parser = createDeclarationParser(text, .identifier("associatedtype", false), AssociatedTypeDeclarationParser.self)
         return parser.parse() as! SwiftElement
     }
 }

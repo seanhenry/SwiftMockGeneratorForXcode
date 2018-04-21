@@ -21,13 +21,7 @@ public class Generator {
         guard let typeElement = (elementUnderCaret as? TypeDeclaration) ?? ElementTreeUtil().findParentType(elementUnderCaret) else {
             return reply(with: "Place the cursor on a mock class declaration")
         }
-        guard let inheritedType = typeElement.inheritedTypes.first else {
-            return reply(with: "Could not find a protocol on \(typeElement.name)")
-        }
-        guard let resolved = ResolveUtil().resolve(inheritedType) else {
-            return reply(with: "\(inheritedType.text) element could not be resolved")
-        }
-        return buildMock(toFile: file, atElement: typeElement, resolvedProtocol: resolved)
+        return buildMock(toFile: file, atElement: typeElement)
     }
     
     private static func reply(with message: String) -> ([String]?, Error?) {
@@ -35,8 +29,11 @@ public class Generator {
         return (nil, nsError)
     }
     
-    private static func buildMock(toFile file: Element, atElement element: TypeDeclaration, resolvedProtocol: Element) -> ([String]?, Error?) {
-        let mockLines = getMockBody(fromResolvedProtocol: resolvedProtocol)
+    private static func buildMock(toFile file: Element, atElement element: TypeDeclaration) -> ([String]?, Error?) {
+        let mockLines = getMockBody(from: element)
+        guard !mockLines.isEmpty else {
+            return reply(with: "Could not find a protocol on \(element.name)")
+        }
         guard let (newFile, newTypeElement) = delete(contentsOf: element) else {
             return reply(with: "Could not delete body from: \(element.text)")
         }
@@ -44,14 +41,17 @@ public class Generator {
         return (format(fileLines), nil)
     }
     
-    private static func getMockBody(fromResolvedProtocol resolvedProtocol: Element) -> [String] {
-        let generator = UseCasesMockGenerator()
-        let visitor = MethodGatheringVisitor()
-        resolvedProtocol.accept(visitor)
-        visitor.properties.forEach { generator.add(property: $0) }
-        visitor.methods.forEach { generator.add(method: $0) }
-        let mockString = generator.generate()
-        return mockString.getLines()
+    private static func getMockBody(from element: Element) -> [String] {
+        let view = UseCasesCallbackMockView { model in
+            let view = MustacheView()
+            view.render(model: model)
+            return view.result
+        }
+        let generator = UseCasesGenerator(view: view)
+        let transformed = TypeDeclarationTransformingVisitor.transformMock(element)
+        transformed.forEach { generator.add(protocol: $0) }
+        generator.generate()
+        return view.result
     }
     
     private static func delete(contentsOf typeElement: TypeDeclaration) -> (File, TypeDeclaration)? {

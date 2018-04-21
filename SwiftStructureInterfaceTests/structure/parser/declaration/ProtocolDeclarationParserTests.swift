@@ -135,9 +135,15 @@ class ProtocolDeclarationParserTests: XCTestCase {
         assertElementText(`protocol`.inheritedTypes[0], "Generic<Type>", offset: 12)
     }
 
+    func test_parse_shouldAddChildrenToProtocol() {
+        let text = "protocol A: B { }"
+        let `protocol` = parse(text)
+        XCTAssert(`protocol`.children[0] === `protocol`.inheritedTypes[0])
+    }
+
     // MARK: - Helpers
 
-    func parse(_ text: String) -> SwiftTypeElement {
+    func parse(_ text: String) -> TypeDeclaration {
         let parser = createDeclarationParser(text, .protocol, ProtocolDeclarationParser.self)
         return parser.parse()
     }

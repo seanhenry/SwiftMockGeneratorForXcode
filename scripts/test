@@ -16,7 +16,7 @@ xcrun xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath /tmp/buil
 BUILDTIME=$SECONDS
 SECONDS=0
 echo "Running tests"
-xcrun xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath /tmp/build -scheme SwiftStructureInterface test-without-building | xcpretty -t
+xcrun xcodebuild -workspace MockGenerator.xcworkspace -derivedDataPath /tmp/build -scheme 'All Tests' test-without-building | xcpretty -t
 
 blue="\033[1;34m"
 normal="\033[0m"
