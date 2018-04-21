@@ -3,10 +3,13 @@
 class ParameterAnnotationMock: ParameterAnnotation {
     var invokedEscaping = false
     var invokedEscapingCount = 0
+    var shouldInvokeEscapingClosure = false
     func escaping(closure: @escaping () -> ()) {
         invokedEscaping = true
         invokedEscapingCount += 1
-        closure()
+        if shouldInvokeEscapingClosure {
+            closure()
+        }
     }
     var invokedInOut = false
     var invokedInOutCount = 0
@@ -20,16 +23,22 @@ class ParameterAnnotationMock: ParameterAnnotation {
     }
     var invokedAutoclosure = false
     var invokedAutoclosureCount = 0
+    var shouldInvokeAutoclosureClosure = false
     func autoclosure(closure: @autoclosure () -> ()) {
         invokedAutoclosure = true
         invokedAutoclosureCount += 1
-        closure()
+        if shouldInvokeAutoclosureClosure {
+            closure()
+        }
     }
     var invokedConvention = false
     var invokedConventionCount = 0
+    var shouldInvokeConventionClosure = false
     func convention(closure: @convention(swift) () -> ()) {
         invokedConvention = true
         invokedConventionCount += 1
-        closure()
+        if shouldInvokeConventionClosure {
+            closure()
+        }
     }
 }

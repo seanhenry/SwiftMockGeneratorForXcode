@@ -92,7 +92,6 @@ class MethodGatheringVisitorTests: XCTestCase {
         let type = transformType("A!", UseCasesOptionalType.self)
         XCTAssertEqual(type.text, "A!")
         XCTAssert(type.isImplicitlyUnwrapped)
-        XCTAssert(type.implicitlyUnwrapped)
     }
 
     func test_shouldTransformFunctionType() {
@@ -180,9 +179,9 @@ class MethodGatheringVisitorTests: XCTestCase {
         return visitor.methods[0]
     }
 
-    private func assertParameter(_ parameter: UseCasesParameter, externalName: String = "", internalName: String, type: String, isEscaping: Bool = false, line: UInt = #line) {
-        XCTAssertEqual(parameter.label, externalName, line: line)
-        XCTAssertEqual(parameter.name, internalName, line: line)
+    private func assertParameter(_ parameter: UseCasesParameter, externalName: String? = nil, internalName: String, type: String, isEscaping: Bool = false, line: UInt = #line) {
+        XCTAssertEqual(parameter.externalName, externalName, line: line)
+        XCTAssertEqual(parameter.internalName, internalName, line: line)
         XCTAssertEqual(parameter.type.originalType.text, type, line: line)
         XCTAssertEqual(parameter.type.resolvedType.text, type, line: line)
         XCTAssertEqual(parameter.isEscaping, isEscaping, line: line)

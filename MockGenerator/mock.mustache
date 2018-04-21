@@ -1,6 +1,6 @@
 {{#initializer}}
     {{{declarationText}}} {
-      {{{initializerCall}}}
+    {{{initializerCall}}}
     }
 {{/initializer}}
 
@@ -55,7 +55,7 @@
             {{scope}} var stubbed{{capitalizedUniqueName}}{{capitalizedName}}Result: {{{argumentsTupleRepresentation}}}?
         {{/hasArguments}}
         {{^hasArguments}}
-        {{!{{scope}} {{!var shouldInvoke{{capitalizedUniqueName}}{{!{{capitalizedName}}{{! = false}}
+            {{scope}} var shouldInvoke{{capitalizedUniqueName}}{{capitalizedName}} = false
         {{/hasArguments}}
     {{/closureParameter}}
 
@@ -84,16 +84,15 @@
             }
         {{/hasArguments}}
         {{^hasArguments}}
-            {{!if shouldInvoke{{capitalizedUniqueName}}{{!{{capitalizedName}} {{!{
-            {{name}}{{!()
-            }}
+            if shouldInvoke{{capitalizedUniqueName}}{{capitalizedName}} {
             {{{implicitClosureCall}}}
+            }
         {{/hasArguments}}
     {{/closureParameter}}
 
     {{#throws}}
         if let error = stubbed{{capitalizedUniqueName}}Error {
-          throw error
+        throw error
         }
     {{/throws}}
 

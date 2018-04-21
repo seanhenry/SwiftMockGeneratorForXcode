@@ -63,9 +63,12 @@ class MethodParameterProtocolMock: MethodParameterProtocol {
     }
     var invokedClosureParam = false
     var invokedClosureParamCount = 0
+    var shouldInvokeClosureParamParam0 = false
     func closureParam(param0: () -> ()) {
         invokedClosureParam = true
         invokedClosureParamCount += 1
-        param0()
+        if shouldInvokeClosureParamParam0 {
+            param0()
+        }
     }
 }

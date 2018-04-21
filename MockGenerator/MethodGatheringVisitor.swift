@@ -41,7 +41,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     override func visitOptionalType(_ element: OptionalType) {
         let iuo = element.text.hasSuffix("!")
         let type = MethodGatheringVisitor.transformType(element.type)
-        self.type = UseCasesOptionalType(type: type, isImplicitlyUnwrapped: iuo, useVerboseSyntax: false, implicitlyUnwrapped: iuo)
+        self.type = UseCasesOptionalType(type: type, isImplicitlyUnwrapped: iuo, useVerboseSyntax: false)
     }
 
     override func visitFunctionType(_ element: FunctionType) {
@@ -75,7 +75,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
         let returnType = element.returnType.map { MethodGatheringVisitor.transformType($0) } ?? UseCasesTypeIdentifier(identifier: "")
         return UseCasesMethod(name: element.name,
             genericParameters: genericParameter,
-            returnType: UseCasesMethodType(originalType: returnType, resolvedType: returnType, erasedType: returnType),
+            returnType: UseCasesResolvedType(originalType: returnType, resolvedType: returnType),
             parametersList: parameters,
             declarationText: element.text,
             throws: element.throws)
@@ -90,9 +90,9 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     private func transformParameters(_ parameters: [Parameter]) -> [UseCasesParameter] {
         return parameters.map { parameter in
             UseCasesParameter(
-                label: parameter.externalParameterName ?? "",
-                name: parameter.localParameterName,
-                type: UseCasesMethodType(originalType: MethodGatheringVisitor.transformType(parameter.typeAnnotation.type), resolvedType: resolveAndTransform(parameter.typeAnnotation.type), erasedType: UseCasesTypeIdentifier(identifier: "z")),
+                externalName: parameter.externalParameterName,
+                internalName: parameter.localParameterName,
+                type: UseCasesResolvedType(originalType: MethodGatheringVisitor.transformType(parameter.typeAnnotation.type), resolvedType: resolveAndTransform(parameter.typeAnnotation.type)),
                 text: parameter.text,
                 isEscaping: isEscaping(parameter))
         }
@@ -117,7 +117,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
         properties.append(UseCasesProperty(name: element.name,
             type: MethodGatheringVisitor.transformType(element.type),
             isWritable: element.isWritable,
-            declarationText_: element.text))
+            declarationText: element.text))
     }
 
     override func visitInitialiserDeclaration(_ element: InitialiserDeclaration) {
