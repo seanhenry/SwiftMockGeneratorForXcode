@@ -82,6 +82,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("RecursiveProtocolMock")
     }
 
+    func test_generatesFromTupleTypes() {
+        assertMockGeneratesExpected("TupleProtocolMock")
+    }
+
     func test_generatesMockForAllCaretPositions() {
         let expected = readFile(named: "SimpleProtocolMock_expected.swift")
         let caretFile = readFile(named: "CaretSuccessTest.swift")

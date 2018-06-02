@@ -1,6 +1,6 @@
 SOURCE_KITTEN_SHA=0.20.0
 SWIFTAST_SHA=v0.4.2
-USE_CASE_SHA=84c1c1695537a6b060fab1a554343935c9b16e13
+USE_CASE_SHA=7ef9af8f6d52a1b6127cc9141e2b670c28a1dd3b
 KOTLIN_NATIVE_SHA=v0.7
 MUSTACHE_SHA=v7.3.2
 
@@ -73,7 +73,7 @@ swiftast: xcpretty
 	rm -rf $(DEST_PATH)/Lexer.framework $(DEST_PATH)/Bocho.framework $(DEST_PATH)/Diagnostic.framework $(DEST_PATH)/Source.framework || true
 	cp -R $(LEXER_FRAMEWORK) $(BOCHO_FRAMEWORK) $(DIAGNOSTIC_FRAMEWORK) $(SOURCE_FRAMEWORK) $(DEST_PATH);
 
-usecases: mklib mkkotlinnative
+usecases: mklib 
 	if [ -d "$(USECASES_SRC_PATH)/.git" ]; \
 	then \
 	cd $(USECASES_SRC_PATH); \
