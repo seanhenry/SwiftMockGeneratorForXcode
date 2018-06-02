@@ -2,7 +2,7 @@ import Source
 
 class VariableDeclarationParser: DeclarationParser<VariableDeclaration> {
 
-    override func parseDeclaration(start: LineColumn) -> VariableDeclaration {
+    override func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> VariableDeclaration {
         var name = ""
         tryToAppendIdentifier(to: &name)
         let type = parseTypeAnnotation()

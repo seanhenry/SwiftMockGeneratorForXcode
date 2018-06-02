@@ -1,6 +1,6 @@
 @testable import SwiftStructureInterface
 
-let emptyTypeDeclaration = SwiftTypeDeclaration(name: "", text: "", children: [], inheritedTypes: [], offset: 0, length: 0, bodyOffset: 0, bodyLength: 0)
+let emptyTypeDeclaration = SwiftTypeDeclaration(name: "", text: "", children: [], inheritedTypes: [], offset: 0, length: 0, bodyOffset: 0, bodyLength: 0, accessLevelModifier: testAccessLevelModifier)
 let emptyElement = SwiftElement(text: "", children: [], offset: 0, length: 0)
 let emptyFile = SwiftFile(text: "", children: [], offset: 0, length: 0)
 let emptyFunctionDeclaration = SwiftFunctionDeclaration(name: "", text: "", children: [], offset: 0, length: 0, returnType: nil, parameters: [])
@@ -23,3 +23,4 @@ let testTupleType = FileParser(fileContents: "(Int)").parseType() as! TupleType
 let testTupleTypeElement = testTupleType.elements[0]
 let testTypeAnnotation = testTupleTypeElement.typeAnnotation
 let testFunctionType = FileParser(fileContents: "() -> ()").parseType() as! FunctionType
+let testAccessLevelModifier = FileParser(fileContents: "").parseAccessLevelModifier()

@@ -1,6 +1,6 @@
 class InitialiserDeclarationParser: DeclarationParser<InitialiserDeclaration> {
 
-    override func parseDeclaration(start: LineColumn) -> InitialiserDeclaration {
+    override func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> InitialiserDeclaration {
         let isFailable = parseIsFailable()
         _ = parseGenericParameterClause()
         let parameters = parseFunctionDeclarationParameterClause()

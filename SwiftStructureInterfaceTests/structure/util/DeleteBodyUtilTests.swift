@@ -37,7 +37,7 @@ class DeleteBodyUtilTests: XCTestCase {
     }
 
     func test_deleteClassBody_returnsNil_whenClassElementHasBadOffsets() {
-        let element = SwiftTypeDeclaration(name: "A", text: "class A { }", children: [], inheritedTypes: [], offset: -1, length: 0, bodyOffset: 100, bodyLength: 0)
+        let element = SwiftTypeDeclaration(name: "A", text: "class A { }", children: [], inheritedTypes: [], offset: -1, length: 0, bodyOffset: 100, bodyLength: 0, accessLevelModifier: SwiftAccessLevelModifier.emptyAccessLevelModifier)
         let file = SwiftFile(text: "class A { }", children: [element], offset: 0, length: 11)
         XCTAssertNil(util.deleteClassBody(from: file.children[0]))
     }

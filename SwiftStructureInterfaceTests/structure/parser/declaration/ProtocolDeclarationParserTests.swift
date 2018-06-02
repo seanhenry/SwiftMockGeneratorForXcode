@@ -12,6 +12,7 @@ class ProtocolDeclarationParserTests: XCTestCase {
         XCTAssertEqual(`protocol`.name, "P")
         XCTAssertEqual(`protocol`.bodyOffset, 12)
         XCTAssertEqual(`protocol`.bodyLength, 0)
+        XCTAssertEqual(`protocol`.accessLevelModifier.text, "")
     }
 
     func test_parse_shouldParsePartialProtocolWithoutClosingBrace() {
@@ -69,6 +70,7 @@ class ProtocolDeclarationParserTests: XCTestCase {
         XCTAssertEqual(`protocol`.name, "A")
         XCTAssertEqual(`protocol`.bodyOffset, 19)
         XCTAssertEqual(`protocol`.bodyLength, 0)
+        XCTAssertEqual(`protocol`.accessLevelModifier.text, "public")
     }
 
     func test_parse_shouldParseProtocolWithAttribute() {

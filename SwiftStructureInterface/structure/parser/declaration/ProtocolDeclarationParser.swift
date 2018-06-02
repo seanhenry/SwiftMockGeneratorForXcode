@@ -2,7 +2,7 @@ import Source
 
 class ProtocolDeclarationParser: DeclarationParser<TypeDeclaration> {
 
-    override func parseDeclaration(start: LineColumn) -> TypeDeclaration {
+    override func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> TypeDeclaration {
         var name = ""
         tryToAppendIdentifier(to: &name)
         let inheritanceClause = parseTypeInheritanceClause()
@@ -17,7 +17,8 @@ class ProtocolDeclarationParser: DeclarationParser<TypeDeclaration> {
                 offset: offset,
                 length: length,
                 bodyOffset: codeBlock.offset,
-                bodyLength: codeBlock.length)
+                bodyLength: codeBlock.length,
+                accessLevelModifier: accessLevelModifier)
         } ?? SwiftTypeDeclaration.errorTypeDeclaration
     }
 

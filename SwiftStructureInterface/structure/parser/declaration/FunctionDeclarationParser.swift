@@ -2,7 +2,7 @@ import Source
 
 class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
-    override func parseDeclaration(start: LineColumn) -> FunctionDeclaration {
+    override func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> FunctionDeclaration {
         var name = ""
         try! appendIdentifier(to: &name)
         let genericParameterClause = parseGenericParameterClause()

@@ -60,6 +60,20 @@ class SwiftASTLexerTests: XCTestCase {
         lexer.advanceOperator("!")
         XCTAssertEqual(lexer.getPreviousEndLocation().column, 3)
     }
+
+    func test_checkPoint_shouldRememberTheLastRangeWhenRestored() {
+        let lexer = createLexer("private(set)")
+        lexer.advance()
+        let lastRange = lexer.lastRange
+        let id = lexer.setCheckPoint()
+        lexer.advance()
+        lexer.advance()
+        lexer.restoreCheckPoint(id)
+        XCTAssertEqual(lastRange.start.column, lexer.lastRange.start.column)
+        XCTAssertEqual(lastRange.start.line, lexer.lastRange.start.line)
+        XCTAssertEqual(lastRange.end.column, lexer.lastRange.end.column)
+        XCTAssertEqual(lastRange.end.line, lexer.lastRange.end.line)
+    }
     
     // MARK: - Helpers
     

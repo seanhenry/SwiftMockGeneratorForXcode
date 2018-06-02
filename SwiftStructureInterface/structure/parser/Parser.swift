@@ -159,6 +159,14 @@ class Parser<ResultType> {
         }
     }
 
+    func advanceIfIdentifierOrFail() throws {
+        if peekAtNextIdentifier() != nil {
+            advance()
+        } else {
+            throw LookAheadError()
+        }
+    }
+
     func isPrefixOperator(_ string: String) -> Bool {
         if case let .prefixOperator(op) = peekAtNextKind() {
             return op == string
@@ -371,6 +379,10 @@ class Parser<ResultType> {
 
     func parseSubscriptDeclaration() -> Element {
         return parseDeclaration(SubscriptDeclarationParser.self, .subscript)
+    }
+
+    func parseAccessLevelModifier() -> AccessLevelModifier {
+        return parse(AccessLevelModifierParser.self)
     }
 
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {

@@ -1,6 +1,6 @@
 class AssociatedTypeDeclarationParser: DeclarationParser<Element> {
 
-    override func parseDeclaration(start: LineColumn) -> Element {
+    override func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> Element {
         if peekAtNextIdentifier() != nil {
             advance()
         }

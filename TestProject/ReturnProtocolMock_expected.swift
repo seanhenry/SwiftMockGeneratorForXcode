@@ -19,7 +19,7 @@ class ReturnProtocolMock: ReturnProtocol {
     }
     var invokedReturnLabelledTuple = false
     var invokedReturnLabelledTupleCount = 0
-    var stubbedReturnLabelledTupleResult: (String, Int?)! = ("", nil)
+    var stubbedReturnLabelledTupleResult: (s: String, i: Int?)! = ("", nil)
     func returnLabelledTuple() -> (s: String, i: Int?) {
         invokedReturnLabelledTuple = true
         invokedReturnLabelledTupleCount += 1

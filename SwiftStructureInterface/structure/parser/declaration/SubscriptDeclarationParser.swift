@@ -1,6 +1,6 @@
 class SubscriptDeclarationParser: DeclarationParser<SubscriptDeclaration> {
 
-    override func parseDeclaration(start: LineColumn) -> SubscriptDeclaration {
+    override func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> SubscriptDeclaration {
         _ = parseGenericParameterClause()
         _ = parseFunctionDeclarationParameterClause()
         _ = parseFunctionDeclarationResult()

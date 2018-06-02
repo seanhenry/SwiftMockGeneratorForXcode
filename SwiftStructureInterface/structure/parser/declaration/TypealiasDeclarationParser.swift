@@ -1,6 +1,6 @@
 class TypealiasDeclarationParser: DeclarationParser<Typealias> {
 
-    override func parseDeclaration(start: LineColumn) -> Typealias {
+    override func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> Typealias {
         var name = ""
         tryToAppendIdentifier(to: &name)
         _ = parseGenericParameterClause()

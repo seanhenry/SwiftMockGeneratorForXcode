@@ -16,13 +16,15 @@ class DeclarationParser<ResultType>: Parser<ResultType> {
 
     override func parse(start: LineColumn) -> ResultType {
         _ = parseAttributes()
+        // TODO: this only works for some declarations (classes for example, may have final first) but only used for protocols so far.
+        let accessLevelModifier = parseAccessLevelModifier()
         skipDeclarationModifiers()
         guard isNext(declarationToken) else { fatalError("Expected a \(declarationToken). Check isNext(.\(declarationToken)) before parsing a protocol") }
         advance()
-        return parseDeclaration(start: start)
+        return parseDeclaration(start: start, accessLevelModifier: accessLevelModifier)
     }
 
-    func parseDeclaration(start: LineColumn) -> ResultType {
+    func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> ResultType {
         fatalError("Override me")
     }
 }
