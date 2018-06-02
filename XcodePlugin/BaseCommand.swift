@@ -102,14 +102,14 @@ class BaseCommand: NSObject, XCSourceEditorCommand {
     private func track(_ lines: [String]?) {
         let tracker = GoogleAnalyticsTracker()
         if let lines = lines {
-            tracker.track(action: "generated", value: lines.count)
+            tracker.track(category: templateName, action: "generated", value: lines.count)
         }
     }
 
     private func track(_ error: Error?) {
         let tracker = GoogleAnalyticsTracker()
         if let error = error {
-            tracker.track(action: error.localizedDescription)
+            tracker.track(category: templateName, action: error.localizedDescription)
         }
     }
     
