@@ -1,7 +1,7 @@
 # Swift Mock Generator Xcode Source Editor Extension
 ![Mock Generator Icon](readme/AppIcon_256.png)
 
-An Xcode extension (plugin) to generate mock classes automatically.
+An Xcode extension (plugin) to generate spy, stub, and dummy classes automatically.
 
 ![Xcode mock generator](readme/XcodeMockGenerator.gif)
 
@@ -21,11 +21,11 @@ An Xcode extension (plugin) to generate mock classes automatically.
 
 Example:
 ```
-class MyMock: MyProtocol {
+class MySpy: MyProtocol {
 }
 ```
 - Place the cursor inside the class declaration.
-- Click `Editor -> Mock Generator -> Generate Mock`.
+- Click `Editor -> Mock Generator -> Generate spy`.
 
 ## How to recreate a Swift mock
 
@@ -38,24 +38,26 @@ To regenerate the mock, simply follow the steps above.
 - Select preferences `⌘,` in Xcode.
 - Choose 'Key Bindings'.
 - Search for 'Mock Generator'.
-- Choose your preferred shortcut. I prefer `⌃⌥⌘M`.
+- Choose your preferred shortcut.
 
-## Recommended: use source control
+## Recommended: use a version control system
 
-The mock generator will replace anything that is currently in your mock class with the generated mock.
+The mock generator will replace anything that is currently in your class with the generated test double.
 
-Undo is supported for Xcode plugins but you're safer to use source control in the event of unexpectedly generating a mock.
+Undo is supported for Xcode plugins but you're safer to use a version control system such as `git` in the event of unexpectedly generating a test double.
 
 ## Features
 
 | Feature | Supported |
 |---|---|
 | Swift 3 and 4.|✅|
-| Generate and regenerate your mock in one action.|✅|
+| Generate and regenerate a spy.|✅|
+| Generate and regenerate a stub.|✅|
+| Generate and regenerate a dummy.|✅|
 | **Classes and protocols** |
-| Generates mock conforming to one or many protocols.|✅|
-| Generates mock conforming to a class.||
-| Generates mock conforming to both classes and protocols.||
+| Generates test doubles conforming to one or many protocols.|✅|
+| Generates test doubles conforming to a class.||
+| Generates test doubles conforming to both classes and protocols.||
 | **Recording methods and properties** |
 | Captures invocation status of methods.|✅|
 | Captures invocation status of properties.|✅|
@@ -63,8 +65,9 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 | Records multiple invocations of properties.|✅|
 | Captures invoked method parameters.|✅|
 | Records multiple invocations of method parameters.|✅|
+| Supports multiple properties in the same declaration.||
 | **Stubbing return values and closures** |
-| Stubs values for your mocks to return.|✅|
+| Stubs values for your test doubles to return.|✅|
 | Stubs a default value for return values where possible.|✅|
 | Automatically calls closure parameters with stubbed values.|✅|
 | **Initializers** |
@@ -73,18 +76,18 @@ Undo is supported for Xcode plugins but you're safer to use source control in th
 | Supports failable initializers.|✅|
 | Supports required initializers.||
 | **Throws** |
-| Stub an error for your mock method to throw. |✅|
+| Stub an error for your overridden method to throw. |✅|
 | Supports throwing initializers. |✅|
 | Supports throwing closures. |✅|
 | **Generics** |
-| Generates generic mocks from protocols with associated types.||
+| Generates generic test doubles from protocols with associated types.||
 | Captures invoked generic parameters. |✅ \*|
 | Captures invoked generic return values. |✅ \*|
 | **Scope, keywords, and more** |
 | Avoids naming clashes from overloaded methods.|✅|
 | Supports parameter type-annotation attributes and `inout`.|✅|
-| Respects the mock scope and generates `public` and `open` methods and properties.||
-| Generate mock inheriting from items in 3rd party frameworks.||
+| Respects the test double scope and generates `public` and `open` methods and properties.||
+| Generate test doubles inheriting from items in 3rd party frameworks.||
 
 \* generic arguments in closures and generic types are not supported
 
@@ -94,101 +97,105 @@ If there is a feature you need, check for an existing GitHub issue and make a co
 
 ## Usage example
 
-A protocol called `DataStore` that we wish to mock:
+A protocol called Animator that we wish to spy on:
 
 ```
-protocol DataStore {
-    func save(_ data: Data, to file: URL) -> Bool
+protocol Animator {
+  func animate(duration: TimeInterval, animations: () -> (), completion: (Bool) -> ()) -> Bool
 }
 ```
-Create a mock class conforming to the `DataStore` protocol:
+Create a spy class conforming to a protocol:
 ```
-class MockDataStore: DataStore {
+class AnimatorSpy: Animator {
 }
 ```
-Place the cursor in the class declaration and generate the mock:
+Generate the spy:
 
 ```
-class MockDataStore: DataStore {
+class AnimatorSpy: Animator {
 
-    var invokedSave = false
-    var invokedSaveCount = 0
-    var invokedSaveParameters: (data: Data, file: URL)?
-    var invokedSaveParametersList = [(data: Data, file: URL)]()
-    var stubbedSaveResult: Bool!
+  var invokedAnimate = false
+  var invokedAnimateCount = 0
+  var invokedAnimateParameters: (duration: TimeInterval, Void)?
+  var invokedAnimateParametersList = [(duration: TimeInterval, Void)]()
+  var shouldInvokeAnimateAnimations = false
+  var stubbedAnimateCompletionResult: (Bool, Void)?
+  var stubbedAnimateResult: Bool! = false
 
-    func save(_ data: Data, to file: URL) -> Bool {
-        invokedSave = true
-        invokedSaveCount += 1
-        invokedSaveParameters = (data, file)
-        invokedSaveParametersList.append((data, file))
-        return stubbedSaveResult
+  func animate(duration: TimeInterval, animations: () -> (), completion: (Bool) -> ()) -> Bool {
+    invokedAnimate = true
+    invokedAnimateCount += 1
+    invokedAnimateParameters = (duration, ())
+    invokedAnimateParametersList.append((duration, ()))
+    if shouldInvokeAnimateAnimations {
+      animations()
     }
+    if let result = stubbedAnimateCompletionResult {
+      completion(result.0)
+    }
+    return stubbedAnimateResult
+  }
 }
 ```
-Create and inject the mock into the class you wish to test:
+Inject the spy into the class you wish to test:
 
 ```
-override func setUp() {
-    super.setUp()
-    mockDataStore = MockDataStore()
-    object = MyObject(dataStore: mockDataStore)
-}
+let animatorSpy = AnimatorSpy()
+let object = ObjectToTest(animator: animatorSpy)
 ```
-Test if the `save` method was invoked:
+Test if animate method was invoked:
 
 ```
-func testSaveWasInvoked() {
-    object.writeSomeData()
-    XCTAssertTrue(mockDataStore.invokedSave)
+func test_spyCanVerifyInvokedMethod() {
+  object.myMethod()
+  XCTAssertTrue(animatorSpy.invokedAnimate)
 }
 ```
-Test the parameters passed to the data store are correct:
+Test the correct parameter was passed to the animate method:
 
 ```
-func testCorrectDataWasSavedToCorrectLocation() {
-    object.writeSomeData()
-    XCTAssertEqual(mockDataStore.invokedSaveParameters?.data, expectedData)
-    XCTAssertEqual(mockDataStore.invokedSaveParameters?.file, expectedFile)
+func test_spyCanVerifyInvokedParameters() {
+  object.myMethod()
+  XCTAssertEqual(animatorSpy.invokedAnimateParameters?.duration, 5)
 }
 ```
-Test the `save` method was called the correct number of times:
+Test the number of times animate was invoked:
 
 ```
-func testSaveWasInvokedTwice() {
-    object.writeSomeData()
-    object.writeSomeData()
-    XCTAssertEqual(mockDataStore.invokedSaveCount, 2)
+func test_spyCanVerifyInvokedMethodCount() {
+  object.myMethod()
+  object.myMethod()
+  XCTAssertEqual(animatorSpy.invokedAnimateCount, 2)
 }
 ```
-Test the parameters passed into each call of the data store are correct:
+Test the parameters passed into each call of the animate method:
 
 ```
-func testDataWasSavedToTwoDifferentFiles() {
-    object.writeSomeData()
-    object.writeSomeData()
-    XCTAssertEqual(mockDataStore.invokedSaveParametersList[0].file, expectedFile)
-    XCTAssertEqual(mockDataStore.invokedSaveParametersList[1].file, anotherExpectedFile)
+func test_spyCanVerifyMultipleInvokedMethodParameters() {
+  object.myMethod()
+  object.myMethod()
+  XCTAssertEqual(animatorSpy.invokedAnimateParametersList[0].duration, 5)
+  XCTAssertEqual(animatorSpy.invokedAnimateParametersList[1].duration, 5)
 }
 ```
-Stub a return value for the `save` method:
+Stub a return value for the animate method:
 
 ```
-func testMyMethodReturnsTrueWhenSaveWasSuccessful() {
-    mockDataStore.stubbedSaveResult = true
-    let result = object.writeSomeData()
-    XCTAssertTrue(result)
+func test_spyCanReturnAStubbedValue() {
+  animatorSpy.stubbedAnimateResult = true
+  let result = object.myMethod()
+  XCTAssertTrue(result)
 }
 ```
-Stub the `progress` closure and it is called with the stubbed value:
+Stub the value for the completion closure in the animate method:
 
 ```
-func testStubProgressClosure() {
-    mockDataStore.stubbedSaveProgressResult = (0.5, ())
-    object.writeSomeData()
+func test_spyCanCallClosure_withStubbedValue() {
+  animatorSpy.stubbedAnimateCompletionResult = (false, ())
+  object.myMethod()
+  XCTAssertFalse(object.animationDidComplete)
 }
 ```
-Closures without arguments are called automatically.
 
 ## Disable or remove the plugin
 
@@ -202,7 +209,7 @@ Delete the app.
 
 ## Nomenclature
 
-Despite being called a Mock Generator, this plugin actually generates something closer to a spy and stub. The word 'mock', whilst not technically correct, has been used because test doubles such as spies, mocks, and stubs have become colloquially known as mocks.
+Despite being called a Mock Generator, this plugin actually generates a spy, stub or dummy. The word 'mock', whilst not technically correct, has been used because test doubles such as spies, mocks, and stubs have become commonly known as mocks.
 
 ## Build
 
@@ -218,6 +225,8 @@ Many thanks to the contributors of [SourceKitten](https://github.com/jpsim/Sourc
 Many thanks to the contributors of [swift-ast](https://github.com/yanagiba/swift-ast) for a great lexer which has made writing a parser much easier.
 
 Many thanks to the contributors of [kotlin-native](https://github.com/JetBrains/kotlin-native) for a Kotlin LLVM backend which enables code sharing between the Xcode and AppCode plugins.
+
+Many thanks to the contributors of [GRMustache](https://github.com/groue/GRMustache) for a enabling great Mustache test double templates.
 
 And special thanks to everyone who is contributing by raising issues and feature requests.
 
