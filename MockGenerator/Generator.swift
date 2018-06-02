@@ -4,7 +4,7 @@ import SwiftStructureInterface
 
 public class Generator {
 
-    public static func generateMock(fromFileContents contents: String, projectURL: URL, line: Int, column: Int) -> ([String]?, Error?) {
+    public static func generateMock(fromFileContents contents: String, projectURL: URL, line: Int, column: Int, templateName: String) -> ([String]?, Error?) {
         // TODO: put files elsewhere
         let sourceFiles = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
         ResolveUtil.sameFileCursorInfoRequest = SKCursorInfoRequest(files: [])
@@ -21,7 +21,7 @@ public class Generator {
         guard let typeElement = (elementUnderCaret as? TypeDeclaration) ?? ElementTreeUtil().findParentType(elementUnderCaret) else {
             return reply(with: "Place the cursor on a mock class declaration")
         }
-        return buildMock(toFile: file, atElement: typeElement)
+        return buildMock(toFile: file, atElement: typeElement, templateName: templateName)
     }
     
     private static func reply(with message: String) -> ([String]?, Error?) {
@@ -29,8 +29,8 @@ public class Generator {
         return (nil, nsError)
     }
     
-    private static func buildMock(toFile file: Element, atElement element: TypeDeclaration) -> ([String]?, Error?) {
-        let mockLines = getMockBody(from: element)
+    private static func buildMock(toFile file: Element, atElement element: TypeDeclaration, templateName: String) -> ([String]?, Error?) {
+        let mockLines = getMockBody(from: element, templateName: templateName)
         guard !mockLines.isEmpty else {
             return reply(with: "Could not find a protocol on \(element.name)")
         }
@@ -41,9 +41,9 @@ public class Generator {
         return (format(fileLines), nil)
     }
     
-    private static func getMockBody(from element: Element) -> [String] {
+    private static func getMockBody(from element: Element, templateName: String) -> [String] {
         let view = UseCasesCallbackMockView { model in
-            let view = MustacheView()
+            let view = MustacheView(templateName: templateName)
             view.render(model: model)
             return view.result
         }

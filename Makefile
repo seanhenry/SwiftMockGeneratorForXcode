@@ -73,7 +73,7 @@ swiftast: xcpretty
 	rm -rf $(DEST_PATH)/Lexer.framework $(DEST_PATH)/Bocho.framework $(DEST_PATH)/Diagnostic.framework $(DEST_PATH)/Source.framework || true
 	cp -R $(LEXER_FRAMEWORK) $(BOCHO_FRAMEWORK) $(DIAGNOSTIC_FRAMEWORK) $(SOURCE_FRAMEWORK) $(DEST_PATH);
 
-usecases: mklib 
+usecases: mklib mkkotlinnative
 	if [ -d "$(USECASES_SRC_PATH)/.git" ]; \
 	then \
 	cd $(USECASES_SRC_PATH); \

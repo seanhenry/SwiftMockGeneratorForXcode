@@ -99,7 +99,7 @@ class MockGeneratorTests: XCTestCase {
         } while contentsLineColumn.lineColumn != nil
         XCTAssertGreaterThan(caretLineColumns.count, 0)
         caretLineColumns.forEach { lineColumn in
-            let (lines, error) = Generator.generateMock(fromFileContents: contentsLineColumn.contents, projectURL: URL(fileURLWithPath: testProject), line: lineColumn.line, column: lineColumn.column)
+            let (lines, error) = Generator.generateMock(fromFileContents: contentsLineColumn.contents, projectURL: URL(fileURLWithPath: testProject), line: lineColumn.line, column: lineColumn.column, templateName: "spy")
             XCTAssertNil(error, "Failed to generate mock from caret at line: \(lineColumn.line) column: \(lineColumn.column)")
             StringCompareTestHelper.assertEqualStrings(join(lines), expected)
         }
@@ -117,7 +117,7 @@ class MockGeneratorTests: XCTestCase {
         } while contentsLineColumn.lineColumn != nil
         XCTAssertGreaterThan(caretLineColumns.count, 0)
         caretLineColumns.forEach { lineColumn in
-            let (lines, error) = Generator.generateMock(fromFileContents: contentsLineColumn.contents, projectURL: URL(fileURLWithPath: testProject), line: lineColumn.line, column: lineColumn.column)
+            let (lines, error) = Generator.generateMock(fromFileContents: contentsLineColumn.contents, projectURL: URL(fileURLWithPath: testProject), line: lineColumn.line, column: lineColumn.column, templateName: "spy")
             XCTAssertNotNil(error, "Should not be generating a mock from caret at line: \(lineColumn.line) column: \(lineColumn.column)")
             XCTAssertNil(lines)
         }
@@ -156,7 +156,7 @@ class MockGeneratorTests: XCTestCase {
 
     private func generateMock(_ mock: String) -> ([String]?, Error?) {
         let result = CaretTestHelper.findCaretLineColumn(mock)
-        return Generator.generateMock(fromFileContents: result.contents, projectURL: URL(fileURLWithPath: testProject), line: result.lineColumn!.line, column: result.lineColumn!.column)
+        return Generator.generateMock(fromFileContents: result.contents, projectURL: URL(fileURLWithPath: testProject), line: result.lineColumn!.line, column: result.lineColumn!.column, templateName: "spy")
     }
 
     private func join(_ lines: [String]?) -> String? {

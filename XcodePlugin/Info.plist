@@ -28,14 +28,30 @@
 		<dict>
 			<key>XCSourceEditorCommandDefinitions</key>
 			<array>
-				<dict>
-					<key>XCSourceEditorCommandClassName</key>
-					<string>$(PRODUCT_MODULE_NAME).SourceEditorCommand</string>
-					<key>XCSourceEditorCommandIdentifier</key>
-					<string>$(PRODUCT_BUNDLE_IDENTIFIER).SourceEditorCommand</string>
-					<key>XCSourceEditorCommandName</key>
-					<string>Generate Mock</string>
-				</dict>
+                <dict>
+                    <key>XCSourceEditorCommandClassName</key>
+                    <string>$(PRODUCT_MODULE_NAME).SpyCommand</string>
+                    <key>XCSourceEditorCommandIdentifier</key>
+                    <string>$(PRODUCT_BUNDLE_IDENTIFIER).spy</string>
+                    <key>XCSourceEditorCommandName</key>
+                    <string>Generate spy</string>
+                </dict>
+                <dict>
+                    <key>XCSourceEditorCommandClassName</key>
+                    <string>$(PRODUCT_MODULE_NAME).StubCommand</string>
+                    <key>XCSourceEditorCommandIdentifier</key>
+                    <string>$(PRODUCT_BUNDLE_IDENTIFIER).stub</string>
+                    <key>XCSourceEditorCommandName</key>
+                    <string>Generate stub</string>
+                </dict>
+                <dict>
+                    <key>XCSourceEditorCommandClassName</key>
+                    <string>$(PRODUCT_MODULE_NAME).DummyCommand</string>
+                    <key>XCSourceEditorCommandIdentifier</key>
+                    <string>$(PRODUCT_BUNDLE_IDENTIFIER).dummy</string>
+                    <key>XCSourceEditorCommandName</key>
+                    <string>Generate dummy</string>
+                </dict>
 			</array>
 			<key>XCSourceEditorExtensionPrincipalClass</key>
 			<string>$(PRODUCT_MODULE_NAME).SourceEditorExtension</string>

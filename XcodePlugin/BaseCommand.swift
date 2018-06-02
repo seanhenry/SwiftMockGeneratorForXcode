@@ -1,7 +1,11 @@
 import Foundation
 import XcodeKit
 
-class SourceEditorCommand: NSObject, XCSourceEditorCommand {
+class BaseCommand: NSObject, XCSourceEditorCommand {
+
+    var templateName: String {
+        fatalError("override me")
+    }
 
     fileprivate var connection: Connection = {
         let connection = Connection()
@@ -69,7 +73,7 @@ class SourceEditorCommand: NSObject, XCSourceEditorCommand {
     private func tryToGenerateMock(atProjectURL projectURL: URL, proxy: MockGeneratorXPCProtocol, invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping ([String]?, Error?) -> Void) throws {
         let range = try getRange(selections: try getSelection(invocation: invocation))
         let actualLineNumber = range.start.line + 1
-        proxy.generateMock(fromFileContents: invocation.buffer.completeBuffer, projectURL: projectURL, line: actualLineNumber, column: range.start.column, withReply: completionHandler)
+        proxy.generateMock(fromFileContents: invocation.buffer.completeBuffer, projectURL: projectURL, line: actualLineNumber, column: range.start.column, templateName: templateName, withReply: completionHandler)
     }
 
     private func getSelection(invocation: XCSourceEditorCommandInvocation) throws -> NSMutableArray {

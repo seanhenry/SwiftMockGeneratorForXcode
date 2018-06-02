@@ -1,0 +1,40 @@
+{{#initializer}}
+    {{{declarationText}}} {
+      {{{initializerCall}}}
+    }
+{{/initializer}}
+
+{{#property}}
+
+    {{scope}} var stubbed{{capitalizedUniqueName}}: {{{iuoType}}} {{{defaultValueAssignment}}}
+
+    {{{declarationText}}} {
+
+    {{#hasSetter}}
+        set {
+        }
+        get {
+        return stubbed{{capitalizedUniqueName}}
+        }
+    {{/hasSetter}}
+    {{^hasSetter}}
+        return stubbed{{capitalizedUniqueName}}
+    {{/hasSetter}}
+
+    }
+{{/property}}
+
+{{#method}}
+
+    {{#resultType}}
+        {{scope}} var stubbed{{capitalizedUniqueName}}Result: {{{iuoType}}} {{{defaultValueAssignment}}}
+    {{/resultType}}
+
+    {{{declarationText}}} {
+
+    {{#resultType}}
+        return stubbed{{capitalizedUniqueName}}Result{{returnCastStatement}}
+    {{/resultType}}
+
+    }
+{{/method}}

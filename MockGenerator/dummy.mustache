@@ -1,0 +1,40 @@
+{{#initializer}}
+    {{{declarationText}}} {
+      {{{initializerCall}}}
+    }
+{{/initializer}}
+
+{{#property}}
+
+
+    {{#hasSetter}}
+
+        {{{declarationText}}} {
+            set {
+            }
+            get {
+                return {{{defaultValue}}}
+            }
+        }
+
+    {{/hasSetter}}
+    {{^hasSetter}}
+
+        {{{declarationText}}} {
+            return {{{defaultValue}}}
+        }
+
+    {{/hasSetter}}
+
+{{/property}}
+
+{{#method}}
+
+    {{{declarationText}}} {
+
+    {{#resultType}}
+        return {{{defaultValue}}}
+    {{/resultType}}
+
+    }
+{{/method}}

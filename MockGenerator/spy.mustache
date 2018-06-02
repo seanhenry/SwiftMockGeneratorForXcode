@@ -1,6 +1,6 @@
 {{#initializer}}
     {{{declarationText}}} {
-    {{{initializerCall}}}
+      {{{initializerCall}}}
     }
 {{/initializer}}
 
@@ -80,19 +80,19 @@
     {{#closureParameter}}
         {{#hasArguments}}
             if let result = stubbed{{capitalizedUniqueName}}{{capitalizedName}}Result {
-            {{{implicitClosureCall}}}
+              {{{implicitClosureCall}}}
             }
         {{/hasArguments}}
         {{^hasArguments}}
             if shouldInvoke{{capitalizedUniqueName}}{{capitalizedName}} {
-            {{{implicitClosureCall}}}
+              {{{implicitClosureCall}}}
             }
         {{/hasArguments}}
     {{/closureParameter}}
 
     {{#throws}}
         if let error = stubbed{{capitalizedUniqueName}}Error {
-        throw error
+          throw error
         }
     {{/throws}}
 

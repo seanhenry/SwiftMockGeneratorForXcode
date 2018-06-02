@@ -3,11 +3,12 @@ import Foundation
 
 @objc class MockGeneratorXPC: NSObject, MockGeneratorXPCProtocol {
 
-    func generateMock(fromFileContents contents: String, projectURL: URL, line: Int, column: Int, withReply reply: @escaping ([String]?, Error?) -> Void) {
+    func generateMock(fromFileContents contents: String, projectURL: URL, line: Int, column: Int, templateName: String, withReply reply: @escaping ([String]?, Error?) -> Void) {
         let (lines, error) = Generator.generateMock(fromFileContents: contents,
             projectURL: projectURL,
             line: line,
-            column: column)
+            column: column,
+            templateName: templateName)
         reply(lines, error)
     }
 }
