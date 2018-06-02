@@ -51,7 +51,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     }
 
     override func visitTupleType(_ element: TupleType) {
-        type = UseCasesTupleType(elements: element.elements.map { MethodGatheringVisitor.transformType($0.typeAnnotation.type) })
+        type = UseCasesTupleType(tupleElements: element.elements.map { UseCasesTupleTypeTupleElement(label: $0.label, type: MethodGatheringVisitor.transformType($0.typeAnnotation.type)) })
     }
 
     private func transformToIdentifiers(_ element: TypeIdentifier) -> [String] {
@@ -124,7 +124,6 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
         initializers.append(UseCasesInitializer(
             parametersList: transformParameters(element.parameters),
             isFailable: element.isFailable,
-            throws: element.throws,
-            isProtocol: true))
+            throws: element.throws))
     }
 }

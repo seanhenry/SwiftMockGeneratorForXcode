@@ -116,10 +116,12 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     func test_shouldTransformTupleType() {
-        let type = transformType("(a: A, b: [B])", UseCasesTupleType.self)
-        XCTAssertEqual(type.text, "(A, [B])")
-        XCTAssertEqual(type.elements[0].text, "A")
-        XCTAssertEqual(type.elements[1].text, "[B]")
+        let type = transformType("(a: A, [B])", UseCasesTupleType.self)
+        XCTAssertEqual(type.text, "(a: A, [B])")
+        XCTAssertEqual(type.tupleElements[0].label, "a")
+        XCTAssertEqual(type.tupleElements[0].text, "a: A")
+        XCTAssertNil(type.tupleElements[1].label)
+        XCTAssertEqual(type.tupleElements[1].text, "[B]")
     }
 
     private func assertTypeIs<T: UseCasesType>(_ input: String, _ t: T.Type, _ text: String, line: UInt = #line) {
@@ -239,7 +241,6 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssert(initializer.parametersList.isEmpty)
         XCTAssertFalse(initializer.throws)
         XCTAssertFalse(initializer.isFailable)
-        XCTAssert(initializer.isProtocol)
     }
 
     func test_visit_shouldTransformThrowingInitializerWithParameters() {
@@ -249,7 +250,6 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssertEqual(initializer.parametersList[0].text, "a: A")
         XCTAssert(initializer.throws)
         XCTAssertFalse(initializer.isFailable)
-        XCTAssert(initializer.isProtocol)
     }
 
     func test_visit_shouldTransformFailableInitializer() {
@@ -259,7 +259,6 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssertEqual(initializer.parametersList[0].text, "b: B")
         XCTAssertFalse(initializer.throws)
         XCTAssert(initializer.isFailable)
-        XCTAssert(initializer.isProtocol)
     }
 
     // MARK: - Helpers

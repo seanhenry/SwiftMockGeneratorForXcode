@@ -1,5 +1,6 @@
 import XCTest
 import SwiftStructureInterface
+import UseCases
 @testable import MockGenerator
 
 class TypeDeclarationTransformingVisitorTests: XCTestCase {
@@ -17,61 +18,76 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
     }
 
     func test_shouldTransformEmptyProtocol() {
-        let p = SKElementFactoryTestHelper.build(from: "protocol P {} class Mock: P {}")!.children[1] as! TypeDeclaration
-        let transformed = TypeDeclarationTransformingVisitor.transformMock(p)[0]
-        XCTAssertEqual(transformed.properties.isEmpty, true)
-        XCTAssertEqual(transformed.initializers.isEmpty, true)
-        XCTAssertEqual(transformed.methods.isEmpty, true)
+        let protocols = transformProtocols("class Mock: P {} protocol P {}")
+        let `protocol` = protocols[0]
+        XCTAssert(`protocol`.properties.isEmpty)
+        XCTAssert(`protocol`.initializers.isEmpty)
+        XCTAssert(`protocol`.methods.isEmpty)
     }
 
     func test_shouldTransformProtocol() {
-        let p = SKElementFactoryTestHelper.build(from: getProtocolString())!.children[1] as! TypeDeclaration
-        let transformed = TypeDeclarationTransformingVisitor.transformMock(p)[0]
-        XCTAssertEqual(transformed.properties.count, 1)
-        XCTAssertEqual(transformed.initializers.count, 1)
-        XCTAssertEqual(transformed.methods.count, 1)
+        let protocols = transformProtocols(getProtocolString())
+        let `protocol` = protocols[0]
+        XCTAssertEqual(`protocol`.properties.count, 1)
+        XCTAssertEqual(`protocol`.initializers.count, 1)
+        XCTAssertEqual(`protocol`.methods.count, 1)
     }
 
     func test_shouldTransformAndResolveMultipleProtocols() {
-        let p = SKElementFactoryTestHelper.build(from: getMultipleProtocolString())!.children[2] as! TypeDeclaration
-        let transformed = TypeDeclarationTransformingVisitor.transformMock(p)[1]
-        XCTAssertEqual(transformed.properties.count, 1)
-        XCTAssertEqual(transformed.initializers.count, 1)
-        XCTAssertEqual(transformed.methods.count, 1)
+        let protocols = transformProtocols(getMultipleProtocolString())
+        let `protocol` = protocols[1]
+        XCTAssertEqual(`protocol`.properties.count, 1)
+        XCTAssertEqual(`protocol`.initializers.count, 1)
+        XCTAssertEqual(`protocol`.methods.count, 1)
+    }
+
+    func test_shouldTransformDeepProtocolInheritance() {
+        let protocols = transformProtocols(getDeepProtocolString())
+        XCTAssertEqual(protocols.count, 1)
+        let innerProtocols = protocols[0].protocols
+        XCTAssertEqual(innerProtocols.count, 1)
+        let nextInnerProtocols = innerProtocols[0].protocols
+        XCTAssertEqual(nextInnerProtocols.count, 1)
     }
 
     func test_shouldIgnoreClassTypes() {
-        let p = SKElementFactoryTestHelper.build(from: "class A {} class B: A {}")!.children[1] as! TypeDeclaration
-        let transformed = TypeDeclarationTransformingVisitor.transformMock(p)
-        XCTAssert(transformed.isEmpty)
+        let protocols = transformProtocols("class B: A {} class A {}")
+        XCTAssert(protocols.isEmpty)
     }
 
     func test_shouldIgnoreUnresolvableTypes() {
-        let p = SKElementFactoryTestHelper.build(from: "class A: Nonexistent {}")!.children[0] as! TypeDeclaration
-        let transformed = TypeDeclarationTransformingVisitor.transformMock(p)
-        XCTAssert(transformed.isEmpty)
+        let protocols = transformProtocols("class A: Nonexistent {}")
+        XCTAssert(protocols.isEmpty)
     }
 
     func test_shouldIgnoreNonClassMocks() {
         let p = ElementParser.parseType("Type")
-        let transformed = TypeDeclarationTransformingVisitor.transformMock(p)
-        XCTAssert(transformed.isEmpty)
+        let protocols = TypeDeclarationTransformingVisitor.transformMock(p).protocols
+        XCTAssert(protocols.isEmpty)
+    }
+
+    private func transformProtocols(_ string: String) -> [UseCasesProtocol] {
+        let p = SKElementFactoryTestHelper.build(from: string)!.children[0] as! TypeDeclaration
+        let protocols = TypeDeclarationTransformingVisitor.transformMock(p).protocols
+        return protocols
     }
 
     private func getProtocolString() -> String {
         return """
+        class Mock: P {
+        }
         protocol P {
           init()
           var p: Int { get }
           func m()
-        }
-        class Mock: P {
         }
         """
     }
 
     private func getMultipleProtocolString() -> String {
         return """
+        class Mock: P, A {
+        }
         protocol A {
           init()
           var p: Int { get }
@@ -82,7 +98,18 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
           var p: Int { get }
           func m()
         }
-        class Mock: P, A {
+        """
+    }
+
+    private func getDeepProtocolString() -> String {
+        return """
+        class Mock: P {
+        }
+        protocol B {
+        }
+        protocol A: B {
+        }
+        protocol P: A {
         }
         """
     }

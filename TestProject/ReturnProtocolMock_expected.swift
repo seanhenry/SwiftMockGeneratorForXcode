@@ -83,7 +83,7 @@ class ReturnProtocolMock: ReturnProtocol {
     }
     var invokedReturnExplicitVoid = false
     var invokedReturnExplicitVoidCount = 0
-    var stubbedReturnExplicitVoidResult: Void!
+    var stubbedReturnExplicitVoidResult: Void! = ()
     func returnExplicitVoid() -> Void {
         invokedReturnExplicitVoid = true
         invokedReturnExplicitVoidCount += 1

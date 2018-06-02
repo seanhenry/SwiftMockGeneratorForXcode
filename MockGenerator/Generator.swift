@@ -48,8 +48,7 @@ public class Generator {
             return view.result
         }
         let generator = UseCasesGenerator(view: view)
-        let transformed = TypeDeclarationTransformingVisitor.transformMock(element)
-        transformed.forEach { generator.add(protocol: $0) }
+        generator.set(c: TypeDeclarationTransformingVisitor.transformMock(element))
         generator.generate()
         return view.result
     }
