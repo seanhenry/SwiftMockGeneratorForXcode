@@ -1,0 +1,2 @@
+class GenericParameterTypeDeclarationImpl: ElementImpl, GenericParameterTypeDeclaration {
+}

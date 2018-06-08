@@ -125,7 +125,7 @@
 		35CDF395131A881DA3866A4B /* NamedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF34E9830199994ECA542 /* NamedElement.swift */; };
 		35CDF3FCD960FF97E00313B9 /* DummyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF2B6AA231A57A21D6EE3 /* DummyCommand.swift */; };
 		35CDF41072835E071ACFD722 /* ArrayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFD36D7DFDAD1ABC9417D /* ArrayType.swift */; };
-		35CDF42B33EAEEFAC012F509 /* SwiftGenericParameterTypeDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFABECD5CFDE915932326 /* SwiftGenericParameterTypeDeclaration.swift */; };
+		35CDF42B33EAEEFAC012F509 /* GenericParameterTypeDeclarationImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFABECD5CFDE915932326 /* GenericParameterTypeDeclarationImpl.swift */; };
 		35CDF446FF7FB588CFFAF54D /* FunctionDeclarationParameterClauseParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF86BF6A948355E72A8B4 /* FunctionDeclarationParameterClauseParserTests.swift */; };
 		35CDF453122859F16DDE85FD /* LineColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF021BEB7062CFB674324 /* LineColumn.swift */; };
 		35CDF456C1B2DE8521968DDA /* CaretTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF790C9B97835CC38B63 /* CaretTestHelper.swift */; };
@@ -646,7 +646,7 @@
 		35CDFA9601A9D43D884B498D /* SKStructureRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKStructureRequest.swift; sourceTree = "<group>"; };
 		35CDFABA30F5AE5CADAF900B /* ElementParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementParser.swift; sourceTree = "<group>"; };
 		35CDFABD66BD2AAC8CC99C53 /* SwiftTypeDeclaration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftTypeDeclaration.swift; sourceTree = "<group>"; };
-		35CDFABECD5CFDE915932326 /* SwiftGenericParameterTypeDeclaration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGenericParameterTypeDeclaration.swift; sourceTree = "<group>"; };
+		35CDFABECD5CFDE915932326 /* GenericParameterTypeDeclarationImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericParameterTypeDeclarationImpl.swift; sourceTree = "<group>"; };
 		35CDFAC4D598926CF8165609 /* RequirementListParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequirementListParser.swift; sourceTree = "<group>"; };
 		35CDFAF5EB748A11DB5DFE4B /* Type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
 		35CDFB0B94816A30DE3324DE /* SwiftMethodElementBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftMethodElementBuilderTests.swift; sourceTree = "<group>"; };
@@ -1055,7 +1055,7 @@
 				35CDF81C979537DF8605BFF7 /* SwiftVariableDeclaration.swift */,
 				35CDF30EED5082D3608B6467 /* SwiftParameter.swift */,
 				35CDFC482F76B0E3404DD648 /* SwiftTypealias.swift */,
-				35CDFABECD5CFDE915932326 /* SwiftGenericParameterTypeDeclaration.swift */,
+				35CDFABECD5CFDE915932326 /* GenericParameterTypeDeclarationImpl.swift */,
 				35CDF2641F2300674D241F0D /* type */,
 				35CDF86C3A6719AA21B59364 /* SwiftTypealiasAssignment.swift */,
 				35CDFBD68B4750508120E0E1 /* GenericParameterClauseImpl.swift */,
@@ -1852,7 +1852,7 @@
 				35CDF023065B2A788DC1EC29 /* SwiftTypealiasBuilder.swift in Sources */,
 				35CDF2D28B44872B813303BC /* SwiftTypealias.swift in Sources */,
 				35CDFCC09E481D660288433B /* GenericParameterTypeDeclaration.swift in Sources */,
-				35CDF42B33EAEEFAC012F509 /* SwiftGenericParameterTypeDeclaration.swift in Sources */,
+				35CDF42B33EAEEFAC012F509 /* GenericParameterTypeDeclarationImpl.swift in Sources */,
 				35CDF5C93B959BA6E8D80A0F /* SwiftGenericParameterTypeDeclarationBuilder.swift in Sources */,
 				35CDFEA0AF478B027DE8BBA2 /* SwiftMethodReturnTypeBuilder.swift in Sources */,
 				35CDFD1A88F8379FB52FFFED /* FileParser.swift in Sources */,

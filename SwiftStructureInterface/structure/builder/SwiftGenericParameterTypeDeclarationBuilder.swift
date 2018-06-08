@@ -9,6 +9,6 @@ class SwiftGenericParameterTypeDeclarationBuilder: SwiftElementBuilderTemplate {
     }
 
     func build(text: String, offset: Int64, length: Int64) -> Element? {
-        return SwiftGenericParameterTypeDeclaration(text: text, children: [], offset: offset, length: length)
+        return GenericParameterTypeDeclarationImpl(text: text, children: [], offset: offset, length: length)
     }
 }

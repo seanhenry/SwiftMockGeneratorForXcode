@@ -1,2 +1,0 @@
-class SwiftGenericParameterTypeDeclaration: ElementImpl, GenericParameterTypeDeclaration {
-}
