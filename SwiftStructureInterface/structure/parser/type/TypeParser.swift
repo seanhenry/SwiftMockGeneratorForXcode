@@ -142,8 +142,8 @@ class TypeParser: Parser<Type> {
 
     private func createArrayType(_ type: Type) -> Type {
         return createTypeElement() { offset, length, text in
-            return SwiftArrayType(text: text, children: [type], offset: offset, length: length, elementType: type)
-        } ?? SwiftArrayType.errorArrayType
+            return ArrayTypeImpl(text: text, children: [type], offset: offset, length: length, elementType: type)
+        } ?? ArrayTypeImpl.errorArrayType
     }
 
     // MARK: - Dictionary

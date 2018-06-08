@@ -153,7 +153,7 @@ class TypeResolverVisitorTests: XCTestCase {
     }
 
     private func createArray(_ name: String, _ elementType: Type) -> ArrayType {
-        return SwiftArrayType(text: name, children: [], offset: 0, length: 0, elementType: elementType)
+        return ArrayTypeImpl(text: name, children: [], offset: 0, length: 0, elementType: elementType)
     }
 
     private func createOptional(_ name: String, _ type: Type) -> OptionalType {
