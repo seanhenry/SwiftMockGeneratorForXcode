@@ -7,7 +7,7 @@ class SubscriptDeclarationParser: DeclarationParser<SubscriptDeclaration> {
         _ = parseWhereClause()
         _ = parseGetterSetterKeywordBlock()
         return createElement(start: start) { offset, length, text in
-            return SwiftSubscriptDeclaration(text: text, children: [], offset: offset, length: length)
-        } ?? SwiftSubscriptDeclaration.errorSubscriptDeclaration
+            return SubscriptDeclarationImpl(text: text, children: [], offset: offset, length: length)
+        } ?? SubscriptDeclarationImpl.errorSubscriptDeclaration
     }
 }

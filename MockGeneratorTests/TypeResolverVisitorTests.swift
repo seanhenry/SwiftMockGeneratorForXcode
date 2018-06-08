@@ -117,8 +117,8 @@ class TypeResolverVisitorTests: XCTestCase {
     }
 
     func test_visit_shouldTransformToTypealiasType() {
-        let assignment = SwiftTypealiasAssignment(text: "= T", children: [], offset: 0, length: 0, type: type)
-        let typeAlias = SwiftTypealias(text: "typealias A = T", children: [], offset: 0, length: 0, name: "A", typealiasAssignment: assignment)
+        let assignment = TypealiasAssignmentImpl(text: "= T", children: [], offset: 0, length: 0, type: type)
+        let typeAlias = TypealiasImpl(text: "typealias A = T", children: [], offset: 0, length: 0, name: "A", typealiasAssignment: assignment)
         mockResolveUtil.stubbedResolveResult = typeAlias
         let aliasedType = createType("A")
         aliasedType.accept(visitor)

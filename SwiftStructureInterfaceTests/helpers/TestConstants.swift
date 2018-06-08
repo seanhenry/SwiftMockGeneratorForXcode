@@ -7,8 +7,8 @@ let emptyFunctionDeclaration = FunctionDeclarationImpl(name: "", text: "", child
 let emptyVariableDeclaration = SwiftVariableDeclaration(name: "", text: "", children: [], offset: 0, length: 0, type: testType, isWritable: false)
 
 let testType = SwiftType(text: "Int", children: [], offset: 0, length: 3)
-let testTypealiasAssignment = SwiftTypealiasAssignment(text: "= Type", children: [testType], offset: 0, length: 6, type: testType)
-let testTypealias = SwiftTypealias(text: "Int", children: [], offset: 0, length: 3, name: "Type", typealiasAssignment: testTypealiasAssignment)
+let testTypealiasAssignment = TypealiasAssignmentImpl(text: "= Type", children: [testType], offset: 0, length: 6, type: testType)
+let testTypealias = TypealiasImpl(text: "Int", children: [], offset: 0, length: 3, name: "Type", typealiasAssignment: testTypealiasAssignment)
 let testGenericParameterClause = FileParser(fileContents: "<T>").parseGenericParameterClause()
 let testGenericParameter = testGenericParameterClause.parameters[0]
 let testFunctionDeclaration = FunctionDeclarationImpl(name: "myMethod", text: "func myMethod()", children: [], offset: 0, length: 15, returnType: nil, genericParameterClause: testGenericParameterClause, parameters: [], throws: false)
@@ -17,7 +17,7 @@ let testArrayType = SwiftArrayType(text: "[Int]", children: [], offset: 0, lengt
 let testDictionaryType = SwiftDictionaryType(text: "[Int: Int]", children: [], offset: 0, length: 10, keyType: testType, valueType: testType)
 let testOptionalType = SwiftOptionalType(text: "[Int: Int]", children: [], offset: 0, length: 10, type: testType)
 let testInitialiserDeclaration = FileParser(fileContents: "init()").parseInitialiserDeclaration()
-let testSubscriptDeclaration = SwiftSubscriptDeclaration(text: "init()", children: [], offset: 0, length: 6)
+let testSubscriptDeclaration = SubscriptDeclarationImpl(text: "init()", children: [], offset: 0, length: 6)
 let testTypeIdentifier = SwiftTypeIdentifier(text: "Int", children: [], offset: 0, length: 3, typeName: "Int", genericArguments: [], parentType: nil)
 let testTupleType = FileParser(fileContents: "(Int)").parseType() as! TupleType
 let testTupleTypeElement = testTupleType.elements[0]

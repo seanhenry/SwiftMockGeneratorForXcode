@@ -13,7 +13,7 @@ class TypealiasAssignmentParserTests: XCTestCase {
 
     func test_parse_shouldNotParseAssignmentWithoutEqualsOperator() {
         let text = "Type"
-        XCTAssert(parse(text) === SwiftTypealiasAssignment.errorTypealiasAssignment)
+        XCTAssert(parse(text) === TypealiasAssignmentImpl.errorTypealiasAssignment)
     }
 
     // MARK: - Helpers

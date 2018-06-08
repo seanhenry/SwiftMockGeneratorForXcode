@@ -10,7 +10,7 @@ class SwiftTypealiasBuilder: SwiftElementBuilderTemplate {
 
     func build(text: String, offset: Int64, length: Int64) -> Element? {
         guard let typeName = data["key.typename"] as? String else { return nil }
-        return SwiftTypealias(text: text, children: [], offset: offset, length: length, name: removeTypeSuffix(typeName), typealiasAssignment: SwiftTypealiasAssignment.errorTypealiasAssignment)
+        return TypealiasImpl(text: text, children: [], offset: offset, length: length, name: removeTypeSuffix(typeName), typealiasAssignment: TypealiasAssignmentImpl.errorTypealiasAssignment)
     }
 
     private func removeTypeSuffix(_ typeName: String) -> String {

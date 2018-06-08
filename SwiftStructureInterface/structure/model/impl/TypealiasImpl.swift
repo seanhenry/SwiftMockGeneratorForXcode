@@ -1,6 +1,6 @@
-class SwiftTypealias: ElementImpl, Typealias {
+class TypealiasImpl: ElementImpl, Typealias {
 
-    static let errorTypealias = SwiftTypealias(text: "", children: [], offset: -1, length: -1, name: "", typealiasAssignment: SwiftTypealiasAssignment.errorTypealiasAssignment)
+    static let errorTypealias = TypealiasImpl(text: "", children: [], offset: -1, length: -1, name: "", typealiasAssignment: TypealiasAssignmentImpl.errorTypealiasAssignment)
     let typealiasAssignment: TypealiasAssignment
     let name: String
 

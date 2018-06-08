@@ -6,13 +6,13 @@ class TypealiasDeclarationParser: DeclarationParser<Typealias> {
         _ = parseGenericParameterClause()
         let assignment = parseTypealiasAssignment()
         return createElement(start: start) { offset, length, text in
-            return SwiftTypealias(
+            return TypealiasImpl(
                 text: text,
                 children: [assignment],
                 offset: offset,
                 length: length,
                 name: name,
                 typealiasAssignment: assignment)
-        } ?? SwiftTypealias.errorTypealias
+        } ?? TypealiasImpl.errorTypealias
     }
 }
