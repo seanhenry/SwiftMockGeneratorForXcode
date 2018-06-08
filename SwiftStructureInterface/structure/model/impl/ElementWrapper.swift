@@ -52,7 +52,7 @@ class ElementWrapper: Element {
     private class BreakRetainCycleVisitor: RecursiveElementVisitor {
 
         override func visitElement(_ element: Element) {
-            (element as? SwiftElement)?.file = nil
+            (element as? ElementImpl)?.file = nil
             super.visitElement(element)
         }
     }

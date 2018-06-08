@@ -1,4 +1,4 @@
-class SwiftGenericParameterClause: SwiftElement, GenericParameterClause {
+class SwiftGenericParameterClause: ElementImpl, GenericParameterClause {
 
     static let errorGenericParameterClause = SwiftGenericParameterClause(text: "", children: [], offset: -1, length: -1, parameters: [])
     static let emptyGenericParameterClause = SwiftGenericParameterClause(text: "", children: [], offset: -1, length: -1, parameters: [])

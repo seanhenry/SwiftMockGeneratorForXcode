@@ -13,7 +13,7 @@ class SwiftTypeBuilder: SwiftElementBuilderTemplate {
         removeAttributes(typeName: &typeName)
         let typeLength = Int64(typeName.utf16.count)
         let typeOffset = offset + length - typeLength
-        return SwiftElement(text: getText(offset: typeOffset, length: typeLength) ?? "", children: [], offset: typeOffset, length: typeLength)
+        return ElementImpl(text: getText(offset: typeOffset, length: typeLength) ?? "", children: [], offset: typeOffset, length: typeLength)
     }
 
     private func removeAttributes(typeName: inout String) {

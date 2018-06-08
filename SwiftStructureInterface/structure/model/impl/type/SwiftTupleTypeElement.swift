@@ -1,4 +1,4 @@
-class SwiftTupleTypeElement: SwiftElement, TupleTypeElement {
+class SwiftTupleTypeElement: ElementImpl, TupleTypeElement {
 
     let label: String?
     let typeAnnotation: TypeAnnotation

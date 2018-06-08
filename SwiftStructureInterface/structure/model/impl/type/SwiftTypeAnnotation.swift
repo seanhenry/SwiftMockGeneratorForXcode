@@ -1,4 +1,4 @@
-class SwiftTypeAnnotation: SwiftElement, TypeAnnotation {
+class SwiftTypeAnnotation: ElementImpl, TypeAnnotation {
 
     let attributes: [String]
     let isInout: Bool

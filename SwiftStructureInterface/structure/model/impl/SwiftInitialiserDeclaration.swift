@@ -1,4 +1,4 @@
-class SwiftInitialiserDeclaration: SwiftElement, InitialiserDeclaration {
+class SwiftInitialiserDeclaration: ElementImpl, InitialiserDeclaration {
 
     static let errorInitialiserDeclaration = SwiftInitialiserDeclaration(text: "", children: [], offset: -1, length: -1, parameters: [], throws: false, rethrows: false, isFailable: false)
 

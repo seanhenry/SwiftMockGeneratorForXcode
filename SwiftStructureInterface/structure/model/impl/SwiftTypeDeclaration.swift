@@ -1,6 +1,6 @@
 import SourceKittenFramework
 
-class SwiftTypeDeclaration: SwiftElement, TypeDeclaration {
+class SwiftTypeDeclaration: ElementImpl, TypeDeclaration {
 
     static let errorTypeDeclaration = SwiftTypeDeclaration(name: "", text: "", children: [], inheritedTypes: [], offset: -1, length: -1, bodyOffset: -1, bodyLength: -1, accessLevelModifier: SwiftAccessLevelModifier.emptyAccessLevelModifier)
     let name: String

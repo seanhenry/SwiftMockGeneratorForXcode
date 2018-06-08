@@ -1,4 +1,4 @@
-class SwiftFile: SwiftElement, File {
+class SwiftFile: ElementImpl, File {
 
     var retainCount = 0
 
@@ -21,7 +21,7 @@ class SwiftFile: SwiftElement, File {
         }
 
         override func visitElement(_ element: Element) {
-            (element as? SwiftElement)?.file = file
+            (element as? ElementImpl)?.file = file
             super.visitElement(element)
         }
     }

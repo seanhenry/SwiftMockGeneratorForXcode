@@ -18,8 +18,8 @@ class TypealiasAssignmentParserTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> SwiftElement {
+    func parse(_ text: String) -> ElementImpl {
         let parser = createParser(text, TypealiasAssignmentParser.self)
-        return parser.parse() as! SwiftElement
+        return parser.parse() as! ElementImpl
     }
 }

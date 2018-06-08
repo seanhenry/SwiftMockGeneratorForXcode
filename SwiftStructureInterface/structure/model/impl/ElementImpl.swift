@@ -1,8 +1,8 @@
 import SourceKittenFramework
 
-class SwiftElement: Element, PositionedElement {
+class ElementImpl: Element, PositionedElement {
 
-    static let errorElement = SwiftElement(text: "", children: [], offset: -1, length: -1)
+    static let errorElement = ElementImpl(text: "", children: [], offset: -1, length: -1)
     let text: String
     let children: [Element]
     let offset: Int64
@@ -16,12 +16,13 @@ class SwiftElement: Element, PositionedElement {
         self.children = children
         self.offset = offset
         self.length = length
-        children.map { $0 as? SwiftElement }
+        children.map { $0 as? ElementImpl
+                }
                 .forEach { $0?.parent = self }
     }
 
     func accept(_ visitor: ElementVisitor) {
-        precondition(type(of: self) == SwiftElement.self)
+        precondition(type(of: self) == ElementImpl.self)
         visitor.visitElement(self)
     }
 }

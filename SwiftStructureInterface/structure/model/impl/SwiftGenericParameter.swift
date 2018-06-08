@@ -1,4 +1,4 @@
-class SwiftGenericParameter: SwiftElement, GenericParameter {
+class SwiftGenericParameter: ElementImpl, GenericParameter {
 
     let typeName: String
     let typeIdentifier: TypeIdentifier?

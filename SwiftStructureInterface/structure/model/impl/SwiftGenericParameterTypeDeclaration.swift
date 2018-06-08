@@ -1,2 +1,2 @@
-class SwiftGenericParameterTypeDeclaration: SwiftElement, GenericParameterTypeDeclaration {
+class SwiftGenericParameterTypeDeclaration: ElementImpl, GenericParameterTypeDeclaration {
 }

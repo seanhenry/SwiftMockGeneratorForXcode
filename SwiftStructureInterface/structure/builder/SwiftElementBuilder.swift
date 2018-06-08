@@ -9,6 +9,6 @@ class SwiftElementBuilder: SwiftElementBuilderTemplate {
     }
 
     func build(text: String, offset: Int64, length: Int64) -> Element? {
-        return SwiftElement(text: text, children: buildChildren(), offset: offset, length: length)
+        return ElementImpl(text: text, children: buildChildren(), offset: offset, length: length)
     }
 }

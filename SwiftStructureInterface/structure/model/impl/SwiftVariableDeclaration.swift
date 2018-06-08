@@ -1,6 +1,6 @@
 import Foundation
 
-class SwiftVariableDeclaration: SwiftElement, VariableDeclaration {
+class SwiftVariableDeclaration: ElementImpl, VariableDeclaration {
 
     static let errorVariableDeclaration = SwiftVariableDeclaration(name: "", text: "", children: [], offset: -1, length: -1, type: SwiftType.errorType, isWritable: false)
     let name: String

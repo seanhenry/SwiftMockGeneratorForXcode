@@ -1,4 +1,4 @@
-class SwiftTypealiasAssignment: SwiftElement, TypealiasAssignment {
+class SwiftTypealiasAssignment: ElementImpl, TypealiasAssignment {
 
     static let errorTypealiasAssignment = SwiftTypealiasAssignment(text: "", children: [], offset: -1, length: -1, type: SwiftType.errorType)
     let type: Type

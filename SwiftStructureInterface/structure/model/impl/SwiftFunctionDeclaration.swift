@@ -1,4 +1,4 @@
-class SwiftFunctionDeclaration: SwiftElement, FunctionDeclaration {
+class SwiftFunctionDeclaration: ElementImpl, FunctionDeclaration {
 
     static let errorFunctionDeclaration = SwiftFunctionDeclaration(name: "", text: "", children: [], offset: -1, length: -1, returnType: nil, parameters: [])
     let name: String

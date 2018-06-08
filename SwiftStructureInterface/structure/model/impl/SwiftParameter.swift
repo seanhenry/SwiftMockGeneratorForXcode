@@ -1,4 +1,4 @@
-class SwiftParameter: SwiftElement, Parameter {
+class SwiftParameter: ElementImpl, Parameter {
 
     static let errorParameter = SwiftParameter(text: "", children: [], offset: -1, length: -1, externalParameterName: nil, localParameterName: "", typeAnnotation: SwiftTypeAnnotation.errorTypeAnnotation)
     let typeAnnotation: TypeAnnotation

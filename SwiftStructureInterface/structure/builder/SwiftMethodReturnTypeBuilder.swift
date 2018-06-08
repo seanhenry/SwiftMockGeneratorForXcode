@@ -13,7 +13,7 @@ class SwiftMethodReturnTypeBuilder {
     func build() -> Element? {
         guard let range = findRangeOfReturnType() else { return nil }
         let (utf8Range, offset, length) = convertReturnTypeRange(range: range)
-        return SwiftElement(
+        return ElementImpl(
             text: String(returnText[utf8Range]),
             children: [],
             offset: endOfParametersOffset + Int64(offset),

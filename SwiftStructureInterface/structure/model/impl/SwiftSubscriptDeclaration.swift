@@ -1,4 +1,4 @@
-class SwiftSubscriptDeclaration: SwiftElement, SubscriptDeclaration {
+class SwiftSubscriptDeclaration: ElementImpl, SubscriptDeclaration {
 
     static let errorSubscriptDeclaration = SwiftSubscriptDeclaration(text: "", children: [], offset: -1, length: -1)
 

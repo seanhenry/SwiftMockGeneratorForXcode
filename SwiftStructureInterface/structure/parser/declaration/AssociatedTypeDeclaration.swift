@@ -8,7 +8,7 @@ class AssociatedTypeDeclarationParser: DeclarationParser<Element> {
         _ = parseTypealiasAssignment()
         _ = parseWhereClause()
         return createElement(start: start) { offset, length, text in
-            return SwiftElement(text: text, children: [], offset: offset, length: length)
-        } ?? SwiftElement.errorElement
+            return ElementImpl(text: text, children: [], offset: offset, length: length)
+        } ?? ElementImpl.errorElement
     }
 }

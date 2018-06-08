@@ -1,4 +1,4 @@
-class SwiftGetterSetterKeywordBlock: SwiftElement, GetterSetterKeywordBlock {
+class SwiftGetterSetterKeywordBlock: ElementImpl, GetterSetterKeywordBlock {
 
     let isWritable: Bool
 
