@@ -90,6 +90,7 @@
 		1A93A913D48703BCBBD7F06E /* TupleTypeElementWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A3B7802B7F35F3194538 /* TupleTypeElementWrapper.swift */; };
 		1A93AA21BF377E3FD6524C1C /* ProtocolCompositionTypeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A989B55544DB5E41E41C /* ProtocolCompositionTypeWrapper.swift */; };
 		1A93AC6171BD5AFA5F843A85 /* ElementWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93ADF61EAF64D59BD23435 /* ElementWrapper.swift */; };
+		1A93ADCEEB2D327375647467 /* DictionaryTypeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A0B34112C3F60B114436 /* DictionaryTypeWrapper.swift */; };
 		1A93AE5D7AF974EC1F72EF5C /* ParameterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AA3D2BCA1A19EB893857 /* ParameterWrapper.swift */; };
 		1A93AE78AAB77F3B0DD4EDC4 /* TypealiasWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A3DC243C57B94EF748BE /* TypealiasWrapper.swift */; };
 		1A93AEEDDD582A47B106EEE0 /* TypeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A2F9B21A67B29C657267 /* TypeWrapper.swift */; };
@@ -264,7 +265,7 @@
 		35CDFE03E5358F42D81075F8 /* SwiftFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF14DD45E8554072A9C62 /* SwiftFileTests.swift */; };
 		35CDFE069592919AB3701F55 /* TypeDeclarationImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFABD66BD2AAC8CC99C53 /* TypeDeclarationImpl.swift */; };
 		35CDFE1DBEFF4173D5F12D28 /* SwiftMethodElementBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFB0B94816A30DE3324DE /* SwiftMethodElementBuilderTests.swift */; };
-		35CDFE21D8177646F2E3381E /* SwiftDictionaryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFEB2D7168687079AE827 /* SwiftDictionaryType.swift */; };
+		35CDFE21D8177646F2E3381E /* DictionaryTypeImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFEB2D7168687079AE827 /* DictionaryTypeImpl.swift */; };
 		35CDFE427138D59AC44E2F5C /* VariableDeclarationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF3ADC72E5D0C438FEF67 /* VariableDeclarationParser.swift */; };
 		35CDFE91B43BA1AB535C7875 /* CodeBlockContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFBC00965128E6462CE1A /* CodeBlockContainer.swift */; };
 		35CDFE9FD9E0F0B24CAECECE /* GenericParameterClauseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFBD68B4750508120E0E1 /* GenericParameterClauseImpl.swift */; };
@@ -518,6 +519,7 @@
 		14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGeneratorXPC.swift; sourceTree = "<group>"; };
 		14CA2DAB1F41349500900937 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		14ECA5DB2011855C00C849CF /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UseCases.framework; path = lib/UseCases.framework; sourceTree = "<group>"; };
+		1A93A0B34112C3F60B114436 /* DictionaryTypeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTypeWrapper.swift; sourceTree = "<group>"; };
 		1A93A1324992E7B9C5FD59B3 /* TypealiasAssignmentWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypealiasAssignmentWrapper.swift; sourceTree = "<group>"; };
 		1A93A1C1A69DBF83F8E7C64A /* ArrayTypeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTypeWrapper.swift; sourceTree = "<group>"; };
 		1A93A2DB0D4AD54C60DD318C /* GetterSetterKeywordBlockWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetterSetterKeywordBlockWrapper.swift; sourceTree = "<group>"; };
@@ -723,7 +725,7 @@
 		35CDFE70EECA508E4E1A6742 /* spy.mustache */ = {isa = PBXFileReference; lastKnownFileType = file.mustache; path = spy.mustache; sourceTree = "<group>"; };
 		35CDFEA0D36458A1BF33EA95 /* FunctionDeclarationParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionDeclarationParserTests.swift; sourceTree = "<group>"; };
 		35CDFEA2063CCEDC72179845 /* TupleTypeElementImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TupleTypeElementImpl.swift; sourceTree = "<group>"; };
-		35CDFEB2D7168687079AE827 /* SwiftDictionaryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDictionaryType.swift; sourceTree = "<group>"; };
+		35CDFEB2D7168687079AE827 /* DictionaryTypeImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTypeImpl.swift; sourceTree = "<group>"; };
 		35CDFEBBC2F8602D878E1DFD /* GenericParameterClause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericParameterClause.swift; sourceTree = "<group>"; };
 		35CDFEC1F28235E7FF30EF58 /* DeclarationsParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarationsParser.swift; sourceTree = "<group>"; };
 		35CDFEEE8DB6314062978E22 /* DeclarationsParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclarationsParserTests.swift; sourceTree = "<group>"; };
@@ -1034,7 +1036,7 @@
 				35CDF6EEB39DE818601D1665 /* TypeImpl.swift */,
 				35CDF803FCE9F592DC2EFD60 /* ProtocolCompositionTypeImpl.swift */,
 				35CDFB240C65DAA91F1A8165 /* ArrayTypeImpl.swift */,
-				35CDFEB2D7168687079AE827 /* SwiftDictionaryType.swift */,
+				35CDFEB2D7168687079AE827 /* DictionaryTypeImpl.swift */,
 				35CDF0A3EED0623521D5E9A9 /* SwiftOptionalType.swift */,
 				35CDF17182652EBD3E9D6225 /* TypeIdentifierImpl.swift */,
 				35CDFA890A6C3C62C991C9F8 /* SwiftFunctionType.swift */,
@@ -1048,6 +1050,7 @@
 				1A93A3B7802B7F35F3194538 /* TupleTypeElementWrapper.swift */,
 				1A93A989B55544DB5E41E41C /* ProtocolCompositionTypeWrapper.swift */,
 				1A93A1C1A69DBF83F8E7C64A /* ArrayTypeWrapper.swift */,
+				1A93A0B34112C3F60B114436 /* DictionaryTypeWrapper.swift */,
 			);
 			path = type;
 			sourceTree = "<group>";
@@ -1929,7 +1932,7 @@
 				35CDFDEFA6677F515D520489 /* ProtocolCompositionTypeImpl.swift in Sources */,
 				35CDFF64700B3E65930FEC72 /* ProtocolCompositionType.swift in Sources */,
 				35CDF1AB59DFA485931AB4E1 /* ArrayTypeImpl.swift in Sources */,
-				35CDFE21D8177646F2E3381E /* SwiftDictionaryType.swift in Sources */,
+				35CDFE21D8177646F2E3381E /* DictionaryTypeImpl.swift in Sources */,
 				35CDF9C218695895CC90FE1C /* SwiftOptionalType.swift in Sources */,
 				35CDF487288EB67BC141928E /* TypeIdentifier.swift in Sources */,
 				35CDF64E5268E4713489E5F6 /* TypeIdentifierImpl.swift in Sources */,
@@ -1984,6 +1987,7 @@
 				1A93A913D48703BCBBD7F06E /* TupleTypeElementWrapper.swift in Sources */,
 				1A93AA21BF377E3FD6524C1C /* ProtocolCompositionTypeWrapper.swift in Sources */,
 				1A93A4E7B2082DA9084B2A9A /* ArrayTypeWrapper.swift in Sources */,
+				1A93ADCEEB2D327375647467 /* DictionaryTypeWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

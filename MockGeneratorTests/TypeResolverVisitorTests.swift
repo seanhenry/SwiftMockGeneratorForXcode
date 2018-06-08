@@ -149,7 +149,7 @@ class TypeResolverVisitorTests: XCTestCase {
     }
 
     private func createDictionary(_ name: String, _ keyType: Type, _ valueType: Type) -> DictionaryType {
-        return SwiftDictionaryType(text: name, children: [], offset: 0, length: 0, keyType: keyType, valueType: valueType)
+        return DictionaryTypeImpl(text: name, children: [], offset: 0, length: 0, keyType: keyType, valueType: valueType)
     }
 
     private func createArray(_ name: String, _ elementType: Type) -> ArrayType {

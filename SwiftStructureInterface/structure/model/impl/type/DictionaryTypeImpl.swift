@@ -1,6 +1,6 @@
-class SwiftDictionaryType: TypeImpl, DictionaryType {
+class DictionaryTypeImpl: TypeImpl, DictionaryType {
 
-    static let errorDictionaryType = SwiftDictionaryType(text: "", children: [], offset: -1, length: -1, keyType: TypeImpl.errorType, valueType: TypeImpl.errorType)
+    static let errorDictionaryType = DictionaryTypeImpl(text: "", children: [], offset: -1, length: -1, keyType: TypeImpl.errorType, valueType: TypeImpl.errorType)
     let keyType: Type
     let valueType: Type
 

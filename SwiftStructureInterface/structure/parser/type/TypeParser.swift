@@ -161,14 +161,14 @@ class TypeParser: Parser<Type> {
 
     private func createDictionaryType(_ key: Type, _ value: Type) -> DictionaryType {
         return createTypeElement() { offset, length, text in
-            return SwiftDictionaryType(
+            return DictionaryTypeImpl(
                 text: text,
                 children: [key, value],
                 offset: offset,
                 length: length,
                 keyType: key,
                 valueType: value)
-        } ?? SwiftDictionaryType.errorDictionaryType
+        } ?? DictionaryTypeImpl.errorDictionaryType
     }
 
     // MARK: - Optional
