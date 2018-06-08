@@ -1,6 +1,6 @@
 class FunctionDeclarationImpl: ElementImpl, FunctionDeclaration {
 
-    static let errorFunctionDeclaration = SwiftFunctionDeclaration(name: "", text: "", children: [], offset: -1, length: -1, returnType: nil, parameters: [])
+    static let errorFunctionDeclaration = FunctionDeclarationImpl(name: "", text: "", children: [], offset: -1, length: -1, returnType: nil, parameters: [])
     let name: String
     let genericParameterClause: GenericParameterClause?
     let parameters: [Parameter]

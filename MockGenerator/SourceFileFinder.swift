@@ -9,11 +9,11 @@ class SourceFileFinder {
     }
     
     func findSourceFiles() -> [String] {
-        let enumerator = FileManager.default.enumerator(atPath: projectRoot.path)
+        let enumerator = FileManager.default.enumerator(at: projectRoot, includingPropertiesForKeys: [.nameKey], options: .skipsHiddenFiles, errorHandler: nil)
         var files = [String]()
-        while let file = enumerator?.nextObject() as? String {
-            if file.hasSuffix(".swift") {
-                files.append(projectRoot.path + "/" + file)
+        while let file = enumerator?.nextObject() as? URL {
+            if file.pathExtension == "swift" {
+                files.append(file.path)
             }
         }
         return files

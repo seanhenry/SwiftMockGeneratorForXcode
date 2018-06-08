@@ -3,7 +3,7 @@
 let emptyTypeDeclaration = SwiftTypeDeclaration(name: "", text: "", children: [], inheritedTypes: [], offset: 0, length: 0, bodyOffset: 0, bodyLength: 0, accessLevelModifier: testAccessLevelModifier)
 let emptyElement = ElementImpl(text: "", children: [], offset: 0, length: 0)
 let emptyFile = FileImpl(text: "", children: [], offset: 0, length: 0)
-let emptyFunctionDeclaration = SwiftFunctionDeclaration(name: "", text: "", children: [], offset: 0, length: 0, returnType: nil, parameters: [])
+let emptyFunctionDeclaration = FunctionDeclarationImpl(name: "", text: "", children: [], offset: 0, length: 0, returnType: nil, parameters: [])
 let emptyVariableDeclaration = SwiftVariableDeclaration(name: "", text: "", children: [], offset: 0, length: 0, type: testType, isWritable: false)
 
 let testType = SwiftType(text: "Int", children: [], offset: 0, length: 3)
@@ -11,7 +11,7 @@ let testTypealiasAssignment = SwiftTypealiasAssignment(text: "= Type", children:
 let testTypealias = SwiftTypealias(text: "Int", children: [], offset: 0, length: 3, name: "Type", typealiasAssignment: testTypealiasAssignment)
 let testGenericParameterClause = FileParser(fileContents: "<T>").parseGenericParameterClause()
 let testGenericParameter = testGenericParameterClause.parameters[0]
-let testFunctionDeclaration = SwiftFunctionDeclaration(name: "myMethod", text: "func myMethod()", children: [], offset: 0, length: 15, returnType: nil, genericParameterClause: testGenericParameterClause, parameters: [], throws: false)
+let testFunctionDeclaration = FunctionDeclarationImpl(name: "myMethod", text: "func myMethod()", children: [], offset: 0, length: 15, returnType: nil, genericParameterClause: testGenericParameterClause, parameters: [], throws: false)
 let testFunctionParameter = SwiftParameter(text: "a: Int", children: [testType], offset: 0, length: 6, externalParameterName: nil, localParameterName: "a", typeAnnotation: testTypeAnnotation)
 let testArrayType = SwiftArrayType(text: "[Int]", children: [], offset: 0, length: 5, elementType: testType)
 let testDictionaryType = SwiftDictionaryType(text: "[Int: Int]", children: [], offset: 0, length: 10, keyType: testType, valueType: testType)
