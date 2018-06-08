@@ -19,8 +19,4 @@ class FunctionDeclarationWrapper<T: FunctionDeclaration>: ElementWrapper<T>, Fun
     var name: String {
         return managed.name
     }
-    
-    init(managed: T) {
-        super.init(managed)
-    }
 }
