@@ -8,10 +8,7 @@ class SwiftElement: Element, PositionedElement {
     let offset: Int64
     let length: Int64
     private var weakChildrenFile: File?
-    var file: File? {
-        set { weakChildrenFile = newValue }
-        get { return copyFile() }
-    }
+    var file: File?
     weak var parent: Element?
 
     init(text: String, children: [Element], offset: Int64, length: Int64) {
@@ -19,16 +16,12 @@ class SwiftElement: Element, PositionedElement {
         self.children = children
         self.offset = offset
         self.length = length
-        children.forEach { $0.parent = self }
+        children.map { $0 as? SwiftElement }
+                .forEach { $0?.parent = self }
     }
 
     func accept(_ visitor: ElementVisitor) {
         precondition(type(of: self) == SwiftElement.self)
         visitor.visitElement(self)
-    }
-
-    private func copyFile() -> File? {
-        guard let file = weakChildrenFile else { return nil }
-        return SwiftFile(text: file.text, children: file.children, offset: file.offset, length: file.length)
     }
 }

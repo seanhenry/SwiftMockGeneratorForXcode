@@ -18,7 +18,7 @@ class SwiftFileTests: XCTestCase {
 
     // MARK: - init
 
-    func test_init_shouldAddCopyOfItselfToAllChildren() {
+    func test_init_shouldSetItselfToAllChildren() {
         file = SKElementFactoryTestHelper.build(from: getNestedClassString())!
         assertFilesAreEquivalent(file.file, file)
         let classA = file.children[0]
@@ -36,7 +36,7 @@ class SwiftFileTests: XCTestCase {
         assertFilesAreEquivalent(methodA.returnType?.file, file)
     }
 
-    func test_init_shouldAddCopyOfItselfToAllChildrenWithNewParser() {
+    func test_init_shouldSetItselfToAllChildrenWithNewParser() {
         file = ElementParser.parseFile(getProtocolString()) as! SwiftFile
         assertFilesAreEquivalent(file.file, file)
         let protocolA = file.children[0] as! TypeDeclaration
@@ -61,15 +61,15 @@ class SwiftFileTests: XCTestCase {
         assertFilesAreEquivalent(method.returnType?.file, file)
     }
 
-    func test_init_copyingFileToChildren_shouldNotCauseRetainCycle() {
+    func test_init_copyingFileToChildren_shouldDeliberatelyCauseRetainCycle() {
         weak var weakFile: Element?
         autoreleasepool {
             let file = SKElementFactoryTestHelper.build(from: getNestedClassString())
             weakFile = file
         }
-        XCTAssertNil(weakFile)
+        XCTAssertNotNil(weakFile)
     }
-
+    
     func test_fileShouldBePresent_whenProgramHoldsAReferenceToAChild() {
         var child: Element?
         autoreleasepool {
@@ -78,7 +78,7 @@ class SwiftFileTests: XCTestCase {
         }
         XCTAssertNotNil(child?.file)
     }
-
+    
     func test_copyOfFile_shouldKeepStrongReferencesToChildren() {
         var fileCopy: Element?
         autoreleasepool {
