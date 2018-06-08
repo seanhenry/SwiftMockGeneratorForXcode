@@ -63,7 +63,7 @@ class TypeParser: Parser<Type> {
             let genericArguments = parseGenericClause()
             let children = [parent].compactMap { $0 }
             return createTypeElement() { offset, length, text in
-                return SwiftTypeIdentifier(
+                return TypeIdentifierImpl(
                     text: text,
                     children: children + genericArguments,
                     offset: offset,

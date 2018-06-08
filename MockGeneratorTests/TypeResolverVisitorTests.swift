@@ -17,7 +17,7 @@ class TypeResolverVisitorTests: XCTestCase {
     override func setUp() {
         super.setUp()
         genericClause = GenericParameterClauseImpl(text: "<T>", children: [], offset: 0, length: 0, parameters: [])
-        classType = SwiftTypeIdentifier(text: "Int", children: [], offset: 0, length: 0, typeName: "Int", genericArguments: [], parentType: nil)
+        classType = TypeIdentifierImpl(text: "Int", children: [], offset: 0, length: 0, typeName: "Int", genericArguments: [], parentType: nil)
         type = createType("T")
         array = createArray("[T]", type)
         dictionary = createDictionary("[T: T]", type, type)
