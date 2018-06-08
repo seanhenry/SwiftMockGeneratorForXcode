@@ -43,17 +43,17 @@ class SwiftMethodParameterBuilderTests: XCTestCase {
     // MARK: - Helpers
 
     private func assertChildMethodParameterCount(_ parent: Element?, at index: Int, equals expected: Int, line: UInt = #line) {
-        let method = parent?.children[index] as? SwiftFunctionDeclaration
+        let method = parent?.children[index] as? FunctionDeclarationImpl
         XCTAssertEqual(method?.parameters.count, expected, line: line)
     }
 
     private func assertChildMethodParameterText(_ parent: Element?, at index: Int, atParameter paramIndex: Int, equals expected: String, line: UInt = #line) {
-        let method = parent?.children[index] as? SwiftFunctionDeclaration
+        let method = parent?.children[index] as? FunctionDeclarationImpl
         XCTAssertEqual(method?.parameters[paramIndex].text, expected, line: line)
     }
 
     private func assertParameterType(_ parent: Element?, at index: Int, atParameter paramIndex: Int, offset expectedOffset: Int64, length expectedLength: Int64, text expectedText: String, line: UInt = #line) {
-        let method = parent?.children[index] as? SwiftFunctionDeclaration
+        let method = parent?.children[index] as? FunctionDeclarationImpl
         XCTAssertEqual(method?.parameters[paramIndex].typeAnnotation.type.offset, expectedOffset, line: line)
         XCTAssertEqual(method?.parameters[paramIndex].typeAnnotation.type.length, expectedLength, line: line)
         XCTAssertEqual(method?.parameters[paramIndex].typeAnnotation.type.text, expectedText, line: line)

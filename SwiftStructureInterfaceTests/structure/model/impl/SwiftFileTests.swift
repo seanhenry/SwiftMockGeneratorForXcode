@@ -28,7 +28,7 @@ class SwiftFileTests: XCTestCase {
         assertFilesAreEquivalent(classB.inheritedTypes[0].file, file)
         assertFilesAreEquivalent(classB.inheritedTypes[1].file, file)
         assertFilesAreEquivalent(classB.children[0].file, file)
-        let methodA = classA.children[1] as! SwiftFunctionDeclaration
+        let methodA = classA.children[1] as! FunctionDeclarationImpl
         let methodAParam = methodA.parameters[0]
         assertFilesAreEquivalent(methodA.file, file)
         assertFilesAreEquivalent(methodAParam.file, file)

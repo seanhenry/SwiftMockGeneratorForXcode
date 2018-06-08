@@ -15,7 +15,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
         children.append(contentsOf: parameters as [Element])
         returnType.map { children.append($0) }
         return createElement(start: start) { offset, length, text in
-            return SwiftFunctionDeclaration(name: name,
+            return FunctionDeclarationImpl(name: name,
                 text: text,
                 children: children,
                 offset: offset,
@@ -24,7 +24,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
                 genericParameterClause: genericParameterClause,
                 parameters: parameters,
                 throws: `throws`)
-        } ?? SwiftFunctionDeclaration.errorFunctionDeclaration
+        } ?? FunctionDeclarationImpl.errorFunctionDeclaration
     }
 
     private func parseParameterClause() -> [Parameter] {

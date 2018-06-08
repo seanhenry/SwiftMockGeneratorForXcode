@@ -7,7 +7,7 @@ class SwiftMethodElementBuilderTests: XCTestCase {
         let file = SKElementFactoryTestHelper.build(from: getMethodsExampleString())!
         let protocolType = file.children[0] as? SwiftTypeDeclaration
         let classType = file.children[1] as? SwiftTypeDeclaration
-        let instanceMethod = classType?.children[0] as? SwiftFunctionDeclaration
+        let instanceMethod = classType?.children[0] as? FunctionDeclarationImpl
         assertChildMethodName(protocolType, at: 0, equals: "protocolMethod")
         assertChildMethodName(classType, at: 0, equals: "method")
         assertChildMethodName(instanceMethod, at: 0, equals: "nestedMethod")
@@ -35,12 +35,12 @@ class SwiftMethodElementBuilderTests: XCTestCase {
     // MARK: - Helpers
 
     func assertChildMethodReturnType(_ parent: Element?, at index: Int, equals expected: String?, line: UInt = #line) {
-        let method = parent?.children[index] as? SwiftFunctionDeclaration
+        let method = parent?.children[index] as? FunctionDeclarationImpl
         XCTAssertEqual(method?.returnType?.text, expected, line: line)
     }
 
     func assertChildMethodName(_ parent: Element?, at index: Int, equals expected: String?, line: UInt = #line) {
-        let method = parent?.children[index] as? SwiftFunctionDeclaration
+        let method = parent?.children[index] as? FunctionDeclarationImpl
         XCTAssertEqual(method?.name, expected, line: line)
     }
 

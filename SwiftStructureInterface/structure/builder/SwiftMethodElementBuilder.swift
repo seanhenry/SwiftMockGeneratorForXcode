@@ -13,7 +13,7 @@ class SwiftMethodElementBuilder: NamedSwiftElementBuilderTemplate {
         let returnType = buildReturnType(methodOffset: offset, parameters: parameters)
         var children = parameters as [Element]
         returnType.map { children.append($0) }
-        return SwiftFunctionDeclaration(name: name, text: text, children: children + buildChildren(), offset: offset, length: length, returnType: returnType, parameters: parameters)
+        return FunctionDeclarationImpl(name: name, text: text, children: children + buildChildren(), offset: offset, length: length, returnType: returnType, parameters: parameters)
     }
 
     private func buildParameters() -> [Parameter] {
