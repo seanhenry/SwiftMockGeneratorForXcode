@@ -157,7 +157,7 @@ class TypeResolverVisitorTests: XCTestCase {
     }
 
     private func createOptional(_ name: String, _ type: Type) -> OptionalType {
-        return SwiftOptionalType(text: name, children: [], offset: 0, length: 0, type: type)
+        return OptionalTypeImpl(text: name, children: [], offset: 0, length: 0, type: type)
     }
 
     private func stubResolveToGenericClause() {

@@ -191,13 +191,13 @@ class TypeParser: Parser<Type> {
 
     private func createOptional(_ type: Type) -> OptionalType {
         return createTypeElement() { offset, length, text in
-            return SwiftOptionalType(
+            return OptionalTypeImpl(
                 text: text,
                 children: [type],
                 offset: offset,
                 length: length,
                 type: type)
-        } ?? SwiftOptionalType.errorOptionalType
+        } ?? OptionalTypeImpl.errorOptionalType
     }
 
     // MARK: - Protocol composition
