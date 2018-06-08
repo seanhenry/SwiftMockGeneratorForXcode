@@ -8,7 +8,7 @@ class VariableDeclarationParser: DeclarationParser<VariableDeclaration> {
         let type = parseTypeAnnotation()
         let block = parseGetterSetterKeywordBlock()
         return createElement(start: start) { offset, length, text in
-            return SwiftVariableDeclaration(
+            return VariableDeclarationImpl(
                 name: name,
                 text: text,
                 children: [type],
@@ -16,7 +16,7 @@ class VariableDeclarationParser: DeclarationParser<VariableDeclaration> {
                 length: length,
                 type: type,
                 isWritable: block.isWritable)
-        } ?? SwiftVariableDeclaration.errorVariableDeclaration
+        } ?? VariableDeclarationImpl.errorVariableDeclaration
     }
 
     private func parseTypeAnnotation() -> Type {

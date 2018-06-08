@@ -4,7 +4,7 @@ let emptyTypeDeclaration = TypeDeclarationImpl(name: "", text: "", children: [],
 let emptyElement = ElementImpl(text: "", children: [], offset: 0, length: 0)
 let emptyFile = FileImpl(text: "", children: [], offset: 0, length: 0)
 let emptyFunctionDeclaration = FunctionDeclarationImpl(name: "", text: "", children: [], offset: 0, length: 0, returnType: nil, parameters: [])
-let emptyVariableDeclaration = SwiftVariableDeclaration(name: "", text: "", children: [], offset: 0, length: 0, type: testType, isWritable: false)
+let emptyVariableDeclaration = VariableDeclarationImpl(name: "", text: "", children: [], offset: 0, length: 0, type: testType, isWritable: false)
 
 let testType = SwiftType(text: "Int", children: [], offset: 0, length: 3)
 let testTypealiasAssignment = TypealiasAssignmentImpl(text: "= Type", children: [testType], offset: 0, length: 6, type: testType)

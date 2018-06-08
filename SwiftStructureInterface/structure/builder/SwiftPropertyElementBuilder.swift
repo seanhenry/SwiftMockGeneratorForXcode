@@ -10,7 +10,7 @@ class SwiftPropertyElementBuilder: NamedSwiftElementBuilderTemplate {
 
     func build(text: String, offset: Int64, length: Int64, name: String) -> Element? {
         let isWritable = getPropertyIsWritable()
-        return SwiftVariableDeclaration(name: name, text: text, children: buildChildren(), offset: offset, length: length, type: getType(), isWritable: isWritable)
+        return VariableDeclarationImpl(name: name, text: text, children: buildChildren(), offset: offset, length: length, type: getType(), isWritable: isWritable)
     }
 
     private func getType() -> Type {
