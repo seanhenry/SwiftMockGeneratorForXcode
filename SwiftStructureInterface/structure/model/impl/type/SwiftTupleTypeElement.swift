@@ -3,7 +3,7 @@ class SwiftTupleTypeElement: ElementImpl, TupleTypeElement {
     let label: String?
     let typeAnnotation: TypeAnnotation
 
-    static let errorTupleTypeElement = SwiftTupleTypeElement(text: "", children: [], offset: -1, length: -1, label: nil, typeAnnotation: SwiftTypeAnnotation.errorTypeAnnotation)
+    static let errorTupleTypeElement = SwiftTupleTypeElement(text: "", children: [], offset: -1, length: -1, label: nil, typeAnnotation: SwiftTypeAnnotationImpl.errorTypeAnnotation)
 
     init(text: String, children: [Element], offset: Int64, length: Int64, label: String?, typeAnnotation: TypeAnnotation) {
         self.label = label
