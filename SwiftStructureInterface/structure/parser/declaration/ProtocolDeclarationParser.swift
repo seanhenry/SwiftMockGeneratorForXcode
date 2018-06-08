@@ -9,7 +9,7 @@ class ProtocolDeclarationParser: DeclarationParser<TypeDeclaration> {
         skipWhereClause()
         let codeBlock = parseTypeCodeBlock()
         return createElement(start: start) { offset, length, text in
-            return SwiftTypeDeclaration(
+            return TypeDeclarationImpl(
                 name: name,
                 text: text,
                 children: inheritanceClause + codeBlock.declarations,
@@ -19,7 +19,7 @@ class ProtocolDeclarationParser: DeclarationParser<TypeDeclaration> {
                 bodyOffset: codeBlock.offset,
                 bodyLength: codeBlock.length,
                 accessLevelModifier: accessLevelModifier)
-        } ?? SwiftTypeDeclaration.errorTypeDeclaration
+        } ?? TypeDeclarationImpl.errorTypeDeclaration
     }
 
     private func skipWhereClause() {

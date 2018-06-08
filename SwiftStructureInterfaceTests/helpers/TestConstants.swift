@@ -1,6 +1,6 @@
 @testable import SwiftStructureInterface
 
-let emptyTypeDeclaration = SwiftTypeDeclaration(name: "", text: "", children: [], inheritedTypes: [], offset: 0, length: 0, bodyOffset: 0, bodyLength: 0, accessLevelModifier: testAccessLevelModifier)
+let emptyTypeDeclaration = TypeDeclarationImpl(name: "", text: "", children: [], inheritedTypes: [], offset: 0, length: 0, bodyOffset: 0, bodyLength: 0, accessLevelModifier: testAccessLevelModifier)
 let emptyElement = ElementImpl(text: "", children: [], offset: 0, length: 0)
 let emptyFile = FileImpl(text: "", children: [], offset: 0, length: 0)
 let emptyFunctionDeclaration = FunctionDeclarationImpl(name: "", text: "", children: [], offset: 0, length: 0, returnType: nil, parameters: [])
