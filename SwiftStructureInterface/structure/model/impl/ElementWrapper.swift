@@ -1,6 +1,6 @@
-class ElementWrapper: Element {
+class ElementWrapper<T: Element>: Element {
 
-    private let managed: Element
+    let managed: T
 
     var text: String {
         return managed.text
@@ -26,7 +26,7 @@ class ElementWrapper: Element {
         return managed.length
     }
 
-    public init(_ element: Element) {
+    public init(_ element: T) {
         self.managed = element
         retainManagedFile(element: element)
     }
