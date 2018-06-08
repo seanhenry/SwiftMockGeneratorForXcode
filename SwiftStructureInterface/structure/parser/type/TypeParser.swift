@@ -291,13 +291,13 @@ class TypeParser: Parser<Type> {
             let label = getArgumentName()
             let typeAnnotation = parseTypeAnnotation()
             return createElement(start: start) { offset, length, text in
-                SwiftTupleTypeElement(text: text,
+                TupleTypeElementImpl(text: text,
                     children: [typeAnnotation],
                     offset: offset,
                     length: length,
                     label: label,
                     typeAnnotation: typeAnnotation)
-            } ?? SwiftTupleTypeElement.errorTupleTypeElement
+            } ?? TupleTypeElementImpl.errorTupleTypeElement
         }
 
         private func getArgumentName() -> String? {
