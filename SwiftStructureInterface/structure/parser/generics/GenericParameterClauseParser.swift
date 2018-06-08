@@ -29,7 +29,7 @@ class GenericParameterClauseParser: Parser<GenericParameterClause> {
     private func parseGenericParameter() -> GenericParameter {
         let offset = convert(getCurrentStartLocation())!
         guard let typeName = peekAtNextIdentifier() else {
-            return SwiftGenericParameter.errorGenericParameter
+            return GenericParameterImpl.errorGenericParameter
         }
         advance()
         advance(if: .colon)
@@ -38,7 +38,7 @@ class GenericParameterClauseParser: Parser<GenericParameterClause> {
         let protocolComposition = type as? ProtocolCompositionType
         let children = [typeIdentifier as Element?, protocolComposition as Element?].compactMap { $0 }
         let length = convert(getPreviousEndLocation())! - offset
-        return SwiftGenericParameter(text: "",
+        return GenericParameterImpl(text: "",
             children: children,
             offset: offset,
             length: length,
