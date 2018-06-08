@@ -1,4 +1,4 @@
-class SwiftProtocolCompositionType: SwiftType, ProtocolCompositionType {
+class SwiftProtocolCompositionType: TypeImpl, ProtocolCompositionType {
 
     static let errorProtocolCompositionType = SwiftProtocolCompositionType(text: "", children: [], offset: -1, length: -1, types: [])
     let types: [Type]

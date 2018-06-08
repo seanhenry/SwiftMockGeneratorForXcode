@@ -1,4 +1,4 @@
-class SwiftTypeIdentifier: SwiftType, TypeIdentifier {
+class SwiftTypeIdentifier: TypeImpl, TypeIdentifier {
 
     let parentType: TypeIdentifier?
     let typeName: String

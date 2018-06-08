@@ -11,7 +11,7 @@ class TypeParserTests: XCTestCase {
 
     func test_parse_shouldParseEmptyTypeAsError() {
         let element = createParser("", TypeParser.self).parse()
-        XCTAssert(element === SwiftType.errorType)
+        XCTAssert(element === TypeImpl.errorType)
     }
 
     // MARK: - Nested
@@ -571,7 +571,7 @@ class TypeParserTests: XCTestCase {
         XCTAssertEqual(element.length, expectedLength, line: line)
     }
 
-    func parse(_ text: String) -> SwiftType {
-        return createParser(text, TypeParser.self).parse() as! SwiftType
+    func parse(_ text: String) -> TypeImpl {
+        return createParser(text, TypeParser.self).parse() as! TypeImpl
     }
 }

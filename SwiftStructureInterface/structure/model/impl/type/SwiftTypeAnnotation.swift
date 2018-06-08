@@ -4,7 +4,7 @@ class SwiftTypeAnnotation: ElementImpl, TypeAnnotation {
     let isInout: Bool
     let type: Type
 
-    static let errorTypeAnnotation = SwiftTypeAnnotation(text: "", children: [], offset: -1, length: -1, attributes: [], isInout: false, type: SwiftType.errorType)
+    static let errorTypeAnnotation = SwiftTypeAnnotation(text: "", children: [], offset: -1, length: -1, attributes: [], isInout: false, type: TypeImpl.errorType)
 
     init(text: String, children: [Element], offset: Int64, length: Int64, attributes: [String], isInout: Bool, type: Type) {
         self.attributes = attributes

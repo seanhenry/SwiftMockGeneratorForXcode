@@ -45,7 +45,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
     private func parseReturnType() -> Element? {
         let result = parseFunctionDeclarationResult()
-        if result !== SwiftType.errorType {
+        if result !== TypeImpl.errorType {
             return result
         }
         return nil
@@ -134,7 +134,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
         override func parse(start: LineColumn) -> Element {
             guard isNext(.arrow) else {
-                return SwiftType.errorType
+                return TypeImpl.errorType
             }
             advance()
             _ = parseAttributes()

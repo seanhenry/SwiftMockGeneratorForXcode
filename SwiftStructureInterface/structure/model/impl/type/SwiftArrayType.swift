@@ -1,6 +1,6 @@
-class SwiftArrayType: SwiftType, ArrayType {
+class SwiftArrayType: TypeImpl, ArrayType {
 
-    static let errorArrayType = SwiftArrayType(text: "", children: [], offset: -1, length: -1, elementType: SwiftType.errorType)
+    static let errorArrayType = SwiftArrayType(text: "", children: [], offset: -1, length: -1, elementType: TypeImpl.errorType)
     let elementType: Type
 
     init(text: String, children: [Element], offset: Int64, length: Int64, elementType: Type) {

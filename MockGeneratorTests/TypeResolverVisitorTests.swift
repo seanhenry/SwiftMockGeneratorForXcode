@@ -145,7 +145,7 @@ class TypeResolverVisitorTests: XCTestCase {
     }
 
     private func createType(_ name: String) -> Type {
-        return SwiftType(text: name, children: [], offset: 0, length: 0)
+        return TypeImpl(text: name, children: [], offset: 0, length: 0)
     }
 
     private func createDictionary(_ name: String, _ keyType: Type, _ valueType: Type) -> DictionaryType {

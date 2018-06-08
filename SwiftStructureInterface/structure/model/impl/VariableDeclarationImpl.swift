@@ -1,6 +1,6 @@
 class VariableDeclarationImpl: ElementImpl, VariableDeclaration {
 
-    static let errorVariableDeclaration = VariableDeclarationImpl(name: "", text: "", children: [], offset: -1, length: -1, type: SwiftType.errorType, isWritable: false)
+    static let errorVariableDeclaration = VariableDeclarationImpl(name: "", text: "", children: [], offset: -1, length: -1, type: TypeImpl.errorType, isWritable: false)
     let name: String
     let type: Type
     let isWritable: Bool

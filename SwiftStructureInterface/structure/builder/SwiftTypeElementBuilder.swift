@@ -13,7 +13,7 @@ class SwiftTypeElementBuilder: BodySwiftElementBuilderTemplate {
         return TypeDeclarationImpl(name: name, text: text, children: inheritedTypes + buildChildren(), inheritedTypes: inheritedTypes, offset: offset, length: length, bodyOffset: bodyOffset, bodyLength: bodyLength, accessLevelModifier: AccessLevelModifierImpl.emptyAccessLevelModifier)
     }
 
-    private func getInheritedTypes() -> [SwiftType] {
+    private func getInheritedTypes() -> [TypeImpl] {
         guard let typeData = data["key.inheritedtypes"] as? [[String: Any]],
               let declarationText = getDeclarationText() else { return [] }
         let typesTextStrings = getInheritedTypesStrings(declarationText: declarationText)
@@ -21,13 +21,13 @@ class SwiftTypeElementBuilder: BodySwiftElementBuilderTemplate {
         return augmentAndBuildInheritedTypes(offsetAndLengths: offsetAndLengths, typeData: typeData)
     }
 
-    private func augmentAndBuildInheritedTypes(offsetAndLengths: [(offset: Int64, length: Int64)], typeData: [[String: Any]]) -> [SwiftType] {
+    private func augmentAndBuildInheritedTypes(offsetAndLengths: [(offset: Int64, length: Int64)], typeData: [[String: Any]]) -> [TypeImpl] {
         return zip(offsetAndLengths, typeData).compactMap { (offsetAndLength, data) in
             var newData = data
             newData["key.kind"] = SwiftInheritedTypeBuilder.kind
             newData["key.offset"] = offsetAndLength.0
             newData["key.length"] = offsetAndLength.1
-            return SwiftInheritedTypeBuilder(data: newData, fileText: fileText).build() as? SwiftType
+            return SwiftInheritedTypeBuilder(data: newData, fileText: fileText).build() as? TypeImpl
         }
     }
 

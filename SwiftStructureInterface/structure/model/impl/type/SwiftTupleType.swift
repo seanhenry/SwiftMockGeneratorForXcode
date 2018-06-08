@@ -1,4 +1,4 @@
-class SwiftTupleType: SwiftType, TupleType {
+class SwiftTupleType: TypeImpl, TupleType {
 
     let elements: [TupleTypeElement]
     static let errorTupleType = SwiftTupleType(text: "", children: [], offset: -1, length: -1, elements: [])

@@ -6,7 +6,7 @@ class ParameterImpl: ElementImpl, Parameter {
     let localParameterName: String
 
     convenience init(text: String, children: [Element], offset: Int64, length: Int64, type: Element) {
-        let typeElement = SwiftType(text: type.text, children: type.children, offset: type.offset, length: type.length)
+        let typeElement = TypeImpl(text: type.text, children: type.children, offset: type.offset, length: type.length)
         let typeAnnotation = SwiftTypeAnnotation(text: typeElement.text, children: [typeElement], offset: 0, length: 0, attributes: [], isInout: false, type: typeElement)
         self.init(text: text, children: children + [typeAnnotation], offset: offset, length: length, externalParameterName: nil, localParameterName: "", typeAnnotation: typeAnnotation)
     }

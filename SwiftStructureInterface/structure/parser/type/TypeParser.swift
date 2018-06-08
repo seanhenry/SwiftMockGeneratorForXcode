@@ -8,7 +8,7 @@ class TypeParser: Parser<Type> {
         if let type = parseSwiftType() {
             return type
         }
-        return SwiftType.errorType
+        return TypeImpl.errorType
     }
 
     private func parseSwiftType() -> Type? {
@@ -97,8 +97,8 @@ class TypeParser: Parser<Type> {
 
     private func createSwiftType() -> Type {
         return createTypeElement() { offset, length, text in
-            return SwiftType(text: text, children: [], offset: offset, length: length)
-        } ?? SwiftType.errorType
+            return TypeImpl(text: text, children: [], offset: offset, length: length)
+        } ?? TypeImpl.errorType
     }
 
     // MARK: - Generic

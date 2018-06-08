@@ -102,7 +102,7 @@ class ProtocolDeclarationParserTests: XCTestCase {
         let text = "protocol A: {}"
         let `protocol` = parse(text)
         XCTAssertEqual(`protocol`.inheritedTypes.count, 1)
-        XCTAssert(`protocol`.inheritedTypes[0] === SwiftType.errorType)
+        XCTAssert(`protocol`.inheritedTypes[0] === TypeImpl.errorType)
         assertElementText(`protocol`, text)
         XCTAssertEqual(`protocol`.bodyOffset, 13)
         XCTAssertEqual(`protocol`.bodyLength, 0)

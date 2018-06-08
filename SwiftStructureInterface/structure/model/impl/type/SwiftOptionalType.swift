@@ -1,6 +1,6 @@
-class SwiftOptionalType: SwiftType, OptionalType {
+class SwiftOptionalType: TypeImpl, OptionalType {
 
-    static let errorOptionalType = SwiftOptionalType(text: "", children: [], offset: -1, length: -1, type: SwiftType.errorType)
+    static let errorOptionalType = SwiftOptionalType(text: "", children: [], offset: -1, length: -1, type: TypeImpl.errorType)
     let type: Type
 
     init(text: String, children: [Element], offset: Int64, length: Int64, type: Type) {

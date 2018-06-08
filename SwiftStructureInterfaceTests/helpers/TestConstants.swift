@@ -6,7 +6,7 @@ let emptyFile = FileImpl(text: "", children: [], offset: 0, length: 0)
 let emptyFunctionDeclaration = FunctionDeclarationImpl(name: "", text: "", children: [], offset: 0, length: 0, returnType: nil, parameters: [])
 let emptyVariableDeclaration = VariableDeclarationImpl(name: "", text: "", children: [], offset: 0, length: 0, type: testType, isWritable: false)
 
-let testType = SwiftType(text: "Int", children: [], offset: 0, length: 3)
+let testType = TypeImpl(text: "Int", children: [], offset: 0, length: 3)
 let testTypealiasAssignment = TypealiasAssignmentImpl(text: "= Type", children: [testType], offset: 0, length: 6, type: testType)
 let testTypealias = TypealiasImpl(text: "Int", children: [], offset: 0, length: 3, name: "Type", typealiasAssignment: testTypealiasAssignment)
 let testGenericParameterClause = FileParser(fileContents: "<T>").parseGenericParameterClause()

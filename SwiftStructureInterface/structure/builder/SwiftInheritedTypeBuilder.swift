@@ -10,6 +10,6 @@ class SwiftInheritedTypeBuilder: SwiftElementBuilderTemplate {
     }
     
     func build(text: String, offset: Int64, length: Int64) -> Element? {
-        return SwiftType(text: text, children: buildChildren(), offset: offset, length: length)
+        return TypeImpl(text: text, children: buildChildren(), offset: offset, length: length)
     }
 }
