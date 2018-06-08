@@ -269,12 +269,12 @@ class TypeParser: Parser<Type> {
 
     private func createTupleElement(elements: [TupleTypeElement]) -> TupleType {
         return createTypeElement { offset, length, text in
-            SwiftTupleType(text: text,
+            TupleTypeImpl(text: text,
                 children: elements,
                 offset: offset,
                 length: length,
                 elements: elements)
-        } ?? SwiftTupleType.errorTupleType
+        } ?? TupleTypeImpl.errorTupleType
     }
 
     private func parseTupleElement() -> TupleTypeElement? {

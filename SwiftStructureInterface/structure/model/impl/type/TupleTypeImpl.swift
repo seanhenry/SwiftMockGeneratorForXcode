@@ -1,7 +1,7 @@
-class SwiftTupleType: TypeImpl, TupleType {
+class TupleTypeImpl: TypeImpl, TupleType {
 
     let elements: [TupleTypeElement]
-    static let errorTupleType = SwiftTupleType(text: "", children: [], offset: -1, length: -1, elements: [])
+    static let errorTupleType = TupleTypeImpl(text: "", children: [], offset: -1, length: -1, elements: [])
 
     init(text: String, children: [Element], offset: Int64, length: Int64, elements: [TupleTypeElement]) {
         self.elements = elements
