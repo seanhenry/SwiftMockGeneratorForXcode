@@ -2,7 +2,7 @@ import SourceKittenFramework
 
 class TypeDeclarationImpl: ElementImpl, TypeDeclaration {
 
-    static let errorTypeDeclaration = TypeDeclarationImpl(name: "", text: "", children: [], inheritedTypes: [], offset: -1, length: -1, bodyOffset: -1, bodyLength: -1, accessLevelModifier: SwiftAccessLevelModifier.emptyAccessLevelModifier)
+    static let errorTypeDeclaration = TypeDeclarationImpl(name: "", text: "", children: [], inheritedTypes: [], offset: -1, length: -1, bodyOffset: -1, bodyLength: -1, accessLevelModifier: AccessLevelModifierImpl.emptyAccessLevelModifier)
     let name: String
     let inheritedTypes: [Element]
     let bodyOffset: Int64

@@ -41,11 +41,11 @@ class AccessLevelModifierParser: Parser<AccessLevelModifier> {
 
     private func createModifier(start: LineColumn) -> AccessLevelModifier {
         return createElement(start: start) { offset, length, text in
-            return SwiftAccessLevelModifier(text: text, children: [], offset: offset, length: length)
+            return AccessLevelModifierImpl(text: text, children: [], offset: offset, length: length)
         } ?? createEmptyModifier()
     }
 
     private func createEmptyModifier() -> AccessLevelModifier {
-        return SwiftAccessLevelModifier.emptyAccessLevelModifier
+        return AccessLevelModifierImpl.emptyAccessLevelModifier
     }
 }
