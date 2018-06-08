@@ -243,13 +243,13 @@ class TypeParser: Parser<Type> {
 
     private func createProtocolComposition(_ types: [Type]) -> Type {
         return createTypeElement() { offset, length, text in
-            return SwiftProtocolCompositionType(
+            return ProtocolCompositionTypeImpl(
                 text: text,
                 children: types,
                 offset: offset,
                 length: length,
                 types: types)
-        } ?? SwiftProtocolCompositionType.errorProtocolCompositionType
+        } ?? ProtocolCompositionTypeImpl.errorProtocolCompositionType
     }
 
     // MARK: - Tuple
