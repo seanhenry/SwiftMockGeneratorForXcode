@@ -10,7 +10,7 @@ class InitialiserDeclarationParser: DeclarationParser<InitialiserDeclaration> {
         advance(if: .rethrows)
         _ = parseWhereClause()
         return createElement(start: start) { offset, length, text in
-            return SwiftInitialiserDeclaration(
+            return InitialiserDeclarationImpl(
                 text: text,
                 children: parameters,
                 offset: offset,
@@ -19,7 +19,7 @@ class InitialiserDeclarationParser: DeclarationParser<InitialiserDeclaration> {
                 throws: `throws`,
                 rethrows: `rethrows`,
                 isFailable: isFailable)
-        } ?? SwiftInitialiserDeclaration.errorInitialiserDeclaration
+        } ?? InitialiserDeclarationImpl.errorInitialiserDeclaration
     }
 
     private func parseIsFailable() -> Bool {

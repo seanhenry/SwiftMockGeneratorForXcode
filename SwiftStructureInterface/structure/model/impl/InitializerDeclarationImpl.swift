@@ -1,6 +1,6 @@
-class SwiftInitialiserDeclaration: ElementImpl, InitialiserDeclaration {
+class InitialiserDeclarationImpl: ElementImpl, InitialiserDeclaration {
 
-    static let errorInitialiserDeclaration = SwiftInitialiserDeclaration(text: "", children: [], offset: -1, length: -1, parameters: [], throws: false, rethrows: false, isFailable: false)
+    static let errorInitialiserDeclaration = InitialiserDeclarationImpl(text: "", children: [], offset: -1, length: -1, parameters: [], throws: false, rethrows: false, isFailable: false)
 
     let parameters: [Parameter]
     let `throws`: Bool
