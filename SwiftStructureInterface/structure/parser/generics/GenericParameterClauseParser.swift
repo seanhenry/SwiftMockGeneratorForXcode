@@ -2,19 +2,19 @@ class GenericParameterClauseParser: Parser<GenericParameterClause> {
 
     override func parse(start: LineColumn) -> GenericParameterClause {
         guard isNext("<") else {
-            return SwiftGenericParameterClause.emptyGenericParameterClause
+            return GenericParameterClauseImpl.emptyGenericParameterClause
         }
         advanceOperator("<")
         let parameters = parseGenericParameterList()
         parseGenericClosingBracket()
         return createElement(start: start) { offset, length, text in
-            return SwiftGenericParameterClause(
+            return GenericParameterClauseImpl(
                 text: text,
                 children: parameters,
                 offset: offset,
                 length: length,
                 parameters: parameters)
-        } ?? SwiftGenericParameterClause.errorGenericParameterClause
+        } ?? GenericParameterClauseImpl.errorGenericParameterClause
     }
 
     private func parseGenericParameterList() -> [GenericParameter] {

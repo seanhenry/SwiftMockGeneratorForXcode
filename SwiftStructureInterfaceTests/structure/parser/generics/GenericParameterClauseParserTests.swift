@@ -51,7 +51,7 @@ class GenericParameterClauseParserTests: XCTestCase {
 
     func test_parse_shouldReturnEmptyClause() {
         let clause = parse("")
-        XCTAssert(clause === SwiftGenericParameterClause.emptyGenericParameterClause)
+        XCTAssert(clause === GenericParameterClauseImpl.emptyGenericParameterClause)
     }
 
     // MARK: - Helpers

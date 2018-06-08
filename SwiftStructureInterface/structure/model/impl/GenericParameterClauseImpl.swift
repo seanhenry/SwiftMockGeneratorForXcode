@@ -1,7 +1,7 @@
-class SwiftGenericParameterClause: ElementImpl, GenericParameterClause {
+class GenericParameterClauseImpl: ElementImpl, GenericParameterClause {
 
-    static let errorGenericParameterClause = SwiftGenericParameterClause(text: "", children: [], offset: -1, length: -1, parameters: [])
-    static let emptyGenericParameterClause = SwiftGenericParameterClause(text: "", children: [], offset: -1, length: -1, parameters: [])
+    static let errorGenericParameterClause = GenericParameterClauseImpl(text: "", children: [], offset: -1, length: -1, parameters: [])
+    static let emptyGenericParameterClause = GenericParameterClauseImpl(text: "", children: [], offset: -1, length: -1, parameters: [])
     let parameters: [GenericParameter]
 
     init(text: String, children: [Element], offset: Int64, length: Int64, parameters: [GenericParameter]) {
