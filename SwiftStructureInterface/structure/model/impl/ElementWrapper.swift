@@ -32,7 +32,7 @@ class ElementWrapper: Element {
     }
 
     private func retainManagedFile(element: Element) {
-        let file = element.file as? SwiftFile
+        let file = element.file as? FileImpl
         file?.retainCount += 1
     }
 
@@ -41,7 +41,7 @@ class ElementWrapper: Element {
     }
 
     private func releaseManagedFile() {
-        let file = self.file as? SwiftFile
+        let file = self.file as? FileImpl
         file?.retainCount -= 1
         if file?.retainCount == 0 {
             let visitor = BreakRetainCycleVisitor()

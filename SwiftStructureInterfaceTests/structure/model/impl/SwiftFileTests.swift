@@ -4,7 +4,7 @@ import SourceKittenFramework
 
 class SwiftFileTests: XCTestCase {
 
-    var file: SwiftFile!
+    var file: FileImpl!
 
     override func setUp() {
         super.setUp()
@@ -37,7 +37,7 @@ class SwiftFileTests: XCTestCase {
     }
 
     func test_init_shouldSetItselfToAllChildrenWithNewParser() {
-        file = ElementParser.parseFile(getProtocolString()) as! SwiftFile
+        file = ElementParser.parseFile(getProtocolString()) as! FileImpl
         assertFilesAreEquivalent(file.file, file)
         let protocolA = file.children[0] as! TypeDeclaration
         assertFilesAreEquivalent(protocolA.file, file)

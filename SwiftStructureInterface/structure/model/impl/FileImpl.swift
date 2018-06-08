@@ -1,4 +1,4 @@
-class SwiftFile: ElementImpl, File {
+class FileImpl: ElementImpl, File {
 
     var retainCount = 0
 

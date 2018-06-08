@@ -9,6 +9,6 @@ class SwiftFileBuilder: SwiftElementBuilderTemplate {
     }
 
     func build(text: String, offset: Int64, length: Int64) -> Element? {
-        return SwiftFile(text: fileText, children: buildChildren(), offset: offset, length: length)
+        return FileImpl(text: fileText, children: buildChildren(), offset: offset, length: length)
     }
 }

@@ -87,8 +87,8 @@ class ElementWrapperTest: XCTestCase {
     private func suppressWarning(_ wrapper: ElementWrapper?) {
     }
 
-    private func createFile() -> SwiftFile {
-        return ElementParser.parseFile("protocol A { var a: A { get } }") as! SwiftFile
+    private func createFile() -> FileImpl {
+        return ElementParser.parseFile("protocol A { var a: A { get } }") as! FileImpl
     }
 
     private class VisitorSpy: ElementVisitor {

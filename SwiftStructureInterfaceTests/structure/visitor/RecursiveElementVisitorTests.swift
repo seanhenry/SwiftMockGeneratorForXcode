@@ -19,7 +19,7 @@ class RecursiveElementVisitorTests: XCTestCase {
     // MARK: - visit
 
     func test_visit_shouldRecursivelyForwardToInnerVisitor() {
-        let file = getClassFile() as! SwiftFile
+        let file = getClassFile() as! FileImpl
         let classElement = file.namedChildren[0]
         let innerClass = classElement.namedChildren[0]
         let innerMethod = innerClass.namedChildren[0]
