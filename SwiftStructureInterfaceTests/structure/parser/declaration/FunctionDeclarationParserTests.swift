@@ -22,11 +22,11 @@ class FunctionDeclarationParserTests: XCTestCase {
         let function = parse(text)
         assertElementText(function, text)
         XCTAssertEqual(function.name, "a")
-        var param = function.parameters[0] as! SwiftParameter
+        var param = function.parameters[0] as! ParameterImpl
         assertElementText(param, "a: A", offset: 7)
         XCTAssertEqual(param.externalParameterName, nil)
         XCTAssertEqual(param.localParameterName, "a")
-        param = function.parameters[1] as! SwiftParameter
+        param = function.parameters[1] as! ParameterImpl
         assertElementText(param, "_ b: B", offset: 13)
         XCTAssertEqual(param.externalParameterName, "_")
         XCTAssertEqual(param.localParameterName, "b")

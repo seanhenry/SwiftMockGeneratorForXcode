@@ -85,10 +85,10 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
     class ParameterParser: Parser<Parameter> {
 
         override func parse(start: LineColumn) -> Parameter {
-            guard let (externalParameterName, localParameterName) = parseParameterNames() else { return SwiftParameter.errorParameter }
+            guard let (externalParameterName, localParameterName) = parseParameterNames() else { return ParameterImpl.errorParameter }
             let typeAnnotation = parseParameterTypeAnnotation()
             return createElement(start: start) { offset, length, text in
-                SwiftParameter(
+                ParameterImpl(
                     text: text,
                     children: [typeAnnotation],
                     offset: offset,
@@ -96,7 +96,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
                     externalParameterName: externalParameterName,
                     localParameterName: localParameterName,
                     typeAnnotation: typeAnnotation)
-            } ?? SwiftParameter.errorParameter
+            } ?? ParameterImpl.errorParameter
         }
 
         private func parseParameterNames() -> (externalParameterName: String?, localParameterName: String)? {

@@ -1,6 +1,6 @@
-class SwiftParameter: ElementImpl, Parameter {
+class ParameterImpl: ElementImpl, Parameter {
 
-    static let errorParameter = SwiftParameter(text: "", children: [], offset: -1, length: -1, externalParameterName: nil, localParameterName: "", typeAnnotation: SwiftTypeAnnotation.errorTypeAnnotation)
+    static let errorParameter = ParameterImpl(text: "", children: [], offset: -1, length: -1, externalParameterName: nil, localParameterName: "", typeAnnotation: SwiftTypeAnnotation.errorTypeAnnotation)
     let typeAnnotation: TypeAnnotation
     let externalParameterName: String?
     let localParameterName: String
