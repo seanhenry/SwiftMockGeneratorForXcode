@@ -9,13 +9,13 @@ class GetterSetterKeywordBlockParser: Parser<GetterSetterKeywordBlock> {
         parseGetSet(isWritable: &isWritable)
         advance(if: .rightBrace)
         return createElement(start: start) { offset, length, text in
-            return SwiftGetterSetterKeywordBlock(
+            return GetterSetterKeywordBlockImpl(
                 text: text,
                 children: [],
                 offset: offset,
                 length: length,
                 isWritable: isWritable)
-        } ?? SwiftGetterSetterKeywordBlock.errorGetterSetterKeywordBlock
+        } ?? GetterSetterKeywordBlockImpl.errorGetterSetterKeywordBlock
     }
 
     private func parseGetSet(isWritable: inout Bool) {
