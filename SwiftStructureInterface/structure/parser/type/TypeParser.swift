@@ -323,7 +323,7 @@ class TypeParser: Parser<Type> {
             try advanceOrFail(if: .arrow)
             let returnType = parse()
             return createTypeElement { offset, length, text in
-                SwiftFunctionType(text: text,
+                FunctionTypeImpl(text: text,
                     children: [arguments, returnType],
                     offset: offset,
                     length: length,

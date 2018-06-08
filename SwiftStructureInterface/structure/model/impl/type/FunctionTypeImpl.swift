@@ -1,4 +1,4 @@
-class SwiftFunctionType: TypeImpl, FunctionType {
+class FunctionTypeImpl: TypeImpl, FunctionType {
 
     let attributes: [String]
     let arguments: TupleType
