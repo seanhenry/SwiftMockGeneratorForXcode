@@ -27,23 +27,23 @@ class SwiftInheritedTypeBuilderTests: XCTestCase {
         // SourceKit doesn't seem to support inherited types with emojis in their name.
         print(UnicodeScalar(0x2D30)!)
         let string = "protocol 💐Protocol: Type1 { }"
-        let file = SKElementFactoryTestHelper.build(from: string)
-        let `protocol` = file?.children.first as? TypeDeclarationImpl
-        let type1 = `protocol`?.inheritedTypes[0]
-        XCTAssertEqual(type1?.offset, 23)
-        XCTAssertEqual(type1?.length, 5)
-        XCTAssertEqual(type1?.text, "Type1")
+        let file = SKElementFactoryTestHelper.build(from: string)!
+        let `protocol` = file.typeDeclarations[0]
+        let type1 = `protocol`.inheritedTypes[0]
+        XCTAssertEqual(type1.offset, 23)
+        XCTAssertEqual(type1.length, 5)
+        XCTAssertEqual(type1.text, "Type1")
     }
 
     func test_build_shouldBuildWithNoInheritedTypes() {
-        let file = SKElementFactoryTestHelper.build(from: getNoInheritedTypesExampleString())
-        let element = file?.children[0] as! TypeDeclarationImpl
+        let file = SKElementFactoryTestHelper.build(from: getNoInheritedTypesExampleString())!
+        let element = file.typeDeclarations[0]
         XCTAssert(element.inheritedTypes.isEmpty)
     }
 
     func test_build_shouldNotConfusePartiallyMatchingStringsInClassNameAndInheritedTypes() {
-        let file = SKElementFactoryTestHelper.build(from: getRealisticNameExampleString())
-        let element = file?.children[0] as! TypeDeclarationImpl
+        let file = SKElementFactoryTestHelper.build(from: getRealisticNameExampleString())!
+        let element = file.typeDeclarations[0]
         let inheritedType = element.inheritedTypes[0]
         XCTAssertEqual(element.name, "MockProtocol")
         XCTAssertEqual(inheritedType.text, "Protocol")
@@ -52,8 +52,8 @@ class SwiftInheritedTypeBuilderTests: XCTestCase {
     }
 
     func test_build_shouldFindInheritedTypesOnNewlines() {
-        let file = SKElementFactoryTestHelper.build(from: getNewlineTypesExampleString())
-        let element = file?.children[0] as! TypeDeclarationImpl
+        let file = SKElementFactoryTestHelper.build(from: getNewlineTypesExampleString())!
+        let element = file.typeDeclarations[0]
         let inheritedType = element.inheritedTypes[0]
         let inheritedType2 = element.inheritedTypes[1]
         XCTAssertEqual(element.name, "AClass")
@@ -66,10 +66,10 @@ class SwiftInheritedTypeBuilderTests: XCTestCase {
     }
 
     func test_build_shouldFindMultipleTypesInBaseOfFile() {
-        let file = SKElementFactoryTestHelper.build(from: getMultipleTypeExampleString())
-        let firstType = file?.children[0] as! TypeDeclarationImpl
+        let file = SKElementFactoryTestHelper.build(from: getMultipleTypeExampleString())!
+        let firstType = file.typeDeclarations[0]
         XCTAssertEqual(firstType.name, "ProtocolA")
-        let secondType = file?.children[1] as! TypeDeclarationImpl
+        let secondType = file.typeDeclarations[1]
         let inheritedType = secondType.inheritedTypes[0]
         XCTAssertEqual(secondType.name, "ClassA")
         XCTAssertEqual(inheritedType.text, "ProtocolA")

@@ -19,7 +19,7 @@ class DeleteBodyUtilTests: XCTestCase {
 
     func test_deleteClassBody_shouldReturnElementWithBodyRemoved() {
         let file = SKElementFactoryTestHelper.build(from: getSimpleClass())!
-        let classElement = file.children[0]
+        let classElement = file.typeDeclarations[0]
         let result = util.deleteClassBody(from: classElement)!
         StringCompareTestHelper.assertEqualStrings(result.file.text, getExpectedSimpleClass())
         StringCompareTestHelper.assertEqualStrings(result.element.text, getExpectedSimpleClass())
@@ -27,7 +27,7 @@ class DeleteBodyUtilTests: XCTestCase {
 
     func test_deleteClassBody_shouldReturnClassElement() {
         let file = SKElementFactoryTestHelper.build(from: getSimpleClass())!
-        let classElement = file.children[0]
+        let classElement = file.typeDeclarations[0]
         let result = util.deleteClassBody(from: classElement)!
         XCTAssert(result.element is TypeDeclarationImpl)
     }
@@ -39,12 +39,12 @@ class DeleteBodyUtilTests: XCTestCase {
     func test_deleteClassBody_returnsNil_whenClassElementHasBadOffsets() {
         let element = TypeDeclarationImpl(name: "A", text: "class A { }", children: [], inheritedTypes: [], offset: -1, length: 0, bodyOffset: 100, bodyLength: 0, accessLevelModifier: AccessLevelModifierImpl.emptyAccessLevelModifier)
         let file = FileImpl(text: "class A { }", children: [element], offset: 0, length: 11)
-        XCTAssertNil(util.deleteClassBody(from: file.children[0]))
+        XCTAssertNil(util.deleteClassBody(from: file.typeDeclarations[0]))
     }
 
     func test_deleteClassBody_shouldDeleteUTF16Contents() {
         let file = SKElementFactoryTestHelper.build(from: getUTF16Class())!
-        let classElement = file.children[0]
+        let classElement = file.typeDeclarations[0]
         let result = util.deleteClassBody(from: classElement)!
         StringCompareTestHelper.assertEqualStrings(result.file.text, getExpectedUTF16Class())
         StringCompareTestHelper.assertEqualStrings(result.element.text, getExpectedUTF16Class())

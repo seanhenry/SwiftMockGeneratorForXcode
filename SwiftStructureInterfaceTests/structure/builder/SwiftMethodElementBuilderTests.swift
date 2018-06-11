@@ -5,9 +5,9 @@ class SwiftMethodElementBuilderTests: XCTestCase {
 
     func test_build_shouldDetectMethods() {
         let file = SKElementFactoryTestHelper.build(from: getMethodsExampleString())!
-        let protocolType = file.children[0] as? TypeDeclarationImpl
-        let classType = file.children[1] as? TypeDeclarationImpl
-        let instanceMethod = classType?.children[0] as? FunctionDeclarationImpl
+        let protocolType = file.typeDeclarations[0]
+        let classType = file.typeDeclarations[1]
+        let instanceMethod = classType.functionDeclarations[0]
         assertChildMethodName(protocolType, at: 0, equals: "protocolMethod")
         assertChildMethodName(classType, at: 0, equals: "method")
         assertChildMethodName(instanceMethod, at: 0, equals: "nestedMethod")
@@ -17,7 +17,7 @@ class SwiftMethodElementBuilderTests: XCTestCase {
 
     func test_build_shouldAddReturnTypeToMethods() {
         let file = SKElementFactoryTestHelper.build(from: getReturnMethodsExampleString())!
-        let protocolType = file.children[0] as! TypeDeclarationImpl
+        let protocolType = file.typeDeclarations[0]
         assertChildMethodReturnType(protocolType, at: 0, equals: nil)
         assertChildMethodReturnType(protocolType, at: 1, equals: "Type0")
         assertChildMethodReturnType(protocolType, at: 2, equals: "(Type0, Type1)")
@@ -25,7 +25,7 @@ class SwiftMethodElementBuilderTests: XCTestCase {
         assertChildMethodReturnType(protocolType, at: 4, equals: "Type0<Type1>")
         assertChildMethodReturnType(protocolType, at: 5, equals: "Type0")
         assertChildMethodReturnType(protocolType, at: 6, equals: "Type0")
-        let classType = file.children[1] as! TypeDeclarationImpl
+        let classType = file.typeDeclarations[1]
         assertChildMethodReturnType(classType, at: 0, equals: "Type0")
         assertChildMethodReturnType(classType, at: 1, equals: "Type0")
         assertChildMethodReturnType(classType, at: 2, equals: "Type0")
@@ -34,13 +34,13 @@ class SwiftMethodElementBuilderTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func assertChildMethodReturnType(_ parent: Element?, at index: Int, equals expected: String?, line: UInt = #line) {
-        let method = parent?.children[index] as? FunctionDeclarationImpl
+    func assertChildMethodReturnType(_ parent: Declarations?, at index: Int, equals expected: String?, line: UInt = #line) {
+        let method = parent?.functionDeclarations[index]
         XCTAssertEqual(method?.returnType?.text, expected, line: line)
     }
 
-    func assertChildMethodName(_ parent: Element?, at index: Int, equals expected: String?, line: UInt = #line) {
-        let method = parent?.children[index] as? FunctionDeclarationImpl
+    func assertChildMethodName(_ parent: Declarations?, at index: Int, equals expected: String?, line: UInt = #line) {
+        let method = parent?.functionDeclarations[index]
         XCTAssertEqual(method?.name, expected, line: line)
     }
 

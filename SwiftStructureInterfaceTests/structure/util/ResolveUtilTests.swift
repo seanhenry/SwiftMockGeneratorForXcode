@@ -31,30 +31,30 @@ class ResolveUtilTests: XCTestCase {
     func test_resolve_shouldResolveSwiftTypeDeclaration() {
         writeResolveClassesToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = (file.children[0] as! TypeDeclarationImpl).inheritedTypes[0]
+        let reference = file.typeDeclarations[0].inheritedTypes[0]
         let resolved = util.resolve(reference) as? TypeDeclaration
         XCTAssertEqual(resolved?.name, "ResolveTest")
-        let method = resolved?.namedChild(at: 0)
+        let method = resolved?.functionDeclarations[0]
         XCTAssertEqual(method?.name, "method")
     }
 
     func test_resolve_shouldResolveElementInSameFile() {
         writeResolveClassesToSingleFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = (file.children[1] as! TypeDeclarationImpl).inheritedTypes[0]
+        let reference = file.typeDeclarations[1].inheritedTypes[0]
         let resolved = util.resolve(reference) as? TypeDeclaration
         XCTAssertEqual(resolved?.name, "ResolveTest")
-        let method = resolved?.namedChild(at: 0)
+        let method = resolved?.functionDeclarations[0]
         XCTAssertEqual(method?.name, "method")
     }
 
     func test_resolve_shouldResolveElementWithUTF16Characters() {
         writeUTF16ResolveClassesToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = (file.children[0] as! TypeDeclarationImpl).inheritedTypes[0]
+        let reference = file.typeDeclarations[0].inheritedTypes[0]
         let resolved = ResolveUtil().resolve(reference) as? TypeDeclaration
         XCTAssertEqual(resolved?.name, "Resolve💐Test")
-        let method = resolved?.namedChild(at: 0)
+        let method = resolved?.functionDeclarations[0]
         XCTAssertEqual(method?.name, "method💐")
     }
 
@@ -62,7 +62,7 @@ class ResolveUtilTests: XCTestCase {
         ResolveUtil.cursorInfoRequest = ThrowingCursorInfoRequest()
         writeResolveClassesToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = (file.children[0] as! TypeDeclarationImpl).inheritedTypes[0]
+        let reference = file.typeDeclarations[0].inheritedTypes[0]
         XCTAssertNil(ResolveUtil().resolve(reference))
     }
 

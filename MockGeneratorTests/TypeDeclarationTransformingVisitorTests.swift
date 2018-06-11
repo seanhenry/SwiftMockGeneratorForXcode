@@ -67,7 +67,7 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
     }
 
     private func transformProtocols(_ string: String) -> [UseCasesProtocol] {
-        let p = SKElementFactoryTestHelper.build(from: string)!.children[0] as! TypeDeclaration
+        let p = SKElementFactoryTestHelper.build(from: string)!.typeDeclarations[0]
         let protocols = TypeDeclarationTransformingVisitor.transformMock(p).protocols
         return protocols
     }

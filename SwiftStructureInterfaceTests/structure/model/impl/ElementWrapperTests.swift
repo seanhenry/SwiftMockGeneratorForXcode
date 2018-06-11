@@ -54,6 +54,7 @@ class ElementWrapperTest: XCTestCase {
             let wrapper = wrap(file.children[0].children[0])
             suppressWarning(wrapper)
             strongWrapper = wrap(file.children[0].children[0])
+            suppressWarning(strongWrapper)
             XCTAssertEqual(file.retainCount, 2)
             weakFile = file
             weakChild = file.children[0]

@@ -21,14 +21,14 @@ class SwiftFileTests: XCTestCase {
     func test_init_shouldSetItselfToAllChildren() {
         file = SKElementFactoryTestHelper.build(from: getNestedClassString())!
         assertFilesAreEquivalent(file.file, file)
-        let classA = file.children[0]
+        let classA = file.typeDeclarations[0]
         assertFilesAreEquivalent(classA.file, file)
-        let classB = classA.children[0] as! TypeDeclarationImpl
+        let classB = classA.typeDeclarations[0]
         assertFilesAreEquivalent(classB.file, file)
         assertFilesAreEquivalent(classB.inheritedTypes[0].file, file)
         assertFilesAreEquivalent(classB.inheritedTypes[1].file, file)
-        assertFilesAreEquivalent(classB.children[0].file, file)
-        let methodA = classA.children[1] as! FunctionDeclarationImpl
+        assertFilesAreEquivalent(classB.accessLevelModifier.file, file)
+        let methodA = classA.functionDeclarations[0]
         let methodAParam = methodA.parameters[0]
         assertFilesAreEquivalent(methodA.file, file)
         assertFilesAreEquivalent(methodAParam.file, file)
@@ -37,20 +37,20 @@ class SwiftFileTests: XCTestCase {
     }
 
     func test_init_shouldSetItselfToAllChildrenWithNewParser() {
-        file = ElementParser.parseFile(getProtocolString()) as! FileImpl
+        let file = ElementParser.parseFile(getProtocolString())
         assertFilesAreEquivalent(file.file, file)
-        let protocolA = file.children[0] as! TypeDeclaration
+        let protocolA = file.typeDeclarations[0]
         assertFilesAreEquivalent(protocolA.file, file)
         assertFilesAreEquivalent(protocolA.inheritedTypes[0].file, file)
-        let initializer = protocolA.children[1] as! InitialiserDeclaration
+        let initializer = protocolA.initializerDeclarations[0]
         assertFilesAreEquivalent(initializer.file, file)
         assertFilesAreEquivalent(initializer.parameters[0].file, file)
         assertFilesAreEquivalent(initializer.parameters[0].typeAnnotation.file, file)
         assertFilesAreEquivalent(initializer.parameters[0].typeAnnotation.type.file, file)
-        let property = protocolA.children[2] as! VariableDeclaration
+        let property = protocolA.variableDeclarations[0]
         assertFilesAreEquivalent(property.file, file)
         assertFilesAreEquivalent(property.type.file, file)
-        let method = protocolA.children[3] as! FunctionDeclaration
+        let method = protocolA.functionDeclarations[0]
         let methodParam = method.parameters[0]
         assertFilesAreEquivalent(method.file, file)
         assertFilesAreEquivalent(method.genericParameterClause?.file, file)

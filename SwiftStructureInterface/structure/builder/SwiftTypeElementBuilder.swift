@@ -10,7 +10,9 @@ class SwiftTypeElementBuilder: BodySwiftElementBuilderTemplate {
 
     func build(text: String, offset: Int64, length: Int64, name: String, bodyOffset: Int64, bodyLength: Int64) -> Element? {
         let inheritedTypes = getInheritedTypes()
-        return TypeDeclarationImpl(name: name, text: text, children: inheritedTypes + buildChildren(), inheritedTypes: inheritedTypes, offset: offset, length: length, bodyOffset: bodyOffset, bodyLength: bodyLength, accessLevelModifier: AccessLevelModifierImpl.emptyAccessLevelModifier)
+        let accessLevelModifier = AccessLevelModifierImpl.emptyAccessLevelModifier
+        let children = (inheritedTypes as [Element]) + ([accessLevelModifier] as [Element]) + buildChildren()
+        return TypeDeclarationImpl(name: name, text: text, children: children, inheritedTypes: inheritedTypes, offset: offset, length: length, bodyOffset: bodyOffset, bodyLength: bodyLength, accessLevelModifier: accessLevelModifier)
     }
 
     private func getInheritedTypes() -> [TypeImpl] {

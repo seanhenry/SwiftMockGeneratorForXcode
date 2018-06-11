@@ -26,7 +26,7 @@ class ElementWrapper<T: Element>: Element {
         return managed.length
     }
 
-    public init(_ element: T) {
+    init(_ element: T) {
         self.managed = element
         retainManagedFile(element: element)
     }

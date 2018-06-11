@@ -12,7 +12,7 @@ class ProtocolDeclarationParser: DeclarationParser<TypeDeclaration> {
             return TypeDeclarationImpl(
                 name: name,
                 text: text,
-                children: inheritanceClause + codeBlock.declarations,
+                children: inheritanceClause + [accessLevelModifier] + codeBlock.declarations,
                 inheritedTypes: inheritanceClause,
                 offset: offset,
                 length: length,

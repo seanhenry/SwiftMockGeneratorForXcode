@@ -5,7 +5,7 @@ class SwiftMethodParameterBuilderTests: XCTestCase {
 
     func test_build_shouldBuildParameters() {
         let file = SKElementFactoryTestHelper.build(from: getMethodParametersExampleString())!
-        let protocolType = file.children[0] as! TypeDeclarationImpl
+        let protocolType = file.typeDeclarations[0]
         assertChildMethodParameterCount(protocolType, at: 0, equals: 0)
         assertChildMethodParameterCount(protocolType, at: 1, equals: 1)
         assertChildMethodParameterCount(protocolType, at: 2, equals: 2)
@@ -21,7 +21,7 @@ class SwiftMethodParameterBuilderTests: XCTestCase {
         assertParameterType(protocolType, at: 2, atParameter: 1, offset: 108, length: 6, text: "String")
         assertParameterType(protocolType, at: 3, atParameter: 0, offset: 145, length: 3, text: "Int")
         assertParameterType(protocolType, at: 4, atParameter: 0, offset: 183, length: 5, text: "Type0")
-        let classType = file.children[1] as! TypeDeclarationImpl
+        let classType = file.typeDeclarations[1]
         assertChildMethodParameterCount(classType, at: 0, equals: 1)
         assertChildMethodParameterText(classType, at: 0, atParameter: 0, equals: "param0: String")
         assertParameterType(classType, at: 0, atParameter: 0, offset: 241, length: 6, text: "String")
@@ -42,18 +42,18 @@ class SwiftMethodParameterBuilderTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func assertChildMethodParameterCount(_ parent: Element?, at index: Int, equals expected: Int, line: UInt = #line) {
-        let method = parent?.children[index] as? FunctionDeclarationImpl
+    private func assertChildMethodParameterCount(_ parent: Declarations?, at index: Int, equals expected: Int, line: UInt = #line) {
+        let method = parent?.functionDeclarations[index]
         XCTAssertEqual(method?.parameters.count, expected, line: line)
     }
 
-    private func assertChildMethodParameterText(_ parent: Element?, at index: Int, atParameter paramIndex: Int, equals expected: String, line: UInt = #line) {
-        let method = parent?.children[index] as? FunctionDeclarationImpl
+    private func assertChildMethodParameterText(_ parent: Declarations?, at index: Int, atParameter paramIndex: Int, equals expected: String, line: UInt = #line) {
+        let method = parent?.functionDeclarations[index]
         XCTAssertEqual(method?.parameters[paramIndex].text, expected, line: line)
     }
 
-    private func assertParameterType(_ parent: Element?, at index: Int, atParameter paramIndex: Int, offset expectedOffset: Int64, length expectedLength: Int64, text expectedText: String, line: UInt = #line) {
-        let method = parent?.children[index] as? FunctionDeclarationImpl
+    private func assertParameterType(_ parent: Declarations?, at index: Int, atParameter paramIndex: Int, offset expectedOffset: Int64, length expectedLength: Int64, text expectedText: String, line: UInt = #line) {
+        let method = parent?.functionDeclarations[index]
         XCTAssertEqual(method?.parameters[paramIndex].typeAnnotation.type.offset, expectedOffset, line: line)
         XCTAssertEqual(method?.parameters[paramIndex].typeAnnotation.type.length, expectedLength, line: line)
         XCTAssertEqual(method?.parameters[paramIndex].typeAnnotation.type.text, expectedText, line: line)

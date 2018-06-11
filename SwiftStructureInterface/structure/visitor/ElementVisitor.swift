@@ -84,4 +84,12 @@ open class ElementVisitor {
     open func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
         visitElement(element)
     }
+
+    open func visitAccessLevelModifier(_ element: AccessLevelModifier) {
+        visitElement(element)
+    }
+
+    open func visitProtocolCompositionType(_ element: ProtocolCompositionType) {
+        visitType(element)
+    }
 }

@@ -10,7 +10,7 @@ class SwiftPropertyElementBuilderTests: XCTestCase {
         let file = SKElementFactoryTestHelper.build(from: getPropertiesExampleString())!
         assertChildProperty(file, name: "globalConstant", type: "", isWritable: false, at: 0)
         assertChildProperty(file, name: "globalVariable", type: "String", isWritable: true, at: 1)
-        let protocolType = file.children[2] as! TypeDeclarationImpl
+        let protocolType = file.typeDeclarations[0]
         assertChildProperty(protocolType, name: "readWrite", type: "String", isWritable: true, at: 0)
         assertChildProperty(protocolType, name: "readOnly", type: "Int", isWritable: false, at: 1)
         assertChildProperty(protocolType, name: "weakProp", type: "NSObject?", isWritable: false, at: 2)
@@ -23,8 +23,8 @@ class SwiftPropertyElementBuilderTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func assertChildProperty(_ parent: Element?, name: String, type: String, isWritable: Bool, at index: Int, line: UInt = #line) {
-        let property = parent?.children[index] as? VariableDeclaration
+    func assertChildProperty(_ parent: Declarations?, name: String, type: String, isWritable: Bool, at index: Int, line: UInt = #line) {
+        let property = parent?.variableDeclarations[index]
         XCTAssertEqual(property?.name, name, line: line)
         XCTAssertEqual(property?.type.text, type, line: line)
         XCTAssertEqual(property?.isWritable, isWritable, line: line)

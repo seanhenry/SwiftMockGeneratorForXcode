@@ -265,7 +265,7 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     private func getMethodProtocol() -> Element {
         let file = FileParser(fileContents: getMethodProtocolString()).parse()
-        return file.children[0]
+        return file.functionDeclarations[0]
     }
 
     private func getMethodProtocolString() -> String {
@@ -280,7 +280,7 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     private func getPropertyProtocol() -> Element {
         let file = FileParser(fileContents: getPropertyProtocolString()).parse()
-        return file.children[0]
+        return file.typeDeclarations[0]
     }
 
     private func getPropertyProtocolString() -> String {
@@ -300,7 +300,7 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     private func getInitializerProtocol() -> Element {
         let file = FileParser(fileContents: getInitializerProtocolString()).parse()
-        return file.children[0]
+        return file.typeDeclarations[0]
     }
 
     private func getInitializerProtocolString() -> String {

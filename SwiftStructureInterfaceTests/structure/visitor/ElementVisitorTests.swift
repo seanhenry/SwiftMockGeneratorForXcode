@@ -143,6 +143,19 @@ class ElementVisitorTests: XCTestCase {
         XCTAssertEqual(visitor.invokedVisitElementCount, 1)
     }
 
+    func test_visit_accessLevelModifier() {
+        testAccessLevelModifier.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitAccessLevelModifierCount, 1)
+        XCTAssertEqual(visitor.invokedVisitElementCount, 1)
+    }
+
+    func test_visit_protocolCompositionType() {
+        testProtocolCompositionType.accept(visitor)
+        XCTAssertEqual(visitor.invokedVisitProtocolCompositionTypeCount, 1)
+        XCTAssertEqual(visitor.invokedVisitTypeCount, 1)
+        XCTAssertEqual(visitor.invokedVisitElementCount, 1)
+    }
+
     // MARK: - Helpers
 
     class PartialMockVisitor: ElementVisitor {
@@ -418,6 +431,32 @@ class ElementVisitorTests: XCTestCase {
             invokedVisitSubscriptDeclarationCount += 1
             invokedVisitSubscriptDeclarationParameters = (element, ())
             invokedVisitSubscriptDeclarationParametersList.append((element, ()))
+        }
+
+        var invokedVisitAccessLevelModifier = false
+        var invokedVisitAccessLevelModifierCount = 0
+        var invokedVisitAccessLevelModifierParameters: (element: AccessLevelModifier, Void)?
+        var invokedVisitAccessLevelModifierParametersList = [(element: AccessLevelModifier, Void)]()
+
+        override func visitAccessLevelModifier(_ element: AccessLevelModifier) {
+            super.visitAccessLevelModifier(element)
+            invokedVisitAccessLevelModifier = true
+            invokedVisitAccessLevelModifierCount += 1
+            invokedVisitAccessLevelModifierParameters = (element, ())
+            invokedVisitAccessLevelModifierParametersList.append((element, ()))
+        }
+
+        var invokedVisitProtocolCompositionType = false
+        var invokedVisitProtocolCompositionTypeCount = 0
+        var invokedVisitProtocolCompositionTypeParameters: (element: ProtocolCompositionType, Void)?
+        var invokedVisitProtocolCompositionTypeParametersList = [(element: ProtocolCompositionType, Void)]()
+
+        override func visitProtocolCompositionType(_ element: ProtocolCompositionType) {
+            super.visitProtocolCompositionType(element)
+            invokedVisitProtocolCompositionType = true
+            invokedVisitProtocolCompositionTypeCount += 1
+            invokedVisitProtocolCompositionTypeParameters = (element, ())
+            invokedVisitProtocolCompositionTypeParametersList.append((element, ()))
         }
     }
 }

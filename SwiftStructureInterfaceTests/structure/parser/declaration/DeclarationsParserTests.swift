@@ -8,19 +8,19 @@ class DeclarationsParserTests: XCTestCase {
     func test_parse_shouldParseProtocolWithMisspelledAccessModifier() {
         let parser = FileParser(fileContents: "publi protocol A {}")
         let file = parser.parse()
-        let `protocol` = file.children[0] as? TypeDeclarationImpl
-        XCTAssertEqual(`protocol`?.text, "protocol A {}")
-        XCTAssertEqual(`protocol`?.name, "A")
-        XCTAssertEqual(`protocol`?.offset, 6)
-        XCTAssertEqual(`protocol`?.length, 13)
-        XCTAssertEqual(`protocol`?.bodyOffset, 18)
-        XCTAssertEqual(`protocol`?.bodyLength, 0)
+        let `protocol` = file.typeDeclarations[0]
+        XCTAssertEqual(`protocol`.text, "protocol A {}")
+        XCTAssertEqual(`protocol`.name, "A")
+        XCTAssertEqual(`protocol`.offset, 6)
+        XCTAssertEqual(`protocol`.length, 13)
+        XCTAssertEqual(`protocol`.bodyOffset, 18)
+        XCTAssertEqual(`protocol`.bodyLength, 0)
     }
 
     func test_parse_shouldParseProtocol() {
         let parser = FileParser(fileContents: getProtocolWithMethods())
         let file = parser.parse()
-        let `protocol` = file.children[0] as! TypeDeclarationImpl
+        let `protocol` = file.typeDeclarations[0]
         XCTAssertEqual(`protocol`.text, getProtocolWithMethods())
         XCTAssertEqual(`protocol`.name, "MyProtocol")
         XCTAssertEqual(`protocol`.offset, 0)
@@ -29,31 +29,29 @@ class DeclarationsParserTests: XCTestCase {
         let bodyLength: Int64 = calculateBodyLength(`protocol`)
         XCTAssertEqual(`protocol`.bodyLength, bodyLength)
         let bodyOffset = `protocol`.bodyOffset
-        let associatedType = `protocol`.children[0]
+        let associatedType = `protocol`.children[1]
         assertElementText(associatedType, getAssociatedType(), offset: bodyOffset + newlineToNextDeclaration)
-        let alias = `protocol`.children[1] as! Typealias
+        let alias = `protocol`.typealiasDeclarations[0]
         assertElementText(alias, getTypealias(), offset: associatedType.offset + associatedType.length + newlineToNextDeclaration)
-        let initialiser = `protocol`.children[2] as! InitialiserDeclaration
+        let initialiser = `protocol`.initializerDeclarations[0]
         assertElementText(initialiser, getInitialiser(), offset: alias.offset + alias.length + newlineToNextDeclaration)
-        let variable = `protocol`.children[3] as! VariableDeclaration
+        let variable = `protocol`.variableDeclarations[0]
         assertElementText(variable, getVariable(), offset: initialiser.offset + initialiser.length + newlineToNextDeclaration)
-        let function1 = `protocol`.children[4] as! FunctionDeclaration
+        let function1 = `protocol`.functionDeclarations[0]
         assertElementText(function1, getFunction(), offset: variable.offset + variable.length + newlineToNextDeclaration)
-        let function2 = `protocol`.children[5] as! FunctionDeclaration
+        let function2 = `protocol`.functionDeclarations[1]
         assertElementText(function2, getFunction(), offset: function1.offset + function1.length + newlineToNextDeclaration)
-        let subscriptDeclaration = `protocol`.children[6] as! SubscriptDeclaration
+        let subscriptDeclaration = `protocol`.subscriptDeclarations[0]
         assertElementText(subscriptDeclaration, getSubscript(), offset: function2.offset + function2.length + newlineToNextDeclaration)
     }
 
     func test_shouldParseSideBySideProtocols() {
         let file = FileParser(fileContents: getMultipleProtocols()).parse()
-        let protocolA = file.children[0] as! TypeDeclaration
-        XCTAssertEqual(protocolA.children.count, 1)
-        let funcA = protocolA.children[0] as! FunctionDeclaration
+        let protocolA = file.typeDeclarations[0]
+        let funcA = protocolA.functionDeclarations[0]
         XCTAssertEqual(funcA.name, "a")
-        let protocolB = file.children[1] as! TypeDeclaration
-        XCTAssertEqual(protocolB.children.count, 1)
-        let funcB = protocolB.children[0] as! FunctionDeclaration
+        let protocolB = file.typeDeclarations[1]
+        let funcB = protocolB.functionDeclarations[0]
         XCTAssertEqual(funcB.name, "b")
     }
 
@@ -61,9 +59,8 @@ class DeclarationsParserTests: XCTestCase {
         let protocolStart = getAll().range(of: "protocol P {")!.lowerBound
         let offset = Int64(protocolStart.encodedOffset)
         let file = FileParser(fileContents: getAll()).parse()
-        XCTAssert(file.children.last is TypeDeclarationImpl, String(describing: file.children.last))
-        XCTAssertEqual(file.children.last?.children.count, 1)
-        XCTAssertEqual(file.children.last?.offset, offset)
+        XCTAssertEqual(file.typeDeclarations.count, 2)
+        XCTAssertEqual(file.typeDeclarations[1].offset, offset)
     }
 
     // MARK: - Helpers
@@ -111,10 +108,7 @@ class DeclarationsParserTests: XCTestCase {
     }
 
     private func calculateBodyLength(_ element: Element) -> Int64 {
-        let newlineToClosingBrace: Int64 = 1
-        return element.children.reduce(Int64(0)) { result, element in
-            result + element.length + newlineToNextDeclaration
-        } + newlineToClosingBrace
+        return Int64(getProtocolWithMethods().count - 22)
     }
 
     func getMultipleProtocols() -> String {

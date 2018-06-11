@@ -20,21 +20,21 @@ class RecursiveElementVisitorTests: XCTestCase {
 
     func test_visit_shouldRecursivelyForwardToInnerVisitor() {
         let file = getClassFile() as! FileImpl
-        let classElement = file.namedChildren[0]
-        let innerClass = classElement.namedChildren[0]
-        let innerMethod = innerClass.namedChildren[0]
-        let innerProperty = innerClass.namedChildren[1]
-        let method = classElement.namedChildren[1]
-        let property = classElement.namedChildren[2]
+        let classElement = file.typeDeclarations[0]
+        let innerClass = classElement.typeDeclarations[0]
+        let innerMethod = innerClass.functionDeclarations[0]
+        let innerProperty = innerClass.variableDeclarations[0]
+        let method = classElement.functionDeclarations[0]
+        let property = classElement.variableDeclarations[0]
         file.accept(mockVisitor)
-        XCTAssertEqual(getInvokedSwiftElementCount(), 9)
+        XCTAssertEqual(getInvokedSwiftElementCount(), 11)
         XCTAssert(getInvokedSwiftElement(at: 0) === file)
         XCTAssert(getInvokedSwiftElement(at: 1) === classElement)
-        XCTAssert(getInvokedSwiftElement(at: 2) === innerClass)
-        XCTAssert(getInvokedSwiftElement(at: 5) === innerMethod)
-        XCTAssert(getInvokedSwiftElement(at: 6) === innerProperty)
-        XCTAssert(getInvokedSwiftElement(at: 7) === method)
-        XCTAssert(getInvokedSwiftElement(at: 8) === property)
+        XCTAssert(getInvokedSwiftElement(at: 3) === innerClass)
+        XCTAssert(getInvokedSwiftElement(at: 7) === innerMethod)
+        XCTAssert(getInvokedSwiftElement(at: 8) === innerProperty)
+        XCTAssert(getInvokedSwiftElement(at: 9) === method)
+        XCTAssert(getInvokedSwiftElement(at: 10) === property)
 
         XCTAssertEqual(getInvokedSwiftTypeDeclarationCount(), 2)
         XCTAssert(getInvokedSwiftTypeDeclaration(at: 0) === classElement)

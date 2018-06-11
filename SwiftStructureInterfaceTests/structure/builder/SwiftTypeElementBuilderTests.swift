@@ -6,13 +6,12 @@ class SwiftTypeElementBuilderTests: XCTestCase {
 
     func test_build_shouldBuildProtocolFromDictionary() {
         let file = SKElementFactoryTestHelper.build(from: getProtocolString())
-        let element = file?.children.first as? TypeDeclarationImpl
+        let element = file?.typeDeclarations[0]
         XCTAssertEqual(element?.name, "Protocol")
         XCTAssertEqual(element?.inheritedTypes.count, 1)
         XCTAssertEqual(element?.inheritedTypes[0].text, "Inherited")
-        XCTAssertEqual(element?.namedChildren.count, 2)
-        XCTAssertEqual(element?.namedChild(at: 0)?.name, "property")
-        XCTAssertEqual(element?.namedChild(at: 1)?.name, "method")
+        XCTAssertEqual(element?.variableDeclarations[0].name, "property")
+        XCTAssertEqual(element?.functionDeclarations[0].name, "method")
     }
 
     func test_build_shouldPopulateProtocolTextOffsets() {
@@ -26,33 +25,34 @@ class SwiftTypeElementBuilderTests: XCTestCase {
 
     func test_build_shouldBuildClassFromDictionary() {
         let file = SKElementFactoryTestHelper.build(from: getClassString())
-        let element = file?.children.first as? TypeDeclarationImpl
+        let element = file?.typeDeclarations[0]
         XCTAssertEqual(element?.name, "A")
         XCTAssertEqual(element?.inheritedTypes.count, 1)
         XCTAssertEqual(element?.inheritedTypes[0].text, "B")
-        XCTAssertEqual(element?.namedChildren.count, 5)
-        XCTAssertEqual(element?.namedChild(at: 0)?.name, "varA")
-        XCTAssertEqual(element?.namedChild(at: 1)?.name, "varB")
-        XCTAssertEqual(element?.namedChild(at: 2)?.name, "varC")
-        XCTAssertEqual(element?.namedChild(at: 3)?.name, "methodA")
-        XCTAssertEqual(element?.namedChild(at: 4)?.name, "methodB")
+        XCTAssertEqual(element?.variableDeclarations.count, 3)
+        XCTAssertEqual(element?.variableDeclarations[0].name, "varA")
+        XCTAssertEqual(element?.variableDeclarations[1].name, "varB")
+        XCTAssertEqual(element?.variableDeclarations[2].name, "varC")
+        XCTAssertEqual(element?.functionDeclarations.count, 2)
+        XCTAssertEqual(element?.functionDeclarations[0].name, "methodA")
+        XCTAssertEqual(element?.functionDeclarations[1].name, "methodB")
         XCTAssertEqual(file?.text, getClassString())
     }
 
     func test_build_shouldBuildNestedClassFromDictionary() {
         let file = SKElementFactoryTestHelper.build(from: getNestedClassString())
-        let element = file?.children.first as? TypeDeclarationImpl
+        let element = file?.typeDeclarations[0]
         XCTAssertEqual(element?.name, "A")
         XCTAssertEqual(element?.inheritedTypes.count, 0)
-        XCTAssertEqual(element?.children.count, 2)
-        XCTAssertEqual(element?.namedChild(at: 1)?.name, "methodA")
-        let innerElement = element?.children[0] as? TypeDeclarationImpl
+        XCTAssertEqual(element?.children.count, 3)
+        XCTAssertEqual(element?.functionDeclarations[0].name, "methodA")
+        let innerElement = element?.typeDeclarations[0]
         XCTAssertEqual(innerElement?.name, "B")
         XCTAssertEqual(innerElement?.inheritedTypes.count, 2)
         XCTAssertEqual(innerElement?.inheritedTypes[0].text, "C")
         XCTAssertEqual(innerElement?.inheritedTypes[1].text, "D")
-        XCTAssertEqual(innerElement?.namedChildren.count, 1)
-        XCTAssertEqual(innerElement?.namedChild(at: 0)?.name, "innerMethodA")
+        XCTAssertEqual(innerElement?.functionDeclarations.count, 1)
+        XCTAssertEqual(innerElement?.functionDeclarations[0].name, "innerMethodA")
         XCTAssertEqual(file?.text, getNestedClassString())
     }
 
@@ -60,8 +60,8 @@ class SwiftTypeElementBuilderTests: XCTestCase {
         let file = SKElementFactoryTestHelper.build(from: getProtocolString())
         let `protocol` = file?.children.first as? TypeDeclarationImpl
         let inheritedType = `protocol`?.inheritedTypes.first
-        let property = `protocol`?.namedChildren[0]
-        let method = `protocol`?.namedChildren[1]
+        let property = `protocol`?.variableDeclarations[0]
+        let method = `protocol`?.functionDeclarations[0]
         XCTAssertEqual(file?.text, getProtocolString())
         XCTAssertEqual(`protocol`?.text, getProtocolString())
         XCTAssertEqual(inheritedType?.text, "Inherited")
