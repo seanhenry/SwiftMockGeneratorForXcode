@@ -1,10 +1,9 @@
 import XCTest
-import SourceKittenFramework
 @testable import SwiftStructureInterface
 
 class SwiftFileTests: XCTestCase {
 
-    var file: FileImpl!
+    var file: File!
 
     override func setUp() {
         super.setUp()
@@ -61,15 +60,6 @@ class SwiftFileTests: XCTestCase {
         assertFilesAreEquivalent(method.returnType?.file, file)
     }
 
-    func test_init_copyingFileToChildren_shouldDeliberatelyCauseRetainCycle() {
-        weak var weakFile: Element?
-        autoreleasepool {
-            let file = SKElementFactoryTestHelper.build(from: getNestedClassString())
-            weakFile = file
-        }
-        XCTAssertNotNil(weakFile)
-    }
-    
     func test_fileShouldBePresent_whenProgramHoldsAReferenceToAChild() {
         var child: Element?
         autoreleasepool {

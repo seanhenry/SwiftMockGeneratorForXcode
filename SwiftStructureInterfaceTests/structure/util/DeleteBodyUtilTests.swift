@@ -29,7 +29,7 @@ class DeleteBodyUtilTests: XCTestCase {
         let file = SKElementFactoryTestHelper.build(from: getSimpleClass())!
         let classElement = file.typeDeclarations[0]
         let result = util.deleteClassBody(from: classElement)!
-        XCTAssert(result.element is TypeDeclarationImpl)
+        XCTAssert(result.element is TypeDeclaration)
     }
 
     func test_deleteClassBody_returnsNil_whenElementHasNoFile() {

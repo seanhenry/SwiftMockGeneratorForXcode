@@ -1,5 +1,4 @@
 import XCTest
-import SourceKittenFramework
 @testable import SwiftStructureInterface
 
 class RecursiveElementVisitorTests: XCTestCase {
@@ -19,7 +18,7 @@ class RecursiveElementVisitorTests: XCTestCase {
     // MARK: - visit
 
     func test_visit_shouldRecursivelyForwardToInnerVisitor() {
-        let file = getClassFile() as! FileImpl
+        let file = getClassFile() as! File
         let classElement = file.typeDeclarations[0]
         let innerClass = classElement.typeDeclarations[0]
         let innerMethod = innerClass.functionDeclarations[0]
@@ -28,28 +27,28 @@ class RecursiveElementVisitorTests: XCTestCase {
         let property = classElement.variableDeclarations[0]
         file.accept(mockVisitor)
         XCTAssertEqual(getInvokedSwiftElementCount(), 11)
-        XCTAssert(getInvokedSwiftElement(at: 0) === file)
-        XCTAssert(getInvokedSwiftElement(at: 1) === classElement)
-        XCTAssert(getInvokedSwiftElement(at: 3) === innerClass)
-        XCTAssert(getInvokedSwiftElement(at: 7) === innerMethod)
-        XCTAssert(getInvokedSwiftElement(at: 8) === innerProperty)
-        XCTAssert(getInvokedSwiftElement(at: 9) === method)
-        XCTAssert(getInvokedSwiftElement(at: 10) === property)
+        XCTAssertEqual(getInvokedSwiftElement(at: 0).text, file.text)
+        XCTAssertEqual(getInvokedSwiftElement(at: 1).text, classElement.text)
+        XCTAssertEqual(getInvokedSwiftElement(at: 3).text, innerClass.text)
+        XCTAssertEqual(getInvokedSwiftElement(at: 7).text, innerMethod.text)
+        XCTAssertEqual(getInvokedSwiftElement(at: 8).text, innerProperty.text)
+        XCTAssertEqual(getInvokedSwiftElement(at: 9).text, method.text)
+        XCTAssertEqual(getInvokedSwiftElement(at: 10).text, property.text)
 
         XCTAssertEqual(getInvokedSwiftTypeDeclarationCount(), 2)
-        XCTAssert(getInvokedSwiftTypeDeclaration(at: 0) === classElement)
-        XCTAssert(getInvokedSwiftTypeDeclaration(at: 1) === innerClass)
+        XCTAssertEqual(getInvokedSwiftTypeDeclaration(at: 0).text, classElement.text)
+        XCTAssertEqual(getInvokedSwiftTypeDeclaration(at: 1).text, innerClass.text)
 
         XCTAssertEqual(getInvokedSwiftFileCount(), 1)
-        XCTAssert(getInvokedSwiftFile(at: 0) === file)
+        XCTAssertEqual(getInvokedSwiftFile(at: 0).text, file.text)
 
         XCTAssertEqual(getInvokedSwiftMethodElementCount(), 2)
-        XCTAssert(getInvokedSwiftMethodElement(at: 0) === innerMethod)
-        XCTAssert(getInvokedSwiftMethodElement(at: 1) === method)
+        XCTAssertEqual(getInvokedSwiftMethodElement(at: 0).text, innerMethod.text)
+        XCTAssertEqual(getInvokedSwiftMethodElement(at: 1).text, method.text)
 
         XCTAssertEqual(getInvokedSwiftPropertyElementCount(), 2)
-        XCTAssert(getInvokedSwiftPropertyElement(at: 0) === innerProperty)
-        XCTAssert(getInvokedSwiftPropertyElement(at: 1) === property)
+        XCTAssertEqual(getInvokedSwiftPropertyElement(at: 0).text, innerProperty.text)
+        XCTAssertEqual(getInvokedSwiftPropertyElement(at: 1).text, property.text)
     }
 
     // MARK: - Helpers

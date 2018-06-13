@@ -1,13 +1,13 @@
 class ParameterImpl: ElementImpl, Parameter {
 
-    static let errorParameter = ParameterImpl(text: "", children: [], offset: -1, length: -1, externalParameterName: nil, localParameterName: "", typeAnnotation: SwiftTypeAnnotationImpl.errorTypeAnnotation)
+    static let errorParameter = ParameterImpl(text: "", children: [], offset: -1, length: -1, externalParameterName: nil, localParameterName: "", typeAnnotation: TypeAnnotationImpl.errorTypeAnnotation)
     let typeAnnotation: TypeAnnotation
     let externalParameterName: String?
     let localParameterName: String
 
     convenience init(text: String, children: [Element], offset: Int64, length: Int64, type: Element) {
         let typeElement = TypeImpl(text: type.text, children: type.children, offset: type.offset, length: type.length)
-        let typeAnnotation = SwiftTypeAnnotationImpl(text: typeElement.text, children: [typeElement], offset: 0, length: 0, attributes: [], isInout: false, type: typeElement)
+        let typeAnnotation = TypeAnnotationImpl(text: typeElement.text, children: [typeElement], offset: 0, length: 0, attributes: [], isInout: false, type: typeElement)
         self.init(text: text, children: children + [typeAnnotation], offset: offset, length: length, externalParameterName: nil, localParameterName: "", typeAnnotation: typeAnnotation)
     }
 

@@ -6,14 +6,14 @@ public class SKElementFactory {
 
     public func build(from string: String) -> Element? {
         if let dictionary = try? SKElementFactory.structureRequest.getStructure(contents: string) {
-            return build(data: dictionary, fileText: string)
+            return build(data: dictionary, fileText: string).flatMap { ManagedElementVisitor.wrap($0) }
         }
         return nil
     }
 
     func build(fromPath path: String) -> Element? {
         guard let (dictionary, contents) = try? SKElementFactory.structureRequest.getStructure(filePath: path) else { return nil }
-        return build(data: dictionary, fileText: contents)
+        return build(data: dictionary, fileText: contents).flatMap { ManagedElementVisitor.wrap($0) }
     }
 
     func build(data: [String: Any], fileText: String) -> Element? {

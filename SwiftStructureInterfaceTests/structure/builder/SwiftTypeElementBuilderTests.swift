@@ -16,7 +16,7 @@ class SwiftTypeElementBuilderTests: XCTestCase {
 
     func test_build_shouldPopulateProtocolTextOffsets() {
         let file = SKElementFactoryTestHelper.build(from: getProtocolString())
-        let element = file?.children.first as? TypeDeclarationImpl
+        let element = file?.children.first as? TypeDeclaration
         XCTAssertEqual(element?.offset, 0)
         XCTAssertEqual(element?.length, getProtocolLength())
         XCTAssertEqual(element?.bodyOffset, getProtocolBodyOffset())
@@ -58,7 +58,7 @@ class SwiftTypeElementBuilderTests: XCTestCase {
 
     func test_build_shouldSetTextOnProtocol() {
         let file = SKElementFactoryTestHelper.build(from: getProtocolString())
-        let `protocol` = file?.children.first as? TypeDeclarationImpl
+        let `protocol` = file?.children.first as? TypeDeclaration
         let inheritedType = `protocol`?.inheritedTypes.first
         let property = `protocol`?.variableDeclarations[0]
         let method = `protocol`?.functionDeclarations[0]

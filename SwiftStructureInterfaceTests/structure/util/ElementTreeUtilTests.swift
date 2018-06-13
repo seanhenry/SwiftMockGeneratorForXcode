@@ -8,7 +8,7 @@ class ElementTreeUtilTests: XCTestCase {
         let classType = file.typeDeclarations[0]
         let propertyA = classType.variableDeclarations[0]
         let type = ElementTreeUtil().findParentType(propertyA)
-        XCTAssert(type === classType)
+        XCTAssertEqual(type?.text, classType.text)
     }
 
     func test_findParentType_shouldBeNil_whenNoParents() {
@@ -23,7 +23,7 @@ class ElementTreeUtilTests: XCTestCase {
         let classType = file.typeDeclarations[0]
         let innerMethod = classType.functionDeclarations[0].functionDeclarations[0].functionDeclarations[0]
         let type = ElementTreeUtil().findParentType(innerMethod)
-        XCTAssert(type === classType)
+        XCTAssertEqual(type?.text, classType.text)
     }
 
     func test_findParentType_shouldReturnNil_whenNoTypeInHierarchy() {
@@ -38,6 +38,6 @@ class ElementTreeUtilTests: XCTestCase {
         let outerClass = file.typeDeclarations[0]
         let innerClass = outerClass.functionDeclarations[0].typeDeclarations[0]
         let type = ElementTreeUtil().findParentType(innerClass)
-        XCTAssert(type === outerClass)
+        XCTAssertEqual(type?.text, outerClass.text)
     }
 }

@@ -7,7 +7,7 @@ class SwiftInheritedTypeBuilderTests: XCTestCase {
     // Inherited declaration offsets are missing in SourceKit
     func test_build_shouldCalculateOffsetsForInheritedTypes() {
         let file = SKElementFactoryTestHelper.build(from: getInheritedTypesExampleString())
-        let `protocol` = file?.children.first as? TypeDeclarationImpl
+        let `protocol` = file?.children.first as? TypeDeclaration
         let simpleType = `protocol`?.inheritedTypes[0]
         XCTAssertEqual(simpleType?.offset, 19)
         XCTAssertEqual(simpleType?.length, 19)

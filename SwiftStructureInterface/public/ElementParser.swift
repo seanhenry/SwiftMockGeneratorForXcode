@@ -11,4 +11,9 @@ public class ElementParser {
         let file = FileParser(fileContents: string).parse()
         return ManagedElementVisitor.wrap(file) as! File
     }
+
+    public static func parseFile(at path: String) -> File? {
+        let file = FileParser(filePath: path)?.parse()
+        return file.flatMap { ManagedElementVisitor.wrap($0) as? File }
+    }
 }

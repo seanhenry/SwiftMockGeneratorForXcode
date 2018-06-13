@@ -6,14 +6,14 @@ class TypeAnnotationParser: Parser<TypeAnnotation> {
         let isInout = parseInout()
         let type = parseType()
         return createElement(start: start) { offset, length, text in
-            SwiftTypeAnnotationImpl(text: text,
+            TypeAnnotationImpl(text: text,
                 children: [type],
                 offset: offset,
                 length: length,
                 attributes: attributes,
                 isInout: isInout,
                 type: type)
-        } ?? SwiftTypeAnnotationImpl.errorTypeAnnotation
+        } ?? TypeAnnotationImpl.errorTypeAnnotation
     }
 
     private func parseInout() -> Bool {
