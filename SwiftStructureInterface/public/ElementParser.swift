@@ -3,7 +3,8 @@ public class ElementParser {
     private init() {}
 
     public static func parseType(_ string: String) -> Type {
-        return FileParser(fileContents: string).parseType()
+        let type = FileParser(fileContents: string).parseType()
+        return ManagedElementVisitor.wrap(type) as! Type
     }
 
     public static func parseFile(_ string: String) -> File {

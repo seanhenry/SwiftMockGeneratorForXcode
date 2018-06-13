@@ -6,8 +6,7 @@ class DeclarationsParserTests: XCTestCase {
     let newlineToNextDeclaration: Int64 = 3
 
     func test_parse_shouldParseProtocolWithMisspelledAccessModifier() {
-        let parser = FileParser(fileContents: "publi protocol A {}")
-        let file = parser.parse()
+        let file = ElementParser.parseFile("publi protocol A {}")
         let `protocol` = file.typeDeclarations[0]
         XCTAssertEqual(`protocol`.text, "protocol A {}")
         XCTAssertEqual(`protocol`.name, "A")
@@ -18,8 +17,7 @@ class DeclarationsParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseProtocol() {
-        let parser = FileParser(fileContents: getProtocolWithMethods())
-        let file = parser.parse()
+        let file = ElementParser.parseFile(getProtocolWithMethods())
         let `protocol` = file.typeDeclarations[0]
         XCTAssertEqual(`protocol`.text, getProtocolWithMethods())
         XCTAssertEqual(`protocol`.name, "MyProtocol")
@@ -46,7 +44,7 @@ class DeclarationsParserTests: XCTestCase {
     }
 
     func test_shouldParseSideBySideProtocols() {
-        let file = FileParser(fileContents: getMultipleProtocols()).parse()
+        let file = ElementParser.parseFile(getMultipleProtocols())
         let protocolA = file.typeDeclarations[0]
         let funcA = protocolA.functionDeclarations[0]
         XCTAssertEqual(funcA.name, "a")
@@ -58,7 +56,7 @@ class DeclarationsParserTests: XCTestCase {
     func test_shouldSkipAllUnsupportedDeclarations() {
         let protocolStart = getAll().range(of: "protocol P {")!.lowerBound
         let offset = Int64(protocolStart.encodedOffset)
-        let file = FileParser(fileContents: getAll()).parse()
+        let file = ElementParser.parseFile(getAll())
         XCTAssertEqual(file.typeDeclarations.count, 2)
         XCTAssertEqual(file.typeDeclarations[1].offset, offset)
     }

@@ -264,10 +264,12 @@
 		35CDFD3F057FB268422C1835 /* DeclarationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF679E4688076A1CABF7E /* DeclarationParser.swift */; };
 		35CDFD4F6B225691E7F446A5 /* ProjectFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9A2068DF1CD95B50147 /* ProjectFinder.swift */; };
 		35CDFD5837ED4F90CAEB60B1 /* TypeAnnotationImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFBF74184FC37927583E5 /* TypeAnnotationImpl.swift */; };
+		35CDFD6264C870F2C6EB00AD /* ElementParser+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF3605F7F397350775BB3 /* ElementParser+Tests.swift */; };
 		35CDFD6B30A5D27BDDCAB7E8 /* ProtocolDeclarationParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFD6A7E65E9B1DC021797 /* ProtocolDeclarationParserTests.swift */; };
 		35CDFD7482B9ECB86D150E5E /* DeclarationsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFEC1F28235E7FF30EF58 /* DeclarationsParser.swift */; };
 		35CDFDA51916CCD4050EF36C /* SubscriptDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF89530DB26A2C0E75C1D /* SubscriptDeclaration.swift */; };
 		35CDFDA6602AD4DA24978981 /* TempFileWriterUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF63FE99E9DD8A595A739 /* TempFileWriterUtilTests.swift */; };
+		35CDFDA9D3D72E9AA4242FDA /* ElementParser+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF3605F7F397350775BB3 /* ElementParser+Tests.swift */; };
 		35CDFDD09957F3DC8E00AE32 /* AccessLevelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7F4672DC6FB0CB26782 /* AccessLevelModifier.swift */; };
 		35CDFDD32E1E16A72B993F37 /* CaretTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF790C9B97835CC38B63 /* CaretTestHelper.swift */; };
 		35CDFDEFA6677F515D520489 /* ProtocolCompositionTypeImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF803FCE9F592DC2EFD60 /* ProtocolCompositionTypeImpl.swift */; };
@@ -600,6 +602,7 @@
 		35CDF33B8A857EED9FEB1F7A /* MustacheView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MustacheView.swift; sourceTree = "<group>"; };
 		35CDF344435560DD24CF7F7B /* ElementVisitorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementVisitorTests.swift; sourceTree = "<group>"; };
 		35CDF34E9830199994ECA542 /* NamedElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedElement.swift; sourceTree = "<group>"; };
+		35CDF3605F7F397350775BB3 /* ElementParser+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ElementParser+Tests.swift"; sourceTree = "<group>"; };
 		35CDF369AF24C785B2976634 /* SubscriptDeclarationParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptDeclarationParser.swift; sourceTree = "<group>"; };
 		35CDF3732F22D76A28D8617D /* BodySwiftElementBuilderTemplateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodySwiftElementBuilderTemplateTests.swift; sourceTree = "<group>"; };
 		35CDF39862855A1F95E0298E /* AppIcon_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon_256.png; sourceTree = "<group>"; };
@@ -899,6 +902,7 @@
 				14A81E361F436941001A6221 /* Info.plist */,
 				35CDFE5CB64DBFE82E54A943 /* helpers */,
 				35CDF740D0A5864B2D1DBF81 /* structure */,
+				35CDF7FF8175D2E8368B153A /* public */,
 			);
 			path = SwiftStructureInterfaceTests;
 			sourceTree = "<group>";
@@ -1209,6 +1213,14 @@
 				35CDFDD603E7481EE8ACC331 /* lexer */,
 			);
 			path = structure;
+			sourceTree = "<group>";
+		};
+		35CDF7FF8175D2E8368B153A /* public */ = {
+			isa = PBXGroup;
+			children = (
+				35CDF3605F7F397350775BB3 /* ElementParser+Tests.swift */,
+			);
+			path = public;
 			sourceTree = "<group>";
 		};
 		35CDF82E58054C3D32A65472 /* modifier */ = {
@@ -1863,6 +1875,7 @@
 				35CDF0068DB237A15D5F0802 /* StringCompareTestHelper.swift in Sources */,
 				35CDF466D42585C5E3ADB6F7 /* TypeResolverVisitorTests.swift in Sources */,
 				35CDF835689882E184836A14 /* TypeDeclarationTransformingVisitorTests.swift in Sources */,
+				35CDFD6264C870F2C6EB00AD /* ElementParser+Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2089,6 +2102,7 @@
 				1A93AA08EC37D60FC5435B29 /* ManagedElementVisitorTests.swift in Sources */,
 				35CDF821ACFB54BF33EB0D6D /* TestElements.swift in Sources */,
 				35CDF8964529792E2D3D4078 /* DeclarationsTests.swift in Sources */,
+				35CDFDA9D3D72E9AA4242FDA /* ElementParser+Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

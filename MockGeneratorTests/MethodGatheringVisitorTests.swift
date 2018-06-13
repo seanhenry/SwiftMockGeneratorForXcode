@@ -125,14 +125,14 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func assertTypeIs<T: UseCasesType>(_ input: String, _ t: T.Type, _ text: String, line: UInt = #line) {
-        let type = FileParser(fileContents: input).parseType()
+        let type = ElementParser.parseType(input)
         let result = MethodGatheringVisitor.transformType(type)
         XCTAssert(result is T, line: line)
         XCTAssertEqual(result.text, text, line: line)
     }
 
     private func transformType<T: UseCasesType>(_ input: String, _ t: T.Type) -> T {
-        let type = FileParser(fileContents: input).parseType()
+        let type = ElementParser.parseType(input)
         return MethodGatheringVisitor.transformType(type) as! T
     }
 
@@ -175,7 +175,7 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func transformMethod(_ input: String) -> UseCasesMethod {
-        let method = FileParser(fileContents: input).parseFunctionDeclaration()
+        let method = ElementParser.parseFunctionDeclaration(input)
         let visitor = MethodGatheringVisitor()
         method.accept(visitor)
         return visitor.methods[0]
@@ -214,7 +214,7 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func transformProperty(_ input: String) -> UseCasesProperty {
-        let property = FileParser(fileContents: input).parseVariableDeclaration()
+        let property = ElementParser.parseVariableDeclaration(input)
         let visitor = MethodGatheringVisitor()
         property.accept(visitor)
         return visitor.properties[0]
@@ -279,7 +279,7 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func getPropertyProtocol() -> Element {
-        let file = FileParser(fileContents: getPropertyProtocolString()).parse()
+        let file = ElementParser.parseFile(getPropertyProtocolString())
         return file.typeDeclarations[0]
     }
 
@@ -299,7 +299,7 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func getInitializerProtocol() -> Element {
-        let file = FileParser(fileContents: getInitializerProtocolString()).parse()
+        let file = ElementParser.parseFile(getInitializerProtocolString())
         return file.typeDeclarations[0]
     }
 
