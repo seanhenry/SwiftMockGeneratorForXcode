@@ -373,8 +373,8 @@ class Parser<ResultType> {
         return parseDeclaration(TypealiasDeclarationParser.self, .typealias)
     }
 
-    func parseInitialiserDeclaration() -> Element {
-        return parseDeclaration(InitialiserDeclarationParser.self, .init)
+    func parseInitializerDeclaration() -> Element {
+        return parseDeclaration(InitializerDeclarationParser.self, .init)
     }
 
     func parseSubscriptDeclaration() -> Element {

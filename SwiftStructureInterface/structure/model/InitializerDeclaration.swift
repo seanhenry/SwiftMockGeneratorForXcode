@@ -1,4 +1,4 @@
-public protocol InitialiserDeclaration: Element {
+public protocol InitializerDeclaration: Element {
     var parameters: [Parameter] { get }
     var `throws`: Bool { get }
     var `rethrows`: Bool { get }

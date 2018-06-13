@@ -16,7 +16,8 @@ class ManagedElementVisitorTests: XCTestCase {
 
         assertWrapperIsImplemented(testAccessLevelModifier) { $0 is AccessLevelModifier }
 
-        assertWrapperIsImplemented(testInitializerDeclaration) { $0 is InitialiserDeclaration }
+        assertWrapperIsImplemented(testInitializerDeclaration) { $0 is InitializerDeclaration
+        }
         assertWrapperIsImplemented(testInitializerDeclaration.parameters[0]) { $0 is Parameter }
 
         assertWrapperIsImplemented(testVariableDeclaration) { $0 is VariableDeclaration }

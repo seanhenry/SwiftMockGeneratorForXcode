@@ -7,8 +7,8 @@ public extension Declarations {
         return filterChildren(VariableDeclaration.self)
     }
 
-    var initializerDeclarations: [InitialiserDeclaration] {
-        return filterChildren(InitialiserDeclaration.self)
+    var initializerDeclarations: [InitializerDeclaration] {
+        return filterChildren(InitializerDeclaration.self)
     }
 
     var functionDeclarations: [FunctionDeclaration] {

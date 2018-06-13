@@ -33,10 +33,10 @@ class DeclarationsParserTests: XCTestCase {
         assertElementText(associatedType, getAssociatedType(), offset: bodyOffset + newlineToNextDeclaration)
         let alias = `protocol`.typealiasDeclarations[0]
         assertElementText(alias, getTypealias(), offset: associatedType.offset + associatedType.length + newlineToNextDeclaration)
-        let initialiser = `protocol`.initializerDeclarations[0]
-        assertElementText(initialiser, getInitialiser(), offset: alias.offset + alias.length + newlineToNextDeclaration)
+        let initializer = `protocol`.initializerDeclarations[0]
+        assertElementText(initializer, getInitializer(), offset: alias.offset + alias.length + newlineToNextDeclaration)
         let variable = `protocol`.variableDeclarations[0]
-        assertElementText(variable, getVariable(), offset: initialiser.offset + initialiser.length + newlineToNextDeclaration)
+        assertElementText(variable, getVariable(), offset: initializer.offset + initializer.length + newlineToNextDeclaration)
         let function1 = `protocol`.functionDeclarations[0]
         assertElementText(function1, getFunction(), offset: variable.offset + variable.length + newlineToNextDeclaration)
         let function2 = `protocol`.functionDeclarations[1]
@@ -70,7 +70,7 @@ class DeclarationsParserTests: XCTestCase {
         protocol MyProtocol {
           \(getAssociatedType())
           \(getTypealias())
-          \(getInitialiser())
+          \(getInitializer())
           \(getVariable())
           \(getFunction())
           \(getFunction())
@@ -99,7 +99,7 @@ class DeclarationsParserTests: XCTestCase {
         return "@a internal nonmutating var a: @a inout Generic<Type> { @a mutating set @b nonmutating get }"
     }
 
-    func getInitialiser() -> String {
+    func getInitializer() -> String {
         return "@a public init?<T, U: V>(a: T, b: U.Type) throws where T.Type == U.Element"
     }
 

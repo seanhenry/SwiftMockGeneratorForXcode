@@ -7,4 +7,3 @@ let emptyFunctionDeclaration = FunctionDeclarationImpl(name: "", text: "", child
 let emptyVariableDeclaration = VariableDeclarationImpl(name: "", text: "", children: [], offset: 0, length: 0, type: testType, isWritable: false)
 
 let testFunctionParameter = ParameterImpl(text: "a: Int", children: [testType], offset: 0, length: 6, externalParameterName: nil, localParameterName: "a", typeAnnotation: testTypeAnnotation)
-let testInitialiserDeclaration = FileParser(fileContents: "init()").parseInitialiserDeclaration()

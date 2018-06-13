@@ -264,8 +264,8 @@ class MethodGatheringVisitorTests: XCTestCase {
     // MARK: - Helpers
 
     private func getMethodProtocol() -> Element {
-        let file = FileParser(fileContents: getMethodProtocolString()).parse()
-        return file.functionDeclarations[0]
+        let file = ElementParser.parseFile(getMethodProtocolString())
+        return file.typeDeclarations[0]
     }
 
     private func getMethodProtocolString() -> String {

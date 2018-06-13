@@ -1,6 +1,6 @@
-class InitialiserDeclarationParser: DeclarationParser<InitialiserDeclaration> {
+class InitializerDeclarationParser: DeclarationParser<InitializerDeclaration> {
 
-    override func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> InitialiserDeclaration {
+    override func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> InitializerDeclaration {
         let isFailable = parseIsFailable()
         _ = parseGenericParameterClause()
         let parameters = parseFunctionDeclarationParameterClause()
@@ -10,7 +10,7 @@ class InitialiserDeclarationParser: DeclarationParser<InitialiserDeclaration> {
         advance(if: .rethrows)
         _ = parseWhereClause()
         return createElement(start: start) { offset, length, text in
-            return InitialiserDeclarationImpl(
+            return InitializerDeclarationImpl(
                 text: text,
                 children: parameters,
                 offset: offset,
@@ -19,7 +19,7 @@ class InitialiserDeclarationParser: DeclarationParser<InitialiserDeclaration> {
                 throws: `throws`,
                 rethrows: `rethrows`,
                 isFailable: isFailable)
-        } ?? InitialiserDeclarationImpl.errorInitialiserDeclaration
+        } ?? InitializerDeclarationImpl.errorInitializerDeclaration
     }
 
     private func parseIsFailable() -> Bool {

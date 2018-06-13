@@ -1,8 +1,8 @@
-class InitializerDeclarationWrapper: ElementWrapper, InitialiserDeclaration {
+class InitializerDeclarationWrapper: ElementWrapper, InitializerDeclaration {
 
-    let managedInitializerDeclaration: InitialiserDeclaration
+    let managedInitializerDeclaration: InitializerDeclaration
 
-    init(_ element: InitialiserDeclaration) {
+    init(_ element: InitializerDeclaration) {
         managedInitializerDeclaration = element
         super.init(element)
     }
@@ -24,6 +24,6 @@ class InitializerDeclarationWrapper: ElementWrapper, InitialiserDeclaration {
     }
 
     override func accept(_ visitor: ElementVisitor) {
-        visitor.visitInitialiserDeclaration(self)
+        visitor.visitInitializerDeclaration(self)
     }
 }

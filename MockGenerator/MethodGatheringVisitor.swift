@@ -120,7 +120,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
             declarationText: element.text))
     }
 
-    override func visitInitialiserDeclaration(_ element: InitialiserDeclaration) {
+    override func visitInitializerDeclaration(_ element: InitializerDeclaration) {
         initializers.append(UseCasesInitializer(
             parametersList: transformParameters(element.parameters),
             isFailable: element.isFailable,

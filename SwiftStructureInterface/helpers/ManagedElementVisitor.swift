@@ -84,7 +84,7 @@ class ManagedElementVisitor: ElementVisitor {
         wrapped = ParameterWrapper(element)
     }
 
-    override func visitInitialiserDeclaration(_ element: InitialiserDeclaration) {
+    override func visitInitializerDeclaration(_ element: InitializerDeclaration) {
         wrapped = InitializerDeclarationWrapper(element)
     }
 

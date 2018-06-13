@@ -1,6 +1,6 @@
-class InitialiserDeclarationImpl: ElementImpl, InitialiserDeclaration {
+class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
 
-    static let errorInitialiserDeclaration = InitialiserDeclarationImpl(text: "", children: [], offset: -1, length: -1, parameters: [], throws: false, rethrows: false, isFailable: false)
+    static let errorInitializerDeclaration = InitializerDeclarationImpl(text: "", children: [], offset: -1, length: -1, parameters: [], throws: false, rethrows: false, isFailable: false)
 
     let parameters: [Parameter]
     let `throws`: Bool
@@ -16,6 +16,6 @@ class InitialiserDeclarationImpl: ElementImpl, InitialiserDeclaration {
     }
 
     override func accept(_ visitor: ElementVisitor) {
-        visitor.visitInitialiserDeclaration(self)
+        visitor.visitInitializerDeclaration(self)
     }
 }

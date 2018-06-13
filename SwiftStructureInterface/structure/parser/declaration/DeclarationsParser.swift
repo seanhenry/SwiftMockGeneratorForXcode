@@ -24,7 +24,7 @@ class DeclarationsParser: Parser<[Element]> {
         } else if isNextDeclaration(.typealias) {
             return parseTypealiasDeclaration()
         } else if isNextDeclaration(.init) {
-            return parseInitialiserDeclaration()
+            return parseInitializerDeclaration()
         } else if isNextDeclaration(.subscript) {
             return parseSubscriptDeclaration()
         } else {

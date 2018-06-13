@@ -31,7 +31,7 @@ var testTypeDeclaration: TypeDeclaration {
 var testAccessLevelModifier: AccessLevelModifier {
     return TestElements.instance.testAccessLevelModifier!
 }
-var testInitializerDeclaration: InitialiserDeclaration {
+var testInitializerDeclaration: InitializerDeclaration {
     return TestElements.instance.testInitializerDeclaration!
 }
 var testVariableDeclaration: VariableDeclaration {
@@ -135,7 +135,7 @@ private class TestElements {
     private(set) var testElement: Element!
     private(set) var testTypeDeclaration: TypeDeclaration!
     private(set) var testAccessLevelModifier: AccessLevelModifier!
-    private(set) var testInitializerDeclaration: InitialiserDeclaration!
+    private(set) var testInitializerDeclaration: InitializerDeclaration!
     private(set) var testVariableDeclaration: VariableDeclaration!
     private(set) var testType: Type!
     private(set) var testTypeIdentifier: TypeIdentifier!
@@ -268,9 +268,9 @@ private class TestElements {
             super.visitParameter(element)
         }
 
-        override func visitInitialiserDeclaration(_ element: InitialiserDeclaration) {
+        override func visitInitializerDeclaration(_ element: InitializerDeclaration) {
             elements.testInitializerDeclaration = element
-            super.visitInitialiserDeclaration(element)
+            super.visitInitializerDeclaration(element)
         }
 
         override func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {

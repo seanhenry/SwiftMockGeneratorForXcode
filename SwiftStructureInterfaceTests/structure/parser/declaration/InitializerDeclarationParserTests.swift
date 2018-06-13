@@ -1,7 +1,7 @@
 import XCTest
 @testable import SwiftStructureInterface
 
-class InitialiserDeclarationParserTests: XCTestCase {
+class InitializerDeclarationParserTests: XCTestCase {
 
     // MARK: - parse
 
@@ -71,15 +71,15 @@ class InitialiserDeclarationParserTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> InitialiserDeclaration {
-        let parser = createDeclarationParser(text, .init, InitialiserDeclarationParser.self)
+    func parse(_ text: String) -> InitializerDeclaration {
+        let parser = createDeclarationParser(text, .init, InitializerDeclarationParser.self)
         return parser.parse()
     }
 
     func assertElementIsParsed(_ text: String, line: UInt = #line) {
-        let initialiser = parse(text)
-        XCTAssertEqual(initialiser.text, text, line: line)
-        XCTAssertEqual(initialiser.offset, 0, line: line)
-        XCTAssertEqual(initialiser.length, Int64(text.utf8.count), line: line)
+        let initializer = parse(text)
+        XCTAssertEqual(initializer.text, text, line: line)
+        XCTAssertEqual(initializer.offset, 0, line: line)
+        XCTAssertEqual(initializer.length, Int64(text.utf8.count), line: line)
     }
 }

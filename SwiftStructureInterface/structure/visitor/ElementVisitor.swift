@@ -77,7 +77,7 @@ open class ElementVisitor {
         visitElement(element)
     }
 
-    open func visitInitialiserDeclaration(_ element: InitialiserDeclaration) {
+    open func visitInitializerDeclaration(_ element: InitializerDeclaration) {
         visitElement(element)
     }
 

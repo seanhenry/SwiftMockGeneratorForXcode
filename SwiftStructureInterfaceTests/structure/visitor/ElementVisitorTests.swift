@@ -24,7 +24,7 @@ class ElementVisitorTests: XCTestCase {
         assertVisitorIsImplemented(testElement) { $0.invokedVisitElement }
         assertVisitorIsImplemented(testTypeDeclaration) { $0.invokedVisitTypeDeclaration }
         assertVisitorIsImplemented(testAccessLevelModifier) { $0.invokedVisitAccessLevelModifier }
-        assertVisitorIsImplemented(testInitializerDeclaration) { $0.invokedVisitInitialiserDeclaration }
+        assertVisitorIsImplemented(testInitializerDeclaration) { $0.invokedVisitInitializerDeclaration }
         assertVisitorIsImplemented(testVariableDeclaration) { $0.invokedVisitVariableDeclaration }
         assertVisitorIsImplemented(testParameter) { $0.invokedVisitParameter }
         assertVisitorIsImplemented(testGenericParameterClause) { $0.invokedVisitGenericParameterClause }
@@ -199,11 +199,11 @@ class ElementVisitorTests: XCTestCase {
             invokedVisitParameter = true
         }
 
-        var invokedVisitInitialiserDeclaration = false
+        var invokedVisitInitializerDeclaration = false
 
-        override func visitInitialiserDeclaration(_ element: InitialiserDeclaration) {
-            super.visitInitialiserDeclaration(element)
-            invokedVisitInitialiserDeclaration = true
+        override func visitInitializerDeclaration(_ element: InitializerDeclaration) {
+            super.visitInitializerDeclaration(element)
+            invokedVisitInitializerDeclaration = true
         }
 
         var invokedVisitSubscriptDeclaration = false
