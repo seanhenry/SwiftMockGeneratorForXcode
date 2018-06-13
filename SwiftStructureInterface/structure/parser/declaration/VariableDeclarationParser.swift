@@ -11,7 +11,7 @@ class VariableDeclarationParser: DeclarationParser<VariableDeclaration> {
             return VariableDeclarationImpl(
                 name: name,
                 text: text,
-                children: [type],
+                children: [type, block],
                 offset: offset,
                 length: length,
                 type: type,

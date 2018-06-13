@@ -1,10 +1,21 @@
-class TupleTypeElementWrapper<T: TupleTypeElement>: ElementWrapper<T>, TupleTypeElement {
+class TupleTypeElementWrapper: ElementWrapper, TupleTypeElement {
+
+    let managedTypleTypeElement: TupleTypeElement
+
+    init(_ element: TupleTypeElement) {
+        managedTypleTypeElement = element
+        super.init(element)
+    }
 
     var label: String? {
-        return label
+        return managedTypleTypeElement.label
     }
 
     var typeAnnotation: TypeAnnotation {
-        return typeAnnotation
+        return wrap(managedTypleTypeElement.typeAnnotation)
+    }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitTupleTypeElement(self)
     }
 }

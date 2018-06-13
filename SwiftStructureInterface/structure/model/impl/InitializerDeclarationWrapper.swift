@@ -1,18 +1,29 @@
-class InitializerDeclarationWrapper<T: InitialiserDeclaration>: ElementWrapper<T>, InitialiserDeclaration {
+class InitializerDeclarationWrapper: ElementWrapper, InitialiserDeclaration {
+
+    let managedInitializerDeclaration: InitialiserDeclaration
+
+    init(_ element: InitialiserDeclaration) {
+        managedInitializerDeclaration = element
+        super.init(element)
+    }
 
     var parameters: [Parameter] {
-        return managed.parameters
+        return managedInitializerDeclaration.parameters.map(wrap)
     }
 
     var `throws`: Bool {
-        return managed.`throws`
+        return managedInitializerDeclaration.`throws`
     }
 
     var `rethrows`: Bool {
-        return managed.`rethrows`
+        return managedInitializerDeclaration.`rethrows`
     }
 
     var isFailable: Bool {
-        return managed.isFailable
+        return managedInitializerDeclaration.isFailable
+    }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitInitialiserDeclaration(self)
     }
 }

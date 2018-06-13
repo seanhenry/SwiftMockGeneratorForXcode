@@ -1,10 +1,21 @@
-class DictionaryTypeWrapper<T: DictionaryType>: TypeWrapper<T>, DictionaryType {
+class DictionaryTypeWrapper: TypeWrapper, DictionaryType {
+
+    let managedDictionaryType: DictionaryType
+
+    init(_ element: DictionaryType) {
+        managedDictionaryType = element
+        super.init(element)
+    }
 
     var keyType: Type {
-        return managed.keyType
+        return wrap(managedDictionaryType.keyType)
     }
 
     var valueType: Type {
-        return managed.valueType
+        return wrap(managedDictionaryType.valueType)
+    }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitDictionaryType(self)
     }
 }

@@ -9,6 +9,7 @@ class GenericParameterClauseParserTests: XCTestCase {
         let clause = parse("<T>")
         XCTAssertEqual(clause.parameters.count, 1)
         XCTAssertEqual(clause.parameters[0].typeName, "T")
+        XCTAssertEqual(clause.parameters[0].text, "T")
         XCTAssertNil(clause.parameters[0].protocolComposition)
         XCTAssertNil(clause.parameters[0].typeIdentifier)
     }
@@ -17,6 +18,7 @@ class GenericParameterClauseParserTests: XCTestCase {
         let clause = parse("<T: A>")
         XCTAssertEqual(clause.parameters.count, 1)
         XCTAssertEqual(clause.parameters[0].typeName, "T")
+        XCTAssertEqual(clause.parameters[0].text, "T: A")
         XCTAssertNil(clause.parameters[0].protocolComposition)
         XCTAssertEqual(clause.parameters[0].typeIdentifier?.typeName, "A")
     }
@@ -25,6 +27,7 @@ class GenericParameterClauseParserTests: XCTestCase {
         let clause = parse("<T: A & B>")
         XCTAssertEqual(clause.parameters.count, 1)
         XCTAssertEqual(clause.parameters[0].typeName, "T")
+        XCTAssertEqual(clause.parameters[0].text, "T: A & B")
         XCTAssertEqual(clause.parameters[0].protocolComposition?.text, "A & B")
         XCTAssertNil(clause.parameters[0].typeIdentifier?.typeName)
     }

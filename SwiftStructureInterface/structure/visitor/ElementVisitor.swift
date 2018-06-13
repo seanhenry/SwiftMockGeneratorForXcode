@@ -92,4 +92,8 @@ open class ElementVisitor {
     open func visitProtocolCompositionType(_ element: ProtocolCompositionType) {
         visitType(element)
     }
+
+    open func visitGetterSetterKeywordBlock(_ element: GetterSetterKeywordBlock) {
+        visitElement(element)
+    }
 }

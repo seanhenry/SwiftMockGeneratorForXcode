@@ -1,6 +1,17 @@
-class GetterSetterKeywordBlockWrapper<T: GetterSetterKeywordBlock>: ElementWrapper<T>, GetterSetterKeywordBlock {
+class GetterSetterKeywordBlockWrapper: ElementWrapper, GetterSetterKeywordBlock {
+
+    let managedGetterSetterKeywordBlock: GetterSetterKeywordBlock
+
+    init(_ element: GetterSetterKeywordBlock) {
+        managedGetterSetterKeywordBlock = element
+        super.init(element)
+    }
     
     var isWritable: Bool {
-        return managed.isWritable
+        return managedGetterSetterKeywordBlock.isWritable
+    }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitGetterSetterKeywordBlock(self)
     }
 }

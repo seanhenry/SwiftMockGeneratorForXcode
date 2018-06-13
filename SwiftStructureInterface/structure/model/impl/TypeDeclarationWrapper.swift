@@ -1,22 +1,33 @@
-class TypeDeclarationWrapper<T: TypeDeclaration>: ElementWrapper<T>, TypeDeclaration {
+class TypeDeclarationWrapper: ElementWrapper, TypeDeclaration {
+
+    private let managedTypeDeclaration: TypeDeclaration
+
+    init(_ element: TypeDeclaration) {
+        self.managedTypeDeclaration = element
+        super.init(element)
+    }
 
     var accessLevelModifier: AccessLevelModifier {
-        return managed.accessLevelModifier
+        return wrap(managedTypeDeclaration.accessLevelModifier)
     }
 
     var inheritedTypes: [Element] {
-        return managed.inheritedTypes
+        return managedTypeDeclaration.inheritedTypes
     }
 
     var name: String {
-        return managed.name
+        return managedTypeDeclaration.name
     }
 
     var bodyOffset: Int64 {
-        return managed.bodyOffset
+        return managedTypeDeclaration.bodyOffset
     }
 
     var bodyLength: Int64 {
-        return managed.bodyLength
+        return managedTypeDeclaration.bodyLength
+    }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitTypeDeclaration(self)
     }
 }

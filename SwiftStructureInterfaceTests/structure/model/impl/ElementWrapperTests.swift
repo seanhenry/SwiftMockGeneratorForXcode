@@ -6,10 +6,9 @@ class ElementWrapperTest: XCTestCase {
     func test_shouldManageLifecycleOfFile() {
         weak var weakFile: File?
         autoreleasepool {
-            let file = createFile()
-            let wrapper: ElementWrapper<FileImpl>? = ElementWrapper(file)
-            suppressWarning(wrapper)
-            XCTAssertEqual(file.retainCount, 1)
+            let fileWrapper = createFile()
+            let file = fileWrapper.managed as! FileImpl
+            XCTAssertGreaterThan(file.retainCount, 0)
             weakFile = file
         }
         XCTAssertNil(weakFile)
@@ -19,11 +18,11 @@ class ElementWrapperTest: XCTestCase {
         weak var weakFile: File?
         weak var weakChild: Element?
         autoreleasepool {
-            let file = createFile()
-            let wrapper = wrap(file.children[0])
-            suppressWarning(wrapper)
-            XCTAssertEqual(file.retainCount, 1)
-            weakChild = file.children[0]
+            let fileWrapper = createFile()
+            let file = fileWrapper.managed as! FileImpl
+            let child = fileWrapper.children[0]
+            XCTAssertGreaterThan(file.retainCount, 0)
+            weakChild = child
             weakFile = file
         }
         XCTAssertNil(weakFile)
@@ -34,11 +33,11 @@ class ElementWrapperTest: XCTestCase {
         weak var weakFile: File?
         weak var weakGrandchild: Element?
         autoreleasepool {
-            let file = createFile()
-            let wrapper = wrap(file.children[0].children[0])
-            suppressWarning(wrapper)
-            XCTAssertEqual(file.retainCount, 1)
-            weakGrandchild = file.children[0].children[0]
+            let fileWrapper = createFile()
+            let file = fileWrapper.managed as! FileImpl
+            let grandchild = fileWrapper.children[0].children[0]
+            XCTAssertGreaterThan(file.retainCount, 0)
+            weakGrandchild = grandchild
             weakFile = file
         }
         XCTAssertNil(weakFile)
@@ -48,52 +47,41 @@ class ElementWrapperTest: XCTestCase {
     func test_shouldKeepStructureAliveWhenAtLeastOneReference() {
         weak var weakFile: File?
         weak var weakChild: Element?
-        var strongWrapper: ElementWrapper<ElementImpl>?
+        var strongGrandchild: Element?
         autoreleasepool {
-            let file = createFile()
-            let wrapper = wrap(file.children[0].children[0])
-            suppressWarning(wrapper)
-            strongWrapper = wrap(file.children[0].children[0])
-            suppressWarning(strongWrapper)
-            XCTAssertEqual(file.retainCount, 2)
+            let fileWrapper = createFile()
+            let file = fileWrapper.managed as! FileImpl
+            strongGrandchild = fileWrapper.children[0].children[0]
+            XCTAssertGreaterThan(file.retainCount, 0)
             weakFile = file
             weakChild = file.children[0]
         }
         XCTAssertNotNil(weakFile)
         XCTAssertNotNil(weakChild)
         XCTAssertNotNil(weakChild?.file)
+        XCTAssertNotNil(strongGrandchild)
     }
 
     func test_shouldWrapElement() {
-        let element = createFile().children[0]
-        let wrapper = wrap(element)!
-        XCTAssertEqual(wrapper.children.count, element.children.count)
-        XCTAssert(wrapper.children[0] === element.children[0])
-        XCTAssert(wrapper.file === element.file)
-        XCTAssert(wrapper.parent === element.parent)
-        XCTAssertEqual(wrapper.offset, element.offset)
-        XCTAssertEqual(wrapper.length, element.length)
-        XCTAssertEqual(wrapper.text, element.text)
+        let file = createFile()
+        let child = file.children[0]
+        let rawFile = file.managed as! FileImpl
+        let rawChild = rawFile.children[0]
+        XCTAssertEqual(rawChild.children.count, child.children.count)
+        XCTAssertEqual(rawChild.offset, child.offset)
+        XCTAssertEqual(rawChild.length, child.length)
+        XCTAssertEqual(rawChild.text, child.text)
     }
 
-    func test_shouldAcceptOnBehalfOfManagedElement() {
-        let visitorSpy = VisitorSpy()
-        let element = createFile().children[0]
-        let wrapper = wrap(element)!
-        wrapper.accept(visitorSpy)
-        XCTAssert(visitorSpy.invokedVisitTypeDeclaration)
-        XCTAssert(visitorSpy.invokedVisitElement)
-    }
-
-    private func wrap(_ element: Element) -> ElementWrapper<ElementImpl>? {
+    private func wrap(_ element: Element) -> ElementWrapper? {
         return ElementWrapper(element as! ElementImpl)
     }
 
     private func suppressWarning(_ wrapper: Element?) {
     }
 
-    private func createFile() -> FileImpl {
-        return ElementParser.parseFile("protocol A { var a: A { get } }") as! FileImpl
+    private func createFile() -> SwiftStructureInterface.FileWrapper {
+        return ElementParser.parseFile("protocol A { var a: A { get } }") as! SwiftStructureInterface.FileWrapper
     }
 
     private class VisitorSpy: ElementVisitor {

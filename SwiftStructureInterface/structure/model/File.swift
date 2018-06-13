@@ -1,2 +1,2 @@
-public protocol File: Element, Declarations {
+public protocol File: Declarations {
 }

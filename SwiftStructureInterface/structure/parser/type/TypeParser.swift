@@ -21,7 +21,7 @@ class TypeParser: Parser<Type> {
         if let start = startStack.last {
             return createElement(start: start) { offset, length, text in
                 return closure(offset, length, text)
-            } as? T
+            }
         }
         return nil
     }

@@ -1,22 +1,33 @@
-class FunctionDeclarationWrapper<T: FunctionDeclaration>: ElementWrapper<T>, FunctionDeclaration {
+class FunctionDeclarationWrapper: ElementWrapper, FunctionDeclaration {
+
+    let managedFunctionDeclaration: FunctionDeclaration
+
+    init(_ element: FunctionDeclaration) {
+        managedFunctionDeclaration = element
+        super.init(element)
+    }
 
     var genericParameterClause: GenericParameterClause? {
-        return managed.genericParameterClause
+        return managedFunctionDeclaration.genericParameterClause.flatMap(wrap)
     }
 
     var parameters: [Parameter] {
-        return managed.parameters
+        return managedFunctionDeclaration.parameters.map(wrap)
     }
 
     var returnType: Element? {
-        return managed.returnType
+        return managedFunctionDeclaration.returnType.flatMap(wrap)
     }
 
     var `throws`: Bool {
-        return managed.`throws`
+        return managedFunctionDeclaration.`throws`
     }
 
     var name: String {
-        return managed.name
+        return managedFunctionDeclaration.name
+    }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitFunctionDeclaration(self)
     }
 }

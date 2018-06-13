@@ -22,7 +22,7 @@ class Parser<ResultType> {
         fatalError("override me")
     }
 
-    func createElement(start: LineColumn, parameters: (Int64, Int64, String) -> ResultType) -> ResultType? {
+    func createElement<ResultType: Element>(start: LineColumn, parameters: (Int64, Int64, String) -> ResultType) -> ResultType? {
         let end = getPreviousEndLocation()
         if let offset = convert(start),
            let endOffset = convert(end),

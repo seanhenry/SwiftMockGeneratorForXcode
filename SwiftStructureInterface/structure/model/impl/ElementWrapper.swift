@@ -1,21 +1,22 @@
-class ElementWrapper<T: Element>: Element {
+class ElementWrapper: Element {
 
-    let managed: T
+    let managed: Element
+    private static let wrapVisitor = ManagedElementVisitor()
 
     var text: String {
         return managed.text
     }
 
     var children: [Element] {
-        return managed.children
+        return managed.children.map(wrap)
     }
 
     var file: File? {
-        return managed.file
+        return managed.file.flatMap(wrap)
     }
 
     var parent: Element? {
-        return managed.parent
+        return managed.parent.flatMap(wrap)
     }
 
     var offset: Int64 {
@@ -26,13 +27,13 @@ class ElementWrapper<T: Element>: Element {
         return managed.length
     }
 
-    init(_ element: T) {
+    init(_ element: Element) {
         self.managed = element
-        retainManagedFile(element: element)
+        retainManagedFile(managed: element)
     }
 
-    private func retainManagedFile(element: Element) {
-        let file = element.file as? FileImpl
+    private func retainManagedFile(managed: Element) {
+        let file = managed.file as? FileImpl
         file?.retainCount += 1
     }
 
@@ -41,7 +42,7 @@ class ElementWrapper<T: Element>: Element {
     }
 
     private func releaseManagedFile() {
-        let file = self.file as? FileImpl
+        let file = managed.file as? FileImpl
         file?.retainCount -= 1
         if file?.retainCount == 0 {
             let visitor = BreakRetainCycleVisitor()
@@ -59,5 +60,11 @@ class ElementWrapper<T: Element>: Element {
 
     func accept(_ visitor: ElementVisitor) {
         managed.accept(visitor)
+    }
+
+    func wrap<T>(_ element: Element) -> T {
+        element.accept(ElementWrapper.wrapVisitor)
+        defer { ElementWrapper.wrapVisitor.wrapped = nil }
+        return ElementWrapper.wrapVisitor.wrapped as! T
     }
 }

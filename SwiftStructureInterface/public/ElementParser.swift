@@ -7,6 +7,7 @@ public class ElementParser {
     }
 
     public static func parseFile(_ string: String) -> File {
-        return FileParser(fileContents: string).parse()
+        let file = FileParser(fileContents: string).parse()
+        return ManagedElementVisitor.wrap(file) as! File
     }
 }

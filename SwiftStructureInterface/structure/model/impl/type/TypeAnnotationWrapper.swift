@@ -1,14 +1,25 @@
-class TypeAnnotationWrapper<T: TypeAnnotation>: ElementWrapper<T>, TypeAnnotation {
+class TypeAnnotationWrapper: ElementWrapper, TypeAnnotation {
+
+    let managedTypeAnnotation: TypeAnnotation
+
+    init(_ element: TypeAnnotation) {
+        managedTypeAnnotation = element
+        super.init(element)
+    }
 
     var attributes: [String] {
-        return managed.attributes
+        return managedTypeAnnotation.attributes
     }
 
     var isInout: Bool {
-        return managed.isInout
+        return managedTypeAnnotation.isInout
     }
 
     var type: Type {
-        return managed.type
+        return wrap(managedTypeAnnotation.type)
+    }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitTypeAnnotation(self)
     }
 }

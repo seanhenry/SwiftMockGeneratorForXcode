@@ -1,14 +1,25 @@
-class TypeIdentifierWrapper<T: TypeIdentifier>: TypeWrapper<T>, TypeIdentifier {
+class TypeIdentifierWrapper: TypeWrapper, TypeIdentifier {
+
+    let managedTypeIdentifier: TypeIdentifier
+
+    init(_ element: TypeIdentifier) {
+        managedTypeIdentifier = element
+        super.init(element)
+    }
 
     var parentType: TypeIdentifier? {
-        return managed.parentType
+        return managedTypeIdentifier.parentType.flatMap(wrap)
     }
 
     var typeName: String {
-        return managed.typeName
+        return managedTypeIdentifier.typeName
     }
 
     var genericArguments: [Type] {
-        return managed.genericArguments
+        return managedTypeIdentifier.genericArguments.map(wrap)
+    }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitTypeIdentifier(self)
     }
 }

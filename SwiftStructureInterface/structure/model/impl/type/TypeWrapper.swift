@@ -1,3 +1,6 @@
-class TypeWrapper<T: Type>: ElementWrapper<T>, Type {
+class TypeWrapper: ElementWrapper, Type {
 
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitType(self)
+    }
 }

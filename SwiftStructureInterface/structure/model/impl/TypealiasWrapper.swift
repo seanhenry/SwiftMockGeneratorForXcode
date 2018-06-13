@@ -1,10 +1,21 @@
-class TypealiasWrapper<T: Typealias>: ElementWrapper<T>, Typealias {
+class TypealiasWrapper: ElementWrapper, Typealias {
+
+    let managedTypealias: Typealias
+
+    init(_ element: Typealias) {
+        managedTypealias = element
+        super.init(element)
+    }
 
     var typealiasAssignment: TypealiasAssignment {
-        return typealiasAssignment
+        return wrap(managedTypealias.typealiasAssignment)
     }
 
     var name: String {
-        return name
+        return managedTypealias.name
+    }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitTypealias(self)
     }
 }

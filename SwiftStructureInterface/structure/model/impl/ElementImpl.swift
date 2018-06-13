@@ -16,8 +16,7 @@ class ElementImpl: Element, PositionedElement {
         self.children = children
         self.offset = offset
         self.length = length
-        children.map { $0 as? ElementImpl
-                }
+        children.map { $0 as? ElementImpl }
                 .forEach { $0?.parent = self }
     }
 

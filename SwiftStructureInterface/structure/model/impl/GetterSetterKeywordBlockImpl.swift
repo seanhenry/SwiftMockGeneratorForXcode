@@ -8,4 +8,8 @@ class GetterSetterKeywordBlockImpl: ElementImpl, GetterSetterKeywordBlock {
         self.isWritable = isWritable
         super.init(text: text, children: children, offset: offset, length: length)
     }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitGetterSetterKeywordBlock(self)
+    }
 }

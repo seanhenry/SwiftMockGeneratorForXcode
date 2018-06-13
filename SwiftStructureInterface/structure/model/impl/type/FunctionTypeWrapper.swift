@@ -1,22 +1,33 @@
-class FunctionTypeWrapper<T: FunctionType>: TypeWrapper<T>, FunctionType {
+class FunctionTypeWrapper: TypeWrapper, FunctionType {
+
+    let managedFunctionType: FunctionType
+
+    init(_ element: FunctionType) {
+        managedFunctionType = element
+        super.init(element)
+    }
 
     var attributes: [String] {
-        return managed.attributes
+        return managedFunctionType.attributes
     }
 
     var arguments: TupleType {
-        return managed.arguments
+        return wrap(managedFunctionType.arguments)
     }
 
     var returnType: Element {
-        return managed.returnType
+        return wrap(managedFunctionType.returnType)
     }
 
     var `throws`: Bool {
-        return managed.`throws`
+        return managedFunctionType.`throws`
     }
 
     var `rethrows`: Bool {
-        return managed.`rethrows`
+        return managedFunctionType.`rethrows`
+    }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitFunctionType(self)
     }
 }

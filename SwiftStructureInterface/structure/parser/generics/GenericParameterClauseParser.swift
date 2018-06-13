@@ -27,7 +27,7 @@ class GenericParameterClauseParser: Parser<GenericParameterClause> {
     }
 
     private func parseGenericParameter() -> GenericParameter {
-        let offset = convert(getCurrentStartLocation())!
+        let offset = getCurrentStartLocation()
         guard let typeName = peekAtNextIdentifier() else {
             return GenericParameterImpl.errorGenericParameter
         }
@@ -37,14 +37,15 @@ class GenericParameterClauseParser: Parser<GenericParameterClause> {
         let typeIdentifier = type as? TypeIdentifier
         let protocolComposition = type as? ProtocolCompositionType
         let children = [typeIdentifier as Element?, protocolComposition as Element?].compactMap { $0 }
-        let length = convert(getPreviousEndLocation())! - offset
-        return GenericParameterImpl(text: "",
-            children: children,
-            offset: offset,
-            length: length,
-            typeName: typeName,
-            typeIdentifier: typeIdentifier,
-            protocolComposition: protocolComposition)
+        return createElement(start: offset) { offset, length, text in
+            return GenericParameterImpl(text: text,
+                    children: children,
+                    offset: offset,
+                    length: length,
+                    typeName: typeName,
+                    typeIdentifier: typeIdentifier,
+                    protocolComposition: protocolComposition)
+        }!
     }
 
     private func parseGenericClosingBracket() {

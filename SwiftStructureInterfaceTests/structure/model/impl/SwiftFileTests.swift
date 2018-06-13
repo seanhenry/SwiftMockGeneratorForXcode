@@ -91,12 +91,12 @@ class SwiftFileTests: XCTestCase {
     private func assertFilesAreEquivalent(_ lhs: Element?, _ rhs: Element?, line: UInt = #line) {
         XCTAssertNotNil(lhs, line: line)
         XCTAssertNotNil(rhs, line: line)
-        guard let lhs = lhs, let rhs = rhs else { return }
+        guard let lhs = lhs as? SwiftStructureInterface.FileWrapper, let rhs = rhs as? SwiftStructureInterface.FileWrapper else { return }
         XCTAssertEqual(lhs.offset, rhs.offset, line: line)
         XCTAssertEqual(lhs.length, rhs.length, line: line)
         XCTAssertEqual(lhs.text, rhs.text, line: line)
         XCTAssertEqual(lhs.children.count, rhs.children.count, line: line)
-        zip(lhs.children, rhs.children).forEach { XCTAssert($0 === $1, line: line) }
+        zip(lhs.managedFile.children, rhs.managedFile.children).forEach { XCTAssert($0 === $1, line: line) }
     }
 
     private func getNestedClassString() -> String {

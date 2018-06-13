@@ -2,18 +2,20 @@
 
 private let allTypesString = """
 public protocol TestProtocol {
-  init()
+  init(a: A)
   var property: String { get }
   func method(paramA: Int)
-  func genericMethod<T>()
+  func genericMethod<T: U, V: W & X>()
   subscript()
   typealias T = U
-  func closure(closure: @escaping () -> ())
-  var tuple: (a: A, b: B)
-  var array: [A]
-  var dict: [A: B]
-  var opt: A?
-  var protocolComp: A & B
+  func closure(closure: @escaping () -> ()) -> String
+  var type: Base.Nested { get }
+  var tuple: (a: A, b: B) { get }
+  var array: [A] { get }
+  var dict: [A: B] { get }
+  var opt: A? { get }
+  var protocolComp: A & B { get }
+  var generic: A<B> { get }
 }
 """
 
@@ -40,6 +42,9 @@ var testType: Type {
 }
 var testTypeIdentifier: TypeIdentifier {
     return TestElements.instance.testTypeIdentifier!
+}
+var testGenericTypeIdentifier: TypeIdentifier {
+    return TestElements.instance.testGenericTypeIdentifier!
 }
 var testFunctionDeclaration: FunctionDeclaration {
     return TestElements.instance.testFunctionDeclaration!
@@ -86,6 +91,9 @@ var testFunctionType: FunctionType {
 var testProtocolCompositionType: ProtocolCompositionType {
     return TestElements.instance.testProtocolCompositionType!
 }
+var testGetterSetterKeywordBlock: GetterSetterKeywordBlock {
+    return TestElements.instance.testGetterSetterKeywordBlock!
+}
 
 var allTestElements: [Element] {
     return [
@@ -111,7 +119,8 @@ var allTestElements: [Element] {
         testDictionaryType,
         testOptionalType,
         testFunctionType,
-        testProtocolCompositionType
+        testProtocolCompositionType,
+        testGetterSetterKeywordBlock
     ]
 }
 
@@ -130,6 +139,7 @@ private class TestElements {
     private(set) var testVariableDeclaration: VariableDeclaration!
     private(set) var testType: Type!
     private(set) var testTypeIdentifier: TypeIdentifier!
+    private(set) var testGenericTypeIdentifier: TypeIdentifier!
     private(set) var testFunctionDeclaration: FunctionDeclaration!
     private(set) var testParameter: Parameter!
     private(set) var testGenericParameterClause: GenericParameterClause!
@@ -145,6 +155,7 @@ private class TestElements {
     private(set) var testOptionalType: OptionalType!
     private(set) var testFunctionType: FunctionType!
     private(set) var testProtocolCompositionType: ProtocolCompositionType!
+    private(set) var testGetterSetterKeywordBlock: GetterSetterKeywordBlock!
 
     private class Visitor: RecursiveElementVisitor {
 
@@ -190,7 +201,11 @@ private class TestElements {
         }
 
         override func visitTypeIdentifier(_ element: TypeIdentifier) {
-            elements.testTypeIdentifier = element
+            if element.text == "Base.Nested" {
+                elements.testTypeIdentifier = element
+            } else if !element.genericArguments.isEmpty {
+                elements.testGenericTypeIdentifier = element
+            }
             super.visitTypeIdentifier(element)
         }
 
@@ -225,12 +240,16 @@ private class TestElements {
         }
 
         override func visitGenericParameterClause(_ element: GenericParameterClause) {
-            elements.testGenericParameterClause = element
+            if !element.text.isEmpty {
+                elements.testGenericParameterClause = element
+            }
             super.visitGenericParameterClause(element)
         }
 
         override func visitGenericParameter(_ element: GenericParameter) {
-            elements.testGenericParameter = element
+            if element.typeIdentifier != nil {
+                elements.testGenericParameter = element
+            }
             super.visitGenericParameter(element)
         }
 
@@ -267,6 +286,11 @@ private class TestElements {
         override func visitProtocolCompositionType(_ element: ProtocolCompositionType) {
             elements.testProtocolCompositionType = element
             super.visitProtocolCompositionType(element)
+        }
+
+        override func visitGetterSetterKeywordBlock(_ element: GetterSetterKeywordBlock) {
+            elements.testGetterSetterKeywordBlock = element
+            super.visitGetterSetterKeywordBlock(element)
         }
     }
 }
