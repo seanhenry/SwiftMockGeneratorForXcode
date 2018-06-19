@@ -7,20 +7,17 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         fatalError("override me")
     }
 
-    fileprivate var connection: Connection = {
-        let connection = Connection()
-        connection.connection = XPCManager.connection!
-        return connection
-    }()
+    private var connection: Connection {
+        return XPCManager.connection!
+    }
     
     public func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) -> Void {
-        self.perform(with: invocation, completionHandler: completionHandler)
+        self.perform(with: invocation as SourceEditorCommandInvocation, completionHandler: completionHandler)
     }
     
     func perform(with invocation: SourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) -> Void {
         setCancelHandler(invocation, completionHandler)
         setErrorHandlers(completionHandler)
-        connection.resumeConnection()
         connection.remoteObjectProxyWithErrorHandler({ [weak self] proxy in
             self?.generateMock(proxy: proxy, invocation: invocation, completionHandler: completionHandler)
         }) { [weak self] error in
@@ -45,7 +42,6 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
 
     private func finish(with error: Error?, handler: (Error?) -> ()) {
         track(error)
-        connection.suspendConnection()
         handler(error)
     }
 
@@ -119,38 +115,5 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     
     private func createError(_ message: String) -> Error {
         return NSError(domain: "codes.seanhenry.mockgenerator", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
-    }
-    
-    fileprivate class Connection {
-        
-        var connection: NSXPCConnection?
-
-        func resumeConnection() {
-            connection?.resume()
-        }
-
-        func suspendConnection() {
-            connection?.suspend()
-        }
-        
-        func interruptionHandler(_ closure: @escaping () -> ()) {
-            connection?.interruptionHandler = closure
-        }
-
-        func invalidationHandler(_ closure: @escaping () -> ()) {
-            connection?.invalidationHandler = closure
-            XPCManager.setUpConnection()
-        }
-        
-        func remoteObjectProxyWithErrorHandler(_ closure: @escaping (MockGeneratorXPCProtocol) -> (), _ errorHandler: @escaping (Error) -> ()) {
-            let proxy = connection?.remoteObjectProxyWithErrorHandler { error in
-                errorHandler(error)
-            }
-            if let generator = proxy as? MockGeneratorXPCProtocol {
-                closure(generator)
-            } else {
-                errorHandler(NSError(domain: "codes.seanhenry.mockgenerator", code: 0, userInfo: [NSLocalizedDescriptionKey: "The XPC service failed to return a proxy."]))
-            }
-        }
     }
 }

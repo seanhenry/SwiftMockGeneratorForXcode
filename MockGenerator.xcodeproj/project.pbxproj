@@ -102,6 +102,10 @@
 		14F8670520D90F3F00E79758 /* TestProject in CopyFiles */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
 		14F8670720D911D800E79758 /* FormatPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F8670620D911D800E79758 /* FormatPerformanceTests.swift */; };
 		14F8670920D9126A00E79758 /* TestLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F8670820D9126A00E79758 /* TestLocations.swift */; };
+		14F8670D20D9257B00E79758 /* XPCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F8670C20D9257B00E79758 /* XPCTests.swift */; };
+		14F8670F20D9260700E79758 /* MockGeneratorBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F8670E20D9260700E79758 /* MockGeneratorBaseTestCase.swift */; };
+		14F8671220D927B900E79758 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F8671020D9270E00E79758 /* Connection.swift */; };
+		14F8671520D92DB900E79758 /* libXcodePluginProxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F866B620D9086800E79758 /* libXcodePluginProxy.a */; };
 		1A93A0BDC7938F866CE300E3 /* GetterSetterKeywordBlockWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A2DB0D4AD54C60DD318C /* GetterSetterKeywordBlockWrapper.swift */; };
 		1A93A230DDC9A6B74852A6CC /* TupleTypeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AD3763C3553E24D96928 /* TupleTypeWrapper.swift */; };
 		1A93A24475395D05B88F3B04 /* GenericParameterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A467A56E94A8BA062ABA /* GenericParameterWrapper.swift */; };
@@ -417,6 +421,13 @@
 			remoteGlobalIDString = 14CA2D7F1F4000AB00900937;
 			remoteInfo = MockGeneratorXPC;
 		};
+		14F8671320D92DB300E79758 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14F866B520D9086800E79758;
+			remoteInfo = XcodePluginProxy;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -638,6 +649,9 @@
 		14F866EF20D90C3A00E79758 /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
 		14F8670620D911D800E79758 /* FormatPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatPerformanceTests.swift; sourceTree = "<group>"; };
 		14F8670820D9126A00E79758 /* TestLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLocations.swift; sourceTree = "<group>"; };
+		14F8670C20D9257B00E79758 /* XPCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPCTests.swift; sourceTree = "<group>"; };
+		14F8670E20D9260700E79758 /* MockGeneratorBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGeneratorBaseTestCase.swift; sourceTree = "<group>"; };
+		14F8671020D9270E00E79758 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		1A93A0B34112C3F60B114436 /* DictionaryTypeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTypeWrapper.swift; sourceTree = "<group>"; };
 		1A93A1324992E7B9C5FD59B3 /* TypealiasAssignmentWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypealiasAssignmentWrapper.swift; sourceTree = "<group>"; };
 		1A93A1C1A69DBF83F8E7C64A /* ArrayTypeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTypeWrapper.swift; sourceTree = "<group>"; };
@@ -934,6 +948,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F8671520D92DB900E79758 /* libXcodePluginProxy.a in Frameworks */,
 				14CA2D6C1F40008F00900937 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1126,6 +1141,7 @@
 				35CDF2B6AA231A57A21D6EE3 /* DummyCommand.swift */,
 				14F866EB20D90BC500E79758 /* XcodeKit+Transformers.swift */,
 				14F866E920D90BAF00E79758 /* XPCManager.swift */,
+				14F8671020D9270E00E79758 /* Connection.swift */,
 			);
 			path = XcodePlugin;
 			sourceTree = "<group>";
@@ -1168,6 +1184,8 @@
 				14F866C720D9088F00E79758 /* Info.plist */,
 				14F8670620D911D800E79758 /* FormatPerformanceTests.swift */,
 				14F8670820D9126A00E79758 /* TestLocations.swift */,
+				14F8670C20D9257B00E79758 /* XPCTests.swift */,
+				14F8670E20D9260700E79758 /* MockGeneratorBaseTestCase.swift */,
 			);
 			path = EndToEndTests;
 			sourceTree = "<group>";
@@ -1839,6 +1857,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				14F8671420D92DB300E79758 /* PBXTargetDependency */,
 				14CA2D931F4000C900900937 /* PBXTargetDependency */,
 			);
 			name = XcodePlugin;
@@ -1979,6 +1998,9 @@
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
 							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
 						};
 					};
 					14CA2D7F1F4000AB00900937 = {
@@ -2007,7 +2029,7 @@
 								enabled = 1;
 							};
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -2419,6 +2441,7 @@
 				14F866EA20D90BAF00E79758 /* XPCManager.swift in Sources */,
 				14F866EE20D90BD300E79758 /* BaseCommand.swift in Sources */,
 				14F866F320D90D0200E79758 /* XcodeProjectPathFinder.swift in Sources */,
+				14F8671220D927B900E79758 /* Connection.swift in Sources */,
 				14F866F520D90D0200E79758 /* ProjectFinder.swift in Sources */,
 				14F866F220D90D0200E79758 /* Preferences.swift in Sources */,
 				14F866F420D90D0200E79758 /* GoogleAnalyticsTracker.swift in Sources */,
@@ -2430,6 +2453,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F8670F20D9260700E79758 /* MockGeneratorBaseTestCase.swift in Sources */,
+				14F8670D20D9257B00E79758 /* XPCTests.swift in Sources */,
 				14F8670720D911D800E79758 /* FormatPerformanceTests.swift in Sources */,
 				14F866C620D9088F00E79758 /* EndToEndTests.swift in Sources */,
 				14F8670920D9126A00E79758 /* TestLocations.swift in Sources */,
@@ -2512,6 +2537,11 @@
 			isa = PBXTargetDependency;
 			target = 14CA2D7F1F4000AB00900937 /* MockGeneratorXPC */;
 			targetProxy = 14F866E520D9094100E79758 /* PBXContainerItemProxy */;
+		};
+		14F8671420D92DB300E79758 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14F866B520D9086800E79758 /* XcodePluginProxy */;
+			targetProxy = 14F8671320D92DB300E79758 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2971,7 +3001,6 @@
 				DEVELOPMENT_TEAM = HU45578K6L;
 				INFOPLIST_FILE = XcodePlugin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MENU_DISPLAY_NAME = "Debug Mock Generator";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp.XcodePluginDebug;
 				PRODUCT_NAME = "Mock Generator";
@@ -2991,7 +3020,6 @@
 				DEVELOPMENT_TEAM = HU45578K6L;
 				INFOPLIST_FILE = XcodePlugin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MENU_DISPLAY_NAME = "Mock Generator";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp.XcodePlugin;
 				PRODUCT_NAME = "Mock Generator";
@@ -3062,7 +3090,6 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "XcodePlugin/XcodePlugin-Bridging-Header.h";
@@ -3086,7 +3113,6 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "XcodePlugin/XcodePlugin-Bridging-Header.h";
@@ -3112,7 +3138,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EndToEndTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3139,7 +3164,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EndToEndTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3163,7 +3187,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EndToEndTestHost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks $DEVELOPER_FRAMEWORKS_DIR";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTestHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3186,7 +3209,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EndToEndTestHost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks $DEVELOPER_FRAMEWORKS_DIR";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTestHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
