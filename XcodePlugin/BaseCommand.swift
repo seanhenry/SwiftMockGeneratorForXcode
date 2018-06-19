@@ -1,19 +1,23 @@
 import Foundation
 import XcodeKit
 
-class BaseCommand: NSObject, XCSourceEditorCommand {
+open class BaseCommand: NSObject, XCSourceEditorCommand {
 
-    var templateName: String {
+    open var templateName: String {
         fatalError("override me")
     }
 
     fileprivate var connection: Connection = {
         let connection = Connection()
-        connection.connection = SourceEditorExtension.connection!
+        connection.connection = XPCManager.connection!
         return connection
     }()
-
-    func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) -> Void {
+    
+    public func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) -> Void {
+        self.perform(with: invocation, completionHandler: completionHandler)
+    }
+    
+    func perform(with invocation: SourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) -> Void {
         setCancelHandler(invocation, completionHandler)
         setErrorHandlers(completionHandler)
         connection.resumeConnection()
@@ -24,7 +28,7 @@ class BaseCommand: NSObject, XCSourceEditorCommand {
         }
     }
 
-    private func setCancelHandler(_ invocation: XCSourceEditorCommandInvocation, _ completionHandler: @escaping (Error?) -> Void) {
+    private func setCancelHandler(_ invocation: SourceEditorCommandInvocation, _ completionHandler: @escaping (Error?) -> Void) {
         invocation.cancellationHandler = { [weak self] in
             self?.finish(with: self?.createError("The operation was cancelled"), handler: completionHandler)
         }
@@ -59,7 +63,7 @@ class BaseCommand: NSObject, XCSourceEditorCommand {
             .getProjectPath()
     }
     
-    private func generateMock(proxy: MockGeneratorXPCProtocol, invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) {
+    private func generateMock(proxy: MockGeneratorXPCProtocol, invocation: SourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) {
         do {
             let projectURL = try getProjectURLOnMainThread()
             try tryToGenerateMock(atProjectURL: projectURL, proxy: proxy, invocation: invocation) { [weak self] (result, error) in
@@ -70,14 +74,14 @@ class BaseCommand: NSObject, XCSourceEditorCommand {
         }
     }
 
-    private func tryToGenerateMock(atProjectURL projectURL: URL, proxy: MockGeneratorXPCProtocol, invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping ([String]?, Error?) -> Void) throws {
+    private func tryToGenerateMock(atProjectURL projectURL: URL, proxy: MockGeneratorXPCProtocol, invocation: SourceEditorCommandInvocation, completionHandler: @escaping ([String]?, Error?) -> Void) throws {
         let range = try getRange(selections: try getSelection(invocation: invocation))
         let actualLineNumber = range.start.line + 1
-        proxy.generateMock(fromFileContents: invocation.buffer.completeBuffer, projectURL: projectURL, line: actualLineNumber, column: range.start.column, templateName: templateName, withReply: completionHandler)
+        proxy.generateMock(fromFileContents: invocation.sourceTextBuffer.completeBuffer, projectURL: projectURL, line: actualLineNumber, column: range.start.column, templateName: templateName, withReply: completionHandler)
     }
 
-    private func getSelection(invocation: XCSourceEditorCommandInvocation) throws -> NSMutableArray {
-        let selections = invocation.buffer.selections
+    private func getSelection(invocation: SourceEditorCommandInvocation) throws -> NSMutableArray {
+        let selections = invocation.sourceTextBuffer.selections
         guard selections.count > 0 else {
             throw createError("No selections. Place the cursor within the class declaration")
         }
@@ -91,10 +95,10 @@ class BaseCommand: NSObject, XCSourceEditorCommand {
         return range
     }
 
-    private func handleGenerateMock(invocation: XCSourceEditorCommandInvocation, result: [String]?, error: Error?, completionHandler: @escaping (Error?) -> Void) {
+    private func handleGenerateMock(invocation: SourceEditorCommandInvocation, result: [String]?, error: Error?, completionHandler: @escaping (Error?) -> Void) {
         track(result)
         if let result = result {
-            invocation.buffer.completeBuffer = result.joined(separator: "\n")
+            invocation.sourceTextBuffer.completeBuffer = result.joined(separator: "\n")
         }
         finish(with: error, handler: completionHandler)
     }
@@ -135,7 +139,7 @@ class BaseCommand: NSObject, XCSourceEditorCommand {
 
         func invalidationHandler(_ closure: @escaping () -> ()) {
             connection?.invalidationHandler = closure
-            SourceEditorExtension.setUpConnection()
+            XPCManager.setUpConnection()
         }
         
         func remoteObjectProxyWithErrorHandler(_ closure: @escaping (MockGeneratorXPCProtocol) -> (), _ errorHandler: @escaping (Error) -> ()) {
