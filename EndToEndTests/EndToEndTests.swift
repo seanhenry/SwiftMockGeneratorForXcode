@@ -4,29 +4,103 @@ import XcodeKit
 
 class EndToEndTests: XCTestCase {
 
-    // The test project is copied to the resources directory build phases
-    let testProject = Bundle(for: EndToEndTests.self).resourcePath! + "/TestProject"
-
-    func test_plugin() {
+    override class func setUp() {
+        super.setUp()
         let prefs = Preferences()
         prefs.automaticallyDetectProjectPath = false
         prefs.projectPath = URL(fileURLWithPath: testProject)
         XPCManager.setUpConnection()
+    }
+
+    func test_generatesSimpleMock() {
+        assertMockGeneratesExpected("SimpleProtocolMock")
+    }
+
+    func test_deletesMockBody() {
+        assertMockGeneratesExpected("DeleteBodyMock")
+    }
+
+    func test_generatesReturnStubs() {
+        assertMockGeneratesExpected("ReturnProtocolMock")
+    }
+
+    func test_generatesPropertyMock() {
+        assertMockGeneratesExpected("PropertyProtocolMock")
+    }
+
+    func test_catchesMethodParameterInvocations() {
+        assertMockGeneratesExpected("MethodParameterProtocolMock")
+    }
+
+    func test_addsDefaultValuesToStubsWherePossible() {
+        assertMockGeneratesExpected("DefaultValuesMock")
+    }
+
+    func test_escapesKeywords() {
+        assertMockGeneratesExpected("KeywordsMock")
+    }
+
+    func test_handlesOverloadedMethodsAndProperties() {
+        assertMockGeneratesExpected("OverloadProtocolMock")
+    }
+
+    func test_closureSupport() {
+        assertMockGeneratesExpected("ClosureProtocolMock")
+    }
+
+    func test_annotationSupport() {
+        assertMockGeneratesExpected("ParameterAnnotationMock")
+    }
+
+    func test_typealiasSupport() {
+        assertMockGeneratesExpected("TypealiasProtocolMock")
+    }
+
+    func test_handlesGenericMethods() {
+        assertMockGeneratesExpected("GenericMethodMock")
+    }
+
+    func test_throwingSupport() {
+        assertMockGeneratesExpected("ThrowingProtocolMock")
+    }
+
+    func test_protocolInitializer() {
+        assertMockGeneratesExpected("InitialiserProtocolMock")
+    }
+
+    func test_multipleProtocol() {
+        assertMockGeneratesExpected("MultipleProtocolMock")
+    }
+
+    func test_deepInheritance() {
+        assertMockGeneratesExpected("DeepInheritanceMock")
+    }
+
+    func test_diamondInheritance() {
+        assertMockGeneratesExpected("DiamondInheritanceProtocolMock")
+    }
+
+    func test_overloadingAcrossProtocols() {
+        assertMockGeneratesExpected("RecursiveProtocolMock")
+    }
+
+    func test_generatesFromTupleTypes() {
+        assertMockGeneratesExpected("TupleProtocolMock")
+    }
+
+    func assertMockGeneratesExpected(_ fileName: String) {
         let command = TestCommand()
-        let invocation = createCommandInvocation("KeywordsMock")
-        let expected = getExpected("KeywordsMock")
-        for _ in 0...0 {
+        let invocation = createCommandInvocation(fileName)
+        let expected = getExpected(fileName)
+        measure {
             let s = DispatchSemaphore(value: 0)
-            autoreleasepool {
-                command.perform(with: invocation) { (error) in
-                    XCTAssertNil(error)
-                    XCTAssertEqual(invocation.sourceTextBuffer.completeBuffer, expected)
-                    s.signal()
-                }
+            command.perform(with: invocation) { (error) in
+                XCTAssertNil(error)
+                XCTAssertEqual(invocation.sourceTextBuffer.completeBuffer, expected)
+                s.signal()
             }
             s.wait()
         }
-        print("fin")
     }
 
     private func getExpected(_ fileName: String) -> String {
