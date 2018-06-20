@@ -9,7 +9,6 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let writer = TempFileWriterUtil()
         resolver = ResolverFactory.createResolver(filePaths: [])
     }
 

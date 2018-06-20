@@ -11,7 +11,6 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        let writer = TempFileWriterUtil()
         resolver = ResolverFactory.createResolver(filePaths: [])
         visitor = MethodGatheringVisitor(resolver: resolver)
     }
@@ -127,7 +126,6 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     private func assertTypeIs<T: UseCasesType>(_ input: String, _ t: T.Type, _ text: String, line: UInt = #line) {
         let result = transformType(input, T.self)
-        XCTAssert(result is T, line: line)
         XCTAssertEqual(result.text, text, line: line)
     }
 
