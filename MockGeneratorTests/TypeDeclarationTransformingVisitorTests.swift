@@ -5,15 +5,16 @@ import UseCases
 
 class TypeDeclarationTransformingVisitorTests: XCTestCase {
 
+    var resolver: Resolver!
+
     override func setUp() {
         super.setUp()
-        ResolveUtil.sameFileCursorInfoRequest = SKCursorInfoRequest(files: [])
-        ResolveUtil.cursorInfoRequest = SKCursorInfoRequest(files: [])
+        let writer = TempFileWriterUtil()
+        resolver = ResolverFactory.createResolver(filePaths: [])
     }
 
     override func tearDown() {
-        ResolveUtil.sameFileCursorInfoRequest = nil
-        ResolveUtil.cursorInfoRequest = nil
+        resolver = nil
         super.tearDown()
     }
 
@@ -62,13 +63,13 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
 
     func test_shouldIgnoreNonClassMocks() {
         let p = ElementParser.parseType("Type")
-        let protocols = TypeDeclarationTransformingVisitor.transformMock(p).protocols
+        let protocols = TypeDeclarationTransformingVisitor.transformMock(p, resolver: resolver).protocols
         XCTAssert(protocols.isEmpty)
     }
 
     private func transformProtocols(_ string: String) -> [UseCasesProtocol] {
         let p = SKElementFactoryTestHelper.build(from: string)!.typeDeclarations[0]
-        let protocols = TypeDeclarationTransformingVisitor.transformMock(p).protocols
+        let protocols = TypeDeclarationTransformingVisitor.transformMock(p, resolver: resolver).protocols
         return protocols
     }
 

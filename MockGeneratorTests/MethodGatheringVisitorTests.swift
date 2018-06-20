@@ -7,12 +7,13 @@ import UseCases
 class MethodGatheringVisitorTests: XCTestCase {
 
     var visitor: MethodGatheringVisitor!
+    var resolver: Resolver!
 
     override func setUp() {
         super.setUp()
-        visitor = MethodGatheringVisitor()
-        ResolveUtil.sameFileCursorInfoRequest = SKCursorInfoRequest(files: [])
-        ResolveUtil.cursorInfoRequest = SKCursorInfoRequest(files: [])
+        let writer = TempFileWriterUtil()
+        resolver = ResolverFactory.createResolver(filePaths: [])
+        visitor = MethodGatheringVisitor(resolver: resolver)
     }
 
     override func tearDown() {
@@ -125,15 +126,14 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func assertTypeIs<T: UseCasesType>(_ input: String, _ t: T.Type, _ text: String, line: UInt = #line) {
-        let type = ElementParser.parseType(input)
-        let result = MethodGatheringVisitor.transformType(type)
+        let result = transformType(input, T.self)
         XCTAssert(result is T, line: line)
         XCTAssertEqual(result.text, text, line: line)
     }
 
     private func transformType<T: UseCasesType>(_ input: String, _ t: T.Type) -> T {
         let type = ElementParser.parseType(input)
-        return MethodGatheringVisitor.transformType(type) as! T
+        return MethodGatheringVisitor.transformType(type, resolver: resolver) as! T
     }
 
     func test_visit_shouldTransformProtocolMethod() {
@@ -176,7 +176,6 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     private func transformMethod(_ input: String) -> UseCasesMethod {
         let method = ElementParser.parseFunctionDeclaration(input)
-        let visitor = MethodGatheringVisitor()
         method.accept(visitor)
         return visitor.methods[0]
     }
@@ -215,7 +214,6 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     private func transformProperty(_ input: String) -> UseCasesProperty {
         let property = ElementParser.parseVariableDeclaration(input)
-        let visitor = MethodGatheringVisitor()
         property.accept(visitor)
         return visitor.properties[0]
     }

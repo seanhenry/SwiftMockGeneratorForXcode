@@ -87,12 +87,10 @@ class ResolvePerformanceTests: XCTestCase {
     
     func resolve(_ testFile: String) {
         let sourceFiles = SourceFileFinder(projectRoot: URL(fileURLWithPath: testProject)).findSourceFiles()
-        ResolveUtil.sameFileCursorInfoRequest = SKCursorInfoRequest(files: [])
-        ResolveUtil.cursorInfoRequest = SKCursorInfoRequest(files: sourceFiles)
         let fileContents = try! String(contentsOfFile: "\(testProject)/\(testFile).swift")
         let (contents, _) = CaretTestHelper.findCaretOffset(fileContents)
         let classFile = SKElementFactoryTestHelper.build(from: contents)!
         let classElement = classFile.typeDeclarations[0]
-        _ = TypeDeclarationTransformingVisitor.transformMock(classElement)
+        _ = TypeDeclarationTransformingVisitor.transformMock(classElement, resolver: ResolverFactory.createResolver(filePaths: sourceFiles))
     }
 }

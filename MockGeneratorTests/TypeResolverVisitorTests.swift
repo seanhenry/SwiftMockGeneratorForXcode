@@ -12,7 +12,7 @@ class TypeResolverVisitorTests: XCTestCase {
     var array: ArrayType!
     var dictionary: DictionaryType!
     var optional: OptionalType!
-    var mockResolveUtil: MockResolveUtil!
+    var mockResolver: MockResolver!
 
     override func setUp() {
         super.setUp()
@@ -22,13 +22,13 @@ class TypeResolverVisitorTests: XCTestCase {
         array = createArray("[T]", type)
         dictionary = createDictionary("[T: T]", type, type)
         optional = createOptional("T?", type)
-        mockResolveUtil = MockResolveUtil()
-        visitor = TypeResolverVisitor(resolveUtil: mockResolveUtil)
+        mockResolver = MockResolver()
+        visitor = TypeResolverVisitor(resolver: mockResolver)
     }
 
     override func tearDown() {
         visitor = nil
-        mockResolveUtil = nil
+        mockResolver = nil
         genericClause = nil
         classType = nil
         type = nil
@@ -119,7 +119,7 @@ class TypeResolverVisitorTests: XCTestCase {
     func test_visit_shouldTransformToTypealiasType() {
         let assignment = TypealiasAssignmentImpl(text: "= T", children: [], offset: 0, length: 0, type: type)
         let typeAlias = TypealiasImpl(text: "typealias A = T", children: [], offset: 0, length: 0, name: "A", typealiasAssignment: assignment)
-        mockResolveUtil.stubbedResolveResult = typeAlias
+        mockResolver.stubbedResolveResult = typeAlias
         let aliasedType = createType("A")
         aliasedType.accept(visitor)
         XCTAssertEqual(visitor.resolvedType?.text, "T")
@@ -127,7 +127,7 @@ class TypeResolverVisitorTests: XCTestCase {
 
     // MARK: - Helpers
 
-    class MockResolveUtil: ResolveUtil {
+    class MockResolver: Resolver {
 
         var invokedResolve = false
         var invokedResolveCount = 0
@@ -135,7 +135,7 @@ class TypeResolverVisitorTests: XCTestCase {
         var invokedResolveParametersList = [(element: Element, Void)]()
         var stubbedResolveResult: Element!
 
-        override func resolve(_ element: Element) -> Element? {
+        func resolve(_ element: Element) -> Element? {
             invokedResolve = true
             invokedResolveCount += 1
             invokedResolveParameters = (element, ())
@@ -161,10 +161,10 @@ class TypeResolverVisitorTests: XCTestCase {
     }
 
     private func stubResolveToGenericClause() {
-        mockResolveUtil.stubbedResolveResult = genericClause
+        mockResolver.stubbedResolveResult = genericClause
     }
 
     private func stubResolveToNormalType() {
-        mockResolveUtil.stubbedResolveResult = classType
+        mockResolver.stubbedResolveResult = classType
     }
 }

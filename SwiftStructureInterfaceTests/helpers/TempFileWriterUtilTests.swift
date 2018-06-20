@@ -17,8 +17,12 @@ class TempFileWriterUtilTests: XCTestCase {
 
     // MARK: - tempFile
 
-    func test_tempFile_shouldBeDifferentEveryTime() {
-        XCTAssertNotEqual(TempFileWriterUtil().tempFile, TempFileWriterUtil().tempFile)
+    func test_tempFile_shouldWriteToADifferentFileEveryTime() {
+        let writer = TempFileWriterUtil()
+        writer.write("test")
+        let file = writer.tempFile
+        writer.write("test")
+        XCTAssertNotEqual(writer.tempFile, file)
     }
 
     // MARK: - write

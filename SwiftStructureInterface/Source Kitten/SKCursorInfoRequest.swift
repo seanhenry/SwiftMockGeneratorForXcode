@@ -2,9 +2,9 @@ import SourceKittenFramework
 
 public class SKCursorInfoRequest: CursorInfoRequest {
 
-    private let files: [String]
+    let files: [String]
     private static let cores: Int = {
-        return ProcessInfo.processInfo.processorCount
+        return max(ProcessInfo.processInfo.processorCount, 4)
     }()
     private static let parallelOption: String = {
         return "-j\(cores)"

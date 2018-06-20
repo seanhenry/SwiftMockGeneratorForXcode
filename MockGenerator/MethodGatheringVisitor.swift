@@ -8,11 +8,20 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     private(set) var properties = [UseCasesProperty]()
     private(set) var methods = [UseCasesMethod]()
     private(set) var type: UseCasesType = UseCasesTypeIdentifierBuilder(identifier: "").build()
+    private let resolver: Resolver
 
-    static func transformType(_ element: Element) -> UseCasesType {
-        let visitor = MethodGatheringVisitor()
+    init(resolver: Resolver) {
+        self.resolver = resolver
+    }
+
+    static func transformType(_ element: Element, resolver: Resolver) -> UseCasesType {
+        let visitor = MethodGatheringVisitor(resolver: resolver)
         element.accept(visitor)
         return visitor.type
+    }
+
+    func transformType(_ element: Element) -> UseCasesType {
+        return MethodGatheringVisitor.transformType(element, resolver: resolver)
     }
 
     override func visitType(_ element: Type) {
@@ -24,34 +33,34 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
             let identifiers = transformToIdentifiers(element)
             type = UseCasesTypeIdentifier(identifiers: NSMutableArray(array: identifiers as NSArray))
         } else {
-            type = UseCasesGenericType(identifier: element.typeName, arguments: element.genericArguments.map { MethodGatheringVisitor.transformType($0) })
+            type = UseCasesGenericType(identifier: element.typeName, arguments: element.genericArguments.map { transformType($0) })
         }
     }
 
     override func visitArrayType(_ element: ArrayType) {
-        type = UseCasesArrayType(type: MethodGatheringVisitor.transformType(element.elementType), useVerboseSyntax: false)
+        type = UseCasesArrayType(type: transformType(element.elementType), useVerboseSyntax: false)
     }
 
     override func visitDictionaryType(_ element: DictionaryType) {
-        let key = MethodGatheringVisitor.transformType(element.keyType)
-        let value = MethodGatheringVisitor.transformType(element.valueType)
+        let key = transformType(element.keyType)
+        let value = transformType(element.valueType)
         type = UseCasesDictionaryType(keyType: key, valueType: value, useVerboseSyntax: false)
     }
 
     override func visitOptionalType(_ element: OptionalType) {
         let iuo = element.text.hasSuffix("!")
-        let type = MethodGatheringVisitor.transformType(element.type)
+        let type = transformType(element.type)
         self.type = UseCasesOptionalType(type: type, isImplicitlyUnwrapped: iuo, useVerboseSyntax: false)
     }
 
     override func visitFunctionType(_ element: FunctionType) {
-        type = UseCasesFunctionType(arguments: element.arguments.elements.map { MethodGatheringVisitor.transformType($0.typeAnnotation.type) },
-            returnType: MethodGatheringVisitor.transformType(element.returnType),
+        type = UseCasesFunctionType(arguments: element.arguments.elements.map { transformType($0.typeAnnotation.type) },
+            returnType: transformType(element.returnType),
             throws: element.throws)
     }
 
     override func visitTupleType(_ element: TupleType) {
-        type = UseCasesTupleType(tupleElements: element.elements.map { UseCasesTupleTypeTupleElement(label: $0.label, type: MethodGatheringVisitor.transformType($0.typeAnnotation.type)) })
+        type = UseCasesTupleType(tupleElements: element.elements.map { UseCasesTupleTypeTupleElement(label: $0.label, type: transformType($0.typeAnnotation.type)) })
     }
 
     private func transformToIdentifiers(_ element: TypeIdentifier) -> [String] {
@@ -72,7 +81,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     private func transform(_ element: FunctionDeclaration) -> UseCasesMethod {
         let genericParameter = transformGenericParameters(from: element)
         let parameters = transformParameters(element.parameters)
-        let returnType = element.returnType.map { MethodGatheringVisitor.transformType($0) } ?? UseCasesTypeIdentifier(identifier: "")
+        let returnType = element.returnType.map { transformType($0) } ?? UseCasesTypeIdentifier(identifier: "")
         return UseCasesMethod(name: element.name,
             genericParameters: genericParameter,
             returnType: UseCasesResolvedType(originalType: returnType, resolvedType: returnType),
@@ -92,7 +101,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
             UseCasesParameter(
                 externalName: parameter.externalParameterName,
                 internalName: parameter.localParameterName,
-                type: UseCasesResolvedType(originalType: MethodGatheringVisitor.transformType(parameter.typeAnnotation.type), resolvedType: resolveAndTransform(parameter.typeAnnotation.type)),
+                type: UseCasesResolvedType(originalType: transformType(parameter.typeAnnotation.type), resolvedType: resolveAndTransform(parameter.typeAnnotation.type)),
                 text: parameter.text,
                 isEscaping: isEscaping(parameter))
         }
@@ -104,18 +113,18 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
 
     private func resolveAndTransform(_ type: Type) -> UseCasesType {
         let resolved = resolveType(type)
-        return MethodGatheringVisitor.transformType(resolved)
+        return transformType(resolved)
     }
 
     private func resolveType(_ type: Type) -> Type {
-        let visitor = TypeResolverVisitor(resolveUtil: ResolveUtil())
+        let visitor = TypeResolverVisitor(resolver: resolver)
         type.accept(visitor)
         return visitor.resolvedType ?? type
     }
 
     override func visitVariableDeclaration(_ element: VariableDeclaration) {
         properties.append(UseCasesProperty(name: element.name,
-            type: MethodGatheringVisitor.transformType(element.type),
+            type: transformType(element.type),
             isWritable: element.isWritable,
             declarationText: element.text))
     }

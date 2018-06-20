@@ -4,15 +4,15 @@ import SwiftStructureInterface
 class TypeResolverVisitor: ElementVisitor {
 
     var resolvedType: Type?
-    private let resolveUtil: ResolveUtil
+    private let resolver: Resolver
 
-    init(resolveUtil: ResolveUtil) {
-        self.resolveUtil = resolveUtil
+    init(resolver: Resolver) {
+        self.resolver = resolver
     }
 
     override func visitType(_ element: Type) {
-        guard let resolved = self.resolveUtil.resolve(element) else { return }
-        let visitor = ResolvedVisitor(resolveUtil: resolveUtil)
+        guard let resolved = self.resolver.resolve(element) else { return }
+        let visitor = ResolvedVisitor(resolver: resolver)
         resolved.accept(visitor)
         resolvedType = visitor.resolvedType ?? element
     }
@@ -41,23 +41,23 @@ class TypeResolverVisitor: ElementVisitor {
     }
 
     private func resolveType(_ element: Type) -> Type? {
-        let visitor = TypeResolverVisitor(resolveUtil: resolveUtil)
+        let visitor = TypeResolverVisitor(resolver: resolver)
         element.accept(visitor)
         return visitor.resolvedType
     }
 
     private class ResolvedVisitor: ElementVisitor {
 
-        let resolveUtil: ResolveUtil
+        let resolver: Resolver
         var resolvedType: Type?
 
-        init(resolveUtil: ResolveUtil) {
-            self.resolveUtil = resolveUtil
+        init(resolver: Resolver) {
+            self.resolver = resolver
         }
 
         override func visitTypealias(_ element: Typealias) {
             resolvedType = element.typealiasAssignment.type
-            if let resolved = ResolveUtil().resolve(element.typealiasAssignment.type) {
+            if let resolved = resolver.resolve(element.typealiasAssignment.type), resolved !== element {
                 resolved.accept(self)
             }
         }
