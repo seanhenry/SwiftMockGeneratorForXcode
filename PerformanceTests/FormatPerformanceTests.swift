@@ -2,6 +2,9 @@ import XCTest
 @testable import SwiftStructureInterface
 
 class FormatPerformanceTests: XCTestCase {
+    
+    // The test project is copied to the resources directory build phases
+    let testProject = Bundle(for: FormatPerformanceTests.self).resourcePath! + "/TestProject"
 
     func test_formatPerformance() {
         var result: String?
