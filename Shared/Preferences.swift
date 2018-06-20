@@ -2,6 +2,13 @@ import Foundation
 
 class Preferences {
 
+    /*
+     Possible locations:
+     ~/Library/Preferences (many plists found here)
+     ~/Library/Containers/codes..../Data/Library/Preferences
+     ~/Library/Group Containers
+ */
+
     private let userDefaults: UserDefaults
     private let projectPathKey = "project.path"
     private let projectPathHistoryKey = "project.path.history"

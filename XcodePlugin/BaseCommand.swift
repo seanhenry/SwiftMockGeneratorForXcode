@@ -40,9 +40,11 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         }
     }
 
-    private func finish(with error: Error?, handler: (Error?) -> ()) {
+    private func finish(with error: Error?, handler: @escaping (Error?) -> ()) {
         track(error)
-        handler(error)
+        DispatchQueue.main.async {
+            handler(error)
+        }
     }
 
     private func getProjectURLOnMainThread() throws -> URL {
@@ -92,9 +94,12 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     }
 
     private func handleGenerateMock(invocation: SourceEditorCommandInvocation, result: [String]?, error: Error?, completionHandler: @escaping (Error?) -> Void) {
-        track(result)
         if let result = result {
-            invocation.sourceTextBuffer.completeBuffer = result.joined(separator: "\n")
+            let buffer = result.joined(separator: "\n")
+            DispatchQueue.main.async {
+                invocation.sourceTextBuffer.completeBuffer = buffer
+            }
+            track(result)
         }
         finish(with: error, handler: completionHandler)
     }
