@@ -116,6 +116,12 @@
 		1918AB5C20D9D4A1003BE795 /* SourceKittenFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D961F4003EA00900937 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1918AB5D20D9D4A1003BE795 /* SWXMLHash.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D971F4003EA00900937 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1918AB5E20D9D4A1003BE795 /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D981F4003EA00900937 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1918AB6020D9D4FE003BE795 /* ResolvePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */; };
+		1918AB6320D9D517003BE795 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
+		1918AB6420D9D52D003BE795 /* UseCases.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14ECA5DB2011855C00C849CF /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1918AB6520D9D52D003BE795 /* MockGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1918AB6620D9DF62003BE795 /* CaretTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF790C9B97835CC38B63 /* CaretTestHelper.swift */; };
+		1918AB6720D9E03B003BE795 /* SKElementFactoryTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF935B41E2DAED50B8D54 /* SKElementFactoryTestHelper.swift */; };
 		1A93A0BDC7938F866CE300E3 /* GetterSetterKeywordBlockWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A2DB0D4AD54C60DD318C /* GetterSetterKeywordBlockWrapper.swift */; };
 		1A93A230DDC9A6B74852A6CC /* TupleTypeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AD3763C3553E24D96928 /* TupleTypeWrapper.swift */; };
 		1A93A24475395D05B88F3B04 /* GenericParameterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A467A56E94A8BA062ABA /* GenericParameterWrapper.swift */; };
@@ -445,6 +451,13 @@
 			remoteGlobalIDString = 14A81E261F436941001A6221;
 			remoteInfo = SwiftStructureInterface;
 		};
+		1918AB6120D9D510003BE795 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14276C601F4F312E00EA7753;
+			remoteInfo = MockGenerator;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -619,6 +632,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				1918AB6420D9D52D003BE795 /* UseCases.framework in CopyFiles */,
+				1918AB6520D9D52D003BE795 /* MockGenerator.framework in CopyFiles */,
 				1918AB5820D9D4A1003BE795 /* Bocho.framework in CopyFiles */,
 				1918AB5920D9D4A1003BE795 /* Diagnostic.framework in CopyFiles */,
 				1918AB5A20D9D4A1003BE795 /* Lexer.framework in CopyFiles */,
@@ -699,6 +714,7 @@
 		14F8671020D9270E00E79758 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		1918AB4520D9D2A1003BE795 /* PerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1918AB4920D9D2A1003BE795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvePerformanceTests.swift; sourceTree = "<group>"; };
 		1A93A0B34112C3F60B114436 /* DictionaryTypeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTypeWrapper.swift; sourceTree = "<group>"; };
 		1A93A1324992E7B9C5FD59B3 /* TypealiasAssignmentWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypealiasAssignmentWrapper.swift; sourceTree = "<group>"; };
 		1A93A1C1A69DBF83F8E7C64A /* ArrayTypeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTypeWrapper.swift; sourceTree = "<group>"; };
@@ -1036,6 +1052,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1918AB6320D9D517003BE795 /* MockGenerator.framework in Frameworks */,
 				1918AB4A20D9D2A1003BE795 /* SwiftStructureInterface.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1262,6 +1279,7 @@
 			isa = PBXGroup;
 			children = (
 				14F8670620D911D800E79758 /* FormatPerformanceTests.swift */,
+				1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */,
 				1918AB4920D9D2A1003BE795 /* Info.plist */,
 			);
 			path = PerformanceTests;
@@ -2020,6 +2038,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1918AB6220D9D510003BE795 /* PBXTargetDependency */,
 				1918AB4C20D9D2A1003BE795 /* PBXTargetDependency */,
 			);
 			name = PerformanceTests;
@@ -2571,6 +2590,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1918AB5120D9D2BC003BE795 /* FormatPerformanceTests.swift in Sources */,
+				1918AB6020D9D4FE003BE795 /* ResolvePerformanceTests.swift in Sources */,
+				1918AB6720D9E03B003BE795 /* SKElementFactoryTestHelper.swift in Sources */,
+				1918AB6620D9DF62003BE795 /* CaretTestHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2651,6 +2673,11 @@
 			isa = PBXTargetDependency;
 			target = 14A81E261F436941001A6221 /* SwiftStructureInterface */;
 			targetProxy = 1918AB4B20D9D2A1003BE795 /* PBXContainerItemProxy */;
+		};
+		1918AB6220D9D510003BE795 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14276C601F4F312E00EA7753 /* MockGenerator */;
+			targetProxy = 1918AB6120D9D510003BE795 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3328,15 +3355,18 @@
 		1918AB4D20D9D2A1003BE795 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/lib/include";
 				INFOPLIST_FILE = PerformanceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.PerformanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -3346,15 +3376,18 @@
 		1918AB4E20D9D2A1003BE795 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/lib/include";
 				INFOPLIST_FILE = PerformanceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.PerformanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
