@@ -21,6 +21,7 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         connection.remoteObjectProxyWithErrorHandler({ [weak self] proxy in
             self?.generateMock(proxy: proxy, invocation: invocation, completionHandler: completionHandler)
         }) { [weak self] error in
+            XPCManager.resetConnection()
             self?.finish(with: error, handler: completionHandler)
         }
     }

@@ -11,7 +11,7 @@ public class Connection {
         connection.invalidationHandler = { [weak self] in
             self?.externalInvalidationHandler?()
             DispatchQueue.main.async {
-                _ = XPCManager.setUpConnection()
+                XPCManager.setUpConnection()
             }
         }
         connection.interruptionHandler = { [weak self] in

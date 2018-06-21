@@ -6,6 +6,6 @@ import XcodePluginProxy
 class SourceEditorExtension: NSObject, XCSourceEditorExtension {
 
     func extensionDidFinishLaunching() {
-        _ = XPCManager.setUpConnection()
+        XPCManager.setUpConnection()
     }
 }

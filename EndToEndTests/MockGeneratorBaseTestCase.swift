@@ -9,7 +9,7 @@ class MockGeneratorBaseTestCase: XCTestCase {
         let prefs = Preferences()
         prefs.automaticallyDetectProjectPath = false
         prefs.projectPath = URL(fileURLWithPath: testProject)
-        _ = XPCManager.setUpConnection()
+        XPCManager.setUpConnection()
     }
 
     override class func tearDown() {
