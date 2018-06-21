@@ -19,6 +19,9 @@ public class Generator {
         guard let typeElement = (elementUnderCaret as? TypeDeclaration) ?? ElementTreeUtil().findParentType(elementUnderCaret) else {
             return reply(with: "Place the cursor on a mock class declaration")
         }
+        guard typeElement.inheritedTypes.count > 0 else {
+            return reply(with: "MockClass must implement at least 1 protocol")
+        }
         return buildMock(toFile: file, atElement: typeElement, templateName: templateName, resolver: resolver)
     }
 

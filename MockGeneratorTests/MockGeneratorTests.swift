@@ -14,10 +14,6 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("DeleteBodyMock")
     }
 
-    func test_doesNotDeleteMockBody_whenMockGenerateFails() {
-        assertMockGeneratesError("DoNotDeleteBodyMock", "Could not find a protocol on DoNotDeleteBodyMock")
-    }
-
     func test_generatesReturnStubs() {
         assertMockGeneratesExpected("ReturnProtocolMock")
     }
@@ -86,6 +82,14 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("TupleProtocolMock")
     }
 
+    func test_doesNotDeleteMockBody_whenMockGenerateFails() {
+        assertMockGeneratesError(fileName: "DoNotDeleteBodyMock", "Could not find a protocol on DoNotDeleteBodyMock")
+    }
+
+    func test_returnsErrorWhenMockClassDoesNotInheritFromAnything() {
+        assertMockGeneratesError(contents: "class MockClass {<caret>}", "MockClass must implement at least 1 protocol")
+    }
+
     func test_generatesMockForAllCaretPositions() {
         let expected = readFile(named: "SimpleProtocolMock_expected.swift")
         let caretFile = readFile(named: "CaretSuccessTest.swift")
@@ -130,9 +134,13 @@ class MockGeneratorTests: XCTestCase {
         assertMock(mock, generates: expected, line: line)
     }
 
-    private func assertMockGeneratesError(_ fileName: String, _ expectedError: String, line: UInt = #line) {
-        let mock = try! String(contentsOfFile: testProject + "/" + fileName + ".swift")
-        let (lines, error) = generateMock(mock)
+    private func assertMockGeneratesError(fileName: String, _ expectedError: String, line: UInt = #line) {
+        let contents = try! String(contentsOfFile: testProject + "/" + fileName + ".swift")
+        assertMockGeneratesError(contents: contents, expectedError, line: line)
+    }
+
+    private func assertMockGeneratesError(contents: String, _ expectedError: String, line: UInt = #line) {
+        let (lines, error) = generateMock(contents)
         XCTAssertNil(lines, line: line)
         let nsError = error as NSError?
         XCTAssertEqual(nsError?.localizedDescription, expectedError, line: line)
