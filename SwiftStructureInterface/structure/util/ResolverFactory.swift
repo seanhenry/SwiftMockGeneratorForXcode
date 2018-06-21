@@ -8,6 +8,6 @@ public class ResolverFactory {
         let sameFileResolver = SKResolver(manyFileResolver, cursorInfoRequest: SKCursorInfoRequest(files: []), fileWriter: fileWriter)
         let writeToFile = WriteFileResolver(sameFileResolver, fileWriter: fileWriter)
         let cachingResolver = CachingResolver(writeToFile)
-        return GenericParameterResolver(cachingResolver)
+        return LocalResolver(cachingResolver)
     }
 }
