@@ -33,7 +33,7 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
 
     private func setErrorHandlers(_ completionHandler: @escaping (Error?) -> Void) {
         connection.interruptionHandler { [weak self] in
-            self?.finish(with: self?.createError("The XPC service was interrupted"), handler: completionHandler)
+            self?.finish(with: self?.createError("There was an unexpected error. Try again or raise an issue on GitHub"), handler: completionHandler)
         }
         connection.invalidationHandler { [weak self] in
             self?.finish(with: self?.createError("The XPC service was invalidated"), handler: completionHandler)
