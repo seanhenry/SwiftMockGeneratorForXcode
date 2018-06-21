@@ -15,7 +15,7 @@ class MockGeneratorBaseTestCase: XCTestCase {
     override class func tearDown() {
         let prefs = Preferences()
         prefs.automaticallyDetectProjectPath = true
-        XPCManager.setUpConnection().connection.invalidate()
+        XPCManager.connection.connection.invalidate()
         super.tearDown()
     }
 

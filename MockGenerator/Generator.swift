@@ -38,8 +38,9 @@ public class Generator {
         guard let (newFile, newTypeElement) = delete(contentsOf: element) else {
             return reply(with: "Could not delete body from: \(element.text)")
         }
-        let fileLines = insert(mockLines, atTypeElement: newTypeElement, in: newFile)
-        return (format(fileLines), nil)
+        let formatted = format(mockLines, relativeTo: newTypeElement)
+        let fileLines = insert(formatted, atTypeElement: newTypeElement, in: newFile)
+        return (fileLines, nil)
     }
     
     private static func getMockBody(from element: Element, templateName: String, resolver: Resolver) -> [String] {
@@ -70,11 +71,7 @@ public class Generator {
         return fileLines
     }
     
-    private static func format(_ lines: [String]) -> [String] {
-        let newFileText = lines.joined(separator: "\n")
-        guard let newFile = SKElementFactory().build(from: newFileText) else { return lines }
-        FormatUtil.formatRequest = SKFormatRequest()
-        let formatted = FormatUtil().format(newFile).text
-        return formatted.getLines()
+    private static func format(_ lines: [String], relativeTo element: Element) -> [String] {
+        return FormatUtil(useTabs: false, spaces: 4).format(lines, in: element)
     }
 }

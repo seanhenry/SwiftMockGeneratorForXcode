@@ -1,9 +1,9 @@
 @testable import TestProject
 
 class AnotherDeclarationInTheFileShouldNotBeAffected {
-
+    
     func shouldNotInterfere() {
-
+        
     }
 }
 
