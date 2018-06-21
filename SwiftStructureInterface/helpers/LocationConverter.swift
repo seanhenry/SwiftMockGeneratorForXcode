@@ -43,10 +43,6 @@ public class LocationConverter {
         return count + Int64(string.utf8.count)
     }
 
-    private static func getOffset(_ character: UnicodeScalar) -> Int64 {
-        return Int64(String(character).utf8.count)
-    }
-
     public static func convert(caretOffset: Int64, in string: String) -> (line: Int, column: Int)? {
         guard isOffsetValid(Int(caretOffset), in: string) else { return nil }
         let strings = string.getLines()
