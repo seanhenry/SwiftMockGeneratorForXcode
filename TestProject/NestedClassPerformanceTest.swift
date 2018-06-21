@@ -393,7 +393,7 @@ class Parser<ResultType> {
         return P(lexer: lexer, fileContents: fileContents, declarationToken: token, locationConverter: locationConverter).parse()
     }
 
-    class MockClass: SimpleProtocol {
+    class MockClass: ClosureProtocol {
         <caret>
     }
 }

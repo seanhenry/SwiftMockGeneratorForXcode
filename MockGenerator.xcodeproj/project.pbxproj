@@ -122,6 +122,7 @@
 		1918AB6520D9D52D003BE795 /* MockGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1918AB6620D9DF62003BE795 /* CaretTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFF790C9B97835CC38B63 /* CaretTestHelper.swift */; };
 		1918AB6720D9E03B003BE795 /* SKElementFactoryTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF935B41E2DAED50B8D54 /* SKElementFactoryTestHelper.swift */; };
+		193F12E220DB650D00716F56 /* TestProject in Copy TestProject */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
 		1A93A00D1A3EF74D4263167F /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AF8F17B334DCE8DB23B8 /* Resolver.swift */; };
 		1A93A0BDC7938F866CE300E3 /* GetterSetterKeywordBlockWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A2DB0D4AD54C60DD318C /* GetterSetterKeywordBlockWrapper.swift */; };
 		1A93A170885ABB6C2E1B7951 /* LocalResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AE1949E15B3FA9E6FB1B /* LocalResolverTests.swift */; };
@@ -141,7 +142,9 @@
 		1A93A576BC560413188588C8 /* GenericParameterClauseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AA420D2F3BD6ED1D7074 /* GenericParameterClauseWrapper.swift */; };
 		1A93A66AE6D94BCEEB4C511F /* SubscriptDeclarationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AB9F2930C670589AD95B /* SubscriptDeclarationWrapper.swift */; };
 		1A93A6B1B685B831C351EEEB /* TypealiasAssignmentWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A1324992E7B9C5FD59B3 /* TypealiasAssignmentWrapper.swift */; };
+		1A93A6F3EE069C822332E7D2 /* NaiveFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A0AF96ABE56D175FD497 /* NaiveFormatterTests.swift */; };
 		1A93A7391F6B778DD8C0C0B3 /* FunctionDeclarationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A6D09EE084FCB9AF61AB /* FunctionDeclarationWrapper.swift */; };
+		1A93A7CA326F8FF316964D5A /* NaiveFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AF1FE6D6A62283EB17D5 /* NaiveFormatter.swift */; };
 		1A93A86DCC5F139AE7C24CF3 /* ResolverDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AF32A6BF2DFD9D1D8D85 /* ResolverDecorator.swift */; };
 		1A93A913D48703BCBBD7F06E /* TupleTypeElementWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A3B7802B7F35F3194538 /* TupleTypeElementWrapper.swift */; };
 		1A93A9C4E690B4E5AACD44C7 /* OptionalTypeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A43EF1A317D3802BEC66 /* OptionalTypeWrapper.swift */; };
@@ -657,6 +660,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		193F12E120DB650100716F56 /* Copy TestProject */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				193F12E220DB650D00716F56 /* TestProject in Copy TestProject */,
+			);
+			name = "Copy TestProject";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -727,6 +741,7 @@
 		1918AB4520D9D2A1003BE795 /* PerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1918AB4920D9D2A1003BE795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvePerformanceTests.swift; sourceTree = "<group>"; };
+		1A93A0AF96ABE56D175FD497 /* NaiveFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaiveFormatterTests.swift; sourceTree = "<group>"; };
 		1A93A0B34112C3F60B114436 /* DictionaryTypeWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTypeWrapper.swift; sourceTree = "<group>"; };
 		1A93A1324992E7B9C5FD59B3 /* TypealiasAssignmentWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypealiasAssignmentWrapper.swift; sourceTree = "<group>"; };
 		1A93A174FBB1FA2200EEAC49 /* ResolverFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolverFactory.swift; sourceTree = "<group>"; };
@@ -765,6 +780,7 @@
 		1A93AE14A95A431AD8D1300F /* ResolverFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolverFactoryTests.swift; sourceTree = "<group>"; };
 		1A93AE1949E15B3FA9E6FB1B /* LocalResolverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalResolverTests.swift; sourceTree = "<group>"; };
 		1A93AE22C460AE72FFEA9F41 /* AccessLevelModifierWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessLevelModifierWrapper.swift; sourceTree = "<group>"; };
+		1A93AF1FE6D6A62283EB17D5 /* NaiveFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaiveFormatter.swift; sourceTree = "<group>"; };
 		1A93AF32A6BF2DFD9D1D8D85 /* ResolverDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolverDecorator.swift; sourceTree = "<group>"; };
 		1A93AF43746057047DABB557 /* CachingResolverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachingResolverTests.swift; sourceTree = "<group>"; };
 		1A93AF8F17B334DCE8DB23B8 /* Resolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
@@ -1309,6 +1325,14 @@
 			path = PerformanceTests;
 			sourceTree = "<group>";
 		};
+		1A93A415728A5E6EEC0AB990 /* format */ = {
+			isa = PBXGroup;
+			children = (
+				1A93A0AF96ABE56D175FD497 /* NaiveFormatterTests.swift */,
+			);
+			path = format;
+			sourceTree = "<group>";
+		};
 		1A93A5ED68305131A2A16A0C /* resolve */ = {
 			isa = PBXGroup;
 			children = (
@@ -1321,6 +1345,14 @@
 				1A93AE1949E15B3FA9E6FB1B /* LocalResolverTests.swift */,
 			);
 			path = resolve;
+			sourceTree = "<group>";
+		};
+		1A93A6D99F4A08AF8C097771 /* format */ = {
+			isa = PBXGroup;
+			children = (
+				1A93AF1FE6D6A62283EB17D5 /* NaiveFormatter.swift */,
+			);
+			path = format;
 			sourceTree = "<group>";
 		};
 		1A93A736A9C10F4794FC64B9 /* resolve */ = {
@@ -1679,6 +1711,7 @@
 				35CDFC389AA6A362117D44ED /* ElementTreeUtil.swift */,
 				1A93A736A9C10F4794FC64B9 /* resolve */,
 				1A93A174FBB1FA2200EEAC49 /* ResolverFactory.swift */,
+				1A93A6D99F4A08AF8C097771 /* format */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1792,6 +1825,7 @@
 				35CDF55A2F9EFDC3DE2DAF78 /* FormatUtilTests.swift */,
 				35CDF9105A02896D0A18B904 /* ElementTreeUtilTests.swift */,
 				1A93A5ED68305131A2A16A0C /* resolve */,
+				1A93A415728A5E6EEC0AB990 /* format */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1947,6 +1981,7 @@
 				14A81E2C1F436941001A6221 /* Frameworks */,
 				14A81E2D1F436941001A6221 /* Resources */,
 				14AB7E2C1F43E63C0001E6C3 /* CopyFiles */,
+				193F12E120DB650100716F56 /* Copy TestProject */,
 			);
 			buildRules = (
 			);
@@ -2502,6 +2537,7 @@
 				1A93A4B7D6C5A5957E64F49F /* WriteFileResolver.swift in Sources */,
 				1A93AD3091735C110C4A2C09 /* ResolverFactory.swift in Sources */,
 				1A93AFD7816B4CB448E546C5 /* LocalResolver.swift in Sources */,
+				1A93A7CA326F8FF316964D5A /* NaiveFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2576,6 +2612,7 @@
 				1A93AF3B06DE42A14CC4B2DE /* ResolverDecoratorDummy.swift in Sources */,
 				1A93A564CB3A6F2A92B04E78 /* ResolverFactoryTests.swift in Sources */,
 				1A93A170885ABB6C2E1B7951 /* LocalResolverTests.swift in Sources */,
+				1A93A6F3EE069C822332E7D2 /* NaiveFormatterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
