@@ -11,4 +11,10 @@ import Foundation
             templateName: templateName)
         reply(lines, error)
     }
+
+    #if DEBUG
+    func crash() {
+        fatalError()
+    }
+    #endif
 }

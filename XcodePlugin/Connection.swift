@@ -4,6 +4,7 @@ public class Connection {
 
     let connection: NSXPCConnection
     private var externalInvalidationHandler: (() -> ())?
+    private var externalInterruptionHandler: (() -> ())?
 
     init(_ connection: NSXPCConnection) {
         self.connection = connection
@@ -13,6 +14,9 @@ public class Connection {
                 _ = XPCManager.setUpConnection()
             }
         }
+        connection.interruptionHandler = { [weak self] in
+            self?.externalInterruptionHandler?()
+        }
     }
 
     func invalidateConnection() {
@@ -20,7 +24,7 @@ public class Connection {
     }
 
     func interruptionHandler(_ closure: @escaping () -> ()) {
-        connection.interruptionHandler = closure
+        externalInterruptionHandler = closure
     }
 
     func invalidationHandler(_ closure: @escaping () -> ()) {
