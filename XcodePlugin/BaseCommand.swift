@@ -125,7 +125,8 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     private func track(_ error: Error?) {
         let tracker = GoogleAnalyticsTracker()
         if let error = error {
-            tracker.track(category: templateName, action: error.localizedDescription)
+            let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+            tracker.track(category: templateName, action: "\(version)_\(error.localizedDescription)")
         }
     }
     
