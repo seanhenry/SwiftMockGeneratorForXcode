@@ -10,6 +10,8 @@ protocol SourceTextBuffer: class {
     var completeBuffer: String { get set }
     var selections: NSMutableArray { get }
     var lines: NSMutableArray { get }
+    var usesTabsForIndentation: Bool { get }
+    var indentationWidth: Int { get }
 }
 
 extension XCSourceEditorCommandInvocation: SourceEditorCommandInvocation {

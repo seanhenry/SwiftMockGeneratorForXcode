@@ -81,7 +81,10 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
                 projectURL: projectURL,
                 line: actualLineNumber,
                 column: range.start.column,
-                templateName: templateName)
+                templateName: templateName,
+                usesTabsForIndentation: invocation.sourceTextBuffer.usesTabsForIndentation,
+                indentationWidth: invocation.sourceTextBuffer.indentationWidth
+        )
         proxy.generateMock(from: model, withReply: completionHandler)
     }
 

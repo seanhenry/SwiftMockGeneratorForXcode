@@ -67,6 +67,8 @@ class MockGeneratorBaseTestCase: XCTestCase {
         var selections: NSMutableArray = NSMutableArray()
         var completeBuffer: String = ""
         var lines: NSMutableArray
+        var usesTabsForIndentation: Bool = false
+        var indentationWidth: Int = 4
 
         init(buffer: String, selections: NSMutableArray) {
             self.completeBuffer = buffer

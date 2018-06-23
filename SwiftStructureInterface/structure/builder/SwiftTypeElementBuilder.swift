@@ -37,7 +37,7 @@ class SwiftTypeElementBuilder: BodySwiftElementBuilderTemplate {
         let splitDeclaration = self.getClassAndInheritanceClause(declarationText)
         guard splitDeclaration.count > 1 else { return [] }
         let classPart = splitDeclaration[0] + ":"
-        var typeInheritancePart = splitDeclaration[1]
+        let typeInheritancePart = splitDeclaration[1]
         let inheritedTypeNames = typeInheritancePart.components(separatedBy: ",")
                 .map { $0 + "," }
         return getOffsets(fromTypes: typeTexts, typeNames: inheritedTypeNames, typeClauseOffset: classPart.utf8.count, in: declarationText)
