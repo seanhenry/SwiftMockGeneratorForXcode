@@ -7,79 +7,79 @@ class ResolvePerformanceTests: XCTestCase {
     // The test project is copied to the resources directory build phases
     let testProject = Bundle(for: FormatPerformanceTests.self).resourcePath! + "/TestProject"
     
-    func test_generatesSimpleMock() { // 0.005
+    func test_generatesSimpleMock() {
         measure { resolve("SimpleProtocolMock") }
     }
     
-    func test_deletesMockBody() { // 0.08
+    func test_deletesMockBody() {
         measure { resolve("DeleteBodyMock") }
     }
     
-    func test_generatesReturnStubs() { // 0.145
+    func test_generatesReturnStubs() {
         measure { resolve("ReturnProtocolMock") }
     }
     
-    func test_generatesPropertyMock() { // 0.1
+    func test_generatesPropertyMock() {
         measure { resolve("PropertyProtocolMock") }
     }
     
-    func test_catchesMethodParameterInvocations() { // 0.58
+    func test_catchesMethodParameterInvocations() {
         measure { resolve("MethodParameterProtocolMock") }
     }
     
-    func test_addsDefaultValuesToStubsWherePossible() { // 0.157
+    func test_addsDefaultValuesToStubsWherePossible() {
         measure { resolve("DefaultValuesMock") }
     }
     
-    func test_escapesKeywords() { // 0.58
+    func test_escapesKeywords() {
         measure { resolve("KeywordsMock") }
     }
     
-    func test_handlesOverloadedMethodsAndProperties() { // 1.1
+    func test_handlesOverloadedMethodsAndProperties() {
         measure { resolve("OverloadProtocolMock") }
     }
     
-    func test_closureSupport() { // 0.888
+    func test_closureSupport() {
         measure { resolve("ClosureProtocolMock") }
     }
     
-    func test_annotationSupport() { // 0.273
+    func test_annotationSupport() {
         measure { resolve("ParameterAnnotationMock") }
     }
     
-    func test_typealiasSupport() { // 0.6
+    func test_typealiasSupport() {
         measure { resolve("TypealiasProtocolMock") }
     }
     
-    func test_handlesGenericMethods() { // 1.2
+    func test_handlesGenericMethods() {
         measure { resolve("GenericMethodMock") }
     }
     
-    func test_throwingSupport() { // 0.3
+    func test_throwingSupport() {
         measure { resolve("ThrowingProtocolMock") }
     }
     
-    func test_protocolInitializer() { // 0.534
+    func test_protocolInitializer() {
         measure { resolve("InitialiserProtocolMock") }
     }
     
-    func test_multipleProtocol() { // 0.243
+    func test_multipleProtocol() {
         measure { resolve("MultipleProtocolMock") }
     }
     
-    func test_deepInheritance() { // 0.365
+    func test_deepInheritance() {
         measure { resolve("DeepInheritanceMock") }
     }
     
-    func test_diamondInheritance() { // 0.138
+    func test_diamondInheritance() {
         measure { resolve("DiamondInheritanceProtocolMock") }
     }
     
-    func test_overloadingAcrossProtocols() { // 0.255
+    func test_overloadingAcrossProtocols() {
         measure { resolve("RecursiveProtocolMock") }
     }
     
-    func test_generatesFromTupleTypes() { // 0.505
+    func test_generatesFromTupleTypes() {
         measure {
             resolve("TupleProtocolMock")
         }
