@@ -73,10 +73,15 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         }
     }
 
-    private func tryToGenerateMock(atProjectURL projectURL: URL, proxy: MockGeneratorXPCProtocol, invocation: SourceEditorCommandInvocation, completionHandler: @escaping ([String]?, Error?) -> Void) throws {
+    private func tryToGenerateMock(atProjectURL projectURL: URL, proxy: MockGeneratorXPCProtocol, invocation: SourceEditorCommandInvocation, completionHandler: @escaping (XPCBufferInstructions?, Error?) -> Void) throws {
         let range = try getRange(selections: try getSelection(invocation: invocation))
         let actualLineNumber = range.start.line + 1
-        proxy.generateMock(fromFileContents: invocation.sourceTextBuffer.completeBuffer, projectURL: projectURL, line: actualLineNumber, column: range.start.column, templateName: templateName, withReply: completionHandler)
+        proxy.generateMock(fromFileContents: invocation.sourceTextBuffer.completeBuffer,
+                projectURL: projectURL,
+                line: actualLineNumber,
+                column: range.start.column,
+                templateName: templateName,
+                withReply: completionHandler)
     }
 
     private func getSelection(invocation: SourceEditorCommandInvocation) throws -> NSMutableArray {
@@ -94,21 +99,22 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         return range
     }
 
-    private func handleGenerateMock(invocation: SourceEditorCommandInvocation, result: [String]?, error: Error?, completionHandler: @escaping (Error?) -> Void) {
+    private func handleGenerateMock(invocation: SourceEditorCommandInvocation, result: XPCBufferInstructions?, error: Error?, completionHandler: @escaping (Error?) -> Void) {
         if let result = result {
-            let buffer = result.joined(separator: "\n")
             DispatchQueue.main.async {
-                invocation.sourceTextBuffer.completeBuffer = buffer
+                let bufferEditor = BufferEditor()
+                bufferEditor.delete(from: result.deleteIndex, length: result.deleteLength, in: invocation.sourceTextBuffer.lines)
+                bufferEditor.insert(result.linesToInsert, into: invocation.sourceTextBuffer.lines, at: result.insertIndex)
             }
             track(result)
         }
         finish(with: error, handler: completionHandler)
     }
 
-    private func track(_ lines: [String]?) {
+    private func track(_ instructions: XPCBufferInstructions?) {
         let tracker = GoogleAnalyticsTracker()
-        if let lines = lines {
-            tracker.track(category: templateName, action: "generated", value: lines.count)
+        if let insertCount = instructions?.linesToInsert.count {
+            tracker.track(category: templateName, action: "generated", value: insertCount)
         }
     }
 

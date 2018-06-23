@@ -3,27 +3,27 @@ public protocol Declarations: Element {
 
 public extension Declarations {
 
-    var variableDeclarations: [VariableDeclaration] {
+    public var variableDeclarations: [VariableDeclaration] {
         return filterChildren(VariableDeclaration.self)
     }
 
-    var initializerDeclarations: [InitializerDeclaration] {
+    public var initializerDeclarations: [InitializerDeclaration] {
         return filterChildren(InitializerDeclaration.self)
     }
 
-    var functionDeclarations: [FunctionDeclaration] {
+    public var functionDeclarations: [FunctionDeclaration] {
         return filterChildren(FunctionDeclaration.self)
     }
 
-    var typeDeclarations: [TypeDeclaration] {
+    public var typeDeclarations: [TypeDeclaration] {
         return filterChildren(TypeDeclaration.self)
     }
 
-    var typealiasDeclarations: [Typealias] {
+    public var typealiasDeclarations: [Typealias] {
         return filterChildren(Typealias.self)
     }
 
-    var subscriptDeclarations: [SubscriptDeclaration] {
+    public var subscriptDeclarations: [SubscriptDeclaration] {
         return filterChildren(SubscriptDeclaration.self)
     }
 

@@ -34,10 +34,12 @@ class SwiftTypeElementBuilder: BodySwiftElementBuilderTemplate {
     }
 
     private func getInheritedTypesTextOffsets(typeTexts: [String], declarationText: String) -> [(offset: Int64, length: Int64)] {
-        let splitDeclaration = self.splitDeclaration(declarationText)
+        let splitDeclaration = self.getClassAndInheritanceClause(declarationText)
         guard splitDeclaration.count > 1 else { return [] }
         let classPart = splitDeclaration[0] + ":"
-        let inheritedTypeNames = splitDeclaration[1].components(separatedBy: ",").map { $0 + "," }
+        var typeInheritancePart = splitDeclaration[1]
+        let inheritedTypeNames = typeInheritancePart.components(separatedBy: ",")
+                .map { $0 + "," }
         return getOffsets(fromTypes: typeTexts, typeNames: inheritedTypeNames, typeClauseOffset: classPart.utf8.count, in: declarationText)
     }
 
@@ -54,7 +56,7 @@ class SwiftTypeElementBuilder: BodySwiftElementBuilderTemplate {
     }
 
     private func getInheritedTypesStrings(declarationText: String) -> [String] {
-        let inheritedTypesString = splitDeclaration(declarationText)
+        let inheritedTypesString = getClassAndInheritanceClause(declarationText)
         var typesTextStrings = [String]()
         if inheritedTypesString.count > 1 {
             typesTextStrings = inheritedTypesString[1]
@@ -65,7 +67,11 @@ class SwiftTypeElementBuilder: BodySwiftElementBuilderTemplate {
         return typesTextStrings
     }
 
-    private func splitDeclaration(_ declarationText: String) -> [String] {
+    private func getClassAndInheritanceClause(_ declarationText: String) -> [String] {
+        var declarationText = declarationText
+        if let whereClauseRange = declarationText.range(of: " where ") {
+            declarationText = String(declarationText[...whereClauseRange.lowerBound])
+        }
         return declarationText.components(separatedBy: CharacterSet(charactersIn: ":{"))
     }
 }

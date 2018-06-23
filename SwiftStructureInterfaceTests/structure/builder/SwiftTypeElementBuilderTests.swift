@@ -68,6 +68,14 @@ class SwiftTypeElementBuilderTests: XCTestCase {
         XCTAssertEqual(property?.text, "var property: String { get set }")
         XCTAssertEqual(method?.text, "func method()")
     }
+    
+    func test_build_shouldBuildWhereClause() {
+        let file = SKElementFactoryTestHelper.build(from: "class A: B, C where C: D {}")
+        let `class` = file?.typeDeclarations[0]
+        XCTAssertEqual(`class`?.inheritedTypes.count, 2)
+        XCTAssertEqual(`class`?.inheritedTypes[0].text, "B")
+        XCTAssertEqual(`class`?.inheritedTypes[1].text, "C")
+    }
 
     // MARK: - Helpers
 

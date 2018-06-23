@@ -12,6 +12,11 @@ class MockGeneratorBaseTestCase: XCTestCase {
         XPCManager.setUpConnection()
     }
 
+    override func setUp() {
+        super.setUp()
+        continueAfterFailure = false
+    }
+
     override class func tearDown() {
         let prefs = Preferences()
         prefs.automaticallyDetectProjectPath = true
@@ -22,11 +27,13 @@ class MockGeneratorBaseTestCase: XCTestCase {
     func assertMockGeneratesExpected(_ fileName: String, file: StaticString = #file, line: UInt = #line) {
         let command = TestCommand()
         let invocation = createCommandInvocation(fileName)
-        let expected = getExpected(fileName)
+        let expected = getExpected(fileName).components(separatedBy: "\n").map { $0 + "\n" }
         let e = expectation(description: #function)
         command.perform(with: invocation) { (error) in
             XCTAssertNil(error, file: file, line: line)
-            XCTAssertEqual(invocation.sourceTextBuffer.completeBuffer, expected, file: file, line: line)
+            zip(invocation.sourceTextBuffer.lines as! [String], expected).forEach {
+                XCTAssertEqual($0.0, $0.1, file: file, line: line)
+            }
             e.fulfill()
         }
         waitForExpectations(timeout: 10, handler: nil)
@@ -59,10 +66,13 @@ class MockGeneratorBaseTestCase: XCTestCase {
     class SourceTextBufferStub: SourceTextBuffer {
         var selections: NSMutableArray = NSMutableArray()
         var completeBuffer: String = ""
+        var lines: NSMutableArray
 
         init(buffer: String, selections: NSMutableArray) {
             self.completeBuffer = buffer
             self.selections = selections
+            let lines = completeBuffer.components(separatedBy: "\n").map { $0 + "\n" } as NSArray
+            self.lines = lines.mutableCopy() as! NSMutableArray
         }
     }
 

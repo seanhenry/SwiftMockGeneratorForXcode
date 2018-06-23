@@ -103,7 +103,8 @@ class MockGeneratorTests: XCTestCase {
         } while contentsLineColumn.lineColumn != nil
         XCTAssertGreaterThan(caretLineColumns.count, 0)
         caretLineColumns.forEach { lineColumn in
-            let (lines, error) = Generator.generateMock(fromFileContents: contentsLineColumn.contents, projectURL: URL(fileURLWithPath: testProject), line: lineColumn.line, column: lineColumn.column, templateName: "spy")
+            let file = try! String(contentsOfFile: testProject + "/SimpleProtocolMock.swift")
+            let (lines, error) = generateMock(file)
             XCTAssertNil(error, "Failed to generate mock from caret at line: \(lineColumn.line) column: \(lineColumn.column)")
             StringCompareTestHelper.assertEqualStrings(join(lines), expected)
         }
@@ -164,11 +165,37 @@ class MockGeneratorTests: XCTestCase {
 
     private func generateMock(_ mock: String) -> ([String]?, Error?) {
         let result = CaretTestHelper.findCaretLineColumn(mock)
-        return Generator.generateMock(fromFileContents: result.contents, projectURL: URL(fileURLWithPath: testProject), line: result.lineColumn!.line, column: result.lineColumn!.column, templateName: "spy")
+        let (instructions, error) = Generator.generateMock(fromFileContents: result.contents,
+                                      projectURL: URL(fileURLWithPath: testProject),
+                                      line: result.lineColumn!.line,
+                                      column: result.lineColumn!.column,
+                                      templateName: "spy")
+        return (applyInstructions(instructions, to: result.contents), error)
+    }
+
+    private func applyInstructions(_ instructions: BufferInstructions?, to contents: String) -> [String]? {
+        guard let instructions = instructions else {
+            return nil
+        }
+        var lines = split(contents)
+        lines.removeSubrange(instructions.deleteIndex..<instructions.deleteIndex+instructions.deleteLength)
+        lines.insert(contentsOf: instructions.linesToInsert, at: instructions.insertIndex)
+        return lines
+    }
+
+    private func split(_ contents: String) -> [String] {
+        var lines = contents.components(separatedBy: "\n")
+        lines = lines.enumerated().map { (i, line) in
+            if i == lines.count-1 {
+                return line
+            }
+            return "\(line)\n"
+        }
+        return lines
     }
 
     private func join(_ lines: [String]?) -> String? {
         guard let lines = lines else { return nil }
-        return lines.joined(separator: "\n")
+        return lines.joined()
     }
 }

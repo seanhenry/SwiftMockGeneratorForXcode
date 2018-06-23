@@ -9,6 +9,7 @@ protocol SourceEditorCommandInvocation: class {
 protocol SourceTextBuffer: class {
     var completeBuffer: String { get set }
     var selections: NSMutableArray { get }
+    var lines: NSMutableArray { get }
 }
 
 extension XCSourceEditorCommandInvocation: SourceEditorCommandInvocation {
