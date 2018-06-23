@@ -22,7 +22,7 @@ class FormatPerformanceTests: XCTestCase {
         let lines = contents.components(separatedBy: "\n")
         let element = CaretUtil().findElementUnderCaret(in: fileElement, cursorOffset: offset!)!
         measure {
-            _ = util.format(lines, in: element)
+            _ = util.format(lines, relativeTo: element)
         }
     }
 

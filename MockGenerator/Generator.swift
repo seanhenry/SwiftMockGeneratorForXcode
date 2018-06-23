@@ -80,6 +80,6 @@ public class Generator {
     
     private func format(_ lines: [String], relativeTo element: Element) -> [String] {
         return FormatUtil(useTabs: useTabsForIndentation, spaces: indentationWidth)
-                .format(lines, in: element)
+                .format(lines, relativeTo: element)
     }
 }

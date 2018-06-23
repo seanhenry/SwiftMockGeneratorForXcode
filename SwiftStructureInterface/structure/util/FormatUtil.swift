@@ -6,10 +6,6 @@ public class FormatUtil {
     private let useTabs: Bool
     private let spaces: Int
 
-    public convenience init() {
-        self.init(useTabs: false, spaces: 4)
-    }
-
     public init(useTabs: Bool, spaces: Int) {
         self.useTabs = useTabs
         self.spaces = spaces
@@ -28,7 +24,7 @@ public class FormatUtil {
         return try? FormatUtil.formatRequest.format(filePath: tempFile)
     }
 
-    public func format(_ lines: [String], in element: Element) -> [String] {
+    public func format(_ lines: [String], relativeTo element: Element) -> [String] {
         guard let file = element.file,
               let (_, column) = LocationConverter.convert(caretOffset: element.offset, in: file.text) else {
             return lines

@@ -115,7 +115,7 @@ class FormatUtilTests: XCTestCase {
         let inputLines = input.components(separatedBy: "\n")
         let expectedLines = expected.components(separatedBy: "\n")
         let element = SKElementFactoryTestHelper.build(from: file)!.typeDeclarations[0]
-        let formatted = util.format(inputLines, in: element)
+        let formatted = util.format(inputLines, relativeTo: element)
         XCTAssertFalse(formatted.isEmpty)
         zip(formatted, expectedLines).forEach { XCTAssertEqual($0, $1, line: line) }
     }
