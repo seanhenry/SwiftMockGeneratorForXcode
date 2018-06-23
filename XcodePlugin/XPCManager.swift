@@ -13,10 +13,21 @@ public class XPCManager {
 
     private static func createXPCInterface() -> NSXPCInterface {
         let interface = NSXPCInterface(with: MockGeneratorXPCProtocol.self)
-        let selector = #selector(MockGeneratorXPCProtocol.generateMock(fromFileContents:projectURL:line:column:templateName:withReply:))
-        let classes = NSSet(array: [XPCBufferInstructions.self]) as! Set<AnyHashable>
-        interface.setClasses(classes, for: selector, argumentIndex: 0, ofReply: true)
+        setClassesForRequest(interface)
+        setClassesForReply(interface)
         return interface
+    }
+
+    private class func setClassesForRequest(_ interface: NSXPCInterface) {
+        let selector = #selector(MockGeneratorXPCProtocol.generateMock(from:withReply:))
+        let classes = NSSet(object: XPCMockGeneratorModel.self) as! Set<AnyHashable>
+        interface.setClasses(classes, for: selector, argumentIndex: 0, ofReply: false)
+    }
+
+    private static func setClassesForReply(_ interface: NSXPCInterface) {
+        let selector = #selector(MockGeneratorXPCProtocol.generateMock(from:withReply:))
+        let classes = NSSet(object: XPCBufferInstructions.self) as! Set<AnyHashable>
+        interface.setClasses(classes, for: selector, argumentIndex: 0, ofReply: true)
     }
 
     public static func resetConnection() {

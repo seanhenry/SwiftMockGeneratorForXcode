@@ -211,6 +211,7 @@
 		35CDF3068F08A9CECAF888F1 /* InitializerDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFD17D307EAAF76CE7C96 /* InitializerDeclaration.swift */; };
 		35CDF3270B837BA5C8C37BB2 /* NamedSwiftElementBuilderTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFBCF807CB8DBB43C9647 /* NamedSwiftElementBuilderTemplate.swift */; };
 		35CDF33A981D9FC40DD8DED0 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF1DF23DA287BB89C98CE /* Element.swift */; };
+		35CDF3676028D0A35CB5747B /* XPCMockGeneratorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF1307511E06B4B839168 /* XPCMockGeneratorModel.swift */; };
 		35CDF387C58C21F44568F808 /* ElementVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF344435560DD24CF7F7B /* ElementVisitorTests.swift */; };
 		35CDF395131A881DA3866A4B /* NamedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF34E9830199994ECA542 /* NamedElement.swift */; };
 		35CDF3FCD960FF97E00313B9 /* DummyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF2B6AA231A57A21D6EE3 /* DummyCommand.swift */; };
@@ -257,6 +258,7 @@
 		35CDF77EBDF6ED0F08B184D7 /* TypeImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF6EEB39DE818601D1665 /* TypeImpl.swift */; };
 		35CDF7A5A88CC4FB9B3D4B46 /* SwiftPropertyElementBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDBA69D15F512927BA6F /* SwiftPropertyElementBuilderTests.swift */; };
 		35CDF7CC43284E5D7E50D365 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFA651F3CC48921FAC53C /* File.swift */; };
+		35CDF7F2EA060154856EBA05 /* XPCMockGeneratorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF1307511E06B4B839168 /* XPCMockGeneratorModel.swift */; };
 		35CDF7F6524EC221BE5ED5E7 /* GetterSetterKeywordBlockParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF9A5F5EDFF3B46144AE1 /* GetterSetterKeywordBlockParser.swift */; };
 		35CDF80097FBC72B6A2550A5 /* StubCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFFDBE599C4E0238A240C /* StubCommand.swift */; };
 		35CDF8211817BFEEC7A18664 /* VariableDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF3151A8261DBAF65150F /* VariableDeclaration.swift */; };
@@ -804,6 +806,7 @@
 		35CDF0A3EED0623521D5E9A9 /* OptionalTypeImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalTypeImpl.swift; sourceTree = "<group>"; };
 		35CDF1121340EC72BABA5D40 /* InitializerDeclarationImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializerDeclarationImpl.swift; sourceTree = "<group>"; };
 		35CDF11896E7FDE479C1D716 /* TypeParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeParserTests.swift; sourceTree = "<group>"; };
+		35CDF1307511E06B4B839168 /* XPCMockGeneratorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPCMockGeneratorModel.swift; sourceTree = "<group>"; };
 		35CDF14DD45E8554072A9C62 /* SwiftFileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftFileTests.swift; sourceTree = "<group>"; };
 		35CDF14E02A70B054AAE6819 /* TypealiasAssignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypealiasAssignment.swift; sourceTree = "<group>"; };
 		35CDF1647AB7FA499E01C6FA /* GenericParameterClauseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericParameterClauseParser.swift; sourceTree = "<group>"; };
@@ -1290,6 +1293,7 @@
 				14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */,
 				14CA2D9C1F40049700900937 /* MockGeneratorXPC-Bridging-Header.h */,
 				1A93A92BFF242500EED35DEF /* XPCBufferInstructions.swift */,
+				35CDF1307511E06B4B839168 /* XPCMockGeneratorModel.swift */,
 			);
 			path = MockGeneratorXPC;
 			sourceTree = "<group>";
@@ -2663,6 +2667,7 @@
 				14CA2D871F4000AB00900937 /* main.m in Sources */,
 				14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */,
 				1A93A592375D1E4B0EE6252E /* XPCBufferInstructions.swift in Sources */,
+				35CDF7F2EA060154856EBA05 /* XPCMockGeneratorModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2680,6 +2685,7 @@
 				14F866F420D90D0200E79758 /* GoogleAnalyticsTracker.swift in Sources */,
 				14F866EC20D90BC600E79758 /* XcodeKit+Transformers.swift in Sources */,
 				1A93A021E80364CB35D30B2F /* BufferEditor.swift in Sources */,
+				35CDF3676028D0A35CB5747B /* XPCMockGeneratorModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

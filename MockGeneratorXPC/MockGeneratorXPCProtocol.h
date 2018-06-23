@@ -1,19 +1,20 @@
 #import <Foundation/Foundation.h>
 @class XPCBufferInstructions;
+@class XPCMockGeneratorModel;
 
 @protocol MockGeneratorXPCProtocol
 
-- (void)generateMockFromFileContents:(nonnull NSString *)contents
-                          projectURL:(nonnull NSURL *)projectURL
-                                line:(NSInteger)line
-                              column:(NSInteger)column
-                        templateName:(nonnull NSString *)templateName
-                           withReply:(nonnull void (^)(XPCBufferInstructions *_Nullable, NSError *_Nullable))reply;
+NS_ASSUME_NONNULL_BEGIN
+
+- (void)generateMockFrom:(XPCMockGeneratorModel *)model
+               withReply:(void (^)(XPCBufferInstructions *_Nullable, NSError *_Nullable))reply;
 
 #ifdef DEBUG
 
 - (void)crash;
 
 #endif
+
+NS_ASSUME_NONNULL_END
 
 @end

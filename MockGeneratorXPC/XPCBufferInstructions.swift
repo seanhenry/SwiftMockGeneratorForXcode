@@ -1,8 +1,13 @@
 @objc(XPCBufferInstructions) class XPCBufferInstructions: NSObject, NSSecureCoding {
+
     var deleteIndex: Int
     var deleteLength: Int
     var insertIndex: Int
     var linesToInsert: [String]
+
+    static var supportsSecureCoding: Bool {
+        return true
+    }
 
     init(deleteIndex: Int,
          deleteLength: Int,
@@ -14,15 +19,11 @@
         self.linesToInsert = linesToInsert
     }
 
-    static var supportsSecureCoding: Bool {
-        return true
-    }
-
     required init?(coder aDecoder: NSCoder) {
         guard let linesToInsert = aDecoder.decodeObject(of: [NSArray.self, NSString.self], forKey: "linesToInsert") as? [String],
-              let deleteIndex = aDecoder.decodeObject(of: NSNumber.self, forKey: "deleteIndex") as? NSNumber,
-              let deleteLength = aDecoder.decodeObject(of: NSNumber.self, forKey: "deleteLength") as? NSNumber,
-              let insertIndex = aDecoder.decodeObject(of: NSNumber.self, forKey: "insertIndex") as? NSNumber else {
+              let deleteIndex = aDecoder.decodeObject(of: NSNumber.self, forKey: "deleteIndex"),
+              let deleteLength = aDecoder.decodeObject(of: NSNumber.self, forKey: "deleteLength"),
+              let insertIndex = aDecoder.decodeObject(of: NSNumber.self, forKey: "insertIndex") else {
             return nil
         }
         self.deleteIndex = deleteIndex.intValue

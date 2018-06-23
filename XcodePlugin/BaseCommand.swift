@@ -76,12 +76,13 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     private func tryToGenerateMock(atProjectURL projectURL: URL, proxy: MockGeneratorXPCProtocol, invocation: SourceEditorCommandInvocation, completionHandler: @escaping (XPCBufferInstructions?, Error?) -> Void) throws {
         let range = try getRange(selections: try getSelection(invocation: invocation))
         let actualLineNumber = range.start.line + 1
-        proxy.generateMock(fromFileContents: invocation.sourceTextBuffer.completeBuffer,
+        let model = XPCMockGeneratorModel(
+                contents: invocation.sourceTextBuffer.completeBuffer,
                 projectURL: projectURL,
                 line: actualLineNumber,
                 column: range.start.column,
-                templateName: templateName,
-                withReply: completionHandler)
+                templateName: templateName)
+        proxy.generateMock(from: model, withReply: completionHandler)
     }
 
     private func getSelection(invocation: SourceEditorCommandInvocation) throws -> NSMutableArray {
