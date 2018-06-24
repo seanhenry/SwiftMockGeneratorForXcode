@@ -16,7 +16,7 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
 
     func test_parse_shouldReturnErrorForEmptyMethodParameter() {
         let parameter = parse("")
-        XCTAssert(parameter === ParameterImpl.errorParameter)
+        XCTAssert(parameter === ParameterImpl.emptyParameter)
     }
 
     func test_parse_shouldReturnMinimumParameter() {
@@ -55,7 +55,7 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
 
     func test_parse_shouldReturnErrorParameterWithNoParameterName() {
         let parameter = parse(": A")
-        XCTAssert(parameter === ParameterImpl.errorParameter)
+        XCTAssert(parameter === ParameterImpl.emptyParameter)
     }
 
     func test_parse_shouldReturnParameterWithTypeAnnotation() {

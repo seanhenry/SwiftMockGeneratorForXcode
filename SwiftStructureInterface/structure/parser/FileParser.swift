@@ -24,9 +24,6 @@ class FileParser: Parser<File> {
     }
 
     private func parseFile() -> File {
-        return FileImpl(text: getFileContents(),
-            children: parseDeclarations(),
-            offset: 0,
-            length: Int64(getFileContents().utf8.count))
+        return FileImpl(children: parseDeclarations())
     }
 }

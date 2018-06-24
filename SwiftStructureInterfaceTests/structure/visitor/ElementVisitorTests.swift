@@ -30,7 +30,7 @@ class ElementVisitorTests: XCTestCase {
         assertVisitorIsImplemented(testGenericParameterClause) { $0.invokedVisitGenericParameterClause }
         assertVisitorIsImplemented(testGenericParameter) { $0.invokedVisitGenericParameter }
         assertVisitorIsImplemented(testSubscriptDeclaration) { $0.invokedVisitSubscriptDeclaration }
-        assertVisitorIsImplemented(testTypealias) { $0.invokedVisitTypealias }
+        assertVisitorIsImplemented(testTypealiasDeclaration) { $0.invokedVisitTypealiasDeclaration }
         assertVisitorIsImplemented(testTypealiasAssignment) { $0.invokedVisitTypealiasAssignment }
         assertVisitorIsImplemented(testTypeAnnotation) { $0.invokedVisitTypeAnnotation }
         assertVisitorIsImplemented(testTupleTypeElement) { $0.invokedVisitTupleTypeElement }
@@ -178,11 +178,11 @@ class ElementVisitorTests: XCTestCase {
             invokedVisitFunctionType = true
         }
 
-        var invokedVisitTypealias = false
+        var invokedVisitTypealiasDeclaration = false
 
-        override func visitTypealias(_ element: Typealias) {
-            super.visitTypealias(element)
-            invokedVisitTypealias = true
+        override func visitTypealiasDeclaration(_ element: TypealiasDeclaration) {
+            super.visitTypealiasDeclaration(element)
+            invokedVisitTypealiasDeclaration = true
         }
 
         var invokedVisitTypealiasAssignment = false

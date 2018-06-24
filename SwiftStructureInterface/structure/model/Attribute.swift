@@ -1,0 +1,3 @@
+public protocol Attribute: Element {
+
+}

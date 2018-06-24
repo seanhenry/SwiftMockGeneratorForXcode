@@ -18,6 +18,6 @@ class MutationModifierParserTests: XCTestCase {
     // MARK: - Helpers
 
     func parse(_ text: String) -> String {
-        return createParser(text, MutationModifierParser.self).parse()
+        return createParser(text, MutationModifierParser.self).parse().text
     }
 }

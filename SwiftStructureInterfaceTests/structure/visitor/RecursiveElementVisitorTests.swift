@@ -26,14 +26,13 @@ class RecursiveElementVisitorTests: XCTestCase {
         let method = classElement.functionDeclarations[0]
         let property = classElement.variableDeclarations[0]
         file.accept(mockVisitor)
-        XCTAssertEqual(getInvokedSwiftElementCount(), 11)
-        XCTAssertEqual(getInvokedSwiftElement(at: 0).text, file.text)
-        XCTAssertEqual(getInvokedSwiftElement(at: 1).text, classElement.text)
-        XCTAssertEqual(getInvokedSwiftElement(at: 3).text, innerClass.text)
-        XCTAssertEqual(getInvokedSwiftElement(at: 7).text, innerMethod.text)
-        XCTAssertEqual(getInvokedSwiftElement(at: 8).text, innerProperty.text)
-        XCTAssertEqual(getInvokedSwiftElement(at: 9).text, method.text)
-        XCTAssertEqual(getInvokedSwiftElement(at: 10).text, property.text)
+        XCTAssert(didVisit(file))
+        XCTAssert(didVisit(classElement))
+        XCTAssert(didVisit(innerClass))
+        XCTAssert(didVisit(innerMethod))
+        XCTAssert(didVisit(innerProperty))
+        XCTAssert(didVisit(method))
+        XCTAssert(didVisit(property))
 
         XCTAssertEqual(getInvokedSwiftTypeDeclarationCount(), 2)
         XCTAssertEqual(getInvokedSwiftTypeDeclaration(at: 0).text, classElement.text)
@@ -53,8 +52,8 @@ class RecursiveElementVisitorTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func getInvokedSwiftElement(at index: Int) -> Element {
-        return mockVisitor.invokedVisitElementParametersList[index].element
+    private func didVisit(_ element: Element) -> Bool {
+        return mockVisitor.invokedVisitElementParametersList.contains { $0.element.text == element.text }
     }
 
     private func getInvokedSwiftTypeDeclaration(at index: Int) -> TypeDeclaration {

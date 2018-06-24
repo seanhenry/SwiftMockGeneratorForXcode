@@ -7,7 +7,7 @@ class SwiftFileTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        file = emptyFile
+        file = FileImpl.emptyFile
     }
 
     override func tearDown() {
@@ -48,7 +48,8 @@ class SwiftFileTests: XCTestCase {
         assertFilesAreEquivalent(initializer.parameters[0].typeAnnotation.type.file, file)
         let property = protocolA.variableDeclarations[0]
         assertFilesAreEquivalent(property.file, file)
-        assertFilesAreEquivalent(property.type.file, file)
+        assertFilesAreEquivalent(property.typeAnnotation.file, file)
+        assertFilesAreEquivalent(property.typeAnnotation.type.file, file)
         let method = protocolA.functionDeclarations[0]
         let methodParam = method.parameters[0]
         assertFilesAreEquivalent(method.file, file)

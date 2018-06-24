@@ -43,7 +43,7 @@ class TypealiasDeclarationParserTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> Typealias {
+    func parse(_ text: String) -> TypealiasDeclaration {
         let parser = createDeclarationParser(text, .typealias, TypealiasDeclarationParser.self)
         return parser.parse()
     }

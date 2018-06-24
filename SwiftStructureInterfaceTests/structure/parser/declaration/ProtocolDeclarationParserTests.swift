@@ -102,7 +102,7 @@ class ProtocolDeclarationParserTests: XCTestCase {
         let text = "protocol A: {}"
         let `protocol` = parse(text)
         XCTAssertEqual(`protocol`.inheritedTypes.count, 1)
-        XCTAssert(`protocol`.inheritedTypes[0] === TypeImpl.errorType)
+        XCTAssert(`protocol`.inheritedTypes[0] === TypeImpl.emptyType)
         assertElementText(`protocol`, text)
         XCTAssertEqual(`protocol`.bodyOffset, 13)
         XCTAssertEqual(`protocol`.bodyLength, 0)
@@ -140,7 +140,7 @@ class ProtocolDeclarationParserTests: XCTestCase {
     func test_parse_shouldAddChildrenToProtocol() {
         let text = "protocol A: B { }"
         let `protocol` = parse(text)
-        XCTAssert(`protocol`.children[0] === `protocol`.inheritedTypes[0])
+        XCTAssert(`protocol`.children.contains { $0 === `protocol`.inheritedTypes[0] })
     }
 
     // MARK: - Helpers

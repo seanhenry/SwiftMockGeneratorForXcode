@@ -1,12 +1,11 @@
-class GenericWhereClauseParser: Parser<String> {
+class GenericWhereClauseParser: Parser<GenericWhereClause> {
 
-    override func parse(start: LineColumn) -> String {
-        var clause = ""
-        if isNext(.where) {
-            advance()
-            clause.append("where ")
-            clause.append(parseRequirementList())
-        }
-        return clause
+    override func parse(start: LineColumn) -> GenericWhereClause {
+        guard isNext(.where) else { return GenericWhereClauseImpl.emptyGenericWhereClause }
+        return GenericWhereClauseImpl(children: [
+            parseKeyword(),
+            parseWhitespace(),
+            parseRequirementList()
+        ])
     }
 }

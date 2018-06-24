@@ -1,33 +1,42 @@
-class RequirementListParser: Parser<String> {
+class RequirementListParser: Parser<RequirementList> {
 
-    override func parse(start: LineColumn) -> String {
-        var requirements = ""
-        repeat {
-            tryToAppend(.comma, value: ", ", to: &requirements)
-            requirements.append(parseRequirement())
-        } while peekAtNextKind() == .comma
-        return requirements
-    }
-
-    private func parseRequirement() -> String {
-        var requirement = ""
-        tryToAppendType(to: &requirement)
-        let isConformanceRequirement = isNext(.colon)
-        if isConformanceRequirement {
-            tryToAppend(.colon, value: ":", to: &requirement)
-        } else {
-            appendSameTypeOperator(to: &requirement)
+    override func parse(start: LineColumn) -> RequirementList {
+        var children = [Element?]()
+        children.append(parseRequirement())
+        while isNext(.comma) {
+            children.append(parseWhitespace())
+            children.append(try? parsePunctuation(.comma))
+            children.append(parseWhitespace())
+            children.append(parseRequirement())
         }
-        tryToAppendType(to: &requirement)
-        return requirement
+        return RequirementListImpl(children: children)
     }
 
-    private func appendType(to string: inout String) {
-        let type = parseType().text
-        string.append(type)
+    private func parseRequirement() -> Requirement {
+        let children: [Element] = [
+            parseType(),
+            parseWhitespace()
+        ]
+        return finishParsingRequirement(children)
     }
 
-    private func appendSameTypeOperator(to string: inout String) {
-        tryToAppendBinaryOperator("==", value: "==", to: &string)
+    private func finishParsingRequirement(_ children: [Element]) -> Requirement {
+        if isConformanceRequirement() {
+            return ConformanceRequirementImpl(children: children + [
+                try? parsePunctuation(.colon),
+                parseWhitespace(),
+                parseType()
+            ])
+        } else {
+            return SameTypeRequirementImpl(children: children + [
+                try? parseBinaryOperator("=="),
+                parseWhitespace(),
+                parseType()
+            ])
+        }
+    }
+
+    private func isConformanceRequirement() -> Bool {
+        return isNext(.colon)
     }
 }

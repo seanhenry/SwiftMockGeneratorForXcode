@@ -15,7 +15,7 @@ class FunctionDeclarationResultParserTests: XCTestCase {
 
     func test_parse_shouldParseEmptyResult() {
         let result = parse("")
-        XCTAssert(result === TypeImpl.errorType)
+        XCTAssert(result === TypeImpl.emptyType)
     }
 
     func test_parse_shouldParseSimpleResult() {
@@ -25,7 +25,7 @@ class FunctionDeclarationResultParserTests: XCTestCase {
 
     func test_parse_shouldNotParseWithMissingArrow() {
         let result = parse("A")
-        XCTAssert(result === TypeImpl.errorType)
+        XCTAssert(result === TypeImpl.emptyType)
     }
 
     func test_parse_shouldParseComplexType() {

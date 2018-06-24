@@ -16,8 +16,8 @@ class TypeResolverVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        genericClause = GenericParameterClauseImpl(text: "<T>", children: [], offset: 0, length: 0, parameters: [])
-        classType = TypeIdentifierImpl(text: "Int", children: [], offset: 0, length: 0, typeName: "Int", genericArguments: [], parentType: nil)
+        genericClause = GenericParameterClauseImpl(text: "<T>", offset: 0, length: 0, parameters: [])
+        classType = TypeIdentifierImpl(text: "Int", offset: 0, length: 0, parentType: nil, typeName: "Int", genericArguments: [])
         type = createType("T")
         array = createArray("[T]", type)
         dictionary = createDictionary("[T: T]", type, type)
@@ -117,8 +117,8 @@ class TypeResolverVisitorTests: XCTestCase {
     }
 
     func test_visit_shouldTransformToTypealiasType() {
-        let assignment = TypealiasAssignmentImpl(text: "= T", children: [], offset: 0, length: 0, type: type)
-        let typeAlias = TypealiasImpl(text: "typealias A = T", children: [], offset: 0, length: 0, name: "A", typealiasAssignment: assignment)
+        let assignment = TypealiasAssignmentImpl(text: "= T", offset: 0, length: 0, type: type)
+        let typeAlias = TypealiasDeclarationImpl(text: "typealias A = T", offset: 0, length: 0, name: "A", typealiasAssignment: assignment)
         mockResolver.stubbedResolveResult = typeAlias
         let aliasedType = createType("A")
         aliasedType.accept(visitor)
@@ -145,19 +145,19 @@ class TypeResolverVisitorTests: XCTestCase {
     }
 
     private func createType(_ name: String) -> Type {
-        return TypeImpl(text: name, children: [], offset: 0, length: 0)
+        return TypeImpl(text: name, offset: 0, length: 0)
     }
 
     private func createDictionary(_ name: String, _ keyType: Type, _ valueType: Type) -> DictionaryType {
-        return DictionaryTypeImpl(text: name, children: [], offset: 0, length: 0, keyType: keyType, valueType: valueType)
+        return DictionaryTypeImpl(text: name, offset: 0, length: 0, keyType: keyType, valueType: valueType)
     }
 
     private func createArray(_ name: String, _ elementType: Type) -> ArrayType {
-        return ArrayTypeImpl(text: name, children: [], offset: 0, length: 0, elementType: elementType)
+        return ArrayTypeImpl(text: name, offset: 0, length: 0, elementType: elementType)
     }
 
     private func createOptional(_ name: String, _ type: Type) -> OptionalType {
-        return OptionalTypeImpl(text: name, children: [], offset: 0, length: 0, type: type)
+        return OptionalTypeImpl(text: name, offset: 0, length: 0, type: type)
     }
 
     private func stubResolveToGenericClause() {

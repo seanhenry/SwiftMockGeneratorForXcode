@@ -62,8 +62,11 @@ class ElementWrapper: Element {
         managed.accept(visitor)
     }
 
-    func wrap<T>(_ element: Element) -> T {
-        element.accept(ElementWrapper.wrapVisitor)
+    func wrap<T>(_ element: Any) -> T {
+        guard let e = element as? Element else {
+            return element as! T
+        }
+        e.accept(ElementWrapper.wrapVisitor)
         defer { ElementWrapper.wrapVisitor.wrapped = nil }
         return ElementWrapper.wrapVisitor.wrapped as! T
     }

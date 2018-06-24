@@ -55,7 +55,7 @@ class TypeResolverVisitor: ElementVisitor {
             self.resolver = resolver
         }
 
-        override func visitTypealias(_ element: Typealias) {
+        override func visitTypealiasDeclaration(_ element: TypealiasDeclaration) {
             resolvedType = element.typealiasAssignment.type
             if let resolved = resolver.resolve(element.typealiasAssignment.type), resolved !== element {
                 resolved.accept(self)

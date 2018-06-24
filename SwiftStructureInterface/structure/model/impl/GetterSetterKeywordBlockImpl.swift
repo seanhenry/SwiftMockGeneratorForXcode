@@ -1,12 +1,18 @@
 class GetterSetterKeywordBlockImpl: ElementImpl, GetterSetterKeywordBlock {
 
-    let isWritable: Bool
+    var getterKeywordClause: GetterSetterKeywordClause {
+        return children.compactMap { $0 as? GetterSetterKeywordClause }
+                .first { $0 === Keywords.get }
+                ?? GetterSetterKeywordClauseImpl(children: [])
+    }
 
-    static let errorGetterSetterKeywordBlock = GetterSetterKeywordBlockImpl(text: "", children: [], offset: -1, length: -1, isWritable: false)
+    var setterKeywordClause: GetterSetterKeywordClause? {
+        return children.compactMap { $0 as? GetterSetterKeywordClause }
+                .first { $0.children.contains { $0 === Keywords.set } }
+    }
 
-    init(text: String, children: [Element], offset: Int64, length: Int64, isWritable: Bool) {
-        self.isWritable = isWritable
-        super.init(text: text, children: children, offset: offset, length: length)
+    override init(children: [Any?]) {
+        super.init(children: children)
     }
 
     override func accept(_ visitor: ElementVisitor) {

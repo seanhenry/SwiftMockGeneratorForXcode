@@ -10,11 +10,30 @@ class RequirementListParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseConformanceRequirement() {
-        assertText("A:B", "A:B")
+        let text = "A:B"
+        let list = parse(text)
+        XCTAssertEqual(list.text, text)
+        let requirement = list.requirements[0] as! ConformanceRequirement
+        XCTAssertEqual(requirement.leftTypeIdentifier.text, "A")
+        XCTAssertEqual(requirement.rightTypeIdentifier.text, "B")
+    }
+
+    func test_parse_shouldParseConformanceRequirementWithProtocolComposition() {
+        let text = "A:B&C"
+        let list = parse(text)
+        XCTAssertEqual(list.text, text)
+        let requirement = list.requirements[0] as! ConformanceRequirement
+        XCTAssertEqual(requirement.leftTypeIdentifier.text, "A")
+        XCTAssertEqual(requirement.rightProtocolCompositionType.text, "B&C")
     }
 
     func test_parse_shouldParseSameTypeRequirement() {
-        assertText("A==B", "A==B")
+        let text = "A==B"
+        let list = parse(text)
+        XCTAssertEqual(list.text, text)
+        let requirement = list.requirements[0] as! SameTypeRequirement
+        XCTAssertEqual(requirement.leftTypeIdentifier.text, "A")
+        XCTAssertEqual(requirement.rightType.text, "B")
     }
 
     func test_parse_shouldPartialParseWrongColon() {
@@ -26,11 +45,11 @@ class RequirementListParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseMultipleConformances() {
-        assertText("A:B, C:D", "A:B, C:D")
+        assertText("A:B,C:D", "A:B,C:D")
     }
 
     func test_parse_shouldTryToParseMultipleIncompleteConformances() {
-        assertText("A, B;C", "A, B")
+        assertText("A,B;C", "A,B")
     }
 
     func test_parse_shouldParseNestedTypes() {
@@ -46,10 +65,21 @@ class RequirementListParserTests: XCTestCase {
         assertText("A==B & C & D", "A==B & C & D")
     }
 
+    func test_parse_shouldParseWhitespaceInSameTypeRequirement() {
+        assertText("A == B , C == D", "A == B , C == D")
+    }
+
+    func test_parse_shouldParseWhitespaceInConformanceTypeRequirement() {
+        assertText("A : B , C : D & E", "A : B , C : D & E")
+    }
+
     // MARK: - Helpers
 
     func assertText(_ input: String, _ expected: String, line: UInt = #line) {
-        let requirement = createParser(input, RequirementListParser.self).parse()
-        XCTAssertEqual(requirement, expected, line: line)
+        XCTAssertEqual(parse(input).text, expected, line: line)
+    }
+
+    func parse(_ input: String) -> RequirementList {
+        return createParser(input, RequirementListParser.self).parse()
     }
 }

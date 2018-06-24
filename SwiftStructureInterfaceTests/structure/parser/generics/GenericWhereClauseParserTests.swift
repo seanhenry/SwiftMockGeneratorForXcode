@@ -18,14 +18,27 @@ class GenericWhereClauseParserTests: XCTestCase {
     }
 
     func test_parse_shouldParseMultipleConformances() {
-        assertText("where A:B, C:D", "where A:B, C:D")
-        assertText("where A==B, C==D", "where A==B, C==D")
+        assertText("where A:B,C:D", "where A:B,C:D")
+        assertText("where A==B,C==D", "where A==B,C==D")
+    }
+
+    func test_parse_shouldParseWhitespace() {
+        assertText("where A : B , C : D", "where A : B , C : D")
+        assertText("where A == B , C == D ", "where A == B , C == D")
+    }
+
+    func test_parse_shouldParseRequirementsList() {
+        let clause = parse("where A:B")
+        XCTAssertEqual(clause.requirementList.text, "A:B")
     }
 
     // MARK: - Helpers
 
     func assertText(_ input: String, _ expected: String, line: UInt = #line) {
-        let clause = createParser(input, GenericWhereClauseParser.self).parse()
-        XCTAssertEqual(clause, expected, line: line)
+        XCTAssertEqual(parse(input).text, expected, line: line)
+    }
+
+    private func parse(_ input: String) -> GenericWhereClause {
+        return createParser(input, GenericWhereClauseParser.self).parse()
     }
 }

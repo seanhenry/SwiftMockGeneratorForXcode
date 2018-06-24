@@ -4,17 +4,13 @@ class GenericParameterClauseParser: Parser<GenericParameterClause> {
         guard isNext("<") else {
             return GenericParameterClauseImpl.emptyGenericParameterClause
         }
-        advanceOperator("<")
-        let parameters = parseGenericParameterList()
-        parseGenericClosingBracket()
-        return createElement(start: start) { offset, length, text in
-            return GenericParameterClauseImpl(
-                text: text,
-                children: parameters,
-                offset: offset,
-                length: length,
-                parameters: parameters)
-        } ?? GenericParameterClauseImpl.errorGenericParameterClause
+        return GenericParameterClauseImpl(children: [
+            try? parseOperator("<"),
+            parseWhitespace(),
+            parseGenericParameterList(),
+            parseWhitespace(),
+            try? parseOperator(">")
+        ])
     }
 
     private func parseGenericParameterList() -> [GenericParameter] {
@@ -28,29 +24,19 @@ class GenericParameterClauseParser: Parser<GenericParameterClause> {
 
     private func parseGenericParameter() -> GenericParameter {
         let offset = getCurrentStartLocation()
-        guard let typeName = peekAtNextIdentifier() else {
-            return GenericParameterImpl.errorGenericParameter
+        guard let typeName = try? parseIdentifier() else {
+            return GenericParameterImpl.emptyGenericParameter
         }
-        advance()
-        advance(if: .colon)
-        let type = parseType()
-        let typeIdentifier = type as? TypeIdentifier
-        let protocolComposition = type as? ProtocolCompositionType
-        let children = [typeIdentifier as Element?, protocolComposition as Element?].compactMap { $0 }
-        return createElement(start: offset) { offset, length, text in
-            return GenericParameterImpl(text: text,
-                    children: children,
-                    offset: offset,
-                    length: length,
-                    typeName: typeName,
-                    typeIdentifier: typeIdentifier,
-                    protocolComposition: protocolComposition)
-        }!
+        return GenericParameterImpl(children: [
+            typeName,
+            parseWhitespace(),
+            parseSymbol(),
+            parseWhitespace(),
+            parseType()
+        ])
     }
 
-    private func parseGenericClosingBracket() {
-        if isNext(">") {
-            advanceOperator(">")
-        }
+    private func parseSymbol() -> Element {
+        return (try? parsePunctuation(.colon)) ?? LeafNodeImpl(text: "")
     }
 }

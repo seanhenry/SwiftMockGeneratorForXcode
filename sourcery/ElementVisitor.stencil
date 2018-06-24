@@ -1,0 +1,24 @@
+open class ElementVisitor {
+
+  public init() {
+  }
+
+  open func visitElement(_ element: Element) {
+  }
+{% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "CodeBlockContainer" and type.name != "PositionedElement" and type.name != "GenericParameterTypeDeclaration" and type.name != "NamedElement" %}
+
+  open func visit{{type.name}}(_ element: {{type.name}}) {
+    {% if type.implements.Type %}
+    visitType(element)
+    {% elif type.implements.Declaration %}
+    visitDeclaration(element)
+    {% elif type.implements.Requirement %}
+    visitRequirement(element)
+    {% elif type.implements.DeclarationModifier %}
+    visitDeclarationModifier(element)
+    {% else %}
+    visitElement(element)
+    {% endif %}
+  }
+{% endfor %}
+}

@@ -9,7 +9,7 @@ class SwiftElementTests: XCTestCase {
     override func setUp() {
         super.setUp()
         mockVisitor = MockElementVisitor()
-        element = emptyElement
+        element = ElementImpl.emptyElement
     }
 
     override func tearDown() {
@@ -23,7 +23,7 @@ class SwiftElementTests: XCTestCase {
     func test_init_shouldSetSelfAsParentToAllChildren() {
         let child0 = createElement()
         let child1 = createElement()
-        let element = ElementImpl(text: "", children: [child0, child1], offset: 0, length: 0)
+        let element = ElementImpl(children: [child0, child1])
         XCTAssert(child0.parent === element)
         XCTAssert(child1.parent === element)
     }
@@ -31,6 +31,6 @@ class SwiftElementTests: XCTestCase {
     // MARK: - Helpers
     
     func createElement() -> Element {
-        return ElementImpl(text: "", children: [], offset: 0, length: 0)
+        return ElementImpl.emptyElement
     }
 }

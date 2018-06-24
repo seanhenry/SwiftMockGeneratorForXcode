@@ -29,11 +29,11 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     }
 
     override func visitTypeIdentifier(_ element: TypeIdentifier) {
-        if element.genericArguments.isEmpty {
+        if element.genericArgumentClause.isEmpty {
             let identifiers = transformToIdentifiers(element)
             type = UseCasesTypeIdentifier(identifiers: NSMutableArray(array: identifiers as NSArray))
         } else {
-            type = UseCasesGenericType(identifier: element.typeName, arguments: element.genericArguments.map { transformType($0) })
+            type = UseCasesGenericType(identifier: element.typeName, arguments: element.genericArgumentClause.map { transformType($0) })
         }
     }
 

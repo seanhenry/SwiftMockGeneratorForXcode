@@ -2,7 +2,7 @@ import Source
 
 class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
-    override func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> FunctionDeclaration {
+    override func parseDeclaration(start: LineColumn, children: [Any?]) -> FunctionDeclaration {
         var name = ""
         try! appendIdentifier(to: &name)
         let genericParameterClause = parseGenericParameterClause()
@@ -11,20 +11,18 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
         skipRethrows()
         let returnType = parseReturnType()
         skipWhereClause()
-        var children = [genericParameterClause] as [Element]
-        children.append(contentsOf: parameters as [Element])
-        returnType.map { children.append($0) }
         return createElement(start: start) { offset, length, text in
-            return FunctionDeclarationImpl(name: name,
+            return FunctionDeclarationImpl(
                 text: text,
-                children: children,
                 offset: offset,
                 length: length,
-                returnType: returnType,
+                name: name,
                 genericParameterClause: genericParameterClause,
                 parameters: parameters,
-                throws: `throws`)
-        } ?? FunctionDeclarationImpl.errorFunctionDeclaration
+                returnType: returnType,
+                throws: `throws`,
+                declarations: [])
+        } ?? FunctionDeclarationImpl.emptyFunctionDeclaration
     }
 
     private func parseParameterClause() -> [Parameter] {
@@ -45,7 +43,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
     private func parseReturnType() -> Element? {
         let result = parseFunctionDeclarationResult()
-        if result !== TypeImpl.errorType {
+        if result !== TypeImpl.emptyType {
             return result
         }
         return nil
@@ -85,18 +83,18 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
     class ParameterParser: Parser<Parameter> {
 
         override func parse(start: LineColumn) -> Parameter {
-            guard let (externalParameterName, localParameterName) = parseParameterNames() else { return ParameterImpl.errorParameter }
+            guard let (externalParameterName, localParameterName) = parseParameterNames() else { return ParameterImpl.emptyParameter
+            }
             let typeAnnotation = parseParameterTypeAnnotation()
             return createElement(start: start) { offset, length, text in
                 ParameterImpl(
                     text: text,
-                    children: [typeAnnotation],
                     offset: offset,
                     length: length,
+                    typeAnnotation: typeAnnotation,
                     externalParameterName: externalParameterName,
-                    localParameterName: localParameterName,
-                    typeAnnotation: typeAnnotation)
-            } ?? ParameterImpl.errorParameter
+                    localParameterName: localParameterName)
+            } ?? ParameterImpl.emptyParameter
         }
 
         private func parseParameterNames() -> (externalParameterName: String?, localParameterName: String)? {
@@ -134,7 +132,7 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
 
         override func parse(start: LineColumn) -> Element {
             guard isNext(.arrow) else {
-                return TypeImpl.errorType
+                return TypeImpl.emptyType
             }
             advance()
             _ = parseAttributes()

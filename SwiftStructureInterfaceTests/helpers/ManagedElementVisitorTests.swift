@@ -35,8 +35,8 @@ class ManagedElementVisitorTests: XCTestCase {
 
         assertWrapperIsImplemented(testSubscriptDeclaration) { $0 is SubscriptDeclaration }
 
-        assertWrapperIsImplemented(testTypealias) { $0 is Typealias }
-        assertWrapperIsImplemented(testTypealias.typealiasAssignment) { $0 is TypealiasAssignment }
+        assertWrapperIsImplemented(testTypealiasDeclaration) { $0 is TypealiasDeclaration }
+        assertWrapperIsImplemented(testTypealiasDeclaration.typealiasAssignment) { $0 is TypealiasAssignment }
 
         assertWrapperIsImplemented(testTypealiasAssignment) { $0 is TypealiasAssignment }
         assertWrapperIsImplemented(testTypealiasAssignment.type) { $0 is Type }

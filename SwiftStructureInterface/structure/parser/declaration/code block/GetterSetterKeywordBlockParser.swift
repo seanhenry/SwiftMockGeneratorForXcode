@@ -3,27 +3,41 @@ import Source
 class GetterSetterKeywordBlockParser: Parser<GetterSetterKeywordBlock> {
 
     override func parse(start: LineColumn) -> GetterSetterKeywordBlock {
-        var isWritable = false
-        advance(if: .leftBrace)
-        parseGetSet(isWritable: &isWritable)
-        parseGetSet(isWritable: &isWritable)
-        advance(if: .rightBrace)
-        return createElement(start: start) { offset, length, text in
-            return GetterSetterKeywordBlockImpl(
-                text: text,
-                children: [],
-                offset: offset,
-                length: length,
-                isWritable: isWritable)
-        } ?? GetterSetterKeywordBlockImpl.errorGetterSetterKeywordBlock
+        return GetterSetterKeywordBlockImpl(children: [
+            try? parsePunctuation(.leftBrace),
+            parseWhitespace(),
+            parseGetSet(),
+            parseGetSet(),
+            try? parsePunctuation(.rightBrace),
+        ])
     }
 
-    private func parseGetSet(isWritable: inout Bool) {
-        _ = parseAttributes()
-        _ = parseMutationModifiers()
-        if isNext(.set) {
-            isWritable = true
+    private func parseGetSet() -> GetterSetterKeywordClause {
+        return GetterSetterKeywordClauseImpl(children: [
+            parseAttributesAndWhitespace(),
+            parseMutationModifierAndWhitespace(),
+            parseKeywordAndWhitespace()
+        ])
+    }
+
+    private func parseKeywordAndWhitespace() -> [Element]? {
+        if isNext([.set, .get]) {
+            return [parseKeyword(), parseWhitespace()]
         }
-        advance(if: [.get, .set])
+        return nil
+    }
+
+    private func parseAttributesAndWhitespace() -> [Element?] {
+        if isNext(.at) {
+            return [parseAttributes(), parseWhitespace()]
+        }
+        return [parseAttributes()]
+    }
+
+    private func parseMutationModifierAndWhitespace() -> [Element?] {
+        if isNext([.nonmutating, .mutating]) {
+            return [parseMutationModifier(), parseWhitespace()]
+        }
+        return [parseMutationModifier()]
     }
 }

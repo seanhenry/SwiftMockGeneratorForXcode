@@ -61,8 +61,8 @@ var testGenericParameter: GenericParameter {
 var testSubscriptDeclaration: SubscriptDeclaration {
     return TestElements.instance.testSubscriptDeclaration!
 }
-var testTypealias: Typealias {
-    return TestElements.instance.testTypealias!
+var testTypealiasDeclaration: TypealiasDeclaration {
+    return TestElements.instance.testTypealiasDeclaration!
 }
 var testTypealiasAssignment: TypealiasAssignment {
     return TestElements.instance.testTypealiasAssignment!
@@ -110,7 +110,7 @@ var allTestElements: [Element] {
         testGenericParameterClause,
         testGenericParameter,
         testSubscriptDeclaration,
-        testTypealias,
+        testTypealiasDeclaration,
         testTypealiasAssignment,
         testTypeAnnotation,
         testTupleType,
@@ -145,7 +145,7 @@ private class TestElements {
     private(set) var testGenericParameterClause: GenericParameterClause!
     private(set) var testGenericParameter: GenericParameter!
     private(set) var testSubscriptDeclaration: SubscriptDeclaration!
-    private(set) var testTypealias: Typealias!
+    private(set) var testTypealiasDeclaration: TypealiasDeclaration!
     private(set) var testTypealiasAssignment: TypealiasAssignment!
     private(set) var testTypeAnnotation: TypeAnnotation!
     private(set) var testTupleType: TupleType!
@@ -203,7 +203,7 @@ private class TestElements {
         override func visitTypeIdentifier(_ element: TypeIdentifier) {
             if element.text == "Base.Nested" {
                 elements.testTypeIdentifier = element
-            } else if !element.genericArguments.isEmpty {
+            } else if !element.genericArgumentClause.arguments.isEmpty {
                 elements.testGenericTypeIdentifier = element
             }
             super.visitTypeIdentifier(element)
@@ -253,9 +253,9 @@ private class TestElements {
             super.visitGenericParameter(element)
         }
 
-        override func visitTypealias(_ element: Typealias) {
-            elements.testTypealias = element
-            super.visitTypealias(element)
+        override func visitTypealiasDeclaration(_ element: TypealiasDeclaration) {
+            elements.testTypealiasDeclaration = element
+            super.visitTypealiasDeclaration(element)
         }
 
         override func visitTypealiasAssignment(_ element: TypealiasAssignment) {

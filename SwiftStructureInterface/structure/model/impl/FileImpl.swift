@@ -1,9 +1,11 @@
 class FileImpl: ElementImpl, File {
 
     var retainCount = 0
+    let topLevelDeclarations: [Element]
 
-    override init(text: String, children: [Element], offset: Int64, length: Int64) {
-        super.init(text: text, children: children, offset: offset, length: length)
+    init(text: String, offset: Int64, length: Int64, topLevelDeclarations: [Element]) {
+        self.topLevelDeclarations = topLevelDeclarations
+        super.init(text: text, children: topLevelDeclarations, offset: offset, length: length)
         let visitor = FileSettingVisitor(file: self)
         accept(visitor)
     }

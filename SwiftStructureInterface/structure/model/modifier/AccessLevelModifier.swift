@@ -1,2 +1,2 @@
-public protocol AccessLevelModifier: Element {
+public protocol AccessLevelModifier: DeclarationModifier {
 }

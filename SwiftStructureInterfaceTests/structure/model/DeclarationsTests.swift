@@ -32,7 +32,7 @@ class DeclarationsTests: XCTestCase {
     func test_declarations_shouldFilterTypealiases() {
         let declarations = getMixedElements().typealiasDeclarations
         XCTAssertEqual(declarations.count, 1)
-        XCTAssert(declarations[0] === testTypealias)
+        XCTAssert(declarations[0] === testTypealiasDeclaration)
     }
 
     // MARK: - Helpers
@@ -43,7 +43,7 @@ class DeclarationsTests: XCTestCase {
 
     private class TestDeclarations: ElementImpl, Declarations {
         convenience init(_ children: [Element]) {
-            self.init(text: "", children: children, offset: 0, length: 0)
+            self.init(children: children)
         }
     }
 }

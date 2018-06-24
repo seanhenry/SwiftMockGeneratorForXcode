@@ -2,7 +2,7 @@ import Source
 
 class ProtocolDeclarationParser: DeclarationParser<TypeDeclaration> {
 
-    override func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> TypeDeclaration {
+    override func parseDeclaration(start: LineColumn, children: [Any?]) -> TypeDeclaration {
         var name = ""
         tryToAppendIdentifier(to: &name)
         let inheritanceClause = parseTypeInheritanceClause()
@@ -10,16 +10,16 @@ class ProtocolDeclarationParser: DeclarationParser<TypeDeclaration> {
         let codeBlock = parseTypeCodeBlock()
         return createElement(start: start) { offset, length, text in
             return TypeDeclarationImpl(
-                name: name,
                 text: text,
-                children: inheritanceClause + [accessLevelModifier] + codeBlock.declarations,
-                inheritedTypes: inheritanceClause,
                 offset: offset,
                 length: length,
                 bodyOffset: codeBlock.offset,
                 bodyLength: codeBlock.length,
-                accessLevelModifier: accessLevelModifier)
-        } ?? TypeDeclarationImpl.errorTypeDeclaration
+                name: name,
+                accessLevelModifier: accessLevelModifier,
+                inheritedTypes: inheritanceClause,
+                declarations: codeBlock.declarations)
+        } ?? TypeDeclarationImpl.emptyTypeDeclaration
     }
 
     private func skipWhereClause() {

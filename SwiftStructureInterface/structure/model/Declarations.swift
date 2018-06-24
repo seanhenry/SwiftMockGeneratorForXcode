@@ -19,8 +19,8 @@ public extension Declarations {
         return filterChildren(TypeDeclaration.self)
     }
 
-    public var typealiasDeclarations: [Typealias] {
-        return filterChildren(Typealias.self)
+    public var typealiasDeclarations: [TypealiasDeclaration] {
+        return filterChildren(TypealiasDeclaration.self)
     }
 
     public var subscriptDeclarations: [SubscriptDeclaration] {

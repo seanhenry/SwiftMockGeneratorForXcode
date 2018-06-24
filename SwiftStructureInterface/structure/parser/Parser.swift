@@ -34,7 +34,7 @@ class Parser<ResultType> {
 
     // MARK: - Strings
 
-    private func getSubstring(_ start: LineColumn, _ end: LineColumn) -> String? {
+    func getSubstring(_ start: LineColumn, _ end: LineColumn) -> String? {
         if let startIndex = locationConverter.convertToIndex(line: start.line, column: start.column),
            let endIndex = locationConverter.convertToIndex(line: end.line, column: end.column),
            startIndex <= endIndex {
@@ -88,7 +88,11 @@ class Parser<ResultType> {
     }
 
     func peekAtNextIdentifier() -> String? {
-        return peekAtNextKind().namedIdentifier?.text
+        guard let identifier = peekAtNextKind().namedIdentifier else { return nil }
+        switch identifier {
+            case .backtickedName(let escaped): return "`\(escaped)`"
+            default: return identifier.text
+        }
     }
 
     func isNext(_ kind: Token.Kind) -> Bool {
@@ -268,7 +272,7 @@ class Parser<ResultType> {
 
     func tryToAppendAttributes(to string: inout String) {
         let attributes = parseAttributes()
-        string.append(attributes.joined(separator: " "))
+        string.append(attributes.attributes.map { $0.text }.joined(separator: " "))
     }
 
     func tryToAppendType(to string: inout String) {
@@ -313,15 +317,15 @@ class Parser<ResultType> {
         return parseDeclaration(ProtocolDeclarationParser.self, .protocol)
     }
 
-    func parseAttributes() -> [String] {
-        return parse(AttributeParser.self)
+    func parseAttributes() -> Attributes {
+        return parse(AttributesParser.self)
     }
 
-    func parseRequirementList() -> String {
+    func parseRequirementList() -> RequirementList {
         return parse(RequirementListParser.self)
     }
 
-    func parseWhereClause() -> String {
+    func parseWhereClause() -> GenericWhereClause {
         return parse(GenericWhereClauseParser.self)
     }
 
@@ -345,11 +349,18 @@ class Parser<ResultType> {
         return parse(FunctionDeclarationParser.ResultParser.self)
     }
 
-    func parseDeclarationModifiers() -> String {
-        return parse(DeclarationModifierParser.self)
+    func parseDeclarationModifiers() -> [Element] {
+        var modifiers = [Element]()
+        var modifier = parse(DeclarationModifierParser.self)
+        while !modifier.text.isEmpty {
+            modifiers.append(modifier)
+            modifiers.append(parseWhitespace())
+            modifier = parse(DeclarationModifierParser.self)
+        }
+        return modifiers
     }
 
-    func parseMutationModifiers() -> String {
+    func parseMutationModifier() -> MutationModifier {
         return parse(MutationModifierParser.self)
     }
 
@@ -383,6 +394,57 @@ class Parser<ResultType> {
 
     func parseAccessLevelModifier() -> AccessLevelModifier {
         return parse(AccessLevelModifierParser.self)
+    }
+
+    func parseKeyword() -> LeafNode {
+        return parse(KeywordParser.self)
+    }
+
+    func parseWhitespace() -> Whitespace {
+        return parse(WhitespaceParser.self)
+    }
+
+    func parseIdentifier() throws -> Identifier {
+        if case .identifier = peekAtNextKind() {
+            return parse(IdentifierParser.self)
+        }
+        throw LookAheadError()
+    }
+
+    func parseUnderscoreAndWhitespace() -> [Element]? {
+        return tryToParse {
+            return [
+                try parsePunctuation(.underscore),
+                parseWhitespace()
+            ]
+        }
+    }
+
+    func parseOperator(_ op: UnicodeScalar) throws -> Element {
+        if isNext(op) {
+            advanceOperator(op)
+            return LeafNodeImpl(text: String(op))
+        }
+        throw LookAheadError()
+    }
+
+    func parseBinaryOperator(_ op: String) throws -> Element {
+        if isNext(.binaryOperator(op)) {
+            advance()
+            return LeafNodeImpl(text: op)
+        }
+        throw LookAheadError()
+    }
+
+    func parsePunctuation(_ kind: Token.Kind) throws -> Element {
+        if isNext(kind) {
+            return parse(PunctuationParser.self)
+        }
+        throw LookAheadError()
+    }
+
+    func parseGenericArgumentClause() -> GenericArgumentClause {
+        return parse(GenericArgumentClauseParser.self)
     }
 
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {

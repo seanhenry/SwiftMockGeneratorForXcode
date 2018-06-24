@@ -1,3 +1,4 @@
 public protocol GetterSetterKeywordBlock: Element {
-    var isWritable: Bool { get }
+    var getterKeywordClause: GetterSetterKeywordClause { get }
+    var setterKeywordClause: GetterSetterKeywordClause? { get }
 }

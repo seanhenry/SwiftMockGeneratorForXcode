@@ -11,8 +11,6 @@ extension XCTestCase {
             return
         }
         XCTAssertEqual(e.text, text, file: file, line: line)
-        XCTAssertEqual(e.offset, offset, file: file, line: line)
-        XCTAssertEqual(e.length, Int64(text.utf8.count), file: file, line: line)
     }
 
     func createParser<T, P: Parser<T>>(_ text: String, _ `class`: P.Type) -> P {

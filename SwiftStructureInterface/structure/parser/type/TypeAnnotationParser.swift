@@ -1,24 +1,28 @@
 class TypeAnnotationParser: Parser<TypeAnnotation> {
 
     override func parse(start: LineColumn) -> TypeAnnotation {
-        advance(if: .colon)
-        let attributes = parseAttributes()
-        let isInout = parseInout()
-        let type = parseType()
-        return createElement(start: start) { offset, length, text in
-            TypeAnnotationImpl(text: text,
-                children: [type],
-                offset: offset,
-                length: length,
-                attributes: attributes,
-                isInout: isInout,
-                type: type)
-        } ?? TypeAnnotationImpl.errorTypeAnnotation
+        return TypeAnnotationImpl(children: [
+            try? parsePunctuation(.colon),
+            parseWhitespace(),
+            parseAttrs(),
+            parseInout(),
+            parseType()
+        ])
     }
 
-    private func parseInout() -> Bool {
-        let isInout = isNext(.inout)
-        advance(if: .inout)
-        return isInout
+    private func parseInout() -> [Element]? {
+        guard isNext(.inout) else { return nil }
+        return [
+            parseKeyword(),
+            parseWhitespace()
+        ]
+    }
+
+    private func parseAttrs() -> [Element]? {
+        guard isNext(.at) else { return nil }
+        return [
+            parseAttributes(),
+            parseWhitespace()
+        ]
     }
 }

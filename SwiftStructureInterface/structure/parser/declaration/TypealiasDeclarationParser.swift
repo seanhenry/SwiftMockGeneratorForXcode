@@ -1,6 +1,6 @@
-class TypealiasDeclarationParser: DeclarationParser<Typealias> {
+class TypealiasDeclarationParser: DeclarationParser<TypealiasDeclaration> {
 
-    override func parseDeclaration(start: LineColumn, accessLevelModifier: AccessLevelModifier) -> Typealias {
+    override func parseDeclaration(start: LineColumn, children: [Any?]) -> TypealiasDeclaration {
         var name = ""
         tryToAppendIdentifier(to: &name)
         _ = parseGenericParameterClause()
@@ -8,11 +8,10 @@ class TypealiasDeclarationParser: DeclarationParser<Typealias> {
         return createElement(start: start) { offset, length, text in
             return TypealiasImpl(
                 text: text,
-                children: [assignment],
                 offset: offset,
                 length: length,
                 name: name,
                 typealiasAssignment: assignment)
-        } ?? TypealiasImpl.errorTypealias
+        } ?? TypealiasImpl.emptyTypealias
     }
 }

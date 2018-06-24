@@ -1,5 +1,4 @@
 public protocol TypeAnnotation: Element {
-    var attributes: [String] { get }
-    var isInout: Bool { get }
+    var attributes: Attributes { get }
     var type: Type { get }
 }

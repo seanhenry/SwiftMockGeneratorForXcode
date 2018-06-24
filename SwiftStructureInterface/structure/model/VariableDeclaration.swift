@@ -1,4 +1,5 @@
-public protocol VariableDeclaration: NamedElement {
-    var type: Type { get }
-    var isWritable: Bool { get }
+public protocol VariableDeclaration: NamedElement, Declaration {
+    var typeAnnotation: TypeAnnotation { get }
+    var getterSetterKeywordBlock: GetterSetterKeywordBlock { get }
+    var declarations: [Element] { get }
 }

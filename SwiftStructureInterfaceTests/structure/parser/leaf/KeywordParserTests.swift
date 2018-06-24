@@ -1,0 +1,115 @@
+import XCTest
+@testable import SwiftStructureInterface
+
+class KeywordParserTests: XCTestCase {
+
+    func test_parseUnknownKeyword() {
+        XCTAssert(parse("unknown") === LeafNodeImpl.emptyLeafNode)
+    }
+
+    func test_shouldAdvanceParser() {
+        let parser = createParser("true false associatedtype func unknown", KeywordParser.self)
+        XCTAssert(parser.parse() === Keywords.true)
+        XCTAssert(parser.parse() === Keywords.false)
+        XCTAssert(parser.parse() === Keywords.associatedtype)
+        XCTAssert(parser.parse() === Keywords.func)
+        XCTAssert(parser.parse() === LeafNodeImpl.emptyLeafNode)
+    }
+
+    func test_parseKeyword() {
+        assertParsesKeyword("associatedtype", Keywords.associatedtype)
+        assertParsesKeyword("class", Keywords.class)
+        assertParsesKeyword("deinit", Keywords.deinit)
+        assertParsesKeyword("enum", Keywords.enum)
+        assertParsesKeyword("extension", Keywords.extension)
+        assertParsesKeyword("fileprivate", Keywords.fileprivate)
+        assertParsesKeyword("func", Keywords.func)
+        assertParsesKeyword("import", Keywords.import)
+        assertParsesKeyword("init", Keywords._init)
+        assertParsesKeyword("inout", Keywords.inout)
+        assertParsesKeyword("internal", Keywords.internal)
+        assertParsesKeyword("let", Keywords.let)
+        assertParsesKeyword("open", Keywords.open)
+        assertParsesKeyword("operator", Keywords.operator)
+        assertParsesKeyword("private", Keywords.private)
+        assertParsesKeyword("protocol", Keywords.protocol)
+        assertParsesKeyword("public", Keywords.public)
+        assertParsesKeyword("static", Keywords.static)
+        assertParsesKeyword("struct", Keywords.struct)
+        assertParsesKeyword("subscript", Keywords.subscript)
+        assertParsesKeyword("typealias", Keywords.typealias)
+        assertParsesKeyword("var", Keywords.var)
+        assertParsesKeyword("break", Keywords.break)
+        assertParsesKeyword("case", Keywords.case)
+        assertParsesKeyword("continue", Keywords.continue)
+        assertParsesKeyword("default", Keywords.default)
+        assertParsesKeyword("defer", Keywords.defer)
+        assertParsesKeyword("do", Keywords.do)
+        assertParsesKeyword("else", Keywords.else)
+        assertParsesKeyword("fallthrough", Keywords.fallthrough)
+        assertParsesKeyword("for", Keywords.for)
+        assertParsesKeyword("guard", Keywords.guard)
+        assertParsesKeyword("if", Keywords.if)
+        assertParsesKeyword("in", Keywords.in)
+        assertParsesKeyword("repeat", Keywords.repeat)
+        assertParsesKeyword("return", Keywords.return)
+        assertParsesKeyword("switch", Keywords.switch)
+        assertParsesKeyword("where", Keywords.where)
+        assertParsesKeyword("while", Keywords.while)
+        assertParsesKeyword("as", Keywords.as)
+        assertParsesKeyword("Any", Keywords.Any)
+        assertParsesKeyword("catch", Keywords.catch)
+        assertParsesKeyword("false", Keywords.false)
+        assertParsesKeyword("is", Keywords.is)
+        assertParsesKeyword("nil", Keywords.nil)
+        assertParsesKeyword("rethrows", Keywords.rethrows)
+        assertParsesKeyword("super", Keywords.super)
+        assertParsesKeyword("self", Keywords.`self`)
+        assertParsesKeyword("Self", Keywords.Self)
+        assertParsesKeyword("throw", Keywords.throw)
+        assertParsesKeyword("throws", Keywords.throws)
+        assertParsesKeyword("true", Keywords.true)
+        assertParsesKeyword("try", Keywords.try)
+        assertParsesKeyword("_", Keywords._)
+        assertParsesKeyword("associativity", Keywords.associativity)
+        assertParsesKeyword("convenience", Keywords.convenience)
+        assertParsesKeyword("dynamic", Keywords.dynamic)
+        assertParsesKeyword("didSet", Keywords.didSet)
+        assertParsesKeyword("final", Keywords.final)
+        assertParsesKeyword("get", Keywords.get)
+        assertParsesKeyword("infix", Keywords.infix)
+        assertParsesKeyword("indirect", Keywords.indirect)
+        assertParsesKeyword("lazy", Keywords.lazy)
+        assertParsesKeyword("left", Keywords.left)
+        assertParsesKeyword("mutating", Keywords.mutating)
+        assertParsesKeyword("none", Keywords.none)
+        assertParsesKeyword("nonmutating", Keywords.nonmutating)
+        assertParsesKeyword("optional", Keywords.optional)
+        assertParsesKeyword("override", Keywords.override)
+        assertParsesKeyword("postfix", Keywords.postfix)
+        assertParsesKeyword("precedence", Keywords.precedence)
+        assertParsesKeyword("prefix", Keywords.prefix)
+        assertParsesKeyword("Protocol", Keywords._protocol)
+        assertParsesKeyword("required", Keywords.required)
+        assertParsesKeyword("right", Keywords.right)
+        assertParsesKeyword("set", Keywords.set)
+        assertParsesKeyword("Type", Keywords.type)
+        assertParsesKeyword("unowned", Keywords.unowned)
+        assertParsesKeyword("weak", Keywords.weak)
+        assertParsesKeyword("willSet", Keywords.willSet)
+        assertParsesKeyword("unsafe", Keywords.unsafe)
+        assertParsesKeyword("safe", Keywords.safe)
+    }
+
+    // MARK: - Helpers
+
+    func assertParsesKeyword(_ input: String, _ expected: LeafNode, line: UInt = #line) {
+        let leaf = parse(input)
+        XCTAssertEqual(leaf.text, expected.text, line: line)
+        XCTAssert(leaf === expected, line: line)
+    }
+
+    private func parse(_ input: String) -> LeafNode {
+        return createParser(input, KeywordParser.self).parse()
+    }
+}

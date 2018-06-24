@@ -72,8 +72,8 @@ class ManagedElementVisitor: ElementVisitor {
         wrapped = GenericParameterWrapper(element)
     }
 
-    override func visitTypealias(_ element: Typealias) {
-        wrapped = TypealiasWrapper(element)
+    override func visitTypealiasDeclaration(_ element: TypealiasDeclaration) {
+        wrapped = TypealiasDeclarationWrapper(element)
     }
 
     override func visitTypealiasAssignment(_ element: TypealiasAssignment) {

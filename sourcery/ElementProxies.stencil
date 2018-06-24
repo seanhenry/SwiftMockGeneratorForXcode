@@ -1,0 +1,34 @@
+{% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "CodeBlockContainer" and type.name != "PositionedElement" and type.name != "GenericParameterTypeDeclaration" and type.name != "NamedElement" %}
+
+class {{type.name}}Wrapper: {% if type.implements.Type %}TypeWrapper{% elif type.implements.LeafNode %}LeafNodeWrapper{% elif type.implements.Declaration %}DeclarationWrapper{% elif type.implements.Requirement %}RequirementWrapper{% elif type.implements.DeclarationModifier %}DeclarationModifierWrapper{% else %}ElementWrapper{% endif %}, {{type.name}} {
+
+  let managed{{type.name}}: {{type.name}}
+{% if type.name == "LeafNode" %}
+  override var text: String {
+    set { managed{{type.name}}.text = newValue }
+    get { return managed{{type.name}}.text }
+  }
+{% else %}
+{% for variable in type.variables %}
+  var {{variable.name}}: {{variable.typeName}} {
+  {% if variable.isOptional %}
+    return managed{{type.name}}.{{variable.name}}.flatMap(wrap)
+  {% elif variable.isArray %}
+    return managed{{type.name}}.{{variable.name}}.map(wrap)
+  {% else %}
+    return wrap(managed{{type.name}}.{{variable.name}})
+  {% endif %}
+  }
+{% endfor %}
+{% endif %}
+
+  init(_ element: {{type.name}}) {
+    managed{{type.name}} = element
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visit{{type.name}}(self)
+  }
+}
+{% endfor %}

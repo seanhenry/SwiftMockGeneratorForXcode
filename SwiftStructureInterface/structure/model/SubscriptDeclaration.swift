@@ -1,1 +1,3 @@
-public protocol SubscriptDeclaration: Element {}
+public protocol SubscriptDeclaration: Element {
+    var declarations: [Element] { get }
+}
