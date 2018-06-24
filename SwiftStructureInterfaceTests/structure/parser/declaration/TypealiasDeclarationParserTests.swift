@@ -6,37 +6,32 @@ class TypealiasDeclarationParserTests: XCTestCase {
     // MARK: - parse
 
     func test_parse_shouldParseDeclaration() {
-        let text = "typealias Name = Type"
+        let text = "typealias Name = Int"
         let typeAlias = parse(text)
         assertElementText(typeAlias, text)
         XCTAssertEqual(typeAlias.name, "Name")
-        XCTAssertEqual(typeAlias.children.count, 1)
         let assignment = typeAlias.typealiasAssignment
-        XCTAssert(typeAlias.children.first === assignment)
-        assertElementText(assignment, "= Type", offset: 15)
+        assertElementText(assignment, "= Int")
         let type = assignment.type
-        XCTAssertEqual(assignment.children.count, 1)
-        XCTAssert(assignment.children.first === type)
-        assertElementText(type, "Type", offset: 17)
+        assertElementText(type, "Int")
     }
 
     func test_parse_shouldParseDeclarationWithoutName() {
-        let text = "typealias = Type"
+        let text = "typealias = Int"
         let typeAlias = parse(text)
         assertElementText(typeAlias, text)
         XCTAssertEqual(typeAlias.name, "")
-        XCTAssertEqual(typeAlias.children.count, 1)
     }
 
     func test_parse_shouldParseAttributesAndAccessLevelModifiers() {
-        let text = "@a @b public typealias Name = Type"
+        let text = "@a @b public typealias Name = Int"
         let typeAlias = parse(text)
         assertElementText(typeAlias, text)
         XCTAssertEqual(typeAlias.name, "Name")
     }
 
     func test_parse_shouldParseGenericParameterClause() {
-        let text = "typealias Name<T, U: V> = Type<T, U>"
+        let text = "typealias Name<T, U: V> = Int<T, U>"
         let typeAlias = parse(text)
         assertElementText(typeAlias, text)
     }

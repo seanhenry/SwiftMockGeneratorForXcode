@@ -10,7 +10,7 @@ class LocalResolver: ResolverDecorator {
         return ElementTreeUtil().findParent(FunctionDeclaration.self, from: element)?
                 .genericParameterClause?
                 .parameters
-                .first { $0.typeName == element.text }
+                .first { $0.name == element.text }
     }
 
     private func resolveTypealias(_ element: Element) -> Element? {

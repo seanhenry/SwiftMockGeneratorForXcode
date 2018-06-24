@@ -13,30 +13,40 @@ class GenericParameterClauseParser: Parser<GenericParameterClause> {
         ])
     }
 
-    private func parseGenericParameterList() -> [GenericParameter] {
-        var parameterList = [GenericParameter]()
-        repeat {
-            advance(if: .comma)
+    private func parseGenericParameterList() -> [Element?] {
+        var parameterList = [Element?]()
+        parameterList.append(parseGenericParameter())
+        while isNext(.comma) {
+            parameterList.append(parseWhitespace())
+            parameterList.append(try? parsePunctuation(.comma))
+            parameterList.append(parseWhitespace())
             parameterList.append(parseGenericParameter())
-        } while isNext(.comma)
+        }
         return parameterList
     }
 
     private func parseGenericParameter() -> GenericParameter {
-        let offset = getCurrentStartLocation()
         guard let typeName = try? parseIdentifier() else {
             return GenericParameterImpl.emptyGenericParameter
         }
         return GenericParameterImpl(children: [
             typeName,
-            parseWhitespace(),
             parseSymbol(),
-            parseWhitespace(),
             parseType()
         ])
     }
 
-    private func parseSymbol() -> Element {
-        return (try? parsePunctuation(.colon)) ?? LeafNodeImpl(text: "")
+    private func parseSymbol() -> [Element] {
+        let whitespace = parseWhitespace()
+        let colon = try? parsePunctuation(.colon)
+        let sameType = try? parseBinaryOperator("==")
+        if let symbol = colon ?? sameType {
+            return [
+                whitespace,
+                symbol,
+                parseWhitespace()
+            ]
+        }
+        return []
     }
 }

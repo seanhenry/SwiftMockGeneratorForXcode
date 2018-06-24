@@ -8,7 +8,7 @@ class GenericParameterClauseParserTests: XCTestCase {
     func test_parse_shouldParseSimpleClause() {
         let clause = parse("<T>")
         XCTAssertEqual(clause.parameters.count, 1)
-        XCTAssertEqual(clause.parameters[0].typeName, "T")
+        XCTAssertEqual(clause.parameters[0].name, "T")
         XCTAssertEqual(clause.parameters[0].text, "T")
         XCTAssertNil(clause.parameters[0].protocolComposition)
         XCTAssertNil(clause.parameters[0].typeIdentifier)
@@ -17,7 +17,7 @@ class GenericParameterClauseParserTests: XCTestCase {
     func test_parse_shouldParseClauseWithTypeIdentifier() {
         let clause = parse("<T:A>")
         XCTAssertEqual(clause.parameters.count, 1)
-        XCTAssertEqual(clause.parameters[0].typeName, "T")
+        XCTAssertEqual(clause.parameters[0].name, "T")
         XCTAssertEqual(clause.parameters[0].text, "T:A")
         XCTAssertNil(clause.parameters[0].protocolComposition)
         XCTAssertEqual(clause.parameters[0].typeIdentifier?.typeName, "A")
@@ -26,18 +26,27 @@ class GenericParameterClauseParserTests: XCTestCase {
     func test_parse_shouldParseArgumentWithProtocolComposition() {
         let clause = parse("<T: A & B>")
         XCTAssertEqual(clause.parameters.count, 1)
-        XCTAssertEqual(clause.parameters[0].typeName, "T")
+        XCTAssertEqual(clause.parameters[0].name, "T")
         XCTAssertEqual(clause.parameters[0].text, "T: A & B")
         XCTAssertEqual(clause.parameters[0].protocolComposition?.text, "A & B")
         XCTAssertNil(clause.parameters[0].typeIdentifier?.typeName)
     }
 
-    func test_parse_shouldParseWhitespace() {
-        let clause = parse("< T : A >")
-        XCTAssertEqual(clause.text, "< T : A >")
-        XCTAssertEqual(clause.parameters[0].typeName, "T")
-        XCTAssertEqual(clause.parameters[0].text, "T : A")
+    func test_parse_shouldParseManyParameterClause() {
+        let clause = parse("<T:A,U==B>")
+        XCTAssertEqual(clause.text, "<T:A,U==B>")
+        XCTAssertEqual(clause.parameters[0].name, "T")
+        XCTAssertEqual(clause.parameters[0].text, "T:A")
         XCTAssertEqual(clause.parameters[0].typeIdentifier?.text, "A")
+        XCTAssertEqual(clause.parameters[1].name, "U")
+        XCTAssertEqual(clause.parameters[1].text, "U==B")
+        XCTAssertEqual(clause.parameters[1].typeIdentifier?.text, "B")
+    }
+
+    func test_parse_shouldParseWhitespace() {
+        let text = "< T : A , U == B & C , V >"
+        let clause = parse(text)
+        XCTAssertEqual(clause.text, text)
     }
 
     func test_parse_shouldReturnEmptyClause() {
