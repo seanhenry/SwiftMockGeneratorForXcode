@@ -30,9 +30,7 @@ public class Generator {
     }
 
     public func generateMock() -> (BufferInstructions?, Error?) {
-        guard let file = SKElementFactory().build(from: fileContents) else {
-            return reply(with: "Could not parse Swift file")
-        }
+        let file = ElementParser.parseFile(fileContents)
         guard let cursorOffset = LocationConverter.convert(line: line, column: column, in: fileContents) else {
             return reply(with: "Could not get the cursor position")
         }

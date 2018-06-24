@@ -111,27 +111,24 @@ class BufferInstructionsFactoryTests: XCTestCase {
     }
 
     class NoFileTypeDeclaration: TypeDeclaration {
-
         var accessLevelModifier: AccessLevelModifier {
             fatalError()
         }
         var inheritedTypes: [Element] {
             return []
         }
-        var name: String {
-            return ""
-        }
-        var bodyOffset: Int64 {
-            return 0
-        }
-        var bodyLength: Int64 {
-            return 0
+        var declarations: [Element] {
+            return []
         }
         var text: String {
             return ""
         }
         var children: [Element] {
-            return []
+            set {
+            }
+            get {
+                return []
+            }
         }
         var file: File? {
             return nil
@@ -145,7 +142,6 @@ class BufferInstructionsFactoryTests: XCTestCase {
         var length: Int64 {
             return 0
         }
-
         func accept(_ visitor: ElementVisitor) {
         }
     }

@@ -35,7 +35,7 @@ class LocalResolverTests: XCTestCase {
 
     func test_shouldResolveProtocolTypealias() {
         let resolved = resolveProtocolParameter(in: "protocol A { typealias T = A\nfunc a(a: T) }")
-        let resolvedProtocol = resolved as? Typealias
+        let resolvedProtocol = resolved as? TypealiasDeclaration
         XCTAssertEqual(resolvedProtocol?.name, "T")
     }
 

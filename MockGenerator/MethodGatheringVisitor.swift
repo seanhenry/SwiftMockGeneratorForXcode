@@ -29,11 +29,11 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     }
 
     override func visitTypeIdentifier(_ element: TypeIdentifier) {
-        if element.genericArgumentClause.isEmpty {
+        if element.genericArgumentClause.arguments.isEmpty {
             let identifiers = transformToIdentifiers(element)
             type = UseCasesTypeIdentifier(identifiers: NSMutableArray(array: identifiers as NSArray))
         } else {
-            type = UseCasesGenericType(identifier: element.typeName, arguments: element.genericArgumentClause.map { transformType($0) })
+            type = UseCasesGenericType(identifier: element.typeName, arguments: element.genericArgumentClause.arguments.map { transformType($0) })
         }
     }
 
@@ -54,7 +54,9 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     }
 
     override func visitFunctionType(_ element: FunctionType) {
-        type = UseCasesFunctionType(arguments: element.arguments.elements.map { transformType($0.typeAnnotation.type) },
+        type = UseCasesFunctionType(arguments: element.arguments.tupleTypeElementList.tupleTypeElements
+            .compactMap { $0.typeAnnotation?.type ?? $0.type }
+            .map { transformType($0) },
             returnType: transformType(element.returnType),
             throws: element.throws)
     }
@@ -108,7 +110,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     }
 
     private func isEscaping(_ parameter: Parameter) -> Bool {
-        return parameter.typeAnnotation.attributes.contains("@escaping")
+        return parameter.typeAnnotation.attributes.attributes.contains { $0.text == "@escaping" }
     }
 
     private func resolveAndTransform(_ type: Type) -> UseCasesType {
@@ -124,7 +126,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
 
     override func visitVariableDeclaration(_ element: VariableDeclaration) {
         properties.append(UseCasesProperty(name: element.name,
-            type: transformType(element.type),
+            type: transformType(element.typeAnnotation.type),
             isWritable: element.isWritable,
             declarationText: element.text))
     }

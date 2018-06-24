@@ -20,7 +20,7 @@ class ResolverFactoryTests: XCTestCase {
         let filePath3 = writeFile("protocol T {}")
         let parsedProtocol = ElementParser.parseFile(at: filePath1)!.typeDeclarations[0]
         resolver = ResolverFactory.createResolver(filePaths: [filePath1, filePath2, filePath3])
-        XCTAssert(resolveParameterType(parsedProtocol, at: 0) is Typealias)
+        XCTAssert(resolveParameterType(parsedProtocol, at: 0) is TypealiasDeclaration)
         let parsedFile = ElementParser.parseFile(at: filePath2)!
         XCTAssert(resolveParameterType(parsedFile, at: 0) is TypeDeclaration)
     }

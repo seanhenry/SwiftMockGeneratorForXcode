@@ -1,11 +1,11 @@
 extension InitializerDeclaration {
-    var `throws`: Bool {
+    public var `throws`: Bool {
         fatalError()
     }
-    var `rethrows`: Bool {
+    public var `rethrows`: Bool {
         fatalError()
     }
-    var isFailable: Bool {
+    public var isFailable: Bool {
         fatalError()
     }
 }

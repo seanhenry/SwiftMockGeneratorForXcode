@@ -3,10 +3,10 @@
 class SKElementFactoryTestHelper {
 
     static func build(from string: String) -> File? {
-        return SKElementFactory().build(from: string) as? File
+        return ElementParser.parseFile(string)
     }
 
     static func build(fromPath path: String) -> File? {
-        return SKElementFactory().build(fromPath: path) as? File
+        return ElementParser.parseFile(at: path)
     }
 }
