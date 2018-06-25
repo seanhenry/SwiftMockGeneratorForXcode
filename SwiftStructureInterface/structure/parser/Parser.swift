@@ -341,8 +341,8 @@ class Parser<ResultType> {
         return parse(FunctionDeclarationParser.ParameterClauseParser.self)
     }
 
-    func parseFunctionDeclarationParameter() -> Parameter {
-        return parse(FunctionDeclarationParser.ParameterParser.self)
+    func parseParameter() -> Parameter {
+        return parse(ParameterParser.self)
     }
 
     func parseFunctionDeclarationResult() -> Element {
@@ -370,6 +370,16 @@ class Parser<ResultType> {
 
     func parseGenericParameterClause() -> GenericParameterClause {
         return parse(GenericParameterClauseParser.self)
+    }
+
+    func tryToParseGenericParameterClause() -> [Element?] {
+        if isNext("<") {
+            return [
+                parseGenericParameterClause(),
+                parseWhitespace()
+            ]
+        }
+        return []
     }
 
     func parseTypealiasAssignment() -> TypealiasAssignment {
@@ -409,6 +419,13 @@ class Parser<ResultType> {
             return parse(IdentifierParser.self)
         }
         throw LookAheadError()
+    }
+
+    func tryToParseIdentifier() -> [Any?] {
+        if let identifier = try? parseIdentifier() {
+            return [identifier, parseWhitespace()]
+        }
+        return []
     }
 
     func parseUnderscoreAndWhitespace() -> [Element]? {

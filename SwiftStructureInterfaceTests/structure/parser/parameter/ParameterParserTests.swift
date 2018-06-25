@@ -44,18 +44,19 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
     }
 
     func test_parse_shouldReturnParameterWithComplicatedType() {
-        let text = "_ a: Generic<[Type]>.Nested?"
+        let text = "_ a: Generic<[Int]>.Nested?"
         let parameter = parse(text)
         assertElementText(parameter, text)
         XCTAssertEqual(parameter.externalParameterName, "_")
         XCTAssertEqual(parameter.localParameterName, "a")
         let type: Element = parameter.typeAnnotation.type
-        assertElementText(type, "Generic<[Type]>.Nested?", offset: 5)
+        assertElementText(type, "Generic<[Int]>.Nested?", offset: 5)
     }
 
-    func test_parse_shouldReturnErrorParameterWithNoParameterName() {
-        let parameter = parse(": A")
-        XCTAssert(parameter === ParameterImpl.emptyParameter)
+    func test_parse_shouldReturnParseParameterWithNoParameterName() {
+        let text = ": A"
+        let parameter = parse(text)
+        assertElementText(parameter, text)
     }
 
     func test_parse_shouldReturnParameterWithTypeAnnotation() {
@@ -100,10 +101,21 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
         }
     }
 
+    func test_parse_shouldAllowKeywordsAsIdentifiers() {
+        let keywords = Keywords.keywords.keys
+        keywords.forEach { keyword in
+            let text = "\(keyword): A"
+            let parameter = parse(text)
+            assertElementText(parameter, text)
+            XCTAssertNil(parameter.externalParameterName)
+            XCTAssertEqual(parameter.localParameterName, "\(keyword)")
+        }
+    }
+
     // MARK: - Helpers
 
-    func parse(_ string: String) -> ParameterImpl {
-        let parser = createParser(string, FunctionDeclarationParser.ParameterParser.self)
-        return parser.parse() as! ParameterImpl
+    func parse(_ string: String) -> Parameter {
+        let parser = createParser(string, ParameterParser.self)
+        return parser.parse()
     }
 }

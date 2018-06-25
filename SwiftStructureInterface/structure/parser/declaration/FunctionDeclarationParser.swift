@@ -74,58 +74,6 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
         private func tryToAppendParameter(to parameters: inout [Parameter]) {
             parameters.append(parseParameter())
         }
-
-        private func parseParameter() -> Parameter {
-            return parseFunctionDeclarationParameter()
-        }
-    }
-
-    class ParameterParser: Parser<Parameter> {
-
-        override func parse(start: LineColumn) -> Parameter {
-            guard let (externalParameterName, localParameterName) = parseParameterNames() else { return ParameterImpl.emptyParameter
-            }
-            let typeAnnotation = parseParameterTypeAnnotation()
-            return createElement(start: start) { offset, length, text in
-                ParameterImpl(
-                    text: text,
-                    offset: offset,
-                    length: length,
-                    typeAnnotation: typeAnnotation,
-                    externalParameterName: externalParameterName,
-                    localParameterName: localParameterName)
-            } ?? ParameterImpl.emptyParameter
-        }
-
-        private func parseParameterNames() -> (externalParameterName: String?, localParameterName: String)? {
-            guard let firstIdentifier = peekAtNextParameterIdentifier() ?? peekAtNextWildcard() else { return nil }
-            advance()
-            if let secondIdentifier = peekAtNextIdentifier() {
-                advance()
-                return (firstIdentifier, secondIdentifier)
-            } else {
-                return (nil, firstIdentifier)
-            }
-        }
-
-        private func peekAtNextWildcard() -> String? {
-            if isNext(.underscore) {
-                return "_"
-            }
-            return nil
-        }
-
-        private func parseParameterTypeAnnotation() -> TypeAnnotation {
-            let typeAnnotation = parseTypeAnnotation()
-            skipVarArgs()
-            return typeAnnotation
-        }
-
-        private func skipVarArgs() {
-            if isPostfixOperator("...") {
-                advance()
-            }
-        }
     }
 
     class ResultParser: Parser<Element> {
