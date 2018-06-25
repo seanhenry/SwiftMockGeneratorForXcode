@@ -20,7 +20,8 @@ class DeclarationParser<ResultType>: Parser<ResultType> {
             return parseDeclaration(start: start, children: [
                 parseAttributesAndWhitespace(),
                 parseDeclarationModifiers(),
-                try parseDeclarationToken()
+                try parseDeclarationToken(),
+                parseWhitespace()
             ])
         } catch {
             fatalError("Expected a \(declarationToken). Check isNext(.\(declarationToken)) before parsing a declaration")

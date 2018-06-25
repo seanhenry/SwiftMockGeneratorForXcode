@@ -54,11 +54,12 @@ class WhitespaceParserTests: XCTestCase {
         XCTAssertEqual(parser.parseWhitespace().text, " ")
     }
 
-    // MARK: - Helpers
-
-    private func parse(_ input: String) -> Whitespace {
-        return createParser(input, WhitespaceParser.self).parse()
+    func test_shouldCalculateZeroWhitespaceAtStartOfFile() {
+        let parser = createFileParser("func a")
+        XCTAssertEqual(parser.parseWhitespace().text, "")
     }
+
+    // MARK: - Helpers
 
     private func createFileParser(_ input: String) -> Parser<File> {
         return createParser(input, FileParser.self)

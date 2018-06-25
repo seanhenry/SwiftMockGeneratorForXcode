@@ -32,7 +32,7 @@ class ResolverFactoryTests: XCTestCase {
     }
 
     private func resolveParameterType(_ element: Declarations, at index: Int) -> Element? {
-        let type = element.functionDeclarations[index].parameters[0].typeAnnotation.type
+        let type = element.functionDeclarations[index].parameterClause.parameters[0].typeAnnotation.type
         return resolver.resolve(type)
     }
 }

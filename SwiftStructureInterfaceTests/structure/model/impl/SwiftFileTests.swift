@@ -28,7 +28,7 @@ class SwiftFileTests: XCTestCase {
         assertFilesAreEquivalent(classB.inheritedTypes[1].file, file)
         assertFilesAreEquivalent(classB.accessLevelModifier.file, file)
         let methodA = classA.functionDeclarations[0]
-        let methodAParam = methodA.parameters[0]
+        let methodAParam = methodA.parameterClause.parameters[0]
         assertFilesAreEquivalent(methodA.file, file)
         assertFilesAreEquivalent(methodAParam.file, file)
         assertFilesAreEquivalent(methodAParam.typeAnnotation.type.file, file)
@@ -51,7 +51,7 @@ class SwiftFileTests: XCTestCase {
         assertFilesAreEquivalent(property.typeAnnotation.file, file)
         assertFilesAreEquivalent(property.typeAnnotation.type.file, file)
         let method = protocolA.functionDeclarations[0]
-        let methodParam = method.parameters[0]
+        let methodParam = method.parameterClause.parameters[0]
         assertFilesAreEquivalent(method.file, file)
         assertFilesAreEquivalent(method.genericParameterClause?.file, file)
         assertFilesAreEquivalent(method.genericParameterClause?.parameters[0].file, file)

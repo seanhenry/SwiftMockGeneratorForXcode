@@ -57,7 +57,7 @@ class LocalResolverTests: XCTestCase {
         let filePath = writeFile(contents)
         let parsedFile = ElementParser.parseFile(at: filePath)!
         let resolver = LocalResolver(spy)
-        return resolver.resolve(parsedFile.functionDeclarations[0].parameters[0].typeAnnotation.type)
+        return resolver.resolve(parsedFile.functionDeclarations[0].parameterClause.parameters[0].typeAnnotation.type)
     }
 
     @discardableResult
@@ -65,7 +65,7 @@ class LocalResolverTests: XCTestCase {
         let filePath = writeFile(contents)
         let parsedFile = ElementParser.parseFile(at: filePath)!
         let resolver = LocalResolver(spy)
-        return resolver.resolve(parsedFile.typeDeclarations[0].functionDeclarations[0].parameters[0].typeAnnotation.type)
+        return resolver.resolve(parsedFile.typeDeclarations[0].functionDeclarations[0].parameterClause.parameters[0].typeAnnotation.type)
     }
 
     private func writeFile(_ contents: String) -> String {

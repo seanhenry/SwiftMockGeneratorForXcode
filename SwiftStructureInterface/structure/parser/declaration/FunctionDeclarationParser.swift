@@ -53,29 +53,6 @@ class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
         _ = parseWhereClause()
     }
 
-    class ParameterClauseParser: Parser<[Parameter]> {
-
-        override func parse(start: LineColumn) -> [Parameter] {
-            advance(if: .leftParen)
-            if isNext(.rightParen) {
-                advance()
-                return []
-            }
-            var parameters = [Parameter]()
-            tryToAppendParameter(to: &parameters)
-            while isNext(.comma) {
-                advance()
-                tryToAppendParameter(to: &parameters)
-            }
-            advance(if: .rightParen)
-            return parameters
-        }
-
-        private func tryToAppendParameter(to parameters: inout [Parameter]) {
-            parameters.append(parseParameter())
-        }
-    }
-
     class ResultParser: Parser<Element> {
 
         override func parse(start: LineColumn) -> Element {

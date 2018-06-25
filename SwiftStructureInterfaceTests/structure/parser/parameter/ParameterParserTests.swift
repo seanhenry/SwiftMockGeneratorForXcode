@@ -3,7 +3,7 @@ import XCTest
 
 // TODO: Support default argument clause
 
-class FunctionDeclarationParameterParserTests: XCTestCase {
+class ParameterParserTests: XCTestCase {
 
     var parser: Parser<Parameter>!
 
@@ -110,6 +110,18 @@ class FunctionDeclarationParameterParserTests: XCTestCase {
             XCTAssertNil(parameter.externalParameterName)
             XCTAssertEqual(parameter.localParameterName, "\(keyword)")
         }
+    }
+
+    func test_parse_shouldReturnParameterWithWhitespace() {
+        let text = "_ a : @a inout A"
+        let parameter = parse(text)
+        assertElementText(parameter, text)
+    }
+
+    func test_parse_shouldReturnParameterWithMinimalWhitespace() {
+        let text = "_ a:A"
+        let parameter = parse(text)
+        assertElementText(parameter, text)
     }
 
     // MARK: - Helpers

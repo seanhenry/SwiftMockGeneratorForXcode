@@ -337,8 +337,8 @@ class Parser<ResultType> {
         return parseDeclaration(VariableDeclarationParser.self, .var)
     }
 
-    func parseFunctionDeclarationParameterClause() -> [Parameter] {
-        return parse(FunctionDeclarationParser.ParameterClauseParser.self)
+    func parseParameterClause() -> ParameterClause {
+        return parse(ParameterClauseParser.self)
     }
 
     func parseParameter() -> Parameter {
@@ -458,6 +458,14 @@ class Parser<ResultType> {
             return parse(PunctuationParser.self)
         }
         throw LookAheadError()
+    }
+
+    func tryToParsePunctuation(_ kind: Token.Kind) -> [Element?] {
+        let preWhitespace = parseWhitespace()
+        if let punctuation = try? parsePunctuation(kind) {
+            return [preWhitespace, punctuation, parseWhitespace()]
+        }
+        return []
     }
 
     func parseGenericArgumentClause() -> GenericArgumentClause {
