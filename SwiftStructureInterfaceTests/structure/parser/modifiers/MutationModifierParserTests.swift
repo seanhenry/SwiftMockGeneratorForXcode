@@ -5,19 +5,23 @@ class MutationModifierParserTests: XCTestCase {
 
     // MARK: - parse
 
-    func test_parse_shouldParseMutationModifiers() {
+    func test_parse_shouldParseMutationModifiers() throws {
         let modifiers = [
             "mutating",
             "nonmutating"
         ]
-        modifiers.forEach { d in
-            XCTAssertEqual(parse(d), d)
+        try modifiers.forEach { d in
+            XCTAssertEqual(try parse(d), d)
         }
+    }
+
+    func test_parse_shouldNotParseAnythingElse() {
+        XCTAssertThrowsError(try parse("public"))
     }
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> String {
-        return createParser(text, MutationModifierParser.self).parse().text
+    func parse(_ text: String) throws -> String {
+        return try createParser(text, MutationModifierParser.self).parse().text
     }
 }

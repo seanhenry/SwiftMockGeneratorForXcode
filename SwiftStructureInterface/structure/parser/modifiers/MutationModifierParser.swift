@@ -8,11 +8,8 @@ class MutationModifierParser: Parser<MutationModifier> {
     ]
 
     override func parse() throws -> MutationModifier {
-        if isNext([.mutating, .nonmutating]) {
-            return try MutationModifierImpl(children: builder()
-                    .required { try self.parseKeyword() }
-                    .build())
-        }
-        throw LookAheadError()
+        return try MutationModifierImpl(children:builder()
+                .required { try self.parseKeyword([.mutating, .nonmutating]) }
+                .build())
     }
 }
