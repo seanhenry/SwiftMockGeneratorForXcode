@@ -5,89 +5,93 @@ class ManagedElementVisitorTests: XCTestCase {
 
     func test_all() {
         XCTAssertEqual(allTestElements.count, 24)
-        assertWrapperIsImplemented(testFile) { $0 is File }
+        assertProxyIsImplemented(testFile) { $0 is File }
 
-        assertWrapperIsImplemented(testElement) { _ in true }
-        assertWrapperIsImplemented(testElement.file) { $0 is File }
-        assertWrapperIsImplemented(testElement.parent) { _ in true }
+        assertProxyIsImplemented(testElement) { _ in true }
+        assertProxyIsImplemented(testElement.file) { $0 is File }
+        assertProxyIsImplemented(testElement.parent) { _ in true }
 
-        assertWrapperIsImplemented(testTypeDeclaration) { $0 is TypeDeclaration }
-        assertWrapperIsImplemented(testTypeDeclaration.accessLevelModifier) { $0 is AccessLevelModifier }
+        assertProxyIsImplemented(testTypeDeclaration) { $0 is TypeDeclaration }
+        assertProxyIsImplemented(testTypeDeclaration.accessLevelModifier) { $0 is AccessLevelModifier }
 
-        assertWrapperIsImplemented(testAccessLevelModifier) { $0 is AccessLevelModifier }
+        assertProxyIsImplemented(testAccessLevelModifier) { $0 is AccessLevelModifier }
 
-        assertWrapperIsImplemented(testInitializerDeclaration) { $0 is InitializerDeclaration
+        assertProxyIsImplemented(testInitializerDeclaration) { $0 is InitializerDeclaration
         }
-        assertWrapperIsImplemented(testInitializerDeclaration.parameters[0]) { $0 is Parameter }
+        assertProxyIsImplemented(testInitializerDeclaration.parameterClause.parameters[0]) { $0 is Parameter }
 
-        assertWrapperIsImplemented(testVariableDeclaration) { $0 is VariableDeclaration }
-        assertWrapperIsImplemented(testVariableDeclaration.type) { $0 is Type }
+        assertProxyIsImplemented(testVariableDeclaration) { $0 is VariableDeclaration }
+        assertProxyIsImplemented(testVariableDeclaration.typeAnnotation) { $0 is TypeAnnotation }
+        assertProxyIsImplemented(testVariableDeclaration.typeAnnotation.attributes) { $0 is Attributes }
+        assertProxyIsImplemented(testVariableDeclaration.typeAnnotation.type) { $0 is Type }
 
-        assertWrapperIsImplemented(testParameter) { $0 is Parameter }
-        assertWrapperIsImplemented(testParameter.typeAnnotation) { $0 is TypeAnnotation }
+        assertProxyIsImplemented(testParameter) { $0 is Parameter }
+        assertProxyIsImplemented(testParameter.typeAnnotation) { $0 is TypeAnnotation }
 
-        assertWrapperIsImplemented(testGenericParameterClause) { $0 is GenericParameterClause }
-        assertWrapperIsImplemented(testGenericParameterClause.parameters[0]) { $0 is GenericParameter }
+        assertProxyIsImplemented(testGenericParameterClause) { $0 is GenericParameterClause }
+        assertProxyIsImplemented(testGenericParameterClause.parameters[0]) { $0 is GenericParameter }
 
-        assertWrapperIsImplemented(testGenericParameter) { $0 is GenericParameter }
-        assertWrapperIsImplemented(testGenericParameter.typeIdentifier) { $0 is TypeIdentifier }
-        assertWrapperIsImplemented(testGenericParameterClause.parameters[1].protocolComposition) { $0 is ProtocolCompositionType }
+        assertProxyIsImplemented(testGenericParameter) { $0 is GenericParameter }
+        assertProxyIsImplemented(testGenericParameter.typeIdentifier) { $0 is TypeIdentifier }
+        assertProxyIsImplemented(testGenericParameterClause.parameters[1].protocolComposition) { $0 is ProtocolCompositionType }
 
-        assertWrapperIsImplemented(testSubscriptDeclaration) { $0 is SubscriptDeclaration }
+        assertProxyIsImplemented(testSubscriptDeclaration) { $0 is SubscriptDeclaration }
 
-        assertWrapperIsImplemented(testTypealiasDeclaration) { $0 is TypealiasDeclaration }
-        assertWrapperIsImplemented(testTypealiasDeclaration.typealiasAssignment) { $0 is TypealiasAssignment }
+        assertProxyIsImplemented(testTypealiasDeclaration) { $0 is TypealiasDeclaration }
+        assertProxyIsImplemented(testTypealiasDeclaration.typealiasAssignment) { $0 is TypealiasAssignment }
 
-        assertWrapperIsImplemented(testTypealiasAssignment) { $0 is TypealiasAssignment }
-        assertWrapperIsImplemented(testTypealiasAssignment.type) { $0 is Type }
+        assertProxyIsImplemented(testTypealiasAssignment) { $0 is TypealiasAssignment }
+        assertProxyIsImplemented(testTypealiasAssignment.type) { $0 is Type }
 
-        assertWrapperIsImplemented(testTypeAnnotation) { $0 is TypeAnnotation }
-        assertWrapperIsImplemented(testTypeAnnotation.type) { $0 is Type }
+        assertProxyIsImplemented(testTypeAnnotation) { $0 is TypeAnnotation }
+        assertProxyIsImplemented(testTypeAnnotation.type) { $0 is Type }
         
-        assertWrapperIsImplemented(testTupleTypeElement) { $0 is TupleTypeElement }
-        assertWrapperIsImplemented(testTupleTypeElement.typeAnnotation) { $0 is TypeAnnotation }
+        assertProxyIsImplemented(testTupleTypeElement) { $0 is TupleTypeElement }
+        assertProxyIsImplemented(testTupleTypeElement.typeAnnotation) { $0 is TypeAnnotation }
 
-        assertWrapperIsImplemented(testFunctionDeclaration) { $0 is FunctionDeclaration }
-        assertWrapperIsImplemented(testFunctionDeclaration.parameters[0]) { $0 is Parameter }
-        assertWrapperIsImplemented(testFunctionDeclaration.genericParameterClause) { $0 is GenericParameterClause }
-        assertWrapperIsImplemented(testFunctionDeclaration.returnType) { $0 is Type }
+        assertProxyIsImplemented(testFunctionDeclaration) { $0 is FunctionDeclaration }
+        assertProxyIsImplemented(testFunctionDeclaration.parameterClause.parameters[0]) { $0 is Parameter }
+        assertProxyIsImplemented(testFunctionDeclaration.genericParameterClause) { $0 is GenericParameterClause }
+        assertProxyIsImplemented(testFunctionDeclaration.returnType) { $0 is Type }
 
-        assertWrapperIsImplemented(testType) { $0 is Type }
+        assertProxyIsImplemented(testType) { $0 is Type }
 
-        assertWrapperIsImplemented(testTypeIdentifier) { $0 is TypeIdentifier }
-        assertWrapperIsImplemented(testTypeIdentifier.parentType) { $0 is TypeIdentifier }
+        assertProxyIsImplemented(testTypeIdentifier) { $0 is TypeIdentifier }
+        assertProxyIsImplemented(testTypeIdentifier.parentType) { $0 is TypeIdentifier }
 
-        assertWrapperIsImplemented(testGenericTypeIdentifier.genericArguments[0]) { $0 is Type }
+        assertProxyIsImplemented(testGenericTypeIdentifier.genericArgumentClause) { $0 is GenericArgumentClause }
+        assertProxyIsImplemented(testGenericTypeIdentifier.genericArgumentClause.arguments[0]) { $0 is Type }
 
-        assertWrapperIsImplemented(testTupleType) { $0 is TupleType }
-        assertWrapperIsImplemented(testTupleType.elements[0]) { $0 is TupleTypeElement }
+        assertProxyIsImplemented(testTupleType) { $0 is TupleType }
+        assertProxyIsImplemented(testTupleType.tupleTypeElementList) { $0 is TupleTypeElementList }
+        assertProxyIsImplemented(testTupleType.tupleTypeElementList.tupleTypeElements[0]) { $0 is TupleTypeElement }
 
-        assertWrapperIsImplemented(testArrayType) { $0 is ArrayType }
-        assertWrapperIsImplemented(testArrayType.elementType) { $0 is Type }
+        assertProxyIsImplemented(testArrayType) { $0 is ArrayType }
+        assertProxyIsImplemented(testArrayType.elementType) { $0 is Type }
 
-        assertWrapperIsImplemented(testDictionaryType) { $0 is DictionaryType }
-        assertWrapperIsImplemented(testDictionaryType.keyType) { $0 is Type }
-        assertWrapperIsImplemented(testDictionaryType.valueType) { $0 is Type }
+        assertProxyIsImplemented(testDictionaryType) { $0 is DictionaryType }
+        assertProxyIsImplemented(testDictionaryType.keyType) { $0 is Type }
+        assertProxyIsImplemented(testDictionaryType.valueType) { $0 is Type }
 
-        assertWrapperIsImplemented(testOptionalType) { $0 is OptionalType }
-        assertWrapperIsImplemented(testOptionalType.type) { $0 is Type }
+        assertProxyIsImplemented(testOptionalType) { $0 is OptionalType }
+        assertProxyIsImplemented(testOptionalType.type) { $0 is Type }
 
-        assertWrapperIsImplemented(testFunctionType) { $0 is FunctionType }
-        assertWrapperIsImplemented(testFunctionType.arguments) { $0 is TupleType }
-        assertWrapperIsImplemented(testFunctionType.returnType) { $0 is Type }
+        assertProxyIsImplemented(testFunctionType) { $0 is FunctionType }
+        assertProxyIsImplemented(testFunctionType.arguments) { $0 is TupleType }
+        assertProxyIsImplemented(testFunctionType.returnType) { $0 is Type }
 
-        assertWrapperIsImplemented(testProtocolCompositionType) { $0 is ProtocolCompositionType }
-        assertWrapperIsImplemented(testProtocolCompositionType.types[0]) { $0 is Type }
+        assertProxyIsImplemented(testProtocolCompositionType) { $0 is ProtocolCompositionType }
+        assertProxyIsImplemented(testProtocolCompositionType.types[0]) { $0 is Type }
 
-        assertWrapperIsImplemented(testGetterSetterKeywordBlock) { $0 is GetterSetterKeywordBlock }
+        assertProxyIsImplemented(testGetterSetterKeywordBlock) { $0 is GetterSetterKeywordBlock }
     }
 
-    private func assertWrapperIsImplemented(_ element: Element?, line: UInt = #line, _ isType: (Element) -> Bool) {
-        guard let wrapper = element as? ElementWrapper else {
+    private func assertProxyIsImplemented(_ element: Element?, line: UInt = #line, _ isType: (Element) -> Bool) {
+        guard let proxy = element as? ElementProxy else {
             XCTFail("\(type(of: element)) is not wrapped", line: line)
             return
         }
-        XCTAssertTrue(isType(wrapper), "Wrapper type '\(type(of: wrapper))' was not the right type", line: line)
-        XCTAssertTrue(isType(wrapper.managed), "Managed type '\(type(of: wrapper.managed))' was not the right type", line: line)
+        XCTAssertTrue(isType(proxy), "Proxy type '\(type(of: proxy))' was not the right type", line: line)
+        XCTAssertTrue(isType(proxy.managed), "Managed type '\(type(of: proxy.managed))' was not the right type", line: line)
     }
 }

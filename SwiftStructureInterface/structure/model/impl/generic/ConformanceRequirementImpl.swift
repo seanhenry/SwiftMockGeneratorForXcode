@@ -7,7 +7,7 @@ class ConformanceRequirementImpl: RequirementImpl, ConformanceRequirement {
         return children.first { $0 is ProtocolCompositionType } as? ProtocolCompositionType ?? ProtocolCompositionTypeImpl.emptyProtocolCompositionType
     }
 
-    override init(children: [Any?]) {
+    override init(children: [Element]) {
         super.init(children: children)
     }
 

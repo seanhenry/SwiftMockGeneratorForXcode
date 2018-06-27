@@ -98,15 +98,6 @@ class Parser<ResultType> {
         return false
     }
 
-    func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
-        let c = setCheckPoint()
-        _ = try? parseAttributes()
-        skipDeclarationModifiers()
-        let isNext = self.isNext(declaration)
-        restoreCheckPoint(c)
-        return isNext
-    }
-
     func skipDeclarationModifiers() {
         while (try? parseDeclarationModifier()) != nil {}
     }

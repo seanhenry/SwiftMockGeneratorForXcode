@@ -1,8 +1,10 @@
+import Lexer
+
 class DeclarationsParser: Parser<[Element]> {
 
     private var braceLevel = 0
 
-    override func parse(start: LineColumn) -> [Element] {
+    override func parse() throws -> [Element] {
         var elements = [Element]()
         while let element = parseDeclaration() {
             elements.append(element)
@@ -52,5 +54,14 @@ class DeclarationsParser: Parser<[Element]> {
 
     private func isEndOfFile() -> Bool {
         return isNext(.eof)
+    }
+
+    private func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
+        let c = setCheckPoint()
+        _ = try? parseAttributes()
+        skipDeclarationModifiers()
+        let isNext = self.isNext(declaration)
+        restoreCheckPoint(c)
+        return isNext
     }
 }

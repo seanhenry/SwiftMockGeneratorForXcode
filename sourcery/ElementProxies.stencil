@@ -1,6 +1,6 @@
 {% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "GenericParameterTypeDeclaration" and type.name != "NamedElement" %}
 
-class {{type.name}}Wrapper: {% if type.implements.Type %}TypeWrapper{% elif type.implements.LeafNode %}LeafNodeWrapper{% elif type.implements.Declaration %}DeclarationWrapper{% elif type.implements.Requirement %}RequirementWrapper{% elif type.implements.DeclarationModifier %}DeclarationModifierWrapper{% else %}ElementWrapper{% endif %}, {{type.name}} {
+class {{type.name}}Proxy: {% if type.implements.Type %}TypeProxy{% elif type.implements.LeafNode %}LeafNodeProxy{% elif type.implements.Declaration %}DeclarationProxy{% elif type.implements.Requirement %}RequirementProxy{% elif type.implements.DeclarationModifier %}DeclarationModifierProxy{% else %}ElementProxy{% endif %}, {{type.name}} {
 
   let managed{{type.name}}: {{type.name}}
 {% if type.name == "LeafNode" %}
@@ -11,13 +11,7 @@ class {{type.name}}Wrapper: {% if type.implements.Type %}TypeWrapper{% elif type
 {% else %}
 {% for variable in type.variables %}
   var {{variable.name}}: {{variable.typeName}} {
-  {% if variable.isOptional %}
-    return managed{{type.name}}.{{variable.name}}.flatMap(wrap)
-  {% elif variable.isArray %}
-    return managed{{type.name}}.{{variable.name}}.map(wrap)
-  {% else %}
-    return wrap(managed{{type.name}}.{{variable.name}})
-  {% endif %}
+    return managed{{type.name}}.{{variable.name}}
   }
 {% endfor %}
 {% endif %}

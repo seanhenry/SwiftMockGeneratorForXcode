@@ -1,4 +1,4 @@
-class ElementWrapper: Element {
+class ElementProxy: Element {
 
     let managed: Element
     private static let wrapVisitor = ManagedElementVisitor()
@@ -7,16 +7,20 @@ class ElementWrapper: Element {
         return managed.text
     }
 
+    // TODO: Now all elements are computed, there is no longer any danger of leaking unwrapped elements because all computed elements come from here. (Not including file and parent)
+    // TODO: write test to ensure no Proxys can be added. Would cause indefinite retain cycle
+    // TODO: write test when settings an element to ensure they are unwrapped before being set (this would cause indefinite retain cycle)
     var children: [Element] {
-        return managed.children.map(wrap)
+        set { managed.children = children }
+        get { return managed.children.map(proxy) }
     }
 
     var file: File? {
-        return managed.file.flatMap(wrap)
+        return managed.file.flatMap(proxy)
     }
 
     var parent: Element? {
-        return managed.parent.flatMap(wrap)
+        return managed.parent.flatMap(proxy)
     }
 
     init(_ element: Element) {
@@ -54,12 +58,12 @@ class ElementWrapper: Element {
         managed.accept(visitor)
     }
 
-    func wrap<T>(_ element: Any) -> T {
+    func proxy<T>(_ element: Any) -> T {
         guard let e = element as? Element else {
             return element as! T
         }
-        e.accept(ElementWrapper.wrapVisitor)
-        defer { ElementWrapper.wrapVisitor.wrapped = nil }
-        return ElementWrapper.wrapVisitor.wrapped as! T
+        e.accept(ElementProxy.wrapVisitor)
+        defer { ElementProxy.wrapVisitor.proxy = nil }
+        return ElementProxy.wrapVisitor.proxy as! T
     }
 }

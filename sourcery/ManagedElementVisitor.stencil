@@ -6,15 +6,15 @@ class ManagedElementVisitor: ElementVisitor {
     return visitor.wrapped
   }
 
-  var wrapped: Element!
+  var proxy: Element!
 
   override func visitElement(_ element: Element) {
-    wrapped = ElementWrapper(element)
+    proxy = ElementProxy(element)
   }
 {% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "GenericParameterTypeDeclaration" and type.name != "NamedElement" %}
 
   override func visit{{type.name}}(_ element: {{type.name}}) {
-    wrapped = {{type.name}}Wrapper(element)
+    proxy = {{type.name}}Proxy(element)
   }
 {% endfor %}
 }

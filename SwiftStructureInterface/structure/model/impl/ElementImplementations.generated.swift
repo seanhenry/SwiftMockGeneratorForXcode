@@ -6,7 +6,7 @@
 class AccessLevelModifierImpl: DeclarationModifierImpl, AccessLevelModifier {
 
 
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -39,7 +39,7 @@ class AssociatedTypeDeclarationImpl: DeclarationImpl, AssociatedTypeDeclaration 
   var genericWhereClause: GenericWhereClause? {
     return children.first { $0 is GenericWhereClause } as? GenericWhereClause
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -51,7 +51,7 @@ class AssociatedTypeDeclarationImpl: DeclarationImpl, AssociatedTypeDeclaration 
 class AttributeImpl: ElementImpl, Attribute {
 
 
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -66,7 +66,7 @@ class AttributesImpl: ElementImpl, Attributes {
   var attributes: [Attribute] {
     return children.compactMap { $0 as? Attribute }
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -84,7 +84,7 @@ class DeclarationImpl: ElementImpl, Declaration {
   var accessLevelModifier: AccessLevelModifier {
     return children.first { $0 is AccessLevelModifier } as? AccessLevelModifier ?? AccessLevelModifierImpl.emptyAccessLevelModifier
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -96,7 +96,7 @@ class DeclarationImpl: ElementImpl, Declaration {
 class DeclarationModifierImpl: ElementImpl, DeclarationModifier {
 
 
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -135,7 +135,7 @@ class FunctionDeclarationImpl: ElementImpl, FunctionDeclaration {
   var declarations: [Element] {
     return children.compactMap { $0 as? Element }
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -168,7 +168,7 @@ class GenericArgumentClauseImpl: ElementImpl, GenericArgumentClause {
   var arguments: [Type] {
     return children.compactMap { $0 as? Type }
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -186,7 +186,7 @@ class GenericParameterImpl: ElementImpl, GenericParameter {
   var protocolComposition: ProtocolCompositionType? {
     return children.first { $0 is ProtocolCompositionType } as? ProtocolCompositionType
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -201,7 +201,7 @@ class GenericParameterClauseImpl: ElementImpl, GenericParameterClause {
   var parameters: [GenericParameter] {
     return children.compactMap { $0 as? GenericParameter }
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -216,7 +216,7 @@ class GenericWhereClauseImpl: ElementImpl, GenericWhereClause {
   var requirementList: RequirementList {
     return children.first { $0 is RequirementList } as? RequirementList ?? RequirementListImpl.emptyRequirementList
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -234,7 +234,7 @@ class GetterSetterKeywordClauseImpl: ElementImpl, GetterSetterKeywordClause {
   var mutationModifier: MutationModifier {
     return children.first { $0 is MutationModifier } as? MutationModifier ?? MutationModifierImpl.emptyMutationModifier
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -261,7 +261,7 @@ class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
   var declarations: [Element] {
     return children.compactMap { $0 as? Element }
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -273,7 +273,7 @@ class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
 class MutationModifierImpl: DeclarationModifierImpl, MutationModifier {
 
 
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -300,7 +300,7 @@ class ParameterImpl: ElementImpl, Parameter {
   var typeAnnotation: TypeAnnotation {
     return children.first { $0 is TypeAnnotation } as? TypeAnnotation ?? TypeAnnotationImpl.emptyTypeAnnotation
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -315,7 +315,7 @@ class ParameterClauseImpl: ElementImpl, ParameterClause {
   var parameters: [Parameter] {
     return children.compactMap { $0 as? Parameter }
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -342,7 +342,7 @@ class RequirementImpl: ElementImpl, Requirement {
   var leftTypeIdentifier: TypeIdentifier {
     return children.first { $0 is TypeIdentifier } as? TypeIdentifier ?? TypeIdentifierImpl.emptyTypeIdentifier
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -357,7 +357,7 @@ class RequirementListImpl: ElementImpl, RequirementList {
   var requirements: [Requirement] {
     return children.compactMap { $0 as? Requirement }
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -372,7 +372,7 @@ class SubscriptDeclarationImpl: ElementImpl, SubscriptDeclaration {
   var declarations: [Element] {
     return children.compactMap { $0 as? Element }
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -402,7 +402,7 @@ class TupleTypeElementImpl: ElementImpl, TupleTypeElement {
   var type: Type? {
     return children.first { $0 is Type } as? Type
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -417,7 +417,7 @@ class TupleTypeElementListImpl: ElementImpl, TupleTypeElementList {
   var tupleTypeElements: [TupleTypeElement] {
     return children.compactMap { $0 as? TupleTypeElement }
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -429,7 +429,7 @@ class TupleTypeElementListImpl: ElementImpl, TupleTypeElementList {
 class TypeImpl: ElementImpl, Type {
 
 
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -447,7 +447,7 @@ class TypeAnnotationImpl: ElementImpl, TypeAnnotation {
   var type: Type {
     return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -469,7 +469,7 @@ class TypeDeclarationImpl: ElementImpl, TypeDeclaration {
     return children.first { $0 is CodeBlock } as? CodeBlock ?? CodeBlockImpl.emptyCodeBlock
   }
 
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -499,7 +499,7 @@ class TypealiasAssignmentImpl: ElementImpl, TypealiasAssignment {
   var type: Type {
     return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -514,7 +514,7 @@ class TypealiasDeclarationImpl: ElementImpl, TypealiasDeclaration {
   var typealiasAssignment: TypealiasAssignment {
     return children.first { $0 is TypealiasAssignment } as? TypealiasAssignment ?? TypealiasAssignmentImpl.emptyTypealiasAssignment
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 
@@ -535,7 +535,7 @@ class VariableDeclarationImpl: DeclarationImpl, VariableDeclaration {
   var declarations: [Element] {
     return children.compactMap { $0 as? Element }
   }
-  override init(children: [Any?]) {
+  override init(children: [Element]) {
     super.init(children: children)
   }
 

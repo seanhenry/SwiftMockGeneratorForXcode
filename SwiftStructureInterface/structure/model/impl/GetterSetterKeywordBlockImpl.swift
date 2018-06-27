@@ -11,7 +11,7 @@ class GetterSetterKeywordBlockImpl: ElementImpl, GetterSetterKeywordBlock {
                 .first { $0.children.contains { $0 === Keywords.set } }
     }
 
-    override init(children: [Any?]) {
+    override init(children: [Element]) {
         super.init(children: children)
     }
 

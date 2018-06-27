@@ -6,188 +6,188 @@ class ManagedElementVisitor: ElementVisitor {
   static func wrap(_ element: Element) -> Element {
     let visitor = ManagedElementVisitor()
     element.accept(visitor)
-    return visitor.wrapped
+    return visitor.proxy
   }
 
-  var wrapped: Element!
+  var proxy: Element!
 
   override func visitElement(_ element: Element) {
-    wrapped = ElementWrapper(element)
+    proxy = ElementProxy(element)
   }
 
   override func visitAccessLevelModifier(_ element: AccessLevelModifier) {
-    wrapped = AccessLevelModifierWrapper(element)
+    proxy = AccessLevelModifierProxy(element)
   }
 
   override func visitArrayType(_ element: ArrayType) {
-    wrapped = ArrayTypeWrapper(element)
+    proxy = ArrayTypeProxy(element)
   }
 
   override func visitAssociatedTypeDeclaration(_ element: AssociatedTypeDeclaration) {
-    wrapped = AssociatedTypeDeclarationWrapper(element)
+    proxy = AssociatedTypeDeclarationProxy(element)
   }
 
   override func visitAttribute(_ element: Attribute) {
-    wrapped = AttributeWrapper(element)
+    proxy = AttributeProxy(element)
   }
 
   override func visitAttributes(_ element: Attributes) {
-    wrapped = AttributesWrapper(element)
+    proxy = AttributesProxy(element)
   }
 
   override func visitCodeBlock(_ element: CodeBlock) {
-    wrapped = CodeBlockWrapper(element)
+    proxy = CodeBlockProxy(element)
   }
 
   override func visitConformanceRequirement(_ element: ConformanceRequirement) {
-    wrapped = ConformanceRequirementWrapper(element)
+    proxy = ConformanceRequirementProxy(element)
   }
 
   override func visitDeclaration(_ element: Declaration) {
-    wrapped = DeclarationWrapper(element)
+    proxy = DeclarationProxy(element)
   }
 
   override func visitDeclarationModifier(_ element: DeclarationModifier) {
-    wrapped = DeclarationModifierWrapper(element)
+    proxy = DeclarationModifierProxy(element)
   }
 
   override func visitDictionaryType(_ element: DictionaryType) {
-    wrapped = DictionaryTypeWrapper(element)
+    proxy = DictionaryTypeProxy(element)
   }
 
   override func visitFile(_ element: File) {
-    wrapped = FileWrapper(element)
+    proxy = FileProxy(element)
   }
 
   override func visitFunctionDeclaration(_ element: FunctionDeclaration) {
-    wrapped = FunctionDeclarationWrapper(element)
+    proxy = FunctionDeclarationProxy(element)
   }
 
   override func visitFunctionResult(_ element: FunctionResult) {
-    wrapped = FunctionResultWrapper(element)
+    proxy = FunctionResultProxy(element)
   }
 
   override func visitFunctionType(_ element: FunctionType) {
-    wrapped = FunctionTypeWrapper(element)
+    proxy = FunctionTypeProxy(element)
   }
 
   override func visitGenericArgumentClause(_ element: GenericArgumentClause) {
-    wrapped = GenericArgumentClauseWrapper(element)
+    proxy = GenericArgumentClauseProxy(element)
   }
 
   override func visitGenericParameter(_ element: GenericParameter) {
-    wrapped = GenericParameterWrapper(element)
+    proxy = GenericParameterProxy(element)
   }
 
   override func visitGenericParameterClause(_ element: GenericParameterClause) {
-    wrapped = GenericParameterClauseWrapper(element)
+    proxy = GenericParameterClauseProxy(element)
   }
 
   override func visitGenericWhereClause(_ element: GenericWhereClause) {
-    wrapped = GenericWhereClauseWrapper(element)
+    proxy = GenericWhereClauseProxy(element)
   }
 
   override func visitGetterSetterKeywordBlock(_ element: GetterSetterKeywordBlock) {
-    wrapped = GetterSetterKeywordBlockWrapper(element)
+    proxy = GetterSetterKeywordBlockProxy(element)
   }
 
   override func visitGetterSetterKeywordClause(_ element: GetterSetterKeywordClause) {
-    wrapped = GetterSetterKeywordClauseWrapper(element)
+    proxy = GetterSetterKeywordClauseProxy(element)
   }
 
   override func visitIdentifier(_ element: Identifier) {
-    wrapped = IdentifierWrapper(element)
+    proxy = IdentifierProxy(element)
   }
 
   override func visitInitializerDeclaration(_ element: InitializerDeclaration) {
-    wrapped = InitializerDeclarationWrapper(element)
+    proxy = InitializerDeclarationProxy(element)
   }
 
   override func visitLeafNode(_ element: LeafNode) {
-    wrapped = LeafNodeWrapper(element)
+    proxy = LeafNodeProxy(element)
   }
 
   override func visitMutationModifier(_ element: MutationModifier) {
-    wrapped = MutationModifierWrapper(element)
+    proxy = MutationModifierProxy(element)
   }
 
   override func visitOptionalType(_ element: OptionalType) {
-    wrapped = OptionalTypeWrapper(element)
+    proxy = OptionalTypeProxy(element)
   }
 
   override func visitParameter(_ element: Parameter) {
-    wrapped = ParameterWrapper(element)
+    proxy = ParameterProxy(element)
   }
 
   override func visitParameterClause(_ element: ParameterClause) {
-    wrapped = ParameterClauseWrapper(element)
+    proxy = ParameterClauseProxy(element)
   }
 
   override func visitProtocolCompositionType(_ element: ProtocolCompositionType) {
-    wrapped = ProtocolCompositionTypeWrapper(element)
+    proxy = ProtocolCompositionTypeProxy(element)
   }
 
   override func visitRequirement(_ element: Requirement) {
-    wrapped = RequirementWrapper(element)
+    proxy = RequirementProxy(element)
   }
 
   override func visitRequirementList(_ element: RequirementList) {
-    wrapped = RequirementListWrapper(element)
+    proxy = RequirementListProxy(element)
   }
 
   override func visitSameTypeRequirement(_ element: SameTypeRequirement) {
-    wrapped = SameTypeRequirementWrapper(element)
+    proxy = SameTypeRequirementProxy(element)
   }
 
   override func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
-    wrapped = SubscriptDeclarationWrapper(element)
+    proxy = SubscriptDeclarationProxy(element)
   }
 
   override func visitTupleType(_ element: TupleType) {
-    wrapped = TupleTypeWrapper(element)
+    proxy = TupleTypeProxy(element)
   }
 
   override func visitTupleTypeElement(_ element: TupleTypeElement) {
-    wrapped = TupleTypeElementWrapper(element)
+    proxy = TupleTypeElementProxy(element)
   }
 
   override func visitTupleTypeElementList(_ element: TupleTypeElementList) {
-    wrapped = TupleTypeElementListWrapper(element)
+    proxy = TupleTypeElementListProxy(element)
   }
 
   override func visitType(_ element: Type) {
-    wrapped = TypeWrapper(element)
+    proxy = TypeProxy(element)
   }
 
   override func visitTypeAnnotation(_ element: TypeAnnotation) {
-    wrapped = TypeAnnotationWrapper(element)
+    proxy = TypeAnnotationProxy(element)
   }
 
   override func visitTypeDeclaration(_ element: TypeDeclaration) {
-    wrapped = TypeDeclarationWrapper(element)
+    proxy = TypeDeclarationProxy(element)
   }
 
   override func visitTypeIdentifier(_ element: TypeIdentifier) {
-    wrapped = TypeIdentifierWrapper(element)
+    proxy = TypeIdentifierProxy(element)
   }
 
   override func visitTypeInheritanceClause(_ element: TypeInheritanceClause) {
-    wrapped = TypeInheritanceClauseWrapper(element)
+    proxy = TypeInheritanceClauseProxy(element)
   }
 
   override func visitTypealiasAssignment(_ element: TypealiasAssignment) {
-    wrapped = TypealiasAssignmentWrapper(element)
+    proxy = TypealiasAssignmentProxy(element)
   }
 
   override func visitTypealiasDeclaration(_ element: TypealiasDeclaration) {
-    wrapped = TypealiasDeclarationWrapper(element)
+    proxy = TypealiasDeclarationProxy(element)
   }
 
   override func visitVariableDeclaration(_ element: VariableDeclaration) {
-    wrapped = VariableDeclarationWrapper(element)
+    proxy = VariableDeclarationProxy(element)
   }
 
   override func visitWhitespace(_ element: Whitespace) {
-    wrapped = WhitespaceWrapper(element)
+    proxy = WhitespaceProxy(element)
   }
 }

@@ -1,13 +1,13 @@
 import XCTest
 @testable import SwiftStructureInterface
 
-class ElementWrapperTest: XCTestCase {
+class ElementProxyTest: XCTestCase {
 
     func test_shouldManageLifecycleOfFile() {
         weak var weakFile: File?
         autoreleasepool {
-            let fileWrapper = createFile()
-            let file = fileWrapper.managed as! FileImpl
+            let fileProxy = createFile()
+            let file = fileProxy.managed as! FileImpl
             XCTAssertGreaterThan(file.retainCount, 0)
             weakFile = file
         }
@@ -18,9 +18,9 @@ class ElementWrapperTest: XCTestCase {
         weak var weakFile: File?
         weak var weakChild: Element?
         autoreleasepool {
-            let fileWrapper = createFile()
-            let file = fileWrapper.managed as! FileImpl
-            let child = fileWrapper.children[0]
+            let fileProxy = createFile()
+            let file = fileProxy.managed as! FileImpl
+            let child = fileProxy.children[0]
             XCTAssertGreaterThan(file.retainCount, 0)
             weakChild = child
             weakFile = file
@@ -33,9 +33,9 @@ class ElementWrapperTest: XCTestCase {
         weak var weakFile: File?
         weak var weakGrandchild: Element?
         autoreleasepool {
-            let fileWrapper = createFile()
-            let file = fileWrapper.managed as! FileImpl
-            let grandchild = fileWrapper.children[0].children[0]
+            let fileProxy = createFile()
+            let file = fileProxy.managed as! FileImpl
+            let grandchild = fileProxy.children[0].children[0]
             XCTAssertGreaterThan(file.retainCount, 0)
             weakGrandchild = grandchild
             weakFile = file
@@ -49,9 +49,9 @@ class ElementWrapperTest: XCTestCase {
         weak var weakChild: Element?
         var strongGrandchild: Element?
         autoreleasepool {
-            let fileWrapper = createFile()
-            let file = fileWrapper.managed as! FileImpl
-            strongGrandchild = fileWrapper.children[0].children[0]
+            let fileProxy = createFile()
+            let file = fileProxy.managed as! FileImpl
+            strongGrandchild = fileProxy.children[0].children[0]
             XCTAssertGreaterThan(file.retainCount, 0)
             weakFile = file
             weakChild = file.children[0]
@@ -73,33 +73,33 @@ class ElementWrapperTest: XCTestCase {
 
     func test_shouldNotWrapNonElement() {
         let file = createFile()
-        let result: String = file.wrap("hi")
+        let result: String = file.proxy("hi")
         XCTAssertEqual(result, "hi")
     }
 
     func test_shouldNotWrapNil() {
         let file = createFile()
         let input: String? = nil
-        let result: String? = file.wrap(input as Any)
+        let result: String? = file.proxy(input as Any)
         XCTAssertNil(result)
     }
 
     func test_shouldNotWrapNilElement() {
         let file = createFile()
         let input: Element? = nil
-        let result: Element? = file.wrap(input as Any)
+        let result: Element? = file.proxy(input as Any)
         XCTAssertNil(result)
     }
 
-    private func wrap(_ element: Element) -> ElementWrapper? {
-        return ElementWrapper(element as! ElementImpl)
+    private func wrap(_ element: Element) -> ElementProxy? {
+        return ElementProxy(element as! ElementImpl)
     }
 
-    private func suppressWarning(_ wrapper: Element?) {
+    private func suppressWarning(_ proxy: Element?) {
     }
 
-    private func createFile() -> SwiftStructureInterface.FileWrapper {
-        return ElementParser.parseFile("protocol A { var a: A { get } }") as! SwiftStructureInterface.FileWrapper
+    private func createFile() -> FileProxy {
+        return ElementParser.parseFile("protocol A { var a: A { get } }") as! FileProxy
     }
 
     private class VisitorSpy: ElementVisitor {

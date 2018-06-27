@@ -59,7 +59,7 @@ class FileImplTests: XCTestCase {
     private func assertFile(_ lhs: Element?, line: UInt = #line) {
         XCTAssertNotNil(lhs?.file, line: line)
         XCTAssertNotNil(file)
-        guard let lhs = lhs?.file as? ElementWrapper, let file = file as? ElementWrapper else {
+        guard let lhs = lhs?.file as? ElementProxy, let file = file as? ElementProxy else {
             XCTFail("There was no proxy for the element", line: line)
             return
         }
