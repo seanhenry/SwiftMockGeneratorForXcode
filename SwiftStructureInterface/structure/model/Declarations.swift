@@ -23,6 +23,10 @@ extension Declarations {
         return filterChildren(TypealiasDeclaration.self)
     }
 
+    public var associatedTypeDeclarations: [AssociatedTypeDeclaration] {
+        return filterChildren(AssociatedTypeDeclaration.self)
+    }
+
     public var subscriptDeclarations: [SubscriptDeclaration] {
         return filterChildren(SubscriptDeclaration.self)
     }
@@ -53,6 +57,10 @@ extension Declarations where Self: TypeDeclaration {
 
     public var typealiasDeclarations: [TypealiasDeclaration] {
         return codeBlock.typealiasDeclarations
+    }
+
+    public var associatedTypeDeclarations: [AssociatedTypeDeclaration] {
+        return codeBlock.associatedTypeDeclarations
     }
 
     public var subscriptDeclarations: [SubscriptDeclaration] {

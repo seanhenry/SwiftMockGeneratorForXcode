@@ -1,42 +1,37 @@
 import Lexer
 
-class DeclarationsParser: Parser<[Element]> {
+class DeclarationsParser<T>: Parser<T> {
 
     private var braceLevel = 0
 
-    override func parse() throws -> [Element] {
-        var elements = [Element]()
-        while let element = parseDeclaration() {
-            elements.append(element)
-        }
-        return elements
-    }
-
-    private func parseDeclaration() -> Element? {
+    func parseDeclaration() throws -> Element {
         if isEndOfParsing() {
-            return nil
-        } else if isNextDeclaration(.protocol) {
-            return try? parseProtocolDeclaration()
-        } else if isNextDeclaration(.func) {
-            return try? parseFunctionDeclaration()
-        } else if isNextDeclaration(.var) {
-            return try? parseVariableDeclaration()
-        } else if isNextDeclaration(.identifier("associatedtype", false)) {
-            return try? parseAssociatedTypeDeclaration()
-        } else if isNextDeclaration(.typealias) {
-            return try? parseTypealiasDeclaration()
-        } else if isNextDeclaration(.init) {
-            return try? parseInitializerDeclaration()
-        } else if isNextDeclaration(.subscript) {
-            return try? parseSubscriptDeclaration()
+            throw LookAheadError()
+        } else if let declaration = try? parseProtocolDeclaration() {
+            return declaration
+        } else if let declaration = try? parseFunctionDeclaration() {
+            return declaration
+        } else if let declaration = try? parseVariableDeclaration() {
+            return declaration
+        } else if let declaration = try? parseAssociatedTypeDeclaration() {
+            return declaration
+        } else if let declaration = try? parseTypealiasDeclaration() {
+            return declaration
+        } else if let declaration = try? parseInitializerDeclaration() {
+            return declaration
+        } else if let declaration = try? parseSubscriptDeclaration() {
+            return declaration
         } else {
             adjustBraceLevel()
+            guard let text = getSubstring(getCurrentStartLocation(), getCurrentEndLocation()) else {
+                throw LookAheadError()
+            }
             advance()
-            return parseDeclaration()
+            return ElementImpl(children: [LeafNodeImpl(text: text)])
         }
     }
 
-    private func isEndOfParsing() -> Bool {
+    func isEndOfParsing() -> Bool {
         return isEndOfParentDeclaration() || isEndOfFile()
     }
 
@@ -52,16 +47,7 @@ class DeclarationsParser: Parser<[Element]> {
         return braceLevel == 0 && isNext(.rightBrace)
     }
 
-    private func isEndOfFile() -> Bool {
+    func isEndOfFile() -> Bool {
         return isNext(.eof)
-    }
-
-    private func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
-        let c = setCheckPoint()
-        _ = try? parseAttributes()
-        skipDeclarationModifiers()
-        let isNext = self.isNext(declaration)
-        restoreCheckPoint(c)
-        return isNext
     }
 }

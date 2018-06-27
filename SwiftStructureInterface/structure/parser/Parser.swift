@@ -38,6 +38,10 @@ class Parser<ResultType> {
         return lexer.getCurrentStartLocation()
     }
 
+    func getCurrentEndLocation() -> LineColumn {
+        return lexer.getCurrentEndLocation()
+    }
+
     func getPreviousEndLocation() -> LineColumn {
         return lexer.getPreviousEndLocation()
     }
@@ -98,10 +102,6 @@ class Parser<ResultType> {
         return false
     }
 
-    func skipDeclarationModifiers() {
-        while (try? parseDeclarationModifier()) != nil {}
-    }
-
     func tryToParse<T>(_ parse: () throws -> T) -> T? {
         let cp = setCheckPoint()
         do {
@@ -136,10 +136,6 @@ class Parser<ResultType> {
 
     func parseTypeCodeBlock() throws -> CodeBlock {
         return try parse(CodeBlockParser.self)
-    }
-
-    func parseDeclarations() throws -> [Element] {
-        return try parse(DeclarationsParser.self)
     }
 
     func parseProtocolDeclaration() throws -> Element {

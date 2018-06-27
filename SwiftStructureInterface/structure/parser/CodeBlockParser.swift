@@ -1,10 +1,10 @@
-class CodeBlockParser: Parser<CodeBlock> {
+class CodeBlockParser: DeclarationsParser<CodeBlock> {
 
     override func parse() throws -> CodeBlock {
-        var children = [Element]()
-        (try? parsePunctuation(.leftBrace)).flatMap { children.append($0) }
-        (try? parseDeclarations()).flatMap { children.append(contentsOf: $0) }
-        (try? parsePunctuation(.rightBrace)).flatMap { children.append($0) }
-        return CodeBlockImpl(children: children)
+        return try CodeBlockImpl(children: builder()
+                .required { try self.parsePunctuation(.leftBrace) }
+                .while { try self.parseDeclaration() }
+                .optional { try self.parsePunctuation(.rightBrace) }
+                .build())
     }
 }

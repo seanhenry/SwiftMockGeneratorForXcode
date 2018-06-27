@@ -10,37 +10,27 @@ class DeclarationsParserTests: XCTestCase {
         let `protocol` = file.typeDeclarations[0]
         XCTAssertEqual(`protocol`.text, "protocol A {}")
         XCTAssertEqual(`protocol`.name, "A")
-        XCTAssertEqual(`protocol`.offset, 6)
-        XCTAssertEqual(`protocol`.length, 13)
-        XCTAssertEqual(`protocol`.bodyOffset, 18)
-        XCTAssertEqual(`protocol`.bodyLength, 0)
     }
 
     func test_parse_shouldParseProtocol() {
         let file = ElementParser.parseFile(getProtocolWithMethods())
         let `protocol` = file.typeDeclarations[0]
-        XCTAssertEqual(`protocol`.text, getProtocolWithMethods())
+        StringCompareTestHelper.assertEqualStrings(`protocol`.text, getProtocolWithMethods())
         XCTAssertEqual(`protocol`.name, "MyProtocol")
-        XCTAssertEqual(`protocol`.offset, 0)
-        XCTAssertEqual(`protocol`.length, Int64(getProtocolWithMethods().utf8.count))
-        XCTAssertEqual(`protocol`.bodyOffset, 21)
-        let bodyLength: Int64 = calculateBodyLength(`protocol`)
-        XCTAssertEqual(`protocol`.bodyLength, bodyLength)
-        let bodyOffset = `protocol`.bodyOffset
-        let associatedType = `protocol`.children[1]
-        assertElementText(associatedType, getAssociatedType(), offset: bodyOffset + newlineToNextDeclaration)
+        let associatedType = `protocol`.associatedTypeDeclarations[0]
+        assertElementText(associatedType, getAssociatedType())
         let alias = `protocol`.typealiasDeclarations[0]
-        assertElementText(alias, getTypealias(), offset: associatedType.offset + associatedType.length + newlineToNextDeclaration)
+        assertElementText(alias, getTypealias())
         let initializer = `protocol`.initializerDeclarations[0]
-        assertElementText(initializer, getInitializer(), offset: alias.offset + alias.length + newlineToNextDeclaration)
+        assertElementText(initializer, getInitializer())
         let variable = `protocol`.variableDeclarations[0]
-        assertElementText(variable, getVariable(), offset: initializer.offset + initializer.length + newlineToNextDeclaration)
+        assertElementText(variable, getVariable())
         let function1 = `protocol`.functionDeclarations[0]
-        assertElementText(function1, getFunction(), offset: variable.offset + variable.length + newlineToNextDeclaration)
+        assertElementText(function1, getFunction())
         let function2 = `protocol`.functionDeclarations[1]
-        assertElementText(function2, getFunction(), offset: function1.offset + function1.length + newlineToNextDeclaration)
+        assertElementText(function2, getFunction())
         let subscriptDeclaration = `protocol`.subscriptDeclarations[0]
-        assertElementText(subscriptDeclaration, getSubscript(), offset: function2.offset + function2.length + newlineToNextDeclaration)
+        assertElementText(subscriptDeclaration, getSubscript())
     }
 
     func test_shouldParseSideBySideProtocols() {
@@ -54,11 +44,8 @@ class DeclarationsParserTests: XCTestCase {
     }
 
     func test_shouldSkipAllUnsupportedDeclarations() {
-        let protocolStart = getAll().range(of: "protocol P {")!.lowerBound
-        let offset = Int64(protocolStart.encodedOffset)
         let file = ElementParser.parseFile(getAll())
-        XCTAssertEqual(file.typeDeclarations.count, 2)
-        XCTAssertEqual(file.typeDeclarations[1].offset, offset)
+        StringCompareTestHelper.assertEqualStrings(file.text, getAll())
     }
 
     // MARK: - Helpers

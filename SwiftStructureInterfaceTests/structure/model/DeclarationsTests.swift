@@ -13,8 +13,10 @@ class DeclarationsTests: XCTestCase {
 
     func test_declarations_shouldFilterVariables() {
         let declarations = getMixedElements().variableDeclarations
-        XCTAssertEqual(declarations.count, 1)
+        XCTAssertEqual(declarations.count, 2)
         XCTAssert(declarations[0] === testVariableDeclaration)
+        XCTAssert(declarations[1] === testDeclaration)
+        XCTAssert(testVariableDeclaration === testDeclaration)
     }
 
     func test_declarations_shouldFilterFunctions() {
