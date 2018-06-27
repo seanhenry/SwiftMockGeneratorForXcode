@@ -36,6 +36,6 @@ class SubscriptDeclarationParserTests: XCTestCase {
     }
 
     func assertElementIsParsed(_ text: String, line: UInt = #line) {
-        assertElementText(createParser(text).parse(), text, line: line)
+        assertElementText(try createParser(text).parse(), text, line: line)
     }
 }
