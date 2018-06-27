@@ -1,39 +1,39 @@
 class ParameterParser: Parser<Parameter> {
 
-    override func parse(start: LineColumn) -> Parameter {
+    override func parse() throws -> Parameter {
         if isNext(.eof) {
-            return ParameterImpl.emptyParameter
+            throw LookAheadError()
         }
-        return ParameterImpl(children: [
-            parseUnderscoreAndWhitespace(),
-            tryToParseParameterIdentifier(),
-            tryToParseParameterIdentifier(),
-            parseTypeAnnotation(),
-            parseVarArgs()
-        ])
+        return try ParameterImpl(children: builder()
+                .optional { try self.parsePunctuation(.underscore) }
+                .optional { try self.parseParameterIdentifier() }
+                .optional { try self.parseParameterIdentifier() }
+                .optional { try self.parseTypeAnnotation() }
+                .optional { try self.parseVarArgs() }
+                .build())
     }
 
-    private func tryToParseParameterIdentifier() -> [Any?] {
-        let identifier = tryToParseIdentifier()
-        if !identifier.isEmpty {
+    private func parseParameterIdentifier() throws -> Element {
+        if let identifier = try? parseIdentifier() {
             return identifier
         } else if case let .booleanLiteral(bool) = peekAtNextKind() {
             advance()
             let identifier = IdentifierImpl(text: String(describing: bool))
-            return [identifier, parseWhitespace()]
+            return identifier
         } else {
-            let keyword = parseKeyword()
+            let keyword = try parseKeyword()
             if keyword !== LeafNodeImpl.emptyLeafNode {
-                return [IdentifierImpl(text: keyword.text), parseWhitespace()]
+                return IdentifierImpl(text: keyword.text)
             }
         }
-        return []
+        throw LookAheadError()
     }
 
-    private func parseVarArgs() -> Element? {
+    private func parseVarArgs() throws -> Element {
         if isPostfixOperator("...") {
+            advance()
             return LeafNodeImpl(text: "...")
         }
-        return nil
+        throw LookAheadError()
     }
 }
