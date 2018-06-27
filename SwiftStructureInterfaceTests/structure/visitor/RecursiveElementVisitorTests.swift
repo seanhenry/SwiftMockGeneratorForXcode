@@ -17,8 +17,8 @@ class RecursiveElementVisitorTests: XCTestCase {
 
     // MARK: - visit
 
-    func test_visit_shouldRecursivelyVisitChildren() {
-        let file = parseFile()
+    func test_visit_shouldRecursivelyVisitChildren() throws {
+        let file = try parseFile()
         file.accept(mockVisitor)
         XCTAssertEqual(mockVisitor.invokedVisitFileCount, 1)
         XCTAssertEqual(mockVisitor.invokedVisitTypeDeclarationCount, 1)
@@ -27,8 +27,8 @@ class RecursiveElementVisitorTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func parseFile() -> File {
-        return SKElementFactoryTestHelper.build(from: getNestedClassString())!
+    private func parseFile() throws -> File {
+        return try SKElementFactoryTestHelper.build(from: getNestedClassString())
     }
 
     private func getNestedClassString() -> String {

@@ -5,15 +5,15 @@ class DeclarationsParserTests: XCTestCase {
 
     let newlineToNextDeclaration: Int64 = 3
 
-    func test_parse_shouldParseProtocolWithMisspelledAccessModifier() {
-        let file = ElementParser.parseFile("publi protocol A {}")
+    func test_parse_shouldParseProtocolWithMisspelledAccessModifier() throws {
+        let file = try ElementParser.parseFile("publi protocol A {}")
         let `protocol` = file.typeDeclarations[0]
         XCTAssertEqual(`protocol`.text, "protocol A {}")
         XCTAssertEqual(`protocol`.name, "A")
     }
 
-    func test_parse_shouldParseProtocol() {
-        let file = ElementParser.parseFile(getProtocolWithMethods())
+    func test_parse_shouldParseProtocol() throws {
+        let file = try ElementParser.parseFile(getProtocolWithMethods())
         let `protocol` = file.typeDeclarations[0]
         StringCompareTestHelper.assertEqualStrings(`protocol`.text, getProtocolWithMethods())
         XCTAssertEqual(`protocol`.name, "MyProtocol")
@@ -33,8 +33,8 @@ class DeclarationsParserTests: XCTestCase {
         assertElementText(subscriptDeclaration, getSubscript())
     }
 
-    func test_shouldParseSideBySideProtocols() {
-        let file = ElementParser.parseFile(getMultipleProtocols())
+    func test_shouldParseSideBySideProtocols() throws {
+        let file = try ElementParser.parseFile(getMultipleProtocols())
         let protocolA = file.typeDeclarations[0]
         let funcA = protocolA.functionDeclarations[0]
         XCTAssertEqual(funcA.name, "a")
@@ -43,8 +43,8 @@ class DeclarationsParserTests: XCTestCase {
         XCTAssertEqual(funcB.name, "b")
     }
 
-    func test_shouldSkipAllUnsupportedDeclarations() {
-        let file = ElementParser.parseFile(getAll())
+    func test_shouldSkipAllUnsupportedDeclarations() throws {
+        let file = try ElementParser.parseFile(getAll())
         StringCompareTestHelper.assertEqualStrings(file.text, getAll())
     }
 

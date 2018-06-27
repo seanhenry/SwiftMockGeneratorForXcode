@@ -5,28 +5,26 @@ class CommentsParserTests: XCTestCase {
 
     // MARK: - parse
 
-    func test_parse_shouldParseCommentBlocks() {
-        let text = "/* comment */protocol/* comment */P/* comment */{/* comment */}/* comment */"
-        let expected = "protocol/* comment */P/* comment */{/* comment */}"
-        let commentLength = Int64("/* comment */".utf8.count)
-        let `protocol` = parse(text)
+    func test_parse_shouldParseCommentBlocks() throws {
+        let text = "/* comment1 */protocol/* comment2 */P/* comment3 */{/* comment4 */}/* comment5 */"
+        let expected = "protocol/* comment2 */P/* comment3 */{/* comment4 */}"
+        let `protocol` = try parse(text)
         XCTAssertEqual(`protocol`.name, "P")
         XCTAssertEqual(`protocol`.text, expected)
     }
 
-    func test_parse_shouldParseLineComments() {
+    func test_parse_shouldParseLineComments() throws {
         let text = "// comment\nprotocol// comment\nP// comment\n{// comment\n}// comment\n"
         let expected = "protocol// comment\nP// comment\n{// comment\n}"
-        let commentLength = Int64("// comment\n".utf8.count)
-        let `protocol` = parse(text)
+        let `protocol` = try parse(text)
         XCTAssertEqual(`protocol`.name, "P")
         XCTAssertEqual(`protocol`.text, expected)
     }
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> TypeDeclaration {
+    func parse(_ text: String) throws -> TypeDeclaration {
         let parser = createDeclarationParser(text, .protocol, ProtocolDeclarationParser.self)
-        return parser.parse()
+        return try parser.parse()
     }
 }

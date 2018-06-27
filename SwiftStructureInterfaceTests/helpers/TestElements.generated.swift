@@ -211,7 +211,7 @@ private class TestElements {
   static let instance = TestElements()
 
   private init() {
-    ElementParser.parseFile(allTypesString).accept(Visitor(self))
+    try! ElementParser.parseFile(allTypesString).accept(Visitor(self))
   }
   private(set) var testAccessLevelModifier: AccessLevelModifier!
   private(set) var testArrayType: ArrayType!

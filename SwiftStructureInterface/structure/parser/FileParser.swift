@@ -10,8 +10,8 @@ class FileParser: DeclarationsParser<File> {
         self.init(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter)
     }
 
-    convenience init?(filePath: String) {
-        guard let contents = try? String(contentsOfFile: filePath) else { return nil }
+    convenience init(filePath: String) throws {
+        let contents = try String(contentsOfFile: filePath)
         self.init(fileContents: contents)
     }
 

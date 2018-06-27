@@ -43,9 +43,9 @@ class CachingResolverTests: XCTestCase {
         XCTAssertEqual(spy.invokedResolveCount, 1)
     }
 
-    func test_resolve_shouldReturnReturnCachedElementWhenElementIsDifferentInstanceButTextIsTheSame() {
-        let element1 = ElementParser.parseType("Int")
-        let element2 = ElementParser.parseType("Int")
+    func test_resolve_shouldReturnReturnCachedElementWhenElementIsDifferentInstanceButTextIsTheSame() throws {
+        let element1 = try ElementParser.parseType("Int")
+        let element2 = try ElementParser.parseType("Int")
         resolve(element1)
         resolve(element2)
         XCTAssertEqual(spy.invokedResolveCount, 1)

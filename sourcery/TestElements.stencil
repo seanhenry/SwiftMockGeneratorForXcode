@@ -36,7 +36,7 @@ private class TestElements {
   static let instance = TestElements()
 
   private init() {
-    ElementParser.parseFile(allTypesString).accept(Visitor(self))
+    try! ElementParser.parseFile(allTypesString).accept(Visitor(self))
   }
 {% for type in types.types where type.name != "Declarations" and type.name != "NamedElement" %}
   private(set) var test{{type.name}}: {{type.name}}!

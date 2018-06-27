@@ -7,13 +7,13 @@ class BuildElementTextTests: XCTestCase {
         XCTAssertEqual(TypeImpl.emptyType.text, "")
     }
 
-    func test_shouldJoinTextFromAllLeafNodes() {
+    func test_shouldJoinTextFromAllLeafNodes() throws {
         let text = "func identifier"
         let parser = createParser(text, FileParser.self)
         let type = TypeImpl(children: [
-            parser.parseKeyword(),
-            parser.parseWhitespace(),
-            try! parser.parseIdentifier()
+            try parser.parseKeyword(),
+            try parser.parseWhitespace(),
+            try parser.parseIdentifier()
         ])
         XCTAssertEqual(type.text, text)
     }
@@ -21,6 +21,6 @@ class BuildElementTextTests: XCTestCase {
     func test_shouldJoinTextFromAllNestedLeafNodes() {
         let text = "Generic<T>"
         let parser = createParser(text, TypeParser.self)
-        XCTAssertEqual(parser.parse().text, text)
+        XCTAssertEqual(try parser.parse().text, text)
     }
 }

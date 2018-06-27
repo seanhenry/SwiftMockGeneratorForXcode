@@ -3,10 +3,10 @@ import XCTest
 
 class ElementProxyTest: XCTestCase {
 
-    func test_shouldManageLifecycleOfFile() {
+    func test_shouldManageLifecycleOfFile() throws {
         weak var weakFile: File?
-        autoreleasepool {
-            let fileProxy = createFile()
+        try autoreleasepool {
+            let fileProxy = try createFile()
             let file = fileProxy.managed as! FileImpl
             XCTAssertGreaterThan(file.retainCount, 0)
             weakFile = file
@@ -14,11 +14,11 @@ class ElementProxyTest: XCTestCase {
         XCTAssertNil(weakFile)
     }
 
-    func test_shouldManageLifecycleOfFileWhenHoldingChild() {
+    func test_shouldManageLifecycleOfFileWhenHoldingChild() throws {
         weak var weakFile: File?
         weak var weakChild: Element?
-        autoreleasepool {
-            let fileProxy = createFile()
+        try autoreleasepool {
+            let fileProxy = try createFile()
             let file = fileProxy.managed as! FileImpl
             let child = fileProxy.children[0]
             XCTAssertGreaterThan(file.retainCount, 0)
@@ -29,11 +29,11 @@ class ElementProxyTest: XCTestCase {
         XCTAssertNil(weakChild)
     }
 
-    func test_shouldManageLifecycleOfFileWhenHoldingGrandchild() {
+    func test_shouldManageLifecycleOfFileWhenHoldingGrandchild() throws {
         weak var weakFile: File?
         weak var weakGrandchild: Element?
-        autoreleasepool {
-            let fileProxy = createFile()
+        try autoreleasepool {
+            let fileProxy = try createFile()
             let file = fileProxy.managed as! FileImpl
             let grandchild = fileProxy.children[0].children[0]
             XCTAssertGreaterThan(file.retainCount, 0)
@@ -44,12 +44,12 @@ class ElementProxyTest: XCTestCase {
         XCTAssertNil(weakGrandchild)
     }
 
-    func test_shouldKeepStructureAliveWhenAtLeastOneReference() {
+    func test_shouldKeepStructureAliveWhenAtLeastOneReference() throws {
         weak var weakFile: File?
         weak var weakChild: Element?
         var strongGrandchild: Element?
-        autoreleasepool {
-            let fileProxy = createFile()
+        try autoreleasepool {
+            let fileProxy = try createFile()
             let file = fileProxy.managed as! FileImpl
             strongGrandchild = fileProxy.children[0].children[0]
             XCTAssertGreaterThan(file.retainCount, 0)
@@ -62,8 +62,8 @@ class ElementProxyTest: XCTestCase {
         XCTAssertNotNil(strongGrandchild)
     }
 
-    func test_shouldWrapElement() {
-        let file = createFile()
+    func test_shouldWrapElement() throws {
+        let file = try createFile()
         let child = file.children[0]
         let rawFile = file.managed as! FileImpl
         let rawChild = rawFile.children[0]
@@ -78,8 +78,8 @@ class ElementProxyTest: XCTestCase {
     private func suppressWarning(_ proxy: Element?) {
     }
 
-    private func createFile() -> FileProxy {
-        return ElementParser.parseFile("protocol A { var a: A { get } }") as! FileProxy
+    private func createFile() throws -> FileProxy {
+        return try ElementParser.parseFile("protocol A { var a: A { get } }") as! FileProxy
     }
 
     private class VisitorSpy: ElementVisitor {

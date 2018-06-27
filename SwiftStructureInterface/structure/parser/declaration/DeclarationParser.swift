@@ -30,10 +30,6 @@ class DeclarationParser<ResultType>: Parser<ResultType> {
         throw LookAheadError()
     }
 
-    func parseDeclaration(start: LineColumn, children: [Any?]) -> ResultType {
-        fatalError("Override me")
-    }
-
     func parseDeclaration(builder: ParserBuilder) throws -> ResultType {
         fatalError("Override me")
     }

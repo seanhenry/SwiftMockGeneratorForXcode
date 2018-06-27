@@ -22,7 +22,7 @@ class SKResolver: ResolverDecorator {
     private func getResolvedElementInFile(from data: [String: Any]?) -> Element? {
         if let path = data?["key.filepath"] as? String,
            let offset = data?["key.offset"] as? Int64,
-           let resolvedFile = ElementParser.parseFile(at: path) {
+           let resolvedFile = try? ElementParser.parseFile(at: path) {
             return CaretUtil().findElementUnderCaret(in: resolvedFile, cursorOffset: offset)
         }
         return nil

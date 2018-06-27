@@ -4,6 +4,7 @@ import XCTest
 class ParseBuilderTests: XCTestCase {
 
     var parser: Parser<File>!
+    struct TestError: Error {}
 
     func test_shouldBuildRequiredItem() {
         let children = try! builder("var a : A")
@@ -24,8 +25,8 @@ class ParseBuilderTests: XCTestCase {
         XCTAssertEqual(children[2].text, "a")
     }
 
-    func test_shouldThrowWhenRequiredItemCannotBeParsed() {
-        XCTAssertThrowsError(try builder("").required { nil }.build())
+    func test_shouldThrowWhenRequiredItemCannotBeParsed() throws {
+        XCTAssertThrowsError(try builder("").required { throw TestError() }.build())
     }
 
     func test_shouldBuildOptionalItems() {
@@ -39,10 +40,10 @@ class ParseBuilderTests: XCTestCase {
         XCTAssertEqual(children[2].text, "a")
     }
 
-    func test_shouldNotParseWhitespaceTwiceWhenOptionalReturnsNil() {
+    func test_shouldNotParseWhitespaceTwiceWhenOptionalFails() {
         let children = try! builder("var a : A")
                 .optional { try self.parser.parseKeyword() }
-                .optional { nil }
+                .optional { throw TestError() }
                 .optional { try self.parser.parseIdentifier() }
                 .build()
         XCTAssertEqual(children.count, 3)
@@ -51,11 +52,11 @@ class ParseBuilderTests: XCTestCase {
         XCTAssertEqual(children[2].text, "a")
     }
 
-    func test_shouldNotParseWhitespaceForLastNonNilOperation() {
+    func test_shouldNotParseWhitespaceForLastSuccessfulOperation() {
         let children = try! builder("var a : A")
                 .optional { try self.parser.parseKeyword() }
                 .optional { try self.parser.parseIdentifier() }
-                .optional { nil }
+                .optional { throw TestError() }
                 .build()
         XCTAssertEqual(children.count, 3)
         XCTAssertEqual(children[0].text, "var")
@@ -69,6 +70,18 @@ class ParseBuilderTests: XCTestCase {
                 .build()
         XCTAssertEqual(children.count, 1)
         XCTAssertEqual(children[0].text, "var")
+    }
+
+    func test_shouldContinueParsingUntilElementIsNil() {
+        let children = try! builder("public final class")
+                .while { try self.parser.parseDeclarationModifier() }
+                .build()
+        XCTAssertEqual(children.count, 5)
+        XCTAssertEqual(children[0].text, "public")
+        XCTAssertEqual(children[1].text, " ")
+        XCTAssertEqual(children[2].text, "final")
+        XCTAssertEqual(children[3].text, " ")
+        XCTAssertEqual(children[4].text, "class")
     }
 
     func test_shouldParseWhileFirstIsParsedForOneElement() {

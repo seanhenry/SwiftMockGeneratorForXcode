@@ -1,6 +1,6 @@
 class ParserBuilder {
 
-    typealias ElementSupplier = () throws -> Element?
+    typealias ElementSupplier = () throws -> Element
     private var operations = [Operation]()
     private let whitespaceParser: Parser<Whitespace>
     private struct RequiredElementNotParsedError: Error {}
@@ -66,18 +66,18 @@ class ParserBuilder {
     private func parseOperation(_ operation: Operation) throws -> [Element] {
         switch operation {
         case let .required(supplier):
-            if let element = (try? supplier()) as? Element { // TODO:
+            if let element = try? supplier() {
                 return [element]
             }
             throw RequiredElementNotParsedError()
         case let .optional(supplier):
-            return ((try? supplier()) as? Element).flatMap { [$0] } ?? [] // TODO:
+            return (try? supplier()).flatMap { [$0] } ?? []
         case let .`while`(isParsed, parse):
             var children = [Element]()
-            while let parsed = (try? isParsed()) as? Element {
+            while let parsed = try? isParsed() {
                 children.append(parsed)
                 appendWhitespace(to: &children)
-                let parsed2 = (try? parse()) as? Element
+                let parsed2 = try? parse()
                 parsed2.flatMap {
                     children.append($0)
                     appendWhitespace(to: &children)
