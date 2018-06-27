@@ -3,7 +3,7 @@ class ManagedElementVisitor: ElementVisitor {
   static func wrap(_ element: Element) -> Element {
     let visitor = ManagedElementVisitor()
     element.accept(visitor)
-    return visitor.wrapped
+    return visitor.proxy
   }
 
   var proxy: Element!
@@ -11,7 +11,7 @@ class ManagedElementVisitor: ElementVisitor {
   override func visitElement(_ element: Element) {
     proxy = ElementProxy(element)
   }
-{% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "GenericParameterTypeDeclaration" and type.name != "NamedElement" %}
+{% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "NamedElement" %}
 
   override func visit{{type.name}}(_ element: {{type.name}}) {
     proxy = {{type.name}}Proxy(element)

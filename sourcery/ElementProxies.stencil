@@ -1,4 +1,4 @@
-{% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "GenericParameterTypeDeclaration" and type.name != "NamedElement" %}
+{% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "NamedElement" %}
 
 class {{type.name}}Proxy: {% if type.implements.Type %}TypeProxy{% elif type.implements.LeafNode %}LeafNodeProxy{% elif type.implements.Declaration %}DeclarationProxy{% elif type.implements.Requirement %}RequirementProxy{% elif type.implements.DeclarationModifier %}DeclarationModifierProxy{% else %}ElementProxy{% endif %}, {{type.name}} {
 
