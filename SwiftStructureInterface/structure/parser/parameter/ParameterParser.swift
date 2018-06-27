@@ -22,7 +22,7 @@ class ParameterParser: Parser<Parameter> {
             return identifier
         } else {
             let keyword = try parseKeyword()
-            if keyword !== LeafNodeImpl.emptyLeafNode {
+            if keyword.text != "" {
                 return IdentifierImpl(text: keyword.text)
             }
         }

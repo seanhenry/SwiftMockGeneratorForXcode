@@ -3,182 +3,272 @@
 
 
 extension AccessLevelModifierImpl {
-  static let emptyAccessLevelModifier = AccessLevelModifierImpl(children: [])
+  static func emptyAccessLevelModifier() -> AccessLevelModifier {
+    return AccessLevelModifierImpl(children: [])
+  }
 }
 
 extension ArrayTypeImpl {
-  static let emptyArrayType = ArrayTypeImpl(children: [])
+  static func emptyArrayType() -> ArrayType {
+    return ArrayTypeImpl(children: [])
+  }
 }
 
 extension AssociatedTypeDeclarationImpl {
-  static let emptyAssociatedTypeDeclaration = AssociatedTypeDeclarationImpl(children: [])
+  static func emptyAssociatedTypeDeclaration() -> AssociatedTypeDeclaration {
+    return AssociatedTypeDeclarationImpl(children: [])
+  }
 }
 
 extension AttributeImpl {
-  static let emptyAttribute = AttributeImpl(children: [])
+  static func emptyAttribute() -> Attribute {
+    return AttributeImpl(children: [])
+  }
 }
 
 extension AttributesImpl {
-  static let emptyAttributes = AttributesImpl(children: [])
+  static func emptyAttributes() -> Attributes {
+    return AttributesImpl(children: [])
+  }
 }
 
 extension CodeBlockImpl {
-  static let emptyCodeBlock = CodeBlockImpl(children: [])
+  static func emptyCodeBlock() -> CodeBlock {
+    return CodeBlockImpl(children: [])
+  }
 }
 
 extension ConformanceRequirementImpl {
-  static let emptyConformanceRequirement = ConformanceRequirementImpl(children: [])
+  static func emptyConformanceRequirement() -> ConformanceRequirement {
+    return ConformanceRequirementImpl(children: [])
+  }
 }
 
 extension DeclarationImpl {
-  static let emptyDeclaration = DeclarationImpl(children: [])
+  static func emptyDeclaration() -> Declaration {
+    return DeclarationImpl(children: [])
+  }
 }
 
 extension DeclarationModifierImpl {
-  static let emptyDeclarationModifier = DeclarationModifierImpl(children: [])
+  static func emptyDeclarationModifier() -> DeclarationModifier {
+    return DeclarationModifierImpl(children: [])
+  }
 }
 
 extension DictionaryTypeImpl {
-  static let emptyDictionaryType = DictionaryTypeImpl(children: [])
+  static func emptyDictionaryType() -> DictionaryType {
+    return DictionaryTypeImpl(children: [])
+  }
 }
 
 extension ElementImpl {
-  static let emptyElement = ElementImpl(children: [])
+  static func emptyElement() -> Element {
+    return ElementImpl(children: [])
+  }
 }
 
 extension FileImpl {
-  static let emptyFile = FileImpl(children: [])
+  static func emptyFile() -> File {
+    return FileImpl(children: [])
+  }
 }
 
 extension FunctionDeclarationImpl {
-  static let emptyFunctionDeclaration = FunctionDeclarationImpl(children: [])
+  static func emptyFunctionDeclaration() -> FunctionDeclaration {
+    return FunctionDeclarationImpl(children: [])
+  }
 }
 
 extension FunctionResultImpl {
-  static let emptyFunctionResult = FunctionResultImpl(children: [])
+  static func emptyFunctionResult() -> FunctionResult {
+    return FunctionResultImpl(children: [])
+  }
 }
 
 extension FunctionTypeImpl {
-  static let emptyFunctionType = FunctionTypeImpl(children: [])
+  static func emptyFunctionType() -> FunctionType {
+    return FunctionTypeImpl(children: [])
+  }
 }
 
 extension GenericArgumentClauseImpl {
-  static let emptyGenericArgumentClause = GenericArgumentClauseImpl(children: [])
+  static func emptyGenericArgumentClause() -> GenericArgumentClause {
+    return GenericArgumentClauseImpl(children: [])
+  }
 }
 
 extension GenericParameterImpl {
-  static let emptyGenericParameter = GenericParameterImpl(children: [])
+  static func emptyGenericParameter() -> GenericParameter {
+    return GenericParameterImpl(children: [])
+  }
 }
 
 extension GenericParameterClauseImpl {
-  static let emptyGenericParameterClause = GenericParameterClauseImpl(children: [])
+  static func emptyGenericParameterClause() -> GenericParameterClause {
+    return GenericParameterClauseImpl(children: [])
+  }
 }
 
 extension GenericWhereClauseImpl {
-  static let emptyGenericWhereClause = GenericWhereClauseImpl(children: [])
+  static func emptyGenericWhereClause() -> GenericWhereClause {
+    return GenericWhereClauseImpl(children: [])
+  }
 }
 
 extension GetterSetterKeywordBlockImpl {
-  static let emptyGetterSetterKeywordBlock = GetterSetterKeywordBlockImpl(children: [])
+  static func emptyGetterSetterKeywordBlock() -> GetterSetterKeywordBlock {
+    return GetterSetterKeywordBlockImpl(children: [])
+  }
 }
 
 extension GetterSetterKeywordClauseImpl {
-  static let emptyGetterSetterKeywordClause = GetterSetterKeywordClauseImpl(children: [])
+  static func emptyGetterSetterKeywordClause() -> GetterSetterKeywordClause {
+    return GetterSetterKeywordClauseImpl(children: [])
+  }
 }
 
 extension IdentifierImpl {
-  static let emptyIdentifier = IdentifierImpl(text: "")
+  static func emptyIdentifier() -> Identifier {
+    return IdentifierImpl(text: "")
+  }
 }
 
 extension InitializerDeclarationImpl {
-  static let emptyInitializerDeclaration = InitializerDeclarationImpl(children: [])
+  static func emptyInitializerDeclaration() -> InitializerDeclaration {
+    return InitializerDeclarationImpl(children: [])
+  }
 }
 
 extension LeafNodeImpl {
-  static let emptyLeafNode = LeafNodeImpl(text: "")
+  static func emptyLeafNode() -> LeafNode {
+    return LeafNodeImpl(text: "")
+  }
 }
 
 extension MutationModifierImpl {
-  static let emptyMutationModifier = MutationModifierImpl(children: [])
+  static func emptyMutationModifier() -> MutationModifier {
+    return MutationModifierImpl(children: [])
+  }
 }
 
 extension OptionalTypeImpl {
-  static let emptyOptionalType = OptionalTypeImpl(children: [])
+  static func emptyOptionalType() -> OptionalType {
+    return OptionalTypeImpl(children: [])
+  }
 }
 
 extension ParameterImpl {
-  static let emptyParameter = ParameterImpl(children: [])
+  static func emptyParameter() -> Parameter {
+    return ParameterImpl(children: [])
+  }
 }
 
 extension ParameterClauseImpl {
-  static let emptyParameterClause = ParameterClauseImpl(children: [])
+  static func emptyParameterClause() -> ParameterClause {
+    return ParameterClauseImpl(children: [])
+  }
 }
 
 extension ProtocolCompositionTypeImpl {
-  static let emptyProtocolCompositionType = ProtocolCompositionTypeImpl(children: [])
+  static func emptyProtocolCompositionType() -> ProtocolCompositionType {
+    return ProtocolCompositionTypeImpl(children: [])
+  }
 }
 
 extension RequirementImpl {
-  static let emptyRequirement = RequirementImpl(children: [])
+  static func emptyRequirement() -> Requirement {
+    return RequirementImpl(children: [])
+  }
 }
 
 extension RequirementListImpl {
-  static let emptyRequirementList = RequirementListImpl(children: [])
+  static func emptyRequirementList() -> RequirementList {
+    return RequirementListImpl(children: [])
+  }
 }
 
 extension SameTypeRequirementImpl {
-  static let emptySameTypeRequirement = SameTypeRequirementImpl(children: [])
+  static func emptySameTypeRequirement() -> SameTypeRequirement {
+    return SameTypeRequirementImpl(children: [])
+  }
 }
 
 extension SubscriptDeclarationImpl {
-  static let emptySubscriptDeclaration = SubscriptDeclarationImpl(children: [])
+  static func emptySubscriptDeclaration() -> SubscriptDeclaration {
+    return SubscriptDeclarationImpl(children: [])
+  }
 }
 
 extension TupleTypeImpl {
-  static let emptyTupleType = TupleTypeImpl(children: [])
+  static func emptyTupleType() -> TupleType {
+    return TupleTypeImpl(children: [])
+  }
 }
 
 extension TupleTypeElementImpl {
-  static let emptyTupleTypeElement = TupleTypeElementImpl(children: [])
+  static func emptyTupleTypeElement() -> TupleTypeElement {
+    return TupleTypeElementImpl(children: [])
+  }
 }
 
 extension TupleTypeElementListImpl {
-  static let emptyTupleTypeElementList = TupleTypeElementListImpl(children: [])
+  static func emptyTupleTypeElementList() -> TupleTypeElementList {
+    return TupleTypeElementListImpl(children: [])
+  }
 }
 
 extension TypeImpl {
-  static let emptyType = TypeImpl(children: [])
+  static func emptyType() -> Type {
+    return TypeImpl(children: [])
+  }
 }
 
 extension TypeAnnotationImpl {
-  static let emptyTypeAnnotation = TypeAnnotationImpl(children: [])
+  static func emptyTypeAnnotation() -> TypeAnnotation {
+    return TypeAnnotationImpl(children: [])
+  }
 }
 
 extension TypeDeclarationImpl {
-  static let emptyTypeDeclaration = TypeDeclarationImpl(children: [])
+  static func emptyTypeDeclaration() -> TypeDeclaration {
+    return TypeDeclarationImpl(children: [])
+  }
 }
 
 extension TypeIdentifierImpl {
-  static let emptyTypeIdentifier = TypeIdentifierImpl(children: [])
+  static func emptyTypeIdentifier() -> TypeIdentifier {
+    return TypeIdentifierImpl(children: [])
+  }
 }
 
 extension TypeInheritanceClauseImpl {
-  static let emptyTypeInheritanceClause = TypeInheritanceClauseImpl(children: [])
+  static func emptyTypeInheritanceClause() -> TypeInheritanceClause {
+    return TypeInheritanceClauseImpl(children: [])
+  }
 }
 
 extension TypealiasAssignmentImpl {
-  static let emptyTypealiasAssignment = TypealiasAssignmentImpl(children: [])
+  static func emptyTypealiasAssignment() -> TypealiasAssignment {
+    return TypealiasAssignmentImpl(children: [])
+  }
 }
 
 extension TypealiasDeclarationImpl {
-  static let emptyTypealiasDeclaration = TypealiasDeclarationImpl(children: [])
+  static func emptyTypealiasDeclaration() -> TypealiasDeclaration {
+    return TypealiasDeclarationImpl(children: [])
+  }
 }
 
 extension VariableDeclarationImpl {
-  static let emptyVariableDeclaration = VariableDeclarationImpl(children: [])
+  static func emptyVariableDeclaration() -> VariableDeclaration {
+    return VariableDeclarationImpl(children: [])
+  }
 }
 
 extension WhitespaceImpl {
-  static let emptyWhitespace = WhitespaceImpl(text: "")
+  static func emptyWhitespace() -> Whitespace {
+    return WhitespaceImpl(text: "")
+  }
 }
 

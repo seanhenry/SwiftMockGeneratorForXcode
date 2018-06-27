@@ -4,7 +4,7 @@ import XCTest
 class BuildElementTextTests: XCTestCase {
 
     func test_shouldReturnEmptyStringWhenNoChildren() {
-        XCTAssertEqual(TypeImpl.emptyType.text, "")
+        XCTAssertEqual(TypeImpl.emptyType().text, "")
     }
 
     func test_shouldJoinTextFromAllLeafNodes() throws {

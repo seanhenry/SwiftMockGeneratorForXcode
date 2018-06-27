@@ -14,7 +14,7 @@ class IdentifierParserTests: XCTestCase {
     }
 
     func test_shouldReturnEmptyIdentifier() {
-        XCTAssert(try parse("()") === IdentifierImpl.emptyIdentifier)
+        XCTAssert(try parse("()").text == "")
     }
 
     func test_shouldParseEscapedIdentifier() {

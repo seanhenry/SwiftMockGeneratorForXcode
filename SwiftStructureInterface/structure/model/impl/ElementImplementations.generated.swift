@@ -19,7 +19,7 @@ class ArrayTypeImpl: TypeImpl, ArrayType {
 
 
   var elementType: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType
+    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
   }
 
   override func accept(_ visitor: ElementVisitor) {
@@ -79,10 +79,10 @@ class DeclarationImpl: ElementImpl, Declaration {
 
 
   var attributes: Attributes {
-    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes
+    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes()
   }
   var accessLevelModifier: AccessLevelModifier {
-    return children.first { $0 is AccessLevelModifier } as? AccessLevelModifier ?? AccessLevelModifierImpl.emptyAccessLevelModifier
+    return children.first { $0 is AccessLevelModifier } as? AccessLevelModifier ?? AccessLevelModifierImpl.emptyAccessLevelModifier()
   }
   override init(children: [Element]) {
     super.init(children: children)
@@ -109,10 +109,10 @@ class DictionaryTypeImpl: TypeImpl, DictionaryType {
 
 
   var keyType: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType
+    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
   }
   var valueType: Type {
-    return children.reversed().first { $0 is Type } as? Type ?? TypeImpl.emptyType
+    return children.reversed().first { $0 is Type } as? Type ?? TypeImpl.emptyType()
   }
 
   override func accept(_ visitor: ElementVisitor) {
@@ -127,7 +127,7 @@ class FunctionDeclarationImpl: ElementImpl, FunctionDeclaration {
     return children.first { $0 is GenericParameterClause } as? GenericParameterClause
   }
   var parameterClause: ParameterClause {
-    return children.first { $0 is ParameterClause } as? ParameterClause ?? ParameterClauseImpl.emptyParameterClause
+    return children.first { $0 is ParameterClause } as? ParameterClause ?? ParameterClauseImpl.emptyParameterClause()
   }
   var returnType: FunctionResult? {
     return children.first { $0 is FunctionResult } as? FunctionResult
@@ -148,13 +148,13 @@ class FunctionTypeImpl: TypeImpl, FunctionType {
 
 
   var attributes: Attributes {
-    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes
+    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes()
   }
   var arguments: TupleType {
-    return children.first { $0 is TupleType } as? TupleType ?? TupleTypeImpl.emptyTupleType
+    return children.first { $0 is TupleType } as? TupleType ?? TupleTypeImpl.emptyTupleType()
   }
   var returnType: Type {
-    return children.reversed().first { $0 is Type } as? Type ?? TypeImpl.emptyType
+    return children.reversed().first { $0 is Type } as? Type ?? TypeImpl.emptyType()
   }
 
   override func accept(_ visitor: ElementVisitor) {
@@ -214,7 +214,7 @@ class GenericWhereClauseImpl: ElementImpl, GenericWhereClause {
 
 
   var requirementList: RequirementList {
-    return children.first { $0 is RequirementList } as? RequirementList ?? RequirementListImpl.emptyRequirementList
+    return children.first { $0 is RequirementList } as? RequirementList ?? RequirementListImpl.emptyRequirementList()
   }
   override init(children: [Element]) {
     super.init(children: children)
@@ -229,10 +229,10 @@ class GetterSetterKeywordClauseImpl: ElementImpl, GetterSetterKeywordClause {
 
 
   var attributes: Attributes {
-    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes
+    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes()
   }
   var mutationModifier: MutationModifier {
-    return children.first { $0 is MutationModifier } as? MutationModifier ?? MutationModifierImpl.emptyMutationModifier
+    return children.first { $0 is MutationModifier } as? MutationModifier ?? MutationModifierImpl.emptyMutationModifier()
   }
   override init(children: [Element]) {
     super.init(children: children)
@@ -256,7 +256,7 @@ class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
 
 
   var parameterClause: ParameterClause {
-    return children.first { $0 is ParameterClause } as? ParameterClause ?? ParameterClauseImpl.emptyParameterClause
+    return children.first { $0 is ParameterClause } as? ParameterClause ?? ParameterClauseImpl.emptyParameterClause()
   }
   var declarations: [Element] {
     return children.compactMap { $0 as? Element }
@@ -286,7 +286,7 @@ class OptionalTypeImpl: TypeImpl, OptionalType {
 
 
   var type: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType
+    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
   }
 
   override func accept(_ visitor: ElementVisitor) {
@@ -298,7 +298,7 @@ class ParameterImpl: ElementImpl, Parameter {
 
 
   var typeAnnotation: TypeAnnotation {
-    return children.first { $0 is TypeAnnotation } as? TypeAnnotation ?? TypeAnnotationImpl.emptyTypeAnnotation
+    return children.first { $0 is TypeAnnotation } as? TypeAnnotation ?? TypeAnnotationImpl.emptyTypeAnnotation()
   }
   override init(children: [Element]) {
     super.init(children: children)
@@ -340,7 +340,7 @@ class RequirementImpl: ElementImpl, Requirement {
 
 
   var leftTypeIdentifier: TypeIdentifier {
-    return children.first { $0 is TypeIdentifier } as? TypeIdentifier ?? TypeIdentifierImpl.emptyTypeIdentifier
+    return children.first { $0 is TypeIdentifier } as? TypeIdentifier ?? TypeIdentifierImpl.emptyTypeIdentifier()
   }
   override init(children: [Element]) {
     super.init(children: children)
@@ -385,7 +385,7 @@ class TupleTypeImpl: TypeImpl, TupleType {
 
 
   var tupleTypeElementList: TupleTypeElementList {
-    return children.first { $0 is TupleTypeElementList } as? TupleTypeElementList ?? TupleTypeElementListImpl.emptyTupleTypeElementList
+    return children.first { $0 is TupleTypeElementList } as? TupleTypeElementList ?? TupleTypeElementListImpl.emptyTupleTypeElementList()
   }
 
   override func accept(_ visitor: ElementVisitor) {
@@ -442,10 +442,10 @@ class TypeAnnotationImpl: ElementImpl, TypeAnnotation {
 
 
   var attributes: Attributes {
-    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes
+    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes()
   }
   var type: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType
+    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
   }
   override init(children: [Element]) {
     super.init(children: children)
@@ -460,15 +460,14 @@ class TypeDeclarationImpl: ElementImpl, TypeDeclaration {
 
 
   var accessLevelModifier: AccessLevelModifier {
-    return children.first { $0 is AccessLevelModifier } as? AccessLevelModifier ?? AccessLevelModifierImpl.emptyAccessLevelModifier
+    return children.first { $0 is AccessLevelModifier } as? AccessLevelModifier ?? AccessLevelModifierImpl.emptyAccessLevelModifier()
   }
   var typeInheritanceClause: TypeInheritanceClause {
     return children.compactMap { $0 as? TypeInheritanceClause }.first ?? TypeInheritanceClauseImpl(children: [])
   }
   var codeBlock: CodeBlock {
-    return children.first { $0 is CodeBlock } as? CodeBlock ?? CodeBlockImpl.emptyCodeBlock
+    return children.first { $0 is CodeBlock } as? CodeBlock ?? CodeBlockImpl.emptyCodeBlock()
   }
-
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -485,7 +484,7 @@ class TypeIdentifierImpl: TypeImpl, TypeIdentifier {
     return children.first { $0 is TypeIdentifier } as? TypeIdentifier
   }
   var genericArgumentClause: GenericArgumentClause {
-    return children.first { $0 is GenericArgumentClause } as? GenericArgumentClause ?? GenericArgumentClauseImpl.emptyGenericArgumentClause
+    return children.first { $0 is GenericArgumentClause } as? GenericArgumentClause ?? GenericArgumentClauseImpl.emptyGenericArgumentClause()
   }
 
   override func accept(_ visitor: ElementVisitor) {
@@ -497,7 +496,7 @@ class TypealiasAssignmentImpl: ElementImpl, TypealiasAssignment {
 
 
   var type: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType
+    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
   }
   override init(children: [Element]) {
     super.init(children: children)
@@ -512,7 +511,7 @@ class TypealiasDeclarationImpl: ElementImpl, TypealiasDeclaration {
 
 
   var typealiasAssignment: TypealiasAssignment {
-    return children.first { $0 is TypealiasAssignment } as? TypealiasAssignment ?? TypealiasAssignmentImpl.emptyTypealiasAssignment
+    return children.first { $0 is TypealiasAssignment } as? TypealiasAssignment ?? TypealiasAssignmentImpl.emptyTypealiasAssignment()
   }
   override init(children: [Element]) {
     super.init(children: children)
@@ -527,10 +526,10 @@ class VariableDeclarationImpl: DeclarationImpl, VariableDeclaration {
 
 
   var typeAnnotation: TypeAnnotation {
-    return children.first { $0 is TypeAnnotation } as? TypeAnnotation ?? TypeAnnotationImpl.emptyTypeAnnotation
+    return children.first { $0 is TypeAnnotation } as? TypeAnnotation ?? TypeAnnotationImpl.emptyTypeAnnotation()
   }
   var getterSetterKeywordBlock: GetterSetterKeywordBlock {
-    return children.first { $0 is GetterSetterKeywordBlock } as? GetterSetterKeywordBlock ?? GetterSetterKeywordBlockImpl.emptyGetterSetterKeywordBlock
+    return children.first { $0 is GetterSetterKeywordBlock } as? GetterSetterKeywordBlock ?? GetterSetterKeywordBlockImpl.emptyGetterSetterKeywordBlock()
   }
   var declarations: [Element] {
     return children.compactMap { $0 as? Element }
