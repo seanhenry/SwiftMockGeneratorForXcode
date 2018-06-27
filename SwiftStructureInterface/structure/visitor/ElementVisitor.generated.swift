@@ -105,6 +105,10 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitParameterClause(_ element: ParameterClause) {
+    visitElement(element)
+  }
+
   open func visitProtocolCompositionType(_ element: ProtocolCompositionType) {
     visitType(element)
   }

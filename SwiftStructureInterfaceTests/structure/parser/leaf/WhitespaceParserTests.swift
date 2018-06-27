@@ -3,65 +3,85 @@ import XCTest
 
 class WhitespaceParserTests: XCTestCase {
 
+    var parser: Parser<File>!
+
     func test_shouldCalculateSingleWhitespace() {
-        let parser = createFileParser("func a()")
-        _ = parser.parseKeyword()
-        XCTAssertEqual(parser.parseWhitespace().text, " ")
+        createFileParser("func a()")
+        parseKeyword()
+        XCTAssertEqual(parseWhitespace().text, " ")
     }
 
     func test_shouldCalculateNewline() {
-        let parser = createFileParser("func\na()")
-        _ = parser.parseKeyword()
-        XCTAssertEqual(parser.parseWhitespace().text, "\n")
+        createFileParser("func\na()")
+        parseKeyword()
+        XCTAssertEqual(parseWhitespace().text, "\n")
     }
 
     // TODO: lexer does not support \r on its own
 
     func test_shouldCalculateCarriageReturn() {
-        let parser = createFileParser("func\r\na()")
-        _ = parser.parseKeyword()
-        XCTAssertEqual(parser.parseWhitespace().text, "\r")
+        createFileParser("func\r\na()")
+        parseKeyword()
+        XCTAssertEqual(parseWhitespace().text, "\r")
         XCTAssertEqual(parser.peekAtNextIdentifier(), "a")
     }
 
     func test_shouldCalculateDoubleWhitespace() {
-        let parser = createFileParser("func  a()")
-        _ = parser.parseKeyword()
-        XCTAssertEqual(parser.parseWhitespace().text, "  ")
+        createFileParser("func  a()")
+        parseKeyword()
+        XCTAssertEqual(parseWhitespace().text, "  ")
     }
 
     func test_shouldCalculateTab() {
-        let parser = createFileParser("func\ta()")
-        _ = parser.parseKeyword()
-        XCTAssertEqual(parser.parseWhitespace().text, "\t")
+        createFileParser("func\ta()")
+        parseKeyword()
+        XCTAssertEqual(parseWhitespace().text, "\t")
     }
 
     func test_shouldCalculateMixedWhitespace() {
-        let parser = createFileParser("func \t\n\r\na()")
-        _ = parser.parseKeyword()
-        XCTAssertEqual(parser.parseWhitespace().text, " \t\n\r")
+        createFileParser("func \t\n\r\na()")
+        parseKeyword()
+        XCTAssertEqual(parseWhitespace().text, " \t\n\r")
     }
 
     func test_shouldCalculateWhitespaceAtBeginningOfFile() {
-        let parser = createFileParser(" func a()")
-        XCTAssertEqual(parser.parseWhitespace().text, " ")
-        XCTAssertEqual(parser.parseKeyword().text, "func")
+        createFileParser(" func a()")
+        XCTAssertEqual(parseWhitespace().text, " ")
+        XCTAssertEqual(parseKeyword()?.text, "func")
     }
 
     func test_shouldCalculateWhitespaceAtEndOfFile() {
-        let parser = createFileParser("func ")
-        _ = parser.parseKeyword()
-        XCTAssertEqual(parser.parseWhitespace().text, " ")
+        createFileParser("func ")
+        parseKeyword()
+        XCTAssertEqual(parseWhitespace().text, " ")
     }
 
-    func test_shouldCalculateZeroWhitespaceAtStartOfFile() {
-        let parser = createFileParser("func a")
-        XCTAssertEqual(parser.parseWhitespace().text, "")
+    func test_shouldThrowWhenParsingZeroWhitespaceAtStartOfFile() {
+        createFileParser("func a")
+        XCTAssertThrowsError(try parseEmptyWhitespace())
+    }
+
+    func test_shouldNotParseEmptyWhitespace() {
+        createFileParser("")
+        XCTAssertThrowsError(try parseEmptyWhitespace())
     }
 
     // MARK: - Helpers
 
-    private func createFileParser(_ input: String) -> Parser<File> {
-        return createParser(input, FileParser.self)
+    private func createFileParser(_ input: String) {
+        parser = createParser(input, FileParser.self)
+    }
+
+    @discardableResult
+    private func parseKeyword() -> Element? {
+        return try? parser.parseKeyword()
+    }
+
+    private func parseWhitespace() -> Element {
+        return try! parser.parseWhitespace()
+    }
+
+    private func parseEmptyWhitespace() throws -> Element {
+        return try parser.parseWhitespace()
     }
 }

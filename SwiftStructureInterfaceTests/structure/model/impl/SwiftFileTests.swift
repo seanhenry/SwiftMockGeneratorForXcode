@@ -43,9 +43,9 @@ class SwiftFileTests: XCTestCase {
         assertFilesAreEquivalent(protocolA.inheritedTypes[0].file, file)
         let initializer = protocolA.initializerDeclarations[0]
         assertFilesAreEquivalent(initializer.file, file)
-        assertFilesAreEquivalent(initializer.parameters[0].file, file)
-        assertFilesAreEquivalent(initializer.parameters[0].typeAnnotation.file, file)
-        assertFilesAreEquivalent(initializer.parameters[0].typeAnnotation.type.file, file)
+        assertFilesAreEquivalent(initializer.parameterClause.parameters[0].file, file)
+        assertFilesAreEquivalent(initializer.parameterClause.parameters[0].typeAnnotation.file, file)
+        assertFilesAreEquivalent(initializer.parameterClause.parameters[0].typeAnnotation.type.file, file)
         let property = protocolA.variableDeclarations[0]
         assertFilesAreEquivalent(property.file, file)
         assertFilesAreEquivalent(property.typeAnnotation.file, file)

@@ -9,7 +9,8 @@ class SwiftASTLexer: SwiftLexer {
 
     init(lexer: Lexer) {
         self.lexer = lexer
-        lastRange = SwiftASTLexer.convert(lexer.look().sourceRange)
+        let zero = LineColumn(line: 1, column: 0)
+        lastRange = LineColumnRange(start: zero, end: zero)
     }
 
     private static func convert(_ sourceRange: SourceRange) -> LineColumnRange {

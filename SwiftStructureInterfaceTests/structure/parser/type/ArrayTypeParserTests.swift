@@ -10,12 +10,12 @@ class ArrayTypeParserTests: XCTestCase, TypeParserTests {
     }
 
     func test_parse_shouldParseArrayWithNestedType() {
-        assertTypeText("[Nested.Type]", "[Nested.Type]")
+        assertTypeText("[Nested.T]", "[Nested.T]")
     }
 
     func test_parse_shouldParseArrayWithGenericType() {
-        assertTypeText("[Generic<Type>]", "[Generic<Type>]")
-        assertTypeText("[Nested.Generic<Nested.Type>]", "[Nested.Generic<Nested.Type>]")
+        assertTypeText("[Generic<Int>]", "[Generic<Int>]")
+        assertTypeText("[Nested.Generic<Nested.T>]", "[Nested.Generic<Nested.T>]")
     }
 
     func test_parse_shouldParseArrayWithEmptyType() {
@@ -23,7 +23,7 @@ class ArrayTypeParserTests: XCTestCase, TypeParserTests {
     }
 
     func test_parse_shouldNotParseArrayWithBadClosingType() {
-        assertErrorType("[Type)")
+        XCTAssertThrowsError(try parseArrayType("[T)"))
     }
 
     func test_parse_shouldParse3DArray() {
@@ -35,10 +35,10 @@ class ArrayTypeParserTests: XCTestCase, TypeParserTests {
         assertTypeText("[ [ Int ] ]", "[ [ Int ] ]")
     }
 
-    func test_parse_shouldParseArrayElement() {
+    func test_parse_shouldParseArrayElement() throws {
         let text = "[Int]"
-        let type = parse(text) as? ArrayType
-        let element = type?.elementType
+        let type = try parseArrayType(text)
+        let element = type.elementType
         assertElementText(type, text)
         assertElementText(element, "Int", offset: 1)
     }

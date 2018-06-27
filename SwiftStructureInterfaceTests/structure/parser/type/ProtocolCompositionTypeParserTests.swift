@@ -27,7 +27,7 @@ class ProtocolCompositionTypeParserTests: XCTestCase, TypeParserTests {
 
     func test_parse_shouldParseWhenFirstIsCorrectButNextIsWrong() {
         assertTypeText("A & B | C", "A & B")
-        assertTypeText("A & B & 0", "A & B & ")
+        assertTypeText("A & B & 0", "A & B &")
     }
 
     func test_parse_shouldParseGenericTypes() {
@@ -42,8 +42,8 @@ class ProtocolCompositionTypeParserTests: XCTestCase, TypeParserTests {
         assertTypeText("A&B", "A&B")
     }
 
-    func test_parse_shouldParseProtocolCompositionElement() {
-        let composition = parse("A & B & C") as! ProtocolCompositionType
+    func test_parse_shouldParseProtocolCompositionElement() throws {
+        let composition = try parseProtocolCompositionType("A & B & C")
         assertElementText(composition.types[0], "A")
         assertElementText(composition.types[1], "B", offset: 4)
         assertElementText(composition.types[2], "C", offset: 8)

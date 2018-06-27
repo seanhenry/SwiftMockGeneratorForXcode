@@ -14,14 +14,10 @@ class AccessLevelModifierParser: Parser<AccessLevelModifier> {
         return AccessLevelModifierParser.modifiers
     }
 
-    override func parse(start: LineColumn) -> AccessLevelModifier {
+    override func parse() throws -> AccessLevelModifier {
         guard modifiers.contains(String(describing: peekAtNextKind())) else {
-            return createEmptyModifier()
+            throw LookAheadError()
         }
         return AccessLevelModifierImpl(children: DeclarationModifierParser.parseModifier(self))
-    }
-
-    private func createEmptyModifier() -> AccessLevelModifier {
-        return AccessLevelModifierImpl.emptyAccessLevelModifier
     }
 }

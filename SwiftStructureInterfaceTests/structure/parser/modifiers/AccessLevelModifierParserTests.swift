@@ -27,12 +27,16 @@ class AccessLevelModifierParserTests: XCTestCase {
     }
 
     func test_parse_shouldReturnEmptyModifierWhenNoModifier() {
-        XCTAssertEqual(getText("not a modifier"), "")
+        XCTAssertThrowsError(try parse("not a modifier"))
     }
 
     // MARK: - Helpers
 
     func getText(_ text: String) -> String {
-        return createParser(text, AccessLevelModifierParser.self).parse().text
+        return try! parse(text).text
+    }
+
+    func parse(_ text: String) throws -> AccessLevelModifier {
+        return try createParser(text, AccessLevelModifierParser.self).parse()
     }
 }

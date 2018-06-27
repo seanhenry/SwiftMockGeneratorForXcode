@@ -10,24 +10,23 @@ class TypeIdentifierParserTests: XCTestCase, TypeParserTests {
     }
 
     func test_parse_shouldParseEmptyTypeAsError() {
-        let element = createParser("", TypeParser.self).parse()
-        XCTAssert(element === TypeImpl.emptyType)
+        XCTAssertThrowsError(try createParser("", TypeParser.self).parse())
     }
 
     // MARK: - Nested
 
-    func test_parse_shouldParseNestedType() {
+    func test_parse_shouldParseNestedType() throws {
         let text = "Swift.Int"
-        let type = parse(text) as? TypeIdentifier
+        let type = try parseTypeIdentifier(text)
         assertElementText(type, text)
         XCTAssertEqual(type?.typeName, "Int")
         XCTAssertEqual(type?.parentType?.text, "Swift")
         XCTAssertEqual(type?.parentType?.typeName, "Swift")
     }
 
-    func test_parse_shouldParseDeeplyNestedType() {
+    func test_parse_shouldParseDeeplyNestedType() throws {
         let text = "Swift.Deep.Nested.Int"
-        let type = parse(text) as? TypeIdentifier
+        let type = try parseTypeIdentifier(text)
         assertElementText(type, text)
         XCTAssertEqual(type?.typeName, "Int")
         var parent = type?.parentType
@@ -41,9 +40,9 @@ class TypeIdentifierParserTests: XCTestCase, TypeParserTests {
         XCTAssertEqual(parent?.typeName, "Swift")
     }
 
-    func test_parse_shouldParseNestedGenericType() {
+    func test_parse_shouldParseNestedGenericType() throws {
         let text = "Swift<A>.Int<B>"
-        let type = parse(text) as? TypeIdentifier
+        let type = try parseTypeIdentifier(text)
         assertElementText(type, text)
         XCTAssertEqual(type?.typeName, "Int")
         XCTAssertEqual(type?.genericArgumentClause.arguments[0].text, "B")
@@ -53,9 +52,9 @@ class TypeIdentifierParserTests: XCTestCase, TypeParserTests {
         XCTAssertEqual(parent?.genericArgumentClause.arguments[0].text, "A")
     }
 
-    func test_parse_shouldParseTypeCompositionElement() {
+    func test_parse_shouldParseTypeCompositionElement() throws {
         let text = "Swift.Int"
-        let type = parse(text) as? TypeIdentifier
+        let type = try parseTypeIdentifier(text)
         assertElementText(type, text)
         XCTAssertEqual(type?.genericArgumentClause.arguments.count, 0)
         let parent = type?.parentType
@@ -104,9 +103,9 @@ class TypeIdentifierParserTests: XCTestCase, TypeParserTests {
         assertTypeText("Generic<[Int:String]>", "Generic<[Int:String]>")
     }
 
-    func test_parse_shouldParseGenericElement() {
+    func test_parse_shouldParseGenericElement() throws {
         let text = "Generic<Int>"
-        let type = parse(text) as? TypeIdentifier
+        let type = try parseTypeIdentifier(text)
         assertElementText(type, text)
         XCTAssertEqual(type?.genericArgumentClause.arguments.count, 1)
         XCTAssertEqual(type?.typeName, "Generic")
@@ -114,10 +113,10 @@ class TypeIdentifierParserTests: XCTestCase, TypeParserTests {
         assertElementText(element, "Int", offset: 8)
     }
 
-    func test_parse_shouldParseOptionalGenericElement() {
+    func test_parse_shouldParseOptionalGenericElement() throws {
         let text = "Generic<Int>?"
-        let type = parse(text) as? OptionalType
-        let genericType = type?.type as? TypeIdentifier
+        let type = try parseOptionalType(text)
+        let genericType = type.type as? TypeIdentifier
         assertElementText(genericType, "Generic<Int>")
         XCTAssertEqual(genericType?.genericArgumentClause.arguments.count, 1)
         XCTAssertEqual(genericType?.typeName, "Generic")
@@ -125,9 +124,9 @@ class TypeIdentifierParserTests: XCTestCase, TypeParserTests {
         assertElementText(element, "Int", offset: 8)
     }
 
-    func test_parse_shouldParseNestedGeneric() {
+    func test_parse_shouldParseNestedGeneric() throws {
         let text = "G<T>.H<U>"
-        let type = parse(text) as? TypeIdentifier
+        let type = try parseTypeIdentifier(text)
         assertElementText(type, text)
         XCTAssertEqual(type?.genericArgumentClause.arguments.count, 1)
         XCTAssertEqual(type?.typeName, "H")
@@ -140,9 +139,9 @@ class TypeIdentifierParserTests: XCTestCase, TypeParserTests {
         assertElementText(generic, "T", offset: 2)
     }
 
-    func test_parse_shouldParseDeepNestedGeneric() {
+    func test_parse_shouldParseDeepNestedGeneric() throws {
         let text = "G<T>.H<U>.I<V>"
-        let type = parse(text) as? TypeIdentifier
+        let type = try parseTypeIdentifier(text)
         assertElementText(type, text)
         XCTAssertEqual(type?.genericArgumentClause.arguments.count, 1)
         XCTAssertEqual(type?.typeName, "I")

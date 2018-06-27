@@ -4,7 +4,7 @@ import XCTest
 class GenericArgumentClauseParserTests: XCTestCase {
 
     func test_shouldReturnEmptyClauseWhenNoOpeningBrace() {
-        XCTAssert(parse("T>") === GenericArgumentClauseImpl.emptyGenericArgumentClause)
+        XCTAssertThrowsError(try parser("T>").parse())
     }
 
     func test_shouldParseEmptyClause() {
@@ -35,6 +35,10 @@ class GenericArgumentClauseParserTests: XCTestCase {
     }
 
     func parse(_ input: String) -> GenericArgumentClause {
-        return createParser(input, GenericArgumentClauseParser.self).parse()
+        return try! parser(input).parse()
+    }
+
+    func parser(_ input: String) -> Parser<GenericArgumentClause> {
+        return createParser(input, GenericArgumentClauseParser.self)
     }
 }

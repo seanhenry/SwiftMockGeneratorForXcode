@@ -26,13 +26,13 @@ class DictionaryTypeParserTests: XCTestCase, TypeParserTests {
         assertTypeText("[ [ Int : Int ] : [ String : Int ] ]", "[ [ Int : Int ] : [ String : Int ] ]")
     }
 
-    func test_parse_shouldParseDictionaryElement() {
+    func test_parse_shouldParseDictionaryElement() throws {
         let text = "[Int:String]"
-        let type = parse(text) as? DictionaryType
+        let type = try parseDictionaryType(text)
         assertElementText(type, text)
-        let key = type?.keyType
-        assertElementText(key, "Int", offset: 1)
-        let value = type?.valueType
-        assertElementText(value, "String", offset: 6)
+        let key = type.keyType
+        assertElementText(key, "Int")
+        let value = type.valueType
+        assertElementText(value, "String")
     }
 }

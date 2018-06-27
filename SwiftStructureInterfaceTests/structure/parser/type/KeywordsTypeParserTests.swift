@@ -13,6 +13,14 @@ class KeywordTypeParserTests: XCTestCase, TypeParserTests {
         assertTypeText("Self", "Self")
     }
 
+    func test_parse_shouldParseType() {
+        assertTypeText("Type", "Type")
+    }
+
+    func test_parse_shouldParseProtocol() {
+        assertTypeText("Protocol", "Protocol")
+    }
+
     // MARK: - Metatype
 
     func test_parse_shouldParseMetaTypes() {

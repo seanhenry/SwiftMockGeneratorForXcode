@@ -13,27 +13,25 @@ class FileParserTests: XCTestCase {
     // MARK: - parse
 
     func test_parse_shouldParseFile() {
-        parser = FileParser(fileContents: "protocol P {}")
-        let file = parser.parse()
-        XCTAssertEqual(file.text, "protocol P {}")
-        XCTAssertEqual(file.offset, 0)
-        XCTAssertEqual(file.length, 13)
+        let contents = "Protocol P {}"
+        let file = parse(contents)
+        XCTAssertEqual(file.text, contents)
     }
 
     func test_parse_shouldParseUTF16File() {
-        parser = FileParser(fileContents: "protocol 💐 {}")
-        let file = parser.parse()
-        XCTAssertEqual(file.text, "protocol 💐 {}")
-        XCTAssertEqual(file.offset, 0)
-        XCTAssertEqual(file.length, 16)
+        let contents = "protocol 💐 {}"
+        let file = parse(contents)
+        XCTAssertEqual(file.text, contents)
     }
 
     func test_parse_shouldParseComments() {
         let contents = "/* comment */protocol/* comment */P/* comment */{/* comment */}/* comment */"
-        parser = FileParser(fileContents: contents)
-        let file = parser.parse()
+        let file = parse(contents)
         XCTAssertEqual(file.text, contents)
-        XCTAssertEqual(file.offset, 0)
-        XCTAssertEqual(file.length, Int64(contents.utf8.count))
+    }
+
+    private func parse(_ input: String) -> File {
+        let parser = FileParser(fileContents: input)
+        return try! parser.parse()
     }
 }

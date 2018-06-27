@@ -7,12 +7,12 @@ class MutationModifierParser: Parser<MutationModifier> {
         (.nonmutating, "nonmutating"),
     ]
 
-    override func parse(start: LineColumn) -> MutationModifier {
+    override func parse() throws -> MutationModifier {
         if isNext([.mutating, .nonmutating]) {
-            return MutationModifierImpl(children: [
-                parseKeyword()
-            ])
+            return try MutationModifierImpl(children: builder()
+                    .required { try self.parseKeyword() }
+                    .build())
         }
-        return MutationModifierImpl.emptyMutationModifier
+        throw LookAheadError()
     }
 }

@@ -25,19 +25,19 @@ class OptionalTypeParserTests: XCTestCase, TypeParserTests {
         assertTypeText("[[String?:Int?]?:Int?]?", "[[String?:Int?]?:Int?]?")
     }
 
-    func test_parse_shouldParseOptionalElement() {
+    func test_parse_shouldParseOptionalElement() throws {
         let text = "Int?"
-        let type = parse(text) as? OptionalType
+        let type = try parseOptionalType(text)
         assertElementText(type, text)
-        let innerType = type?.type
+        let innerType = type.type
         assertElementText(innerType, "Int")
     }
 
-    func test_parse_shouldParseDoubleOptionalElement() {
+    func test_parse_shouldParseDoubleOptionalElement() throws {
         let text = "Int??"
-        let type = parse(text) as? OptionalType
+        let type = try parseOptionalType(text)
         assertElementText(type, text)
-        let innerOptional = type?.type as? OptionalType
+        let innerOptional = type.type as? OptionalType
         assertElementText(innerOptional, "Int?")
         let innerType = innerOptional?.type
         assertElementText(innerType, "Int")
@@ -65,21 +65,21 @@ class OptionalTypeParserTests: XCTestCase, TypeParserTests {
         assertTypeText("[[String!:Int!]!:Int!]!", "[[String!:Int!]!:Int!]!")
     }
 
-    func test_parse_shouldParseDoubleIUOElement() {
+    func test_parse_shouldParseDoubleIUOElement() throws {
         let text = "Int!!"
-        let type = parse(text) as? OptionalType
+        let type = try parseOptionalType(text)
         assertElementText(type, "Int!!")
-        let innerOptional = type?.type as? OptionalType
+        let innerOptional = type.type as? OptionalType
         assertElementText(innerOptional, "Int!")
         let innerType = innerOptional?.type
         assertElementText(innerType, "Int")
     }
 
-    func test_parse_shouldParseDoubleOptionalAndIUOElement() {
+    func test_parse_shouldParseDoubleOptionalAndIUOElement() throws {
         let text = "Int?!"
-        let type = parse(text) as? OptionalType
+        let type = try parseOptionalType(text)
         assertElementText(type, "Int?!")
-        let innerOptional = type?.type as? OptionalType
+        let innerOptional = type.type as? OptionalType
         assertElementText(innerOptional, "Int?")
         let innerType = innerOptional?.type
         assertElementText(innerType, "Int")

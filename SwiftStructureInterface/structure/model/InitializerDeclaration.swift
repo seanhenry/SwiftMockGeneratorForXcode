@@ -1,4 +1,4 @@
 public protocol InitializerDeclaration: Element {
-    var parameters: [Parameter] { get }
+    var parameterClause: ParameterClause { get }
     var declarations: [Element] { get }
 }

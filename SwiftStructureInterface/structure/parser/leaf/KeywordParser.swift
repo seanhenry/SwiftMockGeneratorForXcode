@@ -2,7 +2,7 @@ import Lexer
 
 class KeywordParser: Parser<LeafNode> {
 
-    override func parse(start: LineColumn) -> LeafNode {
+    override func parse() throws -> LeafNode {
         if let leaf = Keywords.keywords[String(describing: peekAtNextKind())] {
             advance()
             return leaf
@@ -16,7 +16,7 @@ class KeywordParser: Parser<LeafNode> {
             advance()
             return Keywords.true
         } else {
-            return LeafNodeImpl.emptyLeafNode
+            throw LookAheadError()
         }
     }
 }

@@ -4,16 +4,17 @@ import XCTest
 class KeywordParserTests: XCTestCase {
 
     func test_parseUnknownKeyword() {
-        XCTAssert(parse("unknown") === LeafNodeImpl.emptyLeafNode)
+        XCTAssertThrowsError(try parse("unknown"))
     }
 
     func test_shouldAdvanceParser() {
         let parser = createParser("true false associatedtype func unknown", KeywordParser.self)
-        XCTAssert(parser.parse() === Keywords.true)
-        XCTAssert(parser.parse() === Keywords.false)
-        XCTAssert(parser.parse() === Keywords.associatedtype)
-        XCTAssert(parser.parse() === Keywords.func)
-        XCTAssert(parser.parse() === LeafNodeImpl.emptyLeafNode)
+        let parse = { try? parser.parse() }
+        XCTAssert(parse() === Keywords.true)
+        XCTAssert(parse() === Keywords.false)
+        XCTAssert(parse() === Keywords.associatedtype)
+        XCTAssert(parse() === Keywords.func)
+        XCTAssertNil(parse())
     }
 
     func test_parseKeyword() {
@@ -104,12 +105,12 @@ class KeywordParserTests: XCTestCase {
     // MARK: - Helpers
 
     func assertParsesKeyword(_ input: String, _ expected: LeafNode, line: UInt = #line) {
-        let leaf = parse(input)
-        XCTAssertEqual(leaf.text, expected.text, line: line)
+        let leaf = try? parse(input)
+        XCTAssertEqual(leaf?.text, expected.text, line: line)
         XCTAssert(leaf === expected, line: line)
     }
 
-    private func parse(_ input: String) -> LeafNode {
-        return createParser(input, KeywordParser.self).parse()
+    private func parse(_ input: String) throws -> LeafNode {
+        return try createParser(input, KeywordParser.self).parse()
     }
 }

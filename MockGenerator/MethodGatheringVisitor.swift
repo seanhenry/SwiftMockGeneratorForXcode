@@ -82,7 +82,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
 
     private func transform(_ element: FunctionDeclaration) -> UseCasesMethod {
         let genericParameter = transformGenericParameters(from: element)
-        let parameters = transformParameters(element.parameters)
+        let parameters = transformParameters(element.parameterClause)
         let returnType = element.returnType.map { transformType($0) } ?? UseCasesTypeIdentifier(identifier: "")
         return UseCasesMethod(name: element.name,
             genericParameters: genericParameter,

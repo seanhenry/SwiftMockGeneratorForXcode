@@ -1,14 +1,15 @@
 import Lexer
 
+// TODO: no longer parsing Type<Int> or Generic<Type>. Probs should be more flexible
 class TypeParser: Parser<Type> {
 
     private var startStack = [LineColumn]()
 
-    override func parse(start: LineColumn) -> Type {
+    override func parse() throws -> Type {
         if let type = parseSwiftType() {
             return type
         }
-        return TypeImpl.emptyType
+        throw LookAheadError()
     }
 
     private func parseSwiftType() -> Type? {
@@ -27,17 +28,17 @@ class TypeParser: Parser<Type> {
     }
 
     private func parseTypeExcludingOptional() -> Type? {
-        if let protocolCompositionType = parseProtocolCompositionType() {
+        if let protocolCompositionType = try? parseProtocolCompositionType() {
             return protocolCompositionType
-        } else if let typeIdentifier = parseTypeIdentifiers() {
+        } else if let typeIdentifier = try? parseTypeIdentifiers() {
             return typeIdentifier
-        } else if let arrayType = parseArrayType() {
+        } else if let arrayType = try? parseArrayType() {
             return arrayType
-        } else if let dictionaryType = parseDictionaryType() {
+        } else if let dictionaryType = try? parseDictionaryType() {
             return dictionaryType
-        } else if let functionType = parseFunctionType() {
+        } else if let functionType = try? parseFunctionType() {
             return functionType
-        } else if let tupleType = parseTupleType() {
+        } else if let tupleType = try? parseTupleType() {
             return tupleType
         }
         return nil
@@ -47,84 +48,65 @@ class TypeParser: Parser<Type> {
 // MARK: - Type identifier
 extension TypeParser {
 
-    fileprivate func parseTypeIdentifiers() -> Type? {
+    fileprivate func parseTypeIdentifiers() throws -> Type {
         var type: TypeIdentifier?
-        while let identifier = parseTypeIdentifier(type) {
+        while let identifier = try? parseTypeIdentifier(type) {
             type = identifier
             if isNext(.dot) {
                 advance()
             } else {
-                break
+                return identifier
             }
         }
-        return type
+        throw LookAheadError()
     }
 
-    private func parseTypeIdentifier(_ parent: TypeIdentifier?) -> TypeIdentifier? {
+    private func parseTypeIdentifier(_ parent: TypeIdentifier?) throws -> TypeIdentifier {
         if let identifier = tryToParseIdentifier() {
-            return TypeIdentifierImpl(children: [
-                parent,
-                parent != nil ? Punctuation.dot : nil,
-                identifier,
-                isGenericArgumentClauseNext() ? parseWhitespace() : nil,
-                parseGenericArgumentClause()
-            ])
+            return try TypeIdentifierImpl(children: [parent] + builder()
+                    .optional { parent != nil ? Punctuation.dot : nil }
+                    .required { identifier }
+                    .optional { try self.parseGenericArgumentClause() }
+                    .build())
         }
-        return parent
-    }
-
-    private func isGenericArgumentClauseNext() -> Bool {
-        return isNext("<")
+        throw LookAheadError()
     }
 
     // MARK: - Nested
 
     private func tryToParseIdentifier() -> Identifier? {
-        return try? parseIdentifier()
+        if let identifier = try? parseIdentifier() {
+            return identifier
+        } else if let keyword = try? parseKeyword([.Self, .Type, .Protocol, .Any]) {
+            return IdentifierImpl(text: keyword.text)
+        }
+        return nil
     }
 }
 
 // MARK: - Array
 extension TypeParser {
 
-    fileprivate func parseArrayType() -> Type? {
-        return tryToParse {
-            return ArrayTypeImpl(children: [
-                try parsePunctuation(.leftSquare),
-                parseWhitespace(),
-                parse(),
-                parseWhitespace(),
-                try parsePunctuation(.rightSquare)
-            ])
-        }
+    fileprivate func parseArrayType() throws -> Type {
+        return try ArrayTypeImpl(children:builder()
+                .required { try self.parsePunctuation(.leftSquare) }
+                .optional { try self.parse() }
+                .required { try self.parsePunctuation(.rightSquare) }
+                .build())
     }
 }
 
 // MARK: - Dictionary
 extension TypeParser {
 
-    fileprivate func parseDictionaryType() -> Type? {
-        return tryToParse {
-            return DictionaryTypeImpl(children: [
-                try parsePunctuation(.leftSquare),
-                parseWhitespace(),
-                parseKey(),
-                parseWhitespace(),
-                try parsePunctuation(.colon),
-                parseWhitespace(),
-                parseValue(),
-                parseWhitespace(),
-                try parsePunctuation(.rightSquare)
-            ])
-        }
-    }
-
-    private func parseValue() -> Type {
-        return parse()
-    }
-
-    private func parseKey() -> Type {
-        return parse()
+    fileprivate func parseDictionaryType() throws -> Type {
+        return try DictionaryTypeImpl(children:builder()
+                .required { try self.parsePunctuation(.leftSquare) }
+                .optional { try self.parse() }
+                .required { try self.parsePunctuation(.colon) }
+                .optional { try self.parse() }
+                .required { try self.parsePunctuation(.rightSquare) }
+                .build())
     }
 }
 
@@ -168,22 +150,21 @@ extension TypeParser {
 // MARK: - Protocol composition
 extension TypeParser {
 
-    fileprivate func parseProtocolCompositionType() -> Type? {
-        return tryToParse {
-            var types = [Element]()
-            try appendTypeIdentifiers(to: &types)
-            try appendCompositionRHS(to: &types)
-            while isNextAmpBinaryOperator() {
-                try? appendCompositionRHS(to: &types)
-            }
-            return ProtocolCompositionTypeImpl(children: types)
-        }
+    fileprivate func parseProtocolCompositionType() throws -> Type? {
+        return try ProtocolCompositionTypeImpl(children: builder()
+                .required { try self.parseTypeIdentifiers() }
+                .required { try self.parseOperator("&") }
+                .required { try self.parseTypeIdentifiers() }
+                .while(isParsed: { try self.parseOperator("&") }) {
+                    try self.parseTypeIdentifiers()
+                }
+                .build())
     }
 
     private func appendTypeIdentifiers(to children: inout [Element]) throws {
         startStack.append(getCurrentStartLocation())
         defer { startStack.removeLast() }
-        if let type = parseTypeIdentifiers() {
+        if let type = try? parseTypeIdentifiers() {
             children.append(type)
         } else {
             throw LookAheadError()
@@ -191,9 +172,7 @@ extension TypeParser {
     }
 
     private func appendCompositionRHS(to children: inout [Element]) throws {
-        children.append(parseWhitespace())
         try appendAmpBinaryOperator(to: &children)
-        children.append(parseWhitespace())
         try appendTypeIdentifiers(to: &children)
     }
 
@@ -209,69 +188,55 @@ extension TypeParser {
 // MARK: - Tuple
 extension TypeParser {
 
-    fileprivate func parseTupleType() -> TupleType? {
-        return tryToParse {
-            TupleTypeImpl(children: [
-                try parsePunctuation(.leftParen),
-                parseWhitespace(),
-                parseTupleElementList(),
-                parseWhitespace(),
-                try parsePunctuation(.rightParen)
-            ])
-        }
+    fileprivate func parseTupleType() throws -> TupleType {
+        return try TupleTypeImpl(children: builder()
+                .required { try self.parsePunctuation(.leftParen) }
+                .optional { try self.parseTupleTypeElementList() }
+                .required { try self.parsePunctuation(.rightParen) }
+                .build())
     }
 
-    private func parseTupleElementList() -> TupleTypeElementList {
-        var elements = [Element]()
-        repeat {
-            tryToParseComma(addingTo: &elements)
-            parseTupleElement(addingTo: &elements)
-        } while isNext(.comma)
-        return TupleTypeElementListImpl(children: elements)
-    }
+    class TupleTypeElementListParser: Parser<TupleTypeElementList> {
 
-    private func tryToParseComma(addingTo children: inout [Element]) {
-        tryToParse {
-            let elements = [
-                parseWhitespace(),
-                try parsePunctuation(.comma),
-                parseWhitespace()
-            ]
-            children.append(contentsOf: elements)
-        }
-    }
-
-    private func parseTupleElement(addingTo children: inout [Element]) {
-        if !isNext(.rightParen) {
-            children.append(parseTupleTypeElement())
+        override func parse() throws -> TupleTypeElementList {
+            return try TupleTypeElementListImpl(children: builder()
+                    .optional { try self.parseTupleTypeElement() }
+                    .while(isParsed: { try self.parsePunctuation(.comma) }) {
+                        try self.parseTupleTypeElement()
+                    }
+                    .build())
         }
     }
 
     class TupleTypeElementParser: Parser<TupleTypeElement> {
 
-        override func parse(start: LineColumn) -> TupleTypeElement {
-            return TupleTypeElementImpl(children: [
-                parseUnderscoreAndWhitespace(),
-                parseArgumentName(),
-                parseTupleType()
-            ])
+        override func parse() throws -> TupleTypeElement {
+            return try TupleTypeElementImpl(children: builder()
+                    .optional { try self.parsePunctuation(.underscore) }
+                    .optional { try self.parseArgumentName() }
+                    .required { try self.parseTupleType() }
+                    .build())
         }
 
-        private func parseArgumentName() -> [Element]? {
-            return tryToParse { () -> [Element] in
+        private func parseArgumentName() throws -> Element {
+            let parsed = tryToParse { () -> Element in
                 let name = try parseIdentifier()
                 if !isNext(.colon) {
                     throw LookAheadError()
                 }
-                return [name, parseWhitespace()]
+                return name
             }
+            if let parsed = parsed {
+                return parsed
+            }
+            throw LookAheadError()
         }
 
-        private func parseTupleType() -> Element {
+        private func parseTupleType() throws -> Element {
             if isNext(.colon) {
-                return parseTypeAnnotation()
+                return try parseTypeAnnotation()
             }
-            return parseType()
+            return try parseType()
         }
     }
 }
@@ -279,51 +244,22 @@ extension TypeParser {
 // MARK: - Function type
 extension TypeParser {
 
-    fileprivate func parseFunctionType() -> Type? {
-        return tryToParse {
-            return FunctionTypeImpl(children: [
-                parseFunctionAttributes(),
-                try parseTupleOrFail(),
-                parseWhitespace(),
-                parseThrows(),
-                try parseArrow(),
-                parseReturnType()
-            ])
-        }
+    fileprivate func parseFunctionType() throws -> Type? {
+        return try FunctionTypeImpl(children: builder()
+                .optional { try self.parseAttributes() }
+                .required { try self.parseTupleType() }
+                .optional { try self.parseThrows() }
+                .required { try self.parsePunctuation(.arrow) }
+                .optional { try self.parse() }
+                .build())
     }
 
-    private func parseFunctionAttributes() -> [Element]? {
-        if isNext(.at) {
-            return [parseAttributes(), parseWhitespace()]
-        }
-        return [parseAttributes()]
-    }
-
-    private func parseTupleOrFail() throws -> TupleType {
-        guard let tuple = parseTupleType() else { throw LookAheadError() }
-        return tuple
-    }
-
-    private func parseThrows() -> [Element]? {
-        if isNext(.throws) || isNext(.rethrows) {
-            return [parseKeyword(), parseWhitespace()]
-        }
-        return nil
-    }
-
-    private func parseArrow() throws -> [Element] {
-        return [
-            try parsePunctuation(.arrow),
-            parseWhitespace()
-        ]
-    }
-
-    private func parseReturnType() -> Type {
-        return parse()
+    private func parseThrows() throws -> Element {
+        return try parseKeyword([.throws, .rethrows])
     }
 
     private func appendTupleType(to string: inout String) throws {
-        if let tuple = parseTupleType() {
+        if let tuple = try? parseTupleType() {
             string.append(tuple.text)
         } else {
             throw LookAheadError()

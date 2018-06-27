@@ -1,27 +1,16 @@
 class GenericArgumentClauseParser: Parser<GenericArgumentClause> {
 
-    override func parse(start: LineColumn) -> GenericArgumentClause {
+    override func parse() throws -> GenericArgumentClause {
         guard isNext("<") else {
-            return GenericArgumentClauseImpl.emptyGenericArgumentClause
+            throw LookAheadError()
         }
-        return GenericArgumentClauseImpl(children: [
-            try? parseOperator("<"),
-            parseWhitespace(),
-            parseTypes(),
-            parseWhitespace(),
-            try? parseOperator(">")
-        ])
-    }
-
-    private func parseTypes() -> [Element?] {
-        var types = [Element?]()
-        types.append(parseType())
-        while isNext(.comma) {
-            types.append(parseWhitespace())
-            types.append(try? parsePunctuation(.comma))
-            types.append(parseWhitespace())
-            types.append(parseType())
-        }
-        return types
+        return try GenericArgumentClauseImpl(children: builder()
+                .optional { try self.parseOperator("<") }
+                .optional { try self.parseType() }
+                .while(isParsed: { try self.parsePunctuation(.comma) }) {
+                    try self.parseType()
+                }
+                .optional { try self.parseOperator(">") }
+                .build())
     }
 }

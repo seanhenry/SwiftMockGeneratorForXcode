@@ -13,7 +13,7 @@ class Parser<ResultType> {
         self.locationConverter = locationConverter
     }
 
-    func parse() -> ResultType {
+    func parse() throws -> ResultType {
         let start = getCurrentStartLocation()
         return parse(start: start)
     }
@@ -293,16 +293,23 @@ class Parser<ResultType> {
         return parse(TypeInheritanceClauseParser.self)
     }
 
-    func parseType() -> Type {
-        return parse(TypeParser.self)
     }
 
-    func parseTypeAnnotation() -> TypeAnnotation {
-        return parse(TypeAnnotationParser.self)
+    func parseType() throws -> Type {
+        return try parse(TypeParser.self)
     }
 
-    func parseTupleTypeElement() -> TupleTypeElement {
-        return parse(TypeParser.TupleTypeElementParser.self)
+
+    func parseTypeAnnotation() throws -> TypeAnnotation {
+        return try parse(TypeAnnotationParser.self)
+    }
+
+    func parseTupleTypeElement() throws -> TupleTypeElement {
+        return try parse(TypeParser.TupleTypeElementParser.self)
+    }
+
+    func parseTupleTypeElementList() throws -> TupleTypeElementList {
+        return try parse(TypeParser.TupleTypeElementListParser.self)
     }
 
     func parseTypeCodeBlock() -> CodeBlock {
@@ -402,16 +409,22 @@ class Parser<ResultType> {
         return parseDeclaration(SubscriptDeclarationParser.self, .subscript)
     }
 
-    func parseAccessLevelModifier() -> AccessLevelModifier {
-        return parse(AccessLevelModifierParser.self)
+    func parseKeyword() throws -> LeafNode {
+        return try parse(KeywordParser.self)
     }
 
-    func parseKeyword() -> LeafNode {
-        return parse(KeywordParser.self)
+    func parseKeyword(_ kind: Token.Kind) throws -> LeafNode {
+        return try parse(KeywordParser.self)
     }
 
-    func parseWhitespace() -> Whitespace {
-        return parse(WhitespaceParser.self)
+    func parseKeyword(_ kind: [Token.Kind]) throws -> LeafNode {
+        return try parse(KeywordParser.self)
+    }
+
+    }
+
+    func parseWhitespace() throws -> Whitespace {
+        return try parse(WhitespaceParser.self)
     }
 
     func parseIdentifier() throws -> Identifier {
@@ -468,15 +481,22 @@ class Parser<ResultType> {
         return []
     }
 
-    func parseGenericArgumentClause() -> GenericArgumentClause {
-        return parse(GenericArgumentClauseParser.self)
+
+    func parseGenericArgumentClause() throws -> GenericArgumentClause {
+        return try parse(GenericArgumentClauseParser.self)
     }
 
-    private func parse<T, P: Parser<T>>(_ parserType: P.Type) -> T {
-        return P(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
+    private func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {
+        return try P(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
     }
 
-    private func parseDeclaration<T, P: DeclarationParser<T>>(_ parserType: P.Type, _ token: Token.Kind) -> T {
-        return P(lexer: lexer, fileContents: fileContents, declarationToken: token, locationConverter: locationConverter).parse()
+    private func parseDeclaration<T, P: DeclarationParser<T>>(_ parserType: P.Type, _ token: Token.Kind) throws -> T {
+        return try P(lexer: lexer, fileContents: fileContents, declarationToken: token, locationConverter: locationConverter).parse()
+    }
+
+    func builder() -> ParserBuilder {
+        return ParserBuilder(
+                whitespaceParser: WhitespaceParser(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter)
+        )
     }
 }
