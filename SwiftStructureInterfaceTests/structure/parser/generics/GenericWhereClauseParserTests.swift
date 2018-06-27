@@ -5,8 +5,16 @@ class GenericWhereClauseParserTests: XCTestCase {
 
     // MARK: - parse
 
-    func test_parse_shouldParseEmptyString() {
-        assertText("", "")
+    func test_parse_shouldNotParseEmptyString() {
+        XCTAssertThrowsError(try parse(""))
+    }
+
+    func test_parse_shouldNotParseRequirementWithMissingWhereKeyword() {
+        XCTAssertThrowsError(try parse("A:B"))
+    }
+
+    func test_parse_shouldParseWhereClauseWithoutRequirements() {
+        assertText("where 0", "where")
     }
 
     func test_parse_shouldParseConformanceClause() {
@@ -27,18 +35,18 @@ class GenericWhereClauseParserTests: XCTestCase {
         assertText("where A == B , C == D ", "where A == B , C == D")
     }
 
-    func test_parse_shouldParseRequirementsList() {
-        let clause = parse("where A:B")
+    func test_parse_shouldParseRequirementsList() throws {
+        let clause = try parse("where A:B")
         XCTAssertEqual(clause.requirementList.text, "A:B")
     }
 
     // MARK: - Helpers
 
     func assertText(_ input: String, _ expected: String, line: UInt = #line) {
-        XCTAssertEqual(parse(input).text, expected, line: line)
+        XCTAssertEqual(try parse(input).text, expected, line: line)
     }
 
-    private func parse(_ input: String) -> GenericWhereClause {
-        return createParser(input, GenericWhereClauseParser.self).parse()
+    private func parse(_ input: String) throws -> GenericWhereClause {
+        return try createParser(input, GenericWhereClauseParser.self).parse()
     }
 }
