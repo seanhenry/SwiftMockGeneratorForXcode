@@ -7,19 +7,7 @@ protocol TypeParserTests {
 extension TypeParserTests where Self: XCTestCase {
 
     func assertTypeText(_ input: String, _ expected: String, file: StaticString = #file, line: UInt = #line) {
-        let element = parse(input)
-        assertElementText(element, expected, file: file, line: line)
-    }
-
-    func assertErrorType(_ input: String, file: StaticString = #file, line: UInt = #line) {
-        let element = parse(input)
-        XCTAssertEqual(element.offset, 0, file: file, line: line)
-    }
-
-    func assertOffsetLength(_ input: String, _ expectedOffset: Int64, _ expectedLength: Int64, file: StaticString = #file, line: UInt = #line) {
-        let element = parse(input)
-        XCTAssertEqual(element.offset, expectedOffset, file: file, line: line)
-        XCTAssertEqual(element.length, expectedLength, file: file, line: line)
+        assertElementText(try parse(input), expected, file: file, line: line)
     }
 
     func parse(_ text: String) throws -> TypeImpl {
