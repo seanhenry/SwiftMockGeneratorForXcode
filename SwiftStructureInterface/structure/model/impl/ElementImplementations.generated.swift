@@ -112,7 +112,7 @@ class DictionaryTypeImpl: TypeImpl, DictionaryType {
     return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType
   }
   var valueType: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType
+    return children.reversed().first { $0 is Type } as? Type ?? TypeImpl.emptyType
   }
 
   override func accept(_ visitor: ElementVisitor) {
@@ -126,11 +126,11 @@ class FunctionDeclarationImpl: ElementImpl, FunctionDeclaration {
   var genericParameterClause: GenericParameterClause? {
     return children.first { $0 is GenericParameterClause } as? GenericParameterClause
   }
-  var parameters: [Parameter] {
-    return children.compactMap { $0 as? Parameter }
+  var parameterClause: ParameterClause {
+    return children.first { $0 is ParameterClause } as? ParameterClause ?? ParameterClauseImpl.emptyParameterClause
   }
-  var returnType: Element? {
-    return children.first { $0 is Element } as? Element
+  var returnType: FunctionResult? {
+    return children.first { $0 is FunctionResult } as? FunctionResult
   }
   var declarations: [Element] {
     return children.compactMap { $0 as? Element }
@@ -154,7 +154,7 @@ class FunctionTypeImpl: TypeImpl, FunctionType {
     return children.first { $0 is TupleType } as? TupleType ?? TupleTypeImpl.emptyTupleType
   }
   var returnType: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType
+    return children.reversed().first { $0 is Type } as? Type ?? TypeImpl.emptyType
   }
 
   override func accept(_ visitor: ElementVisitor) {
@@ -255,8 +255,8 @@ class IdentifierImpl: LeafNodeImpl, Identifier {
 class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
 
 
-  var parameters: [Parameter] {
-    return children.compactMap { $0 as? Parameter }
+  var parameterClause: ParameterClause {
+    return children.first { $0 is ParameterClause } as? ParameterClause ?? ParameterClauseImpl.emptyParameterClause
   }
   var declarations: [Element] {
     return children.compactMap { $0 as? Element }
@@ -306,6 +306,21 @@ class ParameterImpl: ElementImpl, Parameter {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitParameter(self)
+  }
+}
+
+class ParameterClauseImpl: ElementImpl, ParameterClause {
+
+
+  var parameters: [Parameter] {
+    return children.compactMap { $0 as? Parameter }
+  }
+  override init(children: [Any?]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitParameterClause(self)
   }
 }
 
@@ -447,12 +462,13 @@ class TypeDeclarationImpl: ElementImpl, TypeDeclaration {
   var accessLevelModifier: AccessLevelModifier {
     return children.first { $0 is AccessLevelModifier } as? AccessLevelModifier ?? AccessLevelModifierImpl.emptyAccessLevelModifier
   }
-  var inheritedTypes: [Element] {
-    return children.compactMap { $0 as? Element }
+  var typeInheritanceClause: TypeInheritanceClause {
+    return children.compactMap { $0 as? TypeInheritanceClause }.first ?? TypeInheritanceClauseImpl(children: [])
   }
-  var declarations: [Element] {
-    return children.compactMap { $0 as? Element }
+  var codeBlock: CodeBlock {
+    return children.first { $0 is CodeBlock } as? CodeBlock ?? CodeBlockImpl.emptyCodeBlock
   }
+
   override init(children: [Any?]) {
     super.init(children: children)
   }

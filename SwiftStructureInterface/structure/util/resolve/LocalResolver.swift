@@ -15,6 +15,7 @@ class LocalResolver: ResolverDecorator {
 
     private func resolveTypealias(_ element: Element) -> Element? {
         return ElementTreeUtil().findParent(TypeDeclaration.self, from: element)?
+                .codeBlock
                 .typealiasDeclarations
                 .first { $0.name == element.text }
     }

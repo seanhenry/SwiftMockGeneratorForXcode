@@ -1,7 +1,7 @@
 public protocol Declarations: Element {
 }
 
-public extension Declarations {
+extension Declarations {
 
     public var variableDeclarations: [VariableDeclaration] {
         return filterChildren(VariableDeclaration.self)
@@ -30,5 +30,32 @@ public extension Declarations {
     private func filterChildren<T>(_ type: T.Type) -> [T] {
         return children
             .compactMap { $0 as? T }
+    }
+}
+
+extension Declarations where Self: TypeDeclaration {
+
+    public var variableDeclarations: [VariableDeclaration] {
+        return codeBlock.variableDeclarations
+    }
+
+    public var initializerDeclarations: [InitializerDeclaration] {
+        return codeBlock.initializerDeclarations
+    }
+
+    public var functionDeclarations: [FunctionDeclaration] {
+        return codeBlock.functionDeclarations
+    }
+
+    public var typeDeclarations: [TypeDeclaration] {
+        return codeBlock.typeDeclarations
+    }
+
+    public var typealiasDeclarations: [TypealiasDeclaration] {
+        return codeBlock.typealiasDeclarations
+    }
+
+    public var subscriptDeclarations: [SubscriptDeclaration] {
+        return codeBlock.subscriptDeclarations
     }
 }

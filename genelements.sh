@@ -4,3 +4,4 @@ cp -f sourcery/out/ElementImplementations.generated.swift SwiftStructureInterfac
 cp -f sourcery/out/ElementProxies.generated.swift SwiftStructureInterface/structure/model/impl
 cp -f sourcery/out/ElementVisitor.generated.swift SwiftStructureInterface/structure/visitor
 cp -f sourcery/out/EmptyElements.generated.swift SwiftStructureInterface/structure/model/impl
+cp -f sourcery/out/ManagedElementVisitor.generated.swift SwiftStructureInterface/algorithms

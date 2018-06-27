@@ -1,4 +1,4 @@
-class ElementImpl: Element, PositionedElement {
+class ElementImpl: Element {
 
     var text: String {
         return BuildElementText.build(from: self)

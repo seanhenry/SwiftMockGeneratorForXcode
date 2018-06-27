@@ -22,6 +22,10 @@ extension AttributesImpl {
   static let emptyAttributes = AttributesImpl(children: [])
 }
 
+extension CodeBlockImpl {
+  static let emptyCodeBlock = CodeBlockImpl(children: [])
+}
+
 extension ConformanceRequirementImpl {
   static let emptyConformanceRequirement = ConformanceRequirementImpl(children: [])
 }
@@ -48,6 +52,10 @@ extension FileImpl {
 
 extension FunctionDeclarationImpl {
   static let emptyFunctionDeclaration = FunctionDeclarationImpl(children: [])
+}
+
+extension FunctionResultImpl {
+  static let emptyFunctionResult = FunctionResultImpl(children: [])
 }
 
 extension FunctionTypeImpl {
@@ -102,6 +110,10 @@ extension ParameterImpl {
   static let emptyParameter = ParameterImpl(children: [])
 }
 
+extension ParameterClauseImpl {
+  static let emptyParameterClause = ParameterClauseImpl(children: [])
+}
+
 extension ProtocolCompositionTypeImpl {
   static let emptyProtocolCompositionType = ProtocolCompositionTypeImpl(children: [])
 }
@@ -148,6 +160,10 @@ extension TypeDeclarationImpl {
 
 extension TypeIdentifierImpl {
   static let emptyTypeIdentifier = TypeIdentifierImpl(children: [])
+}
+
+extension TypeInheritanceClauseImpl {
+  static let emptyTypeInheritanceClause = TypeInheritanceClauseImpl(children: [])
 }
 
 extension TypealiasAssignmentImpl {

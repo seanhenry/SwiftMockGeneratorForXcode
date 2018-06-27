@@ -88,6 +88,20 @@ class AttributesWrapper: ElementWrapper, Attributes {
   }
 }
 
+class CodeBlockWrapper: ElementWrapper, CodeBlock {
+
+  let managedCodeBlock: CodeBlock
+
+  init(_ element: CodeBlock) {
+    managedCodeBlock = element
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitCodeBlock(self)
+  }
+}
+
 class ConformanceRequirementWrapper: RequirementWrapper, ConformanceRequirement {
 
   let managedConformanceRequirement: ConformanceRequirement
@@ -185,10 +199,10 @@ class FunctionDeclarationWrapper: ElementWrapper, FunctionDeclaration {
   var genericParameterClause: GenericParameterClause? {
     return managedFunctionDeclaration.genericParameterClause.flatMap(wrap)
   }
-  var parameters: [Parameter] {
-    return managedFunctionDeclaration.parameters.map(wrap)
+  var parameterClause: ParameterClause {
+    return wrap(managedFunctionDeclaration.parameterClause)
   }
-  var returnType: Element? {
+  var returnType: FunctionResult? {
     return managedFunctionDeclaration.returnType.flatMap(wrap)
   }
   var declarations: [Element] {
@@ -202,6 +216,26 @@ class FunctionDeclarationWrapper: ElementWrapper, FunctionDeclaration {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitFunctionDeclaration(self)
+  }
+}
+
+class FunctionResultWrapper: ElementWrapper, FunctionResult {
+
+  let managedFunctionResult: FunctionResult
+  var attributes: Attributes {
+    return wrap(managedFunctionResult.attributes)
+  }
+  var type: Type {
+    return wrap(managedFunctionResult.type)
+  }
+
+  init(_ element: FunctionResult) {
+    managedFunctionResult = element
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitFunctionResult(self)
   }
 }
 
@@ -356,8 +390,8 @@ class IdentifierWrapper: LeafNodeWrapper, Identifier {
 class InitializerDeclarationWrapper: ElementWrapper, InitializerDeclaration {
 
   let managedInitializerDeclaration: InitializerDeclaration
-  var parameters: [Parameter] {
-    return managedInitializerDeclaration.parameters.map(wrap)
+  var parameterClause: ParameterClause {
+    return wrap(managedInitializerDeclaration.parameterClause)
   }
   var declarations: [Element] {
     return managedInitializerDeclaration.declarations.map(wrap)
@@ -436,6 +470,23 @@ class ParameterWrapper: ElementWrapper, Parameter {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitParameter(self)
+  }
+}
+
+class ParameterClauseWrapper: ElementWrapper, ParameterClause {
+
+  let managedParameterClause: ParameterClause
+  var parameters: [Parameter] {
+    return managedParameterClause.parameters.map(wrap)
+  }
+
+  init(_ element: ParameterClause) {
+    managedParameterClause = element
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitParameterClause(self)
   }
 }
 
@@ -618,11 +669,11 @@ class TypeDeclarationWrapper: ElementWrapper, TypeDeclaration {
   var accessLevelModifier: AccessLevelModifier {
     return wrap(managedTypeDeclaration.accessLevelModifier)
   }
-  var inheritedTypes: [Element] {
-    return managedTypeDeclaration.inheritedTypes.map(wrap)
+  var typeInheritanceClause: TypeInheritanceClause {
+    return wrap(managedTypeDeclaration.typeInheritanceClause)
   }
-  var declarations: [Element] {
-    return managedTypeDeclaration.declarations.map(wrap)
+  var codeBlock: CodeBlock {
+    return wrap(managedTypeDeclaration.codeBlock)
   }
 
   init(_ element: TypeDeclaration) {
@@ -652,6 +703,23 @@ class TypeIdentifierWrapper: TypeWrapper, TypeIdentifier {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitTypeIdentifier(self)
+  }
+}
+
+class TypeInheritanceClauseWrapper: ElementWrapper, TypeInheritanceClause {
+
+  let managedTypeInheritanceClause: TypeInheritanceClause
+  var inheritedTypes: [Type] {
+    return managedTypeInheritanceClause.inheritedTypes.map(wrap)
+  }
+
+  init(_ element: TypeInheritanceClause) {
+    managedTypeInheritanceClause = element
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitTypeInheritanceClause(self)
   }
 }
 

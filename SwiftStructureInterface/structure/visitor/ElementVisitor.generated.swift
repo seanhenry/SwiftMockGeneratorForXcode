@@ -7,6 +7,7 @@ open class ElementVisitor {
   }
 
   open func visitElement(_ element: Element) {
+
   }
 
   open func visitAccessLevelModifier(_ element: AccessLevelModifier) {
@@ -26,6 +27,10 @@ open class ElementVisitor {
   }
 
   open func visitAttributes(_ element: Attributes) {
+    visitElement(element)
+  }
+
+  open func visitCodeBlock(_ element: CodeBlock) {
     visitElement(element)
   }
 
@@ -50,6 +55,10 @@ open class ElementVisitor {
   }
 
   open func visitFunctionDeclaration(_ element: FunctionDeclaration) {
+    visitElement(element)
+  }
+
+  open func visitFunctionResult(_ element: FunctionResult) {
     visitElement(element)
   }
 
@@ -155,6 +164,10 @@ open class ElementVisitor {
 
   open func visitTypeIdentifier(_ element: TypeIdentifier) {
     visitType(element)
+  }
+
+  open func visitTypeInheritanceClause(_ element: TypeInheritanceClause) {
+    visitElement(element)
   }
 
   open func visitTypealiasAssignment(_ element: TypealiasAssignment) {

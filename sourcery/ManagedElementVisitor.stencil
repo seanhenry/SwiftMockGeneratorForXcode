@@ -1,0 +1,20 @@
+class ManagedElementVisitor: ElementVisitor {
+
+  static func wrap(_ element: Element) -> Element {
+    let visitor = ManagedElementVisitor()
+    element.accept(visitor)
+    return visitor.wrapped
+  }
+
+  var wrapped: Element!
+
+  override func visitElement(_ element: Element) {
+    wrapped = ElementWrapper(element)
+  }
+{% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "GenericParameterTypeDeclaration" and type.name != "NamedElement" %}
+
+  override func visit{{type.name}}(_ element: {{type.name}}) {
+    wrapped = {{type.name}}Wrapper(element)
+  }
+{% endfor %}
+}

@@ -1,4 +1,4 @@
-{% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "CodeBlockContainer" and type.name != "PositionedElement" and type.name != "GenericParameterTypeDeclaration" and type.name != "NamedElement" %}
+{% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "GenericParameterTypeDeclaration" and type.name != "NamedElement" %}
 
 class {{type.name}}Wrapper: {% if type.implements.Type %}TypeWrapper{% elif type.implements.LeafNode %}LeafNodeWrapper{% elif type.implements.Declaration %}DeclarationWrapper{% elif type.implements.Requirement %}RequirementWrapper{% elif type.implements.DeclarationModifier %}DeclarationModifierWrapper{% else %}ElementWrapper{% endif %}, {{type.name}} {
 

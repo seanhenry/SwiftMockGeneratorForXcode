@@ -19,14 +19,6 @@ class ElementWrapper: Element {
         return managed.parent.flatMap(wrap)
     }
 
-    var offset: Int64 {
-        return managed.offset
-    }
-
-    var length: Int64 {
-        return managed.length
-    }
-
     init(_ element: Element) {
         self.managed = element
         retainManagedFile(managed: element)

@@ -1,4 +1,4 @@
-{% for type in types.types where type.name != "Declarations" and type.name != "CodeBlockContainer" and type.name != "PositionedElement" and type.name != "GenericParameterTypeDeclaration" and type.name != "NamedElement" %}
+{% for type in types.types where type.name != "Declarations" and type.name != "GenericParameterTypeDeclaration" and type.name != "NamedElement" %}
 extension {{type.name}}Impl {
   static let empty{{type.name}} = {{type.name}}Impl({% if type.implements.LeafNode or type.name == "LeafNode" %}text: ""{% else %}children: []{% endif %})
 }

@@ -12,10 +12,6 @@ class CommentsParserTests: XCTestCase {
         let `protocol` = parse(text)
         XCTAssertEqual(`protocol`.name, "P")
         XCTAssertEqual(`protocol`.text, expected)
-        XCTAssertEqual(`protocol`.offset, commentLength)
-        XCTAssertEqual(`protocol`.length, Int64(expected.utf8.count))
-        XCTAssertEqual(`protocol`.bodyOffset, Int64(expected.utf8.count) - 1)
-        XCTAssertEqual(`protocol`.bodyLength, commentLength)
     }
 
     func test_parse_shouldParseLineComments() {
@@ -25,10 +21,6 @@ class CommentsParserTests: XCTestCase {
         let `protocol` = parse(text)
         XCTAssertEqual(`protocol`.name, "P")
         XCTAssertEqual(`protocol`.text, expected)
-        XCTAssertEqual(`protocol`.offset, commentLength)
-        XCTAssertEqual(`protocol`.length, Int64(expected.utf8.count))
-        XCTAssertEqual(`protocol`.bodyOffset, Int64(expected.utf8.count) - 1)
-        XCTAssertEqual(`protocol`.bodyLength, commentLength)
     }
 
     // MARK: - Helpers

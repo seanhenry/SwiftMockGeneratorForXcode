@@ -1,4 +1,4 @@
-public protocol Element: class, PositionedElement {
+public protocol Element: class {
     var text: String { get }
     var children: [Element] { set get }
     var file: File? { get }

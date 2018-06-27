@@ -68,8 +68,6 @@ class ElementWrapperTest: XCTestCase {
         let rawFile = file.managed as! FileImpl
         let rawChild = rawFile.children[0]
         XCTAssertEqual(rawChild.children.count, child.children.count)
-        XCTAssertEqual(rawChild.offset, child.offset)
-        XCTAssertEqual(rawChild.length, child.length)
         XCTAssertEqual(rawChild.text, child.text)
     }
 
