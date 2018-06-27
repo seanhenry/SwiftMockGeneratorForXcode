@@ -14,19 +14,19 @@ class DeclarationsParser: Parser<[Element]> {
         if isEndOfParsing() {
             return nil
         } else if isNextDeclaration(.protocol) {
-            return parseProtocolDeclaration()
+            return try? parseProtocolDeclaration()
         } else if isNextDeclaration(.func) {
-            return parseFunctionDeclaration()
+            return try? parseFunctionDeclaration()
         } else if isNextDeclaration(.var) {
-            return parseVariableDeclaration()
+            return try? parseVariableDeclaration()
         } else if isNextDeclaration(.identifier("associatedtype", false)) {
-            return parseAssociatedTypeDeclaration()
+            return try? parseAssociatedTypeDeclaration()
         } else if isNextDeclaration(.typealias) {
-            return parseTypealiasDeclaration()
+            return try? parseTypealiasDeclaration()
         } else if isNextDeclaration(.init) {
-            return parseInitializerDeclaration()
+            return try? parseInitializerDeclaration()
         } else if isNextDeclaration(.subscript) {
-            return parseSubscriptDeclaration()
+            return try? parseSubscriptDeclaration()
         } else {
             adjustBraceLevel()
             advance()

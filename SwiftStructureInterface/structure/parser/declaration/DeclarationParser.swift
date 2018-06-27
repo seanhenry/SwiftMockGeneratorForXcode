@@ -14,35 +14,27 @@ class DeclarationParser<ResultType>: Parser<ResultType> {
         fatalError("Use init(lexer:fileContents:declarationToken:locationConverter:)")
     }
 
-    override func parse(start: LineColumn) -> ResultType {
+    override func parse() throws -> ResultType {
         // TODO: this only works for some declarations (classes for example, may have final first) but only used for protocols so far.
-        do {
-            return parseDeclaration(start: start, children: [
-                parseAttributesAndWhitespace(),
-                parseDeclarationModifiers(),
-                try parseDeclarationToken(),
-                parseWhitespace()
-            ])
-        } catch {
-            fatalError("Expected a \(declarationToken). Check isNext(.\(declarationToken)) before parsing a declaration")
-        }
-    }
-
-    private func parseAttributesAndWhitespace() -> [Element] {
-        if isNext(.at) {
-            return [parseAttributes(), parseWhitespace()]
-        }
-        return [parseAttributes()]
+        let builder = self.builder()
+                .optional { try self.parseAttributes() }
+                .while { try self.parseDeclarationModifier() }
+                .required { try self.parseDeclarationToken() }
+        return try parseDeclaration(builder: builder)
     }
 
     private func parseDeclarationToken() throws -> Element {
         if isNext(declarationToken) {
-            return parseKeyword()
+            return try parseKeyword()
         }
         throw LookAheadError()
     }
 
     func parseDeclaration(start: LineColumn, children: [Any?]) -> ResultType {
+        fatalError("Override me")
+    }
+
+    func parseDeclaration(builder: ParserBuilder) throws -> ResultType {
         fatalError("Override me")
     }
 }

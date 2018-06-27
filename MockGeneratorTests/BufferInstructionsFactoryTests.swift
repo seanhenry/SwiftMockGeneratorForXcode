@@ -111,11 +111,12 @@ class BufferInstructionsFactoryTests: XCTestCase {
     }
 
     class NoFileTypeDeclaration: TypeDeclaration {
+
         var accessLevelModifier: AccessLevelModifier {
-            fatalError()
+            return fatalError()
         }
-        var inheritedTypes: [Element] {
-            return []
+        var typeInheritanceClause: TypeInheritanceClause {
+            return fatalError()
         }
         var declarations: [Element] {
             return []
@@ -142,6 +143,7 @@ class BufferInstructionsFactoryTests: XCTestCase {
         var length: Int64 {
             return 0
         }
+
         func accept(_ visitor: ElementVisitor) {
         }
     }

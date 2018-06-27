@@ -62,7 +62,7 @@ extension TypeParser {
     private func parseTypeIdentifier(_ parent: TypeIdentifier?) throws -> TypeIdentifier {
         return try TypeIdentifierImpl(children: [parent] + builder()
                 .optional { try self.parseDotIfNeeded(parent: parent) }
-                .required { try self.parseIdentifier() }
+                .required { try self.parseIdentifierIncludingKeywords() }
                 .optional { try self.parseGenericArgumentClause() }
                 .build())
     }
@@ -76,13 +76,13 @@ extension TypeParser {
 
     // MARK: - Nested
 
-    private func tryToParseIdentifier() -> Identifier? {
+    private func parseIdentifierIncludingKeywords() throws -> Identifier {
         if let identifier = try? parseIdentifier() {
             return identifier
         } else if let keyword = try? parseKeyword([.Self, .Type, .Protocol, .Any]) {
             return IdentifierImpl(text: keyword.text)
         }
-        return nil
+        throw LookAheadError()
     }
 }
 

@@ -1,10 +1,10 @@
 extension FunctionDeclaration {
 
     public var name: String {
-        fatalError("TODO:")
+        return children.first { $0 is Identifier }?.text ?? ""
     }
 
     public var `throws`: Bool {
-        fatalError("TODO:")
+        return children.compactMap { $0 as? LeafNode }.contains { $0.text == "throws" }
     }
 }

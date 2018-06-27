@@ -27,7 +27,7 @@ class SKResolverTests: XCTestCase {
         resolver = createSameFileResolver()
         writeResolveClassesToSingleFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = file.typeDeclarations[1].inheritedTypes[0]
+        let reference = file.typeDeclarations[1].typeInheritanceClause.inheritedTypes[0]
         let resolved = resolver.resolve(reference) as? TypeDeclaration
         XCTAssertEqual(resolved?.name, "ResolveTest")
         let method = resolved?.functionDeclarations[0]
@@ -38,7 +38,7 @@ class SKResolverTests: XCTestCase {
         resolver = createManyFileResolver()
         writeResolveClassesToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = file.typeDeclarations[0].inheritedTypes[0]
+        let reference = file.typeDeclarations[0].typeInheritanceClause.inheritedTypes[0]
         let resolved = resolver.resolve(reference) as? TypeDeclaration
         XCTAssertEqual(resolved?.name, "ResolveTest")
         let method = resolved?.functionDeclarations[0]
@@ -49,7 +49,7 @@ class SKResolverTests: XCTestCase {
         resolver = createManyFileResolver()
         writeUTF16ResolveClassesToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = file.typeDeclarations[0].inheritedTypes[0]
+        let reference = file.typeDeclarations[0].typeInheritanceClause.inheritedTypes[0]
         let resolved = resolver.resolve(reference) as? TypeDeclaration
         XCTAssertEqual(resolved?.name, "Resolve💐Test")
         let method = resolved?.functionDeclarations[0]
@@ -60,7 +60,7 @@ class SKResolverTests: XCTestCase {
         resolver = createThrowingSameFileResolver()
         writeResolveClassesToFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = file.typeDeclarations[0].inheritedTypes[0]
+        let reference = file.typeDeclarations[0].typeInheritanceClause.inheritedTypes[0]
         XCTAssertNil(resolver.resolve(reference))
     }
 
@@ -74,7 +74,7 @@ class SKResolverTests: XCTestCase {
         resolver = createSpyingResolver()
         writeResolveClassesToSingleFile()
         let file = SKElementFactoryTestHelper.build(fromPath: resolveFile)!
-        let reference = file.typeDeclarations[1].inheritedTypes[0]
+        let reference = file.typeDeclarations[1].typeInheritanceClause.inheritedTypes[0]
         _ = resolver.resolve(reference)
         XCTAssertFalse(spy.invokedResolve)
     }

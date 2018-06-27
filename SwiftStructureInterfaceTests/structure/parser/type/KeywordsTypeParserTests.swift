@@ -28,6 +28,14 @@ class KeywordTypeParserTests: XCTestCase, TypeParserTests {
         assertTypeText("MyType.Protocol", "MyType.Protocol")
     }
 
+    func test_parse_shouldParseMetaTypesInStrangePlaces() {
+        assertTypeText("[Type]", "[Type]")
+        assertTypeText("[Type: Protocol]", "[Type: Protocol]")
+        assertTypeText("Generic<Self>", "Generic<Self>")
+        assertTypeText("(Type, b: Self)", "(Type, b: Self)")
+        assertTypeText("() -> (Type)", "() -> (Type)")
+    }
+
     // MARK: - Escaped
 
     func test_parse_shouldParseEscapedIdentifier() {

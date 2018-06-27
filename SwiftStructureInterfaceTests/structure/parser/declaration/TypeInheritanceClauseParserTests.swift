@@ -32,6 +32,12 @@ class TypeInheritanceClauseParserTests: XCTestCase {
         XCTAssertEqual(clause.text, ": A,")
     }
 
+    func test_shouldParseClassKeyword() throws {
+        let clause = try parse(": class")
+        XCTAssertEqual(clause.text, ": class")
+        XCTAssertEqual(clause.inheritedTypes[0].text, "class")
+    }
+
     private func parse(_ input: String) throws -> TypeInheritanceClause {
         return try createParser(input, TypeInheritanceClauseParser.self).parse()
     }
