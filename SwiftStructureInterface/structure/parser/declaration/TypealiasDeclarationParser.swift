@@ -1,11 +1,10 @@
 class TypealiasDeclarationParser: DeclarationParser<TypealiasDeclaration> {
 
-    override func parseDeclaration(start: LineColumn, children: [Any?]) -> TypealiasDeclaration {
-        return TypealiasDeclarationImpl(children: children + [
-            parseWhitespace(),
-            tryToParseIdentifier(),
-            tryToParseGenericParameterClause(),
-            parseTypealiasAssignment()
-        ])
+    override func parseDeclaration(builder: ParserBuilder) throws -> TypealiasDeclaration {
+        return try TypealiasDeclarationImpl(children: builder
+                .optional { try self.parseIdentifier() }
+                .optional { try self.parseGenericParameterClause() }
+                .optional { try self.parseTypealiasAssignment() }
+                .build())
     }
 }

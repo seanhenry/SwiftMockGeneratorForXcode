@@ -5,9 +5,9 @@ class TypealiasDeclarationParserTests: XCTestCase {
 
     // MARK: - parse
 
-    func test_parse_shouldParseDeclaration() {
+    func test_parse_shouldParseDeclaration() throws {
         let text = "typealias Name = Int"
-        let typeAlias = parse(text)
+        let typeAlias = try parse(text)
         assertElementText(typeAlias, text)
         XCTAssertEqual(typeAlias.name, "Name")
         let assignment = typeAlias.typealiasAssignment
@@ -16,30 +16,39 @@ class TypealiasDeclarationParserTests: XCTestCase {
         assertElementText(type, "Int")
     }
 
-    func test_parse_shouldParseDeclarationWithoutName() {
+    func test_parse_shouldParseDeclarationWithoutName() throws {
         let text = "typealias = Int"
-        let typeAlias = parse(text)
+        let typeAlias = try parse(text)
         assertElementText(typeAlias, text)
         XCTAssertEqual(typeAlias.name, "")
     }
 
-    func test_parse_shouldParseAttributesAndAccessLevelModifiers() {
+    func test_parse_shouldParseAttributesAndAccessLevelModifiers() throws {
         let text = "@a @b public typealias Name = Int"
-        let typeAlias = parse(text)
+        let typeAlias = try parse(text)
         assertElementText(typeAlias, text)
         XCTAssertEqual(typeAlias.name, "Name")
     }
 
     func test_parse_shouldParseGenericParameterClause() {
         let text = "typealias Name<T, U: V> = Int<T, U>"
-        let typeAlias = parse(text)
-        assertElementText(typeAlias, text)
+        assertElementText(try parse(text), text)
+    }
+
+    func test_parse_shouldParseGenericParameterClauseWithMinimumWhitespace() {
+        let text = "typealias Name<T,U:V,W==X>=Int<T>"
+        assertElementText(try parse(text), text)
+    }
+
+    func test_parse_shouldParseGenericParameterClauseWithWhitespace() {
+        let text = "typealias Name < T , U : V , W == X > = Int < T >"
+        assertElementText(try parse(text), text)
     }
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> TypealiasDeclaration {
+    func parse(_ text: String) throws -> TypealiasDeclaration {
         let parser = createDeclarationParser(text, .typealias, TypealiasDeclarationParser.self)
-        return parser.parse()
+        return try parser.parse()
     }
 }
