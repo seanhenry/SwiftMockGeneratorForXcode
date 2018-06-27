@@ -8,7 +8,7 @@ class MutationModifierParser: Parser<MutationModifier> {
     ]
 
     override func parse() throws -> MutationModifier {
-        return try MutationModifierImpl(children:builder()
+        return try MutationModifierImpl(children: builder()
                 .required { try self.parseKeyword([.mutating, .nonmutating]) }
                 .build())
     }

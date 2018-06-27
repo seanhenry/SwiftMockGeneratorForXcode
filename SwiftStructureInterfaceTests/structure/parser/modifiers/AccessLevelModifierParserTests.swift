@@ -18,12 +18,12 @@ class AccessLevelModifierParserTests: XCTestCase {
             "open(set)"
         ]
         modifiers.forEach { d in
-            XCTAssertEqual(getText(d), d)
+            assertText(d, d)
         }
     }
 
     func test_parse_shouldParseModifierWithMissingArgument() {
-        XCTAssertEqual(getText("public("), "public")
+        assertText("public(", "public")
     }
 
     func test_parse_shouldReturnEmptyModifierWhenNoModifier() {
@@ -32,8 +32,8 @@ class AccessLevelModifierParserTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func getText(_ text: String) -> String {
-        return try! parse(text).text
+    func assertText(_ text: String, _ expected: String, line: UInt = #line) {
+        XCTAssertEqual(try parse(text).text, expected, line: line)
     }
 
     func parse(_ text: String) throws -> AccessLevelModifier {

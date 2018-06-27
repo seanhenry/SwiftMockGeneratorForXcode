@@ -23,43 +23,42 @@ class DeclarationModifierParser: Parser<DeclarationModifier> {
         return DeclarationModifierParser.modifiers
     }
 
-    override func parse(start: LineColumn) -> DeclarationModifier {
-        if modifiers.contains(String(describing: peekAtNextKind())) {
-            return DeclarationModifierImpl(children: DeclarationModifierParser.parseModifier(self))
+    override func parse() throws -> DeclarationModifier {
+        if let modifier = parseAnyModifier() {
+            return modifier
         }
-        return parseOtherModifier() ?? createEmptyModifier()
+        throw LookAheadError()
     }
 
-    static func parseModifier<T>(_ parser: Parser<T>) -> [Any?] {
-        return [
-            parser.parseKeyword(),
-            parseModifierArgument(parser)
-        ]
+    private func parseAnyModifier() -> DeclarationModifier? {
+        return (try? parseDeclarationModifierOnly())
+                ?? (try? parseAccessLevelModifier())
+                ?? (try? parseMutationModifier())
     }
 
-    private static func parseModifierArgument<T>(_ parser: Parser<T>) -> [Element]? {
-        return parser.tryToParse {
-            return [
-                try parser.parsePunctuation(.leftParen),
-                parser.parseKeyword(),
-                try parser.parsePunctuation(.rightParen)
-            ]
-        }
+    private func parseDeclarationModifierOnly() throws -> DeclarationModifier {
+        return DeclarationModifierImpl(children:
+          try DeclarationModifierParser.parseModifier(self, modifiers: modifiers)
+        )
     }
 
-    private func parseOtherModifier() -> DeclarationModifier? {
-        let accessLevelModifier = parseAccessLevelModifier()
-        if (accessLevelModifier !== AccessLevelModifierImpl.emptyAccessLevelModifier) {
-            return accessLevelModifier
+    static func parseModifier<T>(_ parser: Parser<T>, modifiers: Set<String>) throws -> [Element] {
+        let key = String(describing: parser.peekAtNextKind())
+        guard modifiers.contains(key) else {
+            throw LookAheadError()
         }
-        let mutationModifier = parseMutationModifier()
-        if (mutationModifier !== MutationModifierImpl.emptyMutationModifier) {
-            return mutationModifier
-        }
-        return nil
+        return try parser.builder()
+                .required { try parser.parseKeyword() }
+                .optional { try self.parseModifierArgument(parser) }
+                .build()
     }
 
-    private func createEmptyModifier() -> AccessLevelModifier {
-        return AccessLevelModifierImpl.emptyAccessLevelModifier
+    private static func parseModifierArgument<T>(_ parser: Parser<T>) throws -> Element {
+        return try ElementImpl(children: parser.builder()
+                .required { try parser.parsePunctuation(.leftParen) }
+                .optional { try parser.parseKeyword() }
+                .optional { try parser.parseIdentifier() }
+                .required { try parser.parsePunctuation(.rightParen) }
+                .build())
     }
 }

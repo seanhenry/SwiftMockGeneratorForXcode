@@ -5,7 +5,7 @@ class DeclarationModifierParserTests: XCTestCase {
 
     // MARK: - parse
 
-    func test_parse_shouldParseDeclarationModifiers() {
+    func test_parse_shouldParseDeclarationModifiers() throws {
         let modifiers = [
             "class",
             "convenience",
@@ -22,30 +22,42 @@ class DeclarationModifierParserTests: XCTestCase {
             "unowned",
             "weak"
         ]
-        modifiers.forEach { d in
-            XCTAssertEqual(parse(d), d)
+        try modifiers.forEach { d in
+            XCTAssertEqual(try parse(d), d)
         }
     }
 
     func test_parse_shouldParseUnownedSafe() {
-        XCTAssertEqual(parse("unowned(safe)"), "unowned(safe)")
+        XCTAssertEqual(try parse("unowned(safe)"), "unowned(safe)")
     }
 
     func test_parse_shouldParseUnownedUnsafe() {
-        XCTAssertEqual(parse("unowned(unsafe)"), "unowned(unsafe)")
+        XCTAssertEqual(try parse("unowned(unsafe)"), "unowned(unsafe)")
+    }
+
+    func test_parse_shouldParseAnyIdentifierInsideParens() {
+        XCTAssertEqual(try parse("unowned(anything)"), "unowned(anything)")
+    }
+
+    func test_parse_shouldParseEmptyArguments() {
+        XCTAssertEqual(try parse("unowned()"), "unowned()")
     }
 
     func test_parse_shouldParseMutationModifier() {
-        XCTAssertEqual(parse("mutating"), "mutating")
+        XCTAssertEqual(try parse("mutating"), "mutating")
     }
 
     func test_parse_shouldParseAccessLevelModifiers() {
-        XCTAssertEqual(parse("public(set)"), "public(set)")
+        XCTAssertEqual(try parse("public(set)"), "public(set)")
+    }
+
+    func test_parse_shouldNotParseNonModifier() {
+        XCTAssertThrowsError(try parse("var"))
     }
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> String {
-        return createParser(text, DeclarationModifierParser.self).parse().text
+    func parse(_ text: String) throws -> String {
+        return try createParser(text, DeclarationModifierParser.self).parse().text
     }
 }

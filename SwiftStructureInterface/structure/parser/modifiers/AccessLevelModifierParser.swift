@@ -15,9 +15,8 @@ class AccessLevelModifierParser: Parser<AccessLevelModifier> {
     }
 
     override func parse() throws -> AccessLevelModifier {
-        guard modifiers.contains(String(describing: peekAtNextKind())) else {
-            throw LookAheadError()
-        }
-        return AccessLevelModifierImpl(children: DeclarationModifierParser.parseModifier(self))
+        return AccessLevelModifierImpl(children:
+          try DeclarationModifierParser.parseModifier(self, modifiers: modifiers)
+        )
     }
 }
