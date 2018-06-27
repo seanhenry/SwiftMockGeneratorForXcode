@@ -61,6 +61,10 @@ class TypeIdentifierParserTests: XCTestCase, TypeParserTests {
         assertElementText(parent, "Swift", offset: 0)
     }
 
+    func test_parse_shouldNotParseWhitespaceDueToManuallyAddingDot() {
+        assertTypeText(" B.C  ", "B.C")
+    }
+
     // MARK: - Generic
 
     func test_parse_shouldParseGenericType() {

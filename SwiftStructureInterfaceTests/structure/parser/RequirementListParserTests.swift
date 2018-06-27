@@ -62,6 +62,10 @@ class RequirementListParserTests: XCTestCase {
         assertText("A:B,C:D", "A:B,C:D")
     }
 
+    func test_parse_shouldParseNestedSameType() {
+        assertText("A: Element, B.C == A", "A: Element, B.C == A")
+    }
+
     func test_parse_shouldParseNestedTypes() {
         assertText("A.B.C:D.E.F", "A.B.C:D.E.F")
         assertText("A.B.C==D.E.F", "A.B.C==D.E.F")
