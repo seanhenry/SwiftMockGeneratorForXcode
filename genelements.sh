@@ -5,3 +5,4 @@ cp -f sourcery/out/ElementProxies.generated.swift SwiftStructureInterface/struct
 cp -f sourcery/out/ElementVisitor.generated.swift SwiftStructureInterface/structure/visitor
 cp -f sourcery/out/EmptyElements.generated.swift SwiftStructureInterface/structure/model/impl
 cp -f sourcery/out/ManagedElementVisitor.generated.swift SwiftStructureInterface/algorithms
+cp -f sourcery/out/TestElements.generated.swift SwiftStructureInterfaceTests/helpers

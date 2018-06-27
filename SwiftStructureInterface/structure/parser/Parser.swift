@@ -202,19 +202,19 @@ class Parser<ResultType> {
         return try parse(TypealiasAssignmentParser.self)
     }
 
-    func parseAssociatedTypeDeclaration() throws -> Element {
+    func parseAssociatedTypeDeclaration() throws -> AssociatedTypeDeclaration {
         return try parseDeclaration(AssociatedTypeDeclarationParser.self, .identifier("associatedtype", false))
     }
 
-    func parseTypealiasDeclaration() throws -> Element {
+    func parseTypealiasDeclaration() throws -> TypealiasDeclaration {
         return try parseDeclaration(TypealiasDeclarationParser.self, .typealias)
     }
 
-    func parseInitializerDeclaration() throws -> Element {
+    func parseInitializerDeclaration() throws -> InitializerDeclaration {
         return try parseDeclaration(InitializerDeclarationParser.self, .init)
     }
 
-    func parseSubscriptDeclaration() throws -> Element {
+    func parseSubscriptDeclaration() throws -> SubscriptDeclaration {
         return try parseDeclaration(SubscriptDeclarationParser.self, .subscript)
     }
 

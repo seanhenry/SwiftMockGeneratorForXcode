@@ -11,6 +11,7 @@ public protocol TestProtocol {
   func genericMethod<T: U, V: W & X>()
   subscript()
   typealias T = U
+  associatedtype T = U
   func closure(closure: @escaping () -> ()) -> String
   var type: Base.Nested { get }
   var tuple: (a: A, b: B) { get }
@@ -39,9 +40,6 @@ var testAttributes: Attributes {
 var testCodeBlock: CodeBlock {
   return TestElements.instance.testCodeBlock!
 }
-var testCodeBlockImpl: CodeBlockImpl {
-  return TestElements.instance.testCodeBlockImpl!
-}
 var testConformanceRequirement: ConformanceRequirement {
   return TestElements.instance.testConformanceRequirement!
 }
@@ -65,9 +63,6 @@ var testFunctionDeclaration: FunctionDeclaration {
 }
 var testFunctionResult: FunctionResult {
   return TestElements.instance.testFunctionResult!
-}
-var testFunctionResultImpl: FunctionResultImpl {
-  return TestElements.instance.testFunctionResultImpl!
 }
 var testFunctionType: FunctionType {
   return TestElements.instance.testFunctionType!
@@ -150,9 +145,6 @@ var testTypeIdentifier: TypeIdentifier {
 var testTypeInheritanceClause: TypeInheritanceClause {
   return TestElements.instance.testTypeInheritanceClause!
 }
-var testTypeInheritanceClauseImpl: TypeInheritanceClauseImpl {
-  return TestElements.instance.testTypeInheritanceClauseImpl!
-}
 var testTypealiasAssignment: TypealiasAssignment {
   return TestElements.instance.testTypealiasAssignment!
 }
@@ -173,7 +165,6 @@ var allTestElements: [Element] {
     testAttribute,
     testAttributes,
     testCodeBlock,
-    testCodeBlockImpl,
     testConformanceRequirement,
     testDeclaration,
     testDeclarationModifier,
@@ -182,7 +173,6 @@ var allTestElements: [Element] {
     testFile,
     testFunctionDeclaration,
     testFunctionResult,
-    testFunctionResultImpl,
     testFunctionType,
     testGenericArgumentClause,
     testGenericParameter,
@@ -210,7 +200,6 @@ var allTestElements: [Element] {
     testTypeDeclaration,
     testTypeIdentifier,
     testTypeInheritanceClause,
-    testTypeInheritanceClauseImpl,
     testTypealiasAssignment,
     testTypealiasDeclaration,
     testVariableDeclaration,
@@ -230,7 +219,6 @@ private class TestElements {
   private(set) var testAttribute: Attribute!
   private(set) var testAttributes: Attributes!
   private(set) var testCodeBlock: CodeBlock!
-  private(set) var testCodeBlockImpl: CodeBlockImpl!
   private(set) var testConformanceRequirement: ConformanceRequirement!
   private(set) var testDeclaration: Declaration!
   private(set) var testDeclarationModifier: DeclarationModifier!
@@ -239,7 +227,6 @@ private class TestElements {
   private(set) var testFile: File!
   private(set) var testFunctionDeclaration: FunctionDeclaration!
   private(set) var testFunctionResult: FunctionResult!
-  private(set) var testFunctionResultImpl: FunctionResultImpl!
   private(set) var testFunctionType: FunctionType!
   private(set) var testGenericArgumentClause: GenericArgumentClause!
   private(set) var testGenericParameter: GenericParameter!
@@ -267,7 +254,6 @@ private class TestElements {
   private(set) var testTypeDeclaration: TypeDeclaration!
   private(set) var testTypeIdentifier: TypeIdentifier!
   private(set) var testTypeInheritanceClause: TypeInheritanceClause!
-  private(set) var testTypeInheritanceClauseImpl: TypeInheritanceClauseImpl!
   private(set) var testTypealiasAssignment: TypealiasAssignment!
   private(set) var testTypealiasDeclaration: TypealiasDeclaration!
   private(set) var testVariableDeclaration: VariableDeclaration!
@@ -311,11 +297,6 @@ private class TestElements {
       super.visitCodeBlock(element)
     }
 
-    override func visitCodeBlockImpl(_ element: CodeBlockImpl) {
-      elements.testCodeBlockImpl = element
-      super.visitCodeBlockImpl(element)
-    }
-
     override func visitConformanceRequirement(_ element: ConformanceRequirement) {
       elements.testConformanceRequirement = element
       super.visitConformanceRequirement(element)
@@ -354,11 +335,6 @@ private class TestElements {
     override func visitFunctionResult(_ element: FunctionResult) {
       elements.testFunctionResult = element
       super.visitFunctionResult(element)
-    }
-
-    override func visitFunctionResultImpl(_ element: FunctionResultImpl) {
-      elements.testFunctionResultImpl = element
-      super.visitFunctionResultImpl(element)
     }
 
     override func visitFunctionType(_ element: FunctionType) {
@@ -494,11 +470,6 @@ private class TestElements {
     override func visitTypeInheritanceClause(_ element: TypeInheritanceClause) {
       elements.testTypeInheritanceClause = element
       super.visitTypeInheritanceClause(element)
-    }
-
-    override func visitTypeInheritanceClauseImpl(_ element: TypeInheritanceClauseImpl) {
-      elements.testTypeInheritanceClauseImpl = element
-      super.visitTypeInheritanceClauseImpl(element)
     }
 
     override func visitTypealiasAssignment(_ element: TypealiasAssignment) {
