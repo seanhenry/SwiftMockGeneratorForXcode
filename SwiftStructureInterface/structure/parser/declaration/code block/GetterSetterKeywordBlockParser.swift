@@ -2,42 +2,20 @@ import Source
 
 class GetterSetterKeywordBlockParser: Parser<GetterSetterKeywordBlock> {
 
-    override func parse(start: LineColumn) -> GetterSetterKeywordBlock {
-        return GetterSetterKeywordBlockImpl(children: [
-            try? parsePunctuation(.leftBrace),
-            parseWhitespace(),
-            parseGetSet(),
-            parseGetSet(),
-            try? parsePunctuation(.rightBrace),
-        ])
+    override func parse() throws -> GetterSetterKeywordBlock {
+        return try GetterSetterKeywordBlockImpl(children: builder()
+                .required { try self.parsePunctuation(.leftBrace) }
+                .optional { try self.parseGetSet() }
+                .optional { try self.parseGetSet() }
+                .optional { try self.parsePunctuation(.rightBrace) }
+                .build())
     }
 
-    private func parseGetSet() -> GetterSetterKeywordClause {
-        return GetterSetterKeywordClauseImpl(children: [
-            parseAttributesAndWhitespace(),
-            parseMutationModifierAndWhitespace(),
-            parseKeywordAndWhitespace()
-        ])
-    }
-
-    private func parseKeywordAndWhitespace() -> [Element]? {
-        if isNext([.set, .get]) {
-            return [parseKeyword(), parseWhitespace()]
-        }
-        return nil
-    }
-
-    private func parseAttributesAndWhitespace() -> [Element?] {
-        if isNext(.at) {
-            return [parseAttributes(), parseWhitespace()]
-        }
-        return [parseAttributes()]
-    }
-
-    private func parseMutationModifierAndWhitespace() -> [Element?] {
-        if isNext([.nonmutating, .mutating]) {
-            return [parseMutationModifier(), parseWhitespace()]
-        }
-        return [parseMutationModifier()]
+    private func parseGetSet() throws -> GetterSetterKeywordClause {
+        return try GetterSetterKeywordClauseImpl(children: builder()
+                .optional { try self.parseAttributes() }
+                .optional { try self.parseMutationModifier() }
+                .required { try self.parseKeyword([.get, .set]) }
+                .build())
     }
 }
