@@ -3,27 +3,13 @@ import XCTest
 
 class ElementImplTests: XCTestCase {
 
-    func test_appendExtraChildren_shouldIgnoreNonElements() {
-        var children = [Element]()
-        ElementImpl.appendChild("", to: &children)
-        XCTAssert(children.isEmpty)
-    }
-
-    func test_appendExtraChildren_shouldIgnoreNil() {
-        var children = [Element]()
-        ElementImpl.appendChild(nil, to: &children)
-        XCTAssert(children.isEmpty)
-    }
-
-    func test_appendExtraChildren_shouldAppendElement() {
-        var children = [Element]()
-        ElementImpl.appendChild(testElement, to: &children)
-        XCTAssert(children[0] === testElement)
-    }
-
-    func test_appendExtraChildren_shouldAppendElements() {
-        var children = [Element]()
-        ElementImpl.appendChild([testElement], to: &children)
-        XCTAssert(children[0] === testElement)
+    func test_init_shouldAddSelfAsParentToAllChildren() {
+        let element1 = ElementImpl(children: [])
+        let element2 = ElementImpl(children: [])
+        let element3 = ElementImpl(children: [])
+        let parent = ElementImpl(children: [element1, element2, element3])
+        XCTAssert(element1.parent === parent)
+        XCTAssert(element2.parent === parent)
+        XCTAssert(element3.parent === parent)
     }
 }
