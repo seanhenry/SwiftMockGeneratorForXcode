@@ -14,22 +14,7 @@ class Parser<ResultType> {
     }
 
     func parse() throws -> ResultType {
-        let start = getCurrentStartLocation()
-        return parse(start: start)
-    }
-
-    func parse(start: LineColumn) -> ResultType {
         fatalError("override me")
-    }
-
-    func createElement<ResultType: Element>(start: LineColumn, parameters: (Int64, Int64, String) -> ResultType) -> ResultType? {
-        let end = getPreviousEndLocation()
-        if let offset = convert(start),
-           let endOffset = convert(end),
-           let text = getSubstring(start, end) {
-            return parameters(offset, endOffset - offset, text)
-        }
-        return nil
     }
 
     // MARK: - Strings
@@ -47,44 +32,14 @@ class Parser<ResultType> {
         return fileContents
     }
 
-    // MARK: - Locations
-
-    func convert(_ location: LineColumn) -> Int64? {
-        return locationConverter.convertToOffset(line: location.line, column: location.column)
-    }
-
     // MARK: - Lexer
 
     func getCurrentStartLocation() -> LineColumn {
         return lexer.getCurrentStartLocation()
     }
 
-    func getCurrentEndLocation() -> LineColumn {
-        return lexer.getCurrentEndLocation()
-    }
-
     func getPreviousEndLocation() -> LineColumn {
         return lexer.getPreviousEndLocation()
-    }
-
-    func peekAtNextParameterIdentifier() -> String? {
-        if let name = peekAtNextKind().namedIdentifier?.text {
-            return escapeParameterIdentifier(name)
-        } else if isNext(.booleanLiteral(false)) {
-            return "false"
-        } else if isNext(.booleanLiteral(true)) {
-            return "true"
-        } else {
-            return nil
-        }
-    }
-
-    private func escapeParameterIdentifier(_ name: String) -> String {
-        let keywords = ["inout", "let", "var"]
-        if keywords.contains(name) {
-            return "`\(name)`"
-        }
-        return name
     }
 
     func peekAtNextIdentifier() -> String? {
@@ -129,55 +84,6 @@ class Parser<ResultType> {
 
     // MARK: - Helpers
 
-    func advance(if kind: Token.Kind) {
-        if isNext(kind) {
-            advance()
-        }
-    }
-
-    func advance(if kinds: [Token.Kind]) {
-        if isNext(kinds) {
-            advance()
-        }
-    }
-
-    func advance(if scalar: UnicodeScalar) {
-        if isNext(scalar) {
-            advanceOperator(scalar)
-        }
-    }
-
-    func advanceOrFail(if kind: Token.Kind) throws {
-        if isNext(kind) {
-            advance()
-        } else {
-            throw LookAheadError()
-        }
-    }
-
-    func advanceOrFail(if scalar: UnicodeScalar) throws {
-        if isNext(scalar) {
-            advanceOperator(scalar)
-        } else {
-            throw LookAheadError()
-        }
-    }
-
-    func advanceIfIdentifierOrFail() throws {
-        if peekAtNextIdentifier() != nil {
-            advance()
-        } else {
-            throw LookAheadError()
-        }
-    }
-
-    func isPrefixOperator(_ string: String) -> Bool {
-        if case let .prefixOperator(op) = peekAtNextKind() {
-            return op == string
-        }
-        return false
-    }
-
     func isPostfixOperator(_ string: String) -> Bool {
         if case let .postfixOperator(op) = peekAtNextKind() {
             return op == string
@@ -194,54 +100,15 @@ class Parser<ResultType> {
 
     func isNextDeclaration(_ declaration: Token.Kind) -> Bool {
         let c = setCheckPoint()
-        _ = parseAttributes()
+        _ = try? parseAttributes()
         skipDeclarationModifiers()
         let isNext = self.isNext(declaration)
         restoreCheckPoint(c)
         return isNext
     }
 
-    func peekAtNextImplicitParameterName() -> String? {
-        if case let .implicitParameterName(name) = peekAtNextKind() {
-            return "$" + String(name)
-        }
-        return nil
-    }
-
     func skipDeclarationModifiers() {
-        _ = parseDeclarationModifiers()
-    }
-
-    func append(_ kind: Token.Kind, value: String, to string: inout String) throws {
-        if isNext(kind) {
-            advance()
-            string.append(value)
-        } else {
-            throw LookAheadError()
-        }
-    }
-
-    func tryToAppend(_ kind: Token.Kind, value: String, to string: inout String) {
-        if isNext(kind) {
-            advance()
-            string.append(value)
-        }
-    }
-
-    func appendBinaryOperator(_ op: String, value: String, to string: inout String) throws {
-        if isBinaryOperator(op) {
-            advance()
-            string.append(value)
-        } else {
-            throw LookAheadError()
-        }
-    }
-
-    func tryToAppendBinaryOperator(_ op: String, value: String, to string: inout String) {
-        if isBinaryOperator(op) {
-            advance()
-            string.append(value)
-        }
+        while (try? parseDeclarationModifier()) != nil {}
     }
 
     func tryToParse<T>(_ parse: () throws -> T) -> T? {
@@ -254,51 +121,15 @@ class Parser<ResultType> {
         return nil
     }
 
-    func appendIdentifier(to string: inout String) throws {
-        if let argument = peekAtNextIdentifier() {
-            advance()
-            string += argument
-        } else {
-            throw LookAheadError()
-        }
-    }
-
-    func tryToAppendIdentifier(to string: inout String) {
-        if let argument = peekAtNextIdentifier() {
-            advance()
-            string += argument
-        }
-    }
-
-    func tryToAppendAttributes(to string: inout String) {
-        let attributes = parseAttributes()
-        string.append(attributes.attributes.map { $0.text }.joined(separator: " "))
-    }
-
-    func tryToAppendType(to string: inout String) {
-        string.append(parseType().text)
-    }
-
-    func tryToAppendInout(to string: inout String) {
-        tryToAppend(.inout, value: "inout ", to: &string)
-    }
-
-    func skipInout() {
-        advance(if: .inout)
-    }
-
     // MARK: - Parsers
 
-    func parseTypeInheritanceClause() -> [Element] {
-        return parse(TypeInheritanceClauseParser.self)
-    }
-
+    func parseTypeInheritanceClause() throws -> TypeInheritanceClause {
+        return try parse(TypeInheritanceClauseParser.self)
     }
 
     func parseType() throws -> Type {
         return try parse(TypeParser.self)
     }
-
 
     func parseTypeAnnotation() throws -> TypeAnnotation {
         return try parse(TypeAnnotationParser.self)
@@ -312,101 +143,92 @@ class Parser<ResultType> {
         return try parse(TypeParser.TupleTypeElementListParser.self)
     }
 
-    func parseTypeCodeBlock() -> CodeBlock {
-        return parse(CodeBlockParser.self)
+    func parseTypeCodeBlock() throws -> CodeBlock {
+        return try parse(CodeBlockParser.self)
     }
 
-    func parseDeclarations() -> [Element] {
-        return parse(DeclarationsParser.self)
+    func parseDeclarations() throws -> [Element] {
+        return try parse(DeclarationsParser.self)
     }
 
-    func parseProtocolDeclaration() -> Element {
-        return parseDeclaration(ProtocolDeclarationParser.self, .protocol)
+    func parseProtocolDeclaration() throws -> Element {
+        return try parseDeclaration(ProtocolDeclarationParser.self, .protocol)
     }
 
-    func parseAttributes() -> Attributes {
-        return parse(AttributesParser.self)
+    func parseAttributes() throws -> Attributes {
+        return try parse(AttributesParser.self)
     }
 
-    func parseRequirementList() -> RequirementList {
-        return parse(RequirementListParser.self)
+    func parseRequirementList() throws -> RequirementList {
+        return try parse(RequirementListParser.self)
     }
 
-    func parseWhereClause() -> GenericWhereClause {
-        return parse(GenericWhereClauseParser.self)
+    func parseWhereClause() throws -> GenericWhereClause {
+        return try parse(GenericWhereClauseParser.self)
     }
 
-    func parseFunctionDeclaration() -> FunctionDeclaration {
-        return parseDeclaration(FunctionDeclarationParser.self, .func)
+    func parseFunctionDeclaration() throws -> FunctionDeclaration {
+        return try parseDeclaration(FunctionDeclarationParser.self, .func)
     }
 
-    func parseVariableDeclaration() -> VariableDeclaration {
-        return parseDeclaration(VariableDeclarationParser.self, .var)
+    func parseVariableDeclaration() throws -> VariableDeclaration {
+        return try parseDeclaration(VariableDeclarationParser.self, .var)
     }
 
-    func parseParameterClause() -> ParameterClause {
-        return parse(ParameterClauseParser.self)
+    func parseParameterClause() throws -> ParameterClause {
+        return try parse(ParameterClauseParser.self)
     }
 
-    func parseParameter() -> Parameter {
-        return parse(ParameterParser.self)
+    func parseParameter() throws -> Parameter {
+        return try parse(ParameterParser.self)
     }
 
-    func parseFunctionDeclarationResult() -> Element {
-        return parse(FunctionDeclarationParser.ResultParser.self)
+    func parseFunctionResult() throws -> FunctionResult {
+        return try parse(FunctionResultParser.self)
     }
 
-    func parseDeclarationModifiers() -> [Element] {
-        var modifiers = [Element]()
-        var modifier = parse(DeclarationModifierParser.self)
-        while !modifier.text.isEmpty {
-            modifiers.append(modifier)
-            modifiers.append(parseWhitespace())
-            modifier = parse(DeclarationModifierParser.self)
-        }
-        return modifiers
+    func parseThrows() throws -> Element {
+        return try parseKeyword([.throws, .rethrows])
     }
 
-    func parseMutationModifier() -> MutationModifier {
-        return parse(MutationModifierParser.self)
+    func parseDeclarationModifier() throws -> DeclarationModifier {
+        return try parse(DeclarationModifierParser.self)
     }
 
-    func parseGetterSetterKeywordBlock() -> GetterSetterKeywordBlock {
-        return parse(GetterSetterKeywordBlockParser.self)
+    func parseMutationModifier() throws -> MutationModifier {
+        return try parse(MutationModifierParser.self)
     }
 
-    func parseGenericParameterClause() -> GenericParameterClause {
-        return parse(GenericParameterClauseParser.self)
+    func parseGetterSetterKeywordBlock() throws -> GetterSetterKeywordBlock {
+        return try parse(GetterSetterKeywordBlockParser.self)
     }
 
-    func tryToParseGenericParameterClause() -> [Element?] {
-        if isNext("<") {
-            return [
-                parseGenericParameterClause(),
-                parseWhitespace()
-            ]
-        }
-        return []
+    func parseGenericParameterClause() throws -> GenericParameterClause {
+        return try parse(GenericParameterClauseParser.self)
     }
 
-    func parseTypealiasAssignment() -> TypealiasAssignment {
-        return parse(TypealiasAssignmentParser.self)
+    func parseTypealiasAssignment() throws -> TypealiasAssignment {
+        return try parse(TypealiasAssignmentParser.self)
     }
 
-    func parseAssociatedTypeDeclaration() -> Element {
-        return parseDeclaration(AssociatedTypeDeclarationParser.self, .identifier("associatedtype", false))
+    func parseAssociatedTypeDeclaration() throws -> Element {
+        return try parseDeclaration(AssociatedTypeDeclarationParser.self, .identifier("associatedtype", false))
     }
 
-    func parseTypealiasDeclaration() -> Element {
-        return parseDeclaration(TypealiasDeclarationParser.self, .typealias)
+    func parseTypealiasDeclaration() throws -> Element {
+        return try parseDeclaration(TypealiasDeclarationParser.self, .typealias)
     }
 
-    func parseInitializerDeclaration() -> Element {
-        return parseDeclaration(InitializerDeclarationParser.self, .init)
+    func parseInitializerDeclaration() throws -> Element {
+        return try parseDeclaration(InitializerDeclarationParser.self, .init)
     }
 
-    func parseSubscriptDeclaration() -> Element {
-        return parseDeclaration(SubscriptDeclarationParser.self, .subscript)
+    func parseSubscriptDeclaration() throws -> Element {
+        return try parseDeclaration(SubscriptDeclarationParser.self, .subscript)
+    }
+
+    func parseAccessLevelModifier() throws -> AccessLevelModifier {
+        return try parse(AccessLevelModifierParser.self)
     }
 
     func parseKeyword() throws -> LeafNode {
@@ -414,13 +236,17 @@ class Parser<ResultType> {
     }
 
     func parseKeyword(_ kind: Token.Kind) throws -> LeafNode {
+        guard isNext(kind) else {
+            throw LookAheadError()
+        }
         return try parse(KeywordParser.self)
     }
 
-    func parseKeyword(_ kind: [Token.Kind]) throws -> LeafNode {
+    func parseKeyword(_ kinds: [Token.Kind]) throws -> LeafNode {
+        guard isNext(kinds) else {
+            throw LookAheadError()
+        }
         return try parse(KeywordParser.self)
-    }
-
     }
 
     func parseWhitespace() throws -> Whitespace {
@@ -429,25 +255,9 @@ class Parser<ResultType> {
 
     func parseIdentifier() throws -> Identifier {
         if case .identifier = peekAtNextKind() {
-            return parse(IdentifierParser.self)
+            return try parse(IdentifierParser.self)
         }
         throw LookAheadError()
-    }
-
-    func tryToParseIdentifier() -> [Any?] {
-        if let identifier = try? parseIdentifier() {
-            return [identifier, parseWhitespace()]
-        }
-        return []
-    }
-
-    func parseUnderscoreAndWhitespace() -> [Element]? {
-        return tryToParse {
-            return [
-                try parsePunctuation(.underscore),
-                parseWhitespace()
-            ]
-        }
     }
 
     func parseOperator(_ op: UnicodeScalar) throws -> Element {
@@ -468,19 +278,10 @@ class Parser<ResultType> {
 
     func parsePunctuation(_ kind: Token.Kind) throws -> Element {
         if isNext(kind) {
-            return parse(PunctuationParser.self)
+            return try parse(PunctuationParser.self)
         }
         throw LookAheadError()
     }
-
-    func tryToParsePunctuation(_ kind: Token.Kind) -> [Element?] {
-        let preWhitespace = parseWhitespace()
-        if let punctuation = try? parsePunctuation(kind) {
-            return [preWhitespace, punctuation, parseWhitespace()]
-        }
-        return []
-    }
-
 
     func parseGenericArgumentClause() throws -> GenericArgumentClause {
         return try parse(GenericArgumentClauseParser.self)
