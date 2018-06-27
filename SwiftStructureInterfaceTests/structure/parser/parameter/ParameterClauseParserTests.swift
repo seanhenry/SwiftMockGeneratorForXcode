@@ -5,23 +5,23 @@ class ParameterClauseParserTests: XCTestCase {
 
     // MARK: - parse
 
-    func test_parse_shouldParseEmptyParameterClause() {
-        let clause = parse("()")
+    func test_parse_shouldParseEmptyParameterClause() throws {
+        let clause = try parse("()")
         XCTAssertEqual(clause.parameters.count, 0)
         XCTAssertEqual(clause.text, "()")
     }
 
-    func test_parse_shouldParseSingleParameterClause() {
+    func test_parse_shouldParseSingleParameterClause() throws {
         let text = "(a: A)"
-        let clause = parse(text)
+        let clause = try parse(text)
         let parameter = clause.parameters[0]
         XCTAssertEqual(clause.text, text)
         assertElementText(parameter, "a: A", offset: 1)
     }
 
-    func test_parse_shouldParseMultipleParameterClause() {
+    func test_parse_shouldParseMultipleParameterClause() throws {
         let text = "(a: A, b: B)"
-        let clause = parse(text)
+        let clause = try parse(text)
         var parameter = clause.parameters[0]
         XCTAssertEqual(clause.text, text)
         assertElementText(parameter, "a: A", offset: 1)
@@ -29,37 +29,33 @@ class ParameterClauseParserTests: XCTestCase {
         assertElementText(parameter, "b: B", offset: 7)
     }
 
-    func test_parse_shouldParseParameterClauseWithoutEndBracket() {
+    func test_parse_shouldParseParameterClauseWithoutEndBracket() throws {
         let text = "(a: A"
-        let clause = parse(text)
+        let clause = try parse(text)
         let parameter = clause.parameters[0]
         XCTAssertEqual(clause.text, text)
         assertElementText(parameter, "a: A", offset: 1)
     }
 
-    func test_parse_shouldParseParameterClauseWithoutStartBracket() {
-        let text = "a: A)"
-        let clause = parse(text)
-        let parameter = clause.parameters[0]
-        XCTAssertEqual(clause.text, text)
-        assertElementText(parameter, "a: A")
-    }
-
-    func test_parse_shouldParseParameterClauseWithWhitespace() {
+    func test_parse_shouldParseParameterClauseWithWhitespace() throws {
         let text = "( a : A , b : B )"
-        XCTAssertEqual(parse(text).text, text)
+        XCTAssertEqual(try parse(text).text, text)
     }
 
-    func test_parse_shouldParseEmptyParameterClauseWithWhitespace() {
-        XCTAssertEqual(parse("( )").text, "( )")
+    func test_parse_shouldParseEmptyParameterClauseWithWhitespace() throws {
+        XCTAssertEqual(try parse("( )").text, "( )")
     }
 
-    func test_parse_shouldParseParameterClauseWithMinimumWhitespace() {
+    func test_parse_shouldParseParameterClauseWithMinimumWhitespace() throws {
         let text = "(a:A,b:B)"
-        XCTAssertEqual(parse(text).text, text)
+        XCTAssertEqual(try parse(text).text, text)
     }
 
-    private func parse(_ input: String) -> ParameterClause {
-        return createParser(input, ParameterClauseParser.self).parse()
+    func test_parse_shouldNotParseClauseWhenDoesNotStartWithLeftParen() throws {
+        XCTAssertThrowsError(try parse("a:A)"))
+    }
+
+    private func parse(_ input: String) throws -> ParameterClause {
+        return try createParser(input, ParameterClauseParser.self).parse()
     }
 }

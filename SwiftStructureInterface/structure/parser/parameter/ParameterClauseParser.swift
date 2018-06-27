@@ -1,22 +1,20 @@
 class ParameterClauseParser: Parser<ParameterClause> {
 
-    override func parse(start: LineColumn) -> ParameterClause {
-        var children = [Any?]()
-        children.append(tryToParsePunctuation(.leftParen))
-        if isNext(.rightParen) {
-            children.append(try? parsePunctuation(.rightParen))
-            return ParameterClauseImpl(children: children)
-        }
-        children.append(parseParameter())
-        while isNext(.comma) {
-            children.append(tryToParsePunctuation(.comma))
-            children.append(parseParameter())
-        }
-        children.append(tryToParsePunctuation(.rightParen))
-        return ParameterClauseImpl(children: children)
+    override func parse() throws -> ParameterClause {
+        return try ParameterClauseImpl(children: builder()
+                .required { try self.parsePunctuation(.leftParen) }
+                .optional { try self.parseParameterUnlessEndOfClause() }
+                .while(isParsed: { try self.parsePunctuation(.comma) }) {
+                    try self.parseParameterUnlessEndOfClause()
+                }
+                .optional { try self.parsePunctuation(.rightParen) }
+                .build())
     }
 
-    private func tryToAppendParameter(to parameters: inout [Parameter]) {
-        parameters.append(parseParameter())
+    private func parseParameterUnlessEndOfClause() throws -> Element {
+        if isNext(.rightParen) {
+            throw LookAheadError()
+        }
+        return try parseParameter()
     }
 }
