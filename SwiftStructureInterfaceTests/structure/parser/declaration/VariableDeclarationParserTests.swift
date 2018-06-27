@@ -5,54 +5,54 @@ class VariableDeclarationParserTests: XCTestCase {
 
     // MARK: - parse
 
-    func test_parse_shouldParseSimpleVariable() {
+    func test_parse_shouldParseSimpleVariable() throws {
         let text = "var a: Int"
-        let variable = parse(text)
+        let variable = try parse(text)
         XCTAssertEqual(variable.text, text)
         XCTAssertEqual(variable.name, "a")
         XCTAssertEqual(variable.typeAnnotation.text, ": Int")
     }
 
-    func test_parse_shouldParseVariableWithoutName() {
+    func test_parse_shouldParseVariableWithoutName() throws {
         let text = "var : Int"
-        let variable = parse(text)
+        let variable = try parse(text)
         XCTAssertEqual(variable.text, text)
         XCTAssertEqual(variable.name, "")
     }
 
-    func test_parse_shouldParseVariableWithoutType() {
+    func test_parse_shouldParseVariableWithoutType() throws {
         let text = "var a"
-        let variable = parse(text)
+        let variable = try parse(text)
         XCTAssertEqual(variable.text, text)
         XCTAssertEqual(variable.name, "a")
     }
 
-    func test_parse_shouldParseVariableWithAttributesAndInout() {
+    func test_parse_shouldParseVariableWithAttributesAndInout() throws {
         let text = "var a: @a inout Int"
-        let variable = parse(text)
+        let variable = try parse(text)
         XCTAssertEqual(variable.text, text)
         XCTAssertEqual(variable.name, "a")
     }
 
-    func test_parse_shouldParseVariableWithGetterSetter() {
+    func test_parse_shouldParseVariableWithGetterSetter() throws {
         let text = "var a: @a inout Int { mutating set @a nonmutating get }"
-        let variable = parse(text)
+        let variable = try parse(text)
         XCTAssertEqual(variable.text, text)
         XCTAssertEqual(variable.name, "a")
         XCTAssert(variable.isWritable)
     }
 
-    func test_parse_shouldParseVariableWithGetter() {
+    func test_parse_shouldParseVariableWithGetter() throws {
         let text = "var a: @a inout Int { get }"
-        let variable = parse(text)
+        let variable = try parse(text)
         XCTAssertEqual(variable.text, text)
         XCTAssertEqual(variable.name, "a")
         XCTAssertFalse(variable.isWritable)
     }
 
-    func test_parse_shouldParseVariableWithAttributesAndModifiers() {
+    func test_parse_shouldParseVariableWithAttributesAndModifiers() throws {
         let text = "@a public weak mutating var a: Int { get }"
-        let variable = parse(text)
+        let variable = try parse(text)
         XCTAssertEqual(variable.text, text)
         XCTAssertEqual(variable.name, "a")
         XCTAssertFalse(variable.isWritable)
@@ -60,8 +60,8 @@ class VariableDeclarationParserTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> VariableDeclaration {
+    func parse(_ text: String) throws -> VariableDeclaration {
         let parser = createDeclarationParser(text, .var, VariableDeclarationParser.self)
-        return parser.parse()
+        return try parser.parse()
     }
 }

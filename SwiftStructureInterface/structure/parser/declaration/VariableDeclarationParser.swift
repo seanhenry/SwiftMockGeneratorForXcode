@@ -1,12 +1,10 @@
 class VariableDeclarationParser: DeclarationParser<VariableDeclaration> {
 
-    override func parseDeclaration(start: LineColumn, children: [Any?]) -> VariableDeclaration {
-        return VariableDeclarationImpl(children: children + [
-            parseWhitespace(),
-            try? parseIdentifier(),
-            parseTypeAnnotation(),
-            parseWhitespace(),
-            parseGetterSetterKeywordBlock()
-        ])
+    override func parseDeclaration(builder: ParserBuilder) throws -> VariableDeclaration {
+        return try VariableDeclarationImpl(children: builder
+                .optional { try self.parseIdentifier() }
+                .optional { try self.parseTypeAnnotation() }
+                .optional { try self.parseGetterSetterKeywordBlock() }
+                .build())
     }
 }
