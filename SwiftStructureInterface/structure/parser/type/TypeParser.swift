@@ -52,9 +52,7 @@ extension TypeParser {
         var type: TypeIdentifier?
         while let identifier = try? parseTypeIdentifier(type) {
             type = identifier
-            if isNext(.dot) {
-                advance()
-            } else {
+            if !isNext(.dot) {
                 return identifier
             }
         }
@@ -62,12 +60,16 @@ extension TypeParser {
     }
 
     private func parseTypeIdentifier(_ parent: TypeIdentifier?) throws -> TypeIdentifier {
-        if let identifier = tryToParseIdentifier() {
-            return try TypeIdentifierImpl(children: [parent] + builder()
-                    .optional { parent != nil ? Punctuation.dot : nil }
-                    .required { identifier }
-                    .optional { try self.parseGenericArgumentClause() }
-                    .build())
+        return try TypeIdentifierImpl(children: [parent] + builder()
+                .optional { try self.parseDotIfNeeded(parent: parent) }
+                .required { try self.parseIdentifier() }
+                .optional { try self.parseGenericArgumentClause() }
+                .build())
+    }
+
+    private func parseDotIfNeeded(parent: Element?) throws -> Element {
+        if parent != nil {
+            return try parsePunctuation(.dot)
         }
         throw LookAheadError()
     }
@@ -252,10 +254,6 @@ extension TypeParser {
                 .required { try self.parsePunctuation(.arrow) }
                 .optional { try self.parse() }
                 .build())
-    }
-
-    private func parseThrows() throws -> Element {
-        return try parseKeyword([.throws, .rethrows])
     }
 
     private func appendTupleType(to string: inout String) throws {
