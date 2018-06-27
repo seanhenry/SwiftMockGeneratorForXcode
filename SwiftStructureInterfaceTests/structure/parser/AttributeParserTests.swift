@@ -5,45 +5,48 @@ class AttributeParserTests: XCTestCase {
 
     // MARK: - parse
 
-    func test_parse_shouldParseAttribute() throws {
-        try assertAttributes("@attr", "@attr")
+    func test_parse_shouldParseAttribute() {
+        assertAttributes("@attr", "@attr")
     }
 
-    func test_parse_shouldNotParseEmptyString() throws {
+    func test_parse_shouldNotParseEmptyString() {
         XCTAssertThrowsError(try parse(""))
     }
 
-    func test_parse_shouldNotParseNonAttribute() throws {
+    func test_parse_shouldNotParseNonAttribute() {
         XCTAssertThrowsError(try parse("protocol NotAttribute {}"))
     }
 
-    func test_parse_shouldParseAttributeWithMissingID() throws {
-        try assertAttributes("@", "@")
+    func test_parse_shouldParseAttributeWithMissingID() {
+        assertAttributes("@", "@")
     }
 
-    func test_parse_shouldParseAttributeWithArgument() throws {
-        try assertAttributes("@objc(test)", "@objc(test)")
+    func test_parse_shouldParseAttributeWithArgument() {
+        assertAttributes("@objc(test)", "@objc(test)")
     }
 
-    func test_parse_shouldParseMutlitpleAttributes() throws {
-        try assertAttributes("@abc @def @ghi", "@abc @def @ghi")
+    func test_parse_shouldParseMutlitpleAttributes() {
+        assertAttributes("@abc @def @ghi", "@abc @def @ghi")
     }
 
-    func test_parse_shouldParseMultipleAttributesWithArguments() throws {
-        try assertAttributes("@objc(asd) @convention(c)", "@objc(asd) @convention(c)")
+    func test_parse_shouldParseMultipleAttributesWithArguments() {
+        assertAttributes("@objc(asd) @convention(c)", "@objc(asd) @convention(c)")
     }
 
-    func test_parse_shouldParseMultipleMixedAttributes() throws {
-        try assertAttributes("@abc @convention(c)", "@abc @convention(c)")
+    func test_parse_shouldParseMultipleMixedAttributes() {
+        assertAttributes("@abc @convention(c)", "@abc @convention(c)")
     }
 
-    func test_parse_shouldNotParseClosure() throws {
-        try assertAttributes("@escaping () -> ()", "@escaping")
+    func test_parse_shouldNotParseClosure() {
+        assertAttributes("@escaping () -> ()", "@escaping")
+//        assertAttributes("@escaping (String) -> ()", "@escaping")
     }
+
+    // TODO: parse all possible edge cases and uncomment test above
 
     // MARK: - Helpers
 
-    func assertAttributes(_ input: String, _ expected: String, line: UInt = #line) throws {
+    func assertAttributes(_ input: String, _ expected: String, line: UInt = #line) {
         XCTAssertEqual(try parse(input).text, expected, line: line)
     }
 

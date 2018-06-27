@@ -36,56 +36,56 @@ class RequirementListParserTests: XCTestCase {
         XCTAssertEqual(requirement.rightType.text, "B")
     }
 
-    func test_parse_shouldNotParseWrongColon() throws {
+    func test_parse_shouldNotParseWrongColon() {
         XCTAssertThrowsError(try parse("A;B"))
     }
 
-    func test_parse_shouldNotParseMissingRequirement() throws {
+    func test_parse_shouldNotParseMissingRequirement() {
         XCTAssertThrowsError(try parse("A"))
     }
 
-    func test_parse_shouldNotParseMultipleIncompleteConformances() throws {
+    func test_parse_shouldNotParseMultipleIncompleteConformances() {
         XCTAssertThrowsError(try parse("A,B;C"))
     }
 
-    func test_parse_shouldParseFirstPartOfInvalidClause() throws {
-        try assertText("A:B,C;D", "A:B,")
-        try assertText("A==B,C=D", "A==B,")
+    func test_parse_shouldParseFirstPartOfInvalidClause() {
+        assertText("A:B,C;D", "A:B,")
+        assertText("A==B,C=D", "A==B,")
     }
 
-    func test_parse_shouldParseFirstPartOfInvalidRequirement() throws {
-        try assertText("A:", "A:")
-        try assertText("A==0", "A==")
+    func test_parse_shouldParseFirstPartOfInvalidRequirement() {
+        assertText("A:", "A:")
+        assertText("A==0", "A==")
     }
 
-    func test_parse_shouldParseMultipleConformances() throws {
-        try assertText("A:B,C:D", "A:B,C:D")
+    func test_parse_shouldParseMultipleConformances() {
+        assertText("A:B,C:D", "A:B,C:D")
     }
 
-    func test_parse_shouldParseNestedTypes() throws {
-        try assertText("A.B.C:D.E.F", "A.B.C:D.E.F")
-        try assertText("A.B.C==D.E.F", "A.B.C==D.E.F")
+    func test_parse_shouldParseNestedTypes() {
+        assertText("A.B.C:D.E.F", "A.B.C:D.E.F")
+        assertText("A.B.C==D.E.F", "A.B.C==D.E.F")
     }
 
-    func test_parse_shouldParseProtocolCompositionInConformanceRequirement() throws {
-        try assertText("A:B & C & D", "A:B & C & D")
+    func test_parse_shouldParseProtocolCompositionInConformanceRequirement() {
+        assertText("A:B & C & D", "A:B & C & D")
     }
 
-    func test_parse_shouldParseProtocolCompositionInSameTypeRequirement() throws {
-        try assertText("A==B & C & D", "A==B & C & D")
+    func test_parse_shouldParseProtocolCompositionInSameTypeRequirement() {
+        assertText("A==B & C & D", "A==B & C & D")
     }
 
-    func test_parse_shouldParseWhitespaceInSameTypeRequirement() throws {
-        try assertText("A == B , C == D", "A == B , C == D")
+    func test_parse_shouldParseWhitespaceInSameTypeRequirement() {
+        assertText("A == B , C == D", "A == B , C == D")
     }
 
-    func test_parse_shouldParseWhitespaceInConformanceTypeRequirement() throws {
-        try assertText("A : B , C : D & E", "A : B , C : D & E")
+    func test_parse_shouldParseWhitespaceInConformanceTypeRequirement(){
+        assertText("A : B , C : D & E", "A : B , C : D & E")
     }
 
     // MARK: - Helpers
 
-    func assertText(_ input: String, _ expected: String, line: UInt = #line) throws {
+    func assertText(_ input: String, _ expected: String, line: UInt = #line) {
         XCTAssertEqual(try parse(input).text, expected, line: line)
     }
 
