@@ -1,15 +1,10 @@
 class AssociatedTypeDeclarationParser: DeclarationParser<Element> {
-
-    override func parseDeclaration(start: LineColumn, children: [Any?]) -> Element {
-        if peekAtNextIdentifier() != nil {
-            advance()
-        }
-        _ = parseTypeInheritanceClause()
-        _ = parseTypealiasAssignment()
-        _ = parseWhereClause()
-        fatalError("TODO:")
-//        return createElement(start: start) { offset, length, text in
-//            return ElementImpl(text: text, children: [], offset: offset, length: length)
-//        } ?? ElementImpl.emptyElement
+    override func parseDeclaration(builder: ParserBuilder) throws -> Element {
+        return try ElementImpl(children: builder
+                .optional { try self.parseIdentifier() }
+                .optional { try self.parseTypeInheritanceClause() }
+                .optional { try self.parseTypealiasAssignment() }
+                .optional { try self.parseWhereClause() }
+                .build())
     }
 }

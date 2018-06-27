@@ -5,52 +5,52 @@ class AssociatedTypeDeclarationParserTests: XCTestCase {
 
     // MARK: - parse
 
-    func test_parse_shouldAssociatedTypeWithName() {
+    func test_parse_shouldAssociatedTypeWithName() throws {
         let text = "associatedtype Name"
-        let associatedType = parse(text)
+        let associatedType = try parse(text)
         assertElementText(associatedType, text)
     }
 
-    func test_parse_shouldAssociatedTypeWithoutName() {
+    func test_parse_shouldAssociatedTypeWithoutName() throws {
         let text = "associatedtype :"
-        let associatedType = parse(text)
+        let associatedType = try parse(text)
         assertElementText(associatedType, text)
     }
 
-    func test_parse_shouldAssociatedTypeWithAttributesAndAccesModifier() {
+    func test_parse_shouldAssociatedTypeWithAttributesAndAccesModifier() throws {
         let text = "@a @b public associatedtype Name"
-        let associatedType = parse(text)
+        let associatedType = try parse(text)
         assertElementText(associatedType, text)
     }
 
-    func test_parse_shouldAssociatedTypeWithTypeInheritanceClause() {
-        let text = "associatedtype Name: Type, List<Of.Types>"
-        let associatedType = parse(text)
+    func test_parse_shouldAssociatedTypeWithTypeInheritanceClause() throws {
+        let text = "associatedtype Name: Int, List<Of.Types>"
+        let associatedType = try parse(text)
         assertElementText(associatedType, text)
     }
 
-    func test_parse_shouldAssociatedTypeWithTypealiasAssignment() {
-        let text = "associatedtype Name = Type"
-        let associatedType = parse(text)
+    func test_parse_shouldAssociatedTypeWithTypealiasAssignment() throws {
+        let text = "associatedtype Name = Int"
+        let associatedType = try parse(text)
         assertElementText(associatedType, text)
     }
 
-    func test_parse_shouldAssociatedTypeWithWhereClause() {
+    func test_parse_shouldAssociatedTypeWithWhereClause() throws {
         let text = "associatedtype Name where T: A"
-        let associatedType = parse(text)
+        let associatedType = try parse(text)
         assertElementText(associatedType, text)
     }
 
-    func test_parse_shouldAssociatedTypeWithEverything() {
+    func test_parse_shouldAssociatedTypeWithEverything() throws {
         let text = "@a open associatedtype Name: T where T.Element: A"
-        let associatedType = parse(text)
+        let associatedType = try parse(text)
         assertElementText(associatedType, text)
     }
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> ElementImpl {
+    func parse(_ text: String) throws -> Element {
         let parser = createDeclarationParser(text, .identifier("associatedtype", false), AssociatedTypeDeclarationParser.self)
-        return parser.parse() as! ElementImpl
+        return try parser.parse()
     }
 }
