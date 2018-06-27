@@ -5,12 +5,8 @@ import Lexer
 
 extension XCTestCase {
 
-    func assertElementText(_ element: Element?, _ text: String, offset: Int64 = 0, file: StaticString = #file, line: UInt = #line) {
-        guard let e = element else {
-            XCTAssertNotNil(element, file: file, line: line)
-            return
-        }
-        XCTAssertEqual(e.text, text, file: file, line: line)
+    func assertElementText(_ element: @autoclosure () throws -> Element?, _ text: String, offset: Int64 = 0, file: StaticString = #file, line: UInt = #line) {
+        XCTAssertEqual(try element()?.text, text, file: file, line: line)
     }
 
     func createParser<T, P: Parser<T>>(_ text: String, _ `class`: P.Type) -> P {
