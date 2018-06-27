@@ -18,6 +18,7 @@ public class Punctuation {
     static let rightChevron = LeafNodeImpl(text: ">")
     static let prefixAmp = LeafNodeImpl(text: "&")
     static let underscore = LeafNodeImpl(text: "_")
+    static let assignmentOperator = LeafNodeImpl(text: "=")
 
     static let punctuation: [String: LeafNodeImpl] = [
         "arrow": arrow,
@@ -38,6 +39,7 @@ public class Punctuation {
         "rightChevron": rightChevron,
         "prefixAmp": prefixAmp,
         "underscore": underscore,
+        "assignmentOperator": assignmentOperator,
     ]
 
     private init() {}

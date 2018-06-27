@@ -21,6 +21,7 @@ class PunctuationParserTests: XCTestCase {
         XCTAssertEqual(try parse("<").text, "<")
         XCTAssertEqual(try parse("&").text, "&")
         XCTAssertEqual(try parse("_").text, "_")
+        XCTAssertEqual(try parse("=").text, "=")
     }
 
     func test_parseInvalid() {

@@ -7,25 +7,23 @@ class TypealiasAssignmentParserTests: XCTestCase {
 
     func test_parse_shouldParseAssignment() {
         let text = "= Anything<You.Like>"
-        let associatedType = parse(text)
-        assertElementText(associatedType, text)
+        assertElementText(try parse(text), text)
     }
 
     func test_parse_shouldParseAssignmentWithNoWhitespace() {
         let text = "=Int"
-        let associatedType = parse(text)
-        assertElementText(associatedType, text)
+        assertElementText(try parse(text), text)
     }
 
     func test_parse_shouldNotParseAssignmentWithoutEqualsOperator() {
         let text = "AType"
-        XCTAssert(parse(text) === TypealiasAssignmentImpl.emptyTypealiasAssignment)
+        XCTAssertThrowsError(try parse(text))
     }
 
     // MARK: - Helpers
 
-    func parse(_ text: String) -> ElementImpl {
+    func parse(_ text: String) throws -> TypealiasAssignment {
         let parser = createParser(text, TypealiasAssignmentParser.self)
-        return parser.parse() as! ElementImpl
+        return try parser.parse()
     }
 }
