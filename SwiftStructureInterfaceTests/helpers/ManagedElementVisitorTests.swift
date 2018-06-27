@@ -16,8 +16,7 @@ class ManagedElementVisitorTests: XCTestCase {
 
         assertProxyIsImplemented(testAccessLevelModifier) { $0 is AccessLevelModifier }
 
-        assertProxyIsImplemented(testInitializerDeclaration) { $0 is InitializerDeclaration
-        }
+        assertProxyIsImplemented(testInitializerDeclaration) { $0 is InitializerDeclaration }
         assertProxyIsImplemented(testInitializerDeclaration.parameterClause.parameters[0]) { $0 is Parameter }
 
         assertProxyIsImplemented(testVariableDeclaration) { $0 is VariableDeclaration }

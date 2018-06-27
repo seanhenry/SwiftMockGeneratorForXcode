@@ -9,12 +9,11 @@ class KeywordParserTests: XCTestCase {
 
     func test_shouldAdvanceParser() {
         let parser = createParser("true false associatedtype func unknown", KeywordParser.self)
-        let parse = { try? parser.parse() }
-        XCTAssert(parse() === Keywords.true)
-        XCTAssert(parse() === Keywords.false)
-        XCTAssert(parse() === Keywords.associatedtype)
-        XCTAssert(parse() === Keywords.func)
-        XCTAssertNil(parse())
+        XCTAssert(try parser.parse().text == Keywords.true)
+        XCTAssert(try parser.parse().text == Keywords.false)
+        XCTAssert(try parser.parse().text == Keywords.associatedtype)
+        XCTAssert(try parser.parse().text == Keywords.func)
+        XCTAssertThrowsError(try parser.parse())
     }
 
     func test_parseKeyword() {
@@ -104,10 +103,9 @@ class KeywordParserTests: XCTestCase {
 
     // MARK: - Helpers
 
-    func assertParsesKeyword(_ input: String, _ expected: LeafNode, line: UInt = #line) {
+    func assertParsesKeyword(_ input: String, _ expected: String, line: UInt = #line) {
         let leaf = try? parse(input)
-        XCTAssertEqual(leaf?.text, expected.text, line: line)
-        XCTAssert(leaf === expected, line: line)
+        XCTAssertEqual(leaf?.text, expected, line: line)
     }
 
     private func parse(_ input: String) throws -> LeafNode {

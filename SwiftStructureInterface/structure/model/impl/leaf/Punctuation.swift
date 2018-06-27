@@ -1,26 +1,26 @@
 public class Punctuation {
 
-    static let arrow = LeafNodeImpl(text: "->")
-    static let colon = LeafNodeImpl(text: ":")
-    static let comma = LeafNodeImpl(text: ",")
-    static let dot = LeafNodeImpl(text: ".")
-    static let semicolon = LeafNodeImpl(text: ";")
-    static let at = LeafNodeImpl(text: "@")
-    static let hash = LeafNodeImpl(text: "#")
-    static let backslash = LeafNodeImpl(text: "\\")
-    static let leftParen = LeafNodeImpl(text: "(")
-    static let rightParen = LeafNodeImpl(text: ")")
-    static let leftBrace = LeafNodeImpl(text: "{")
-    static let rightBrace = LeafNodeImpl(text: "}")
-    static let leftSquare = LeafNodeImpl(text: "[")
-    static let rightSquare = LeafNodeImpl(text: "]")
-    static let leftChevron = LeafNodeImpl(text: "<")
-    static let rightChevron = LeafNodeImpl(text: ">")
-    static let prefixAmp = LeafNodeImpl(text: "&")
-    static let underscore = LeafNodeImpl(text: "_")
-    static let assignmentOperator = LeafNodeImpl(text: "=")
+    static let arrow = "->"
+    static let colon = ":"
+    static let comma = ","
+    static let dot = "."
+    static let semicolon = ";"
+    static let at = "@"
+    static let hash = "#"
+    static let backslash = "\\"
+    static let leftParen = "("
+    static let rightParen = ")"
+    static let leftBrace = "{"
+    static let rightBrace = "}"
+    static let leftSquare = "["
+    static let rightSquare = "]"
+    static let leftChevron = "<"
+    static let rightChevron = ">"
+    static let prefixAmp = "&"
+    static let underscore = "_"
+    static let assignmentOperator = "="
 
-    static let punctuation: [String: LeafNodeImpl] = [
+    static let punctuation: [String: String] = [
         "arrow": arrow,
         "colon": colon,
         "comma": comma,
