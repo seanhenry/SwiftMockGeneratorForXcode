@@ -14,4 +14,8 @@ class LeafNodeImpl: ElementImpl, LeafNode {
         storedText = text
         super.init(children: [])
     }
+
+    override func accept(_ visitor: ElementVisitor) {
+        visitor.visitLeafNode(self)
+    }
 }

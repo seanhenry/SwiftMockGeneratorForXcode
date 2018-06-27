@@ -1,6 +1,7 @@
-class AssociatedTypeDeclarationParser: DeclarationParser<Element> {
-    override func parseDeclaration(builder: ParserBuilder) throws -> Element {
-        return try ElementImpl(children: builder
+class AssociatedTypeDeclarationParser: DeclarationParser<AssociatedTypeDeclaration> {
+
+    override func parseDeclaration(builder: ParserBuilder) throws -> AssociatedTypeDeclaration {
+        return try AssociatedTypeDeclarationImpl(children: builder
                 .optional { try self.parseIdentifier() }
                 .optional { try self.parseTypeInheritanceClause() }
                 .optional { try self.parseTypealiasAssignment() }

@@ -21,7 +21,8 @@ class ArrayTypeProxy: TypeProxy, ArrayType {
 
   let managedArrayType: ArrayType
   var elementType: Type {
-    return managedArrayType.elementType
+    return proxy(managedArrayType.elementType)
+
   }
 
   init(_ element: ArrayType) {
@@ -38,13 +39,16 @@ class AssociatedTypeDeclarationProxy: DeclarationProxy, AssociatedTypeDeclaratio
 
   let managedAssociatedTypeDeclaration: AssociatedTypeDeclaration
   var typeInheritanceClause: [Element] {
-    return managedAssociatedTypeDeclaration.typeInheritanceClause
+    return managedAssociatedTypeDeclaration.typeInheritanceClause.map(proxy)
+
   }
   var typealiasAssignment: TypealiasAssignment? {
-    return managedAssociatedTypeDeclaration.typealiasAssignment
+    return managedAssociatedTypeDeclaration.typealiasAssignment.flatMap(proxy)
+
   }
   var genericWhereClause: GenericWhereClause? {
-    return managedAssociatedTypeDeclaration.genericWhereClause
+    return managedAssociatedTypeDeclaration.genericWhereClause.flatMap(proxy)
+
   }
 
   init(_ element: AssociatedTypeDeclaration) {
@@ -75,7 +79,8 @@ class AttributesProxy: ElementProxy, Attributes {
 
   let managedAttributes: Attributes
   var attributes: [Attribute] {
-    return managedAttributes.attributes
+    return managedAttributes.attributes.map(proxy)
+
   }
 
   init(_ element: Attributes) {
@@ -106,10 +111,12 @@ class ConformanceRequirementProxy: RequirementProxy, ConformanceRequirement {
 
   let managedConformanceRequirement: ConformanceRequirement
   var rightTypeIdentifier: TypeIdentifier {
-    return managedConformanceRequirement.rightTypeIdentifier
+    return proxy(managedConformanceRequirement.rightTypeIdentifier)
+
   }
   var rightProtocolCompositionType: ProtocolCompositionType {
-    return managedConformanceRequirement.rightProtocolCompositionType
+    return proxy(managedConformanceRequirement.rightProtocolCompositionType)
+
   }
 
   init(_ element: ConformanceRequirement) {
@@ -126,10 +133,12 @@ class DeclarationProxy: ElementProxy, Declaration {
 
   let managedDeclaration: Declaration
   var attributes: Attributes {
-    return managedDeclaration.attributes
+    return proxy(managedDeclaration.attributes)
+
   }
   var accessLevelModifier: AccessLevelModifier {
-    return managedDeclaration.accessLevelModifier
+    return proxy(managedDeclaration.accessLevelModifier)
+
   }
 
   init(_ element: Declaration) {
@@ -160,10 +169,12 @@ class DictionaryTypeProxy: TypeProxy, DictionaryType {
 
   let managedDictionaryType: DictionaryType
   var keyType: Type {
-    return managedDictionaryType.keyType
+    return proxy(managedDictionaryType.keyType)
+
   }
   var valueType: Type {
-    return managedDictionaryType.valueType
+    return proxy(managedDictionaryType.valueType)
+
   }
 
   init(_ element: DictionaryType) {
@@ -194,16 +205,20 @@ class FunctionDeclarationProxy: ElementProxy, FunctionDeclaration {
 
   let managedFunctionDeclaration: FunctionDeclaration
   var genericParameterClause: GenericParameterClause? {
-    return managedFunctionDeclaration.genericParameterClause
+    return managedFunctionDeclaration.genericParameterClause.flatMap(proxy)
+
   }
   var parameterClause: ParameterClause {
-    return managedFunctionDeclaration.parameterClause
+    return proxy(managedFunctionDeclaration.parameterClause)
+
   }
   var returnType: FunctionResult? {
-    return managedFunctionDeclaration.returnType
+    return managedFunctionDeclaration.returnType.flatMap(proxy)
+
   }
   var declarations: [Element] {
-    return managedFunctionDeclaration.declarations
+    return managedFunctionDeclaration.declarations.map(proxy)
+
   }
 
   init(_ element: FunctionDeclaration) {
@@ -220,10 +235,12 @@ class FunctionResultProxy: ElementProxy, FunctionResult {
 
   let managedFunctionResult: FunctionResult
   var attributes: Attributes {
-    return managedFunctionResult.attributes
+    return proxy(managedFunctionResult.attributes)
+
   }
   var type: Type {
-    return managedFunctionResult.type
+    return proxy(managedFunctionResult.type)
+
   }
 
   init(_ element: FunctionResult) {
@@ -240,13 +257,16 @@ class FunctionTypeProxy: TypeProxy, FunctionType {
 
   let managedFunctionType: FunctionType
   var attributes: Attributes {
-    return managedFunctionType.attributes
+    return proxy(managedFunctionType.attributes)
+
   }
   var arguments: TupleType {
-    return managedFunctionType.arguments
+    return proxy(managedFunctionType.arguments)
+
   }
   var returnType: Type {
-    return managedFunctionType.returnType
+    return proxy(managedFunctionType.returnType)
+
   }
 
   init(_ element: FunctionType) {
@@ -263,7 +283,8 @@ class GenericArgumentClauseProxy: ElementProxy, GenericArgumentClause {
 
   let managedGenericArgumentClause: GenericArgumentClause
   var arguments: [Type] {
-    return managedGenericArgumentClause.arguments
+    return managedGenericArgumentClause.arguments.map(proxy)
+
   }
 
   init(_ element: GenericArgumentClause) {
@@ -280,10 +301,12 @@ class GenericParameterProxy: ElementProxy, GenericParameter {
 
   let managedGenericParameter: GenericParameter
   var typeIdentifier: TypeIdentifier? {
-    return managedGenericParameter.typeIdentifier
+    return managedGenericParameter.typeIdentifier.flatMap(proxy)
+
   }
   var protocolComposition: ProtocolCompositionType? {
-    return managedGenericParameter.protocolComposition
+    return managedGenericParameter.protocolComposition.flatMap(proxy)
+
   }
 
   init(_ element: GenericParameter) {
@@ -300,7 +323,8 @@ class GenericParameterClauseProxy: ElementProxy, GenericParameterClause {
 
   let managedGenericParameterClause: GenericParameterClause
   var parameters: [GenericParameter] {
-    return managedGenericParameterClause.parameters
+    return managedGenericParameterClause.parameters.map(proxy)
+
   }
 
   init(_ element: GenericParameterClause) {
@@ -317,7 +341,8 @@ class GenericWhereClauseProxy: ElementProxy, GenericWhereClause {
 
   let managedGenericWhereClause: GenericWhereClause
   var requirementList: RequirementList {
-    return managedGenericWhereClause.requirementList
+    return proxy(managedGenericWhereClause.requirementList)
+
   }
 
   init(_ element: GenericWhereClause) {
@@ -334,10 +359,12 @@ class GetterSetterKeywordBlockProxy: ElementProxy, GetterSetterKeywordBlock {
 
   let managedGetterSetterKeywordBlock: GetterSetterKeywordBlock
   var getterKeywordClause: GetterSetterKeywordClause {
-    return managedGetterSetterKeywordBlock.getterKeywordClause
+    return proxy(managedGetterSetterKeywordBlock.getterKeywordClause)
+
   }
   var setterKeywordClause: GetterSetterKeywordClause? {
-    return managedGetterSetterKeywordBlock.setterKeywordClause
+    return managedGetterSetterKeywordBlock.setterKeywordClause.flatMap(proxy)
+
   }
 
   init(_ element: GetterSetterKeywordBlock) {
@@ -354,10 +381,12 @@ class GetterSetterKeywordClauseProxy: ElementProxy, GetterSetterKeywordClause {
 
   let managedGetterSetterKeywordClause: GetterSetterKeywordClause
   var attributes: Attributes {
-    return managedGetterSetterKeywordClause.attributes
+    return proxy(managedGetterSetterKeywordClause.attributes)
+
   }
   var mutationModifier: MutationModifier {
-    return managedGetterSetterKeywordClause.mutationModifier
+    return proxy(managedGetterSetterKeywordClause.mutationModifier)
+
   }
 
   init(_ element: GetterSetterKeywordClause) {
@@ -388,10 +417,12 @@ class InitializerDeclarationProxy: ElementProxy, InitializerDeclaration {
 
   let managedInitializerDeclaration: InitializerDeclaration
   var parameterClause: ParameterClause {
-    return managedInitializerDeclaration.parameterClause
+    return proxy(managedInitializerDeclaration.parameterClause)
+
   }
   var declarations: [Element] {
-    return managedInitializerDeclaration.declarations
+    return managedInitializerDeclaration.declarations.map(proxy)
+
   }
 
   init(_ element: InitializerDeclaration) {
@@ -440,7 +471,8 @@ class OptionalTypeProxy: TypeProxy, OptionalType {
 
   let managedOptionalType: OptionalType
   var type: Type {
-    return managedOptionalType.type
+    return proxy(managedOptionalType.type)
+
   }
 
   init(_ element: OptionalType) {
@@ -457,7 +489,8 @@ class ParameterProxy: ElementProxy, Parameter {
 
   let managedParameter: Parameter
   var typeAnnotation: TypeAnnotation {
-    return managedParameter.typeAnnotation
+    return proxy(managedParameter.typeAnnotation)
+
   }
 
   init(_ element: Parameter) {
@@ -474,7 +507,8 @@ class ParameterClauseProxy: ElementProxy, ParameterClause {
 
   let managedParameterClause: ParameterClause
   var parameters: [Parameter] {
-    return managedParameterClause.parameters
+    return managedParameterClause.parameters.map(proxy)
+
   }
 
   init(_ element: ParameterClause) {
@@ -491,7 +525,8 @@ class ProtocolCompositionTypeProxy: TypeProxy, ProtocolCompositionType {
 
   let managedProtocolCompositionType: ProtocolCompositionType
   var types: [Type] {
-    return managedProtocolCompositionType.types
+    return managedProtocolCompositionType.types.map(proxy)
+
   }
 
   init(_ element: ProtocolCompositionType) {
@@ -508,7 +543,8 @@ class RequirementProxy: ElementProxy, Requirement {
 
   let managedRequirement: Requirement
   var leftTypeIdentifier: TypeIdentifier {
-    return managedRequirement.leftTypeIdentifier
+    return proxy(managedRequirement.leftTypeIdentifier)
+
   }
 
   init(_ element: Requirement) {
@@ -525,7 +561,8 @@ class RequirementListProxy: ElementProxy, RequirementList {
 
   let managedRequirementList: RequirementList
   var requirements: [Requirement] {
-    return managedRequirementList.requirements
+    return managedRequirementList.requirements.map(proxy)
+
   }
 
   init(_ element: RequirementList) {
@@ -542,7 +579,8 @@ class SameTypeRequirementProxy: RequirementProxy, SameTypeRequirement {
 
   let managedSameTypeRequirement: SameTypeRequirement
   var rightType: Type {
-    return managedSameTypeRequirement.rightType
+    return proxy(managedSameTypeRequirement.rightType)
+
   }
 
   init(_ element: SameTypeRequirement) {
@@ -559,7 +597,8 @@ class SubscriptDeclarationProxy: ElementProxy, SubscriptDeclaration {
 
   let managedSubscriptDeclaration: SubscriptDeclaration
   var declarations: [Element] {
-    return managedSubscriptDeclaration.declarations
+    return managedSubscriptDeclaration.declarations.map(proxy)
+
   }
 
   init(_ element: SubscriptDeclaration) {
@@ -576,7 +615,8 @@ class TupleTypeProxy: TypeProxy, TupleType {
 
   let managedTupleType: TupleType
   var tupleTypeElementList: TupleTypeElementList {
-    return managedTupleType.tupleTypeElementList
+    return proxy(managedTupleType.tupleTypeElementList)
+
   }
 
   init(_ element: TupleType) {
@@ -593,10 +633,12 @@ class TupleTypeElementProxy: ElementProxy, TupleTypeElement {
 
   let managedTupleTypeElement: TupleTypeElement
   var typeAnnotation: TypeAnnotation? {
-    return managedTupleTypeElement.typeAnnotation
+    return managedTupleTypeElement.typeAnnotation.flatMap(proxy)
+
   }
   var type: Type? {
-    return managedTupleTypeElement.type
+    return managedTupleTypeElement.type.flatMap(proxy)
+
   }
 
   init(_ element: TupleTypeElement) {
@@ -613,7 +655,8 @@ class TupleTypeElementListProxy: ElementProxy, TupleTypeElementList {
 
   let managedTupleTypeElementList: TupleTypeElementList
   var tupleTypeElements: [TupleTypeElement] {
-    return managedTupleTypeElementList.tupleTypeElements
+    return managedTupleTypeElementList.tupleTypeElements.map(proxy)
+
   }
 
   init(_ element: TupleTypeElementList) {
@@ -644,10 +687,12 @@ class TypeAnnotationProxy: ElementProxy, TypeAnnotation {
 
   let managedTypeAnnotation: TypeAnnotation
   var attributes: Attributes {
-    return managedTypeAnnotation.attributes
+    return proxy(managedTypeAnnotation.attributes)
+
   }
   var type: Type {
-    return managedTypeAnnotation.type
+    return proxy(managedTypeAnnotation.type)
+
   }
 
   init(_ element: TypeAnnotation) {
@@ -664,13 +709,16 @@ class TypeDeclarationProxy: ElementProxy, TypeDeclaration {
 
   let managedTypeDeclaration: TypeDeclaration
   var accessLevelModifier: AccessLevelModifier {
-    return managedTypeDeclaration.accessLevelModifier
+    return proxy(managedTypeDeclaration.accessLevelModifier)
+
   }
   var typeInheritanceClause: TypeInheritanceClause {
-    return managedTypeDeclaration.typeInheritanceClause
+    return proxy(managedTypeDeclaration.typeInheritanceClause)
+
   }
   var codeBlock: CodeBlock {
-    return managedTypeDeclaration.codeBlock
+    return proxy(managedTypeDeclaration.codeBlock)
+
   }
 
   init(_ element: TypeDeclaration) {
@@ -687,10 +735,12 @@ class TypeIdentifierProxy: TypeProxy, TypeIdentifier {
 
   let managedTypeIdentifier: TypeIdentifier
   var parentType: TypeIdentifier? {
-    return managedTypeIdentifier.parentType
+    return managedTypeIdentifier.parentType.flatMap(proxy)
+
   }
   var genericArgumentClause: GenericArgumentClause {
-    return managedTypeIdentifier.genericArgumentClause
+    return proxy(managedTypeIdentifier.genericArgumentClause)
+
   }
 
   init(_ element: TypeIdentifier) {
@@ -707,7 +757,8 @@ class TypeInheritanceClauseProxy: ElementProxy, TypeInheritanceClause {
 
   let managedTypeInheritanceClause: TypeInheritanceClause
   var inheritedTypes: [Type] {
-    return managedTypeInheritanceClause.inheritedTypes
+    return managedTypeInheritanceClause.inheritedTypes.map(proxy)
+
   }
 
   init(_ element: TypeInheritanceClause) {
@@ -724,7 +775,8 @@ class TypealiasAssignmentProxy: ElementProxy, TypealiasAssignment {
 
   let managedTypealiasAssignment: TypealiasAssignment
   var type: Type {
-    return managedTypealiasAssignment.type
+    return proxy(managedTypealiasAssignment.type)
+
   }
 
   init(_ element: TypealiasAssignment) {
@@ -741,7 +793,8 @@ class TypealiasDeclarationProxy: ElementProxy, TypealiasDeclaration {
 
   let managedTypealiasDeclaration: TypealiasDeclaration
   var typealiasAssignment: TypealiasAssignment {
-    return managedTypealiasDeclaration.typealiasAssignment
+    return proxy(managedTypealiasDeclaration.typealiasAssignment)
+
   }
 
   init(_ element: TypealiasDeclaration) {
@@ -758,13 +811,16 @@ class VariableDeclarationProxy: DeclarationProxy, VariableDeclaration {
 
   let managedVariableDeclaration: VariableDeclaration
   var typeAnnotation: TypeAnnotation {
-    return managedVariableDeclaration.typeAnnotation
+    return proxy(managedVariableDeclaration.typeAnnotation)
+
   }
   var getterSetterKeywordBlock: GetterSetterKeywordBlock {
-    return managedVariableDeclaration.getterSetterKeywordBlock
+    return proxy(managedVariableDeclaration.getterSetterKeywordBlock)
+
   }
   var declarations: [Element] {
-    return managedVariableDeclaration.declarations
+    return managedVariableDeclaration.declarations.map(proxy)
+
   }
 
   init(_ element: VariableDeclaration) {

@@ -4,7 +4,7 @@
 @testable import SwiftStructureInterface
 
 private let allTypesString = """
-public protocol TestProtocol {
+public protocol TestProtocol: Z where A: B, C == D {
   init(a: A)
   var property: String { get }
   func method(paramA: Int)
@@ -12,7 +12,7 @@ public protocol TestProtocol {
   subscript()
   typealias T = U
   associatedtype T = U
-  func closure(closure: @escaping () -> ()) -> String
+  mutating func closure(closure: @escaping () -> ()) -> String
   var type: Base.Nested { get }
   var tuple: (a: A, b: B) { get }
   var array: [A] { get }

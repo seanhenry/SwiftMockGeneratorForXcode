@@ -11,7 +11,14 @@ class {{type.name}}Proxy: {% if type.implements.Type %}TypeProxy{% elif type.imp
 {% else %}
 {% for variable in type.variables %}
   var {{variable.name}}: {{variable.typeName}} {
-    return managed{{type.name}}.{{variable.name}}
+{% if variable.isOptional %}
+    return managed{{type.name}}.{{variable.name}}.flatMap(proxy)
+{% elif variable.isArray %}
+    return managed{{type.name}}.{{variable.name}}.map(proxy)
+{% else %}
+    return proxy(managed{{type.name}}.{{variable.name}})
+{% endif %}
+
   }
 {% endfor %}
 {% endif %}

@@ -21,7 +21,9 @@ class FileImpl: ElementImpl, File {
         }
 
         override func visitElement(_ element: Element) {
-            (element as? ElementImpl)?.file = file
+            if let element = element as? ElementImpl {
+                element.file = file
+            }
             super.visitElement(element)
         }
     }

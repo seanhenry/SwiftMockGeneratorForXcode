@@ -56,14 +56,14 @@ class FileImplTests: XCTestCase {
         XCTAssertEqual(fileCopy?.children.count, 1)
     }
 
-    private func assertFile(_ lhs: Element?, line: UInt = #line) {
-        XCTAssertNotNil(lhs?.file, line: line)
+    private func assertFile(_ elementFile: File?, line: UInt = #line) {
+        XCTAssertNotNil(elementFile, line: line)
         XCTAssertNotNil(file)
-        guard let lhs = lhs?.file as? ElementProxy, let file = file as? ElementProxy else {
+        guard let otherFile = elementFile as? FileProxy, let file = file as? FileProxy else {
             XCTFail("There was no proxy for the element", line: line)
             return
         }
-        XCTAssert(lhs.managed === file.managed, line: line)
+        XCTAssert(otherFile.managed === file.managed, line: line)
     }
 
     private func getProtocolString() -> String {

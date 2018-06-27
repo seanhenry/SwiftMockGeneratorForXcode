@@ -71,26 +71,6 @@ class ElementProxyTest: XCTestCase {
         XCTAssertEqual(rawChild.text, child.text)
     }
 
-    func test_shouldNotWrapNonElement() {
-        let file = createFile()
-        let result: String = file.proxy("hi")
-        XCTAssertEqual(result, "hi")
-    }
-
-    func test_shouldNotWrapNil() {
-        let file = createFile()
-        let input: String? = nil
-        let result: String? = file.proxy(input as Any)
-        XCTAssertNil(result)
-    }
-
-    func test_shouldNotWrapNilElement() {
-        let file = createFile()
-        let input: Element? = nil
-        let result: Element? = file.proxy(input as Any)
-        XCTAssertNil(result)
-    }
-
     private func wrap(_ element: Element) -> ElementProxy? {
         return ElementProxy(element as! ElementImpl)
     }

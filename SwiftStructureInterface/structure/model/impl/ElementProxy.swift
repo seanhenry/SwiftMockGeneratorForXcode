@@ -58,11 +58,8 @@ class ElementProxy: Element {
         managed.accept(visitor)
     }
 
-    func proxy<T>(_ element: Any) -> T {
-        guard let e = element as? Element else {
-            return element as! T
-        }
-        e.accept(ElementProxy.wrapVisitor)
+    func proxy<T>(_ element: Element) -> T {
+        element.accept(ElementProxy.wrapVisitor)
         defer { ElementProxy.wrapVisitor.proxy = nil }
         return ElementProxy.wrapVisitor.proxy as! T
     }

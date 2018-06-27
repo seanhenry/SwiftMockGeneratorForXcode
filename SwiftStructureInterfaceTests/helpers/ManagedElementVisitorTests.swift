@@ -59,9 +59,6 @@ class ManagedElementVisitorTests: XCTestCase {
         assertProxyIsImplemented(testTypeIdentifier) { $0 is TypeIdentifier }
         assertProxyIsImplemented(testTypeIdentifier.parentType) { $0 is TypeIdentifier }
 
-        assertProxyIsImplemented(testGenericTypeIdentifier.genericArgumentClause) { $0 is GenericArgumentClause }
-        assertProxyIsImplemented(testGenericTypeIdentifier.genericArgumentClause.arguments[0]) { $0 is Type }
-
         assertProxyIsImplemented(testTupleType) { $0 is TupleType }
         assertProxyIsImplemented(testTupleType.tupleTypeElementList) { $0 is TupleTypeElementList }
         assertProxyIsImplemented(testTupleType.tupleTypeElementList.tupleTypeElements[0]) { $0 is TupleTypeElement }
