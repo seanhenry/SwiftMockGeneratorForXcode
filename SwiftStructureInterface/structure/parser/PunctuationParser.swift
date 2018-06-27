@@ -1,9 +1,9 @@
 class PunctuationParser: Parser<LeafNode> {
 
-    override func parse(start: LineColumn) -> LeafNode {
-        if let puncuation = Punctuation.punctuation[String(describing: peekAtNextKind())] {
+    override func parse() throws -> LeafNode {
+        if let punctuation = Punctuation.punctuation[String(describing: peekAtNextKind())] {
             advance()
-            return puncuation
+            return punctuation
         }
         return LeafNodeImpl(text: "")
     }

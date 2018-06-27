@@ -18,15 +18,6 @@ class TypeParser: Parser<Type> {
         return parseOptional()
     }
 
-    private func createTypeElement<T: Type>(closure: (Int64, Int64, String) -> T) -> T? {
-        if let start = startStack.last {
-            return createElement(start: start) { offset, length, text in
-                return closure(offset, length, text)
-            }
-        }
-        return nil
-    }
-
     private func parseTypeExcludingOptional() -> Type? {
         if let protocolCompositionType = try? parseProtocolCompositionType() {
             return protocolCompositionType
@@ -60,7 +51,8 @@ extension TypeParser {
     }
 
     private func parseTypeIdentifier(_ parent: TypeIdentifier?) throws -> TypeIdentifier {
-        return try TypeIdentifierImpl(children: [parent] + builder()
+        let firstChild = parent.flatMap { [$0 as Element] } ?? []
+        return try TypeIdentifierImpl(children: firstChild + builder()
                 .optional { try self.parseDotIfNeeded(parent: parent) }
                 .required { try self.parseIdentifierIncludingKeywords() }
                 .optional { try self.parseGenericArgumentClause() }
@@ -126,14 +118,10 @@ extension TypeParser {
 
     private func surroundWithOptional(_ type: Type) -> Type {
         var optionalType = type
-        while isNextOptionalPostfix() {
-            optionalType = OptionalTypeImpl(children: [optionalType, parseOptionalPostfix()])
+        while let postfix = parseOptionalPostfix() {
+            optionalType = OptionalTypeImpl(children: [optionalType, postfix])
         }
         return optionalType
-    }
-
-    private func isNextOptionalPostfix() -> Bool {
-        return isNext("?") || isNext("!")
     }
 
     private func parseOptionalPostfix() -> Element? {
@@ -141,7 +129,7 @@ extension TypeParser {
         if isNext("?") {
             opt = LeafNodeImpl(text: "?")
             advanceOperator("?")
-        } else {
+        } else if isNext("!") {
             opt = LeafNodeImpl(text: "!")
             advanceOperator("!")
         }

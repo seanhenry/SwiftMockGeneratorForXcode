@@ -19,11 +19,7 @@ class FileParser: Parser<File> {
         super.init(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter)
     }
 
-    override func parse(start: LineColumn) -> File {
-        return parseFile()
-    }
-
-    private func parseFile() -> File {
-        return FileImpl(children: parseDeclarations())
+    override func parse() throws -> File {
+        return FileImpl(children: try parseDeclarations())
     }
 }
