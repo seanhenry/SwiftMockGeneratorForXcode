@@ -32,8 +32,12 @@ class ManagedElementVisitorTests: XCTestCase {
         assertProxyIsImplemented(testGenericParameterClause.parameters[0]) { $0 is GenericParameter }
 
         assertProxyIsImplemented(testGenericParameter) { $0 is GenericParameter }
-        assertProxyIsImplemented(testGenericParameter.typeIdentifier) { $0 is TypeIdentifier }
-        assertProxyIsImplemented(testGenericParameterClause.parameters[1].protocolComposition) { $0 is ProtocolCompositionType }
+
+        let typeIdentifierParameter = testGenericParameterClause.parameters.first { $0.typeIdentifier != nil }
+        assertProxyIsImplemented(typeIdentifierParameter?.typeIdentifier) { $0 is TypeIdentifier }
+
+        let protocolCompositionParameter = testGenericParameterClause.parameters.first { $0.protocolComposition != nil }
+        assertProxyIsImplemented(protocolCompositionParameter?.protocolComposition) { $0 is ProtocolCompositionType }
 
         assertProxyIsImplemented(testSubscriptDeclaration) { $0 is SubscriptDeclaration }
 
@@ -51,13 +55,16 @@ class ManagedElementVisitorTests: XCTestCase {
 
         assertProxyIsImplemented(testFunctionDeclaration) { $0 is FunctionDeclaration }
         assertProxyIsImplemented(testFunctionDeclaration.parameterClause.parameters[0]) { $0 is Parameter }
-        assertProxyIsImplemented(testFunctionDeclaration.genericParameterClause) { $0 is GenericParameterClause }
-        assertProxyIsImplemented(testFunctionDeclaration.returnType) { $0 is Type }
+
+        let returnFunction = testTypeDeclaration.functionDeclarations.first { $0.returnType != nil }
+        assertProxyIsImplemented(returnFunction?.returnType) { $0 is FunctionResult }
+
+        let genericFunction = testTypeDeclaration.functionDeclarations.first { $0.genericParameterClause != nil }
+        assertProxyIsImplemented(genericFunction?.genericParameterClause) { $0 is GenericParameterClause }
 
         assertProxyIsImplemented(testType) { $0 is Type }
 
         assertProxyIsImplemented(testTypeIdentifier) { $0 is TypeIdentifier }
-        assertProxyIsImplemented(testTypeIdentifier.parentType) { $0 is TypeIdentifier }
 
         assertProxyIsImplemented(testTupleType) { $0 is TupleType }
         assertProxyIsImplemented(testTupleType.tupleTypeElementList) { $0 is TupleTypeElementList }
@@ -84,6 +91,7 @@ class ManagedElementVisitorTests: XCTestCase {
     }
 
     private func assertProxyIsImplemented(_ element: Element?, line: UInt = #line, _ isType: (Element) -> Bool) {
+        XCTAssertNotNil(element, line: line)
         guard let proxy = element as? ElementProxy else {
             XCTFail("\(type(of: element)) is not wrapped", line: line)
             return
