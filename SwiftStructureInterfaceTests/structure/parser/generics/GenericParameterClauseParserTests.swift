@@ -5,8 +5,8 @@ class GenericParameterClauseParserTests: XCTestCase {
 
     // MARK: - parse
 
-    func test_parse_shouldParseSimpleClause() {
-        let clause = parse("<T>")
+    func test_parse_shouldParseSimpleClause() throws {
+        let clause = try parse("<T>")
         XCTAssertEqual(clause.parameters.count, 1)
         XCTAssertEqual(clause.parameters[0].name, "T")
         XCTAssertEqual(clause.parameters[0].text, "T")
@@ -14,8 +14,8 @@ class GenericParameterClauseParserTests: XCTestCase {
         XCTAssertNil(clause.parameters[0].typeIdentifier)
     }
 
-    func test_parse_shouldParseClauseWithTypeIdentifier() {
-        let clause = parse("<T:A>")
+    func test_parse_shouldParseClauseWithTypeIdentifier() throws {
+        let clause = try parse("<T:A>")
         XCTAssertEqual(clause.parameters.count, 1)
         XCTAssertEqual(clause.parameters[0].name, "T")
         XCTAssertEqual(clause.parameters[0].text, "T:A")
@@ -23,8 +23,8 @@ class GenericParameterClauseParserTests: XCTestCase {
         XCTAssertEqual(clause.parameters[0].typeIdentifier?.typeName, "A")
     }
 
-    func test_parse_shouldParseArgumentWithProtocolComposition() {
-        let clause = parse("<T: A & B>")
+    func test_parse_shouldParseArgumentWithProtocolComposition() throws {
+        let clause = try parse("<T: A & B>")
         XCTAssertEqual(clause.parameters.count, 1)
         XCTAssertEqual(clause.parameters[0].name, "T")
         XCTAssertEqual(clause.parameters[0].text, "T: A & B")
@@ -32,8 +32,8 @@ class GenericParameterClauseParserTests: XCTestCase {
         XCTAssertNil(clause.parameters[0].typeIdentifier?.typeName)
     }
 
-    func test_parse_shouldParseManyParameterClause() {
-        let clause = parse("<T:A,U==B>")
+    func test_parse_shouldParseManyParameterClause() throws {
+        let clause = try parse("<T:A,U==B>")
         XCTAssertEqual(clause.text, "<T:A,U==B>")
         XCTAssertEqual(clause.parameters[0].name, "T")
         XCTAssertEqual(clause.parameters[0].text, "T:A")
@@ -43,25 +43,24 @@ class GenericParameterClauseParserTests: XCTestCase {
         XCTAssertEqual(clause.parameters[1].typeIdentifier?.text, "B")
     }
 
-    func test_parse_shouldParseWhitespace() {
+    func test_parse_shouldParseWhitespace() throws {
         let text = "< T : A , U == B & C , V >"
-        let clause = parse(text)
+        let clause = try parse(text)
         XCTAssertEqual(clause.text, text)
     }
 
-    func test_parse_shouldReturnEmptyClause() {
-        let clause = parse("")
-        XCTAssert(clause === GenericParameterClauseImpl.emptyGenericParameterClause)
+    func test_parse_shouldThrowWhenNotStartingWithLeftChevron() {
+        XCTAssertThrowsError(try parse("T>"))
     }
 
     // MARK: - Helpers
 
     func assertText(_ input: String, _ expected: String, line: UInt = #line) {
-        assertElementText(parse(input), input, line: line)
+        assertElementText(try! parse(input), input, line: line)
     }
 
-    func parse(_ text: String) -> GenericParameterClause {
+    func parse(_ text: String) throws -> GenericParameterClause {
         let parser = createParser(text, GenericParameterClauseParser.self)
-        return parser.parse()
+        return try parser.parse()
     }
 }

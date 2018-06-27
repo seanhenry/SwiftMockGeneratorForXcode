@@ -1,52 +1,22 @@
 class GenericParameterClauseParser: Parser<GenericParameterClause> {
 
-    override func parse(start: LineColumn) -> GenericParameterClause {
-        guard isNext("<") else {
-            return GenericParameterClauseImpl.emptyGenericParameterClause
-        }
-        return GenericParameterClauseImpl(children: [
-            try? parseOperator("<"),
-            parseWhitespace(),
-            parseGenericParameterList(),
-            parseWhitespace(),
-            try? parseOperator(">")
-        ])
+    override func parse() throws -> GenericParameterClause {
+        return try GenericParameterClauseImpl(children: builder()
+                .required { try self.parseOperator("<") }
+                .optional { try self.parseGenericParameter() }
+                .while(isParsed: { try self.parsePunctuation(.comma) }) {
+                    try self.parseGenericParameter()
+                }
+                .optional { try self.parseOperator(">") }
+                .build())
     }
 
-    private func parseGenericParameterList() -> [Element?] {
-        var parameterList = [Element?]()
-        parameterList.append(parseGenericParameter())
-        while isNext(.comma) {
-            parameterList.append(parseWhitespace())
-            parameterList.append(try? parsePunctuation(.comma))
-            parameterList.append(parseWhitespace())
-            parameterList.append(parseGenericParameter())
-        }
-        return parameterList
-    }
-
-    private func parseGenericParameter() -> GenericParameter {
-        guard let typeName = try? parseIdentifier() else {
-            return GenericParameterImpl.emptyGenericParameter
-        }
-        return GenericParameterImpl(children: [
-            typeName,
-            parseSymbol(),
-            parseType()
-        ])
-    }
-
-    private func parseSymbol() -> [Element] {
-        let whitespace = parseWhitespace()
-        let colon = try? parsePunctuation(.colon)
-        let sameType = try? parseBinaryOperator("==")
-        if let symbol = colon ?? sameType {
-            return [
-                whitespace,
-                symbol,
-                parseWhitespace()
-            ]
-        }
-        return []
+    private func parseGenericParameter() throws -> GenericParameter {
+        return try GenericParameterImpl(children: builder()
+                .required { try self.parseIdentifier() }
+                .optional { try self.parsePunctuation(.colon) }
+                .optional { try self.parseBinaryOperator("==") } // TODO: a use case for optional(_:or:)
+                .optional { try self.parseType() }
+                .build())
     }
 }
