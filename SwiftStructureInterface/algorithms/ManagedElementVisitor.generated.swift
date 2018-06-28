@@ -59,6 +59,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = DictionaryTypeProxy(element)
   }
 
+  override func visitExpression(_ element: Expression) {
+    proxy = ExpressionProxy(element)
+  }
+
   override func visitFile(_ element: File) {
     proxy = FileProxy(element)
   }
@@ -103,6 +107,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = IdentifierProxy(element)
   }
 
+  override func visitInOutExpression(_ element: InOutExpression) {
+    proxy = InOutExpressionProxy(element)
+  }
+
   override func visitInitializerDeclaration(_ element: InitializerDeclaration) {
     proxy = InitializerDeclarationProxy(element)
   }
@@ -125,6 +133,10 @@ class ManagedElementVisitor: ElementVisitor {
 
   override func visitParameterClause(_ element: ParameterClause) {
     proxy = ParameterClauseProxy(element)
+  }
+
+  override func visitPrefixExpression(_ element: PrefixExpression) {
+    proxy = PrefixExpressionProxy(element)
   }
 
   override func visitProtocolCompositionType(_ element: ProtocolCompositionType) {

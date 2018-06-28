@@ -60,6 +60,9 @@ var testDictionaryType: DictionaryType {
 var testElement: Element {
   return TestElements.instance.testElement!
 }
+var testExpression: Expression {
+  return TestElements.instance.testExpression!
+}
 var testFile: File {
   return TestElements.instance.testFile!
 }
@@ -93,6 +96,9 @@ var testGetterSetterKeywordClause: GetterSetterKeywordClause {
 var testIdentifier: Identifier {
   return TestElements.instance.testIdentifier!
 }
+var testInOutExpression: InOutExpression {
+  return TestElements.instance.testInOutExpression!
+}
 var testInitializerDeclaration: InitializerDeclaration {
   return TestElements.instance.testInitializerDeclaration!
 }
@@ -110,6 +116,9 @@ var testParameter: Parameter {
 }
 var testParameterClause: ParameterClause {
   return TestElements.instance.testParameterClause!
+}
+var testPrefixExpression: PrefixExpression {
+  return TestElements.instance.testPrefixExpression!
 }
 var testProtocolCompositionType: ProtocolCompositionType {
   return TestElements.instance.testProtocolCompositionType!
@@ -179,6 +188,7 @@ var allTestElements: [Element] {
     testDeclarationModifier,
     testDictionaryType,
     testElement,
+    testExpression,
     testFile,
     testFunctionDeclaration,
     testFunctionResult,
@@ -190,12 +200,14 @@ var allTestElements: [Element] {
     testGetterSetterKeywordBlock,
     testGetterSetterKeywordClause,
     testIdentifier,
+    testInOutExpression,
     testInitializerDeclaration,
     testLeafNode,
     testMutationModifier,
     testOptionalType,
     testParameter,
     testParameterClause,
+    testPrefixExpression,
     testProtocolCompositionType,
     testProtocolDeclaration,
     testRequirement,
@@ -235,6 +247,7 @@ private class TestElements {
   private(set) var testDeclarationModifier: DeclarationModifier!
   private(set) var testDictionaryType: DictionaryType!
   private(set) var testElement: Element!
+  private(set) var testExpression: Expression!
   private(set) var testFile: File!
   private(set) var testFunctionDeclaration: FunctionDeclaration!
   private(set) var testFunctionResult: FunctionResult!
@@ -246,12 +259,14 @@ private class TestElements {
   private(set) var testGetterSetterKeywordBlock: GetterSetterKeywordBlock!
   private(set) var testGetterSetterKeywordClause: GetterSetterKeywordClause!
   private(set) var testIdentifier: Identifier!
+  private(set) var testInOutExpression: InOutExpression!
   private(set) var testInitializerDeclaration: InitializerDeclaration!
   private(set) var testLeafNode: LeafNode!
   private(set) var testMutationModifier: MutationModifier!
   private(set) var testOptionalType: OptionalType!
   private(set) var testParameter: Parameter!
   private(set) var testParameterClause: ParameterClause!
+  private(set) var testPrefixExpression: PrefixExpression!
   private(set) var testProtocolCompositionType: ProtocolCompositionType!
   private(set) var testProtocolDeclaration: ProtocolDeclaration!
   private(set) var testRequirement: Requirement!
@@ -339,6 +354,11 @@ private class TestElements {
       super.visitElement(element)
     }
 
+    override func visitExpression(_ element: Expression) {
+      elements.testExpression = element
+      super.visitExpression(element)
+    }
+
     override func visitFile(_ element: File) {
       elements.testFile = element
       super.visitFile(element)
@@ -394,6 +414,11 @@ private class TestElements {
       super.visitIdentifier(element)
     }
 
+    override func visitInOutExpression(_ element: InOutExpression) {
+      elements.testInOutExpression = element
+      super.visitInOutExpression(element)
+    }
+
     override func visitInitializerDeclaration(_ element: InitializerDeclaration) {
       elements.testInitializerDeclaration = element
       super.visitInitializerDeclaration(element)
@@ -422,6 +447,11 @@ private class TestElements {
     override func visitParameterClause(_ element: ParameterClause) {
       elements.testParameterClause = element
       super.visitParameterClause(element)
+    }
+
+    override func visitPrefixExpression(_ element: PrefixExpression) {
+      elements.testPrefixExpression = element
+      super.visitPrefixExpression(element)
     }
 
     override func visitProtocolCompositionType(_ element: ProtocolCompositionType) {

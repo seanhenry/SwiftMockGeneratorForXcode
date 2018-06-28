@@ -124,6 +124,17 @@ class DictionaryTypeProxy: TypeProxy, DictionaryType {
   }
 }
 
+class ExpressionProxy: ElementProxy, Expression {
+
+  init(_ element: Expression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitExpression(self)
+  }
+}
+
 class FileProxy: ElementProxy, File {
 
   init(_ element: File) {
@@ -245,6 +256,17 @@ class IdentifierProxy: LeafNodeProxy, Identifier {
   }
 }
 
+class InOutExpressionProxy: PrefixExpressionProxy, InOutExpression {
+
+  init(_ element: InOutExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitInOutExpression(self)
+  }
+}
+
 class InitializerDeclarationProxy: ElementProxy, InitializerDeclaration {
 
   init(_ element: InitializerDeclaration) {
@@ -316,6 +338,17 @@ class ParameterClauseProxy: ElementProxy, ParameterClause {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitParameterClause(self)
+  }
+}
+
+class PrefixExpressionProxy: ExpressionProxy, PrefixExpression {
+
+  init(_ element: PrefixExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPrefixExpression(self)
   }
 }
 

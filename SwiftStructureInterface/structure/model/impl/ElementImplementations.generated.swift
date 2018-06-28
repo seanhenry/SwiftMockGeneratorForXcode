@@ -116,6 +116,17 @@ class DictionaryTypeImpl: TypeImpl, DictionaryType {
   }
 }
 
+class ExpressionImpl: ElementImpl, Expression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitExpression(self)
+  }
+}
+
 class FunctionDeclarationImpl: ElementImpl, FunctionDeclaration {
 
   override init(children: [Element]) {
@@ -218,6 +229,17 @@ class IdentifierImpl: LeafNodeImpl, Identifier {
   }
 }
 
+class InOutExpressionImpl: PrefixExpressionImpl, InOutExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitInOutExpression(self)
+  }
+}
+
 class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
 
   override init(children: [Element]) {
@@ -266,6 +288,17 @@ class ParameterClauseImpl: ElementImpl, ParameterClause {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitParameterClause(self)
+  }
+}
+
+class PrefixExpressionImpl: ExpressionImpl, PrefixExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPrefixExpression(self)
   }
 }
 

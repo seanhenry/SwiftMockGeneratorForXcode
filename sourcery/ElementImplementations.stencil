@@ -1,6 +1,6 @@
 {% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "NamedElement" and type.name != "File" and type.name != "LeafNode" %}
 
-class {{type.name}}Impl: {% if type.implements.Type %}TypeImpl{% elif type.implements.LeafNode %}LeafNodeImpl{% elif type.implements.Declaration %}DeclarationImpl{% elif type.implements.Requirement %}RequirementImpl{% elif type.implements.DeclarationModifier %}DeclarationModifierImpl{% else %}ElementImpl{% endif %}, {{type.name}} {
+class {{type.name}}Impl: {% if type.implements.Type %}TypeImpl{% elif type.implements.LeafNode %}LeafNodeImpl{% elif type.implements.Declaration %}DeclarationImpl{% elif type.implements.Requirement %}RequirementImpl{% elif type.implements.DeclarationModifier %}DeclarationModifierImpl{% elif type.implements.PrefixExpression %}PrefixExpressionImpl{% elif type.implements.Expression %}ExpressionImpl{% else %}ElementImpl{% endif %}, {{type.name}} {
 
 {% if type.implements.Type or type.implements.LeafNode %}{% else %}
   override init(children: [Element]) {

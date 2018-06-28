@@ -1,6 +1,6 @@
 {% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "NamedElement" %}
 
-class {{type.name}}Proxy: {% if type.implements.Type %}TypeProxy{% elif type.implements.LeafNode %}LeafNodeProxy{% elif type.implements.Declaration %}DeclarationProxy{% elif type.implements.Requirement %}RequirementProxy{% elif type.implements.DeclarationModifier %}DeclarationModifierProxy{% else %}ElementProxy{% endif %}, {{type.name}} {
+class {{type.name}}Proxy: {% if type.implements.Type %}TypeProxy{% elif type.implements.LeafNode %}LeafNodeProxy{% elif type.implements.Declaration %}DeclarationProxy{% elif type.implements.Requirement %}RequirementProxy{% elif type.implements.DeclarationModifier %}DeclarationModifierProxy{% elif type.implements.PrefixExpression %}PrefixExpressionProxy{% elif type.implements.Expression %}ExpressionProxy{% else %}ElementProxy{% endif %}, {{type.name}} {
 
 {% if type.name == "LeafNode" %}
   let managed{{type.name}}: {{type.name}}

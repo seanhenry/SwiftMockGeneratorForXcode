@@ -65,6 +65,9 @@ extension DictionaryType {
     return first(Type.self) ?? TypeImpl.emptyType()
   }
 }
+extension Expression {
+
+}
 extension FunctionDeclaration {
 
   public var genericParameterClause: GenericParameterClause? {
@@ -140,6 +143,12 @@ extension GetterSetterKeywordClause {
 extension Identifier {
 
 }
+extension InOutExpression {
+
+  public var identifier: Identifier {
+    return first(Identifier.self) ?? IdentifierImpl.emptyIdentifier()
+  }
+}
 extension InitializerDeclaration {
 
   public var parameterClause: ParameterClause {
@@ -166,6 +175,9 @@ extension ParameterClause {
   public var parameters: [Parameter] {
     return children.compactMap { $0 as? Parameter }
   }
+}
+extension PrefixExpression {
+
 }
 extension ProtocolCompositionType {
 

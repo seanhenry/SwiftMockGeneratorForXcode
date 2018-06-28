@@ -74,6 +74,12 @@ extension ElementImpl {
   }
 }
 
+extension ExpressionImpl {
+  static func emptyExpression() -> Expression {
+    return ExpressionImpl(children: [])
+  }
+}
+
 extension FileImpl {
   static func emptyFile() -> File {
     return FileImpl(children: [])
@@ -140,6 +146,12 @@ extension IdentifierImpl {
   }
 }
 
+extension InOutExpressionImpl {
+  static func emptyInOutExpression() -> InOutExpression {
+    return InOutExpressionImpl(children: [])
+  }
+}
+
 extension InitializerDeclarationImpl {
   static func emptyInitializerDeclaration() -> InitializerDeclaration {
     return InitializerDeclarationImpl(children: [])
@@ -173,6 +185,12 @@ extension ParameterImpl {
 extension ParameterClauseImpl {
   static func emptyParameterClause() -> ParameterClause {
     return ParameterClauseImpl(children: [])
+  }
+}
+
+extension PrefixExpressionImpl {
+  static func emptyPrefixExpression() -> PrefixExpression {
+    return PrefixExpressionImpl(children: [])
   }
 }
 

@@ -54,6 +54,10 @@ open class ElementVisitor {
     visitType(element)
   }
 
+  open func visitExpression(_ element: Expression) {
+    visitElement(element)
+  }
+
   open func visitFile(_ element: File) {
     visitElement(element)
   }
@@ -98,6 +102,10 @@ open class ElementVisitor {
     visitLeafNode(element)
   }
 
+  open func visitInOutExpression(_ element: InOutExpression) {
+    visitPrefixExpression(element)
+  }
+
   open func visitInitializerDeclaration(_ element: InitializerDeclaration) {
     visitElement(element)
   }
@@ -120,6 +128,10 @@ open class ElementVisitor {
 
   open func visitParameterClause(_ element: ParameterClause) {
     visitElement(element)
+  }
+
+  open func visitPrefixExpression(_ element: PrefixExpression) {
+    visitExpression(element)
   }
 
   open func visitProtocolCompositionType(_ element: ProtocolCompositionType) {
