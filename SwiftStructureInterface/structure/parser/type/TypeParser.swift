@@ -1,6 +1,3 @@
-import Lexer
-
-// TODO: no longer parsing Type<Int> or Generic<Type>. Probs should be more flexible
 class TypeParser: Parser<Type> {
 
     private var startStack = [LineColumn]()

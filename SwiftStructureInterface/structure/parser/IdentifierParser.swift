@@ -5,6 +5,6 @@ class IdentifierParser: Parser<Identifier> {
             advance()
             return IdentifierImpl(text: identifier)
         }
-        return IdentifierImpl.emptyIdentifier()
+        throw LookAheadError()
     }
 }

@@ -13,8 +13,8 @@ class IdentifierParserTests: XCTestCase {
         XCTAssertEqual(try parser.parse().text, "identifier2")
     }
 
-    func test_shouldReturnEmptyIdentifier() {
-        XCTAssert(try parse("()").text == "")
+    func test_shouldThrowsWhenNoIdentifier() {
+        XCTAssertThrowsError(try parse("()"))
     }
 
     func test_shouldParseEscapedIdentifier() {
