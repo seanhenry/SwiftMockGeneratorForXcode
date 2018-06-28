@@ -41,7 +41,7 @@ class FileImplTests: XCTestCase {
     func test_fileShouldBePresent_whenProgramHoldsAReferenceToAChild() throws {
         var child: Element?
         try autoreleasepool {
-            let file = try SKElementFactoryTestHelper.build(from: getProtocolString())
+            let file = try ParserTestHelper.parseFile(from: getProtocolString())
             child = file.children[0]
         }
         XCTAssertNotNil(child?.file)
@@ -50,7 +50,7 @@ class FileImplTests: XCTestCase {
     func test_copyOfFile_shouldKeepStrongReferencesToChildren() throws {
         var fileCopy: Element?
         try autoreleasepool {
-            let file = try SKElementFactoryTestHelper.build(from: getProtocolString())
+            let file = try ParserTestHelper.parseFile(from: getProtocolString())
             fileCopy = file.children[0].file
         }
         XCTAssertEqual(fileCopy?.children.count, 1)

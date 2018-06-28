@@ -28,7 +28,7 @@ class RecursiveElementVisitorTests: XCTestCase {
     // MARK: - Helpers
 
     private func parseFile() throws -> File {
-        return try SKElementFactoryTestHelper.build(from: getNestedClassString())
+        return try ParserTestHelper.parseFile(from: getNestedClassString())
     }
 
     private func getNestedClassString() -> String {

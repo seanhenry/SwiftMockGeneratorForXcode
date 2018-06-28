@@ -1,12 +1,12 @@
 @testable import SwiftStructureInterface
 
-class SKElementFactoryTestHelper {
+class ParserTestHelper {
 
-    static func build(from string: String) throws -> File {
+    static func parseFile(from string: String) throws -> File {
         return try ElementParser.parseFile(string)
     }
 
-    static func build(fromPath path: String) throws -> File {
+    static func parseFile(fromPath path: String) throws -> File {
         return try ElementParser.parseFile(at: path)
     }
 }

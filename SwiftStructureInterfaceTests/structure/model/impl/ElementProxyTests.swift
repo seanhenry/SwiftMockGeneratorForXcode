@@ -79,7 +79,7 @@ class ElementProxyTest: XCTestCase {
     }
 
     private func createFile() throws -> FileProxy {
-        return try ElementParser.parseFile("protocol A { var a: A { get } }") as! FileProxy
+        return try ParserTestHelper.parseFile(from: "protocol A { var a: A { get } }") as! FileProxy
     }
 
     private class VisitorSpy: ElementVisitor {
