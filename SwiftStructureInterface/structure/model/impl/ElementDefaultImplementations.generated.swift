@@ -34,6 +34,9 @@ extension Attributes {
 }
 extension ClassDeclaration {
 
+  public var genericParameterClause: GenericParameterClause {
+    return first(GenericParameterClause.self) ?? GenericParameterClauseImpl.emptyGenericParameterClause()
+  }
 }
 extension CodeBlock {
 
@@ -231,6 +234,9 @@ extension TypeDeclaration {
 
   public var accessLevelModifier: AccessLevelModifier {
     return first(AccessLevelModifier.self) ?? AccessLevelModifierImpl.emptyAccessLevelModifier()
+  }
+  public var declarationModifiers: [DeclarationModifier] {
+    return children.compactMap { $0 as? DeclarationModifier }
   }
   public var typeInheritanceClause: TypeInheritanceClause {
     return first(TypeInheritanceClause.self) ?? TypeInheritanceClauseImpl.emptyTypeInheritanceClause()

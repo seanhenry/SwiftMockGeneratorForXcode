@@ -142,6 +142,10 @@ class Parser<ResultType> {
         return try parseDeclaration(ProtocolDeclarationParser.self, .protocol)
     }
 
+    func parseClassDeclaration() throws -> ClassDeclaration {
+        return try parse(ClassDeclarationParser.self)
+    }
+
     func parseAttributes() throws -> Attributes {
         return try parse(AttributesParser.self)
     }

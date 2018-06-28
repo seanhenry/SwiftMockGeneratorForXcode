@@ -9,6 +9,8 @@ class DeclarationsParser<T>: Parser<T> {
             throw LookAheadError()
         } else if let declaration = try? parseProtocolDeclaration() {
             return declaration
+        } else if let declaration = try? parseClassDeclaration() {
+            return declaration
         } else if let declaration = try? parseFunctionDeclaration() {
             return declaration
         } else if let declaration = try? parseVariableDeclaration() {

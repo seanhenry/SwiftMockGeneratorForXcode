@@ -1,1 +1,3 @@
-public protocol ClassDeclaration: TypeDeclaration {}
+public protocol ClassDeclaration: TypeDeclaration {
+    var genericParameterClause: GenericParameterClause { get }
+}

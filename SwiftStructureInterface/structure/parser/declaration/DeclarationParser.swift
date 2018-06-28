@@ -18,15 +18,8 @@ class DeclarationParser<ResultType>: Parser<ResultType> {
         let builder = self.builder()
                 .optional { try self.parseAttributes() }
                 .while { try self.parseDeclarationModifier() }
-                .required { try self.parseDeclarationToken() }
+                .required { try self.parseKeyword(self.declarationToken) }
         return try parseDeclaration(builder: builder)
-    }
-
-    private func parseDeclarationToken() throws -> Element {
-        if isNext(declarationToken) {
-            return try parseKeyword()
-        }
-        throw LookAheadError()
     }
 
     func parseDeclaration(builder: ParserBuilder) throws -> ResultType {

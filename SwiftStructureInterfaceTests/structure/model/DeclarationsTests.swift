@@ -27,8 +27,8 @@ class DeclarationsTests: XCTestCase {
 
     func test_declarations_shouldFilterTypeDeclarations() {
         let declarations = getMixedElements().typeDeclarations
-        XCTAssertEqual(declarations.count, 2)
-        XCTAssert(declarations[0] === testTypeDeclaration)
+        XCTAssertEqual(declarations.count, 3)
+        XCTAssert(declarations.last === testTypeDeclaration)
     }
 
     func test_declarations_shouldFilterTypealiases() {

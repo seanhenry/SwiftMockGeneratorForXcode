@@ -1,6 +1,8 @@
 @testable import SwiftStructureInterface
 
 private let allTypesString = """
+class TestClass {}
+
 public protocol TestProtocol: Z where A: B, C == D {
   init(a: A)
   var property: String { get }

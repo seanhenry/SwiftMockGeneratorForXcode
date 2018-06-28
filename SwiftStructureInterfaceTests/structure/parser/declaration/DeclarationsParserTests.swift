@@ -43,9 +43,14 @@ class DeclarationsParserTests: XCTestCase {
         XCTAssertEqual(funcB.name, "b")
     }
 
-    func test_shouldSkipAllUnsupportedDeclarations() throws {
-        let file = try ElementParser.parseFile(getAll())
+    func test_shouldParseEverythingInAFile() throws {
+        let file = try ParserTestHelper.parseFile(from: getAll())
         StringCompareTestHelper.assertEqualStrings(file.text, getAll())
+    }
+
+    func test_shouldParseAClassDeclaration() throws {
+        let file = try ParserTestHelper.parseFile(from: getClass())
+        XCTAssert(file.typeDeclarations[0] is ClassDeclaration)
     }
 
     // MARK: - Helpers
@@ -157,6 +162,13 @@ class DeclarationsParserTests: XCTestCase {
         
         protocol P {
         var a: A { get }
+        }
+        """
+    }
+
+    func getClass() -> String {
+        return """
+        class MyClass {
         }
         """
     }

@@ -33,15 +33,15 @@ class ProtocolDeclarationParserTests: XCTestCase {
         assertElementText(`protocol`, text)
         XCTAssertEqual(`protocol`.name, "A")
         XCTAssertEqual(`protocol`.typeInheritanceClause.inheritedTypes.count, 1)
-        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[0], "B", offset: 12)
+        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[0], "B")
     }
 
     func test_parse_shouldParseInheritanceClauseWithMultipleInheritanceTypes() throws {
         let `protocol` = try parse("protocol A: class, ProtocolB, P💐C {}")
         XCTAssertEqual(`protocol`.typeInheritanceClause.inheritedTypes.count, 3)
-        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[0], "class", offset: 12)
-        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[1], "ProtocolB", offset: 19)
-        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[2], "P💐C", offset: 30)
+        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[0], "class")
+        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[1], "ProtocolB")
+        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[2], "P💐C")
     }
 
     func test_parse_shouldParseProtocolWithUTF16Characters() throws {
@@ -50,7 +50,7 @@ class ProtocolDeclarationParserTests: XCTestCase {
         assertElementText(`protocol`, text)
         XCTAssertEqual(`protocol`.name, "Na💐me")
         XCTAssertEqual(`protocol`.typeInheritanceClause.inheritedTypes.count, 1)
-        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[0], "Pro💐tocol", offset: 19)
+        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[0], "Pro💐tocol")
     }
 
     func test_parse_shouldParseProtocolWithAccessModifier() throws {
@@ -78,8 +78,8 @@ class ProtocolDeclarationParserTests: XCTestCase {
     func test_parse_shouldParseInheritanceClauseWithNestedTypes() throws {
         let `protocol` = try parse("protocol A: Nested.Type, Deep.Nested.Type {}")
         XCTAssertEqual(`protocol`.typeInheritanceClause.inheritedTypes.count, 2)
-        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[0], "Nested.Type", offset: 12)
-        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[1], "Deep.Nested.Type", offset: 25)
+        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[0], "Nested.Type")
+        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[1], "Deep.Nested.Type")
     }
 
     func test_parse_shouldParseInheritanceTypeAsError_whenTypeIsMissing() throws {
@@ -109,12 +109,12 @@ class ProtocolDeclarationParserTests: XCTestCase {
         assertElementText(`protocol`, text)
         XCTAssertEqual(`protocol`.name, "A")
         XCTAssertEqual(`protocol`.typeInheritanceClause.inheritedTypes.count, 1)
-        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[0], "Generic<T>", offset: 12)
+        assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[0], "Generic<T>")
     }
 
     // MARK: - Helpers
 
-    func parse(_ text: String) throws -> TypeDeclaration {
+    func parse(_ text: String) throws -> ProtocolDeclaration {
         let parser = createDeclarationParser(text, .protocol, ProtocolDeclarationParser.self)
         return try parser.parse()
     }
