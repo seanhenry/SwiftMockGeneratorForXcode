@@ -1,4 +1,4 @@
-{% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "CodeBlockContainer" and type.name != "PositionedElement" and type.name != "GenericParameterTypeDeclaration" and type.name != "NamedElement" and type.name != "File" and type.name != "LeafNode" and type.name != "ConformanceRequirement" and type.name != "SameTypeRequirement" and type.name != "GetterSetterKeywordBlock" %}
+{% for type in types.types where type.name != "Element" and type.name != "Declarations" and type.name != "NamedElement" and type.name != "File" and type.name != "LeafNode" %}
 
 class {{type.name}}Impl: {% if type.implements.Type %}TypeImpl{% elif type.implements.LeafNode %}LeafNodeImpl{% elif type.implements.Declaration %}DeclarationImpl{% elif type.implements.Requirement %}RequirementImpl{% elif type.implements.DeclarationModifier %}DeclarationModifierImpl{% else %}ElementImpl{% endif %}, {{type.name}} {
 

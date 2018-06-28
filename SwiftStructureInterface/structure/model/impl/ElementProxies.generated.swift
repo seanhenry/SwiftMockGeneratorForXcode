@@ -358,14 +358,6 @@ class GenericWhereClauseProxy: ElementProxy, GenericWhereClause {
 class GetterSetterKeywordBlockProxy: ElementProxy, GetterSetterKeywordBlock {
 
   let managedGetterSetterKeywordBlock: GetterSetterKeywordBlock
-  var getterKeywordClause: GetterSetterKeywordClause {
-    return proxy(managedGetterSetterKeywordBlock.getterKeywordClause)
-
-  }
-  var setterKeywordClause: GetterSetterKeywordClause? {
-    return managedGetterSetterKeywordBlock.setterKeywordClause.flatMap(proxy)
-
-  }
 
   init(_ element: GetterSetterKeywordBlock) {
     managedGetterSetterKeywordBlock = element

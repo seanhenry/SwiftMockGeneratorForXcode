@@ -75,6 +75,33 @@ class AttributesImpl: ElementImpl, Attributes {
   }
 }
 
+class CodeBlockImpl: ElementImpl, CodeBlock {
+
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitCodeBlock(self)
+  }
+}
+
+class ConformanceRequirementImpl: RequirementImpl, ConformanceRequirement {
+
+
+  var rightProtocolCompositionType: ProtocolCompositionType {
+    return children.first { $0 is ProtocolCompositionType } as? ProtocolCompositionType ?? ProtocolCompositionTypeImpl.emptyProtocolCompositionType()
+  }
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitConformanceRequirement(self)
+  }
+}
+
 class DeclarationImpl: ElementImpl, Declaration {
 
 
@@ -141,6 +168,24 @@ class FunctionDeclarationImpl: ElementImpl, FunctionDeclaration {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitFunctionDeclaration(self)
+  }
+}
+
+class FunctionResultImpl: ElementImpl, FunctionResult {
+
+
+  var attributes: Attributes {
+    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes()
+  }
+  var type: Type {
+    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
+  }
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitFunctionResult(self)
   }
 }
 
@@ -222,6 +267,18 @@ class GenericWhereClauseImpl: ElementImpl, GenericWhereClause {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitGenericWhereClause(self)
+  }
+}
+
+class GetterSetterKeywordBlockImpl: ElementImpl, GetterSetterKeywordBlock {
+
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitGetterSetterKeywordBlock(self)
   }
 }
 
@@ -366,6 +423,21 @@ class RequirementListImpl: ElementImpl, RequirementList {
   }
 }
 
+class SameTypeRequirementImpl: RequirementImpl, SameTypeRequirement {
+
+
+  var rightType: Type {
+    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
+  }
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSameTypeRequirement(self)
+  }
+}
+
 class SubscriptDeclarationImpl: ElementImpl, SubscriptDeclaration {
 
 
@@ -489,6 +561,21 @@ class TypeIdentifierImpl: TypeImpl, TypeIdentifier {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitTypeIdentifier(self)
+  }
+}
+
+class TypeInheritanceClauseImpl: ElementImpl, TypeInheritanceClause {
+
+
+  var inheritedTypes: [Type] {
+    return children.compactMap { $0 as? Type }
+  }
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitTypeInheritanceClause(self)
   }
 }
 
