@@ -7,4 +7,8 @@ extension FunctionType {
     public var `rethrows`: Bool {
         return contains(Keywords.rethrows)
     }
+
+    public var returnType: Type {
+        return last(Type.self) ?? TypeImpl.emptyType()
+    }
 }

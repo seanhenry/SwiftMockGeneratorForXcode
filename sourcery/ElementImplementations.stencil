@@ -2,30 +2,12 @@
 
 class {{type.name}}Impl: {% if type.implements.Type %}TypeImpl{% elif type.implements.LeafNode %}LeafNodeImpl{% elif type.implements.Declaration %}DeclarationImpl{% elif type.implements.Requirement %}RequirementImpl{% elif type.implements.DeclarationModifier %}DeclarationModifierImpl{% else %}ElementImpl{% endif %}, {{type.name}} {
 
-{% if type.implements.CodeBlockContainer %}
-  let bodyOffset: Int64
-  let bodyLength: Int64
-{% endif %}
-
-  {% for variable in type.variables %}
-  var {{variable.name}}: {{variable.typeName}} {
-    {% if variable.isArray %}
-    return children.compactMap { $0 as? {{variable.typeName.array.elementTypeName}} }
-    {% elif variable.isOptional %}
-    return children.first { $0 is {{variable.unwrappedTypeName}} } as? {{variable.unwrappedTypeName}}
-    {% elif variable.type.implements.Element %}
-    return children.first { $0 is {{variable.typeName}} } as? {{variable.typeName}} ?? {{variable.typeName}}Impl.empty{{variable.typeName}}()
-    {% else %}
-    return children.first { $0 is {{variable.typeName}} } as? {{variable.typeName}}
-    {% endif %}
-  }
-  {% endfor %}
 {% if type.implements.Type or type.implements.LeafNode %}{% else %}
   override init(children: [Element]) {
     super.init(children: children)
   }
-{% endif %}
 
+{% endif %}
   override func accept(_ visitor: ElementVisitor) {
     visitor.visit{{type.name}}(self)
   }

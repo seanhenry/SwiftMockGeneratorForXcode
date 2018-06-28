@@ -5,7 +5,6 @@
 
 class AccessLevelModifierImpl: DeclarationModifierImpl, AccessLevelModifier {
 
-
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -17,11 +16,6 @@ class AccessLevelModifierImpl: DeclarationModifierImpl, AccessLevelModifier {
 
 class ArrayTypeImpl: TypeImpl, ArrayType {
 
-
-  var elementType: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
-  }
-
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitArrayType(self)
   }
@@ -29,16 +23,6 @@ class ArrayTypeImpl: TypeImpl, ArrayType {
 
 class AssociatedTypeDeclarationImpl: DeclarationImpl, AssociatedTypeDeclaration {
 
-
-  var typeInheritanceClause: [Element] {
-    return children.compactMap { $0 as? Element }
-  }
-  var typealiasAssignment: TypealiasAssignment? {
-    return children.first { $0 is TypealiasAssignment } as? TypealiasAssignment
-  }
-  var genericWhereClause: GenericWhereClause? {
-    return children.first { $0 is GenericWhereClause } as? GenericWhereClause
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -49,7 +33,6 @@ class AssociatedTypeDeclarationImpl: DeclarationImpl, AssociatedTypeDeclaration 
 }
 
 class AttributeImpl: ElementImpl, Attribute {
-
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -62,10 +45,6 @@ class AttributeImpl: ElementImpl, Attribute {
 
 class AttributesImpl: ElementImpl, Attributes {
 
-
-  var attributes: [Attribute] {
-    return children.compactMap { $0 as? Attribute }
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -76,7 +55,6 @@ class AttributesImpl: ElementImpl, Attributes {
 }
 
 class CodeBlockImpl: ElementImpl, CodeBlock {
-
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -89,10 +67,6 @@ class CodeBlockImpl: ElementImpl, CodeBlock {
 
 class ConformanceRequirementImpl: RequirementImpl, ConformanceRequirement {
 
-
-  var rightProtocolCompositionType: ProtocolCompositionType {
-    return children.first { $0 is ProtocolCompositionType } as? ProtocolCompositionType ?? ProtocolCompositionTypeImpl.emptyProtocolCompositionType()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -104,13 +78,6 @@ class ConformanceRequirementImpl: RequirementImpl, ConformanceRequirement {
 
 class DeclarationImpl: ElementImpl, Declaration {
 
-
-  var attributes: Attributes {
-    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes()
-  }
-  var accessLevelModifier: AccessLevelModifier {
-    return children.first { $0 is AccessLevelModifier } as? AccessLevelModifier ?? AccessLevelModifierImpl.emptyAccessLevelModifier()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -121,7 +88,6 @@ class DeclarationImpl: ElementImpl, Declaration {
 }
 
 class DeclarationModifierImpl: ElementImpl, DeclarationModifier {
-
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -134,14 +100,6 @@ class DeclarationModifierImpl: ElementImpl, DeclarationModifier {
 
 class DictionaryTypeImpl: TypeImpl, DictionaryType {
 
-
-  var keyType: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
-  }
-  var valueType: Type {
-    return children.reversed().first { $0 is Type } as? Type ?? TypeImpl.emptyType()
-  }
-
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitDictionaryType(self)
   }
@@ -149,19 +107,6 @@ class DictionaryTypeImpl: TypeImpl, DictionaryType {
 
 class FunctionDeclarationImpl: ElementImpl, FunctionDeclaration {
 
-
-  var genericParameterClause: GenericParameterClause? {
-    return children.first { $0 is GenericParameterClause } as? GenericParameterClause
-  }
-  var parameterClause: ParameterClause {
-    return children.first { $0 is ParameterClause } as? ParameterClause ?? ParameterClauseImpl.emptyParameterClause()
-  }
-  var returnType: FunctionResult? {
-    return children.first { $0 is FunctionResult } as? FunctionResult
-  }
-  var declarations: [Element] {
-    return children.compactMap { $0 as? Element }
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -173,13 +118,6 @@ class FunctionDeclarationImpl: ElementImpl, FunctionDeclaration {
 
 class FunctionResultImpl: ElementImpl, FunctionResult {
 
-
-  var attributes: Attributes {
-    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes()
-  }
-  var type: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -191,17 +129,6 @@ class FunctionResultImpl: ElementImpl, FunctionResult {
 
 class FunctionTypeImpl: TypeImpl, FunctionType {
 
-
-  var attributes: Attributes {
-    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes()
-  }
-  var arguments: TupleType {
-    return children.first { $0 is TupleType } as? TupleType ?? TupleTypeImpl.emptyTupleType()
-  }
-  var returnType: Type {
-    return children.reversed().first { $0 is Type } as? Type ?? TypeImpl.emptyType()
-  }
-
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitFunctionType(self)
   }
@@ -209,10 +136,6 @@ class FunctionTypeImpl: TypeImpl, FunctionType {
 
 class GenericArgumentClauseImpl: ElementImpl, GenericArgumentClause {
 
-
-  var arguments: [Type] {
-    return children.compactMap { $0 as? Type }
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -224,13 +147,6 @@ class GenericArgumentClauseImpl: ElementImpl, GenericArgumentClause {
 
 class GenericParameterImpl: ElementImpl, GenericParameter {
 
-
-  var typeIdentifier: TypeIdentifier? {
-    return children.first { $0 is TypeIdentifier } as? TypeIdentifier
-  }
-  var protocolComposition: ProtocolCompositionType? {
-    return children.first { $0 is ProtocolCompositionType } as? ProtocolCompositionType
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -242,10 +158,6 @@ class GenericParameterImpl: ElementImpl, GenericParameter {
 
 class GenericParameterClauseImpl: ElementImpl, GenericParameterClause {
 
-
-  var parameters: [GenericParameter] {
-    return children.compactMap { $0 as? GenericParameter }
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -257,10 +169,6 @@ class GenericParameterClauseImpl: ElementImpl, GenericParameterClause {
 
 class GenericWhereClauseImpl: ElementImpl, GenericWhereClause {
 
-
-  var requirementList: RequirementList {
-    return children.first { $0 is RequirementList } as? RequirementList ?? RequirementListImpl.emptyRequirementList()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -271,7 +179,6 @@ class GenericWhereClauseImpl: ElementImpl, GenericWhereClause {
 }
 
 class GetterSetterKeywordBlockImpl: ElementImpl, GetterSetterKeywordBlock {
-
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -284,13 +191,6 @@ class GetterSetterKeywordBlockImpl: ElementImpl, GetterSetterKeywordBlock {
 
 class GetterSetterKeywordClauseImpl: ElementImpl, GetterSetterKeywordClause {
 
-
-  var attributes: Attributes {
-    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes()
-  }
-  var mutationModifier: MutationModifier {
-    return children.first { $0 is MutationModifier } as? MutationModifier ?? MutationModifierImpl.emptyMutationModifier()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -302,8 +202,6 @@ class GetterSetterKeywordClauseImpl: ElementImpl, GetterSetterKeywordClause {
 
 class IdentifierImpl: LeafNodeImpl, Identifier {
 
-
-
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitIdentifier(self)
   }
@@ -311,10 +209,6 @@ class IdentifierImpl: LeafNodeImpl, Identifier {
 
 class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
 
-
-  var parameterClause: ParameterClause {
-    return children.first { $0 is ParameterClause } as? ParameterClause ?? ParameterClauseImpl.emptyParameterClause()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -325,7 +219,6 @@ class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
 }
 
 class MutationModifierImpl: DeclarationModifierImpl, MutationModifier {
-
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -338,11 +231,6 @@ class MutationModifierImpl: DeclarationModifierImpl, MutationModifier {
 
 class OptionalTypeImpl: TypeImpl, OptionalType {
 
-
-  var type: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
-  }
-
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitOptionalType(self)
   }
@@ -350,10 +238,6 @@ class OptionalTypeImpl: TypeImpl, OptionalType {
 
 class ParameterImpl: ElementImpl, Parameter {
 
-
-  var typeAnnotation: TypeAnnotation {
-    return children.first { $0 is TypeAnnotation } as? TypeAnnotation ?? TypeAnnotationImpl.emptyTypeAnnotation()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -365,10 +249,6 @@ class ParameterImpl: ElementImpl, Parameter {
 
 class ParameterClauseImpl: ElementImpl, ParameterClause {
 
-
-  var parameters: [Parameter] {
-    return children.compactMap { $0 as? Parameter }
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -380,11 +260,6 @@ class ParameterClauseImpl: ElementImpl, ParameterClause {
 
 class ProtocolCompositionTypeImpl: TypeImpl, ProtocolCompositionType {
 
-
-  var types: [Type] {
-    return children.compactMap { $0 as? Type }
-  }
-
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitProtocolCompositionType(self)
   }
@@ -392,10 +267,6 @@ class ProtocolCompositionTypeImpl: TypeImpl, ProtocolCompositionType {
 
 class RequirementImpl: ElementImpl, Requirement {
 
-
-  var leftTypeIdentifier: TypeIdentifier {
-    return children.first { $0 is TypeIdentifier } as? TypeIdentifier ?? TypeIdentifierImpl.emptyTypeIdentifier()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -407,10 +278,6 @@ class RequirementImpl: ElementImpl, Requirement {
 
 class RequirementListImpl: ElementImpl, RequirementList {
 
-
-  var requirements: [Requirement] {
-    return children.compactMap { $0 as? Requirement }
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -421,7 +288,6 @@ class RequirementListImpl: ElementImpl, RequirementList {
 }
 
 class SameTypeRequirementImpl: RequirementImpl, SameTypeRequirement {
-
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -434,10 +300,6 @@ class SameTypeRequirementImpl: RequirementImpl, SameTypeRequirement {
 
 class SubscriptDeclarationImpl: ElementImpl, SubscriptDeclaration {
 
-
-  var declarations: [Element] {
-    return children.compactMap { $0 as? Element }
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -449,11 +311,6 @@ class SubscriptDeclarationImpl: ElementImpl, SubscriptDeclaration {
 
 class TupleTypeImpl: TypeImpl, TupleType {
 
-
-  var tupleTypeElementList: TupleTypeElementList {
-    return children.first { $0 is TupleTypeElementList } as? TupleTypeElementList ?? TupleTypeElementListImpl.emptyTupleTypeElementList()
-  }
-
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitTupleType(self)
   }
@@ -461,13 +318,6 @@ class TupleTypeImpl: TypeImpl, TupleType {
 
 class TupleTypeElementImpl: ElementImpl, TupleTypeElement {
 
-
-  var typeAnnotation: TypeAnnotation? {
-    return children.first { $0 is TypeAnnotation } as? TypeAnnotation
-  }
-  var type: Type? {
-    return children.first { $0 is Type } as? Type
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -479,10 +329,6 @@ class TupleTypeElementImpl: ElementImpl, TupleTypeElement {
 
 class TupleTypeElementListImpl: ElementImpl, TupleTypeElementList {
 
-
-  var tupleTypeElements: [TupleTypeElement] {
-    return children.compactMap { $0 as? TupleTypeElement }
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -493,7 +339,6 @@ class TupleTypeElementListImpl: ElementImpl, TupleTypeElementList {
 }
 
 class TypeImpl: ElementImpl, Type {
-
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -506,13 +351,6 @@ class TypeImpl: ElementImpl, Type {
 
 class TypeAnnotationImpl: ElementImpl, TypeAnnotation {
 
-
-  var attributes: Attributes {
-    return children.first { $0 is Attributes } as? Attributes ?? AttributesImpl.emptyAttributes()
-  }
-  var type: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -524,16 +362,6 @@ class TypeAnnotationImpl: ElementImpl, TypeAnnotation {
 
 class TypeDeclarationImpl: ElementImpl, TypeDeclaration {
 
-
-  var accessLevelModifier: AccessLevelModifier {
-    return children.first { $0 is AccessLevelModifier } as? AccessLevelModifier ?? AccessLevelModifierImpl.emptyAccessLevelModifier()
-  }
-  var typeInheritanceClause: TypeInheritanceClause {
-    return children.compactMap { $0 as? TypeInheritanceClause }.first ?? TypeInheritanceClauseImpl(children: [])
-  }
-  var codeBlock: CodeBlock {
-    return children.first { $0 is CodeBlock } as? CodeBlock ?? CodeBlockImpl.emptyCodeBlock()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -545,14 +373,6 @@ class TypeDeclarationImpl: ElementImpl, TypeDeclaration {
 
 class TypeIdentifierImpl: TypeImpl, TypeIdentifier {
 
-
-  var parentType: TypeIdentifier? {
-    return children.first { $0 is TypeIdentifier } as? TypeIdentifier
-  }
-  var genericArgumentClause: GenericArgumentClause {
-    return children.first { $0 is GenericArgumentClause } as? GenericArgumentClause ?? GenericArgumentClauseImpl.emptyGenericArgumentClause()
-  }
-
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitTypeIdentifier(self)
   }
@@ -560,10 +380,6 @@ class TypeIdentifierImpl: TypeImpl, TypeIdentifier {
 
 class TypeInheritanceClauseImpl: ElementImpl, TypeInheritanceClause {
 
-
-  var inheritedTypes: [Type] {
-    return children.compactMap { $0 as? Type }
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -575,10 +391,6 @@ class TypeInheritanceClauseImpl: ElementImpl, TypeInheritanceClause {
 
 class TypealiasAssignmentImpl: ElementImpl, TypealiasAssignment {
 
-
-  var type: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -590,10 +402,6 @@ class TypealiasAssignmentImpl: ElementImpl, TypealiasAssignment {
 
 class TypealiasDeclarationImpl: ElementImpl, TypealiasDeclaration {
 
-
-  var typealiasAssignment: TypealiasAssignment {
-    return children.first { $0 is TypealiasAssignment } as? TypealiasAssignment ?? TypealiasAssignmentImpl.emptyTypealiasAssignment()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -605,16 +413,6 @@ class TypealiasDeclarationImpl: ElementImpl, TypealiasDeclaration {
 
 class VariableDeclarationImpl: DeclarationImpl, VariableDeclaration {
 
-
-  var typeAnnotation: TypeAnnotation {
-    return children.first { $0 is TypeAnnotation } as? TypeAnnotation ?? TypeAnnotationImpl.emptyTypeAnnotation()
-  }
-  var getterSetterKeywordBlock: GetterSetterKeywordBlock {
-    return children.first { $0 is GetterSetterKeywordBlock } as? GetterSetterKeywordBlock ?? GetterSetterKeywordBlockImpl.emptyGetterSetterKeywordBlock()
-  }
-  var declarations: [Element] {
-    return children.compactMap { $0 as? Element }
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -625,8 +423,6 @@ class VariableDeclarationImpl: DeclarationImpl, VariableDeclaration {
 }
 
 class WhitespaceImpl: LeafNodeImpl, Whitespace {
-
-
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitWhitespace(self)

@@ -2,29 +2,19 @@
 
 class {{type.name}}Proxy: {% if type.implements.Type %}TypeProxy{% elif type.implements.LeafNode %}LeafNodeProxy{% elif type.implements.Declaration %}DeclarationProxy{% elif type.implements.Requirement %}RequirementProxy{% elif type.implements.DeclarationModifier %}DeclarationModifierProxy{% else %}ElementProxy{% endif %}, {{type.name}} {
 
-  let managed{{type.name}}: {{type.name}}
 {% if type.name == "LeafNode" %}
+  let managed{{type.name}}: {{type.name}}
+
   override var text: String {
     set { managed{{type.name}}.text = newValue }
     get { return managed{{type.name}}.text }
   }
-{% else %}
-{% for variable in type.variables %}
-  var {{variable.name}}: {{variable.typeName}} {
-{% if variable.isOptional %}
-    return managed{{type.name}}.{{variable.name}}.flatMap(proxy)
-{% elif variable.isArray %}
-    return managed{{type.name}}.{{variable.name}}.map(proxy)
-{% else %}
-    return proxy(managed{{type.name}}.{{variable.name}})
-{% endif %}
 
-  }
-{% endfor %}
 {% endif %}
-
   init(_ element: {{type.name}}) {
+{% if type.name == "LeafNode" %}
     managed{{type.name}} = element
+{% endif %}
     super.init(element)
   }
 
