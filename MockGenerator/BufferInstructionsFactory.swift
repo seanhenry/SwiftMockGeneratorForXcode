@@ -3,12 +3,13 @@ import SwiftStructureInterface
 class BufferInstructionsFactory {
 
     func create(mockClass: TypeDeclaration, lines: [String]) -> BufferInstructions? {
-        guard let fileText = mockClass.file?.text,
-              let startLineColumn = LocationConverter.convert(caretOffset: mockClass.bodyOffset, in: fileText),
-              let endLineColumn = LocationConverter.convert(caretOffset: mockClass.bodyOffset + mockClass.bodyLength, in: fileText) else {
-            return nil
-        }
-        return getDeletionInstructions(startLineColumn: startLineColumn, endLineColumn: endLineColumn, lines: lines, fileText: fileText)
+        fatalError("TODO:")
+//        guard let fileText = mockClass.file?.text,
+//              let startLineColumn = LocationConverter.convert(caretOffset: mockClass.bodyOffset, in: fileText),
+//              let endLineColumn = LocationConverter.convert(caretOffset: mockClass.bodyOffset + mockClass.bodyLength, in: fileText) else {
+//            return nil
+//        }
+//        return getDeletionInstructions(startLineColumn: startLineColumn, endLineColumn: endLineColumn, lines: lines, fileText: fileText)
     }
 
     private func getDeletionInstructions(startLineColumn: (line: Int, column: Int), endLineColumn: (line: Int, column: Int), lines: [String], fileText: String) -> BufferInstructions {

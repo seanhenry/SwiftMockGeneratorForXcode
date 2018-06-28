@@ -15,7 +15,8 @@ public class FormatUtil {
         guard let file = element.file else { return element }
         tempFileWriter.write(file.text)
         if let formatted = format() {
-            return SKElementFactory().build(from: formatted) ?? element
+            fatalError("TODO:")
+//            return SKElementFactory().build(from: formatted) ?? element
         }
         return element
     }
@@ -25,15 +26,16 @@ public class FormatUtil {
     }
 
     public func format(_ lines: [String], relativeTo element: Element) -> [String] {
-        guard let file = element.file,
-              let (_, column) = LocationConverter.convert(caretOffset: element.offset, in: file.text) else {
-            return lines
-        }
-        let start = file.text.index(file.text.startIndex, offsetBy: Int(element.offset) - column)
-        let end = file.text.index(start, offsetBy: column)
-        let elementIndent = String(file.text[start..<end])
-        let formatted = NaiveFormatter(useTabs: useTabs, spaces: spaces).format(lines: lines)
-        let indent = useTabs ? "\t" : String(repeating: " ", count: spaces)
-        return formatted.map { "\(elementIndent)\(indent)\($0)" }
+//        guard let file = element.file,
+//              let (_, column) = LocationConverter.convert(caretOffset: element.offset, in: file.text) else {
+//            return lines
+//        }
+//        let start = file.text.index(file.text.startIndex, offsetBy: Int(element.offset) - column)
+//        let end = file.text.index(start, offsetBy: column)
+//        let elementIndent = String(file.text[start..<end])
+//        let formatted = NaiveFormatter(useTabs: useTabs, spaces: spaces).format(lines: lines)
+//        let indent = useTabs ? "\t" : String(repeating: " ", count: spaces)
+//        return formatted.map { "\(elementIndent)\(indent)\($0)" }
+    fatalError()
     }
 }

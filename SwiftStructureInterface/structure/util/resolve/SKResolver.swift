@@ -16,7 +16,8 @@ class SKResolver: ResolverDecorator {
     }
 
     private func doResolve(_ element: Element) -> [String: Any]? {
-        return try? cursorInfoRequest.getCursorInfo(filePath: tempFile, offset: element.offset)
+//        return try? cursorInfoRequest.getCursorInfo(filePath: tempFile, offset: element.offset)
+        fatalError()
     }
 
     private func getResolvedElementInFile(from data: [String: Any]?) -> Element? {

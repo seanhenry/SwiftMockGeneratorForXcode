@@ -18,11 +18,11 @@ public class CaretUtil {
         }
 
         override func visitElement(_ element: Element) {
-            if element.offset <= offset
-            && offset < element.offset + element.length {
-                result = element
-            }
-            super.visitElement(element)
+//            if element.offset <= offset
+//            && offset < element.offset + element.length {
+//                result = element
+//            }
+//            super.visitElement(element)
         }
     }
 }

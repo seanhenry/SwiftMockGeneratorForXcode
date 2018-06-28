@@ -62,7 +62,8 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     }
 
     override func visitTupleType(_ element: TupleType) {
-        type = UseCasesTupleType(tupleElements: element.elements.map { UseCasesTupleTypeTupleElement(label: $0.label, type: transformType($0.typeAnnotation.type)) })
+        fatalError("TODO:")
+//        type = UseCasesTupleType(tupleElements: element.tupleTypeElementList.tupleTypeElements.map { UseCasesTupleTypeTupleElement(label: $0.label, type: transformType($0.typeAnnotation.type)) })
     }
 
     private func transformToIdentifiers(_ element: TypeIdentifier) -> [String] {
