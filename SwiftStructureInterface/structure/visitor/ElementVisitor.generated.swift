@@ -162,6 +162,18 @@ open class ElementVisitor {
     visitRequirement(element)
   }
 
+  open func visitSelfExpression(_ element: SelfExpression) {
+    visitPrimaryExpression(element)
+  }
+
+  open func visitSelfInitializerExpression(_ element: SelfInitializerExpression) {
+    visitSelfExpression(element)
+  }
+
+  open func visitSelfMethodExpression(_ element: SelfMethodExpression) {
+    visitSelfExpression(element)
+  }
+
   open func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
     visitElement(element)
   }

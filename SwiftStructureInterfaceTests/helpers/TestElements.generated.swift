@@ -141,6 +141,15 @@ var testRequirementList: RequirementList {
 var testSameTypeRequirement: SameTypeRequirement {
   return TestElements.instance.testSameTypeRequirement!
 }
+var testSelfExpression: SelfExpression {
+  return TestElements.instance.testSelfExpression!
+}
+var testSelfInitializerExpression: SelfInitializerExpression {
+  return TestElements.instance.testSelfInitializerExpression!
+}
+var testSelfMethodExpression: SelfMethodExpression {
+  return TestElements.instance.testSelfMethodExpression!
+}
 var testSubscriptDeclaration: SubscriptDeclaration {
   return TestElements.instance.testSubscriptDeclaration!
 }
@@ -221,6 +230,9 @@ var allTestElements: [Element] {
     testRequirement,
     testRequirementList,
     testSameTypeRequirement,
+    testSelfExpression,
+    testSelfInitializerExpression,
+    testSelfMethodExpression,
     testSubscriptDeclaration,
     testTupleType,
     testTupleTypeElement,
@@ -282,6 +294,9 @@ private class TestElements {
   private(set) var testRequirement: Requirement!
   private(set) var testRequirementList: RequirementList!
   private(set) var testSameTypeRequirement: SameTypeRequirement!
+  private(set) var testSelfExpression: SelfExpression!
+  private(set) var testSelfInitializerExpression: SelfInitializerExpression!
+  private(set) var testSelfMethodExpression: SelfMethodExpression!
   private(set) var testSubscriptDeclaration: SubscriptDeclaration!
   private(set) var testTupleType: TupleType!
   private(set) var testTupleTypeElement: TupleTypeElement!
@@ -497,6 +512,21 @@ private class TestElements {
     override func visitSameTypeRequirement(_ element: SameTypeRequirement) {
       elements.testSameTypeRequirement = element
       super.visitSameTypeRequirement(element)
+    }
+
+    override func visitSelfExpression(_ element: SelfExpression) {
+      elements.testSelfExpression = element
+      super.visitSelfExpression(element)
+    }
+
+    override func visitSelfInitializerExpression(_ element: SelfInitializerExpression) {
+      elements.testSelfInitializerExpression = element
+      super.visitSelfInitializerExpression(element)
+    }
+
+    override func visitSelfMethodExpression(_ element: SelfMethodExpression) {
+      elements.testSelfMethodExpression = element
+      super.visitSelfMethodExpression(element)
     }
 
     override func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {

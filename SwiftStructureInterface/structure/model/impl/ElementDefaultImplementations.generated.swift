@@ -209,6 +209,15 @@ extension RequirementList {
 extension SameTypeRequirement {
 
 }
+extension SelfExpression {
+
+}
+extension SelfInitializerExpression {
+
+}
+extension SelfMethodExpression {
+
+}
 extension SubscriptDeclaration {
 
   public var declarations: [Element] {

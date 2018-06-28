@@ -167,6 +167,18 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = SameTypeRequirementProxy(element)
   }
 
+  override func visitSelfExpression(_ element: SelfExpression) {
+    proxy = SelfExpressionProxy(element)
+  }
+
+  override func visitSelfInitializerExpression(_ element: SelfInitializerExpression) {
+    proxy = SelfInitializerExpressionProxy(element)
+  }
+
+  override func visitSelfMethodExpression(_ element: SelfMethodExpression) {
+    proxy = SelfMethodExpressionProxy(element)
+  }
+
   override func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
     proxy = SubscriptDeclarationProxy(element)
   }

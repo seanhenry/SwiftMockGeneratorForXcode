@@ -236,6 +236,24 @@ extension SameTypeRequirementImpl {
   }
 }
 
+extension SelfExpressionImpl {
+  static func emptySelfExpression() -> SelfExpression {
+    return SelfExpressionImpl(children: [])
+  }
+}
+
+extension SelfInitializerExpressionImpl {
+  static func emptySelfInitializerExpression() -> SelfInitializerExpression {
+    return SelfInitializerExpressionImpl(children: [])
+  }
+}
+
+extension SelfMethodExpressionImpl {
+  static func emptySelfMethodExpression() -> SelfMethodExpression {
+    return SelfMethodExpressionImpl(children: [])
+  }
+}
+
 extension SubscriptDeclarationImpl {
   static func emptySubscriptDeclaration() -> SubscriptDeclaration {
     return SubscriptDeclarationImpl(children: [])

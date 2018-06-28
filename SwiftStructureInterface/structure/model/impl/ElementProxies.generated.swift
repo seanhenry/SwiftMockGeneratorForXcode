@@ -3,7 +3,8 @@
 
 
 
-class AccessLevelModifierProxy: DeclarationModifierProxy, AccessLevelModifier {
+class AccessLevelModifierProxy: DeclarationModifierProxy,
+ AccessLevelModifier {
 
   init(_ element: AccessLevelModifier) {
     super.init(element)
@@ -14,7 +15,8 @@ class AccessLevelModifierProxy: DeclarationModifierProxy, AccessLevelModifier {
   }
 }
 
-class ArrayTypeProxy: TypeProxy, ArrayType {
+class ArrayTypeProxy: TypeProxy,
+ ArrayType {
 
   init(_ element: ArrayType) {
     super.init(element)
@@ -25,7 +27,8 @@ class ArrayTypeProxy: TypeProxy, ArrayType {
   }
 }
 
-class AssociatedTypeDeclarationProxy: DeclarationProxy, AssociatedTypeDeclaration {
+class AssociatedTypeDeclarationProxy: DeclarationProxy,
+ AssociatedTypeDeclaration {
 
   init(_ element: AssociatedTypeDeclaration) {
     super.init(element)
@@ -80,7 +83,8 @@ class CodeBlockProxy: ElementProxy, CodeBlock {
   }
 }
 
-class ConformanceRequirementProxy: RequirementProxy, ConformanceRequirement {
+class ConformanceRequirementProxy: RequirementProxy,
+ ConformanceRequirement {
 
   init(_ element: ConformanceRequirement) {
     super.init(element)
@@ -113,7 +117,8 @@ class DeclarationModifierProxy: ElementProxy, DeclarationModifier {
   }
 }
 
-class DictionaryTypeProxy: TypeProxy, DictionaryType {
+class DictionaryTypeProxy: TypeProxy,
+ DictionaryType {
 
   init(_ element: DictionaryType) {
     super.init(element)
@@ -168,7 +173,8 @@ class FunctionResultProxy: ElementProxy, FunctionResult {
   }
 }
 
-class FunctionTypeProxy: TypeProxy, FunctionType {
+class FunctionTypeProxy: TypeProxy,
+ FunctionType {
 
   init(_ element: FunctionType) {
     super.init(element)
@@ -245,7 +251,8 @@ class GetterSetterKeywordClauseProxy: ElementProxy, GetterSetterKeywordClause {
   }
 }
 
-class IdentifierProxy: LeafNodeProxy, Identifier {
+class IdentifierProxy: LeafNodeProxy,
+ Identifier {
 
   init(_ element: Identifier) {
     super.init(element)
@@ -256,7 +263,8 @@ class IdentifierProxy: LeafNodeProxy, Identifier {
   }
 }
 
-class IdentifierPrimaryExpressionProxy: PrimaryExpressionProxy, IdentifierPrimaryExpression {
+class IdentifierPrimaryExpressionProxy: PrimaryExpressionProxy,
+ IdentifierPrimaryExpression {
 
   init(_ element: IdentifierPrimaryExpression) {
     super.init(element)
@@ -267,7 +275,8 @@ class IdentifierPrimaryExpressionProxy: PrimaryExpressionProxy, IdentifierPrimar
   }
 }
 
-class InOutExpressionProxy: PrefixExpressionProxy, InOutExpression {
+class InOutExpressionProxy: PrefixExpressionProxy,
+ InOutExpression {
 
   init(_ element: InOutExpression) {
     super.init(element)
@@ -308,7 +317,8 @@ class LeafNodeProxy: ElementProxy, LeafNode {
   }
 }
 
-class MutationModifierProxy: DeclarationModifierProxy, MutationModifier {
+class MutationModifierProxy: DeclarationModifierProxy,
+ MutationModifier {
 
   init(_ element: MutationModifier) {
     super.init(element)
@@ -319,7 +329,8 @@ class MutationModifierProxy: DeclarationModifierProxy, MutationModifier {
   }
 }
 
-class OptionalTypeProxy: TypeProxy, OptionalType {
+class OptionalTypeProxy: TypeProxy,
+ OptionalType {
 
   init(_ element: OptionalType) {
     super.init(element)
@@ -352,7 +363,8 @@ class ParameterClauseProxy: ElementProxy, ParameterClause {
   }
 }
 
-class PrefixExpressionProxy: ExpressionProxy, PrefixExpression {
+class PrefixExpressionProxy: ExpressionProxy,
+ PrefixExpression {
 
   init(_ element: PrefixExpression) {
     super.init(element)
@@ -363,7 +375,8 @@ class PrefixExpressionProxy: ExpressionProxy, PrefixExpression {
   }
 }
 
-class PrimaryExpressionProxy: ExpressionProxy, PrimaryExpression {
+class PrimaryExpressionProxy: ExpressionProxy,
+ PrimaryExpression {
 
   init(_ element: PrimaryExpression) {
     super.init(element)
@@ -374,7 +387,8 @@ class PrimaryExpressionProxy: ExpressionProxy, PrimaryExpression {
   }
 }
 
-class ProtocolCompositionTypeProxy: TypeProxy, ProtocolCompositionType {
+class ProtocolCompositionTypeProxy: TypeProxy,
+ ProtocolCompositionType {
 
   init(_ element: ProtocolCompositionType) {
     super.init(element)
@@ -418,7 +432,8 @@ class RequirementListProxy: ElementProxy, RequirementList {
   }
 }
 
-class SameTypeRequirementProxy: RequirementProxy, SameTypeRequirement {
+class SameTypeRequirementProxy: RequirementProxy,
+ SameTypeRequirement {
 
   init(_ element: SameTypeRequirement) {
     super.init(element)
@@ -426,6 +441,42 @@ class SameTypeRequirementProxy: RequirementProxy, SameTypeRequirement {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitSameTypeRequirement(self)
+  }
+}
+
+class SelfExpressionProxy: PrimaryExpressionProxy,
+ SelfExpression {
+
+  init(_ element: SelfExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSelfExpression(self)
+  }
+}
+
+class SelfInitializerExpressionProxy: SelfExpressionProxy,
+ SelfInitializerExpression {
+
+  init(_ element: SelfInitializerExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSelfInitializerExpression(self)
+  }
+}
+
+class SelfMethodExpressionProxy: SelfExpressionProxy,
+ SelfMethodExpression {
+
+  init(_ element: SelfMethodExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSelfMethodExpression(self)
   }
 }
 
@@ -440,7 +491,8 @@ class SubscriptDeclarationProxy: ElementProxy, SubscriptDeclaration {
   }
 }
 
-class TupleTypeProxy: TypeProxy, TupleType {
+class TupleTypeProxy: TypeProxy,
+ TupleType {
 
   init(_ element: TupleType) {
     super.init(element)
@@ -506,7 +558,8 @@ class TypeDeclarationProxy: ElementProxy, TypeDeclaration {
   }
 }
 
-class TypeIdentifierProxy: TypeProxy, TypeIdentifier {
+class TypeIdentifierProxy: TypeProxy,
+ TypeIdentifier {
 
   init(_ element: TypeIdentifier) {
     super.init(element)
@@ -550,7 +603,8 @@ class TypealiasDeclarationProxy: ElementProxy, TypealiasDeclaration {
   }
 }
 
-class VariableDeclarationProxy: DeclarationProxy, VariableDeclaration {
+class VariableDeclarationProxy: DeclarationProxy,
+ VariableDeclaration {
 
   init(_ element: VariableDeclaration) {
     super.init(element)
@@ -561,7 +615,8 @@ class VariableDeclarationProxy: DeclarationProxy, VariableDeclaration {
   }
 }
 
-class WhitespaceProxy: LeafNodeProxy, Whitespace {
+class WhitespaceProxy: LeafNodeProxy,
+ Whitespace {
 
   init(_ element: Whitespace) {
     super.init(element)

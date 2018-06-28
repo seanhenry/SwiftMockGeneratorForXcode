@@ -3,7 +3,8 @@
 
 
 
-class AccessLevelModifierImpl: DeclarationModifierImpl, AccessLevelModifier {
+class AccessLevelModifierImpl: DeclarationModifierImpl,
+ AccessLevelModifier {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -14,14 +15,16 @@ class AccessLevelModifierImpl: DeclarationModifierImpl, AccessLevelModifier {
   }
 }
 
-class ArrayTypeImpl: TypeImpl, ArrayType {
+class ArrayTypeImpl: TypeImpl,
+ ArrayType {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitArrayType(self)
   }
 }
 
-class AssociatedTypeDeclarationImpl: DeclarationImpl, AssociatedTypeDeclaration {
+class AssociatedTypeDeclarationImpl: DeclarationImpl,
+ AssociatedTypeDeclaration {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -76,7 +79,8 @@ class CodeBlockImpl: ElementImpl, CodeBlock {
   }
 }
 
-class ConformanceRequirementImpl: RequirementImpl, ConformanceRequirement {
+class ConformanceRequirementImpl: RequirementImpl,
+ ConformanceRequirement {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -109,7 +113,8 @@ class DeclarationModifierImpl: ElementImpl, DeclarationModifier {
   }
 }
 
-class DictionaryTypeImpl: TypeImpl, DictionaryType {
+class DictionaryTypeImpl: TypeImpl,
+ DictionaryType {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitDictionaryType(self)
@@ -149,7 +154,8 @@ class FunctionResultImpl: ElementImpl, FunctionResult {
   }
 }
 
-class FunctionTypeImpl: TypeImpl, FunctionType {
+class FunctionTypeImpl: TypeImpl,
+ FunctionType {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitFunctionType(self)
@@ -222,14 +228,16 @@ class GetterSetterKeywordClauseImpl: ElementImpl, GetterSetterKeywordClause {
   }
 }
 
-class IdentifierImpl: LeafNodeImpl, Identifier {
+class IdentifierImpl: LeafNodeImpl,
+ Identifier {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitIdentifier(self)
   }
 }
 
-class IdentifierPrimaryExpressionImpl: PrimaryExpressionImpl, IdentifierPrimaryExpression {
+class IdentifierPrimaryExpressionImpl: PrimaryExpressionImpl,
+ IdentifierPrimaryExpression {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -240,7 +248,8 @@ class IdentifierPrimaryExpressionImpl: PrimaryExpressionImpl, IdentifierPrimaryE
   }
 }
 
-class InOutExpressionImpl: PrefixExpressionImpl, InOutExpression {
+class InOutExpressionImpl: PrefixExpressionImpl,
+ InOutExpression {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -262,7 +271,8 @@ class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
   }
 }
 
-class MutationModifierImpl: DeclarationModifierImpl, MutationModifier {
+class MutationModifierImpl: DeclarationModifierImpl,
+ MutationModifier {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -273,7 +283,8 @@ class MutationModifierImpl: DeclarationModifierImpl, MutationModifier {
   }
 }
 
-class OptionalTypeImpl: TypeImpl, OptionalType {
+class OptionalTypeImpl: TypeImpl,
+ OptionalType {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitOptionalType(self)
@@ -302,7 +313,8 @@ class ParameterClauseImpl: ElementImpl, ParameterClause {
   }
 }
 
-class PrefixExpressionImpl: ExpressionImpl, PrefixExpression {
+class PrefixExpressionImpl: ExpressionImpl,
+ PrefixExpression {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -313,7 +325,8 @@ class PrefixExpressionImpl: ExpressionImpl, PrefixExpression {
   }
 }
 
-class PrimaryExpressionImpl: ExpressionImpl, PrimaryExpression {
+class PrimaryExpressionImpl: ExpressionImpl,
+ PrimaryExpression {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -324,7 +337,8 @@ class PrimaryExpressionImpl: ExpressionImpl, PrimaryExpression {
   }
 }
 
-class ProtocolCompositionTypeImpl: TypeImpl, ProtocolCompositionType {
+class ProtocolCompositionTypeImpl: TypeImpl,
+ ProtocolCompositionType {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitProtocolCompositionType(self)
@@ -364,7 +378,8 @@ class RequirementListImpl: ElementImpl, RequirementList {
   }
 }
 
-class SameTypeRequirementImpl: RequirementImpl, SameTypeRequirement {
+class SameTypeRequirementImpl: RequirementImpl,
+ SameTypeRequirement {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -372,6 +387,42 @@ class SameTypeRequirementImpl: RequirementImpl, SameTypeRequirement {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitSameTypeRequirement(self)
+  }
+}
+
+class SelfExpressionImpl: PrimaryExpressionImpl,
+ SelfExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSelfExpression(self)
+  }
+}
+
+class SelfInitializerExpressionImpl: SelfExpressionImpl,
+ SelfInitializerExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSelfInitializerExpression(self)
+  }
+}
+
+class SelfMethodExpressionImpl: SelfExpressionImpl,
+ SelfMethodExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSelfMethodExpression(self)
   }
 }
 
@@ -386,7 +437,8 @@ class SubscriptDeclarationImpl: ElementImpl, SubscriptDeclaration {
   }
 }
 
-class TupleTypeImpl: TypeImpl, TupleType {
+class TupleTypeImpl: TypeImpl,
+ TupleType {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitTupleType(self)
@@ -448,7 +500,8 @@ class TypeDeclarationImpl: ElementImpl, TypeDeclaration {
   }
 }
 
-class TypeIdentifierImpl: TypeImpl, TypeIdentifier {
+class TypeIdentifierImpl: TypeImpl,
+ TypeIdentifier {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitTypeIdentifier(self)
@@ -488,7 +541,8 @@ class TypealiasDeclarationImpl: ElementImpl, TypealiasDeclaration {
   }
 }
 
-class VariableDeclarationImpl: DeclarationImpl, VariableDeclaration {
+class VariableDeclarationImpl: DeclarationImpl,
+ VariableDeclaration {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -499,7 +553,8 @@ class VariableDeclarationImpl: DeclarationImpl, VariableDeclaration {
   }
 }
 
-class WhitespaceImpl: LeafNodeImpl, Whitespace {
+class WhitespaceImpl: LeafNodeImpl,
+ Whitespace {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitWhitespace(self)
