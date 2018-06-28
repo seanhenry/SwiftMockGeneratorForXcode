@@ -183,6 +183,18 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = SubscriptDeclarationProxy(element)
   }
 
+  override func visitSuperclassExpression(_ element: SuperclassExpression) {
+    proxy = SuperclassExpressionProxy(element)
+  }
+
+  override func visitSuperclassInitializerExpression(_ element: SuperclassInitializerExpression) {
+    proxy = SuperclassInitializerExpressionProxy(element)
+  }
+
+  override func visitSuperclassMethodExpression(_ element: SuperclassMethodExpression) {
+    proxy = SuperclassMethodExpressionProxy(element)
+  }
+
   override func visitTupleType(_ element: TupleType) {
     proxy = TupleTypeProxy(element)
   }

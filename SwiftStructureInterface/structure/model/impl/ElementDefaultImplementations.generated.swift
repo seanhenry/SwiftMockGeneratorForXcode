@@ -224,6 +224,15 @@ extension SubscriptDeclaration {
     return children.compactMap { $0 as? Element }
   }
 }
+extension SuperclassExpression {
+
+}
+extension SuperclassInitializerExpression {
+
+}
+extension SuperclassMethodExpression {
+
+}
 extension TupleType {
 
   public var tupleTypeElementList: TupleTypeElementList {

@@ -491,6 +491,42 @@ class SubscriptDeclarationProxy: ElementProxy, SubscriptDeclaration {
   }
 }
 
+class SuperclassExpressionProxy: PrimaryExpressionProxy,
+ SuperclassExpression {
+
+  init(_ element: SuperclassExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSuperclassExpression(self)
+  }
+}
+
+class SuperclassInitializerExpressionProxy: PrimaryExpressionProxy,
+ SuperclassInitializerExpression {
+
+  init(_ element: SuperclassInitializerExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSuperclassInitializerExpression(self)
+  }
+}
+
+class SuperclassMethodExpressionProxy: PrimaryExpressionProxy,
+ SuperclassMethodExpression {
+
+  init(_ element: SuperclassMethodExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSuperclassMethodExpression(self)
+  }
+}
+
 class TupleTypeProxy: TypeProxy,
  TupleType {
 

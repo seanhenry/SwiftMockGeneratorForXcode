@@ -260,6 +260,24 @@ extension SubscriptDeclarationImpl {
   }
 }
 
+extension SuperclassExpressionImpl {
+  static func emptySuperclassExpression() -> SuperclassExpression {
+    return SuperclassExpressionImpl(children: [])
+  }
+}
+
+extension SuperclassInitializerExpressionImpl {
+  static func emptySuperclassInitializerExpression() -> SuperclassInitializerExpression {
+    return SuperclassInitializerExpressionImpl(children: [])
+  }
+}
+
+extension SuperclassMethodExpressionImpl {
+  static func emptySuperclassMethodExpression() -> SuperclassMethodExpression {
+    return SuperclassMethodExpressionImpl(children: [])
+  }
+}
+
 extension TupleTypeImpl {
   static func emptyTupleType() -> TupleType {
     return TupleTypeImpl(children: [])

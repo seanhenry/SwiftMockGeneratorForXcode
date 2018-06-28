@@ -153,6 +153,15 @@ var testSelfMethodExpression: SelfMethodExpression {
 var testSubscriptDeclaration: SubscriptDeclaration {
   return TestElements.instance.testSubscriptDeclaration!
 }
+var testSuperclassExpression: SuperclassExpression {
+  return TestElements.instance.testSuperclassExpression!
+}
+var testSuperclassInitializerExpression: SuperclassInitializerExpression {
+  return TestElements.instance.testSuperclassInitializerExpression!
+}
+var testSuperclassMethodExpression: SuperclassMethodExpression {
+  return TestElements.instance.testSuperclassMethodExpression!
+}
 var testTupleType: TupleType {
   return TestElements.instance.testTupleType!
 }
@@ -234,6 +243,9 @@ var allTestElements: [Element] {
     testSelfInitializerExpression,
     testSelfMethodExpression,
     testSubscriptDeclaration,
+    testSuperclassExpression,
+    testSuperclassInitializerExpression,
+    testSuperclassMethodExpression,
     testTupleType,
     testTupleTypeElement,
     testTupleTypeElementList,
@@ -298,6 +310,9 @@ private class TestElements {
   private(set) var testSelfInitializerExpression: SelfInitializerExpression!
   private(set) var testSelfMethodExpression: SelfMethodExpression!
   private(set) var testSubscriptDeclaration: SubscriptDeclaration!
+  private(set) var testSuperclassExpression: SuperclassExpression!
+  private(set) var testSuperclassInitializerExpression: SuperclassInitializerExpression!
+  private(set) var testSuperclassMethodExpression: SuperclassMethodExpression!
   private(set) var testTupleType: TupleType!
   private(set) var testTupleTypeElement: TupleTypeElement!
   private(set) var testTupleTypeElementList: TupleTypeElementList!
@@ -532,6 +547,21 @@ private class TestElements {
     override func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
       elements.testSubscriptDeclaration = element
       super.visitSubscriptDeclaration(element)
+    }
+
+    override func visitSuperclassExpression(_ element: SuperclassExpression) {
+      elements.testSuperclassExpression = element
+      super.visitSuperclassExpression(element)
+    }
+
+    override func visitSuperclassInitializerExpression(_ element: SuperclassInitializerExpression) {
+      elements.testSuperclassInitializerExpression = element
+      super.visitSuperclassInitializerExpression(element)
+    }
+
+    override func visitSuperclassMethodExpression(_ element: SuperclassMethodExpression) {
+      elements.testSuperclassMethodExpression = element
+      super.visitSuperclassMethodExpression(element)
     }
 
     override func visitTupleType(_ element: TupleType) {

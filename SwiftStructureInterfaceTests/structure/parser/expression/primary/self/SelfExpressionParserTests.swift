@@ -1,7 +1,7 @@
 import XCTest
 @testable import SwiftStructureInterface
 
-class SelfPrimaryExpressionParserTests: XCTestCase {
+class SelfExpressionParserTests: XCTestCase {
 
     func test_shouldParseSelfOnItsOwn() throws {
         let text = "self"
@@ -23,7 +23,7 @@ class SelfPrimaryExpressionParserTests: XCTestCase {
         XCTAssert(expression is SelfInitializerExpression)
     }
 
-    // TODO:
+    // TODO: parse me
 //    func test_shouldParseSelfSubscriptExpression() throws {
 //        let text = "self[a: A, b: B]"
 //        let expression = try parse(text)

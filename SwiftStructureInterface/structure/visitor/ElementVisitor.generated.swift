@@ -178,6 +178,18 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitSuperclassExpression(_ element: SuperclassExpression) {
+    visitPrimaryExpression(element)
+  }
+
+  open func visitSuperclassInitializerExpression(_ element: SuperclassInitializerExpression) {
+    visitPrimaryExpression(element)
+  }
+
+  open func visitSuperclassMethodExpression(_ element: SuperclassMethodExpression) {
+    visitPrimaryExpression(element)
+  }
+
   open func visitTupleType(_ element: TupleType) {
     visitType(element)
   }

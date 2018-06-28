@@ -437,6 +437,42 @@ class SubscriptDeclarationImpl: ElementImpl, SubscriptDeclaration {
   }
 }
 
+class SuperclassExpressionImpl: PrimaryExpressionImpl,
+ SuperclassExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSuperclassExpression(self)
+  }
+}
+
+class SuperclassInitializerExpressionImpl: PrimaryExpressionImpl,
+ SuperclassInitializerExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSuperclassInitializerExpression(self)
+  }
+}
+
+class SuperclassMethodExpressionImpl: PrimaryExpressionImpl,
+ SuperclassMethodExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSuperclassMethodExpression(self)
+  }
+}
+
 class TupleTypeImpl: TypeImpl,
  TupleType {
 
