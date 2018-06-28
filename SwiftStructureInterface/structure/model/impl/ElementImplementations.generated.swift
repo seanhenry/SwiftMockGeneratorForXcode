@@ -283,6 +283,62 @@ class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
   }
 }
 
+class KeyPathComponentImpl: ElementImpl, KeyPathComponent {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeyPathComponent(self)
+  }
+}
+
+class KeyPathComponentsImpl: ElementImpl, KeyPathComponents {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeyPathComponents(self)
+  }
+}
+
+class KeyPathExpressionImpl: PrimaryExpressionImpl,
+ KeyPathExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeyPathExpression(self)
+  }
+}
+
+class KeyPathPostfixImpl: ElementImpl, KeyPathPostfix {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeyPathPostfix(self)
+  }
+}
+
+class KeyPathPostfixesImpl: ElementImpl, KeyPathPostfixes {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeyPathPostfixes(self)
+  }
+}
+
 class MutationModifierImpl: DeclarationModifierImpl,
  MutationModifier {
 

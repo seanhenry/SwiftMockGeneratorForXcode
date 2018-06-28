@@ -1,0 +1,3 @@
+public protocol KeyPathPostfix: Element {
+
+}

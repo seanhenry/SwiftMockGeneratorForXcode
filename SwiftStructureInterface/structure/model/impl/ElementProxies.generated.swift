@@ -310,6 +310,62 @@ class InitializerDeclarationProxy: ElementProxy, InitializerDeclaration {
   }
 }
 
+class KeyPathComponentProxy: ElementProxy, KeyPathComponent {
+
+  init(_ element: KeyPathComponent) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeyPathComponent(self)
+  }
+}
+
+class KeyPathComponentsProxy: ElementProxy, KeyPathComponents {
+
+  init(_ element: KeyPathComponents) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeyPathComponents(self)
+  }
+}
+
+class KeyPathExpressionProxy: PrimaryExpressionProxy,
+ KeyPathExpression {
+
+  init(_ element: KeyPathExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeyPathExpression(self)
+  }
+}
+
+class KeyPathPostfixProxy: ElementProxy, KeyPathPostfix {
+
+  init(_ element: KeyPathPostfix) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeyPathPostfix(self)
+  }
+}
+
+class KeyPathPostfixesProxy: ElementProxy, KeyPathPostfixes {
+
+  init(_ element: KeyPathPostfixes) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeyPathPostfixes(self)
+  }
+}
+
 class LeafNodeProxy: ElementProxy, LeafNode {
 
   let managedLeafNode: LeafNode

@@ -118,6 +118,26 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitKeyPathComponent(_ element: KeyPathComponent) {
+    visitElement(element)
+  }
+
+  open func visitKeyPathComponents(_ element: KeyPathComponents) {
+    visitElement(element)
+  }
+
+  open func visitKeyPathExpression(_ element: KeyPathExpression) {
+    visitPrimaryExpression(element)
+  }
+
+  open func visitKeyPathPostfix(_ element: KeyPathPostfix) {
+    visitElement(element)
+  }
+
+  open func visitKeyPathPostfixes(_ element: KeyPathPostfixes) {
+    visitElement(element)
+  }
+
   open func visitLeafNode(_ element: LeafNode) {
     visitElement(element)
   }

@@ -161,6 +161,39 @@ extension InitializerDeclaration {
     return first(ParameterClause.self) ?? ParameterClauseImpl.emptyParameterClause()
   }
 }
+extension KeyPathComponent {
+
+  public var identifier: Identifier? {
+    return first(Identifier.self)
+  }
+  public var postfixes: KeyPathPostfixes? {
+    return first(KeyPathPostfixes.self)
+  }
+}
+extension KeyPathComponents {
+
+  public var components: [KeyPathComponent] {
+    return children.compactMap { $0 as? KeyPathComponent }
+  }
+}
+extension KeyPathExpression {
+
+  public var type: Identifier? {
+    return first(Identifier.self)
+  }
+  public var components: KeyPathComponents {
+    return first(KeyPathComponents.self) ?? KeyPathComponentsImpl.emptyKeyPathComponents()
+  }
+}
+extension KeyPathPostfix {
+
+}
+extension KeyPathPostfixes {
+
+  public var postfixes: [KeyPathPostfix] {
+    return children.compactMap { $0 as? KeyPathPostfix }
+  }
+}
 extension MutationModifier {
 
 }

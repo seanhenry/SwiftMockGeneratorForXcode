@@ -108,6 +108,21 @@ var testInOutExpression: InOutExpression {
 var testInitializerDeclaration: InitializerDeclaration {
   return TestElements.instance.testInitializerDeclaration!
 }
+var testKeyPathComponent: KeyPathComponent {
+  return TestElements.instance.testKeyPathComponent!
+}
+var testKeyPathComponents: KeyPathComponents {
+  return TestElements.instance.testKeyPathComponents!
+}
+var testKeyPathExpression: KeyPathExpression {
+  return TestElements.instance.testKeyPathExpression!
+}
+var testKeyPathPostfix: KeyPathPostfix {
+  return TestElements.instance.testKeyPathPostfix!
+}
+var testKeyPathPostfixes: KeyPathPostfixes {
+  return TestElements.instance.testKeyPathPostfixes!
+}
 var testLeafNode: LeafNode {
   return TestElements.instance.testLeafNode!
 }
@@ -237,6 +252,11 @@ var allTestElements: [Element] {
     testImplicitMemberExpression,
     testInOutExpression,
     testInitializerDeclaration,
+    testKeyPathComponent,
+    testKeyPathComponents,
+    testKeyPathExpression,
+    testKeyPathPostfix,
+    testKeyPathPostfixes,
     testLeafNode,
     testMutationModifier,
     testOptionalType,
@@ -307,6 +327,11 @@ private class TestElements {
   private(set) var testImplicitMemberExpression: ImplicitMemberExpression!
   private(set) var testInOutExpression: InOutExpression!
   private(set) var testInitializerDeclaration: InitializerDeclaration!
+  private(set) var testKeyPathComponent: KeyPathComponent!
+  private(set) var testKeyPathComponents: KeyPathComponents!
+  private(set) var testKeyPathExpression: KeyPathExpression!
+  private(set) var testKeyPathPostfix: KeyPathPostfix!
+  private(set) var testKeyPathPostfixes: KeyPathPostfixes!
   private(set) var testLeafNode: LeafNode!
   private(set) var testMutationModifier: MutationModifier!
   private(set) var testOptionalType: OptionalType!
@@ -487,6 +512,31 @@ private class TestElements {
     override func visitInitializerDeclaration(_ element: InitializerDeclaration) {
       elements.testInitializerDeclaration = element
       super.visitInitializerDeclaration(element)
+    }
+
+    override func visitKeyPathComponent(_ element: KeyPathComponent) {
+      elements.testKeyPathComponent = element
+      super.visitKeyPathComponent(element)
+    }
+
+    override func visitKeyPathComponents(_ element: KeyPathComponents) {
+      elements.testKeyPathComponents = element
+      super.visitKeyPathComponents(element)
+    }
+
+    override func visitKeyPathExpression(_ element: KeyPathExpression) {
+      elements.testKeyPathExpression = element
+      super.visitKeyPathExpression(element)
+    }
+
+    override func visitKeyPathPostfix(_ element: KeyPathPostfix) {
+      elements.testKeyPathPostfix = element
+      super.visitKeyPathPostfix(element)
+    }
+
+    override func visitKeyPathPostfixes(_ element: KeyPathPostfixes) {
+      elements.testKeyPathPostfixes = element
+      super.visitKeyPathPostfixes(element)
     }
 
     override func visitLeafNode(_ element: LeafNode) {

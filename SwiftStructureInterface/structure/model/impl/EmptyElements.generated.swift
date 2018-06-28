@@ -170,6 +170,36 @@ extension InitializerDeclarationImpl {
   }
 }
 
+extension KeyPathComponentImpl {
+  static func emptyKeyPathComponent() -> KeyPathComponent {
+    return KeyPathComponentImpl(children: [])
+  }
+}
+
+extension KeyPathComponentsImpl {
+  static func emptyKeyPathComponents() -> KeyPathComponents {
+    return KeyPathComponentsImpl(children: [])
+  }
+}
+
+extension KeyPathExpressionImpl {
+  static func emptyKeyPathExpression() -> KeyPathExpression {
+    return KeyPathExpressionImpl(children: [])
+  }
+}
+
+extension KeyPathPostfixImpl {
+  static func emptyKeyPathPostfix() -> KeyPathPostfix {
+    return KeyPathPostfixImpl(children: [])
+  }
+}
+
+extension KeyPathPostfixesImpl {
+  static func emptyKeyPathPostfixes() -> KeyPathPostfixes {
+    return KeyPathPostfixesImpl(children: [])
+  }
+}
+
 extension LeafNodeImpl {
   static func emptyLeafNode() -> LeafNode {
     return LeafNodeImpl(text: "")

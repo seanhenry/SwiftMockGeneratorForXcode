@@ -123,6 +123,26 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = InitializerDeclarationProxy(element)
   }
 
+  override func visitKeyPathComponent(_ element: KeyPathComponent) {
+    proxy = KeyPathComponentProxy(element)
+  }
+
+  override func visitKeyPathComponents(_ element: KeyPathComponents) {
+    proxy = KeyPathComponentsProxy(element)
+  }
+
+  override func visitKeyPathExpression(_ element: KeyPathExpression) {
+    proxy = KeyPathExpressionProxy(element)
+  }
+
+  override func visitKeyPathPostfix(_ element: KeyPathPostfix) {
+    proxy = KeyPathPostfixProxy(element)
+  }
+
+  override func visitKeyPathPostfixes(_ element: KeyPathPostfixes) {
+    proxy = KeyPathPostfixesProxy(element)
+  }
+
   override func visitLeafNode(_ element: LeafNode) {
     proxy = LeafNodeProxy(element)
   }
