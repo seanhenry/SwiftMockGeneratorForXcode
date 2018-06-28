@@ -21,6 +21,8 @@ open class ElementVisitor {
     visitLeafNode(element)
     {% elif type.implements.TypeDeclaration %}
     visitTypeDeclaration(element)
+    {% elif type.implements.PrimaryExpression %}
+    visitPrimaryExpression(element)
     {% elif type.implements.PrefixExpression %}
     visitPrefixExpression(element)
     {% elif type.implements.Expression %}

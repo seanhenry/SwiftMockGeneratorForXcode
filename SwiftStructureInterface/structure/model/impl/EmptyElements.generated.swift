@@ -146,6 +146,12 @@ extension IdentifierImpl {
   }
 }
 
+extension IdentifierPrimaryExpressionImpl {
+  static func emptyIdentifierPrimaryExpression() -> IdentifierPrimaryExpression {
+    return IdentifierPrimaryExpressionImpl(children: [])
+  }
+}
+
 extension InOutExpressionImpl {
   static func emptyInOutExpression() -> InOutExpression {
     return InOutExpressionImpl(children: [])
@@ -191,6 +197,12 @@ extension ParameterClauseImpl {
 extension PrefixExpressionImpl {
   static func emptyPrefixExpression() -> PrefixExpression {
     return PrefixExpressionImpl(children: [])
+  }
+}
+
+extension PrimaryExpressionImpl {
+  static func emptyPrimaryExpression() -> PrimaryExpression {
+    return PrimaryExpressionImpl(children: [])
   }
 }
 

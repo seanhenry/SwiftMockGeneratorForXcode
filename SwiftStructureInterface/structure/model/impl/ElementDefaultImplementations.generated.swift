@@ -143,6 +143,9 @@ extension GetterSetterKeywordClause {
 extension Identifier {
 
 }
+extension IdentifierPrimaryExpression {
+
+}
 extension InOutExpression {
 
   public var identifier: Identifier {
@@ -177,6 +180,9 @@ extension ParameterClause {
   }
 }
 extension PrefixExpression {
+
+}
+extension PrimaryExpression {
 
 }
 extension ProtocolCompositionType {

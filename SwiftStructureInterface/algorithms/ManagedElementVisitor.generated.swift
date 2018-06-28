@@ -107,6 +107,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = IdentifierProxy(element)
   }
 
+  override func visitIdentifierPrimaryExpression(_ element: IdentifierPrimaryExpression) {
+    proxy = IdentifierPrimaryExpressionProxy(element)
+  }
+
   override func visitInOutExpression(_ element: InOutExpression) {
     proxy = InOutExpressionProxy(element)
   }
@@ -137,6 +141,10 @@ class ManagedElementVisitor: ElementVisitor {
 
   override func visitPrefixExpression(_ element: PrefixExpression) {
     proxy = PrefixExpressionProxy(element)
+  }
+
+  override func visitPrimaryExpression(_ element: PrimaryExpression) {
+    proxy = PrimaryExpressionProxy(element)
   }
 
   override func visitProtocolCompositionType(_ element: ProtocolCompositionType) {

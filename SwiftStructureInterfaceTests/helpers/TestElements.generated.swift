@@ -96,6 +96,9 @@ var testGetterSetterKeywordClause: GetterSetterKeywordClause {
 var testIdentifier: Identifier {
   return TestElements.instance.testIdentifier!
 }
+var testIdentifierPrimaryExpression: IdentifierPrimaryExpression {
+  return TestElements.instance.testIdentifierPrimaryExpression!
+}
 var testInOutExpression: InOutExpression {
   return TestElements.instance.testInOutExpression!
 }
@@ -119,6 +122,9 @@ var testParameterClause: ParameterClause {
 }
 var testPrefixExpression: PrefixExpression {
   return TestElements.instance.testPrefixExpression!
+}
+var testPrimaryExpression: PrimaryExpression {
+  return TestElements.instance.testPrimaryExpression!
 }
 var testProtocolCompositionType: ProtocolCompositionType {
   return TestElements.instance.testProtocolCompositionType!
@@ -200,6 +206,7 @@ var allTestElements: [Element] {
     testGetterSetterKeywordBlock,
     testGetterSetterKeywordClause,
     testIdentifier,
+    testIdentifierPrimaryExpression,
     testInOutExpression,
     testInitializerDeclaration,
     testLeafNode,
@@ -208,6 +215,7 @@ var allTestElements: [Element] {
     testParameter,
     testParameterClause,
     testPrefixExpression,
+    testPrimaryExpression,
     testProtocolCompositionType,
     testProtocolDeclaration,
     testRequirement,
@@ -259,6 +267,7 @@ private class TestElements {
   private(set) var testGetterSetterKeywordBlock: GetterSetterKeywordBlock!
   private(set) var testGetterSetterKeywordClause: GetterSetterKeywordClause!
   private(set) var testIdentifier: Identifier!
+  private(set) var testIdentifierPrimaryExpression: IdentifierPrimaryExpression!
   private(set) var testInOutExpression: InOutExpression!
   private(set) var testInitializerDeclaration: InitializerDeclaration!
   private(set) var testLeafNode: LeafNode!
@@ -267,6 +276,7 @@ private class TestElements {
   private(set) var testParameter: Parameter!
   private(set) var testParameterClause: ParameterClause!
   private(set) var testPrefixExpression: PrefixExpression!
+  private(set) var testPrimaryExpression: PrimaryExpression!
   private(set) var testProtocolCompositionType: ProtocolCompositionType!
   private(set) var testProtocolDeclaration: ProtocolDeclaration!
   private(set) var testRequirement: Requirement!
@@ -414,6 +424,11 @@ private class TestElements {
       super.visitIdentifier(element)
     }
 
+    override func visitIdentifierPrimaryExpression(_ element: IdentifierPrimaryExpression) {
+      elements.testIdentifierPrimaryExpression = element
+      super.visitIdentifierPrimaryExpression(element)
+    }
+
     override func visitInOutExpression(_ element: InOutExpression) {
       elements.testInOutExpression = element
       super.visitInOutExpression(element)
@@ -452,6 +467,11 @@ private class TestElements {
     override func visitPrefixExpression(_ element: PrefixExpression) {
       elements.testPrefixExpression = element
       super.visitPrefixExpression(element)
+    }
+
+    override func visitPrimaryExpression(_ element: PrimaryExpression) {
+      elements.testPrimaryExpression = element
+      super.visitPrimaryExpression(element)
     }
 
     override func visitProtocolCompositionType(_ element: ProtocolCompositionType) {

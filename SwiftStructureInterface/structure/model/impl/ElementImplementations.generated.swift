@@ -229,6 +229,17 @@ class IdentifierImpl: LeafNodeImpl, Identifier {
   }
 }
 
+class IdentifierPrimaryExpressionImpl: PrimaryExpressionImpl, IdentifierPrimaryExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitIdentifierPrimaryExpression(self)
+  }
+}
+
 class InOutExpressionImpl: PrefixExpressionImpl, InOutExpression {
 
   override init(children: [Element]) {
@@ -299,6 +310,17 @@ class PrefixExpressionImpl: ExpressionImpl, PrefixExpression {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitPrefixExpression(self)
+  }
+}
+
+class PrimaryExpressionImpl: ExpressionImpl, PrimaryExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPrimaryExpression(self)
   }
 }
 

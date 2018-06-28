@@ -256,6 +256,17 @@ class IdentifierProxy: LeafNodeProxy, Identifier {
   }
 }
 
+class IdentifierPrimaryExpressionProxy: PrimaryExpressionProxy, IdentifierPrimaryExpression {
+
+  init(_ element: IdentifierPrimaryExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitIdentifierPrimaryExpression(self)
+  }
+}
+
 class InOutExpressionProxy: PrefixExpressionProxy, InOutExpression {
 
   init(_ element: InOutExpression) {
@@ -349,6 +360,17 @@ class PrefixExpressionProxy: ExpressionProxy, PrefixExpression {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitPrefixExpression(self)
+  }
+}
+
+class PrimaryExpressionProxy: ExpressionProxy, PrimaryExpression {
+
+  init(_ element: PrimaryExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPrimaryExpression(self)
   }
 }
 

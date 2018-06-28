@@ -102,6 +102,10 @@ open class ElementVisitor {
     visitLeafNode(element)
   }
 
+  open func visitIdentifierPrimaryExpression(_ element: IdentifierPrimaryExpression) {
+    visitPrimaryExpression(element)
+  }
+
   open func visitInOutExpression(_ element: InOutExpression) {
     visitPrefixExpression(element)
   }
@@ -131,6 +135,10 @@ open class ElementVisitor {
   }
 
   open func visitPrefixExpression(_ element: PrefixExpression) {
+    visitExpression(element)
+  }
+
+  open func visitPrimaryExpression(_ element: PrimaryExpression) {
     visitExpression(element)
   }
 
