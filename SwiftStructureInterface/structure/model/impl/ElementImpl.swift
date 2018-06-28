@@ -1,6 +1,6 @@
 class ElementImpl: Element {
 
-    var children: [Element]
+    private(set) var children: [Element]
     var file: File?
     weak var parent: Element?
     var text: String {
