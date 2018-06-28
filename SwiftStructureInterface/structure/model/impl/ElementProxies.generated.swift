@@ -319,6 +319,17 @@ class ProtocolCompositionTypeProxy: TypeProxy, ProtocolCompositionType {
   }
 }
 
+class ProtocolDeclarationProxy: ElementProxy, ProtocolDeclaration {
+
+  init(_ element: ProtocolDeclaration) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitProtocolDeclaration(self)
+  }
+}
+
 class RequirementProxy: ElementProxy, Requirement {
 
   init(_ element: Requirement) {

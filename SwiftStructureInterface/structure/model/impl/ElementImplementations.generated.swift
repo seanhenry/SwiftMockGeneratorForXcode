@@ -265,6 +265,17 @@ class ProtocolCompositionTypeImpl: TypeImpl, ProtocolCompositionType {
   }
 }
 
+class ProtocolDeclarationImpl: ElementImpl, ProtocolDeclaration {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitProtocolDeclaration(self)
+  }
+}
+
 class RequirementImpl: ElementImpl, Requirement {
 
   override init(children: [Element]) {

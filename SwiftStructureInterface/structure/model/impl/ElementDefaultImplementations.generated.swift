@@ -167,6 +167,9 @@ extension ProtocolCompositionType {
     return children.compactMap { $0 as? Type }
   }
 }
+extension ProtocolDeclaration {
+
+}
 extension Requirement {
 
   public var leftTypeIdentifier: TypeIdentifier {

@@ -127,6 +127,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = ProtocolCompositionTypeProxy(element)
   }
 
+  override func visitProtocolDeclaration(_ element: ProtocolDeclaration) {
+    proxy = ProtocolDeclarationProxy(element)
+  }
+
   override func visitRequirement(_ element: Requirement) {
     proxy = RequirementProxy(element)
   }

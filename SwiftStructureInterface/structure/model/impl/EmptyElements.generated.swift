@@ -176,6 +176,12 @@ extension ProtocolCompositionTypeImpl {
   }
 }
 
+extension ProtocolDeclarationImpl {
+  static func emptyProtocolDeclaration() -> ProtocolDeclaration {
+    return ProtocolDeclarationImpl(children: [])
+  }
+}
+
 extension RequirementImpl {
   static func emptyRequirement() -> Requirement {
     return RequirementImpl(children: [])

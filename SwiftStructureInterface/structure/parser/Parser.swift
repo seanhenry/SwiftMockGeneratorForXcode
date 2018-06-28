@@ -138,7 +138,7 @@ class Parser<ResultType> {
         return try parse(CodeBlockParser.self)
     }
 
-    func parseProtocolDeclaration() throws -> Element {
+    func parseProtocolDeclaration() throws -> ProtocolDeclaration {
         return try parseDeclaration(ProtocolDeclarationParser.self, .protocol)
     }
 

@@ -109,6 +109,9 @@ var testParameterClause: ParameterClause {
 var testProtocolCompositionType: ProtocolCompositionType {
   return TestElements.instance.testProtocolCompositionType!
 }
+var testProtocolDeclaration: ProtocolDeclaration {
+  return TestElements.instance.testProtocolDeclaration!
+}
 var testRequirement: Requirement {
   return TestElements.instance.testRequirement!
 }
@@ -188,6 +191,7 @@ var allTestElements: [Element] {
     testParameter,
     testParameterClause,
     testProtocolCompositionType,
+    testProtocolDeclaration,
     testRequirement,
     testRequirementList,
     testSameTypeRequirement,
@@ -242,6 +246,7 @@ private class TestElements {
   private(set) var testParameter: Parameter!
   private(set) var testParameterClause: ParameterClause!
   private(set) var testProtocolCompositionType: ProtocolCompositionType!
+  private(set) var testProtocolDeclaration: ProtocolDeclaration!
   private(set) var testRequirement: Requirement!
   private(set) var testRequirementList: RequirementList!
   private(set) var testSameTypeRequirement: SameTypeRequirement!
@@ -410,6 +415,11 @@ private class TestElements {
     override func visitProtocolCompositionType(_ element: ProtocolCompositionType) {
       elements.testProtocolCompositionType = element
       super.visitProtocolCompositionType(element)
+    }
+
+    override func visitProtocolDeclaration(_ element: ProtocolDeclaration) {
+      elements.testProtocolDeclaration = element
+      super.visitProtocolDeclaration(element)
     }
 
     override func visitRequirement(_ element: Requirement) {

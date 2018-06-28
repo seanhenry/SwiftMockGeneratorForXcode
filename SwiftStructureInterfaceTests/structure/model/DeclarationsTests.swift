@@ -25,9 +25,9 @@ class DeclarationsTests: XCTestCase {
         XCTAssert(declarations[0] === testFunctionDeclaration)
     }
 
-    func test_declarations_shouldFilterTypes() {
+    func test_declarations_shouldFilterTypeDeclarations() {
         let declarations = getMixedElements().typeDeclarations
-        XCTAssertEqual(declarations.count, 1)
+        XCTAssertEqual(declarations.count, 2)
         XCTAssert(declarations[0] === testTypeDeclaration)
     }
 

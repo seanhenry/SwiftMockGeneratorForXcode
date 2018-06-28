@@ -19,6 +19,8 @@ open class ElementVisitor {
     visitDeclarationModifier(element)
     {% elif type.implements.LeafNode %}
     visitLeafNode(element)
+    {% elif type.implements.TypeDeclaration %}
+    visitTypeDeclaration(element)
     {% else %}
     visitElement(element)
     {% endif %}

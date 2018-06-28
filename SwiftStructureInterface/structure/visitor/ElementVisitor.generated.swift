@@ -122,6 +122,10 @@ open class ElementVisitor {
     visitType(element)
   }
 
+  open func visitProtocolDeclaration(_ element: ProtocolDeclaration) {
+    visitTypeDeclaration(element)
+  }
+
   open func visitRequirement(_ element: Requirement) {
     visitElement(element)
   }
