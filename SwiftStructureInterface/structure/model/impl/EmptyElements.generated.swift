@@ -32,6 +32,12 @@ extension AttributesImpl {
   }
 }
 
+extension ClassDeclarationImpl {
+  static func emptyClassDeclaration() -> ClassDeclaration {
+    return ClassDeclarationImpl(children: [])
+  }
+}
+
 extension CodeBlockImpl {
   static func emptyCodeBlock() -> CodeBlock {
     return CodeBlockImpl(children: [])

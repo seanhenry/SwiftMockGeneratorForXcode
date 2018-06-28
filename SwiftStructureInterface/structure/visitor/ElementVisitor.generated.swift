@@ -30,6 +30,10 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitClassDeclaration(_ element: ClassDeclaration) {
+    visitTypeDeclaration(element)
+  }
+
   open func visitCodeBlock(_ element: CodeBlock) {
     visitElement(element)
   }

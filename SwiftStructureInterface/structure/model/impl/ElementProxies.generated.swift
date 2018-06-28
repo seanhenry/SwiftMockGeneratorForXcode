@@ -58,6 +58,17 @@ class AttributesProxy: ElementProxy, Attributes {
   }
 }
 
+class ClassDeclarationProxy: ElementProxy, ClassDeclaration {
+
+  init(_ element: ClassDeclaration) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitClassDeclaration(self)
+  }
+}
+
 class CodeBlockProxy: ElementProxy, CodeBlock {
 
   init(_ element: CodeBlock) {

@@ -37,6 +37,9 @@ var testAttribute: Attribute {
 var testAttributes: Attributes {
   return TestElements.instance.testAttributes!
 }
+var testClassDeclaration: ClassDeclaration {
+  return TestElements.instance.testClassDeclaration!
+}
 var testCodeBlock: CodeBlock {
   return TestElements.instance.testCodeBlock!
 }
@@ -167,6 +170,7 @@ var allTestElements: [Element] {
     testAssociatedTypeDeclaration,
     testAttribute,
     testAttributes,
+    testClassDeclaration,
     testCodeBlock,
     testConformanceRequirement,
     testDeclaration,
@@ -222,6 +226,7 @@ private class TestElements {
   private(set) var testAssociatedTypeDeclaration: AssociatedTypeDeclaration!
   private(set) var testAttribute: Attribute!
   private(set) var testAttributes: Attributes!
+  private(set) var testClassDeclaration: ClassDeclaration!
   private(set) var testCodeBlock: CodeBlock!
   private(set) var testConformanceRequirement: ConformanceRequirement!
   private(set) var testDeclaration: Declaration!
@@ -295,6 +300,11 @@ private class TestElements {
     override func visitAttributes(_ element: Attributes) {
       elements.testAttributes = element
       super.visitAttributes(element)
+    }
+
+    override func visitClassDeclaration(_ element: ClassDeclaration) {
+      elements.testClassDeclaration = element
+      super.visitClassDeclaration(element)
     }
 
     override func visitCodeBlock(_ element: CodeBlock) {

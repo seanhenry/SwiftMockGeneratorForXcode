@@ -54,6 +54,17 @@ class AttributesImpl: ElementImpl, Attributes {
   }
 }
 
+class ClassDeclarationImpl: ElementImpl, ClassDeclaration {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitClassDeclaration(self)
+  }
+}
+
 class CodeBlockImpl: ElementImpl, CodeBlock {
 
   override init(children: [Element]) {

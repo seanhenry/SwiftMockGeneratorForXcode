@@ -35,6 +35,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = AttributesProxy(element)
   }
 
+  override func visitClassDeclaration(_ element: ClassDeclaration) {
+    proxy = ClassDeclarationProxy(element)
+  }
+
   override func visitCodeBlock(_ element: CodeBlock) {
     proxy = CodeBlockProxy(element)
   }

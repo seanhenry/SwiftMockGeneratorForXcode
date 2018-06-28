@@ -32,6 +32,9 @@ extension Attributes {
     return children.compactMap { $0 as? Attribute }
   }
 }
+extension ClassDeclaration {
+
+}
 extension CodeBlock {
 
 }
