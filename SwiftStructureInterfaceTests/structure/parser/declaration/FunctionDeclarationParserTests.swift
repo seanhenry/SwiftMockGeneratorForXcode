@@ -1,9 +1,6 @@
 import XCTest
 @testable import SwiftStructureInterface
 
-// TODO: Parse code block
-// TODO: Support operator name
-
 class FunctionDeclarationParserTests: XCTestCase {
 
     // MARK: - parse
@@ -86,9 +83,6 @@ class FunctionDeclarationParserTests: XCTestCase {
         XCTAssertEqual(function.name, "a")
         assertElementText(function.genericParameterClause, "<T, U: A & B>")
     }
-
-    // TODO: test varargs
-    // TODO: test rethrows
 
     // MARK: - Helpers
 

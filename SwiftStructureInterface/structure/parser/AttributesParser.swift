@@ -12,6 +12,7 @@ class AttributesParser: Parser<Attributes> {
                 .required { try self.parsePunctuation(.at) }
                 .optional { try self.parseIdentifier() }
                 .build()
+
         return AttributeImpl(children: children + parseArguments())
     }
 
@@ -22,6 +23,9 @@ class AttributesParser: Parser<Attributes> {
                 try parseIdentifier(),
                 try parsePunctuation(.rightParen)
             ]
+            if isNext(.arrow) {
+                throw LookAheadError()
+            }
             return args
         } ?? []
     }

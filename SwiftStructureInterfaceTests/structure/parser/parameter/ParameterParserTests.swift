@@ -1,8 +1,6 @@
 import XCTest
 @testable import SwiftStructureInterface
 
-// TODO: Support default argument clause
-
 class ParameterParserTests: XCTestCase {
 
     var parser: Parser<Parameter>!

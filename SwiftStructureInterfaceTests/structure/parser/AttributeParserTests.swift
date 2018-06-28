@@ -39,10 +39,9 @@ class AttributeParserTests: XCTestCase {
 
     func test_parse_shouldNotParseClosure() {
         assertAttributes("@escaping () -> ()", "@escaping")
-//        assertAttributes("@escaping (String) -> ()", "@escaping")
+        assertAttributes("@escaping (String) -> ()", "@escaping")
+        assertAttributes("@convention(c) (String) -> ()", "@convention(c)")
     }
-
-    // TODO: parse all possible edge cases and uncomment test above
 
     // MARK: - Helpers
 
