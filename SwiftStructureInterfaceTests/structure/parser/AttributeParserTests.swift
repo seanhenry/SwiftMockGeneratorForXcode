@@ -25,7 +25,7 @@ class AttributeParserTests: XCTestCase {
         assertAttributes("@objc(test)", "@objc(test)")
     }
 
-    func test_parse_shouldParseMutlitpleAttributes() {
+    func test_parse_shouldParseMultipleAttributes() {
         assertAttributes("@abc @def @ghi", "@abc @def @ghi")
     }
 
@@ -41,6 +41,12 @@ class AttributeParserTests: XCTestCase {
         assertAttributes("@escaping () -> ()", "@escaping")
         assertAttributes("@escaping (String) -> ()", "@escaping")
         assertAttributes("@convention(c) (String) -> ()", "@convention(c)")
+    }
+
+    func test_parse_shouldNotParseTupleWhenPartOfParameterClause() {
+        assertAttributes("@att (), a: A)", "@att")
+        assertAttributes("@att (Int), a: A)", "@att")
+        assertAttributes("@att (Int))", "@att") // end of parameter clause
     }
 
     // MARK: - Helpers

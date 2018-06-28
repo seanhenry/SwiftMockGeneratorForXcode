@@ -23,7 +23,7 @@ class AttributesParser: Parser<Attributes> {
                 try parseIdentifier(),
                 try parsePunctuation(.rightParen)
             ]
-            if isNext(.arrow) {
+            if isNext([.arrow, .comma, .rightParen]) {
                 throw LookAheadError()
             }
             return args
