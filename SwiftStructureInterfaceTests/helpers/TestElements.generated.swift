@@ -99,6 +99,9 @@ var testIdentifier: Identifier {
 var testIdentifierPrimaryExpression: IdentifierPrimaryExpression {
   return TestElements.instance.testIdentifierPrimaryExpression!
 }
+var testImplicitMemberExpression: ImplicitMemberExpression {
+  return TestElements.instance.testImplicitMemberExpression!
+}
 var testInOutExpression: InOutExpression {
   return TestElements.instance.testInOutExpression!
 }
@@ -228,6 +231,7 @@ var allTestElements: [Element] {
     testGetterSetterKeywordClause,
     testIdentifier,
     testIdentifierPrimaryExpression,
+    testImplicitMemberExpression,
     testInOutExpression,
     testInitializerDeclaration,
     testLeafNode,
@@ -296,6 +300,7 @@ private class TestElements {
   private(set) var testGetterSetterKeywordClause: GetterSetterKeywordClause!
   private(set) var testIdentifier: Identifier!
   private(set) var testIdentifierPrimaryExpression: IdentifierPrimaryExpression!
+  private(set) var testImplicitMemberExpression: ImplicitMemberExpression!
   private(set) var testInOutExpression: InOutExpression!
   private(set) var testInitializerDeclaration: InitializerDeclaration!
   private(set) var testLeafNode: LeafNode!
@@ -462,6 +467,11 @@ private class TestElements {
     override func visitIdentifierPrimaryExpression(_ element: IdentifierPrimaryExpression) {
       elements.testIdentifierPrimaryExpression = element
       super.visitIdentifierPrimaryExpression(element)
+    }
+
+    override func visitImplicitMemberExpression(_ element: ImplicitMemberExpression) {
+      elements.testImplicitMemberExpression = element
+      super.visitImplicitMemberExpression(element)
     }
 
     override func visitInOutExpression(_ element: InOutExpression) {

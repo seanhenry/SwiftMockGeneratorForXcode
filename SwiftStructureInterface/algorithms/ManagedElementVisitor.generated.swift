@@ -111,6 +111,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = IdentifierPrimaryExpressionProxy(element)
   }
 
+  override func visitImplicitMemberExpression(_ element: ImplicitMemberExpression) {
+    proxy = ImplicitMemberExpressionProxy(element)
+  }
+
   override func visitInOutExpression(_ element: InOutExpression) {
     proxy = InOutExpressionProxy(element)
   }

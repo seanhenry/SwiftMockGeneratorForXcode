@@ -146,6 +146,9 @@ extension Identifier {
 extension IdentifierPrimaryExpression {
 
 }
+extension ImplicitMemberExpression {
+
+}
 extension InOutExpression {
 
   public var identifier: Identifier {

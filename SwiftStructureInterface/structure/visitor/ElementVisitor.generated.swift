@@ -106,6 +106,10 @@ open class ElementVisitor {
     visitPrimaryExpression(element)
   }
 
+  open func visitImplicitMemberExpression(_ element: ImplicitMemberExpression) {
+    visitPrimaryExpression(element)
+  }
+
   open func visitInOutExpression(_ element: InOutExpression) {
     visitPrefixExpression(element)
   }

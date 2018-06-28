@@ -152,6 +152,12 @@ extension IdentifierPrimaryExpressionImpl {
   }
 }
 
+extension ImplicitMemberExpressionImpl {
+  static func emptyImplicitMemberExpression() -> ImplicitMemberExpression {
+    return ImplicitMemberExpressionImpl(children: [])
+  }
+}
+
 extension InOutExpressionImpl {
   static func emptyInOutExpression() -> InOutExpression {
     return InOutExpressionImpl(children: [])

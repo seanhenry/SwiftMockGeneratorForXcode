@@ -248,6 +248,18 @@ class IdentifierPrimaryExpressionImpl: PrimaryExpressionImpl,
   }
 }
 
+class ImplicitMemberExpressionImpl: PrimaryExpressionImpl,
+ ImplicitMemberExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitImplicitMemberExpression(self)
+  }
+}
+
 class InOutExpressionImpl: PrefixExpressionImpl,
  InOutExpression {
 

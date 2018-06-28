@@ -275,6 +275,18 @@ class IdentifierPrimaryExpressionProxy: PrimaryExpressionProxy,
   }
 }
 
+class ImplicitMemberExpressionProxy: PrimaryExpressionProxy,
+ ImplicitMemberExpression {
+
+  init(_ element: ImplicitMemberExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitImplicitMemberExpression(self)
+  }
+}
+
 class InOutExpressionProxy: PrefixExpressionProxy,
  InOutExpression {
 
