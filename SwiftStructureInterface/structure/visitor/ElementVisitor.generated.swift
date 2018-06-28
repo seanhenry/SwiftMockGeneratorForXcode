@@ -245,4 +245,8 @@ open class ElementVisitor {
   open func visitWhitespace(_ element: Whitespace) {
     visitLeafNode(element)
   }
+
+  open func visitWildcardExpression(_ element: WildcardExpression) {
+    visitPrimaryExpression(element)
+  }
 }

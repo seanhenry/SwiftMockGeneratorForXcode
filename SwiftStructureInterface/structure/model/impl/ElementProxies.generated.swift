@@ -686,3 +686,15 @@ class WhitespaceProxy: LeafNodeProxy,
     visitor.visitWhitespace(self)
   }
 }
+
+class WildcardExpressionProxy: PrimaryExpressionProxy,
+ WildcardExpression {
+
+  init(_ element: WildcardExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitWildcardExpression(self)
+  }
+}

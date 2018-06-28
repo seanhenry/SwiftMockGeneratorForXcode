@@ -362,3 +362,9 @@ extension WhitespaceImpl {
   }
 }
 
+extension WildcardExpressionImpl {
+  static func emptyWildcardExpression() -> WildcardExpression {
+    return WildcardExpressionImpl(children: [])
+  }
+}
+

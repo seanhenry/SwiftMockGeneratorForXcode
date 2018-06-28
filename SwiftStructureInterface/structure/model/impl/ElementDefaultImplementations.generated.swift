@@ -329,3 +329,6 @@ extension VariableDeclaration {
 extension Whitespace {
 
 }
+extension WildcardExpression {
+
+}

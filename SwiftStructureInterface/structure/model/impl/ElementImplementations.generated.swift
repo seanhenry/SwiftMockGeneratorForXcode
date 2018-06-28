@@ -620,3 +620,15 @@ class WhitespaceImpl: LeafNodeImpl,
     visitor.visitWhitespace(self)
   }
 }
+
+class WildcardExpressionImpl: PrimaryExpressionImpl,
+ WildcardExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitWildcardExpression(self)
+  }
+}

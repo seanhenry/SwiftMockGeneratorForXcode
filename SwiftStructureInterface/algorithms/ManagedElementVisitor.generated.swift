@@ -250,4 +250,8 @@ class ManagedElementVisitor: ElementVisitor {
   override func visitWhitespace(_ element: Whitespace) {
     proxy = WhitespaceProxy(element)
   }
+
+  override func visitWildcardExpression(_ element: WildcardExpression) {
+    proxy = WildcardExpressionProxy(element)
+  }
 }

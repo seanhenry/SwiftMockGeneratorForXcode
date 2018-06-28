@@ -204,6 +204,9 @@ var testVariableDeclaration: VariableDeclaration {
 var testWhitespace: Whitespace {
   return TestElements.instance.testWhitespace!
 }
+var testWildcardExpression: WildcardExpression {
+  return TestElements.instance.testWildcardExpression!
+}
 var allTestElements: [Element] {
   return [
     testAccessLevelModifier,
@@ -266,6 +269,7 @@ var allTestElements: [Element] {
     testTypealiasDeclaration,
     testVariableDeclaration,
     testWhitespace,
+    testWildcardExpression,
   ]
 }
 
@@ -335,6 +339,7 @@ private class TestElements {
   private(set) var testTypealiasDeclaration: TypealiasDeclaration!
   private(set) var testVariableDeclaration: VariableDeclaration!
   private(set) var testWhitespace: Whitespace!
+  private(set) var testWildcardExpression: WildcardExpression!
 
   private class Visitor: RecursiveElementVisitor {
 
@@ -642,6 +647,11 @@ private class TestElements {
     override func visitWhitespace(_ element: Whitespace) {
       elements.testWhitespace = element
       super.visitWhitespace(element)
+    }
+
+    override func visitWildcardExpression(_ element: WildcardExpression) {
+      elements.testWildcardExpression = element
+      super.visitWildcardExpression(element)
     }
   }
 }
