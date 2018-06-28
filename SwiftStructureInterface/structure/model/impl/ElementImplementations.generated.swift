@@ -315,9 +315,6 @@ class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
   var parameterClause: ParameterClause {
     return children.first { $0 is ParameterClause } as? ParameterClause ?? ParameterClauseImpl.emptyParameterClause()
   }
-  var declarations: [Element] {
-    return children.compactMap { $0 as? Element }
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }
@@ -426,9 +423,6 @@ class RequirementListImpl: ElementImpl, RequirementList {
 class SameTypeRequirementImpl: RequirementImpl, SameTypeRequirement {
 
 
-  var rightType: Type {
-    return children.first { $0 is Type } as? Type ?? TypeImpl.emptyType()
-  }
   override init(children: [Element]) {
     super.init(children: children)
   }

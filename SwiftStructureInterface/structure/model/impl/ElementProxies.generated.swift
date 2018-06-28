@@ -110,10 +110,6 @@ class CodeBlockProxy: ElementProxy, CodeBlock {
 class ConformanceRequirementProxy: RequirementProxy, ConformanceRequirement {
 
   let managedConformanceRequirement: ConformanceRequirement
-  var rightTypeIdentifier: TypeIdentifier {
-    return proxy(managedConformanceRequirement.rightTypeIdentifier)
-
-  }
   var rightProtocolCompositionType: ProtocolCompositionType {
     return proxy(managedConformanceRequirement.rightProtocolCompositionType)
 
@@ -412,10 +408,6 @@ class InitializerDeclarationProxy: ElementProxy, InitializerDeclaration {
     return proxy(managedInitializerDeclaration.parameterClause)
 
   }
-  var declarations: [Element] {
-    return managedInitializerDeclaration.declarations.map(proxy)
-
-  }
 
   init(_ element: InitializerDeclaration) {
     managedInitializerDeclaration = element
@@ -570,10 +562,6 @@ class RequirementListProxy: ElementProxy, RequirementList {
 class SameTypeRequirementProxy: RequirementProxy, SameTypeRequirement {
 
   let managedSameTypeRequirement: SameTypeRequirement
-  var rightType: Type {
-    return proxy(managedSameTypeRequirement.rightType)
-
-  }
 
   init(_ element: SameTypeRequirement) {
     managedSameTypeRequirement = element
