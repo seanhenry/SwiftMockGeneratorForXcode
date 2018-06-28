@@ -14,8 +14,9 @@ class GenericParameterClauseParser: Parser<GenericParameterClause> {
     private func parseGenericParameter() throws -> GenericParameter {
         return try GenericParameterImpl(children: builder()
                 .required { try self.parseIdentifier() }
-                .optional { try self.parsePunctuation(.colon) }
-                .optional { try self.parseBinaryOperator("==") } // TODO: a use case for optional(_:or:)
+                .either({ try self.parsePunctuation(.colon) }) {
+                    try self.parseBinaryOperator("==")
+                }
                 .optional { try self.parseType() }
                 .build())
     }

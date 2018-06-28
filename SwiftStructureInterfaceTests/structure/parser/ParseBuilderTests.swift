@@ -158,6 +158,38 @@ class ParseBuilderTests: XCTestCase {
         XCTAssertEqual(children[2].text, ",")
     }
 
+    func test_shouldContinueParsingUntilThrowsAndParseWhitespace() throws {
+        let children = try builder(" , , , ")
+                .while { try self.parser.parsePunctuation(.comma) }
+                .build()
+        XCTAssertEqual(children.count, 5)
+        XCTAssertEqual(children[0].text, ",")
+        XCTAssertEqual(children[1].text, " ")
+        XCTAssertEqual(children[2].text, ",")
+        XCTAssertEqual(children[3].text, " ")
+        XCTAssertEqual(children[4].text, ",")
+    }
+
+    func test_shouldParseLhsIfExistsAndShouldNotParseRightHandSide() throws {
+        let children = try builder(":,")
+                .either({ try self.parser.parsePunctuation(.colon) }) {
+                    try self.parser.parsePunctuation(.comma)
+                }
+                .build()
+        XCTAssertEqual(children.count, 1)
+        XCTAssertEqual(children[0].text, ":")
+    }
+
+    func test_shouldParseRhsWhenLhsCannotBeParsed() throws {
+        let children = try builder(",:")
+                .either({ try self.parser.parsePunctuation(.colon) }) {
+                    try self.parser.parsePunctuation(.comma)
+                }
+                .build()
+        XCTAssertEqual(children.count, 1)
+        XCTAssertEqual(children[0].text, ",")
+    }
+
     private func builder(_ input: String) -> ParserBuilder {
         parser = createParser(input, FileParser.self)
         return parser.builder()

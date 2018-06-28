@@ -7,12 +7,8 @@ class ElementProxy: Element {
         return managed.text
     }
 
-    // TODO: Now all elements are computed, there is no longer any danger of leaking unwrapped elements because all computed elements come from here. (Not including file and parent)
-    // TODO: write test to ensure no Proxys can be added. Would cause indefinite retain cycle
-    // TODO: write test when settings an element to ensure they are unwrapped before being set (this would cause indefinite retain cycle)
     var children: [Element] {
-        set { managed.children = children }
-        get { return managed.children.map(proxy) }
+        return managed.children.map(proxy)
     }
 
     var file: File? {

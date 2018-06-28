@@ -1,38 +1,45 @@
+typealias ElementSupplier = () throws -> Element
+
+private protocol ParsingStrategy {
+    func parse(into children: inout [Element]) throws
+}
+
+private struct RequiredElementNotParsedError: Error {}
+private struct PlaceholderError: Error {}
+
 class ParserBuilder {
 
-    typealias ElementSupplier = () throws -> Element
-    private var operations = [Operation]()
+    private var operations = [ParsingStrategy]()
     private let whitespaceParser: Parser<Whitespace>
-    private struct RequiredElementNotParsedError: Error {}
-    private struct PlaceholderError: Error {}
-
-    private enum Operation {
-        case required(ElementSupplier)
-        case optional(ElementSupplier)
-        case `while`(ElementSupplier, ElementSupplier)
-    }
+    private let whitespaceStrategy: ParsingStrategy
 
     init(whitespaceParser: Parser<Whitespace>) {
         self.whitespaceParser = whitespaceParser
+        whitespaceStrategy = WhitespaceStrategy { try whitespaceParser.parse() }
     }
 
     func required(_ parse: @escaping ElementSupplier) -> ParserBuilder {
-        operations.append(.required(parse))
+        operations.append(RequiredStrategy(parse))
         return self
     }
 
     func optional(_ parse: @escaping ElementSupplier) -> ParserBuilder {
-        operations.append(.optional(parse))
+        operations.append(OptionalStrategy(parse))
+        return self
+    }
+
+    func either(_ either: @escaping ElementSupplier, or: @escaping ElementSupplier) -> ParserBuilder {
+        operations.append(EitherOrStrategy(either, or))
         return self
     }
 
     func `while`(isParsed: @escaping ElementSupplier, _ parse: @escaping ElementSupplier) -> ParserBuilder {
-        operations.append(.`while`(isParsed, parse))
+        operations.append(WhileStrategy(isParsed, parse, whitespaceStrategy))
         return self
     }
 
     func `while`(_ parse: @escaping ElementSupplier) -> ParserBuilder {
-        operations.append(.`while`(parse, { throw PlaceholderError() }))
+        operations.append(WhileStrategy(parse, { throw PlaceholderError() }, whitespaceStrategy))
         return self
     }
 
@@ -49,12 +56,10 @@ class ParserBuilder {
     private func buildChildren() throws -> [Element] {
         var children = [Element]()
         for (i, op) in operations.enumerated() {
-            let parsed = try parseOperation(op)
-            if !parsed.isEmpty {
-                children.append(contentsOf: parsed)
-                if i != operations.count-1 {
-                    appendWhitespace(to: &children)
-                }
+            let count = children.count
+            try op.parse(into: &children)
+            if children.count > count && i != operations.count-1 {
+                appendWhitespace(to: &children)
             }
         }
         if children.last is Whitespace {
@@ -63,36 +68,107 @@ class ParserBuilder {
         return children
     }
 
-    private func parseOperation(_ operation: Operation) throws -> [Element] {
-        switch operation {
-        case let .required(supplier):
+    private func appendWhitespace(to children: inout [Element]) {
+        try? children.append(whitespaceParser.parse())
+    }
+
+    private class RequiredStrategy: ParsingStrategy {
+        let supplier: ElementSupplier
+
+        init(_ supplier: @escaping ElementSupplier) {
+            self.supplier = supplier
+        }
+
+        func parse(into children: inout [Element]) throws {
             if let element = try? supplier() {
-                return [element]
+                children.append(element)
+            } else {
+                throw RequiredElementNotParsedError()
             }
-            throw RequiredElementNotParsedError()
-        case let .optional(supplier):
-            return (try? supplier()).flatMap { [$0] } ?? []
-        case let .`while`(isParsed, parse):
+        }
+    }
+
+    private class OptionalStrategy: ParsingStrategy {
+        let supplier: ElementSupplier
+
+        init(_ supplier: @escaping ElementSupplier) {
+            self.supplier = supplier
+        }
+
+        func parse(into children: inout [Element]) throws {
+            if let element = try? supplier() {
+                children.append(element)
+            }
+        }
+    }
+
+    private class WhileStrategy: ParsingStrategy {
+        let `while`: ElementSupplier
+        let parse: ElementSupplier
+        let parseWhitespace: ParsingStrategy
+
+        init(_ while: @escaping ElementSupplier, _ parse: @escaping ElementSupplier, _ parseWhitespace: ParsingStrategy) {
+            self.`while` = `while`
+            self.parse = parse
+            self.parseWhitespace = parseWhitespace
+        }
+
+        func parse(into children: inout [Element]) throws {
+            children.append(contentsOf: parseAll())
+        }
+
+        func parseAll() -> [Element] {
             var children = [Element]()
-            while let parsed = try? isParsed() {
+            while let parsed = try? `while`() {
                 children.append(parsed)
-                appendWhitespace(to: &children)
-                let parsed2 = try? parse()
-                parsed2.flatMap {
-                    children.append($0)
-                    appendWhitespace(to: &children)
-                }
+                parseWhitespace(into: &children)
+                parseSecond(into: &children)
             }
             if children.last is Whitespace {
                 children.removeLast()
             }
             return children
         }
+
+        private func parseWhitespace(into children: inout [Element]) {
+            try? parseWhitespace.parse(into: &children)
+        }
+
+        private func parseSecond(into children: inout [Element]) {
+            if let parsed = try? parse() {
+                children.append(parsed)
+                parseWhitespace(into: &children)
+            }
+        }
     }
 
-    private func appendWhitespace(to children: inout [Element]) {
-        do {
-            children.append(try whitespaceParser.parse())
-        } catch {}
+    private class WhitespaceStrategy: ParsingStrategy {
+        let supplier: ElementSupplier
+
+        init(_ supplier: @escaping ElementSupplier) {
+            self.supplier = supplier
+        }
+
+        func parse(into children: inout [Element]) throws {
+            try? children.append(supplier())
+        }
+    }
+
+    private class EitherOrStrategy: ParsingStrategy {
+        let either: ElementSupplier
+        let or: ElementSupplier
+
+        init(_ either: @escaping ElementSupplier, _ or: @escaping ElementSupplier) {
+            self.either = either
+            self.or = or
+        }
+
+        func parse(into children: inout [Element]) throws {
+            if let first = try? either() {
+                children.append(first)
+            } else if let second = try? or() {
+                children.append(second)
+            }
+        }
     }
 }

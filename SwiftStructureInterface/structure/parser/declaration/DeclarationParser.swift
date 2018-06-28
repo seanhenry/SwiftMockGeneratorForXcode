@@ -15,7 +15,6 @@ class DeclarationParser<ResultType>: Parser<ResultType> {
     }
 
     override func parse() throws -> ResultType {
-        // TODO: this only works for some declarations (classes for example, may have final first) but only used for protocols so far.
         let builder = self.builder()
                 .optional { try self.parseAttributes() }
                 .while { try self.parseDeclarationModifier() }
