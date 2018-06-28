@@ -8,10 +8,8 @@ class BuildElementText: RecursiveElementVisitor {
 
     var text = ""
 
-    override func visitElement(_ element: Element) {
-        if element is LeafNode {
-            text.append(element.text)
-        }
+    override func visitLeafNode(_ element: LeafNode) {
+        text.append(element.text)
         super.visitElement(element)
     }
 }

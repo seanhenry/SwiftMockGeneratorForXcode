@@ -91,7 +91,7 @@ open class ElementVisitor {
   }
 
   open func visitIdentifier(_ element: Identifier) {
-    visitElement(element)
+    visitLeafNode(element)
   }
 
   open func visitInitializerDeclaration(_ element: InitializerDeclaration) {
@@ -183,6 +183,6 @@ open class ElementVisitor {
   }
 
   open func visitWhitespace(_ element: Whitespace) {
-    visitElement(element)
+    visitLeafNode(element)
   }
 }
