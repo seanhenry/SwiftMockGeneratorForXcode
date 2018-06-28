@@ -1,10 +1,10 @@
 extension FunctionDeclaration {
 
     public var name: String {
-        return children.first { $0 is Identifier }?.text ?? ""
+        return first(Identifier.self)?.text ?? ""
     }
 
     public var `throws`: Bool {
-        return children.compactMap { $0 as? LeafNode }.contains { $0.text == "throws" }
+        return contains(Keywords.throws)
     }
 }

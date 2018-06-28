@@ -1,17 +1,14 @@
 extension InitializerDeclaration {
 
     public var `throws`: Bool {
-        return children.filter { $0 is LeafNode }
-                .contains { $0.text == "throws" }
+        return contains(Keywords.throws)
     }
 
     public var `rethrows`: Bool {
-        return children.filter { $0 is LeafNode }
-                .contains { $0.text == "rethrows" }
+        return contains(Keywords.rethrows)
     }
 
     public var isFailable: Bool {
-        return children.filter { $0 is LeafNode }
-                .first { $0.text == "?" || $0.text == "!" } != nil
+        return contains(["?", "!"])
     }
 }

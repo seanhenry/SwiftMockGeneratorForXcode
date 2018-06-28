@@ -1,10 +1,10 @@
 extension FunctionType {
 
     public var `throws`: Bool {
-        return children.contains { $0.text == Keywords.throws }
+        return contains(Keywords.throws)
     }
 
     public var `rethrows`: Bool {
-        return children.contains { $0.text == Keywords.rethrows }
+        return contains(Keywords.rethrows)
     }
 }

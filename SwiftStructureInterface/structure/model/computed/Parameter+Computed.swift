@@ -9,7 +9,7 @@ extension Parameter {
     }
 
     public var localParameterName: String {
-        return identifiers.last?.text ?? ""
+        return last(Identifier.self)?.text ?? ""
     }
 
     private var identifiers: [Identifier] {
