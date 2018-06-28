@@ -363,6 +363,18 @@ class ParameterClauseProxy: ElementProxy, ParameterClause {
   }
 }
 
+class ParenthesizedExpressionProxy: PrimaryExpressionProxy,
+ ParenthesizedExpression {
+
+  init(_ element: ParenthesizedExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitParenthesizedExpression(self)
+  }
+}
+
 class PrefixExpressionProxy: ExpressionProxy,
  PrefixExpression {
 

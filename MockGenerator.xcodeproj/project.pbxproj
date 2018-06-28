@@ -141,11 +141,13 @@
 		1A93A2143277DB11F95FD8CE /* IdentifierPrimaryExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93ADE98685FB9D370EDBD9 /* IdentifierPrimaryExpression.swift */; };
 		1A93A21A1BF7A549D1849E4F /* ResolverSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AB5698CC0B9179B50FD1 /* ResolverSpy.swift */; };
 		1A93A2241F4735693DADFE1D /* VariableDeclaration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A828C1609F7DD57D6F71 /* VariableDeclaration.swift */; };
+		1A93A2349B5056EF510510FB /* ParenthesizedExpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A0C200B57B8A376F23D4 /* ParenthesizedExpressionTests.swift */; };
 		1A93A2450912F43F458D62BE /* SelfExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A9EFAB055EAA76BEAAE9 /* SelfExpression.swift */; };
 		1A93A2A7317208CEAAE7FA76 /* SKResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93ADED707461E9868E9AD3 /* SKResolver.swift */; };
 		1A93A2B9A797ABFA3EEC7658 /* SuperclassInitializerExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AF0987F5ADE25C126D88 /* SuperclassInitializerExpression.swift */; };
 		1A93A2CBBA3C18CA1955FBB6 /* ManagedElementVisitor.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 1A93A84D3D7AC1C558F322D6 /* ManagedElementVisitor.stencil */; };
 		1A93A3073B4682120A2ED016 /* PrimaryExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93ACB22E6DA750EADC3EB0 /* PrimaryExpression.swift */; };
+		1A93A32F945C01670A7F3E49 /* ParenthesizedExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A0F47FB54DC7D2134BCF /* ParenthesizedExpression.swift */; };
 		1A93A35C8E1CD108415F544E /* FunctionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AC091598ECCF3708CA15 /* FunctionResult.swift */; };
 		1A93A38DDDAF2E13DF766917 /* ElementDefaultImplementations.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 1A93AC0189BD4EC9876AA492 /* ElementDefaultImplementations.stencil */; };
 		1A93A3EB254FF28753CFAD35 /* ElementProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AAFC17A9B86BEEE00039 /* ElementProxyTests.swift */; };
@@ -184,6 +186,7 @@
 		1A93AC0B07603EE46D7E248E /* SuperclassMethodExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AFC38B400CB4809FE0AB /* SuperclassMethodExpression.swift */; };
 		1A93AC6171BD5AFA5F843A85 /* ElementProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93ADF61EAF64D59BD23435 /* ElementProxy.swift */; };
 		1A93AC8A431EB9540996B52F /* BufferEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A952DD841C71CC1D8772 /* BufferEditorTests.swift */; };
+		1A93ACAC61F299159E92B75E /* ParenthesizedExpressionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A5A6EFE1A5DA84D57872 /* ParenthesizedExpressionParser.swift */; };
 		1A93AD3091735C110C4A2C09 /* ResolverFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A174FBB1FA2200EEAC49 /* ResolverFactory.swift */; };
 		1A93AD7DEFAFA9EB87A132CF /* SelfExpressionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A9E16909BFDC15F90F80 /* SelfExpressionParser.swift */; };
 		1A93ADD657F977BFB091E263 /* IdentifierPrimaryExpressionParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A33CDE39435201609CDC /* IdentifierPrimaryExpressionParserTests.swift */; };
@@ -774,6 +777,8 @@
 		1A93A07C7C332F8B5CC684A9 /* SuperclassExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperclassExpression.swift; sourceTree = "<group>"; };
 		1A93A0984050AAB172D12611 /* BufferInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferInstructions.swift; sourceTree = "<group>"; };
 		1A93A0AF96ABE56D175FD497 /* NaiveFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaiveFormatterTests.swift; sourceTree = "<group>"; };
+		1A93A0C200B57B8A376F23D4 /* ParenthesizedExpressionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParenthesizedExpressionTests.swift; sourceTree = "<group>"; };
+		1A93A0F47FB54DC7D2134BCF /* ParenthesizedExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParenthesizedExpression.swift; sourceTree = "<group>"; };
 		1A93A174FBB1FA2200EEAC49 /* ResolverFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolverFactory.swift; sourceTree = "<group>"; };
 		1A93A1D8AD08E74ED6130A11 /* ManagedElementVisitor.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedElementVisitor.generated.swift; sourceTree = "<group>"; };
 		1A93A21B36B83D4D74F5FDB8 /* WriteFileResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteFileResolver.swift; sourceTree = "<group>"; };
@@ -788,6 +793,7 @@
 		1A93A45EC3F817889BEE7200 /* SuperclassExpressionParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperclassExpressionParser.swift; sourceTree = "<group>"; };
 		1A93A59948EE8E8B69FA2BCD /* SuperclassExpressionParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperclassExpressionParserTests.swift; sourceTree = "<group>"; };
 		1A93A5A3D97DBCE1CF1EAAF4 /* Expression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
+		1A93A5A6EFE1A5DA84D57872 /* ParenthesizedExpressionParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParenthesizedExpressionParser.swift; sourceTree = "<group>"; };
 		1A93A5EBCF1962462D9BFB91 /* ClassDeclarationParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassDeclarationParserTests.swift; sourceTree = "<group>"; };
 		1A93A60D54F9B775FB263427 /* ManagedElementVisitorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedElementVisitorTests.swift; sourceTree = "<group>"; };
 		1A93A62D538B39DBFDBD8AC6 /* TypealiasAssignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypealiasAssignment.swift; sourceTree = "<group>"; };
@@ -1401,6 +1407,7 @@
 				1A93ADE98685FB9D370EDBD9 /* IdentifierPrimaryExpression.swift */,
 				1A93A30F9B9B8DF3F163C6EC /* self */,
 				1A93AD3EBFA6D6EB443C267B /* super */,
+				1A93A0F47FB54DC7D2134BCF /* ParenthesizedExpression.swift */,
 			);
 			path = primary;
 			sourceTree = "<group>";
@@ -1430,6 +1437,7 @@
 				1A93A33CDE39435201609CDC /* IdentifierPrimaryExpressionParserTests.swift */,
 				1A93A792CF0713E4C25B74D1 /* super */,
 				1A93AF7902C9DA443214BD37 /* self */,
+				1A93A0C200B57B8A376F23D4 /* ParenthesizedExpressionTests.swift */,
 			);
 			path = primary;
 			sourceTree = "<group>";
@@ -1475,6 +1483,7 @@
 				1A93ACE3DF76CF33A3B9BE72 /* IdentifierPrimaryExpressionParser.swift */,
 				1A93A2A72F59203F7254D99E /* self */,
 				1A93AE48C8741F7B9A59319D /* super */,
+				1A93A5A6EFE1A5DA84D57872 /* ParenthesizedExpressionParser.swift */,
 			);
 			path = primary;
 			sourceTree = "<group>";
@@ -2813,6 +2822,8 @@
 				1A93AC0B07603EE46D7E248E /* SuperclassMethodExpression.swift in Sources */,
 				1A93AD7DEFAFA9EB87A132CF /* SelfExpressionParser.swift in Sources */,
 				1A93A823C3197F40A95B3286 /* SuperclassExpressionParser.swift in Sources */,
+				1A93A32F945C01670A7F3E49 /* ParenthesizedExpression.swift in Sources */,
+				1A93ACAC61F299159E92B75E /* ParenthesizedExpressionParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2896,6 +2907,7 @@
 				1A93ADD657F977BFB091E263 /* IdentifierPrimaryExpressionParserTests.swift in Sources */,
 				1A93AB8DF3A5D61E4A6D3DA5 /* SuperclassExpressionParserTests.swift in Sources */,
 				1A93A606065F0BBAA81CB1BC /* SelfExpressionParserTests.swift in Sources */,
+				1A93A2349B5056EF510510FB /* ParenthesizedExpressionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

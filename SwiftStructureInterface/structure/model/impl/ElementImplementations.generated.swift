@@ -313,6 +313,18 @@ class ParameterClauseImpl: ElementImpl, ParameterClause {
   }
 }
 
+class ParenthesizedExpressionImpl: PrimaryExpressionImpl,
+ ParenthesizedExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitParenthesizedExpression(self)
+  }
+}
+
 class PrefixExpressionImpl: ExpressionImpl,
  PrefixExpression {
 

@@ -278,6 +278,11 @@ class Parser<ResultType> {
         return try parse(GenericArgumentClauseParser.self)
     }
 
+    func parseExpression() throws -> Expression {
+        // TODO: Parse all expressions here!
+        return try parse(IdentifierPrimaryExpressionParser.self)
+    }
+
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {
         return try P(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
     }

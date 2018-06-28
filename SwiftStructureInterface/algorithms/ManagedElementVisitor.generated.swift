@@ -139,6 +139,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = ParameterClauseProxy(element)
   }
 
+  override func visitParenthesizedExpression(_ element: ParenthesizedExpression) {
+    proxy = ParenthesizedExpressionProxy(element)
+  }
+
   override func visitPrefixExpression(_ element: PrefixExpression) {
     proxy = PrefixExpressionProxy(element)
   }

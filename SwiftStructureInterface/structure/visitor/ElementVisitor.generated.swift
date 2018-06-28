@@ -134,6 +134,10 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitParenthesizedExpression(_ element: ParenthesizedExpression) {
+    visitPrimaryExpression(element)
+  }
+
   open func visitPrefixExpression(_ element: PrefixExpression) {
     visitExpression(element)
   }

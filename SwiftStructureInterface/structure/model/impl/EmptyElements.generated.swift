@@ -194,6 +194,12 @@ extension ParameterClauseImpl {
   }
 }
 
+extension ParenthesizedExpressionImpl {
+  static func emptyParenthesizedExpression() -> ParenthesizedExpression {
+    return ParenthesizedExpressionImpl(children: [])
+  }
+}
+
 extension PrefixExpressionImpl {
   static func emptyPrefixExpression() -> PrefixExpression {
     return PrefixExpressionImpl(children: [])

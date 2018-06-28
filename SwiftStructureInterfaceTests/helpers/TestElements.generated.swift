@@ -120,6 +120,9 @@ var testParameter: Parameter {
 var testParameterClause: ParameterClause {
   return TestElements.instance.testParameterClause!
 }
+var testParenthesizedExpression: ParenthesizedExpression {
+  return TestElements.instance.testParenthesizedExpression!
+}
 var testPrefixExpression: PrefixExpression {
   return TestElements.instance.testPrefixExpression!
 }
@@ -232,6 +235,7 @@ var allTestElements: [Element] {
     testOptionalType,
     testParameter,
     testParameterClause,
+    testParenthesizedExpression,
     testPrefixExpression,
     testPrimaryExpression,
     testProtocolCompositionType,
@@ -299,6 +303,7 @@ private class TestElements {
   private(set) var testOptionalType: OptionalType!
   private(set) var testParameter: Parameter!
   private(set) var testParameterClause: ParameterClause!
+  private(set) var testParenthesizedExpression: ParenthesizedExpression!
   private(set) var testPrefixExpression: PrefixExpression!
   private(set) var testPrimaryExpression: PrimaryExpression!
   private(set) var testProtocolCompositionType: ProtocolCompositionType!
@@ -492,6 +497,11 @@ private class TestElements {
     override func visitParameterClause(_ element: ParameterClause) {
       elements.testParameterClause = element
       super.visitParameterClause(element)
+    }
+
+    override func visitParenthesizedExpression(_ element: ParenthesizedExpression) {
+      elements.testParenthesizedExpression = element
+      super.visitParenthesizedExpression(element)
     }
 
     override func visitPrefixExpression(_ element: PrefixExpression) {
