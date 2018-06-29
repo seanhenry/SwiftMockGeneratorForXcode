@@ -5,9 +5,28 @@ class LiteralExpressionParser: Parser<LiteralExpression> {
             return try parseHashLiteral()
         } else if isNext(.leftSquare) {
             return try parseArrayDictionaryLiteral()
+        } else if case let .integerLiteral(_, rawRepresentation: rawInt) = peekAtNextKind() {
+            return try createLiteralExpression(rawInt)
+        } else if case let .floatingPointLiteral(_, rawRepresentation: rawFloat) = peekAtNextKind() {
+            return try createLiteralExpression(rawFloat)
+        } else if case let .booleanLiteral(bool) = peekAtNextKind() {
+            return try createLiteralExpression("\(bool)")
+        } else if case let .staticStringLiteral(_, rawRepresentation: rawString) = peekAtNextKind() {
+            return try createLiteralExpression(rawString)
+        } else if case let .interpolatedStringLiteralHead(_, rawRepresentation: rawString) = peekAtNextKind() {
+            return try parseInterpolatedStringExpression(rawString)
+        } else if isNext(.nil) {
+            return try createLiteralExpression("nil")
         } else {
             throw LookAheadError()
         }
+    }
+
+    private func createLiteralExpression(_ rawValue: String) throws -> LiteralExpression {
+        advance()
+        return try LiteralExpressionImpl(children: builder()
+                .required { LeafNodeImpl(text: rawValue) }
+                .build())
     }
 
     private func parseHashLiteral() throws -> LiteralExpression {
@@ -116,5 +135,17 @@ class LiteralExpressionParser: Parser<LiteralExpression> {
                 .required { try self.parsePunctuation(.colon) }
                 .optional { try self.parseExpression() }
                 .build())
+    }
+
+    // MARK: - Interpolated string
+
+    private func parseInterpolatedStringExpression(_ head: String) throws -> LiteralExpression {
+        throw LookAheadError()
+//        advance()
+//        return try LiteralExpressionImpl(children: builder()
+//                .required { LeafNodeImpl(text: head) }
+//                .optional { try self.parseExpression() }
+//                .optional { try self.parsePunctuation(.rightParen) }
+//                .build())
     }
 }

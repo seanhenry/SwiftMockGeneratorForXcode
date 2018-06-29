@@ -3,6 +3,49 @@ import XCTest
 
 class LiteralExpressionParserTests: XCTestCase {
 
+    // MARK: - Literal
+
+    func test_shouldParseIntegerLiteral() throws {
+        let integers = ["0", "-123", "4_5_6", "0x0Af", "0b0101", "0o01234567"]
+        try integers.forEach { text in
+            XCTAssertEqual(try parse(text).text, text)
+        }
+    }
+
+    func test_shouldParseFloatLiteral() throws {
+        let floats = ["0.0", "-100.00", "1_000.123", "10.0e1", "10.0e+1", "10.0e-1", "0x0aF.0p1", "0x0aFp+1", "0x0aFp-1"]
+        try floats.forEach { text in
+            XCTAssertEqual(try parse(text).text, text)
+        }
+    }
+
+    func test_shouldParseBoolLiteral() throws {
+        let bools = ["false", "true"]
+        try bools.forEach { text in
+            XCTAssertEqual(try parse(text).text, text)
+        }
+    }
+
+    func test_shouldParseNilLiteral() {
+        let text = "nil"
+        XCTAssertEqual(try parse(text).text, text)
+    }
+
+    func test_shouldParseStringLiteral() throws {
+        let strings = ["\"\"", "\"STRING\""]
+        try strings.forEach { text in
+            XCTAssertEqual(try parse(text).text, text)
+        }
+    }
+
+    // TODO: interpolated string not yet parsed
+    // TODO: multiline string not yet supported
+
+//    func test_shouldParseInterpolatedStringLiteral() throws {
+//        let text = "\"\\(expression)\""
+//        XCTAssertEqual(try parse(text).text, text)
+//    }
+
     // MARK: - Keyword
 
     func test_shouldParseKeywordExpression() throws {
