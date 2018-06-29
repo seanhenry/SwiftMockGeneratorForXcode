@@ -200,6 +200,28 @@ class ExpressionImpl: ElementImpl, Expression {
   }
 }
 
+class FunctionCallArgumentImpl: ElementImpl, FunctionCallArgument {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitFunctionCallArgument(self)
+  }
+}
+
+class FunctionCallArgumentListImpl: ElementImpl, FunctionCallArgumentList {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitFunctionCallArgumentList(self)
+  }
+}
+
 class FunctionDeclarationImpl: ElementImpl, FunctionDeclaration {
 
   override init(children: [Element]) {

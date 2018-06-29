@@ -104,6 +104,15 @@ extension DictionaryType {
 extension Expression {
 
 }
+extension FunctionCallArgument {
+
+}
+extension FunctionCallArgumentList {
+
+  public var arguments: [FunctionCallArgument] {
+    return children.compactMap { $0 as? FunctionCallArgument }
+  }
+}
 extension FunctionDeclaration {
 
   public var genericParameterClause: GenericParameterClause? {

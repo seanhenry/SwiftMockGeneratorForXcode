@@ -91,6 +91,14 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = FileProxy(element)
   }
 
+  override func visitFunctionCallArgument(_ element: FunctionCallArgument) {
+    proxy = FunctionCallArgumentProxy(element)
+  }
+
+  override func visitFunctionCallArgumentList(_ element: FunctionCallArgumentList) {
+    proxy = FunctionCallArgumentListProxy(element)
+  }
+
   override func visitFunctionDeclaration(_ element: FunctionDeclaration) {
     proxy = FunctionDeclarationProxy(element)
   }

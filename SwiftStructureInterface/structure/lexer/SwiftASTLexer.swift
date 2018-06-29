@@ -60,6 +60,10 @@ class SwiftASTLexer: SwiftLexer {
         return lexer.look().kind
     }
 
+    func peekAtKind(aheadBy distance: Int) -> Token.Kind {
+        return lexer.look(ahead: distance, skipLineFeed: true).kind
+    }
+
     func advance() {
         lastRange = getCurrentRange()
         lexer.advance()

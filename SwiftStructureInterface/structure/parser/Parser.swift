@@ -70,6 +70,10 @@ class Parser<ResultType> {
         return lexer.peekAtNextKind()
     }
 
+    func peekAtKind(aheadBy distance: Int) -> Token.Kind {
+        return lexer.peekAtKind(aheadBy: distance)
+    }
+
     func advance() {
         lexer.advance()
     }
@@ -260,10 +264,10 @@ class Parser<ResultType> {
 
     func parseIdentifier(_ strings: [String]) throws -> Identifier {
         let identifier = peekAtNextKind()
-        let match = strings.first { string in
+        let isMatch = strings.contains { string in
             return .identifier(string, false) ~= identifier
         }
-        if let match = match {
+        if isMatch {
             return try parseIdentifier()
         }
         throw LookAheadError()
@@ -275,6 +279,10 @@ class Parser<ResultType> {
             return LeafNodeImpl(text: String(op))
         }
         throw LookAheadError()
+    }
+
+    func parseOperator() throws -> Element {
+        return try parse(OperatorParser.self)
     }
 
     func parseBinaryOperator(_ op: String) throws -> Element {

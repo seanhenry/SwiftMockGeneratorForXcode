@@ -122,6 +122,18 @@ extension FileImpl {
   }
 }
 
+extension FunctionCallArgumentImpl {
+  static func emptyFunctionCallArgument() -> FunctionCallArgument {
+    return FunctionCallArgumentImpl(children: [])
+  }
+}
+
+extension FunctionCallArgumentListImpl {
+  static func emptyFunctionCallArgumentList() -> FunctionCallArgumentList {
+    return FunctionCallArgumentListImpl(children: [])
+  }
+}
+
 extension FunctionDeclarationImpl {
   static func emptyFunctionDeclaration() -> FunctionDeclaration {
     return FunctionDeclarationImpl(children: [])

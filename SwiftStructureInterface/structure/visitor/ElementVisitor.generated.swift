@@ -86,6 +86,14 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitFunctionCallArgument(_ element: FunctionCallArgument) {
+    visitElement(element)
+  }
+
+  open func visitFunctionCallArgumentList(_ element: FunctionCallArgumentList) {
+    visitElement(element)
+  }
+
   open func visitFunctionDeclaration(_ element: FunctionDeclaration) {
     visitElement(element)
   }

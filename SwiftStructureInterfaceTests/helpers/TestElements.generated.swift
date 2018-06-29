@@ -84,6 +84,12 @@ var testExpression: Expression {
 var testFile: File {
   return TestElements.instance.testFile!
 }
+var testFunctionCallArgument: FunctionCallArgument {
+  return TestElements.instance.testFunctionCallArgument!
+}
+var testFunctionCallArgumentList: FunctionCallArgumentList {
+  return TestElements.instance.testFunctionCallArgumentList!
+}
 var testFunctionDeclaration: FunctionDeclaration {
   return TestElements.instance.testFunctionDeclaration!
 }
@@ -283,6 +289,8 @@ var allTestElements: [Element] {
     testElement,
     testExpression,
     testFile,
+    testFunctionCallArgument,
+    testFunctionCallArgumentList,
     testFunctionDeclaration,
     testFunctionResult,
     testFunctionType,
@@ -371,6 +379,8 @@ private class TestElements {
   private(set) var testElement: Element!
   private(set) var testExpression: Expression!
   private(set) var testFile: File!
+  private(set) var testFunctionCallArgument: FunctionCallArgument!
+  private(set) var testFunctionCallArgumentList: FunctionCallArgumentList!
   private(set) var testFunctionDeclaration: FunctionDeclaration!
   private(set) var testFunctionResult: FunctionResult!
   private(set) var testFunctionType: FunctionType!
@@ -537,6 +547,16 @@ private class TestElements {
     override func visitFile(_ element: File) {
       elements.testFile = element
       super.visitFile(element)
+    }
+
+    override func visitFunctionCallArgument(_ element: FunctionCallArgument) {
+      elements.testFunctionCallArgument = element
+      super.visitFunctionCallArgument(element)
+    }
+
+    override func visitFunctionCallArgumentList(_ element: FunctionCallArgumentList) {
+      elements.testFunctionCallArgumentList = element
+      super.visitFunctionCallArgumentList(element)
     }
 
     override func visitFunctionDeclaration(_ element: FunctionDeclaration) {

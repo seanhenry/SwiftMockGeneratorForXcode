@@ -219,6 +219,28 @@ class FileProxy: ElementProxy, File {
   }
 }
 
+class FunctionCallArgumentProxy: ElementProxy, FunctionCallArgument {
+
+  init(_ element: FunctionCallArgument) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitFunctionCallArgument(self)
+  }
+}
+
+class FunctionCallArgumentListProxy: ElementProxy, FunctionCallArgumentList {
+
+  init(_ element: FunctionCallArgumentList) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitFunctionCallArgumentList(self)
+  }
+}
+
 class FunctionDeclarationProxy: ElementProxy, FunctionDeclaration {
 
   init(_ element: FunctionDeclaration) {

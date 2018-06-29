@@ -74,7 +74,14 @@ class SwiftASTLexerTests: XCTestCase {
         XCTAssertEqual(lastRange.end.column, lexer.lastRange.end.column)
         XCTAssertEqual(lastRange.end.line, lexer.lastRange.end.line)
     }
-    
+
+    func test_peekAtKindAheadBy_shouldShowNextForN() {
+        let lexer = createLexer(": , ;")
+        XCTAssertEqual(lexer.peekAtKind(aheadBy: 0), .colon)
+        XCTAssertEqual(lexer.peekAtKind(aheadBy: 1), .comma)
+        XCTAssertEqual(lexer.peekAtKind(aheadBy: 2), .semicolon)
+    }
+
     // MARK: - Helpers
     
     func createLexer(_ text: String) -> SwiftASTLexer {
