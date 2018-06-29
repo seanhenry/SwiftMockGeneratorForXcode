@@ -700,6 +700,18 @@ class PostfixExpressionImpl: ExpressionImpl,
   }
 }
 
+class PostfixSelfExpressionImpl: PostfixExpressionImpl,
+ PostfixSelfExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPostfixSelfExpression(self)
+  }
+}
+
 class PrefixExpressionImpl: ExpressionImpl,
  PrefixExpression {
 

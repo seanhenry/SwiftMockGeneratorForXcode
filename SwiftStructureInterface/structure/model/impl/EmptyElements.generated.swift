@@ -398,6 +398,12 @@ extension PostfixExpressionImpl {
   }
 }
 
+extension PostfixSelfExpressionImpl {
+  static func emptyPostfixSelfExpression() -> PostfixSelfExpression {
+    return PostfixSelfExpressionImpl(children: [])
+  }
+}
+
 extension PrefixExpressionImpl {
   static func emptyPrefixExpression() -> PrefixExpression {
     return PrefixExpressionImpl(children: [])

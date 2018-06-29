@@ -750,6 +750,18 @@ class PostfixExpressionProxy: ExpressionProxy,
   }
 }
 
+class PostfixSelfExpressionProxy: PostfixExpressionProxy,
+ PostfixSelfExpression {
+
+  init(_ element: PostfixSelfExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPostfixSelfExpression(self)
+  }
+}
+
 class PrefixExpressionProxy: ExpressionProxy,
  PrefixExpression {
 

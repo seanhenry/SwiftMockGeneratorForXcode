@@ -222,6 +222,9 @@ var testPlaygroundLiteralExpression: PlaygroundLiteralExpression {
 var testPostfixExpression: PostfixExpression {
   return TestElements.instance.testPostfixExpression!
 }
+var testPostfixSelfExpression: PostfixSelfExpression {
+  return TestElements.instance.testPostfixSelfExpression!
+}
 var testPrefixExpression: PrefixExpression {
   return TestElements.instance.testPrefixExpression!
 }
@@ -380,6 +383,7 @@ var allTestElements: [Element] {
     testPlaygroundLiteralArguments,
     testPlaygroundLiteralExpression,
     testPostfixExpression,
+    testPostfixSelfExpression,
     testPrefixExpression,
     testPrimaryExpression,
     testProtocolCompositionType,
@@ -485,6 +489,7 @@ private class TestElements {
   private(set) var testPlaygroundLiteralArguments: PlaygroundLiteralArguments!
   private(set) var testPlaygroundLiteralExpression: PlaygroundLiteralExpression!
   private(set) var testPostfixExpression: PostfixExpression!
+  private(set) var testPostfixSelfExpression: PostfixSelfExpression!
   private(set) var testPrefixExpression: PrefixExpression!
   private(set) var testPrimaryExpression: PrimaryExpression!
   private(set) var testProtocolCompositionType: ProtocolCompositionType!
@@ -852,6 +857,11 @@ private class TestElements {
     override func visitPostfixExpression(_ element: PostfixExpression) {
       elements.testPostfixExpression = element
       super.visitPostfixExpression(element)
+    }
+
+    override func visitPostfixSelfExpression(_ element: PostfixSelfExpression) {
+      elements.testPostfixSelfExpression = element
+      super.visitPostfixSelfExpression(element)
     }
 
     override func visitPrefixExpression(_ element: PrefixExpression) {

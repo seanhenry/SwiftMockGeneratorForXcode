@@ -377,6 +377,9 @@ extension PlaygroundLiteralExpression {
 extension PostfixExpression {
 
 }
+extension PostfixSelfExpression {
+
+}
 extension PrefixExpression {
 
 }

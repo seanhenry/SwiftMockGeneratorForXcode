@@ -355,7 +355,12 @@ class Parser<ResultType> {
 
     // TODO: parse all expressions
     func parsePostfixExpression() throws -> PostfixExpression {
-        return try parse(SelfExpressionParser.self)
+        if let expression = try? parse(SelfExpressionParser.self) {
+            return expression
+        } else if let expression = try? parse(IdentifierPrimaryExpressionParser.self) {
+            return expression
+        }
+        throw LookAheadError()
     }
 
     func parsePostfixOperator() throws -> Element {

@@ -270,6 +270,10 @@ open class ElementVisitor {
     visitExpression(element)
   }
 
+  open func visitPostfixSelfExpression(_ element: PostfixSelfExpression) {
+    visitPostfixExpression(element)
+  }
+
   open func visitPrefixExpression(_ element: PrefixExpression) {
     visitExpression(element)
   }

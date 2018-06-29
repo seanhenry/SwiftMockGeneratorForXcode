@@ -275,6 +275,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = PostfixExpressionProxy(element)
   }
 
+  override func visitPostfixSelfExpression(_ element: PostfixSelfExpression) {
+    proxy = PostfixSelfExpressionProxy(element)
+  }
+
   override func visitPrefixExpression(_ element: PrefixExpression) {
     proxy = PrefixExpressionProxy(element)
   }
