@@ -335,6 +335,9 @@ extension LiteralExpression {
 extension MutationModifier {
 
 }
+extension OperatorPostfixExpression {
+
+}
 extension OptionalType {
 
   public var type: Type {

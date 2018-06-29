@@ -646,6 +646,18 @@ class MutationModifierProxy: DeclarationModifierProxy,
   }
 }
 
+class OperatorPostfixExpressionProxy: PostfixExpressionProxy,
+ OperatorPostfixExpression {
+
+  init(_ element: OperatorPostfixExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitOperatorPostfixExpression(self)
+  }
+}
+
 class OptionalTypeProxy: TypeProxy,
  OptionalType {
 

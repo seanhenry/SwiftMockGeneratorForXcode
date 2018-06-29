@@ -600,6 +600,18 @@ class MutationModifierImpl: DeclarationModifierImpl,
   }
 }
 
+class OperatorPostfixExpressionImpl: PostfixExpressionImpl,
+ OperatorPostfixExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitOperatorPostfixExpression(self)
+  }
+}
+
 class OptionalTypeImpl: TypeImpl,
  OptionalType {
 

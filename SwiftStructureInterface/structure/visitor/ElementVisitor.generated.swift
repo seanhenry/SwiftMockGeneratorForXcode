@@ -234,6 +234,10 @@ open class ElementVisitor {
     visitDeclarationModifier(element)
   }
 
+  open func visitOperatorPostfixExpression(_ element: OperatorPostfixExpression) {
+    visitPostfixExpression(element)
+  }
+
   open func visitOptionalType(_ element: OptionalType) {
     visitType(element)
   }

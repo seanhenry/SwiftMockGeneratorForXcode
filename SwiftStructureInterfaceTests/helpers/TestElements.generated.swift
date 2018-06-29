@@ -195,6 +195,9 @@ var testLiteralExpression: LiteralExpression {
 var testMutationModifier: MutationModifier {
   return TestElements.instance.testMutationModifier!
 }
+var testOperatorPostfixExpression: OperatorPostfixExpression {
+  return TestElements.instance.testOperatorPostfixExpression!
+}
 var testOptionalType: OptionalType {
   return TestElements.instance.testOptionalType!
 }
@@ -368,6 +371,7 @@ var allTestElements: [Element] {
     testLeafNode,
     testLiteralExpression,
     testMutationModifier,
+    testOperatorPostfixExpression,
     testOptionalType,
     testParameter,
     testParameterClause,
@@ -472,6 +476,7 @@ private class TestElements {
   private(set) var testLeafNode: LeafNode!
   private(set) var testLiteralExpression: LiteralExpression!
   private(set) var testMutationModifier: MutationModifier!
+  private(set) var testOperatorPostfixExpression: OperatorPostfixExpression!
   private(set) var testOptionalType: OptionalType!
   private(set) var testParameter: Parameter!
   private(set) var testParameterClause: ParameterClause!
@@ -802,6 +807,11 @@ private class TestElements {
     override func visitMutationModifier(_ element: MutationModifier) {
       elements.testMutationModifier = element
       super.visitMutationModifier(element)
+    }
+
+    override func visitOperatorPostfixExpression(_ element: OperatorPostfixExpression) {
+      elements.testOperatorPostfixExpression = element
+      super.visitOperatorPostfixExpression(element)
     }
 
     override func visitOptionalType(_ element: OptionalType) {

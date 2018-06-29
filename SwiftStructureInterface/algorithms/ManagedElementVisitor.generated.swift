@@ -239,6 +239,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = MutationModifierProxy(element)
   }
 
+  override func visitOperatorPostfixExpression(_ element: OperatorPostfixExpression) {
+    proxy = OperatorPostfixExpressionProxy(element)
+  }
+
   override func visitOptionalType(_ element: OptionalType) {
     proxy = OptionalTypeProxy(element)
   }

@@ -344,6 +344,12 @@ extension MutationModifierImpl {
   }
 }
 
+extension OperatorPostfixExpressionImpl {
+  static func emptyOperatorPostfixExpression() -> OperatorPostfixExpression {
+    return OperatorPostfixExpressionImpl(children: [])
+  }
+}
+
 extension OptionalTypeImpl {
   static func emptyOptionalType() -> OptionalType {
     return OptionalTypeImpl(children: [])

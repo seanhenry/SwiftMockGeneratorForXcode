@@ -358,6 +358,13 @@ class Parser<ResultType> {
         return try parse(SelfExpressionParser.self)
     }
 
+    func parsePostfixOperator() throws -> Element {
+        if case .postfixOperator(_) = peekAtNextKind() {
+            return try parseOperator()
+        }
+        throw LookAheadError()
+    }
+
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {
         return try P(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
     }
