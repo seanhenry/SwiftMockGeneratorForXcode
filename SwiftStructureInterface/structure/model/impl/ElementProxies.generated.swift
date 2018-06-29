@@ -308,6 +308,18 @@ class FileProxy: ElementProxy, File {
   }
 }
 
+class ForcedValueExpressionProxy: PostfixExpressionProxy,
+ ForcedValueExpression {
+
+  init(_ element: ForcedValueExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitForcedValueExpression(self)
+  }
+}
+
 class FunctionCallArgumentProxy: ElementProxy, FunctionCallArgument {
 
   init(_ element: FunctionCallArgument) {

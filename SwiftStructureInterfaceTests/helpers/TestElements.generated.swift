@@ -108,6 +108,9 @@ var testExpression: Expression {
 var testFile: File {
   return TestElements.instance.testFile!
 }
+var testForcedValueExpression: ForcedValueExpression {
+  return TestElements.instance.testForcedValueExpression!
+}
 var testFunctionCallArgument: FunctionCallArgument {
   return TestElements.instance.testFunctionCallArgument!
 }
@@ -345,6 +348,7 @@ var allTestElements: [Element] {
     testElement,
     testExpression,
     testFile,
+    testForcedValueExpression,
     testFunctionCallArgument,
     testFunctionCallArgumentClause,
     testFunctionCallArgumentList,
@@ -451,6 +455,7 @@ private class TestElements {
   private(set) var testElement: Element!
   private(set) var testExpression: Expression!
   private(set) var testFile: File!
+  private(set) var testForcedValueExpression: ForcedValueExpression!
   private(set) var testFunctionCallArgument: FunctionCallArgument!
   private(set) var testFunctionCallArgumentClause: FunctionCallArgumentClause!
   private(set) var testFunctionCallArgumentList: FunctionCallArgumentList!
@@ -667,6 +672,11 @@ private class TestElements {
     override func visitFile(_ element: File) {
       elements.testFile = element
       super.visitFile(element)
+    }
+
+    override func visitForcedValueExpression(_ element: ForcedValueExpression) {
+      elements.testForcedValueExpression = element
+      super.visitForcedValueExpression(element)
     }
 
     override func visitFunctionCallArgument(_ element: FunctionCallArgument) {

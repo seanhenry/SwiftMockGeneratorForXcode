@@ -170,6 +170,12 @@ extension FileImpl {
   }
 }
 
+extension ForcedValueExpressionImpl {
+  static func emptyForcedValueExpression() -> ForcedValueExpression {
+    return ForcedValueExpressionImpl(children: [])
+  }
+}
+
 extension FunctionCallArgumentImpl {
   static func emptyFunctionCallArgument() -> FunctionCallArgument {
     return FunctionCallArgumentImpl(children: [])

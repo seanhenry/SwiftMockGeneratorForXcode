@@ -118,6 +118,10 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitForcedValueExpression(_ element: ForcedValueExpression) {
+    visitPostfixExpression(element)
+  }
+
   open func visitFunctionCallArgument(_ element: FunctionCallArgument) {
     visitElement(element)
   }

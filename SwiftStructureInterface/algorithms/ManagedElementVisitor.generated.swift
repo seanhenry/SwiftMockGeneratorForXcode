@@ -123,6 +123,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = FileProxy(element)
   }
 
+  override func visitForcedValueExpression(_ element: ForcedValueExpression) {
+    proxy = ForcedValueExpressionProxy(element)
+  }
+
   override func visitFunctionCallArgument(_ element: FunctionCallArgument) {
     proxy = FunctionCallArgumentProxy(element)
   }

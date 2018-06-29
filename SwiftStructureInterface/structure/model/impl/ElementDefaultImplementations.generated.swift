@@ -164,6 +164,9 @@ extension DictionaryType {
 extension Expression {
 
 }
+extension ForcedValueExpression {
+
+}
 extension FunctionCallArgument {
 
 }

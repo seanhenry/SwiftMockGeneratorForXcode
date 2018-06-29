@@ -289,6 +289,18 @@ class ExpressionImpl: ElementImpl, Expression {
   }
 }
 
+class ForcedValueExpressionImpl: PostfixExpressionImpl,
+ ForcedValueExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitForcedValueExpression(self)
+  }
+}
+
 class FunctionCallArgumentImpl: ElementImpl, FunctionCallArgument {
 
   override init(children: [Element]) {
