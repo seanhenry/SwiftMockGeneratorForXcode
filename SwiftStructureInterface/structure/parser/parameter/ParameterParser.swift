@@ -28,12 +28,4 @@ class ParameterParser: Parser<Parameter> {
         }
         throw LookAheadError()
     }
-
-    private func parseVarArgs() throws -> Element {
-        if isPostfixOperator("...") {
-            advance()
-            return LeafNodeImpl(text: "...")
-        }
-        throw LookAheadError()
-    }
 }

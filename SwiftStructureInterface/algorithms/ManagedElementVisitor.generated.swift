@@ -47,8 +47,40 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = AttributesProxy(element)
   }
 
+  override func visitCaptureList(_ element: CaptureList) {
+    proxy = CaptureListProxy(element)
+  }
+
+  override func visitCaptureListItem(_ element: CaptureListItem) {
+    proxy = CaptureListItemProxy(element)
+  }
+
+  override func visitCaptureListItems(_ element: CaptureListItems) {
+    proxy = CaptureListItemsProxy(element)
+  }
+
   override func visitClassDeclaration(_ element: ClassDeclaration) {
     proxy = ClassDeclarationProxy(element)
+  }
+
+  override func visitClosureExpression(_ element: ClosureExpression) {
+    proxy = ClosureExpressionProxy(element)
+  }
+
+  override func visitClosureParameter(_ element: ClosureParameter) {
+    proxy = ClosureParameterProxy(element)
+  }
+
+  override func visitClosureParameterClause(_ element: ClosureParameterClause) {
+    proxy = ClosureParameterClauseProxy(element)
+  }
+
+  override func visitClosureParameterList(_ element: ClosureParameterList) {
+    proxy = ClosureParameterListProxy(element)
+  }
+
+  override func visitClosureSignature(_ element: ClosureSignature) {
+    proxy = ClosureSignatureProxy(element)
   }
 
   override func visitCodeBlock(_ element: CodeBlock) {
@@ -137,6 +169,10 @@ class ManagedElementVisitor: ElementVisitor {
 
   override func visitIdentifier(_ element: Identifier) {
     proxy = IdentifierProxy(element)
+  }
+
+  override func visitIdentifierList(_ element: IdentifierList) {
+    proxy = IdentifierListProxy(element)
   }
 
   override func visitIdentifierPrimaryExpression(_ element: IdentifierPrimaryExpression) {

@@ -47,11 +47,20 @@ class Parser<ResultType> {
     }
 
     func peekAtNextIdentifier() -> String? {
-        guard let identifier = peekAtNextKind().namedIdentifier else { return nil }
+        let next = peekAtNextKind()
+        guard isIdentifier(next),
+              let identifier = next.namedIdentifier else { return nil }
         switch identifier {
             case .backtickedName(let escaped): return "`\(escaped)`"
             default: return identifier.text
         }
+    }
+
+    private func isIdentifier(_ kind: Token.Kind) -> Bool {
+        if case .identifier(_, _) = kind {
+            return true
+        }
+        return kind == .underscore
     }
 
     func isNext(_ kind: Token.Kind) -> Bool {
@@ -248,6 +257,10 @@ class Parser<ResultType> {
         return try parse(WhitespaceParser.self)
     }
 
+    func parseIdentifierList() throws -> IdentifierList {
+        return try parse(IdentifierListParser.self)
+    }
+
     func parseIdentifier() throws -> Identifier {
         if isIdentifierNext() {
             return try parse(IdentifierParser.self)
@@ -270,13 +283,14 @@ class Parser<ResultType> {
     }
 
     private func isIdentifierNext(_ strings: [String] = []) -> Bool {
-        if isNext(.underscore) {
+        guard let identifier = peekAtNextIdentifier() else {
+            return false
+        }
+        if strings.isEmpty {
             return true
-        } else if strings.isEmpty {
-            return peekAtNextIdentifier() != nil
         }
         return strings.contains { string in
-            return .identifier(string, false) ~= peekAtNextKind()
+            return string == identifier
         }
     }
 
@@ -313,11 +327,23 @@ class Parser<ResultType> {
 
     func parseExpression() throws -> Expression {
         // TODO: Parse all expressions here!
-        return try parse(IdentifierPrimaryExpressionParser.self)
+        if let expression = try? parse(IdentifierPrimaryExpressionParser.self) {
+            return expression
+        } else if let expression = try? parse(SelfExpressionParser.self) {
+            return expression
+        }
+        throw LookAheadError()
     }
 
     func parseFunctionCallArgumentList() throws -> FunctionCallArgumentList {
         return try parse(FunctionCallArgumentListParser.self)
+    }
+
+    func parseVarArgs() throws -> Element {
+        if case .postfixOperator("...") = peekAtNextKind() {
+            return try parseOperator()
+        }
+        throw LookAheadError()
     }
 
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {

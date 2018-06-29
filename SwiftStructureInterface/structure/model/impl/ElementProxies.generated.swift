@@ -95,6 +95,39 @@ class AttributesProxy: ElementProxy, Attributes {
   }
 }
 
+class CaptureListProxy: ElementProxy, CaptureList {
+
+  init(_ element: CaptureList) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitCaptureList(self)
+  }
+}
+
+class CaptureListItemProxy: ElementProxy, CaptureListItem {
+
+  init(_ element: CaptureListItem) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitCaptureListItem(self)
+  }
+}
+
+class CaptureListItemsProxy: ElementProxy, CaptureListItems {
+
+  init(_ element: CaptureListItems) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitCaptureListItems(self)
+  }
+}
+
 class ClassDeclarationProxy: ElementProxy, ClassDeclaration {
 
   init(_ element: ClassDeclaration) {
@@ -103,6 +136,62 @@ class ClassDeclarationProxy: ElementProxy, ClassDeclaration {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitClassDeclaration(self)
+  }
+}
+
+class ClosureExpressionProxy: PrimaryExpressionProxy,
+ ClosureExpression {
+
+  init(_ element: ClosureExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitClosureExpression(self)
+  }
+}
+
+class ClosureParameterProxy: ElementProxy, ClosureParameter {
+
+  init(_ element: ClosureParameter) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitClosureParameter(self)
+  }
+}
+
+class ClosureParameterClauseProxy: ElementProxy, ClosureParameterClause {
+
+  init(_ element: ClosureParameterClause) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitClosureParameterClause(self)
+  }
+}
+
+class ClosureParameterListProxy: ElementProxy, ClosureParameterList {
+
+  init(_ element: ClosureParameterList) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitClosureParameterList(self)
+  }
+}
+
+class ClosureSignatureProxy: ElementProxy, ClosureSignature {
+
+  init(_ element: ClosureSignature) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitClosureSignature(self)
   }
 }
 
@@ -350,6 +439,17 @@ class IdentifierProxy: LeafNodeProxy,
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitIdentifier(self)
+  }
+}
+
+class IdentifierListProxy: ElementProxy, IdentifierList {
+
+  init(_ element: IdentifierList) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitIdentifierList(self)
   }
 }
 

@@ -48,8 +48,32 @@ var testAttribute: Attribute {
 var testAttributes: Attributes {
   return TestElements.instance.testAttributes!
 }
+var testCaptureList: CaptureList {
+  return TestElements.instance.testCaptureList!
+}
+var testCaptureListItem: CaptureListItem {
+  return TestElements.instance.testCaptureListItem!
+}
+var testCaptureListItems: CaptureListItems {
+  return TestElements.instance.testCaptureListItems!
+}
 var testClassDeclaration: ClassDeclaration {
   return TestElements.instance.testClassDeclaration!
+}
+var testClosureExpression: ClosureExpression {
+  return TestElements.instance.testClosureExpression!
+}
+var testClosureParameter: ClosureParameter {
+  return TestElements.instance.testClosureParameter!
+}
+var testClosureParameterClause: ClosureParameterClause {
+  return TestElements.instance.testClosureParameterClause!
+}
+var testClosureParameterList: ClosureParameterList {
+  return TestElements.instance.testClosureParameterList!
+}
+var testClosureSignature: ClosureSignature {
+  return TestElements.instance.testClosureSignature!
 }
 var testCodeBlock: CodeBlock {
   return TestElements.instance.testCodeBlock!
@@ -119,6 +143,9 @@ var testGetterSetterKeywordClause: GetterSetterKeywordClause {
 }
 var testIdentifier: Identifier {
   return TestElements.instance.testIdentifier!
+}
+var testIdentifierList: IdentifierList {
+  return TestElements.instance.testIdentifierList!
 }
 var testIdentifierPrimaryExpression: IdentifierPrimaryExpression {
   return TestElements.instance.testIdentifierPrimaryExpression!
@@ -283,7 +310,15 @@ var allTestElements: [Element] {
     testAssociatedTypeDeclaration,
     testAttribute,
     testAttributes,
+    testCaptureList,
+    testCaptureListItem,
+    testCaptureListItems,
     testClassDeclaration,
+    testClosureExpression,
+    testClosureParameter,
+    testClosureParameterClause,
+    testClosureParameterList,
+    testClosureSignature,
     testCodeBlock,
     testConformanceRequirement,
     testDeclaration,
@@ -307,6 +342,7 @@ var allTestElements: [Element] {
     testGetterSetterKeywordBlock,
     testGetterSetterKeywordClause,
     testIdentifier,
+    testIdentifierList,
     testIdentifierPrimaryExpression,
     testImplicitMemberExpression,
     testInOutExpression,
@@ -375,7 +411,15 @@ private class TestElements {
   private(set) var testAssociatedTypeDeclaration: AssociatedTypeDeclaration!
   private(set) var testAttribute: Attribute!
   private(set) var testAttributes: Attributes!
+  private(set) var testCaptureList: CaptureList!
+  private(set) var testCaptureListItem: CaptureListItem!
+  private(set) var testCaptureListItems: CaptureListItems!
   private(set) var testClassDeclaration: ClassDeclaration!
+  private(set) var testClosureExpression: ClosureExpression!
+  private(set) var testClosureParameter: ClosureParameter!
+  private(set) var testClosureParameterClause: ClosureParameterClause!
+  private(set) var testClosureParameterList: ClosureParameterList!
+  private(set) var testClosureSignature: ClosureSignature!
   private(set) var testCodeBlock: CodeBlock!
   private(set) var testConformanceRequirement: ConformanceRequirement!
   private(set) var testDeclaration: Declaration!
@@ -399,6 +443,7 @@ private class TestElements {
   private(set) var testGetterSetterKeywordBlock: GetterSetterKeywordBlock!
   private(set) var testGetterSetterKeywordClause: GetterSetterKeywordClause!
   private(set) var testIdentifier: Identifier!
+  private(set) var testIdentifierList: IdentifierList!
   private(set) var testIdentifierPrimaryExpression: IdentifierPrimaryExpression!
   private(set) var testImplicitMemberExpression: ImplicitMemberExpression!
   private(set) var testInOutExpression: InOutExpression!
@@ -499,9 +544,49 @@ private class TestElements {
       super.visitAttributes(element)
     }
 
+    override func visitCaptureList(_ element: CaptureList) {
+      elements.testCaptureList = element
+      super.visitCaptureList(element)
+    }
+
+    override func visitCaptureListItem(_ element: CaptureListItem) {
+      elements.testCaptureListItem = element
+      super.visitCaptureListItem(element)
+    }
+
+    override func visitCaptureListItems(_ element: CaptureListItems) {
+      elements.testCaptureListItems = element
+      super.visitCaptureListItems(element)
+    }
+
     override func visitClassDeclaration(_ element: ClassDeclaration) {
       elements.testClassDeclaration = element
       super.visitClassDeclaration(element)
+    }
+
+    override func visitClosureExpression(_ element: ClosureExpression) {
+      elements.testClosureExpression = element
+      super.visitClosureExpression(element)
+    }
+
+    override func visitClosureParameter(_ element: ClosureParameter) {
+      elements.testClosureParameter = element
+      super.visitClosureParameter(element)
+    }
+
+    override func visitClosureParameterClause(_ element: ClosureParameterClause) {
+      elements.testClosureParameterClause = element
+      super.visitClosureParameterClause(element)
+    }
+
+    override func visitClosureParameterList(_ element: ClosureParameterList) {
+      elements.testClosureParameterList = element
+      super.visitClosureParameterList(element)
+    }
+
+    override func visitClosureSignature(_ element: ClosureSignature) {
+      elements.testClosureSignature = element
+      super.visitClosureSignature(element)
     }
 
     override func visitCodeBlock(_ element: CodeBlock) {
@@ -617,6 +702,11 @@ private class TestElements {
     override func visitIdentifier(_ element: Identifier) {
       elements.testIdentifier = element
       super.visitIdentifier(element)
+    }
+
+    override func visitIdentifierList(_ element: IdentifierList) {
+      elements.testIdentifierList = element
+      super.visitIdentifierList(element)
     }
 
     override func visitIdentifierPrimaryExpression(_ element: IdentifierPrimaryExpression) {

@@ -21,6 +21,10 @@ class IdentifierParserTests: XCTestCase {
         XCTAssertThrowsError(try parse("()"))
     }
 
+    func test_shouldNotParseKeyword() {
+        XCTAssertThrowsError(try parse("in"))
+    }
+
     func test_shouldParseEscapedIdentifier() {
         XCTAssertEqual(try parse("`func`").text, "`func`")
     }

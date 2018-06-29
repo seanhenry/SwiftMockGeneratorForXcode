@@ -50,9 +50,57 @@ extension AttributesImpl {
   }
 }
 
+extension CaptureListImpl {
+  static func emptyCaptureList() -> CaptureList {
+    return CaptureListImpl(children: [])
+  }
+}
+
+extension CaptureListItemImpl {
+  static func emptyCaptureListItem() -> CaptureListItem {
+    return CaptureListItemImpl(children: [])
+  }
+}
+
+extension CaptureListItemsImpl {
+  static func emptyCaptureListItems() -> CaptureListItems {
+    return CaptureListItemsImpl(children: [])
+  }
+}
+
 extension ClassDeclarationImpl {
   static func emptyClassDeclaration() -> ClassDeclaration {
     return ClassDeclarationImpl(children: [])
+  }
+}
+
+extension ClosureExpressionImpl {
+  static func emptyClosureExpression() -> ClosureExpression {
+    return ClosureExpressionImpl(children: [])
+  }
+}
+
+extension ClosureParameterImpl {
+  static func emptyClosureParameter() -> ClosureParameter {
+    return ClosureParameterImpl(children: [])
+  }
+}
+
+extension ClosureParameterClauseImpl {
+  static func emptyClosureParameterClause() -> ClosureParameterClause {
+    return ClosureParameterClauseImpl(children: [])
+  }
+}
+
+extension ClosureParameterListImpl {
+  static func emptyClosureParameterList() -> ClosureParameterList {
+    return ClosureParameterListImpl(children: [])
+  }
+}
+
+extension ClosureSignatureImpl {
+  static func emptyClosureSignature() -> ClosureSignature {
+    return ClosureSignatureImpl(children: [])
   }
 }
 
@@ -191,6 +239,12 @@ extension GetterSetterKeywordClauseImpl {
 extension IdentifierImpl {
   static func emptyIdentifier() -> Identifier {
     return IdentifierImpl(text: "")
+  }
+}
+
+extension IdentifierListImpl {
+  static func emptyIdentifierList() -> IdentifierList {
+    return IdentifierListImpl(children: [])
   }
 }
 

@@ -19,11 +19,11 @@ class WhitespaceParserTests: XCTestCase {
 
     // TODO: lexer does not support \r on its own
 
-    func test_shouldCalculateCarriageReturn() {
+    func test_shouldCalculateCarriageReturn() throws {
         createFileParser("func\r\na()")
         parseKeyword()
         XCTAssertEqual(parseWhitespace().text, "\r")
-        XCTAssertEqual(parser.peekAtNextIdentifier(), "a")
+        XCTAssertEqual(try parser.parseIdentifier().text, "a")
     }
 
     func test_shouldCalculateDoubleWhitespace() {

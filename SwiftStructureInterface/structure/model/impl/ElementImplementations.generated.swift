@@ -91,6 +91,39 @@ class AttributesImpl: ElementImpl, Attributes {
   }
 }
 
+class CaptureListImpl: ElementImpl, CaptureList {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitCaptureList(self)
+  }
+}
+
+class CaptureListItemImpl: ElementImpl, CaptureListItem {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitCaptureListItem(self)
+  }
+}
+
+class CaptureListItemsImpl: ElementImpl, CaptureListItems {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitCaptureListItems(self)
+  }
+}
+
 class ClassDeclarationImpl: ElementImpl, ClassDeclaration {
 
   override init(children: [Element]) {
@@ -99,6 +132,62 @@ class ClassDeclarationImpl: ElementImpl, ClassDeclaration {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitClassDeclaration(self)
+  }
+}
+
+class ClosureExpressionImpl: PrimaryExpressionImpl,
+ ClosureExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitClosureExpression(self)
+  }
+}
+
+class ClosureParameterImpl: ElementImpl, ClosureParameter {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitClosureParameter(self)
+  }
+}
+
+class ClosureParameterClauseImpl: ElementImpl, ClosureParameterClause {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitClosureParameterClause(self)
+  }
+}
+
+class ClosureParameterListImpl: ElementImpl, ClosureParameterList {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitClosureParameterList(self)
+  }
+}
+
+class ClosureSignatureImpl: ElementImpl, ClosureSignature {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitClosureSignature(self)
   }
 }
 
@@ -323,6 +412,17 @@ class IdentifierImpl: LeafNodeImpl,
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitIdentifier(self)
+  }
+}
+
+class IdentifierListImpl: ElementImpl, IdentifierList {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitIdentifierList(self)
   }
 }
 

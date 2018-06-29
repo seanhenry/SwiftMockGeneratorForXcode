@@ -42,8 +42,40 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitCaptureList(_ element: CaptureList) {
+    visitElement(element)
+  }
+
+  open func visitCaptureListItem(_ element: CaptureListItem) {
+    visitElement(element)
+  }
+
+  open func visitCaptureListItems(_ element: CaptureListItems) {
+    visitElement(element)
+  }
+
   open func visitClassDeclaration(_ element: ClassDeclaration) {
     visitTypeDeclaration(element)
+  }
+
+  open func visitClosureExpression(_ element: ClosureExpression) {
+    visitPrimaryExpression(element)
+  }
+
+  open func visitClosureParameter(_ element: ClosureParameter) {
+    visitElement(element)
+  }
+
+  open func visitClosureParameterClause(_ element: ClosureParameterClause) {
+    visitElement(element)
+  }
+
+  open func visitClosureParameterList(_ element: ClosureParameterList) {
+    visitElement(element)
+  }
+
+  open func visitClosureSignature(_ element: ClosureSignature) {
+    visitElement(element)
   }
 
   open func visitCodeBlock(_ element: CodeBlock) {
@@ -132,6 +164,10 @@ open class ElementVisitor {
 
   open func visitIdentifier(_ element: Identifier) {
     visitLeafNode(element)
+  }
+
+  open func visitIdentifierList(_ element: IdentifierList) {
+    visitElement(element)
   }
 
   open func visitIdentifierPrimaryExpression(_ element: IdentifierPrimaryExpression) {

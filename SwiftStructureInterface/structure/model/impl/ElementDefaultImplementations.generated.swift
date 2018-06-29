@@ -50,10 +50,70 @@ extension Attributes {
     return children.compactMap { $0 as? Attribute }
   }
 }
+extension CaptureList {
+
+  public var captureListItems: CaptureListItems {
+    return first(CaptureListItems.self) ?? CaptureListItemsImpl.emptyCaptureListItems()
+  }
+}
+extension CaptureListItem {
+
+  public var expression: Expression {
+    return first(Expression.self) ?? ExpressionImpl.emptyExpression()
+  }
+}
+extension CaptureListItems {
+
+  public var items: [CaptureListItem] {
+    return children.compactMap { $0 as? CaptureListItem }
+  }
+}
 extension ClassDeclaration {
 
   public var genericParameterClause: GenericParameterClause {
     return first(GenericParameterClause.self) ?? GenericParameterClauseImpl.emptyGenericParameterClause()
+  }
+}
+extension ClosureExpression {
+
+  public var closureSignature: ClosureSignature? {
+    return first(ClosureSignature.self)
+  }
+  public var statements: [Element] {
+    return children.compactMap { $0 as? Element }
+  }
+}
+extension ClosureParameter {
+
+  public var typeAnnotation: TypeAnnotation? {
+    return first(TypeAnnotation.self)
+  }
+}
+extension ClosureParameterClause {
+
+  public var closureParameterList: ClosureParameterList? {
+    return first(ClosureParameterList.self)
+  }
+  public var identifierList: IdentifierList? {
+    return first(IdentifierList.self)
+  }
+}
+extension ClosureParameterList {
+
+  public var closureParameters: [ClosureParameter] {
+    return children.compactMap { $0 as? ClosureParameter }
+  }
+}
+extension ClosureSignature {
+
+  public var captureList: CaptureList? {
+    return first(CaptureList.self)
+  }
+  public var closureParameterClause: ClosureParameterClause {
+    return first(ClosureParameterClause.self) ?? ClosureParameterClauseImpl.emptyClosureParameterClause()
+  }
+  public var functionResult: FunctionResult? {
+    return first(FunctionResult.self)
   }
 }
 extension CodeBlock {
@@ -187,6 +247,12 @@ extension GetterSetterKeywordClause {
 }
 extension Identifier {
 
+}
+extension IdentifierList {
+
+  public var identifiers: [Identifier] {
+    return children.compactMap { $0 as? Identifier }
+  }
 }
 extension IdentifierPrimaryExpression {
 
