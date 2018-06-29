@@ -190,6 +190,25 @@ class ParseBuilderTests: XCTestCase {
         XCTAssertEqual(children[0].text, ",")
     }
 
+    func test_shouldAbandonParsingWhenCheckFails() {
+        XCTAssertThrowsError(try builder(",,")
+                .optional { try self.parser.parsePunctuation(.comma) }
+                .check { throw TestError() }
+                .optional { try self.parser.parsePunctuation(.comma) }
+                .build())
+    }
+
+    func test_shouldContinueParsingWhenCheckSucceeds() throws {
+        let children = try builder(",,")
+                .optional { try self.parser.parsePunctuation(.comma) }
+                .check { /* succeed */ }
+                .optional { try self.parser.parsePunctuation(.comma) }
+                .build()
+        XCTAssertEqual(children.count, 2)
+        XCTAssertEqual(children[0].text, ",")
+        XCTAssertEqual(children[1].text, ",")
+    }
+
     private func builder(_ input: String) -> ParserBuilder {
         parser = createParser(input, FileParser.self)
         return parser.builder()

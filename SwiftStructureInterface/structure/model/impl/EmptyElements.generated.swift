@@ -176,9 +176,21 @@ extension FunctionCallArgumentImpl {
   }
 }
 
+extension FunctionCallArgumentClauseImpl {
+  static func emptyFunctionCallArgumentClause() -> FunctionCallArgumentClause {
+    return FunctionCallArgumentClauseImpl(children: [])
+  }
+}
+
 extension FunctionCallArgumentListImpl {
   static func emptyFunctionCallArgumentList() -> FunctionCallArgumentList {
     return FunctionCallArgumentListImpl(children: [])
+  }
+}
+
+extension FunctionCallExpressionImpl {
+  static func emptyFunctionCallExpression() -> FunctionCallExpression {
+    return FunctionCallExpressionImpl(children: [])
   }
 }
 
@@ -371,6 +383,12 @@ extension PlaygroundLiteralArgumentsImpl {
 extension PlaygroundLiteralExpressionImpl {
   static func emptyPlaygroundLiteralExpression() -> PlaygroundLiteralExpression {
     return PlaygroundLiteralExpressionImpl(children: [])
+  }
+}
+
+extension PostfixExpressionImpl {
+  static func emptyPostfixExpression() -> PostfixExpression {
+    return PostfixExpressionImpl(children: [])
   }
 }
 

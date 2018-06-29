@@ -153,8 +153,8 @@ class ClosureExpressionParserTests: XCTestCase {
 //    func test_shouldParseClosureWithStatements() throws {
 //        let text = """
 //        {
-//        func a() {}
-//        self.expression
+//        var a = ""
+//        self.expression()
 //        }
 //        """
 //        let expression = try parse(text)

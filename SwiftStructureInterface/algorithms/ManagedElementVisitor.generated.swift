@@ -127,8 +127,16 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = FunctionCallArgumentProxy(element)
   }
 
+  override func visitFunctionCallArgumentClause(_ element: FunctionCallArgumentClause) {
+    proxy = FunctionCallArgumentClauseProxy(element)
+  }
+
   override func visitFunctionCallArgumentList(_ element: FunctionCallArgumentList) {
     proxy = FunctionCallArgumentListProxy(element)
+  }
+
+  override func visitFunctionCallExpression(_ element: FunctionCallExpression) {
+    proxy = FunctionCallExpressionProxy(element)
   }
 
   override func visitFunctionDeclaration(_ element: FunctionDeclaration) {
@@ -257,6 +265,10 @@ class ManagedElementVisitor: ElementVisitor {
 
   override func visitPlaygroundLiteralExpression(_ element: PlaygroundLiteralExpression) {
     proxy = PlaygroundLiteralExpressionProxy(element)
+  }
+
+  override func visitPostfixExpression(_ element: PostfixExpression) {
+    proxy = PostfixExpressionProxy(element)
   }
 
   override func visitPrefixExpression(_ element: PrefixExpression) {

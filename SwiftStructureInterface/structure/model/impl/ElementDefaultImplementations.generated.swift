@@ -167,10 +167,28 @@ extension Expression {
 extension FunctionCallArgument {
 
 }
+extension FunctionCallArgumentClause {
+
+  public var functionCallArgumentList: FunctionCallArgumentList? {
+    return first(FunctionCallArgumentList.self)
+  }
+}
 extension FunctionCallArgumentList {
 
   public var arguments: [FunctionCallArgument] {
     return children.compactMap { $0 as? FunctionCallArgument }
+  }
+}
+extension FunctionCallExpression {
+
+  public var postfixExpression: PostfixExpression {
+    return first(PostfixExpression.self) ?? PostfixExpressionImpl.emptyPostfixExpression()
+  }
+  public var functionCallArgumentClause: FunctionCallArgumentClause? {
+    return first(FunctionCallArgumentClause.self)
+  }
+  public var trailingClosure: ClosureExpression? {
+    return first(ClosureExpression.self)
   }
 }
 extension FunctionDeclaration {
@@ -352,6 +370,9 @@ extension PlaygroundLiteralExpression {
   public var playgroundLiteralArguments: PlaygroundLiteralArguments {
     return first(PlaygroundLiteralArguments.self) ?? PlaygroundLiteralArgumentsImpl.emptyPlaygroundLiteralArguments()
   }
+}
+extension PostfixExpression {
+
 }
 extension PrefixExpression {
 

@@ -111,8 +111,14 @@ var testFile: File {
 var testFunctionCallArgument: FunctionCallArgument {
   return TestElements.instance.testFunctionCallArgument!
 }
+var testFunctionCallArgumentClause: FunctionCallArgumentClause {
+  return TestElements.instance.testFunctionCallArgumentClause!
+}
 var testFunctionCallArgumentList: FunctionCallArgumentList {
   return TestElements.instance.testFunctionCallArgumentList!
+}
+var testFunctionCallExpression: FunctionCallExpression {
+  return TestElements.instance.testFunctionCallExpression!
 }
 var testFunctionDeclaration: FunctionDeclaration {
   return TestElements.instance.testFunctionDeclaration!
@@ -209,6 +215,9 @@ var testPlaygroundLiteralArguments: PlaygroundLiteralArguments {
 }
 var testPlaygroundLiteralExpression: PlaygroundLiteralExpression {
   return TestElements.instance.testPlaygroundLiteralExpression!
+}
+var testPostfixExpression: PostfixExpression {
+  return TestElements.instance.testPostfixExpression!
 }
 var testPrefixExpression: PrefixExpression {
   return TestElements.instance.testPrefixExpression!
@@ -331,7 +340,9 @@ var allTestElements: [Element] {
     testExpression,
     testFile,
     testFunctionCallArgument,
+    testFunctionCallArgumentClause,
     testFunctionCallArgumentList,
+    testFunctionCallExpression,
     testFunctionDeclaration,
     testFunctionResult,
     testFunctionType,
@@ -364,6 +375,7 @@ var allTestElements: [Element] {
     testPlaygroundLiteralArgument,
     testPlaygroundLiteralArguments,
     testPlaygroundLiteralExpression,
+    testPostfixExpression,
     testPrefixExpression,
     testPrimaryExpression,
     testProtocolCompositionType,
@@ -432,7 +444,9 @@ private class TestElements {
   private(set) var testExpression: Expression!
   private(set) var testFile: File!
   private(set) var testFunctionCallArgument: FunctionCallArgument!
+  private(set) var testFunctionCallArgumentClause: FunctionCallArgumentClause!
   private(set) var testFunctionCallArgumentList: FunctionCallArgumentList!
+  private(set) var testFunctionCallExpression: FunctionCallExpression!
   private(set) var testFunctionDeclaration: FunctionDeclaration!
   private(set) var testFunctionResult: FunctionResult!
   private(set) var testFunctionType: FunctionType!
@@ -465,6 +479,7 @@ private class TestElements {
   private(set) var testPlaygroundLiteralArgument: PlaygroundLiteralArgument!
   private(set) var testPlaygroundLiteralArguments: PlaygroundLiteralArguments!
   private(set) var testPlaygroundLiteralExpression: PlaygroundLiteralExpression!
+  private(set) var testPostfixExpression: PostfixExpression!
   private(set) var testPrefixExpression: PrefixExpression!
   private(set) var testPrimaryExpression: PrimaryExpression!
   private(set) var testProtocolCompositionType: ProtocolCompositionType!
@@ -649,9 +664,19 @@ private class TestElements {
       super.visitFunctionCallArgument(element)
     }
 
+    override func visitFunctionCallArgumentClause(_ element: FunctionCallArgumentClause) {
+      elements.testFunctionCallArgumentClause = element
+      super.visitFunctionCallArgumentClause(element)
+    }
+
     override func visitFunctionCallArgumentList(_ element: FunctionCallArgumentList) {
       elements.testFunctionCallArgumentList = element
       super.visitFunctionCallArgumentList(element)
+    }
+
+    override func visitFunctionCallExpression(_ element: FunctionCallExpression) {
+      elements.testFunctionCallExpression = element
+      super.visitFunctionCallExpression(element)
     }
 
     override func visitFunctionDeclaration(_ element: FunctionDeclaration) {
@@ -812,6 +837,11 @@ private class TestElements {
     override func visitPlaygroundLiteralExpression(_ element: PlaygroundLiteralExpression) {
       elements.testPlaygroundLiteralExpression = element
       super.visitPlaygroundLiteralExpression(element)
+    }
+
+    override func visitPostfixExpression(_ element: PostfixExpression) {
+      elements.testPostfixExpression = element
+      super.visitPostfixExpression(element)
     }
 
     override func visitPrefixExpression(_ element: PrefixExpression) {

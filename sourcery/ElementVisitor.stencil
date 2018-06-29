@@ -31,6 +31,8 @@ open class ElementVisitor {
     visitPrimaryExpression(element)
     {% elif type.implements.PrefixExpression %}
     visitPrefixExpression(element)
+    {% elif type.implements.PostfixExpression %}
+    visitPostfixExpression(element)
     {% elif type.implements.Expression %}
     visitExpression(element)
     {% else %}

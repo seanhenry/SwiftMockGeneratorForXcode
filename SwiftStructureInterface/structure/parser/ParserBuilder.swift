@@ -1,4 +1,5 @@
 typealias ElementSupplier = () throws -> Element
+typealias CheckClosure = () throws -> ()
 
 private protocol ParsingStrategy {
     func parse(into children: inout [Element]) throws
@@ -40,6 +41,11 @@ class ParserBuilder {
 
     func `while`(_ parse: @escaping ElementSupplier) -> ParserBuilder {
         operations.append(WhileStrategy(parse, { throw PlaceholderError() }, whitespaceStrategy))
+        return self
+    }
+
+    func check(_ check: @escaping CheckClosure) -> ParserBuilder {
+        operations.append(CheckStrategy(check))
         return self
     }
 
@@ -169,6 +175,18 @@ class ParserBuilder {
             } else if let second = try? or() {
                 children.append(second)
             }
+        }
+    }
+
+    private class CheckStrategy: ParsingStrategy {
+        let check: CheckClosure
+
+        init(_ check: @escaping CheckClosure) {
+            self.check = check
+        }
+
+        func parse(into children: inout [Element]) throws {
+            try check()
         }
     }
 }

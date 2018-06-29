@@ -47,6 +47,9 @@ class Parser<ResultType> {
     }
 
     func peekAtNextIdentifier() -> String? {
+        if isNext(.underscore) {
+            return "_"
+        }
         let next = peekAtNextKind()
         guard isIdentifier(next),
               let identifier = next.namedIdentifier else { return nil }
@@ -344,6 +347,15 @@ class Parser<ResultType> {
             return try parseOperator()
         }
         throw LookAheadError()
+    }
+
+    func parseClosureExpression() throws -> ClosureExpression {
+        return try parse(ClosureExpressionParser.self)
+    }
+
+    // TODO: parse all expressions
+    func parsePostfixExpression() throws -> PostfixExpression {
+        return try parse(SelfExpressionParser.self)
     }
 
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {

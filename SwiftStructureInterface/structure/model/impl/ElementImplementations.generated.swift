@@ -300,6 +300,17 @@ class FunctionCallArgumentImpl: ElementImpl, FunctionCallArgument {
   }
 }
 
+class FunctionCallArgumentClauseImpl: ElementImpl, FunctionCallArgumentClause {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitFunctionCallArgumentClause(self)
+  }
+}
+
 class FunctionCallArgumentListImpl: ElementImpl, FunctionCallArgumentList {
 
   override init(children: [Element]) {
@@ -308,6 +319,18 @@ class FunctionCallArgumentListImpl: ElementImpl, FunctionCallArgumentList {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitFunctionCallArgumentList(self)
+  }
+}
+
+class FunctionCallExpressionImpl: PostfixExpressionImpl,
+ FunctionCallExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitFunctionCallExpression(self)
   }
 }
 
@@ -653,6 +676,18 @@ class PlaygroundLiteralExpressionImpl: LiteralExpressionImpl,
   }
 }
 
+class PostfixExpressionImpl: ExpressionImpl,
+ PostfixExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPostfixExpression(self)
+  }
+}
+
 class PrefixExpressionImpl: ExpressionImpl,
  PrefixExpression {
 
@@ -665,7 +700,7 @@ class PrefixExpressionImpl: ExpressionImpl,
   }
 }
 
-class PrimaryExpressionImpl: ExpressionImpl,
+class PrimaryExpressionImpl: PostfixExpressionImpl,
  PrimaryExpression {
 
   override init(children: [Element]) {

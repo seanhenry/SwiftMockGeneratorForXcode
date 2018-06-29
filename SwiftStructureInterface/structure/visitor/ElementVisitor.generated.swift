@@ -122,8 +122,16 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitFunctionCallArgumentClause(_ element: FunctionCallArgumentClause) {
+    visitElement(element)
+  }
+
   open func visitFunctionCallArgumentList(_ element: FunctionCallArgumentList) {
     visitElement(element)
+  }
+
+  open func visitFunctionCallExpression(_ element: FunctionCallExpression) {
+    visitPostfixExpression(element)
   }
 
   open func visitFunctionDeclaration(_ element: FunctionDeclaration) {
@@ -254,12 +262,16 @@ open class ElementVisitor {
     visitLiteralExpression(element)
   }
 
+  open func visitPostfixExpression(_ element: PostfixExpression) {
+    visitExpression(element)
+  }
+
   open func visitPrefixExpression(_ element: PrefixExpression) {
     visitExpression(element)
   }
 
   open func visitPrimaryExpression(_ element: PrimaryExpression) {
-    visitExpression(element)
+    visitPostfixExpression(element)
   }
 
   open func visitProtocolCompositionType(_ element: ProtocolCompositionType) {

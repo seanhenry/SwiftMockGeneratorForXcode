@@ -319,6 +319,17 @@ class FunctionCallArgumentProxy: ElementProxy, FunctionCallArgument {
   }
 }
 
+class FunctionCallArgumentClauseProxy: ElementProxy, FunctionCallArgumentClause {
+
+  init(_ element: FunctionCallArgumentClause) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitFunctionCallArgumentClause(self)
+  }
+}
+
 class FunctionCallArgumentListProxy: ElementProxy, FunctionCallArgumentList {
 
   init(_ element: FunctionCallArgumentList) {
@@ -327,6 +338,18 @@ class FunctionCallArgumentListProxy: ElementProxy, FunctionCallArgumentList {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitFunctionCallArgumentList(self)
+  }
+}
+
+class FunctionCallExpressionProxy: PostfixExpressionProxy,
+ FunctionCallExpression {
+
+  init(_ element: FunctionCallExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitFunctionCallExpression(self)
   }
 }
 
@@ -703,6 +726,18 @@ class PlaygroundLiteralExpressionProxy: LiteralExpressionProxy,
   }
 }
 
+class PostfixExpressionProxy: ExpressionProxy,
+ PostfixExpression {
+
+  init(_ element: PostfixExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPostfixExpression(self)
+  }
+}
+
 class PrefixExpressionProxy: ExpressionProxy,
  PrefixExpression {
 
@@ -715,7 +750,7 @@ class PrefixExpressionProxy: ExpressionProxy,
   }
 }
 
-class PrimaryExpressionProxy: ExpressionProxy,
+class PrimaryExpressionProxy: PostfixExpressionProxy,
  PrimaryExpression {
 
   init(_ element: PrimaryExpression) {
