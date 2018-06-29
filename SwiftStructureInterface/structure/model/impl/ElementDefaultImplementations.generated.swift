@@ -194,6 +194,9 @@ extension KeyPathPostfixes {
     return children.compactMap { $0 as? KeyPathPostfix }
   }
 }
+extension KeyPathStringExpression {
+
+}
 extension MutationModifier {
 
 }

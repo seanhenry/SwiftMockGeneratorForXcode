@@ -339,6 +339,18 @@ class KeyPathPostfixesImpl: ElementImpl, KeyPathPostfixes {
   }
 }
 
+class KeyPathStringExpressionImpl: PrimaryExpressionImpl,
+ KeyPathStringExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeyPathStringExpression(self)
+  }
+}
+
 class MutationModifierImpl: DeclarationModifierImpl,
  MutationModifier {
 

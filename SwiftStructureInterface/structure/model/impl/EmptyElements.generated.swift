@@ -200,6 +200,12 @@ extension KeyPathPostfixesImpl {
   }
 }
 
+extension KeyPathStringExpressionImpl {
+  static func emptyKeyPathStringExpression() -> KeyPathStringExpression {
+    return KeyPathStringExpressionImpl(children: [])
+  }
+}
+
 extension LeafNodeImpl {
   static func emptyLeafNode() -> LeafNode {
     return LeafNodeImpl(text: "")

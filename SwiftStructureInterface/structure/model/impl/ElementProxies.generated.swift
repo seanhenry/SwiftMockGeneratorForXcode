@@ -366,6 +366,18 @@ class KeyPathPostfixesProxy: ElementProxy, KeyPathPostfixes {
   }
 }
 
+class KeyPathStringExpressionProxy: PrimaryExpressionProxy,
+ KeyPathStringExpression {
+
+  init(_ element: KeyPathStringExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeyPathStringExpression(self)
+  }
+}
+
 class LeafNodeProxy: ElementProxy, LeafNode {
 
   let managedLeafNode: LeafNode

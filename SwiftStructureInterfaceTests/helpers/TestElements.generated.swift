@@ -123,6 +123,9 @@ var testKeyPathPostfix: KeyPathPostfix {
 var testKeyPathPostfixes: KeyPathPostfixes {
   return TestElements.instance.testKeyPathPostfixes!
 }
+var testKeyPathStringExpression: KeyPathStringExpression {
+  return TestElements.instance.testKeyPathStringExpression!
+}
 var testLeafNode: LeafNode {
   return TestElements.instance.testLeafNode!
 }
@@ -260,6 +263,7 @@ var allTestElements: [Element] {
     testKeyPathExpression,
     testKeyPathPostfix,
     testKeyPathPostfixes,
+    testKeyPathStringExpression,
     testLeafNode,
     testMutationModifier,
     testOptionalType,
@@ -336,6 +340,7 @@ private class TestElements {
   private(set) var testKeyPathExpression: KeyPathExpression!
   private(set) var testKeyPathPostfix: KeyPathPostfix!
   private(set) var testKeyPathPostfixes: KeyPathPostfixes!
+  private(set) var testKeyPathStringExpression: KeyPathStringExpression!
   private(set) var testLeafNode: LeafNode!
   private(set) var testMutationModifier: MutationModifier!
   private(set) var testOptionalType: OptionalType!
@@ -542,6 +547,11 @@ private class TestElements {
     override func visitKeyPathPostfixes(_ element: KeyPathPostfixes) {
       elements.testKeyPathPostfixes = element
       super.visitKeyPathPostfixes(element)
+    }
+
+    override func visitKeyPathStringExpression(_ element: KeyPathStringExpression) {
+      elements.testKeyPathStringExpression = element
+      super.visitKeyPathStringExpression(element)
     }
 
     override func visitLeafNode(_ element: LeafNode) {

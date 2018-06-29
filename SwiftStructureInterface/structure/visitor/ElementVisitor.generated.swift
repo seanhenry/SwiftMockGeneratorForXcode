@@ -138,6 +138,10 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitKeyPathStringExpression(_ element: KeyPathStringExpression) {
+    visitPrimaryExpression(element)
+  }
+
   open func visitLeafNode(_ element: LeafNode) {
     visitElement(element)
   }

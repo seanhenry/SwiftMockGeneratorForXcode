@@ -143,6 +143,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = KeyPathPostfixesProxy(element)
   }
 
+  override func visitKeyPathStringExpression(_ element: KeyPathStringExpression) {
+    proxy = KeyPathStringExpressionProxy(element)
+  }
+
   override func visitLeafNode(_ element: LeafNode) {
     proxy = LeafNodeProxy(element)
   }
