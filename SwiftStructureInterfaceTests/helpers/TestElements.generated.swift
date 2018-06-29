@@ -27,6 +27,15 @@ public protocol TestProtocol: Z where A: B, C == D {
 var testAccessLevelModifier: AccessLevelModifier {
   return TestElements.instance.testAccessLevelModifier!
 }
+var testArrayLiteralExpression: ArrayLiteralExpression {
+  return TestElements.instance.testArrayLiteralExpression!
+}
+var testArrayLiteralItem: ArrayLiteralItem {
+  return TestElements.instance.testArrayLiteralItem!
+}
+var testArrayLiteralItems: ArrayLiteralItems {
+  return TestElements.instance.testArrayLiteralItems!
+}
 var testArrayType: ArrayType {
   return TestElements.instance.testArrayType!
 }
@@ -53,6 +62,15 @@ var testDeclaration: Declaration {
 }
 var testDeclarationModifier: DeclarationModifier {
   return TestElements.instance.testDeclarationModifier!
+}
+var testDictionaryLiteralExpression: DictionaryLiteralExpression {
+  return TestElements.instance.testDictionaryLiteralExpression!
+}
+var testDictionaryLiteralItem: DictionaryLiteralItem {
+  return TestElements.instance.testDictionaryLiteralItem!
+}
+var testDictionaryLiteralItems: DictionaryLiteralItems {
+  return TestElements.instance.testDictionaryLiteralItems!
 }
 var testDictionaryType: DictionaryType {
   return TestElements.instance.testDictionaryType!
@@ -126,8 +144,14 @@ var testKeyPathPostfixes: KeyPathPostfixes {
 var testKeyPathStringExpression: KeyPathStringExpression {
   return TestElements.instance.testKeyPathStringExpression!
 }
+var testKeywordLiteralExpression: KeywordLiteralExpression {
+  return TestElements.instance.testKeywordLiteralExpression!
+}
 var testLeafNode: LeafNode {
   return TestElements.instance.testLeafNode!
+}
+var testLiteralExpression: LiteralExpression {
+  return TestElements.instance.testLiteralExpression!
 }
 var testMutationModifier: MutationModifier {
   return TestElements.instance.testMutationModifier!
@@ -143,6 +167,15 @@ var testParameterClause: ParameterClause {
 }
 var testParenthesizedExpression: ParenthesizedExpression {
   return TestElements.instance.testParenthesizedExpression!
+}
+var testPlaygroundLiteralArgument: PlaygroundLiteralArgument {
+  return TestElements.instance.testPlaygroundLiteralArgument!
+}
+var testPlaygroundLiteralArguments: PlaygroundLiteralArguments {
+  return TestElements.instance.testPlaygroundLiteralArguments!
+}
+var testPlaygroundLiteralExpression: PlaygroundLiteralExpression {
+  return TestElements.instance.testPlaygroundLiteralExpression!
 }
 var testPrefixExpression: PrefixExpression {
   return TestElements.instance.testPrefixExpression!
@@ -231,6 +264,9 @@ var testWildcardExpression: WildcardExpression {
 var allTestElements: [Element] {
   return [
     testAccessLevelModifier,
+    testArrayLiteralExpression,
+    testArrayLiteralItem,
+    testArrayLiteralItems,
     testArrayType,
     testAssociatedTypeDeclaration,
     testAttribute,
@@ -240,6 +276,9 @@ var allTestElements: [Element] {
     testConformanceRequirement,
     testDeclaration,
     testDeclarationModifier,
+    testDictionaryLiteralExpression,
+    testDictionaryLiteralItem,
+    testDictionaryLiteralItems,
     testDictionaryType,
     testElement,
     testExpression,
@@ -264,12 +303,17 @@ var allTestElements: [Element] {
     testKeyPathPostfix,
     testKeyPathPostfixes,
     testKeyPathStringExpression,
+    testKeywordLiteralExpression,
     testLeafNode,
+    testLiteralExpression,
     testMutationModifier,
     testOptionalType,
     testParameter,
     testParameterClause,
     testParenthesizedExpression,
+    testPlaygroundLiteralArgument,
+    testPlaygroundLiteralArguments,
+    testPlaygroundLiteralExpression,
     testPrefixExpression,
     testPrimaryExpression,
     testProtocolCompositionType,
@@ -308,6 +352,9 @@ private class TestElements {
     try! ElementParser.parseFile(allTypesString).accept(Visitor(self))
   }
   private(set) var testAccessLevelModifier: AccessLevelModifier!
+  private(set) var testArrayLiteralExpression: ArrayLiteralExpression!
+  private(set) var testArrayLiteralItem: ArrayLiteralItem!
+  private(set) var testArrayLiteralItems: ArrayLiteralItems!
   private(set) var testArrayType: ArrayType!
   private(set) var testAssociatedTypeDeclaration: AssociatedTypeDeclaration!
   private(set) var testAttribute: Attribute!
@@ -317,6 +364,9 @@ private class TestElements {
   private(set) var testConformanceRequirement: ConformanceRequirement!
   private(set) var testDeclaration: Declaration!
   private(set) var testDeclarationModifier: DeclarationModifier!
+  private(set) var testDictionaryLiteralExpression: DictionaryLiteralExpression!
+  private(set) var testDictionaryLiteralItem: DictionaryLiteralItem!
+  private(set) var testDictionaryLiteralItems: DictionaryLiteralItems!
   private(set) var testDictionaryType: DictionaryType!
   private(set) var testElement: Element!
   private(set) var testExpression: Expression!
@@ -341,12 +391,17 @@ private class TestElements {
   private(set) var testKeyPathPostfix: KeyPathPostfix!
   private(set) var testKeyPathPostfixes: KeyPathPostfixes!
   private(set) var testKeyPathStringExpression: KeyPathStringExpression!
+  private(set) var testKeywordLiteralExpression: KeywordLiteralExpression!
   private(set) var testLeafNode: LeafNode!
+  private(set) var testLiteralExpression: LiteralExpression!
   private(set) var testMutationModifier: MutationModifier!
   private(set) var testOptionalType: OptionalType!
   private(set) var testParameter: Parameter!
   private(set) var testParameterClause: ParameterClause!
   private(set) var testParenthesizedExpression: ParenthesizedExpression!
+  private(set) var testPlaygroundLiteralArgument: PlaygroundLiteralArgument!
+  private(set) var testPlaygroundLiteralArguments: PlaygroundLiteralArguments!
+  private(set) var testPlaygroundLiteralExpression: PlaygroundLiteralExpression!
   private(set) var testPrefixExpression: PrefixExpression!
   private(set) var testPrimaryExpression: PrimaryExpression!
   private(set) var testProtocolCompositionType: ProtocolCompositionType!
@@ -387,6 +442,21 @@ private class TestElements {
     override func visitAccessLevelModifier(_ element: AccessLevelModifier) {
       elements.testAccessLevelModifier = element
       super.visitAccessLevelModifier(element)
+    }
+
+    override func visitArrayLiteralExpression(_ element: ArrayLiteralExpression) {
+      elements.testArrayLiteralExpression = element
+      super.visitArrayLiteralExpression(element)
+    }
+
+    override func visitArrayLiteralItem(_ element: ArrayLiteralItem) {
+      elements.testArrayLiteralItem = element
+      super.visitArrayLiteralItem(element)
+    }
+
+    override func visitArrayLiteralItems(_ element: ArrayLiteralItems) {
+      elements.testArrayLiteralItems = element
+      super.visitArrayLiteralItems(element)
     }
 
     override func visitArrayType(_ element: ArrayType) {
@@ -432,6 +502,21 @@ private class TestElements {
     override func visitDeclarationModifier(_ element: DeclarationModifier) {
       elements.testDeclarationModifier = element
       super.visitDeclarationModifier(element)
+    }
+
+    override func visitDictionaryLiteralExpression(_ element: DictionaryLiteralExpression) {
+      elements.testDictionaryLiteralExpression = element
+      super.visitDictionaryLiteralExpression(element)
+    }
+
+    override func visitDictionaryLiteralItem(_ element: DictionaryLiteralItem) {
+      elements.testDictionaryLiteralItem = element
+      super.visitDictionaryLiteralItem(element)
+    }
+
+    override func visitDictionaryLiteralItems(_ element: DictionaryLiteralItems) {
+      elements.testDictionaryLiteralItems = element
+      super.visitDictionaryLiteralItems(element)
     }
 
     override func visitDictionaryType(_ element: DictionaryType) {
@@ -554,9 +639,19 @@ private class TestElements {
       super.visitKeyPathStringExpression(element)
     }
 
+    override func visitKeywordLiteralExpression(_ element: KeywordLiteralExpression) {
+      elements.testKeywordLiteralExpression = element
+      super.visitKeywordLiteralExpression(element)
+    }
+
     override func visitLeafNode(_ element: LeafNode) {
       elements.testLeafNode = element
       super.visitLeafNode(element)
+    }
+
+    override func visitLiteralExpression(_ element: LiteralExpression) {
+      elements.testLiteralExpression = element
+      super.visitLiteralExpression(element)
     }
 
     override func visitMutationModifier(_ element: MutationModifier) {
@@ -582,6 +677,21 @@ private class TestElements {
     override func visitParenthesizedExpression(_ element: ParenthesizedExpression) {
       elements.testParenthesizedExpression = element
       super.visitParenthesizedExpression(element)
+    }
+
+    override func visitPlaygroundLiteralArgument(_ element: PlaygroundLiteralArgument) {
+      elements.testPlaygroundLiteralArgument = element
+      super.visitPlaygroundLiteralArgument(element)
+    }
+
+    override func visitPlaygroundLiteralArguments(_ element: PlaygroundLiteralArguments) {
+      elements.testPlaygroundLiteralArguments = element
+      super.visitPlaygroundLiteralArguments(element)
+    }
+
+    override func visitPlaygroundLiteralExpression(_ element: PlaygroundLiteralExpression) {
+      elements.testPlaygroundLiteralExpression = element
+      super.visitPlaygroundLiteralExpression(element)
     }
 
     override func visitPrefixExpression(_ element: PrefixExpression) {

@@ -23,6 +23,8 @@ open class ElementVisitor {
     visitTypeDeclaration(element)
     {% elif type.implements.SelfExpression %}
     visitSelfExpression(element)
+    {% elif type.implements.LiteralExpression %}
+    visitLiteralExpression(element)
     {% elif type.implements.SuperExpression %}
     visitSuperExpression(element)
     {% elif type.implements.PrimaryExpression %}

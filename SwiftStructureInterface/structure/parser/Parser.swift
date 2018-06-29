@@ -258,6 +258,17 @@ class Parser<ResultType> {
         throw LookAheadError()
     }
 
+    func parseIdentifier(_ strings: [String]) throws -> Identifier {
+        let identifier = peekAtNextKind()
+        let match = strings.first { string in
+            return .identifier(string, false) ~= identifier
+        }
+        if let match = match {
+            return try parseIdentifier()
+        }
+        throw LookAheadError()
+    }
+
     func parseOperator(_ op: UnicodeScalar) throws -> Element {
         if isNext(op) {
             advanceOperator(op)

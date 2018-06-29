@@ -15,6 +15,40 @@ class AccessLevelModifierProxy: DeclarationModifierProxy,
   }
 }
 
+class ArrayLiteralExpressionProxy: LiteralExpressionProxy,
+ ArrayLiteralExpression {
+
+  init(_ element: ArrayLiteralExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitArrayLiteralExpression(self)
+  }
+}
+
+class ArrayLiteralItemProxy: ElementProxy, ArrayLiteralItem {
+
+  init(_ element: ArrayLiteralItem) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitArrayLiteralItem(self)
+  }
+}
+
+class ArrayLiteralItemsProxy: ElementProxy, ArrayLiteralItems {
+
+  init(_ element: ArrayLiteralItems) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitArrayLiteralItems(self)
+  }
+}
+
 class ArrayTypeProxy: TypeProxy,
  ArrayType {
 
@@ -114,6 +148,40 @@ class DeclarationModifierProxy: ElementProxy, DeclarationModifier {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitDeclarationModifier(self)
+  }
+}
+
+class DictionaryLiteralExpressionProxy: LiteralExpressionProxy,
+ DictionaryLiteralExpression {
+
+  init(_ element: DictionaryLiteralExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitDictionaryLiteralExpression(self)
+  }
+}
+
+class DictionaryLiteralItemProxy: ElementProxy, DictionaryLiteralItem {
+
+  init(_ element: DictionaryLiteralItem) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitDictionaryLiteralItem(self)
+  }
+}
+
+class DictionaryLiteralItemsProxy: ElementProxy, DictionaryLiteralItems {
+
+  init(_ element: DictionaryLiteralItems) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitDictionaryLiteralItems(self)
   }
 }
 
@@ -378,6 +446,18 @@ class KeyPathStringExpressionProxy: PrimaryExpressionProxy,
   }
 }
 
+class KeywordLiteralExpressionProxy: LiteralExpressionProxy,
+ KeywordLiteralExpression {
+
+  init(_ element: KeywordLiteralExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeywordLiteralExpression(self)
+  }
+}
+
 class LeafNodeProxy: ElementProxy, LeafNode {
 
   let managedLeafNode: LeafNode
@@ -394,6 +474,18 @@ class LeafNodeProxy: ElementProxy, LeafNode {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitLeafNode(self)
+  }
+}
+
+class LiteralExpressionProxy: PrimaryExpressionProxy,
+ LiteralExpression {
+
+  init(_ element: LiteralExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitLiteralExpression(self)
   }
 }
 
@@ -452,6 +544,40 @@ class ParenthesizedExpressionProxy: PrimaryExpressionProxy,
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitParenthesizedExpression(self)
+  }
+}
+
+class PlaygroundLiteralArgumentProxy: ElementProxy, PlaygroundLiteralArgument {
+
+  init(_ element: PlaygroundLiteralArgument) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPlaygroundLiteralArgument(self)
+  }
+}
+
+class PlaygroundLiteralArgumentsProxy: ElementProxy, PlaygroundLiteralArguments {
+
+  init(_ element: PlaygroundLiteralArguments) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPlaygroundLiteralArguments(self)
+  }
+}
+
+class PlaygroundLiteralExpressionProxy: LiteralExpressionProxy,
+ PlaygroundLiteralExpression {
+
+  init(_ element: PlaygroundLiteralExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPlaygroundLiteralExpression(self)
   }
 }
 

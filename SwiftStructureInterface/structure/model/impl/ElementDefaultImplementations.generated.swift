@@ -5,6 +5,24 @@
 extension AccessLevelModifier {
 
 }
+extension ArrayLiteralExpression {
+
+  public var arrayLiteralItems: ArrayLiteralItems {
+    return first(ArrayLiteralItems.self) ?? ArrayLiteralItemsImpl.emptyArrayLiteralItems()
+  }
+}
+extension ArrayLiteralItem {
+
+  public var expression: Expression {
+    return first(Expression.self) ?? ExpressionImpl.emptyExpression()
+  }
+}
+extension ArrayLiteralItems {
+
+  public var items: [ArrayLiteralItem] {
+    return children.compactMap { $0 as? ArrayLiteralItem }
+  }
+}
 extension ArrayType {
 
   public var elementType: Type {
@@ -58,6 +76,24 @@ extension Declaration {
 }
 extension DeclarationModifier {
 
+}
+extension DictionaryLiteralExpression {
+
+  public var dictionaryLiteralItems: DictionaryLiteralItems {
+    return first(DictionaryLiteralItems.self) ?? DictionaryLiteralItemsImpl.emptyDictionaryLiteralItems()
+  }
+}
+extension DictionaryLiteralItem {
+
+  public var expression: Expression {
+    return first(Expression.self) ?? ExpressionImpl.emptyExpression()
+  }
+}
+extension DictionaryLiteralItems {
+
+  public var items: [DictionaryLiteralItem] {
+    return children.compactMap { $0 as? DictionaryLiteralItem }
+  }
 }
 extension DictionaryType {
 
@@ -197,6 +233,12 @@ extension KeyPathPostfixes {
 extension KeyPathStringExpression {
 
 }
+extension KeywordLiteralExpression {
+
+}
+extension LiteralExpression {
+
+}
 extension MutationModifier {
 
 }
@@ -220,6 +262,21 @@ extension ParameterClause {
 }
 extension ParenthesizedExpression {
 
+}
+extension PlaygroundLiteralArgument {
+
+}
+extension PlaygroundLiteralArguments {
+
+  public var arguments: [PlaygroundLiteralArgument] {
+    return children.compactMap { $0 as? PlaygroundLiteralArgument }
+  }
+}
+extension PlaygroundLiteralExpression {
+
+  public var playgroundLiteralArguments: PlaygroundLiteralArguments {
+    return first(PlaygroundLiteralArguments.self) ?? PlaygroundLiteralArgumentsImpl.emptyPlaygroundLiteralArguments()
+  }
 }
 extension PrefixExpression {
 

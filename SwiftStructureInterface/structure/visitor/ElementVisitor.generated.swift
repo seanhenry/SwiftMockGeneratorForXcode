@@ -14,6 +14,18 @@ open class ElementVisitor {
     visitDeclarationModifier(element)
   }
 
+  open func visitArrayLiteralExpression(_ element: ArrayLiteralExpression) {
+    visitLiteralExpression(element)
+  }
+
+  open func visitArrayLiteralItem(_ element: ArrayLiteralItem) {
+    visitElement(element)
+  }
+
+  open func visitArrayLiteralItems(_ element: ArrayLiteralItems) {
+    visitElement(element)
+  }
+
   open func visitArrayType(_ element: ArrayType) {
     visitType(element)
   }
@@ -47,6 +59,18 @@ open class ElementVisitor {
   }
 
   open func visitDeclarationModifier(_ element: DeclarationModifier) {
+    visitElement(element)
+  }
+
+  open func visitDictionaryLiteralExpression(_ element: DictionaryLiteralExpression) {
+    visitLiteralExpression(element)
+  }
+
+  open func visitDictionaryLiteralItem(_ element: DictionaryLiteralItem) {
+    visitElement(element)
+  }
+
+  open func visitDictionaryLiteralItems(_ element: DictionaryLiteralItems) {
     visitElement(element)
   }
 
@@ -142,8 +166,16 @@ open class ElementVisitor {
     visitPrimaryExpression(element)
   }
 
+  open func visitKeywordLiteralExpression(_ element: KeywordLiteralExpression) {
+    visitLiteralExpression(element)
+  }
+
   open func visitLeafNode(_ element: LeafNode) {
     visitElement(element)
+  }
+
+  open func visitLiteralExpression(_ element: LiteralExpression) {
+    visitPrimaryExpression(element)
   }
 
   open func visitMutationModifier(_ element: MutationModifier) {
@@ -164,6 +196,18 @@ open class ElementVisitor {
 
   open func visitParenthesizedExpression(_ element: ParenthesizedExpression) {
     visitPrimaryExpression(element)
+  }
+
+  open func visitPlaygroundLiteralArgument(_ element: PlaygroundLiteralArgument) {
+    visitElement(element)
+  }
+
+  open func visitPlaygroundLiteralArguments(_ element: PlaygroundLiteralArguments) {
+    visitElement(element)
+  }
+
+  open func visitPlaygroundLiteralExpression(_ element: PlaygroundLiteralExpression) {
+    visitLiteralExpression(element)
   }
 
   open func visitPrefixExpression(_ element: PrefixExpression) {

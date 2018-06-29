@@ -8,6 +8,24 @@ extension AccessLevelModifierImpl {
   }
 }
 
+extension ArrayLiteralExpressionImpl {
+  static func emptyArrayLiteralExpression() -> ArrayLiteralExpression {
+    return ArrayLiteralExpressionImpl(children: [])
+  }
+}
+
+extension ArrayLiteralItemImpl {
+  static func emptyArrayLiteralItem() -> ArrayLiteralItem {
+    return ArrayLiteralItemImpl(children: [])
+  }
+}
+
+extension ArrayLiteralItemsImpl {
+  static func emptyArrayLiteralItems() -> ArrayLiteralItems {
+    return ArrayLiteralItemsImpl(children: [])
+  }
+}
+
 extension ArrayTypeImpl {
   static func emptyArrayType() -> ArrayType {
     return ArrayTypeImpl(children: [])
@@ -59,6 +77,24 @@ extension DeclarationImpl {
 extension DeclarationModifierImpl {
   static func emptyDeclarationModifier() -> DeclarationModifier {
     return DeclarationModifierImpl(children: [])
+  }
+}
+
+extension DictionaryLiteralExpressionImpl {
+  static func emptyDictionaryLiteralExpression() -> DictionaryLiteralExpression {
+    return DictionaryLiteralExpressionImpl(children: [])
+  }
+}
+
+extension DictionaryLiteralItemImpl {
+  static func emptyDictionaryLiteralItem() -> DictionaryLiteralItem {
+    return DictionaryLiteralItemImpl(children: [])
+  }
+}
+
+extension DictionaryLiteralItemsImpl {
+  static func emptyDictionaryLiteralItems() -> DictionaryLiteralItems {
+    return DictionaryLiteralItemsImpl(children: [])
   }
 }
 
@@ -206,9 +242,21 @@ extension KeyPathStringExpressionImpl {
   }
 }
 
+extension KeywordLiteralExpressionImpl {
+  static func emptyKeywordLiteralExpression() -> KeywordLiteralExpression {
+    return KeywordLiteralExpressionImpl(children: [])
+  }
+}
+
 extension LeafNodeImpl {
   static func emptyLeafNode() -> LeafNode {
     return LeafNodeImpl(text: "")
+  }
+}
+
+extension LiteralExpressionImpl {
+  static func emptyLiteralExpression() -> LiteralExpression {
+    return LiteralExpressionImpl(children: [])
   }
 }
 
@@ -239,6 +287,24 @@ extension ParameterClauseImpl {
 extension ParenthesizedExpressionImpl {
   static func emptyParenthesizedExpression() -> ParenthesizedExpression {
     return ParenthesizedExpressionImpl(children: [])
+  }
+}
+
+extension PlaygroundLiteralArgumentImpl {
+  static func emptyPlaygroundLiteralArgument() -> PlaygroundLiteralArgument {
+    return PlaygroundLiteralArgumentImpl(children: [])
+  }
+}
+
+extension PlaygroundLiteralArgumentsImpl {
+  static func emptyPlaygroundLiteralArguments() -> PlaygroundLiteralArguments {
+    return PlaygroundLiteralArgumentsImpl(children: [])
+  }
+}
+
+extension PlaygroundLiteralExpressionImpl {
+  static func emptyPlaygroundLiteralExpression() -> PlaygroundLiteralExpression {
+    return PlaygroundLiteralExpressionImpl(children: [])
   }
 }
 

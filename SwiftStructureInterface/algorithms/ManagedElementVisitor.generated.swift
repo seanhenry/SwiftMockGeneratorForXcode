@@ -19,6 +19,18 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = AccessLevelModifierProxy(element)
   }
 
+  override func visitArrayLiteralExpression(_ element: ArrayLiteralExpression) {
+    proxy = ArrayLiteralExpressionProxy(element)
+  }
+
+  override func visitArrayLiteralItem(_ element: ArrayLiteralItem) {
+    proxy = ArrayLiteralItemProxy(element)
+  }
+
+  override func visitArrayLiteralItems(_ element: ArrayLiteralItems) {
+    proxy = ArrayLiteralItemsProxy(element)
+  }
+
   override func visitArrayType(_ element: ArrayType) {
     proxy = ArrayTypeProxy(element)
   }
@@ -53,6 +65,18 @@ class ManagedElementVisitor: ElementVisitor {
 
   override func visitDeclarationModifier(_ element: DeclarationModifier) {
     proxy = DeclarationModifierProxy(element)
+  }
+
+  override func visitDictionaryLiteralExpression(_ element: DictionaryLiteralExpression) {
+    proxy = DictionaryLiteralExpressionProxy(element)
+  }
+
+  override func visitDictionaryLiteralItem(_ element: DictionaryLiteralItem) {
+    proxy = DictionaryLiteralItemProxy(element)
+  }
+
+  override func visitDictionaryLiteralItems(_ element: DictionaryLiteralItems) {
+    proxy = DictionaryLiteralItemsProxy(element)
   }
 
   override func visitDictionaryType(_ element: DictionaryType) {
@@ -147,8 +171,16 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = KeyPathStringExpressionProxy(element)
   }
 
+  override func visitKeywordLiteralExpression(_ element: KeywordLiteralExpression) {
+    proxy = KeywordLiteralExpressionProxy(element)
+  }
+
   override func visitLeafNode(_ element: LeafNode) {
     proxy = LeafNodeProxy(element)
+  }
+
+  override func visitLiteralExpression(_ element: LiteralExpression) {
+    proxy = LiteralExpressionProxy(element)
   }
 
   override func visitMutationModifier(_ element: MutationModifier) {
@@ -169,6 +201,18 @@ class ManagedElementVisitor: ElementVisitor {
 
   override func visitParenthesizedExpression(_ element: ParenthesizedExpression) {
     proxy = ParenthesizedExpressionProxy(element)
+  }
+
+  override func visitPlaygroundLiteralArgument(_ element: PlaygroundLiteralArgument) {
+    proxy = PlaygroundLiteralArgumentProxy(element)
+  }
+
+  override func visitPlaygroundLiteralArguments(_ element: PlaygroundLiteralArguments) {
+    proxy = PlaygroundLiteralArgumentsProxy(element)
+  }
+
+  override func visitPlaygroundLiteralExpression(_ element: PlaygroundLiteralExpression) {
+    proxy = PlaygroundLiteralExpressionProxy(element)
   }
 
   override func visitPrefixExpression(_ element: PrefixExpression) {

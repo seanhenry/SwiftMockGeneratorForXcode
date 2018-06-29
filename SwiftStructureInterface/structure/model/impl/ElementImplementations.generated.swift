@@ -15,6 +15,40 @@ class AccessLevelModifierImpl: DeclarationModifierImpl,
   }
 }
 
+class ArrayLiteralExpressionImpl: LiteralExpressionImpl,
+ ArrayLiteralExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitArrayLiteralExpression(self)
+  }
+}
+
+class ArrayLiteralItemImpl: ElementImpl, ArrayLiteralItem {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitArrayLiteralItem(self)
+  }
+}
+
+class ArrayLiteralItemsImpl: ElementImpl, ArrayLiteralItems {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitArrayLiteralItems(self)
+  }
+}
+
 class ArrayTypeImpl: TypeImpl,
  ArrayType {
 
@@ -110,6 +144,40 @@ class DeclarationModifierImpl: ElementImpl, DeclarationModifier {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitDeclarationModifier(self)
+  }
+}
+
+class DictionaryLiteralExpressionImpl: LiteralExpressionImpl,
+ DictionaryLiteralExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitDictionaryLiteralExpression(self)
+  }
+}
+
+class DictionaryLiteralItemImpl: ElementImpl, DictionaryLiteralItem {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitDictionaryLiteralItem(self)
+  }
+}
+
+class DictionaryLiteralItemsImpl: ElementImpl, DictionaryLiteralItems {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitDictionaryLiteralItems(self)
   }
 }
 
@@ -351,6 +419,30 @@ class KeyPathStringExpressionImpl: PrimaryExpressionImpl,
   }
 }
 
+class KeywordLiteralExpressionImpl: LiteralExpressionImpl,
+ KeywordLiteralExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitKeywordLiteralExpression(self)
+  }
+}
+
+class LiteralExpressionImpl: PrimaryExpressionImpl,
+ LiteralExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitLiteralExpression(self)
+  }
+}
+
 class MutationModifierImpl: DeclarationModifierImpl,
  MutationModifier {
 
@@ -402,6 +494,40 @@ class ParenthesizedExpressionImpl: PrimaryExpressionImpl,
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitParenthesizedExpression(self)
+  }
+}
+
+class PlaygroundLiteralArgumentImpl: ElementImpl, PlaygroundLiteralArgument {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPlaygroundLiteralArgument(self)
+  }
+}
+
+class PlaygroundLiteralArgumentsImpl: ElementImpl, PlaygroundLiteralArguments {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPlaygroundLiteralArguments(self)
+  }
+}
+
+class PlaygroundLiteralExpressionImpl: LiteralExpressionImpl,
+ PlaygroundLiteralExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitPlaygroundLiteralExpression(self)
   }
 }
 
