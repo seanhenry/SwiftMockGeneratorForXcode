@@ -524,6 +524,18 @@ class SameTypeRequirementProxy: RequirementProxy,
   }
 }
 
+class SelectorExpressionProxy: PrimaryExpressionProxy,
+ SelectorExpression {
+
+  init(_ element: SelectorExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSelectorExpression(self)
+  }
+}
+
 class SelfExpressionProxy: PrimaryExpressionProxy,
  SelfExpression {
 

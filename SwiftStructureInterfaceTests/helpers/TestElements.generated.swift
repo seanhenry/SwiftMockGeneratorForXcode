@@ -162,6 +162,9 @@ var testRequirementList: RequirementList {
 var testSameTypeRequirement: SameTypeRequirement {
   return TestElements.instance.testSameTypeRequirement!
 }
+var testSelectorExpression: SelectorExpression {
+  return TestElements.instance.testSelectorExpression!
+}
 var testSelfExpression: SelfExpression {
   return TestElements.instance.testSelfExpression!
 }
@@ -270,6 +273,7 @@ var allTestElements: [Element] {
     testRequirement,
     testRequirementList,
     testSameTypeRequirement,
+    testSelectorExpression,
     testSelfExpression,
     testSelfInitializerExpression,
     testSelfMethodExpression,
@@ -345,6 +349,7 @@ private class TestElements {
   private(set) var testRequirement: Requirement!
   private(set) var testRequirementList: RequirementList!
   private(set) var testSameTypeRequirement: SameTypeRequirement!
+  private(set) var testSelectorExpression: SelectorExpression!
   private(set) var testSelfExpression: SelfExpression!
   private(set) var testSelfInitializerExpression: SelfInitializerExpression!
   private(set) var testSelfMethodExpression: SelfMethodExpression!
@@ -602,6 +607,11 @@ private class TestElements {
     override func visitSameTypeRequirement(_ element: SameTypeRequirement) {
       elements.testSameTypeRequirement = element
       super.visitSameTypeRequirement(element)
+    }
+
+    override func visitSelectorExpression(_ element: SelectorExpression) {
+      elements.testSelectorExpression = element
+      super.visitSelectorExpression(element)
     }
 
     override func visitSelfExpression(_ element: SelfExpression) {

@@ -278,6 +278,12 @@ extension SameTypeRequirementImpl {
   }
 }
 
+extension SelectorExpressionImpl {
+  static func emptySelectorExpression() -> SelectorExpression {
+    return SelectorExpressionImpl(children: [])
+  }
+}
+
 extension SelfExpressionImpl {
   static func emptySelfExpression() -> SelfExpression {
     return SelfExpressionImpl(children: [])

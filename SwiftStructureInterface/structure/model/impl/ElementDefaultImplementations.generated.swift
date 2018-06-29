@@ -248,6 +248,9 @@ extension RequirementList {
 extension SameTypeRequirement {
 
 }
+extension SelectorExpression {
+
+}
 extension SelfExpression {
 
 }

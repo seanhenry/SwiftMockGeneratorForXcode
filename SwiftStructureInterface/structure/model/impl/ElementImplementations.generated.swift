@@ -470,6 +470,18 @@ class SameTypeRequirementImpl: RequirementImpl,
   }
 }
 
+class SelectorExpressionImpl: PrimaryExpressionImpl,
+ SelectorExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSelectorExpression(self)
+  }
+}
+
 class SelfExpressionImpl: PrimaryExpressionImpl,
  SelfExpression {
 

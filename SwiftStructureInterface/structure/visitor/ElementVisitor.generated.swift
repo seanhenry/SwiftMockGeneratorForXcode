@@ -190,6 +190,10 @@ open class ElementVisitor {
     visitRequirement(element)
   }
 
+  open func visitSelectorExpression(_ element: SelectorExpression) {
+    visitPrimaryExpression(element)
+  }
+
   open func visitSelfExpression(_ element: SelfExpression) {
     visitPrimaryExpression(element)
   }
