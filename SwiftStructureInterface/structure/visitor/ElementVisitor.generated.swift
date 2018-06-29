@@ -262,6 +262,10 @@ open class ElementVisitor {
     visitSelfExpression(element)
   }
 
+  open func visitSelfSubscriptExpression(_ element: SelfSubscriptExpression) {
+    visitSelfExpression(element)
+  }
+
   open func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
     visitElement(element)
   }
@@ -275,6 +279,10 @@ open class ElementVisitor {
   }
 
   open func visitSuperclassMethodExpression(_ element: SuperclassMethodExpression) {
+    visitPrimaryExpression(element)
+  }
+
+  open func visitSuperclassSubscriptExpression(_ element: SuperclassSubscriptExpression) {
     visitPrimaryExpression(element)
   }
 

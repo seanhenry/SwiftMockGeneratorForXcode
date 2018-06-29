@@ -216,6 +216,9 @@ var testSelfInitializerExpression: SelfInitializerExpression {
 var testSelfMethodExpression: SelfMethodExpression {
   return TestElements.instance.testSelfMethodExpression!
 }
+var testSelfSubscriptExpression: SelfSubscriptExpression {
+  return TestElements.instance.testSelfSubscriptExpression!
+}
 var testSubscriptDeclaration: SubscriptDeclaration {
   return TestElements.instance.testSubscriptDeclaration!
 }
@@ -227,6 +230,9 @@ var testSuperclassInitializerExpression: SuperclassInitializerExpression {
 }
 var testSuperclassMethodExpression: SuperclassMethodExpression {
   return TestElements.instance.testSuperclassMethodExpression!
+}
+var testSuperclassSubscriptExpression: SuperclassSubscriptExpression {
+  return TestElements.instance.testSuperclassSubscriptExpression!
 }
 var testTupleType: TupleType {
   return TestElements.instance.testTupleType!
@@ -333,10 +339,12 @@ var allTestElements: [Element] {
     testSelfExpression,
     testSelfInitializerExpression,
     testSelfMethodExpression,
+    testSelfSubscriptExpression,
     testSubscriptDeclaration,
     testSuperclassExpression,
     testSuperclassInitializerExpression,
     testSuperclassMethodExpression,
+    testSuperclassSubscriptExpression,
     testTupleType,
     testTupleTypeElement,
     testTupleTypeElementList,
@@ -423,10 +431,12 @@ private class TestElements {
   private(set) var testSelfExpression: SelfExpression!
   private(set) var testSelfInitializerExpression: SelfInitializerExpression!
   private(set) var testSelfMethodExpression: SelfMethodExpression!
+  private(set) var testSelfSubscriptExpression: SelfSubscriptExpression!
   private(set) var testSubscriptDeclaration: SubscriptDeclaration!
   private(set) var testSuperclassExpression: SuperclassExpression!
   private(set) var testSuperclassInitializerExpression: SuperclassInitializerExpression!
   private(set) var testSuperclassMethodExpression: SuperclassMethodExpression!
+  private(set) var testSuperclassSubscriptExpression: SuperclassSubscriptExpression!
   private(set) var testTupleType: TupleType!
   private(set) var testTupleTypeElement: TupleTypeElement!
   private(set) var testTupleTypeElementList: TupleTypeElementList!
@@ -769,6 +779,11 @@ private class TestElements {
       super.visitSelfMethodExpression(element)
     }
 
+    override func visitSelfSubscriptExpression(_ element: SelfSubscriptExpression) {
+      elements.testSelfSubscriptExpression = element
+      super.visitSelfSubscriptExpression(element)
+    }
+
     override func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
       elements.testSubscriptDeclaration = element
       super.visitSubscriptDeclaration(element)
@@ -787,6 +802,11 @@ private class TestElements {
     override func visitSuperclassMethodExpression(_ element: SuperclassMethodExpression) {
       elements.testSuperclassMethodExpression = element
       super.visitSuperclassMethodExpression(element)
+    }
+
+    override func visitSuperclassSubscriptExpression(_ element: SuperclassSubscriptExpression) {
+      elements.testSuperclassSubscriptExpression = element
+      super.visitSuperclassSubscriptExpression(element)
     }
 
     override func visitTupleType(_ element: TupleType) {

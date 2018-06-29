@@ -267,6 +267,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = SelfMethodExpressionProxy(element)
   }
 
+  override func visitSelfSubscriptExpression(_ element: SelfSubscriptExpression) {
+    proxy = SelfSubscriptExpressionProxy(element)
+  }
+
   override func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
     proxy = SubscriptDeclarationProxy(element)
   }
@@ -281,6 +285,10 @@ class ManagedElementVisitor: ElementVisitor {
 
   override func visitSuperclassMethodExpression(_ element: SuperclassMethodExpression) {
     proxy = SuperclassMethodExpressionProxy(element)
+  }
+
+  override func visitSuperclassSubscriptExpression(_ element: SuperclassSubscriptExpression) {
+    proxy = SuperclassSubscriptExpressionProxy(element)
   }
 
   override func visitTupleType(_ element: TupleType) {

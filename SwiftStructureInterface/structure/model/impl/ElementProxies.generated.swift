@@ -732,6 +732,18 @@ class SelfMethodExpressionProxy: SelfExpressionProxy,
   }
 }
 
+class SelfSubscriptExpressionProxy: SelfExpressionProxy,
+ SelfSubscriptExpression {
+
+  init(_ element: SelfSubscriptExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSelfSubscriptExpression(self)
+  }
+}
+
 class SubscriptDeclarationProxy: ElementProxy, SubscriptDeclaration {
 
   init(_ element: SubscriptDeclaration) {
@@ -776,6 +788,18 @@ class SuperclassMethodExpressionProxy: PrimaryExpressionProxy,
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitSuperclassMethodExpression(self)
+  }
+}
+
+class SuperclassSubscriptExpressionProxy: PrimaryExpressionProxy,
+ SuperclassSubscriptExpression {
+
+  init(_ element: SuperclassSubscriptExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSuperclassSubscriptExpression(self)
   }
 }
 

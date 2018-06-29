@@ -23,13 +23,30 @@ class SelfExpressionParserTests: XCTestCase {
         XCTAssert(expression is SelfInitializerExpression)
     }
 
-    // TODO: parse me
-//    func test_shouldParseSelfSubscriptExpression() throws {
-//        let text = "self[a: A, b: B]"
-//        let expression = try parse(text)
-//        XCTAssertEqual(expression.text, text)
-//        XCTAssert(expression is SelfSubscriptExpression)
-//    }
+    func test_shouldParseSelfSubscriptExpression() throws {
+        let text = "self[a: expr, ++]"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+        XCTAssert(expression is SelfSubscriptExpression)
+    }
+
+    func test_shouldNotParseSubscriptWhenMissingLeadingSquare() {
+        XCTAssertFalse(try parse("self expr]") is SelfSubscriptExpression)
+    }
+
+    func test_shouldParseSelfSubscriptExpressionMissingClosingSquare() throws {
+        let text = "self[a: expr"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+        XCTAssert(expression is SelfSubscriptExpression)
+    }
+
+    func test_shouldParseSelfSubscriptExpressionMissingFunctionCallList() throws {
+        let text = "self[]"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+        XCTAssert(expression is SelfSubscriptExpression)
+    }
 
     private func parse(_ input: String) throws -> SelfExpression {
         return try createParser(input, SelfExpressionParser.self).parse()

@@ -32,6 +32,9 @@ class KeyPathExpressionParser: Parser<KeyPathExpression> {
     }
 
     private func parsePostfix() throws -> KeyPathPostfix {
+        if isNext(.leftSquare) {
+            return try parsePostfixFunctionCallArgumentList()
+        }
         return try KeyPathPostfixImpl(children: builder()
                 .required { try self.parseAnyPostfixItem() }
                 .build())
@@ -42,8 +45,15 @@ class KeyPathExpressionParser: Parser<KeyPathExpression> {
             return postfix
         } else if let postfix = try? parseOperator("!") {
             return postfix
-        } else {
-            throw LookAheadError()
         }
+        throw LookAheadError()
+    }
+
+    private func parsePostfixFunctionCallArgumentList() throws -> KeyPathPostfix {
+        return try KeyPathPostfixImpl(children: builder()
+                .required { try self.parsePunctuation(.leftSquare) }
+                .optional { try self.parseFunctionCallArgumentList() }
+                .optional { try self.parsePunctuation(.rightSquare) }
+                .build())
     }
 }

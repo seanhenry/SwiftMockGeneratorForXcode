@@ -386,6 +386,12 @@ extension SelfMethodExpressionImpl {
   }
 }
 
+extension SelfSubscriptExpressionImpl {
+  static func emptySelfSubscriptExpression() -> SelfSubscriptExpression {
+    return SelfSubscriptExpressionImpl(children: [])
+  }
+}
+
 extension SubscriptDeclarationImpl {
   static func emptySubscriptDeclaration() -> SubscriptDeclaration {
     return SubscriptDeclarationImpl(children: [])
@@ -407,6 +413,12 @@ extension SuperclassInitializerExpressionImpl {
 extension SuperclassMethodExpressionImpl {
   static func emptySuperclassMethodExpression() -> SuperclassMethodExpression {
     return SuperclassMethodExpressionImpl(children: [])
+  }
+}
+
+extension SuperclassSubscriptExpressionImpl {
+  static func emptySuperclassSubscriptExpression() -> SuperclassSubscriptExpression {
+    return SuperclassSubscriptExpressionImpl(children: [])
   }
 }
 

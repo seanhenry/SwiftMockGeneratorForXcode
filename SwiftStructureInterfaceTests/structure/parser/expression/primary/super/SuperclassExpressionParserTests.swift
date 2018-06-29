@@ -21,13 +21,30 @@ class SuperclassExpressionParserTests: XCTestCase {
         XCTAssert(expression is SuperclassInitializerExpression)
     }
 
-    // TODO: parse me
-//    func test_shouldParseSuperSubscriptExpression() throws {
-//        let text = "super[a: A, b: B]"
-//        let expression = try parse(text)
-//        XCTAssertEqual(expression.text, text)
-//        XCTAssert(expression is SuperclassSubscriptExpression)
-//    }
+    func test_shouldParseSuperclassSubscriptExpression() throws {
+        let text = "super[a: expr, ++]"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+        XCTAssert(expression is SuperclassSubscriptExpression)
+    }
+
+    func test_shouldNotParseSubscriptWhenMissingLeadingSquare() {
+        XCTAssertThrowsError(try parse("super expr]"))
+    }
+
+    func test_shouldParseSuperclassSubscriptExpressionMissingClosingSquare() throws {
+        let text = "super[a: expr"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+        XCTAssert(expression is SuperclassSubscriptExpression)
+    }
+
+    func test_shouldParseSuperclassSubscriptExpressionMissingFunctionCallList() throws {
+        let text = "super[]"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+        XCTAssert(expression is SuperclassSubscriptExpression)
+    }
 
     private func parse(_ input: String) throws -> SuperclassExpression {
         return try createParser(input, SuperclassExpressionParser.self).parse()

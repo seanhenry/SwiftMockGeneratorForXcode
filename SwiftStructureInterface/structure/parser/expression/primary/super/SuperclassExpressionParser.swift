@@ -1,8 +1,12 @@
 class SuperclassExpressionParser: Parser<SuperclassExpression> {
 
     override func parse() throws -> SuperclassExpression {
-        if let expression = parseSuperclassMethodExpression()
-                ?? parseSuperclassInitializerExpression() {
+        guard isNext(.`super`) else {
+            throw LookAheadError()
+        }
+        if let expression = parseSuperclassInitializerExpression()
+                ?? parseSubscriptSuperclassExpression()
+                ?? parseSuperclassMethodExpression() {
             return expression
         }
         throw LookAheadError()
@@ -21,6 +25,15 @@ class SuperclassExpressionParser: Parser<SuperclassExpression> {
                 .required { try self.parseKeyword(.`super`) }
                 .required { try self.parsePunctuation(.dot) }
                 .required { try self.parseKeyword(.init) }
+                .build())
+    }
+
+    private func parseSubscriptSuperclassExpression() -> SuperclassExpression? {
+        return try? SuperclassSubscriptExpressionImpl(children: self.builder()
+                .required { try self.parseKeyword(.`super`) }
+                .required { try self.parsePunctuation(.leftSquare) }
+                .optional { try self.parseFunctionCallArgumentList() }
+                .optional { try self.parsePunctuation(.rightSquare) }
                 .build())
     }
 }

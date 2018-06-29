@@ -7,6 +7,10 @@ class IdentifierParserTests: XCTestCase {
         XCTAssertEqual(try parse("identifier").text, "identifier")
     }
 
+    func test_shouldParseUnderscore() {
+        XCTAssertEqual(try parse("_").text, "_")
+    }
+
     func test_shouldAdvanceLexer() {
         let parser = createParser("identifier1 identifier2", IdentifierParser.self)
         XCTAssertEqual(try parser.parse().text, "identifier1")

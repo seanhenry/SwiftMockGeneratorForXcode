@@ -27,26 +27,31 @@ class KeyPathExpressionParserTests: XCTestCase {
         XCTAssertEqual(expression.text, text)
     }
 
-    // TODO: parse function call argument list
+    func test_shouldParseExpressionWithFunctionCallList() throws {
+        let text = "\\AType.path[_:expression]"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
 
     func test_shouldNotParseWhenNoBackslash() {
         XCTAssertThrowsError(try parse("AType"))
     }
 
     func test_shouldCorrectlyParseTree() throws {
-        let text = "\\AType.path?.to!.item" // TODO: add function call to test
+        let text = "\\AType.path?.to!.item[expression]"
         let expression = try parse(text)
         XCTAssertEqual(expression.text, text)
         XCTAssertEqual(expression.type?.text, "AType")
         XCTAssertEqual(expression.components.components.count, 3)
         XCTAssertEqual(expression.components.components[0].text, "path?")
         XCTAssertEqual(expression.components.components[1].text, "to!")
-        XCTAssertEqual(expression.components.components[2].text, "item")
+        XCTAssertEqual(expression.components.components[2].text, "item[expression]")
         XCTAssertEqual(expression.components.components[0].identifier?.text, "path")
         XCTAssertEqual(expression.components.components[0].postfixes?.postfixes[0].text, "?")
         XCTAssertEqual(expression.components.components[1].identifier?.text, "to")
         XCTAssertEqual(expression.components.components[1].postfixes?.postfixes[0].text, "!")
         XCTAssertEqual(expression.components.components[2].identifier?.text, "item")
+        XCTAssertEqual(expression.components.components[2].postfixes?.postfixes[0].text, "[expression]")
 
     }
 
@@ -57,7 +62,19 @@ class KeyPathExpressionParserTests: XCTestCase {
     }
 
     func test_shouldParseExpressionWithOnlyPostfixes() throws {
-        let text = "\\AType.?!" // TODO: add function call
+        let text = "\\AType.?![++]"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
+    func test_shouldParseFunctionCallListWhenMissingRightSquare() throws {
+        let text = "\\AType.[+"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
+    func test_shouldParseFunctionCallListWhenNoFunctionItems() throws {
+        let text = "\\AType.[]"
         let expression = try parse(text)
         XCTAssertEqual(expression.text, text)
     }

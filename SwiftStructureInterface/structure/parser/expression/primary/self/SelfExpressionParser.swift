@@ -1,8 +1,12 @@
 class SelfExpressionParser: Parser<SelfExpression> {
 
     override func parse() throws -> SelfExpression {
-        if let expression = parseSelfMethodExpression()
-                ?? parseSelfInitializerExpression()
+        guard isNext(.`self`) else {
+            throw LookAheadError()
+        }
+        if let expression = parseSelfInitializerExpression()
+                ?? parseSubscriptSelfExpression()
+                ?? parseSelfMethodExpression()
                 ?? parseBasicSelfExpression() {
             return expression
         }
@@ -28,6 +32,15 @@ class SelfExpressionParser: Parser<SelfExpression> {
     private func parseBasicSelfExpression() -> SelfExpression? {
         return try? SelfExpressionImpl(children: self.builder()
                 .required { try self.parseKeyword(.`self`) }
+                .build())
+    }
+
+    private func parseSubscriptSelfExpression() -> SelfExpression? {
+        return try? SelfSubscriptExpressionImpl(children: self.builder()
+                .required { try self.parseKeyword(.`self`) }
+                .required { try self.parsePunctuation(.leftSquare) }
+                .optional { try self.parseFunctionCallArgumentList() }
+                .optional { try self.parsePunctuation(.rightSquare) }
                 .build())
     }
 }

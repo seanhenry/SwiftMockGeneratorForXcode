@@ -249,28 +249,35 @@ class Parser<ResultType> {
     }
 
     func parseIdentifier() throws -> Identifier {
-        if case .identifier = peekAtNextKind() {
+        if isIdentifierNext() {
             return try parse(IdentifierParser.self)
         }
         throw LookAheadError()
     }
 
     func parseIdentifier(_ string: String) throws -> Identifier {
-        if case .identifier(string, false) = peekAtNextKind() {
+        if isIdentifierNext([string]) {
             return try parse(IdentifierParser.self)
         }
         throw LookAheadError()
     }
 
     func parseIdentifier(_ strings: [String]) throws -> Identifier {
-        let identifier = peekAtNextKind()
-        let isMatch = strings.contains { string in
-            return .identifier(string, false) ~= identifier
-        }
-        if isMatch {
+        if isIdentifierNext(strings) {
             return try parseIdentifier()
         }
         throw LookAheadError()
+    }
+
+    private func isIdentifierNext(_ strings: [String] = []) -> Bool {
+        if isNext(.underscore) {
+            return true
+        } else if strings.isEmpty {
+            return peekAtNextIdentifier() != nil
+        }
+        return strings.contains { string in
+            return .identifier(string, false) ~= peekAtNextKind()
+        }
     }
 
     func parseOperator(_ op: UnicodeScalar) throws -> Element {
@@ -307,6 +314,10 @@ class Parser<ResultType> {
     func parseExpression() throws -> Expression {
         // TODO: Parse all expressions here!
         return try parse(IdentifierPrimaryExpressionParser.self)
+    }
+
+    func parseFunctionCallArgumentList() throws -> FunctionCallArgumentList {
+        return try parse(FunctionCallArgumentListParser.self)
     }
 
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {

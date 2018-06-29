@@ -15,6 +15,12 @@ class FunctionCallArgumentListParserTests: XCTestCase {
         XCTAssertEqual(list.text, text)
     }
 
+    func test_shouldParseWildcardIdentifier() throws {
+        let text = "_: expression, _"
+        let list = try parse(text)
+        XCTAssertEqual(list.text, text)
+    }
+
     func test_shouldParseManyItemsList() throws {
         let text = "expression, identifier: expression"
         let list = try parse(text)
@@ -28,7 +34,7 @@ class FunctionCallArgumentListParserTests: XCTestCase {
     }
 
     func test_shouldNotParseItemsWhenNoExpression() {
-        XCTAssertThrowsError(try parse("class"))
+        XCTAssertThrowsError(try parse(""))
     }
 
     private func parse(_ input: String) throws -> FunctionCallArgumentList {

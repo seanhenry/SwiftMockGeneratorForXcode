@@ -329,6 +329,9 @@ extension SelfInitializerExpression {
 extension SelfMethodExpression {
 
 }
+extension SelfSubscriptExpression {
+
+}
 extension SubscriptDeclaration {
 
   public var declarations: [Element] {
@@ -342,6 +345,9 @@ extension SuperclassInitializerExpression {
 
 }
 extension SuperclassMethodExpression {
+
+}
+extension SuperclassSubscriptExpression {
 
 }
 extension TupleType {

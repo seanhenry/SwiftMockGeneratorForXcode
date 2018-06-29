@@ -678,6 +678,18 @@ class SelfMethodExpressionImpl: SelfExpressionImpl,
   }
 }
 
+class SelfSubscriptExpressionImpl: SelfExpressionImpl,
+ SelfSubscriptExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSelfSubscriptExpression(self)
+  }
+}
+
 class SubscriptDeclarationImpl: ElementImpl, SubscriptDeclaration {
 
   override init(children: [Element]) {
@@ -722,6 +734,18 @@ class SuperclassMethodExpressionImpl: PrimaryExpressionImpl,
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitSuperclassMethodExpression(self)
+  }
+}
+
+class SuperclassSubscriptExpressionImpl: PrimaryExpressionImpl,
+ SuperclassSubscriptExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSuperclassSubscriptExpression(self)
   }
 }
 
