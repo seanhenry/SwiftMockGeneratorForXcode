@@ -624,6 +624,18 @@ class OperatorPostfixExpressionImpl: PostfixExpressionImpl,
   }
 }
 
+class OptionalChainingExpressionImpl: PostfixExpressionImpl,
+ OptionalChainingExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitOptionalChainingExpression(self)
+  }
+}
+
 class OptionalTypeImpl: TypeImpl,
  OptionalType {
 

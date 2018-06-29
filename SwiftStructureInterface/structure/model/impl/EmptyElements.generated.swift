@@ -356,6 +356,12 @@ extension OperatorPostfixExpressionImpl {
   }
 }
 
+extension OptionalChainingExpressionImpl {
+  static func emptyOptionalChainingExpression() -> OptionalChainingExpression {
+    return OptionalChainingExpressionImpl(children: [])
+  }
+}
+
 extension OptionalTypeImpl {
   static func emptyOptionalType() -> OptionalType {
     return OptionalTypeImpl(children: [])

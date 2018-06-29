@@ -670,6 +670,18 @@ class OperatorPostfixExpressionProxy: PostfixExpressionProxy,
   }
 }
 
+class OptionalChainingExpressionProxy: PostfixExpressionProxy,
+ OptionalChainingExpression {
+
+  init(_ element: OptionalChainingExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitOptionalChainingExpression(self)
+  }
+}
+
 class OptionalTypeProxy: TypeProxy,
  OptionalType {
 

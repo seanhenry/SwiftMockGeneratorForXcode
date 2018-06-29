@@ -247,6 +247,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = OperatorPostfixExpressionProxy(element)
   }
 
+  override func visitOptionalChainingExpression(_ element: OptionalChainingExpression) {
+    proxy = OptionalChainingExpressionProxy(element)
+  }
+
   override func visitOptionalType(_ element: OptionalType) {
     proxy = OptionalTypeProxy(element)
   }

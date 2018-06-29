@@ -201,6 +201,9 @@ var testMutationModifier: MutationModifier {
 var testOperatorPostfixExpression: OperatorPostfixExpression {
   return TestElements.instance.testOperatorPostfixExpression!
 }
+var testOptionalChainingExpression: OptionalChainingExpression {
+  return TestElements.instance.testOptionalChainingExpression!
+}
 var testOptionalType: OptionalType {
   return TestElements.instance.testOptionalType!
 }
@@ -379,6 +382,7 @@ var allTestElements: [Element] {
     testLiteralExpression,
     testMutationModifier,
     testOperatorPostfixExpression,
+    testOptionalChainingExpression,
     testOptionalType,
     testParameter,
     testParameterClause,
@@ -486,6 +490,7 @@ private class TestElements {
   private(set) var testLiteralExpression: LiteralExpression!
   private(set) var testMutationModifier: MutationModifier!
   private(set) var testOperatorPostfixExpression: OperatorPostfixExpression!
+  private(set) var testOptionalChainingExpression: OptionalChainingExpression!
   private(set) var testOptionalType: OptionalType!
   private(set) var testParameter: Parameter!
   private(set) var testParameterClause: ParameterClause!
@@ -827,6 +832,11 @@ private class TestElements {
     override func visitOperatorPostfixExpression(_ element: OperatorPostfixExpression) {
       elements.testOperatorPostfixExpression = element
       super.visitOperatorPostfixExpression(element)
+    }
+
+    override func visitOptionalChainingExpression(_ element: OptionalChainingExpression) {
+      elements.testOptionalChainingExpression = element
+      super.visitOptionalChainingExpression(element)
     }
 
     override func visitOptionalType(_ element: OptionalType) {

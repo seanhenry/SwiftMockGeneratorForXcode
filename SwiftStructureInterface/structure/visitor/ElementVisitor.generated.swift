@@ -242,6 +242,10 @@ open class ElementVisitor {
     visitPostfixExpression(element)
   }
 
+  open func visitOptionalChainingExpression(_ element: OptionalChainingExpression) {
+    visitPostfixExpression(element)
+  }
+
   open func visitOptionalType(_ element: OptionalType) {
     visitType(element)
   }
