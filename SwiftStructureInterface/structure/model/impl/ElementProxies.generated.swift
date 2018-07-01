@@ -986,6 +986,40 @@ class SuperclassSubscriptExpressionProxy: PrimaryExpressionProxy,
   }
 }
 
+class TupleElementProxy: ElementProxy, TupleElement {
+
+  init(_ element: TupleElement) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitTupleElement(self)
+  }
+}
+
+class TupleElementListProxy: ElementProxy, TupleElementList {
+
+  init(_ element: TupleElementList) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitTupleElementList(self)
+  }
+}
+
+class TupleExpressionProxy: PrimaryExpressionProxy,
+ TupleExpression {
+
+  init(_ element: TupleExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitTupleExpression(self)
+  }
+}
+
 class TupleTypeProxy: TypeProxy,
  TupleType {
 

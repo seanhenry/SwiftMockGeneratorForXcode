@@ -449,6 +449,21 @@ extension SuperclassMethodExpression {
 extension SuperclassSubscriptExpression {
 
 }
+extension TupleElement {
+
+}
+extension TupleElementList {
+
+  public var elements: [TupleElement] {
+    return children.compactMap { $0 as? TupleElement }
+  }
+}
+extension TupleExpression {
+
+  public var tupleElementList: TupleElementList {
+    return first(TupleElementList.self) ?? TupleElementListImpl.emptyTupleElementList()
+  }
+}
 extension TupleType {
 
   public var tupleTypeElementList: TupleTypeElementList {

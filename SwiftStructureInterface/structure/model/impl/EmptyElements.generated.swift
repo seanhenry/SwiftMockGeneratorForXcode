@@ -518,6 +518,24 @@ extension SuperclassSubscriptExpressionImpl {
   }
 }
 
+extension TupleElementImpl {
+  static func emptyTupleElement() -> TupleElement {
+    return TupleElementImpl(children: [])
+  }
+}
+
+extension TupleElementListImpl {
+  static func emptyTupleElementList() -> TupleElementList {
+    return TupleElementListImpl(children: [])
+  }
+}
+
+extension TupleExpressionImpl {
+  static func emptyTupleExpression() -> TupleExpression {
+    return TupleExpressionImpl(children: [])
+  }
+}
+
 extension TupleTypeImpl {
   static func emptyTupleType() -> TupleType {
     return TupleTypeImpl(children: [])

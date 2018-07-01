@@ -350,6 +350,18 @@ open class ElementVisitor {
     visitPrimaryExpression(element)
   }
 
+  open func visitTupleElement(_ element: TupleElement) {
+    visitElement(element)
+  }
+
+  open func visitTupleElementList(_ element: TupleElementList) {
+    visitElement(element)
+  }
+
+  open func visitTupleExpression(_ element: TupleExpression) {
+    visitPrimaryExpression(element)
+  }
+
   open func visitTupleType(_ element: TupleType) {
     visitType(element)
   }
