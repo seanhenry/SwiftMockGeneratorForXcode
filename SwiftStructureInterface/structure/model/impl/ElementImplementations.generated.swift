@@ -15,6 +15,28 @@ class AccessLevelModifierImpl: DeclarationModifierImpl,
   }
 }
 
+class ArgumentNameImpl: ElementImpl, ArgumentName {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitArgumentName(self)
+  }
+}
+
+class ArgumentNamesImpl: ElementImpl, ArgumentNames {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitArgumentNames(self)
+  }
+}
+
 class ArrayLiteralExpressionImpl: LiteralExpressionImpl,
  ArrayLiteralExpression {
 
@@ -505,6 +527,18 @@ class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitInitializerDeclaration(self)
+  }
+}
+
+class InitializerExpressionImpl: ExpressionImpl,
+ InitializerExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitInitializerExpression(self)
   }
 }
 

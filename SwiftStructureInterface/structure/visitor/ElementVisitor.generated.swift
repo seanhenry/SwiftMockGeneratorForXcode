@@ -14,6 +14,14 @@ open class ElementVisitor {
     visitDeclarationModifier(element)
   }
 
+  open func visitArgumentName(_ element: ArgumentName) {
+    visitElement(element)
+  }
+
+  open func visitArgumentNames(_ element: ArgumentNames) {
+    visitElement(element)
+  }
+
   open func visitArrayLiteralExpression(_ element: ArrayLiteralExpression) {
     visitLiteralExpression(element)
   }
@@ -196,6 +204,10 @@ open class ElementVisitor {
 
   open func visitInitializerDeclaration(_ element: InitializerDeclaration) {
     visitElement(element)
+  }
+
+  open func visitInitializerExpression(_ element: InitializerExpression) {
+    visitExpression(element)
   }
 
   open func visitKeyPathComponent(_ element: KeyPathComponent) {

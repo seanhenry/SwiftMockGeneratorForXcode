@@ -15,6 +15,28 @@ class AccessLevelModifierProxy: DeclarationModifierProxy,
   }
 }
 
+class ArgumentNameProxy: ElementProxy, ArgumentName {
+
+  init(_ element: ArgumentName) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitArgumentName(self)
+  }
+}
+
+class ArgumentNamesProxy: ElementProxy, ArgumentNames {
+
+  init(_ element: ArgumentNames) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitArgumentNames(self)
+  }
+}
+
 class ArrayLiteralExpressionProxy: LiteralExpressionProxy,
  ArrayLiteralExpression {
 
@@ -532,6 +554,18 @@ class InitializerDeclarationProxy: ElementProxy, InitializerDeclaration {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitInitializerDeclaration(self)
+  }
+}
+
+class InitializerExpressionProxy: ExpressionProxy,
+ InitializerExpression {
+
+  init(_ element: InitializerExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitInitializerExpression(self)
   }
 }
 

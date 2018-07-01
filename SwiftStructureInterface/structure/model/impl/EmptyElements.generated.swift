@@ -8,6 +8,18 @@ extension AccessLevelModifierImpl {
   }
 }
 
+extension ArgumentNameImpl {
+  static func emptyArgumentName() -> ArgumentName {
+    return ArgumentNameImpl(children: [])
+  }
+}
+
+extension ArgumentNamesImpl {
+  static func emptyArgumentNames() -> ArgumentNames {
+    return ArgumentNamesImpl(children: [])
+  }
+}
+
 extension ArrayLiteralExpressionImpl {
   static func emptyArrayLiteralExpression() -> ArrayLiteralExpression {
     return ArrayLiteralExpressionImpl(children: [])
@@ -287,6 +299,12 @@ extension InOutExpressionImpl {
 extension InitializerDeclarationImpl {
   static func emptyInitializerDeclaration() -> InitializerDeclaration {
     return InitializerDeclarationImpl(children: [])
+  }
+}
+
+extension InitializerExpressionImpl {
+  static func emptyInitializerExpression() -> InitializerExpression {
+    return InitializerExpressionImpl(children: [])
   }
 }
 

@@ -27,6 +27,12 @@ public protocol TestProtocol: Z where A: B, C == D {
 var testAccessLevelModifier: AccessLevelModifier {
   return TestElements.instance.testAccessLevelModifier!
 }
+var testArgumentName: ArgumentName {
+  return TestElements.instance.testArgumentName!
+}
+var testArgumentNames: ArgumentNames {
+  return TestElements.instance.testArgumentNames!
+}
 var testArrayLiteralExpression: ArrayLiteralExpression {
   return TestElements.instance.testArrayLiteralExpression!
 }
@@ -167,6 +173,9 @@ var testInOutExpression: InOutExpression {
 }
 var testInitializerDeclaration: InitializerDeclaration {
   return TestElements.instance.testInitializerDeclaration!
+}
+var testInitializerExpression: InitializerExpression {
+  return TestElements.instance.testInitializerExpression!
 }
 var testKeyPathComponent: KeyPathComponent {
   return TestElements.instance.testKeyPathComponent!
@@ -333,6 +342,8 @@ var testWildcardExpression: WildcardExpression {
 var allTestElements: [Element] {
   return [
     testAccessLevelModifier,
+    testArgumentName,
+    testArgumentNames,
     testArrayLiteralExpression,
     testArrayLiteralItem,
     testArrayLiteralItems,
@@ -380,6 +391,7 @@ var allTestElements: [Element] {
     testImplicitMemberExpression,
     testInOutExpression,
     testInitializerDeclaration,
+    testInitializerExpression,
     testKeyPathComponent,
     testKeyPathComponents,
     testKeyPathExpression,
@@ -444,6 +456,8 @@ private class TestElements {
     try! ElementParser.parseFile(allTypesString).accept(Visitor(self))
   }
   private(set) var testAccessLevelModifier: AccessLevelModifier!
+  private(set) var testArgumentName: ArgumentName!
+  private(set) var testArgumentNames: ArgumentNames!
   private(set) var testArrayLiteralExpression: ArrayLiteralExpression!
   private(set) var testArrayLiteralItem: ArrayLiteralItem!
   private(set) var testArrayLiteralItems: ArrayLiteralItems!
@@ -491,6 +505,7 @@ private class TestElements {
   private(set) var testImplicitMemberExpression: ImplicitMemberExpression!
   private(set) var testInOutExpression: InOutExpression!
   private(set) var testInitializerDeclaration: InitializerDeclaration!
+  private(set) var testInitializerExpression: InitializerExpression!
   private(set) var testKeyPathComponent: KeyPathComponent!
   private(set) var testKeyPathComponents: KeyPathComponents!
   private(set) var testKeyPathExpression: KeyPathExpression!
@@ -557,6 +572,16 @@ private class TestElements {
     override func visitAccessLevelModifier(_ element: AccessLevelModifier) {
       elements.testAccessLevelModifier = element
       super.visitAccessLevelModifier(element)
+    }
+
+    override func visitArgumentName(_ element: ArgumentName) {
+      elements.testArgumentName = element
+      super.visitArgumentName(element)
+    }
+
+    override func visitArgumentNames(_ element: ArgumentNames) {
+      elements.testArgumentNames = element
+      super.visitArgumentNames(element)
     }
 
     override func visitArrayLiteralExpression(_ element: ArrayLiteralExpression) {
@@ -792,6 +817,11 @@ private class TestElements {
     override func visitInitializerDeclaration(_ element: InitializerDeclaration) {
       elements.testInitializerDeclaration = element
       super.visitInitializerDeclaration(element)
+    }
+
+    override func visitInitializerExpression(_ element: InitializerExpression) {
+      elements.testInitializerExpression = element
+      super.visitInitializerExpression(element)
     }
 
     override func visitKeyPathComponent(_ element: KeyPathComponent) {

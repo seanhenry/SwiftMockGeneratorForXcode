@@ -5,6 +5,15 @@
 extension AccessLevelModifier {
 
 }
+extension ArgumentName {
+
+}
+extension ArgumentNames {
+
+  public var argumentNames: [ArgumentName] {
+    return children.compactMap { $0 as? ArgumentName }
+  }
+}
 extension ArrayLiteralExpression {
 
   public var arrayLiteralItems: ArrayLiteralItems {
@@ -291,6 +300,15 @@ extension InitializerDeclaration {
 
   public var parameterClause: ParameterClause {
     return first(ParameterClause.self) ?? ParameterClauseImpl.emptyParameterClause()
+  }
+}
+extension InitializerExpression {
+
+  public var postfixExpression: PostfixExpression {
+    return first(PostfixExpression.self) ?? PostfixExpressionImpl.emptyPostfixExpression()
+  }
+  public var argumentNames: ArgumentNames {
+    return first(ArgumentNames.self) ?? ArgumentNamesImpl.emptyArgumentNames()
   }
 }
 extension KeyPathComponent {

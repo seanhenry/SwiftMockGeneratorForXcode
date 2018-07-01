@@ -19,6 +19,14 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = AccessLevelModifierProxy(element)
   }
 
+  override func visitArgumentName(_ element: ArgumentName) {
+    proxy = ArgumentNameProxy(element)
+  }
+
+  override func visitArgumentNames(_ element: ArgumentNames) {
+    proxy = ArgumentNamesProxy(element)
+  }
+
   override func visitArrayLiteralExpression(_ element: ArrayLiteralExpression) {
     proxy = ArrayLiteralExpressionProxy(element)
   }
@@ -201,6 +209,10 @@ class ManagedElementVisitor: ElementVisitor {
 
   override func visitInitializerDeclaration(_ element: InitializerDeclaration) {
     proxy = InitializerDeclarationProxy(element)
+  }
+
+  override func visitInitializerExpression(_ element: InitializerExpression) {
+    proxy = InitializerExpressionProxy(element)
   }
 
   override func visitKeyPathComponent(_ element: KeyPathComponent) {
