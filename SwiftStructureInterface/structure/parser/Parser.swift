@@ -370,6 +370,10 @@ class Parser<ResultType> {
         throw LookAheadError()
     }
 
+    func parseArgumentNames() throws -> ArgumentNames {
+        return try parse(ArgumentNamesParser.self)
+    }
+
     private func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {
         return try P(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
     }

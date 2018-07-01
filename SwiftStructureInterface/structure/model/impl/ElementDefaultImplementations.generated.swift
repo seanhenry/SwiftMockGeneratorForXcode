@@ -307,8 +307,8 @@ extension InitializerExpression {
   public var postfixExpression: PostfixExpression {
     return first(PostfixExpression.self) ?? PostfixExpressionImpl.emptyPostfixExpression()
   }
-  public var argumentNames: ArgumentNames {
-    return first(ArgumentNames.self) ?? ArgumentNamesImpl.emptyArgumentNames()
+  public var argumentNames: ArgumentNames? {
+    return first(ArgumentNames.self)
   }
 }
 extension KeyPathComponent {
