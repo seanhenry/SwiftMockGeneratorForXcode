@@ -10,6 +10,10 @@ extension XCTestCase {
     }
 
     func createParser<T, P: Parser<T>>(_ text: String, _ `class`: P.Type) -> P {
+        return XCTestCase.createParser(text, `class`)
+    }
+
+    static func createParser<T, P: Parser<T>>(_ text: String, _ `class`: P.Type) -> P {
         let sourceFile = SourceFile(content: text)
         let lexer = SwiftASTLexer(lexer: Lexer(source: sourceFile))
         return P(lexer: lexer, fileContents: text, locationConverter: CachedLocationConverter(text))

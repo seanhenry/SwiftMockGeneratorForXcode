@@ -211,7 +211,7 @@ open class ElementVisitor {
   }
 
   open func visitInitializerExpression(_ element: InitializerExpression) {
-    visitExpression(element)
+    visitPostfixExpression(element)
   }
 
   open func visitKeyPathComponent(_ element: KeyPathComponent) {

@@ -1,4 +1,4 @@
-public protocol InitializerExpression: Expression {
+public protocol InitializerExpression: PostfixExpression {
     var postfixExpression: PostfixExpression { get }
     var argumentNames: ArgumentNames? { get }
 }

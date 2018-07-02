@@ -542,7 +542,7 @@ class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
   }
 }
 
-class InitializerExpressionImpl: ExpressionImpl,
+class InitializerExpressionImpl: PostfixExpressionImpl,
  InitializerExpression {
 
   override init(children: [Element]) {

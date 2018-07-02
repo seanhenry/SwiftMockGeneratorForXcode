@@ -569,7 +569,7 @@ class InitializerDeclarationProxy: ElementProxy, InitializerDeclaration {
   }
 }
 
-class InitializerExpressionProxy: ExpressionProxy,
+class InitializerExpressionProxy: PostfixExpressionProxy,
  InitializerExpression {
 
   init(_ element: InitializerExpression) {

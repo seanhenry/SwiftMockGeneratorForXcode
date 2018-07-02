@@ -329,10 +329,8 @@ class Parser<ResultType> {
     }
 
     func parseExpression() throws -> Expression {
-        // TODO: Parse all expressions here!
-        if let expression = try? parse(IdentifierPrimaryExpressionParser.self) {
-            return expression
-        } else if let expression = try? parse(SelfExpressionParser.self) {
+        // TODO: Parse prefix and binary expressions here!
+        if let expression = try? parse(PostfixExpressionParser.self) {
             return expression
         }
         throw LookAheadError()
@@ -374,7 +372,7 @@ class Parser<ResultType> {
         return try parse(ArgumentNamesParser.self)
     }
 
-    private func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {
+    func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {
         return try P(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
     }
 

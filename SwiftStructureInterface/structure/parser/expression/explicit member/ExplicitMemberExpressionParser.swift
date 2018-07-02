@@ -24,6 +24,7 @@ class ExplicitMemberExpressionParser: Parser<ExplicitMemberExpression> {
     
     private func parseDecimalDigits() throws -> Element {
         if case let .integerLiteral(_, rawRepresentation: rawInt) = peekAtNextKind() {
+            advance()
             return LeafNodeImpl(text: rawInt)
         }
         throw LookAheadError()
