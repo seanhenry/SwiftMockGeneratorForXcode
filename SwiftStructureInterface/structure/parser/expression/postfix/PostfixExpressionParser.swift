@@ -2,10 +2,17 @@ class PostfixExpressionParser: Parser<PostfixExpression> {
 
     override func parse() throws -> PostfixExpression {
         if let primaryExpression = try? parsePrimaryExpression() {
-            return (try? parsePostfixExpression(primaryExpression))
-                    ?? primaryExpression
+            return parse(primaryExpression)
         }
         throw LookAheadError()
+    }
+
+    private func parse(_ postfixExpression: PostfixExpression) -> PostfixExpression {
+        var result = postfixExpression
+        while let expression = try? parsePostfixExpression(result) {
+            result = expression
+        }
+        return result
     }
 
     private func parsePostfixExpression(_ postfixExpression: PostfixExpression) throws -> PostfixExpression {

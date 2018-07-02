@@ -59,7 +59,7 @@ class Parser<ResultType> {
         }
     }
 
-    private func isIdentifier(_ kind: Token.Kind) -> Bool {
+    func isIdentifier(_ kind: Token.Kind) -> Bool {
         if case .identifier(_, _) = kind {
             return true
         }

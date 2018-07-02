@@ -1,27 +1,61 @@
 class ExplicitMemberExpressionParser: CompoundPostfixExpressionParser<ExplicitMemberExpression> {
 
     override func parse() throws -> ExplicitMemberExpression {
+        if isIdentifierExplicitMember() {
+            return try parseIdentifierExplicitMember()
+        } else {
+            return try ExplicitMemberExpressionImpl(children:builder()
+                    .required { self.postfixExpression }
+                    .required { try self.parsePunctuation(.dot) }
+                    .required { try self.parseDecimalDigits() }
+                    .build())
+        }
+    }
+
+    private func isIdentifierExplicitMember() -> Bool {
+        return isIdentifier(peekAtKind(aheadBy: 1))
+    }
+
+    private func parseIdentifierExplicitMember() throws -> ExplicitMemberExpression {
+        if let expression = try? parseWithGenericArgumentClause() {
+            return expression
+        } else if let expression = try? parseWithArgumentNames() {
+            return expression
+        } else if let expression = try? parseSimpleExplicitMember() {
+            return expression
+        } else {
+            throw LookAheadError()
+        }
+    }
+
+    private func parseSimpleExplicitMember() throws -> ExplicitMemberExpression {
         return try ExplicitMemberExpressionImpl(children: builder()
                 .required { self.postfixExpression }
                 .required { try self.parsePunctuation(.dot) }
-                .required { try self.parseExplicitMember() }
-                .optional { try self.parsePunctuation(.leftParen) }
-                .either({ try self.parseGenericArgumentClause() }) {
-                    try self.parseArgumentNames()
-                }
-                .optional { try self.parsePunctuation(.rightParen) }
+                .required { try self.parseIdentifier() }
                 .build())
     }
 
-    private func parseExplicitMember() throws -> Element {
-        if let int = try? parseDecimalDigits() {
-            return int
-        } else if let identifier = try? parseIdentifier() {
-            return identifier
-        }
-        throw LookAheadError()
+    private func parseWithGenericArgumentClause() throws -> ExplicitMemberExpression {
+        return try ExplicitMemberExpressionImpl(children: builder()
+                .required { self.postfixExpression }
+                .required { try self.parsePunctuation(.dot) }
+                .required { try self.parseIdentifier() }
+                .required { try self.parseGenericArgumentClause() }
+                .build())
     }
-    
+
+    private func parseWithArgumentNames() throws -> ExplicitMemberExpression {
+        return try ExplicitMemberExpressionImpl(children: builder()
+                .required { self.postfixExpression }
+                .required { try self.parsePunctuation(.dot) }
+                .required { try self.parseIdentifier() }
+                .required { try self.parsePunctuation(.leftParen) }
+                .optional { try self.parseArgumentNames() }
+                .required { try self.parsePunctuation(.rightParen) }
+                .build())
+    }
+
     private func parseDecimalDigits() throws -> Element {
         if case let .integerLiteral(_, rawRepresentation: rawInt) = peekAtNextKind() {
             advance()

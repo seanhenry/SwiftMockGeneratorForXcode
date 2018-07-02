@@ -43,6 +43,14 @@ class ExplicitMemberExpressionParserTests: XCTestCase {
         XCTAssertEqual(expression.text, text)
     }
 
+    func test_shouldNotParseWhenMissingTrailingParen() {
+        XCTAssertEqual(try parse("expression.identifier(").text, "expression.identifier")
+    }
+
+    func test_shouldNotParseArgumentNamesWhenGenericClauseIsPresent() {
+        XCTAssertEqual(try parse("expression.identifier<T>()").text, "expression.identifier<T>")
+    }
+
     private func parse(_ input: String) throws -> ExplicitMemberExpression {
         return try createCompoundPostfixExpressionParser(input, ExplicitMemberExpressionParser.self).parse()
     }

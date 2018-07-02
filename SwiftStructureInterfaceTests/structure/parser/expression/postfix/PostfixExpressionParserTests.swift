@@ -61,6 +61,30 @@ class PostfixExpressionParserTests: XCTestCase {
         }
     }
 
+    func test_shouldParseCompoundFunctionCallExpression() {
+        let text = "self.nested.function.call(a: expression).chained(0, a: \"key\")"
+        XCTAssertEqual(try parse(text).text, text)
+    }
+
+    func test_shouldParseCompoundChainingExpression() {
+        let text = "identifier?.connected!.by.opt?.chaining!"
+        XCTAssertEqual(try parse(text).text, text)
+    }
+
+    func test_shouldParseCompoundInitializerCall() {
+        let text = "identifier.init?(a: expression())"
+        XCTAssertEqual(try parse(text).text, text)
+    }
+
+    func test_shouldParseCompoundSubscriptCall() {
+        let text = "identifier.sub[0, a: \"test\"]?.next"
+        XCTAssertEqual(try parse(text).text, text)
+    }
+
+    private func parse(_ input: String) throws -> PostfixExpression {
+        return try createParser(input, PostfixExpressionParser.self).parse()
+    }
+
     class Visitor: ElementVisitor {
 
         override func visitElement(_ element: Element) {
