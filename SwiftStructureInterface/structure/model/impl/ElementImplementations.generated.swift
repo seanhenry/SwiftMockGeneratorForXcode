@@ -300,6 +300,18 @@ class DictionaryTypeImpl: TypeImpl,
   }
 }
 
+class ExplicitMemberExpressionImpl: PostfixExpressionImpl,
+ ExplicitMemberExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitExplicitMemberExpression(self)
+  }
+}
+
 class ExpressionImpl: ElementImpl, Expression {
 
   override init(children: [Element]) {

@@ -123,6 +123,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = DictionaryTypeProxy(element)
   }
 
+  override func visitExplicitMemberExpression(_ element: ExplicitMemberExpression) {
+    proxy = ExplicitMemberExpressionProxy(element)
+  }
+
   override func visitExpression(_ element: Expression) {
     proxy = ExpressionProxy(element)
   }

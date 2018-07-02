@@ -108,6 +108,9 @@ var testDictionaryType: DictionaryType {
 var testElement: Element {
   return TestElements.instance.testElement!
 }
+var testExplicitMemberExpression: ExplicitMemberExpression {
+  return TestElements.instance.testExplicitMemberExpression!
+}
 var testExpression: Expression {
   return TestElements.instance.testExpression!
 }
@@ -369,6 +372,7 @@ var allTestElements: [Element] {
     testDictionaryLiteralItems,
     testDictionaryType,
     testElement,
+    testExplicitMemberExpression,
     testExpression,
     testFile,
     testForcedValueExpression,
@@ -483,6 +487,7 @@ private class TestElements {
   private(set) var testDictionaryLiteralItems: DictionaryLiteralItems!
   private(set) var testDictionaryType: DictionaryType!
   private(set) var testElement: Element!
+  private(set) var testExplicitMemberExpression: ExplicitMemberExpression!
   private(set) var testExpression: Expression!
   private(set) var testFile: File!
   private(set) var testForcedValueExpression: ForcedValueExpression!
@@ -707,6 +712,11 @@ private class TestElements {
     override func visitElement(_ element: Element) {
       elements.testElement = element
       super.visitElement(element)
+    }
+
+    override func visitExplicitMemberExpression(_ element: ExplicitMemberExpression) {
+      elements.testExplicitMemberExpression = element
+      super.visitExplicitMemberExpression(element)
     }
 
     override func visitExpression(_ element: Expression) {

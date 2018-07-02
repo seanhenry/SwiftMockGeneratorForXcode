@@ -308,6 +308,18 @@ class DictionaryTypeProxy: TypeProxy,
   }
 }
 
+class ExplicitMemberExpressionProxy: PostfixExpressionProxy,
+ ExplicitMemberExpression {
+
+  init(_ element: ExplicitMemberExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitExplicitMemberExpression(self)
+  }
+}
+
 class ExpressionProxy: ElementProxy, Expression {
 
   init(_ element: Expression) {

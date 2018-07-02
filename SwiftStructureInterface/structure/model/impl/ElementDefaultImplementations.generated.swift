@@ -170,6 +170,9 @@ extension DictionaryType {
     return first(Type.self) ?? TypeImpl.emptyType()
   }
 }
+extension ExplicitMemberExpression {
+
+}
 extension Expression {
 
 }

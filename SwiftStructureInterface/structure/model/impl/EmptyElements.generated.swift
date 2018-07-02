@@ -170,6 +170,12 @@ extension ElementImpl {
   }
 }
 
+extension ExplicitMemberExpressionImpl {
+  static func emptyExplicitMemberExpression() -> ExplicitMemberExpression {
+    return ExplicitMemberExpressionImpl(children: [])
+  }
+}
+
 extension ExpressionImpl {
   static func emptyExpression() -> Expression {
     return ExpressionImpl(children: [])

@@ -118,6 +118,10 @@ open class ElementVisitor {
     visitType(element)
   }
 
+  open func visitExplicitMemberExpression(_ element: ExplicitMemberExpression) {
+    visitPostfixExpression(element)
+  }
+
   open func visitExpression(_ element: Expression) {
     visitElement(element)
   }
