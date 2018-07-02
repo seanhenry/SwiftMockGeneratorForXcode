@@ -984,6 +984,18 @@ class SubscriptDeclarationProxy: ElementProxy, SubscriptDeclaration {
   }
 }
 
+class SubscriptExpressionProxy: PostfixExpressionProxy,
+ SubscriptExpression {
+
+  init(_ element: SubscriptExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSubscriptExpression(self)
+  }
+}
+
 class SuperclassExpressionProxy: PrimaryExpressionProxy,
  SuperclassExpression {
 

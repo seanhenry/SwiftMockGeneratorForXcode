@@ -458,6 +458,9 @@ extension SubscriptDeclaration {
     return children.compactMap { $0 as? Element }
   }
 }
+extension SubscriptExpression {
+
+}
 extension SuperclassExpression {
 
 }

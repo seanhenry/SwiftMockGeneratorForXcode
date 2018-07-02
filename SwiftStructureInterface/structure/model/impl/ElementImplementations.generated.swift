@@ -930,6 +930,18 @@ class SubscriptDeclarationImpl: ElementImpl, SubscriptDeclaration {
   }
 }
 
+class SubscriptExpressionImpl: PostfixExpressionImpl,
+ SubscriptExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitSubscriptExpression(self)
+  }
+}
+
 class SuperclassExpressionImpl: PrimaryExpressionImpl,
  SuperclassExpression {
 

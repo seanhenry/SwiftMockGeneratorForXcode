@@ -518,6 +518,12 @@ extension SubscriptDeclarationImpl {
   }
 }
 
+extension SubscriptExpressionImpl {
+  static func emptySubscriptExpression() -> SubscriptExpression {
+    return SubscriptExpressionImpl(children: [])
+  }
+}
+
 extension SuperclassExpressionImpl {
   static func emptySuperclassExpression() -> SuperclassExpression {
     return SuperclassExpressionImpl(children: [])

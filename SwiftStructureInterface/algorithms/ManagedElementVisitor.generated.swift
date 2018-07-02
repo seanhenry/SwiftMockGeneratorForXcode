@@ -355,6 +355,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = SubscriptDeclarationProxy(element)
   }
 
+  override func visitSubscriptExpression(_ element: SubscriptExpression) {
+    proxy = SubscriptExpressionProxy(element)
+  }
+
   override func visitSuperclassExpression(_ element: SuperclassExpression) {
     proxy = SuperclassExpressionProxy(element)
   }

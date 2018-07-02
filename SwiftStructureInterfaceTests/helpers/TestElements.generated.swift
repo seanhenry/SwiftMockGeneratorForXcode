@@ -282,6 +282,9 @@ var testSelfSubscriptExpression: SelfSubscriptExpression {
 var testSubscriptDeclaration: SubscriptDeclaration {
   return TestElements.instance.testSubscriptDeclaration!
 }
+var testSubscriptExpression: SubscriptExpression {
+  return TestElements.instance.testSubscriptExpression!
+}
 var testSuperclassExpression: SuperclassExpression {
   return TestElements.instance.testSuperclassExpression!
 }
@@ -430,6 +433,7 @@ var allTestElements: [Element] {
     testSelfMethodExpression,
     testSelfSubscriptExpression,
     testSubscriptDeclaration,
+    testSubscriptExpression,
     testSuperclassExpression,
     testSuperclassInitializerExpression,
     testSuperclassMethodExpression,
@@ -545,6 +549,7 @@ private class TestElements {
   private(set) var testSelfMethodExpression: SelfMethodExpression!
   private(set) var testSelfSubscriptExpression: SelfSubscriptExpression!
   private(set) var testSubscriptDeclaration: SubscriptDeclaration!
+  private(set) var testSubscriptExpression: SubscriptExpression!
   private(set) var testSuperclassExpression: SuperclassExpression!
   private(set) var testSuperclassInitializerExpression: SuperclassInitializerExpression!
   private(set) var testSuperclassMethodExpression: SuperclassMethodExpression!
@@ -1002,6 +1007,11 @@ private class TestElements {
     override func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
       elements.testSubscriptDeclaration = element
       super.visitSubscriptDeclaration(element)
+    }
+
+    override func visitSubscriptExpression(_ element: SubscriptExpression) {
+      elements.testSubscriptExpression = element
+      super.visitSubscriptExpression(element)
     }
 
     override func visitSuperclassExpression(_ element: SuperclassExpression) {

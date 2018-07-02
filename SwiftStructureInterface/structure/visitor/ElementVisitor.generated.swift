@@ -350,6 +350,10 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitSubscriptExpression(_ element: SubscriptExpression) {
+    visitPostfixExpression(element)
+  }
+
   open func visitSuperclassExpression(_ element: SuperclassExpression) {
     visitPrimaryExpression(element)
   }
