@@ -382,6 +382,10 @@ class Parser<ResultType> {
         return try parse(CodeBlockStatementParser.self)
     }
 
+    func parseDefaultArgumentClause() throws -> DefaultArgumentClause {
+        return try parse(DefaultArgumentClauseParser.self)
+    }
+
     func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {
         return try P.init(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
     }

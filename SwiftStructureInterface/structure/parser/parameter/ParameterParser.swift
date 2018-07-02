@@ -9,7 +9,9 @@ class ParameterParser: Parser<Parameter> {
                 .optional { try self.parseParameterIdentifier() }
                 .optional { try self.parseParameterIdentifier() }
                 .optional { try self.parseTypeAnnotation() }
-                .optional { try self.parseVarArgs() }
+                .either({ try self.parseVarArgs() }) {
+                    try self.parseDefaultArgumentClause()
+                }
                 .build())
     }
 

@@ -382,6 +382,9 @@ extension Parameter {
   public var typeAnnotation: TypeAnnotation {
     return first(TypeAnnotation.self) ?? TypeAnnotationImpl.emptyTypeAnnotation()
   }
+  public var defaultArgumentClause: DefaultArgumentClause? {
+    return first(DefaultArgumentClause.self)
+  }
 }
 extension ParameterClause {
 

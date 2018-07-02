@@ -121,6 +121,13 @@ class ParameterParserTests: XCTestCase {
         assertElementText(parameter, text)
     }
 
+    func test_parse_shouldParseDefaultArgument() throws {
+        let text = "a: MyClass = .defaultImpl()"
+        let parameter = try parse(text)
+        assertElementText(parameter, text)
+        assertElementText(parameter.defaultArgumentClause, "= .defaultImpl()")
+    }
+
     // MARK: - Helpers
 
     func parse(_ string: String) throws -> Parameter {
