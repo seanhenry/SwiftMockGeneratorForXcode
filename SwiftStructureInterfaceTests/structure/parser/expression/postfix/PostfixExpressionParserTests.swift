@@ -26,7 +26,7 @@ class PostfixExpressionParserTests: XCTestCase {
   \\AType.identifier!
   #selector(expression)
   #keyPath(expression)
-  
+
   functionCall(a: expression) { }
   expression.init(a:b:)
   expression.0
@@ -40,13 +40,12 @@ class PostfixExpressionParserTests: XCTestCase {
 
     override class func setUp() {
         super.setUp()
-        let parser = createParser(expressionsString, PostfixExpressionParser.self)
-        expressions = [PostfixExpression]()
+        let lines = expressionsString.components(separatedBy: "\n").filter { !$0.isEmpty }
         do {
-            while true {
-                expressions.append(try parser.parse())
-            }
-        } catch {}
+            expressions = try lines.map { try createParser($0, PostfixExpressionParser.self).parse() }
+        } catch {
+            XCTFail("Failed to parse line")
+        }
     }
 
     override class func tearDown() {

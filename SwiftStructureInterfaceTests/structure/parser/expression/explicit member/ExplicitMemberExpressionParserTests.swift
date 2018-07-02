@@ -44,6 +44,6 @@ class ExplicitMemberExpressionParserTests: XCTestCase {
     }
 
     private func parse(_ input: String) throws -> ExplicitMemberExpression {
-        return try createParser(input, ExplicitMemberExpressionParser.self).parse()
+        return try createCompoundPostfixExpressionParser(input, ExplicitMemberExpressionParser.self).parse()
     }
 }

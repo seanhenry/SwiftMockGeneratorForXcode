@@ -26,6 +26,6 @@ class PostfixSelfExpressionParserTests: XCTestCase {
     }
 
     private func parse(_ input: String) throws -> PostfixSelfExpression {
-        return try createParser(input, PostfixSelfExpressionParser.self).parse()
+        return try createCompoundPostfixExpressionParser(input, PostfixSelfExpressionParser.self).parse()
     }
 }

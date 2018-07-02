@@ -351,14 +351,8 @@ class Parser<ResultType> {
         return try parse(ClosureExpressionParser.self)
     }
 
-    // TODO: parse all expressions
     func parsePostfixExpression() throws -> PostfixExpression {
-        if let expression = try? parse(SelfExpressionParser.self) {
-            return expression
-        } else if let expression = try? parse(IdentifierPrimaryExpressionParser.self) {
-            return expression
-        }
-        throw LookAheadError()
+        return try parse(PostfixExpressionParser.self)
     }
 
     func parsePostfixOperator() throws -> Element {
@@ -372,12 +366,20 @@ class Parser<ResultType> {
         return try parse(ArgumentNamesParser.self)
     }
 
+    func parsePrimaryExpression() throws -> PrimaryExpression {
+        return try parse(PrimaryExpressionParser.self)
+    }
+
     func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {
-        return try P(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
+        return try P.init(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
     }
 
     private func parseDeclaration<T, P: DeclarationParser<T>>(_ parserType: P.Type, _ token: Token.Kind) throws -> T {
-        return try P(lexer: lexer, fileContents: fileContents, declarationToken: token, locationConverter: locationConverter).parse()
+        return try P.init(lexer: lexer, fileContents: fileContents, declarationToken: token, locationConverter: locationConverter).parse()
+    }
+
+    func parseCompoundPostfixExpression<T, P: CompoundPostfixExpressionParser<T>>(_ parserType: P.Type, _ postfixExpression: PostfixExpression) throws -> T {
+        return try P.init(lexer: lexer, fileContents: fileContents, postfixExpression: postfixExpression, locationConverter: locationConverter).parse()
     }
 
     func builder() -> ParserBuilder {

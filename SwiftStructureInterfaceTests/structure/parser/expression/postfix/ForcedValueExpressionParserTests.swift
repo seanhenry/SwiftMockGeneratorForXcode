@@ -18,6 +18,6 @@ class ForcedValueExpressionParserTests: XCTestCase {
     }
 
     private func parse(_ input: String) throws -> ForcedValueExpression {
-        return try createParser(input, ForcedValueExpressionParser.self).parse()
+        return try createCompoundPostfixExpressionParser(input, ForcedValueExpressionParser.self).parse()
     }
 }

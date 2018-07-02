@@ -1,8 +1,8 @@
-class ExplicitMemberExpressionParser: Parser<ExplicitMemberExpression> {
+class ExplicitMemberExpressionParser: CompoundPostfixExpressionParser<ExplicitMemberExpression> {
 
     override func parse() throws -> ExplicitMemberExpression {
         return try ExplicitMemberExpressionImpl(children: builder()
-                .required { try self.parsePostfixExpression() }
+                .required { self.postfixExpression }
                 .required { try self.parsePunctuation(.dot) }
                 .required { try self.parseExplicitMember() }
                 .optional { try self.parsePunctuation(.leftParen) }

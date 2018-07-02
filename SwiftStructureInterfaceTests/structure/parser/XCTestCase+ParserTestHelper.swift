@@ -16,12 +16,19 @@ extension XCTestCase {
     static func createParser<T, P: Parser<T>>(_ text: String, _ `class`: P.Type) -> P {
         let sourceFile = SourceFile(content: text)
         let lexer = SwiftASTLexer(lexer: Lexer(source: sourceFile))
-        return P(lexer: lexer, fileContents: text, locationConverter: CachedLocationConverter(text))
+        return P.init(lexer: lexer, fileContents: text, locationConverter: CachedLocationConverter(text))
     }
 
     func createDeclarationParser<T, P: DeclarationParser<T>>(_ text: String, _ kind: Token.Kind, _ `class`: P.Type) -> P {
         let sourceFile = SourceFile(content: text)
         let lexer = SwiftASTLexer(lexer: Lexer(source: sourceFile))
-        return P(lexer: lexer, fileContents: text, declarationToken: kind, locationConverter: CachedLocationConverter(text))
+        return P.init(lexer: lexer, fileContents: text, declarationToken: kind, locationConverter: CachedLocationConverter(text))
+    }
+
+    func createCompoundPostfixExpressionParser<T, P: CompoundPostfixExpressionParser<T>>(_ text: String, _ `class`: P.Type) throws -> P {
+        let sourceFile = SourceFile(content: text)
+        let lexer = SwiftASTLexer(lexer: Lexer(source: sourceFile))
+        let postfixExpression = try PrimaryExpressionParser(lexer: lexer, fileContents: text, locationConverter: CachedLocationConverter(text)).parse()
+        return P.init(lexer: lexer, fileContents: text, postfixExpression: postfixExpression, locationConverter: CachedLocationConverter(text))
     }
 }

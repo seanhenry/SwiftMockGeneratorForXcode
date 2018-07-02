@@ -1,123 +1,63 @@
 class PostfixExpressionParser: Parser<PostfixExpression> {
 
     override func parse() throws -> PostfixExpression {
-        if let expression = try? parseFunctionCallExpression() {
+        if let primaryExpression = try? parsePrimaryExpression() {
+            return (try? parsePostfixExpression(primaryExpression))
+                    ?? primaryExpression
+        }
+        throw LookAheadError()
+    }
+
+    private func parsePostfixExpression(_ postfixExpression: PostfixExpression) throws -> PostfixExpression {
+        if let expression = try? parseFunctionCallExpression(postfixExpression) {
             return expression
-        } else if let expression = try? parseInitializerExpression() {
+        } else if let expression = try? parseInitializerExpression(postfixExpression) {
             return expression
-        } else if let expression = try? parseExplicitMemberExpression() {
+        } else if let expression = try? parseExplicitMemberExpression(postfixExpression) {
             return expression
-        } else if let expression = try? parsePostfixSelfExpression() {
+        } else if let expression = try? parsePostfixSelfExpression(postfixExpression) {
             return expression
-        } else if let expression = try? parseSubscriptExpression() {
+        } else if let expression = try? parseSubscriptExpression(postfixExpression) {
             return expression
-        } else if let expression = try? parseForcedValueExpression() {
+        } else if let expression = try? parseForcedValueExpression(postfixExpression) {
             return expression
-        } else if let expression = try? parseOptionalChainingExpression() {
+        } else if let expression = try? parseOptionalChainingExpression(postfixExpression) {
             return expression
-        } else if let expression = try? parseOperatorPostfixExpression() {
-            return expression
-        } else if let expression = try? parseWildcardExpression() {
-            return expression
-        } else if let expression = try? parseIdentifierExpression() {
-            return expression
-        } else if let expression = try? parseSelfExpression() {
-            return expression
-        } else if let expression = try? parseSuperclassExpression() {
-            return expression
-        } else if let expression = try? parseLiteralExpression() {
-            return expression
-        } else if let expression = try? parseClosureExpression() {
-            return expression
-        } else if let expression = try? parseParenthesizedExpression() {
-            return expression
-        } else if let expression = try? parseTupleExpression() {
-            return expression
-        } else if let expression = try? parseImplicitMemberExpression() {
-            return expression
-        } else if let expression = try? parseKeyPathExpression() {
-            return expression
-        } else if let expression = try? parseSelectorExpression() {
-            return expression
-        } else if let expression = try? parseKeyPathStringExpression() {
+        } else if let expression = try? parseOperatorPostfixExpression(postfixExpression) {
             return expression
         }
         throw LookAheadError()
     }
 
-    private func parseIdentifierExpression() throws -> IdentifierPrimaryExpression {
-        return try parse(IdentifierPrimaryExpressionParser.self)
+    private func parseFunctionCallExpression(_ postfixExpression: PostfixExpression) throws -> FunctionCallExpression {
+        return try parseCompoundPostfixExpression(FunctionCallExpressionParser.self, postfixExpression)
     }
 
-    private func parseLiteralExpression() throws -> LiteralExpression {
-        return try parse(LiteralExpressionParser.self)
+    private func parseInitializerExpression(_ postfixExpression: PostfixExpression) throws -> InitializerExpression {
+        return try parseCompoundPostfixExpression(InitializerExpressionParser.self, postfixExpression)
     }
 
-    private func parseSelfExpression() throws -> SelfExpression {
-        return try parse(SelfExpressionParser.self)
+    private func parseExplicitMemberExpression(_ postfixExpression: PostfixExpression) throws -> ExplicitMemberExpression {
+        return try parseCompoundPostfixExpression(ExplicitMemberExpressionParser.self, postfixExpression)
     }
 
-    private func parseSuperclassExpression() throws -> SuperclassExpression {
-        return try parse(SuperclassExpressionParser.self)
+    private func parsePostfixSelfExpression(_ postfixExpression: PostfixExpression) throws -> PostfixSelfExpression {
+        return try parseCompoundPostfixExpression(PostfixSelfExpressionParser.self, postfixExpression)
     }
 
-    private func parseParenthesizedExpression() throws -> ParenthesizedExpression {
-        return try parse(ParenthesizedExpressionParser.self)
+    private func parseSubscriptExpression(_ postfixExpression: PostfixExpression) throws -> SubscriptExpression {
+        return try parseCompoundPostfixExpression(SubscriptExpressionParser.self, postfixExpression)
     }
 
-    private func parseTupleExpression() throws -> TupleExpression {
-        return try parse(TupleExpressionParser.self)
+    private func parseForcedValueExpression(_ postfixExpression: PostfixExpression) throws -> ForcedValueExpression {
+        return try parseCompoundPostfixExpression(ForcedValueExpressionParser.self, postfixExpression)
     }
 
-    private func parseImplicitMemberExpression() throws -> ImplicitMemberExpression {
-        return try parse(ImplicitMemberExpressionParser.self)
+    private func parseOptionalChainingExpression(_ postfixExpression: PostfixExpression) throws -> OptionalChainingExpression {
+        return try parseCompoundPostfixExpression(OptionalChainingExpressionParser.self, postfixExpression)
     }
 
-    private func parseWildcardExpression() throws -> WildcardExpression {
-        return try parse(WildcardExpressionParser.self)
-    }
-
-    private func parseKeyPathExpression() throws -> KeyPathExpression {
-        return try parse(KeyPathExpressionParser.self)
-    }
-
-    private func parseSelectorExpression() throws -> SelectorExpression {
-        return try parse(SelectorExpressionParser.self)
-    }
-
-    private func parseKeyPathStringExpression() throws -> KeyPathStringExpression {
-        return try parse(KeyPathStringExpressionParser.self)
-    }
-
-    private func parseFunctionCallExpression() throws -> FunctionCallExpression {
-        return try parse(FunctionCallExpressionParser.self)
-    }
-
-    private func parseInitializerExpression() throws -> InitializerExpression {
-        return try parse(InitializerExpressionParser.self)
-    }
-
-    private func parseExplicitMemberExpression() throws -> ExplicitMemberExpression {
-        return try parse(ExplicitMemberExpressionParser.self)
-    }
-
-    private func parsePostfixSelfExpression() throws -> PostfixSelfExpression {
-        return try parse(PostfixSelfExpressionParser.self)
-    }
-
-    private func parseSubscriptExpression() throws -> SubscriptExpression {
-        return try parse(SubscriptExpressionParser.self)
-    }
-
-    private func parseForcedValueExpression() throws -> ForcedValueExpression {
-        return try parse(ForcedValueExpressionParser.self)
-    }
-
-    private func parseOptionalChainingExpression() throws -> OptionalChainingExpression {
-        return try parse(OptionalChainingExpressionParser.self)
-    }
-
-    private func parseOperatorPostfixExpression() throws -> OperatorPostfixExpression {
-        return try parse(OperatorPostfixExpressionParser.self)
+    private func parseOperatorPostfixExpression(_ postfixExpression: PostfixExpression) throws -> OperatorPostfixExpression {
+        return try parseCompoundPostfixExpression(OperatorPostfixExpressionParser.self, postfixExpression)
     }
 }

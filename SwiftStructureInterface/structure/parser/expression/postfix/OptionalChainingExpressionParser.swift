@@ -1,8 +1,8 @@
-class OptionalChainingExpressionParser: Parser<OptionalChainingExpression> {
+class OptionalChainingExpressionParser: CompoundPostfixExpressionParser<OptionalChainingExpression> {
 
     override func parse() throws -> OptionalChainingExpression {
         return try OptionalChainingExpressionImpl(children: builder()
-                .required { try self.parsePostfixExpression() }
+                .required { self.postfixExpression }
                 .required { try self.parseOperator("?") }
                 .build())
     }

@@ -1,8 +1,8 @@
-class OperatorPostfixExpressionParser: Parser<OperatorPostfixExpression> {
+class OperatorPostfixExpressionParser: CompoundPostfixExpressionParser<OperatorPostfixExpression> {
 
     override func parse() throws -> OperatorPostfixExpression {
         return try OperatorPostfixExpressionImpl(children: builder()
-                .required { try self.parsePostfixExpression() }
+                .required { self.postfixExpression }
                 .required { try self.parsePostfixOperator() }
                 .build())
     }

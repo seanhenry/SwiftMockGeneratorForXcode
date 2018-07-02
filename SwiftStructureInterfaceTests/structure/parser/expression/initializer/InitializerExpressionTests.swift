@@ -36,6 +36,6 @@ class InitializerExpressionParserTests: XCTestCase {
     }
 
     private func parse(_ input: String) throws -> InitializerExpression {
-        return try createParser(input, InitializerExpressionParser.self).parse()
+        return try createCompoundPostfixExpressionParser(input, InitializerExpressionParser.self).parse()
     }
 }

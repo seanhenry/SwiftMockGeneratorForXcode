@@ -1,8 +1,8 @@
-class FunctionCallExpressionParser: Parser<FunctionCallExpression> {
+class FunctionCallExpressionParser: CompoundPostfixExpressionParser<FunctionCallExpression> {
 
     override func parse() throws -> FunctionCallExpression {
         return try FunctionCallExpressionImpl(children: builder()
-                .required { try self.parsePostfixExpression() }
+                .required { self.postfixExpression }
                 .check { try self.isNextClauseOrTrailingClosure() }
                 .optional { try self.parseFunctionCallArgumentListClause() }
                 .optional { try self.parseClosureExpression() }

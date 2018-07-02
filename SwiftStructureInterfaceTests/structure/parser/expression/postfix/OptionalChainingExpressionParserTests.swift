@@ -18,6 +18,6 @@ class OptionalChainingExpressionParserTests: XCTestCase {
     }
 
     private func parse(_ input: String) throws -> OptionalChainingExpression {
-        return try createParser(input, OptionalChainingExpressionParser.self).parse()
+        return try createCompoundPostfixExpressionParser(input, OptionalChainingExpressionParser.self).parse()
     }
 }

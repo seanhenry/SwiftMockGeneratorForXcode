@@ -1,4 +1,3 @@
-import Source
 import Lexer
 
 class DeclarationParser<ResultType>: Parser<ResultType> {

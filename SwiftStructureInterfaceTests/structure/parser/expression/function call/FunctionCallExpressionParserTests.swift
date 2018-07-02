@@ -42,6 +42,6 @@ class FunctionCallExpressionParserTests: XCTestCase {
     }
 
     private func parse(_ input: String) throws -> FunctionCallExpression {
-        return try createParser(input, FunctionCallExpressionParser.self).parse()
+        return try createCompoundPostfixExpressionParser(input, FunctionCallExpressionParser.self).parse()
     }
 }

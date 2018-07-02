@@ -28,6 +28,6 @@ class SubscriptExpressionParserTests: XCTestCase {
     }
 
     private func parse(_ input: String) throws -> SubscriptExpression {
-        return try createParser(input, SubscriptExpressionParser.self).parse()
+        return try createCompoundPostfixExpressionParser(input, SubscriptExpressionParser.self).parse()
     }
 }

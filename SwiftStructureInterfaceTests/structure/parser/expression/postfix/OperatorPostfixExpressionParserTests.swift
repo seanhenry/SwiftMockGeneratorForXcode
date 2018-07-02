@@ -14,6 +14,6 @@ class OperatorPostfixExpressionParserTests: XCTestCase {
     }
 
     private func parse(_ input: String) throws -> OperatorPostfixExpression {
-        return try createParser(input, OperatorPostfixExpressionParser.self).parse()
+        return try createCompoundPostfixExpressionParser(input, OperatorPostfixExpressionParser.self).parse()
     }
 }
