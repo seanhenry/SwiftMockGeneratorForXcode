@@ -1,4 +1,4 @@
-public protocol Declaration: Element {
+public protocol Declaration: Statement {
     var attributes: Attributes { get }
     var accessLevelModifier: AccessLevelModifier { get }
 }

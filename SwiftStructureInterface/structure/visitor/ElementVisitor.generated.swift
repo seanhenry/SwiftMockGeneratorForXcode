@@ -95,7 +95,7 @@ open class ElementVisitor {
   }
 
   open func visitDeclaration(_ element: Declaration) {
-    visitElement(element)
+    visitStatement(element)
   }
 
   open func visitDeclarationModifier(_ element: DeclarationModifier) {
@@ -123,7 +123,7 @@ open class ElementVisitor {
   }
 
   open func visitExpression(_ element: Expression) {
-    visitElement(element)
+    visitStatement(element)
   }
 
   open func visitFile(_ element: File) {
@@ -151,7 +151,7 @@ open class ElementVisitor {
   }
 
   open func visitFunctionDeclaration(_ element: FunctionDeclaration) {
-    visitElement(element)
+    visitDeclaration(element)
   }
 
   open func visitFunctionResult(_ element: FunctionResult) {
@@ -207,7 +207,7 @@ open class ElementVisitor {
   }
 
   open func visitInitializerDeclaration(_ element: InitializerDeclaration) {
-    visitElement(element)
+    visitDeclaration(element)
   }
 
   open func visitInitializerExpression(_ element: InitializerExpression) {
@@ -346,8 +346,12 @@ open class ElementVisitor {
     visitSelfExpression(element)
   }
 
-  open func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
+  open func visitStatement(_ element: Statement) {
     visitElement(element)
+  }
+
+  open func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
+    visitDeclaration(element)
   }
 
   open func visitSubscriptExpression(_ element: SubscriptExpression) {
@@ -359,15 +363,15 @@ open class ElementVisitor {
   }
 
   open func visitSuperclassInitializerExpression(_ element: SuperclassInitializerExpression) {
-    visitPrimaryExpression(element)
+    visitSuperclassExpression(element)
   }
 
   open func visitSuperclassMethodExpression(_ element: SuperclassMethodExpression) {
-    visitPrimaryExpression(element)
+    visitSuperclassExpression(element)
   }
 
   open func visitSuperclassSubscriptExpression(_ element: SuperclassSubscriptExpression) {
-    visitPrimaryExpression(element)
+    visitSuperclassExpression(element)
   }
 
   open func visitTupleElement(_ element: TupleElement) {
@@ -403,7 +407,7 @@ open class ElementVisitor {
   }
 
   open func visitTypeDeclaration(_ element: TypeDeclaration) {
-    visitElement(element)
+    visitDeclaration(element)
   }
 
   open func visitTypeIdentifier(_ element: TypeIdentifier) {
@@ -419,7 +423,7 @@ open class ElementVisitor {
   }
 
   open func visitTypealiasDeclaration(_ element: TypealiasDeclaration) {
-    visitElement(element)
+    visitDeclaration(element)
   }
 
   open func visitVariableDeclaration(_ element: VariableDeclaration) {

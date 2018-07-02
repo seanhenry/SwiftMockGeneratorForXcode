@@ -146,7 +146,8 @@ class CaptureListItemsImpl: ElementImpl, CaptureListItems {
   }
 }
 
-class ClassDeclarationImpl: ElementImpl, ClassDeclaration {
+class ClassDeclarationImpl: DeclarationImpl,
+ ClassDeclaration {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -236,7 +237,8 @@ class ConformanceRequirementImpl: RequirementImpl,
   }
 }
 
-class DeclarationImpl: ElementImpl, Declaration {
+class DeclarationImpl: StatementImpl,
+ Declaration {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -312,7 +314,8 @@ class ExplicitMemberExpressionImpl: PostfixExpressionImpl,
   }
 }
 
-class ExpressionImpl: ElementImpl, Expression {
+class ExpressionImpl: StatementImpl,
+ Expression {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -380,7 +383,8 @@ class FunctionCallExpressionImpl: PostfixExpressionImpl,
   }
 }
 
-class FunctionDeclarationImpl: ElementImpl, FunctionDeclaration {
+class FunctionDeclarationImpl: DeclarationImpl,
+ FunctionDeclaration {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -531,7 +535,8 @@ class InOutExpressionImpl: PrefixExpressionImpl,
   }
 }
 
-class InitializerDeclarationImpl: ElementImpl, InitializerDeclaration {
+class InitializerDeclarationImpl: DeclarationImpl,
+ InitializerDeclaration {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -814,7 +819,8 @@ class ProtocolCompositionTypeImpl: TypeImpl,
   }
 }
 
-class ProtocolDeclarationImpl: ElementImpl, ProtocolDeclaration {
+class ProtocolDeclarationImpl: DeclarationImpl,
+ ProtocolDeclaration {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -919,7 +925,19 @@ class SelfSubscriptExpressionImpl: SelfExpressionImpl,
   }
 }
 
-class SubscriptDeclarationImpl: ElementImpl, SubscriptDeclaration {
+class StatementImpl: ElementImpl, Statement {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitStatement(self)
+  }
+}
+
+class SubscriptDeclarationImpl: DeclarationImpl,
+ SubscriptDeclaration {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -954,7 +972,7 @@ class SuperclassExpressionImpl: PrimaryExpressionImpl,
   }
 }
 
-class SuperclassInitializerExpressionImpl: PrimaryExpressionImpl,
+class SuperclassInitializerExpressionImpl: SuperclassExpressionImpl,
  SuperclassInitializerExpression {
 
   override init(children: [Element]) {
@@ -966,7 +984,7 @@ class SuperclassInitializerExpressionImpl: PrimaryExpressionImpl,
   }
 }
 
-class SuperclassMethodExpressionImpl: PrimaryExpressionImpl,
+class SuperclassMethodExpressionImpl: SuperclassExpressionImpl,
  SuperclassMethodExpression {
 
   override init(children: [Element]) {
@@ -978,7 +996,7 @@ class SuperclassMethodExpressionImpl: PrimaryExpressionImpl,
   }
 }
 
-class SuperclassSubscriptExpressionImpl: PrimaryExpressionImpl,
+class SuperclassSubscriptExpressionImpl: SuperclassExpressionImpl,
  SuperclassSubscriptExpression {
 
   override init(children: [Element]) {
@@ -1076,7 +1094,8 @@ class TypeAnnotationImpl: ElementImpl, TypeAnnotation {
   }
 }
 
-class TypeDeclarationImpl: ElementImpl, TypeDeclaration {
+class TypeDeclarationImpl: DeclarationImpl,
+ TypeDeclaration {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -1117,7 +1136,8 @@ class TypealiasAssignmentImpl: ElementImpl, TypealiasAssignment {
   }
 }
 
-class TypealiasDeclarationImpl: ElementImpl, TypealiasDeclaration {
+class TypealiasDeclarationImpl: DeclarationImpl,
+ TypealiasDeclaration {
 
   override init(children: [Element]) {
     super.init(children: children)

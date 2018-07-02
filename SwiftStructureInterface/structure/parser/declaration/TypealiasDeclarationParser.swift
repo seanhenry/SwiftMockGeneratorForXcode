@@ -1,4 +1,4 @@
-class TypealiasDeclarationParser: DeclarationParser<TypealiasDeclaration> {
+class TypealiasDeclarationParser: BaseDeclarationParser<TypealiasDeclaration> {
 
     override func parseDeclaration(builder: ParserBuilder) throws -> TypealiasDeclaration {
         return try TypealiasDeclarationImpl(children: builder

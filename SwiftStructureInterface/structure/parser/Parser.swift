@@ -370,11 +370,23 @@ class Parser<ResultType> {
         return try parse(PrimaryExpressionParser.self)
     }
 
+    func parseDeclaration() throws -> Declaration {
+        return try parse(DeclarationParser.self)
+    }
+
+    func parseFileStatement() throws -> Statement {
+        return try parse(FileStatementParser.self)
+    }
+
+    func parseCodeBlockStatement() throws -> Statement {
+        return try parse(CodeBlockStatementParser.self)
+    }
+
     func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {
         return try P.init(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
     }
 
-    private func parseDeclaration<T, P: DeclarationParser<T>>(_ parserType: P.Type, _ token: Token.Kind) throws -> T {
+    private func parseDeclaration<T, P: BaseDeclarationParser<T>>(_ parserType: P.Type, _ token: Token.Kind) throws -> T {
         return try P.init(lexer: lexer, fileContents: fileContents, declarationToken: token, locationConverter: locationConverter).parse()
     }
 

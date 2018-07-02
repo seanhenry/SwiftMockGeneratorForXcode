@@ -2,16 +2,17 @@
 
 class {{type.name}}Impl: {% if type.implements.Type %}TypeImpl,
 {% elif type.implements.LeafNode %}LeafNodeImpl,
-{% elif type.implements.Declaration %}DeclarationImpl,
 {% elif type.implements.Requirement %}RequirementImpl,
 {% elif type.implements.DeclarationModifier %}DeclarationModifierImpl,
 {% elif type.implements.LiteralExpression %}LiteralExpressionImpl,
 {% elif type.implements.SelfExpression %}SelfExpressionImpl,
-{% elif type.implements.SuperExpression %}SuperExpressionImpl,
+{% elif type.implements.SuperclassExpression %}SuperclassExpressionImpl,
 {% elif type.implements.PrimaryExpression %}PrimaryExpressionImpl,
 {% elif type.implements.PrefixExpression %}PrefixExpressionImpl,
 {% elif type.implements.PostfixExpression %}PostfixExpressionImpl,
 {% elif type.implements.Expression %}ExpressionImpl,
+{% elif type.implements.Declaration %}DeclarationImpl,
+{% elif type.implements.Statement %}StatementImpl,
 {% else %}ElementImpl,{% endif %} {{type.name}} {
 
 {% if type.implements.Type or type.implements.LeafNode %}{% else %}

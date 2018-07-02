@@ -1,3 +1,3 @@
-public protocol InitializerDeclaration: Element {
+public protocol InitializerDeclaration: Declaration {
     var parameterClause: ParameterClause { get }
 }

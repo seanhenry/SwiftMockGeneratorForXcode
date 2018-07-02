@@ -1,4 +1,4 @@
-class AssociatedTypeDeclarationParser: DeclarationParser<AssociatedTypeDeclaration> {
+class AssociatedTypeDeclarationParser: BaseDeclarationParser<AssociatedTypeDeclaration> {
 
     override func parseDeclaration(builder: ParserBuilder) throws -> AssociatedTypeDeclaration {
         return try AssociatedTypeDeclarationImpl(children: builder

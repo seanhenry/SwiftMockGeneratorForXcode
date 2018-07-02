@@ -452,6 +452,9 @@ extension SelfMethodExpression {
 extension SelfSubscriptExpression {
 
 }
+extension Statement {
+
+}
 extension SubscriptDeclaration {
 
   public var declarations: [Element] {

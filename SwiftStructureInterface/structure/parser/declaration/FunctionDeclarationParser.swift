@@ -1,4 +1,4 @@
-class FunctionDeclarationParser: DeclarationParser<FunctionDeclaration> {
+class FunctionDeclarationParser: BaseDeclarationParser<FunctionDeclaration> {
 
     override func parseDeclaration(builder: ParserBuilder) throws -> FunctionDeclaration {
         return try FunctionDeclarationImpl(children:builder

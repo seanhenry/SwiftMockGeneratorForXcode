@@ -4,7 +4,39 @@
 @testable import SwiftStructureInterface
 
 private let allTypesString = """
-class TestClass {}
+class TestClass {
+  expression;
+  "literal";
+  [0, 1];
+  ["test": 123];
+  #line;
+  #imageLiteral(resourceName: "img");
+  expression++;
+  self;
+  self.identifier;
+  self.init;
+  self[a: expression];
+  super.identifier;
+  super.init;
+  super[a: expression];
+  { [weak self] (argument: Int) in };
+  { type, identifier, list in };
+  (expression);
+  (name: expression);
+  .identifier;
+  _;
+  \\AType.identifier!;
+  #selector(expression);
+  #keyPath(expression);
+
+  functionCall(a: expression) { };
+  expression.init(a:b:);
+  expression.0;
+  expression.self;
+  expression[a:expression];
+  expression!;
+  optChain?;
+}
 
 public protocol TestProtocol: Z where A: B, C == D {
   init(a: A)
@@ -279,6 +311,9 @@ var testSelfMethodExpression: SelfMethodExpression {
 var testSelfSubscriptExpression: SelfSubscriptExpression {
   return TestElements.instance.testSelfSubscriptExpression!
 }
+var testStatement: Statement {
+  return TestElements.instance.testStatement!
+}
 var testSubscriptDeclaration: SubscriptDeclaration {
   return TestElements.instance.testSubscriptDeclaration!
 }
@@ -396,7 +431,7 @@ var allTestElements: [Element] {
     testIdentifierList,
     testIdentifierPrimaryExpression,
     testImplicitMemberExpression,
-    testInOutExpression,
+//    testInOutExpression,
     testInitializerDeclaration,
     testInitializerExpression,
     testKeyPathComponent,
@@ -420,7 +455,7 @@ var allTestElements: [Element] {
     testPlaygroundLiteralExpression,
     testPostfixExpression,
     testPostfixSelfExpression,
-    testPrefixExpression,
+//    testPrefixExpression,
     testPrimaryExpression,
     testProtocolCompositionType,
     testProtocolDeclaration,
@@ -432,6 +467,7 @@ var allTestElements: [Element] {
     testSelfInitializerExpression,
     testSelfMethodExpression,
     testSelfSubscriptExpression,
+    testStatement,
     testSubscriptDeclaration,
     testSubscriptExpression,
     testSuperclassExpression,
@@ -548,6 +584,7 @@ private class TestElements {
   private(set) var testSelfInitializerExpression: SelfInitializerExpression!
   private(set) var testSelfMethodExpression: SelfMethodExpression!
   private(set) var testSelfSubscriptExpression: SelfSubscriptExpression!
+  private(set) var testStatement: Statement!
   private(set) var testSubscriptDeclaration: SubscriptDeclaration!
   private(set) var testSubscriptExpression: SubscriptExpression!
   private(set) var testSuperclassExpression: SuperclassExpression!
@@ -1002,6 +1039,11 @@ private class TestElements {
     override func visitSelfSubscriptExpression(_ element: SelfSubscriptExpression) {
       elements.testSelfSubscriptExpression = element
       super.visitSelfSubscriptExpression(element)
+    }
+
+    override func visitStatement(_ element: Statement) {
+      elements.testStatement = element
+      super.visitStatement(element)
     }
 
     override func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {

@@ -2,16 +2,17 @@
 
 class {{type.name}}Proxy: {% if type.implements.Type %}TypeProxy,
 {% elif type.implements.LeafNode %}LeafNodeProxy,
-{% elif type.implements.Declaration %}DeclarationProxy,
 {% elif type.implements.Requirement %}RequirementProxy,
 {% elif type.implements.DeclarationModifier %}DeclarationModifierProxy,
 {% elif type.implements.SelfExpression %}SelfExpressionProxy,
 {% elif type.implements.LiteralExpression %}LiteralExpressionProxy,
-{% elif type.implements.SuperExpression %}SuperExpressionProxy,
+{% elif type.implements.SuperclassExpression %}SuperclassExpressionProxy,
 {% elif type.implements.PrimaryExpression %}PrimaryExpressionProxy,
 {% elif type.implements.PrefixExpression %}PrefixExpressionProxy,
 {% elif type.implements.PostfixExpression %}PostfixExpressionProxy,
 {% elif type.implements.Expression %}ExpressionProxy,
+{% elif type.implements.Declaration %}DeclarationProxy,
+{% elif type.implements.Statement %}StatementProxy,
 {% else %}ElementProxy,{% endif %} {{type.name}} {
 
 {% if type.name == "LeafNode" %}

@@ -1,7 +1,7 @@
 import Lexer
 import Source
 
-class FileParser: DeclarationsParser<File> {
+class FileParser: Parser<File> {
 
     convenience init(fileContents: String) {
         let sourceFile = SourceFile(content: fileContents)
@@ -25,12 +25,8 @@ class FileParser: DeclarationsParser<File> {
             firstChild = [whitespace]
         }
         return try FileImpl(children: firstChild + builder()
-                .while { try self.parseDeclaration() }
+                .while { try self.parseFileStatement() }
                 .optional { try self.parseWhitespace() }
                 .build())
-    }
-
-    override func isEndOfParsing() -> Bool {
-        return isEndOfFile()
     }
 }

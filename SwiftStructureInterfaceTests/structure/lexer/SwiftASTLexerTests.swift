@@ -75,6 +75,27 @@ class SwiftASTLexerTests: XCTestCase {
         XCTAssertEqual(lastRange.end.line, lexer.lastRange.end.line)
     }
 
+    func test_checkPoint_shouldRememberAllTheLastRangesWhenRestored() {
+        let lexer = createLexer("private(set)")
+        lexer.advance()
+        let lastRange1 = lexer.lastRange
+        let id1 = lexer.setCheckPoint()
+        lexer.advance()
+        let lastRange2 = lexer.lastRange
+        let id2 = lexer.setCheckPoint()
+        lexer.advance()
+        lexer.restoreCheckPoint(id1)
+        XCTAssertEqual(lastRange1.start.column, lexer.lastRange.start.column)
+        XCTAssertEqual(lastRange1.start.line, lexer.lastRange.start.line)
+        XCTAssertEqual(lastRange1.end.column, lexer.lastRange.end.column)
+        XCTAssertEqual(lastRange1.end.line, lexer.lastRange.end.line)
+        lexer.restoreCheckPoint(id2)
+        XCTAssertEqual(lastRange2.start.column, lexer.lastRange.start.column)
+        XCTAssertEqual(lastRange2.start.line, lexer.lastRange.start.line)
+        XCTAssertEqual(lastRange2.end.column, lexer.lastRange.end.column)
+        XCTAssertEqual(lastRange2.end.line, lexer.lastRange.end.line)
+    }
+
     func test_peekAtKindAheadBy_shouldShowNextForN() {
         let lexer = createLexer(": , ;")
         XCTAssertEqual(lexer.peekAtKind(aheadBy: 0), .colon)

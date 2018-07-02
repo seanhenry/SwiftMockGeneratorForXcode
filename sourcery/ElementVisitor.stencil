@@ -11,8 +11,6 @@ open class ElementVisitor {
   open func visit{{type.name}}(_ element: {{type.name}}) {
     {% if type.implements.Type %}
     visitType(element)
-    {% elif type.implements.Declaration %}
-    visitDeclaration(element)
     {% elif type.implements.Requirement %}
     visitRequirement(element)
     {% elif type.implements.DeclarationModifier %}
@@ -25,8 +23,8 @@ open class ElementVisitor {
     visitSelfExpression(element)
     {% elif type.implements.LiteralExpression %}
     visitLiteralExpression(element)
-    {% elif type.implements.SuperExpression %}
-    visitSuperExpression(element)
+    {% elif type.implements.SuperclassExpression %}
+    visitSuperclassExpression(element)
     {% elif type.implements.PrimaryExpression %}
     visitPrimaryExpression(element)
     {% elif type.implements.PrefixExpression %}
@@ -35,6 +33,10 @@ open class ElementVisitor {
     visitPostfixExpression(element)
     {% elif type.implements.Expression %}
     visitExpression(element)
+    {% elif type.implements.Declaration %}
+    visitDeclaration(element)
+    {% elif type.implements.Statement %}
+    visitStatement(element)
     {% else %}
     visitElement(element)
     {% endif %}

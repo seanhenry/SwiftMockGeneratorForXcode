@@ -1,27 +1,26 @@
 import Lexer
 
-class DeclarationParser<ResultType>: Parser<ResultType> {
+class DeclarationParser: Parser<Declaration> {
 
-    private let declarationToken: Token.Kind
-
-    required init(lexer: SwiftLexer, fileContents: String, declarationToken: Token.Kind, locationConverter: CachedLocationConverter) {
-        self.declarationToken = declarationToken
-        super.init(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter)
-    }
-
-    required init(lexer: SwiftLexer, fileContents: String, locationConverter: CachedLocationConverter) {
-        fatalError("Use init(lexer:fileContents:declarationToken:locationConverter:)")
-    }
-
-    override func parse() throws -> ResultType {
-        let builder = self.builder()
-                .optional { try self.parseAttributes() }
-                .while { try self.parseDeclarationModifier() }
-                .required { try self.parseKeyword(self.declarationToken) }
-        return try parseDeclaration(builder: builder)
-    }
-
-    func parseDeclaration(builder: ParserBuilder) throws -> ResultType {
-        fatalError("Override me")
+    override func parse() throws -> Declaration {
+        if let declaration = try? parseProtocolDeclaration() {
+            return declaration
+        } else if let declaration = try? parseClassDeclaration() {
+            return declaration
+        } else if let declaration = try? parseFunctionDeclaration() {
+            return declaration
+        } else if let declaration = try? parseVariableDeclaration() {
+            return declaration
+        } else if let declaration = try? parseAssociatedTypeDeclaration() {
+            return declaration
+        } else if let declaration = try? parseTypealiasDeclaration() {
+            return declaration
+        } else if let declaration = try? parseInitializerDeclaration() {
+            return declaration
+        } else if let declaration = try? parseSubscriptDeclaration() {
+            return declaration
+        } else {
+            throw LookAheadError()
+        }
     }
 }

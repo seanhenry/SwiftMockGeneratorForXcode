@@ -512,6 +512,12 @@ extension SelfSubscriptExpressionImpl {
   }
 }
 
+extension StatementImpl {
+  static func emptyStatement() -> Statement {
+    return StatementImpl(children: [])
+  }
+}
+
 extension SubscriptDeclarationImpl {
   static func emptySubscriptDeclaration() -> SubscriptDeclaration {
     return SubscriptDeclarationImpl(children: [])

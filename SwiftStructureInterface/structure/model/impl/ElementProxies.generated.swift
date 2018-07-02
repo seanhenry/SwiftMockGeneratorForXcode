@@ -150,7 +150,8 @@ class CaptureListItemsProxy: ElementProxy, CaptureListItems {
   }
 }
 
-class ClassDeclarationProxy: ElementProxy, ClassDeclaration {
+class ClassDeclarationProxy: DeclarationProxy,
+ ClassDeclaration {
 
   init(_ element: ClassDeclaration) {
     super.init(element)
@@ -240,7 +241,8 @@ class ConformanceRequirementProxy: RequirementProxy,
   }
 }
 
-class DeclarationProxy: ElementProxy, Declaration {
+class DeclarationProxy: StatementProxy,
+ Declaration {
 
   init(_ element: Declaration) {
     super.init(element)
@@ -320,7 +322,8 @@ class ExplicitMemberExpressionProxy: PostfixExpressionProxy,
   }
 }
 
-class ExpressionProxy: ElementProxy, Expression {
+class ExpressionProxy: StatementProxy,
+ Expression {
 
   init(_ element: Expression) {
     super.init(element)
@@ -399,7 +402,8 @@ class FunctionCallExpressionProxy: PostfixExpressionProxy,
   }
 }
 
-class FunctionDeclarationProxy: ElementProxy, FunctionDeclaration {
+class FunctionDeclarationProxy: DeclarationProxy,
+ FunctionDeclaration {
 
   init(_ element: FunctionDeclaration) {
     super.init(element)
@@ -558,7 +562,8 @@ class InOutExpressionProxy: PrefixExpressionProxy,
   }
 }
 
-class InitializerDeclarationProxy: ElementProxy, InitializerDeclaration {
+class InitializerDeclarationProxy: DeclarationProxy,
+ InitializerDeclaration {
 
   init(_ element: InitializerDeclaration) {
     super.init(element)
@@ -868,7 +873,8 @@ class ProtocolCompositionTypeProxy: TypeProxy,
   }
 }
 
-class ProtocolDeclarationProxy: ElementProxy, ProtocolDeclaration {
+class ProtocolDeclarationProxy: DeclarationProxy,
+ ProtocolDeclaration {
 
   init(_ element: ProtocolDeclaration) {
     super.init(element)
@@ -973,7 +979,19 @@ class SelfSubscriptExpressionProxy: SelfExpressionProxy,
   }
 }
 
-class SubscriptDeclarationProxy: ElementProxy, SubscriptDeclaration {
+class StatementProxy: ElementProxy, Statement {
+
+  init(_ element: Statement) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitStatement(self)
+  }
+}
+
+class SubscriptDeclarationProxy: DeclarationProxy,
+ SubscriptDeclaration {
 
   init(_ element: SubscriptDeclaration) {
     super.init(element)
@@ -1008,7 +1026,7 @@ class SuperclassExpressionProxy: PrimaryExpressionProxy,
   }
 }
 
-class SuperclassInitializerExpressionProxy: PrimaryExpressionProxy,
+class SuperclassInitializerExpressionProxy: SuperclassExpressionProxy,
  SuperclassInitializerExpression {
 
   init(_ element: SuperclassInitializerExpression) {
@@ -1020,7 +1038,7 @@ class SuperclassInitializerExpressionProxy: PrimaryExpressionProxy,
   }
 }
 
-class SuperclassMethodExpressionProxy: PrimaryExpressionProxy,
+class SuperclassMethodExpressionProxy: SuperclassExpressionProxy,
  SuperclassMethodExpression {
 
   init(_ element: SuperclassMethodExpression) {
@@ -1032,7 +1050,7 @@ class SuperclassMethodExpressionProxy: PrimaryExpressionProxy,
   }
 }
 
-class SuperclassSubscriptExpressionProxy: PrimaryExpressionProxy,
+class SuperclassSubscriptExpressionProxy: SuperclassExpressionProxy,
  SuperclassSubscriptExpression {
 
   init(_ element: SuperclassSubscriptExpression) {
@@ -1134,7 +1152,8 @@ class TypeAnnotationProxy: ElementProxy, TypeAnnotation {
   }
 }
 
-class TypeDeclarationProxy: ElementProxy, TypeDeclaration {
+class TypeDeclarationProxy: DeclarationProxy,
+ TypeDeclaration {
 
   init(_ element: TypeDeclaration) {
     super.init(element)
@@ -1179,7 +1198,8 @@ class TypealiasAssignmentProxy: ElementProxy, TypealiasAssignment {
   }
 }
 
-class TypealiasDeclarationProxy: ElementProxy, TypealiasDeclaration {
+class TypealiasDeclarationProxy: DeclarationProxy,
+ TypealiasDeclaration {
 
   init(_ element: TypealiasDeclaration) {
     super.init(element)

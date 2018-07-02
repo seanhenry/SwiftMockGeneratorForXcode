@@ -1,4 +1,4 @@
-class InitializerDeclarationParser: DeclarationParser<InitializerDeclaration> {
+class InitializerDeclarationParser: BaseDeclarationParser<InitializerDeclaration> {
 
     override func parseDeclaration(builder: ParserBuilder) throws -> InitializerDeclaration {
         let children = try builder

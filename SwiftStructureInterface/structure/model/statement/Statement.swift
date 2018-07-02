@@ -1,0 +1,1 @@
+public protocol Statement: Element {}

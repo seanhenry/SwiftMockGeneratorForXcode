@@ -1,7 +1,39 @@
 @testable import SwiftStructureInterface
 
 private let allTypesString = """
-class TestClass {}
+class TestClass {
+  expression;
+  "literal";
+  [0, 1];
+  ["test": 123];
+  #line;
+  #imageLiteral(resourceName: "img");
+  expression++;
+  self;
+  self.identifier;
+  self.init;
+  self[a: expression];
+  super.identifier;
+  super.init;
+  super[a: expression];
+  { [weak self] (argument: Int) in };
+  { type, identifier, list in };
+  (expression);
+  (name: expression);
+  .identifier;
+  _;
+  \\AType.identifier!;
+  #selector(expression);
+  #keyPath(expression);
+
+  functionCall(a: expression) { };
+  expression.init(a:b:);
+  expression.0;
+  expression.self;
+  expression[a:expression];
+  expression!;
+  optChain?;
+}
 
 public protocol TestProtocol: Z where A: B, C == D {
   init(a: A)

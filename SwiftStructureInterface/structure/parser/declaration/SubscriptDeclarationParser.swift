@@ -1,4 +1,4 @@
-class SubscriptDeclarationParser: DeclarationParser<SubscriptDeclaration> {
+class SubscriptDeclarationParser: BaseDeclarationParser<SubscriptDeclaration> {
 
     override func parseDeclaration(builder: ParserBuilder) throws -> SubscriptDeclaration {
         return try SubscriptDeclarationImpl(children: builder

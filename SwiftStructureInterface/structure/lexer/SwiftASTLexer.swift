@@ -5,7 +5,7 @@ class SwiftASTLexer: SwiftLexer {
 
     let lexer: Lexer
     var lastRange: LineColumnRange
-    var checkPointRange: LineColumnRange?
+    private var checkedLastRange = [String: LineColumnRange]()
 
     init(lexer: Lexer) {
         self.lexer = lexer
@@ -70,13 +70,14 @@ class SwiftASTLexer: SwiftLexer {
     }
 
     func setCheckPoint() -> String {
-        checkPointRange = lastRange
-        return lexer.checkPoint()
+        let id = lexer.checkPoint()
+        checkedLastRange[id] = lastRange
+        return id
     }
 
     func restoreCheckPoint(_ id: String) {
         lexer.restore(fromCheckpoint: id)
-        if let range = checkPointRange {
+        if let range = checkedLastRange[id] {
             lastRange = range
         }
     }
