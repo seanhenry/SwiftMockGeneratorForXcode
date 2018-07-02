@@ -146,6 +146,12 @@ extension Declaration {
 extension DeclarationModifier {
 
 }
+extension DefaultArgumentClause {
+
+  public var expression: Expression {
+    return first(Expression.self) ?? ExpressionImpl.emptyExpression()
+  }
+}
 extension DictionaryLiteralExpression {
 
   public var dictionaryLiteralItems: DictionaryLiteralItems {

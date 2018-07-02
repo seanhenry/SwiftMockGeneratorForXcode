@@ -107,6 +107,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = DeclarationModifierProxy(element)
   }
 
+  override func visitDefaultArgumentClause(_ element: DefaultArgumentClause) {
+    proxy = DefaultArgumentClauseProxy(element)
+  }
+
   override func visitDictionaryLiteralExpression(_ element: DictionaryLiteralExpression) {
     proxy = DictionaryLiteralExpressionProxy(element)
   }

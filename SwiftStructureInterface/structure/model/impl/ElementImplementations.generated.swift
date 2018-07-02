@@ -260,6 +260,17 @@ class DeclarationModifierImpl: ElementImpl, DeclarationModifier {
   }
 }
 
+class DefaultArgumentClauseImpl: ElementImpl, DefaultArgumentClause {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitDefaultArgumentClause(self)
+  }
+}
+
 class DictionaryLiteralExpressionImpl: LiteralExpressionImpl,
  DictionaryLiteralExpression {
 

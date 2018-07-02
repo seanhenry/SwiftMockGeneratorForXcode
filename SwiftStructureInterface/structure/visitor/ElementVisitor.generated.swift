@@ -102,6 +102,10 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitDefaultArgumentClause(_ element: DefaultArgumentClause) {
+    visitElement(element)
+  }
+
   open func visitDictionaryLiteralExpression(_ element: DictionaryLiteralExpression) {
     visitLiteralExpression(element)
   }

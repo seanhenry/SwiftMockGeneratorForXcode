@@ -140,6 +140,12 @@ extension DeclarationModifierImpl {
   }
 }
 
+extension DefaultArgumentClauseImpl {
+  static func emptyDefaultArgumentClause() -> DefaultArgumentClause {
+    return DefaultArgumentClauseImpl(children: [])
+  }
+}
+
 extension DictionaryLiteralExpressionImpl {
   static func emptyDictionaryLiteralExpression() -> DictionaryLiteralExpression {
     return DictionaryLiteralExpressionImpl(children: [])

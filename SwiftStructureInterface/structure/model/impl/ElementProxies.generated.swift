@@ -264,6 +264,17 @@ class DeclarationModifierProxy: ElementProxy, DeclarationModifier {
   }
 }
 
+class DefaultArgumentClauseProxy: ElementProxy, DefaultArgumentClause {
+
+  init(_ element: DefaultArgumentClause) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitDefaultArgumentClause(self)
+  }
+}
+
 class DictionaryLiteralExpressionProxy: LiteralExpressionProxy,
  DictionaryLiteralExpression {
 

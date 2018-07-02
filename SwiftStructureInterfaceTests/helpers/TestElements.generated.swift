@@ -125,6 +125,9 @@ var testDeclaration: Declaration {
 var testDeclarationModifier: DeclarationModifier {
   return TestElements.instance.testDeclarationModifier!
 }
+var testDefaultArgumentClause: DefaultArgumentClause {
+  return TestElements.instance.testDefaultArgumentClause!
+}
 var testDictionaryLiteralExpression: DictionaryLiteralExpression {
   return TestElements.instance.testDictionaryLiteralExpression!
 }
@@ -405,6 +408,7 @@ var allTestElements: [Element] {
     testConformanceRequirement,
     testDeclaration,
     testDeclarationModifier,
+    testDefaultArgumentClause,
     testDictionaryLiteralExpression,
     testDictionaryLiteralItem,
     testDictionaryLiteralItems,
@@ -431,7 +435,7 @@ var allTestElements: [Element] {
     testIdentifierList,
     testIdentifierPrimaryExpression,
     testImplicitMemberExpression,
-//    testInOutExpression,
+    testInOutExpression,
     testInitializerDeclaration,
     testInitializerExpression,
     testKeyPathComponent,
@@ -455,7 +459,7 @@ var allTestElements: [Element] {
     testPlaygroundLiteralExpression,
     testPostfixExpression,
     testPostfixSelfExpression,
-//    testPrefixExpression,
+    testPrefixExpression,
     testPrimaryExpression,
     testProtocolCompositionType,
     testProtocolDeclaration,
@@ -522,6 +526,7 @@ private class TestElements {
   private(set) var testConformanceRequirement: ConformanceRequirement!
   private(set) var testDeclaration: Declaration!
   private(set) var testDeclarationModifier: DeclarationModifier!
+  private(set) var testDefaultArgumentClause: DefaultArgumentClause!
   private(set) var testDictionaryLiteralExpression: DictionaryLiteralExpression!
   private(set) var testDictionaryLiteralItem: DictionaryLiteralItem!
   private(set) var testDictionaryLiteralItems: DictionaryLiteralItems!
@@ -729,6 +734,11 @@ private class TestElements {
     override func visitDeclarationModifier(_ element: DeclarationModifier) {
       elements.testDeclarationModifier = element
       super.visitDeclarationModifier(element)
+    }
+
+    override func visitDefaultArgumentClause(_ element: DefaultArgumentClause) {
+      elements.testDefaultArgumentClause = element
+      super.visitDefaultArgumentClause(element)
     }
 
     override func visitDictionaryLiteralExpression(_ element: DictionaryLiteralExpression) {
