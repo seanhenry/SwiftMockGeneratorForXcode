@@ -16,4 +16,8 @@ class ElementImpl: Element {
     func accept(_ visitor: ElementVisitor) {
         visitor.visitElement(self)
     }
+
+    func isIdentical(to: Element) -> Bool {
+        return self === to
+    }
 }

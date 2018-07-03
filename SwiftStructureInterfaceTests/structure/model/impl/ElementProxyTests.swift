@@ -1,7 +1,7 @@
 import XCTest
 @testable import SwiftStructureInterface
 
-class ElementProxyTest: XCTestCase {
+class ElementProxyTests: XCTestCase {
 
     func test_shouldManageLifecycleOfFile() throws {
         weak var weakFile: File?
@@ -69,6 +69,27 @@ class ElementProxyTest: XCTestCase {
         let rawChild = rawFile.children[0]
         XCTAssertEqual(rawChild.children.count, child.children.count)
         XCTAssertEqual(rawChild.text, child.text)
+    }
+
+    func test_isIdenticalTo_shouldReturnTrueWhenManagedInstancesAreIdentical() {
+        let element = ElementImpl.emptyElement()
+        let proxy = ElementProxy(element)
+        XCTAssert(proxy.isIdentical(to: proxy))
+    }
+
+    func test_isIdenticalTo_shouldReturnTruePassedRawInstanceIsIdenticalToManagedInstance() {
+        let element = ElementImpl.emptyElement()
+        let proxy = ElementProxy(element)
+        XCTAssertFalse(proxy.isIdentical(to: element))
+    }
+
+    func test_isIdenticalTo_shouldReturnFalseWhenManagedInstancesAreNotIdentical() {
+        let element1 = ElementImpl.emptyElement()
+        let element2 = ElementImpl.emptyElement()
+        let proxy1 = ElementProxy(element1)
+        let proxy2 = ElementProxy(element2)
+        XCTAssertFalse(proxy1.isIdentical(to: proxy2))
+        XCTAssertFalse(proxy2.isIdentical(to: proxy1))
     }
 
     private func wrap(_ element: Element) -> ElementProxy? {

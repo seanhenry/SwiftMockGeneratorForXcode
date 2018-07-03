@@ -12,4 +12,16 @@ class ElementImplTests: XCTestCase {
         XCTAssert(element2.parent === parent)
         XCTAssert(element3.parent === parent)
     }
+
+    func test_isIdenticalTo_shouldReturnTrueWhenInstancesAreIdentical() {
+        let element = ElementImpl.emptyElement()
+        XCTAssert(element.isIdentical(to: element))
+    }
+
+    func test_isIdenticalTo_shouldReturnFalseWhenInstancesAreNotIdentical() {
+        let element1 = ElementImpl.emptyElement()
+        let element2 = ElementImpl.emptyElement()
+        XCTAssertFalse(element1.isIdentical(to: element2))
+        XCTAssertFalse(element2.isIdentical(to: element1))
+    }
 }

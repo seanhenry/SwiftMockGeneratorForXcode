@@ -59,4 +59,11 @@ class ElementProxy: Element {
         defer { ElementProxy.wrapVisitor.proxy = nil }
         return ElementProxy.wrapVisitor.proxy as! T
     }
+
+    func isIdentical(to: Element) -> Bool {
+        guard let proxyTo = to as? ElementProxy else {
+            return false
+        }
+        return self.managed.isIdentical(to: proxyTo.managed)
+    }
 }
