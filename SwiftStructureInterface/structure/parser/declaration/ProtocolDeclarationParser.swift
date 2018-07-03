@@ -5,7 +5,7 @@ class ProtocolDeclarationParser: BaseDeclarationParser<ProtocolDeclaration> {
                 .optional { try self.parseIdentifier() }
                 .optional { try self.parseTypeInheritanceClause() }
                 .optional { try self.parseWhereClause() }
-                .optional { try self.parseTypeCodeBlock() }
+                .optional { try self.parseCodeBlock() }
                 .build())
     }
 }

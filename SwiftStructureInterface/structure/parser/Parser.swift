@@ -150,7 +150,7 @@ class Parser<ResultType> {
         return try parse(TypeParser.TupleTypeElementListParser.self)
     }
 
-    func parseTypeCodeBlock() throws -> CodeBlock {
+    func parseCodeBlock() throws -> CodeBlock {
         return try parse(CodeBlockParser.self)
     }
 
@@ -305,6 +305,13 @@ class Parser<ResultType> {
         throw LookAheadError()
     }
 
+    func parsePrefixOperator() throws -> Element {
+        if case .prefixOperator(_) = peekAtNextKind() {
+            return try parse(OperatorParser.self)
+        }
+        throw LookAheadError()
+    }
+
     func parseOperator() throws -> Element {
         return try parse(OperatorParser.self)
     }
@@ -329,11 +336,7 @@ class Parser<ResultType> {
     }
 
     func parseExpression() throws -> Expression {
-        // TODO: Parse prefix and binary expressions here!
-        if let expression = try? parse(PostfixExpressionParser.self) {
-            return expression
-        }
-        throw LookAheadError()
+        return try parse(ExpressionParser.self)
     }
 
     func parseFunctionCallArgumentList() throws -> FunctionCallArgumentList {
@@ -382,8 +385,16 @@ class Parser<ResultType> {
         return try parse(CodeBlockStatementParser.self)
     }
 
+    func getCodeBlockStatementParser() -> Parser<Statement> {
+        return CodeBlockStatementParser(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter)
+    }
+
     func parseDefaultArgumentClause() throws -> DefaultArgumentClause {
         return try parse(DefaultArgumentClauseParser.self)
+    }
+
+    func parseInOutExpression() throws -> InOutExpression {
+        return try parse(InOutExpressionParser.self)
     }
 
     func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {

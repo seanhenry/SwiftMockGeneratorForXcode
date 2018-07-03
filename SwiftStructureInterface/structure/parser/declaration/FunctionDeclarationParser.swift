@@ -8,6 +8,7 @@ class FunctionDeclarationParser: BaseDeclarationParser<FunctionDeclaration> {
                 .optional { try self.parseThrows() }
                 .optional { try self.parseFunctionResult() }
                 .optional { try self.parseWhereClause() }
+                .optional { try self.parseCodeBlock() }
                 .build())
     }
 }

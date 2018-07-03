@@ -54,8 +54,7 @@ class GetterSetterKeywordBlockParserTests: XCTestCase {
     }
 
     func test_shouldNotParseBlockWithoutClosingBrace() {
-        let text = "{ get set"
-        XCTAssertEqual(try parse(text).text, text)
+        XCTAssertThrowsError(try parse("{ get set").text)
     }
 
     // MARK: - Helpers

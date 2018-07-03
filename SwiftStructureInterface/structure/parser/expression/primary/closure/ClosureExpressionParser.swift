@@ -1,10 +1,12 @@
 class ClosureExpressionParser: Parser<ClosureExpression> {
 
     override func parse() throws -> ClosureExpression {
+        let statementParser = getCodeBlockStatementParser()
         return try ClosureExpressionImpl(children: builder()
                 .required { try self.parsePunctuation(.leftBrace) }
                 .optional { try self.parseClosureSignature() }
-                .optional { try self.parsePunctuation(.rightBrace) }
+                .while { try statementParser.parseCodeBlockStatement() }
+                .required { try self.parsePunctuation(.rightBrace) }
                 .build())
     }
 

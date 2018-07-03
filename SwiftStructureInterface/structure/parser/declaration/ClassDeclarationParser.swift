@@ -9,7 +9,7 @@ class ClassDeclarationParser: Parser<ClassDeclaration> {
                 .optional { try self.parseGenericParameterClause() }
                 .optional { try self.parseTypeInheritanceClause() }
                 .optional { try self.parseWhereClause() }
-                .optional { try self.parseTypeCodeBlock() }
+                .optional { try self.parseCodeBlock() }
                 .build())
     }
 

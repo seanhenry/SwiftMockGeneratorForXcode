@@ -84,6 +84,13 @@ class FunctionDeclarationParserTests: XCTestCase {
         assertElementText(function.genericParameterClause, "<T, U: A & B>")
     }
 
+    func test_parse_shouldParseFuncWithCodeBlock() throws {
+        let text = "func a() { statement }"
+        let function = try parse(text)
+        assertElementText(function, text)
+        assertElementText(function.codeBlock, "{ statement }")
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) throws -> FunctionDeclaration {

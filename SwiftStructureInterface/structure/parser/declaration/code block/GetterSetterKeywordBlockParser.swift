@@ -7,7 +7,7 @@ class GetterSetterKeywordBlockParser: Parser<GetterSetterKeywordBlock> {
                 .required { try self.parsePunctuation(.leftBrace) }
                 .optional { try self.parseGetSet() }
                 .optional { try self.parseGetSet() }
-                .optional { try self.parsePunctuation(.rightBrace) }
+                .required { try self.parsePunctuation(.rightBrace) }
                 .build())
     }
 

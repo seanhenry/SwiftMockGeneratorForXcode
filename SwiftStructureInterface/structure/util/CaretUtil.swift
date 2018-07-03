@@ -2,27 +2,31 @@ public class CaretUtil {
 
     public init() {}
 
-    public func findElementUnderCaret(in element: Element, cursorOffset: Int64) -> Element? {
+    public func findElementUnderCaret<T>(in element: Element, cursorOffset: Int, type: T.Type) -> T? {
         let visitor = CaretFindingVisitor(offset: cursorOffset)
         element.accept(visitor)
-        return visitor.result
+        if let result = visitor.result {
+            return ElementTreeUtil().findParent(type, from: result)
+        }
+        return nil
     }
 
     private class CaretFindingVisitor: RecursiveElementVisitor {
 
-        let offset: Int64
+        var offset = 0
+        let targetOffset: Int
         var result: Element?
 
-        init(offset: Int64) {
-            self.offset = offset
+        init(offset: Int) {
+            self.targetOffset = offset
         }
 
-        override func visitElement(_ element: Element) {
-//            if element.offset <= offset
-//            && offset < element.offset + element.length {
-//                result = element
-//            }
-//            super.visitElement(element)
+        override func visitLeafNode(_ element: LeafNode) {
+            let length = element.text.count
+            if offset <= targetOffset && targetOffset < offset + length {
+                result = element
+            }
+            offset += length
         }
     }
 }

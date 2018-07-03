@@ -3,4 +3,5 @@ public protocol FunctionDeclaration: Declaration, NamedElement, Declarations {
     var parameterClause: ParameterClause { get }
     var returnType: FunctionResult? { get }
     var declarations: [Element] { get }
+    var codeBlock: CodeBlock? { get }
 }

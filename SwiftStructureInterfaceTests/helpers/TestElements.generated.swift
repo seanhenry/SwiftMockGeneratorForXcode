@@ -5,6 +5,8 @@
 
 private let allTypesString = """
 class TestClass {
+  &inOut;
+  try expression;
   expression;
   "literal";
   [0, 1];
@@ -41,7 +43,7 @@ class TestClass {
 public protocol TestProtocol: Z where A: B, C == D {
   init(a: A)
   var property: String { get }
-  func method(paramA: Int)
+  func method(paramA: Int, paramB: Int = 0)
   func genericMethod<T: U, V: W & X>()
   subscript()
   typealias T = U
@@ -435,7 +437,7 @@ var allTestElements: [Element] {
     testIdentifierList,
     testIdentifierPrimaryExpression,
     testImplicitMemberExpression,
-//    testInOutExpression,
+    testInOutExpression,
     testInitializerDeclaration,
     testInitializerExpression,
     testKeyPathComponent,
@@ -459,7 +461,7 @@ var allTestElements: [Element] {
     testPlaygroundLiteralExpression,
     testPostfixExpression,
     testPostfixSelfExpression,
-//    testPrefixExpression,
+    testPrefixExpression,
     testPrimaryExpression,
     testProtocolCompositionType,
     testProtocolDeclaration,

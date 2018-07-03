@@ -4,7 +4,9 @@ class VariableDeclarationParser: BaseDeclarationParser<VariableDeclaration> {
         return try VariableDeclarationImpl(children: builder
                 .optional { try self.parseIdentifier() }
                 .optional { try self.parseTypeAnnotation() }
-                .optional { try self.parseGetterSetterKeywordBlock() }
+                .either({ try self.parseGetterSetterKeywordBlock() }) {
+                    try self.parseCodeBlock()
+                }
                 .build())
     }
 }

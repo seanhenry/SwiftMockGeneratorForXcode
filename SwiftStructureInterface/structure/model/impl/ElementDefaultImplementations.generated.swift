@@ -226,6 +226,9 @@ extension FunctionDeclaration {
   public var declarations: [Element] {
     return children.compactMap { $0 as? Element }
   }
+  public var codeBlock: CodeBlock? {
+    return first(CodeBlock.self)
+  }
 }
 extension FunctionResult {
 
@@ -585,6 +588,9 @@ extension VariableDeclaration {
   }
   public var declarations: [Element] {
     return children.compactMap { $0 as? Element }
+  }
+  public var codeBlock: CodeBlock? {
+    return first(CodeBlock.self)
   }
 }
 extension Whitespace {
