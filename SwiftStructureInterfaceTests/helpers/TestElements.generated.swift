@@ -337,6 +337,9 @@ var testSuperclassMethodExpression: SuperclassMethodExpression {
 var testSuperclassSubscriptExpression: SuperclassSubscriptExpression {
   return TestElements.instance.testSuperclassSubscriptExpression!
 }
+var testTryOperator: TryOperator {
+  return TestElements.instance.testTryOperator!
+}
 var testTupleElement: TupleElement {
   return TestElements.instance.testTupleElement!
 }
@@ -480,6 +483,7 @@ var allTestElements: [Element] {
     testSuperclassInitializerExpression,
     testSuperclassMethodExpression,
     testSuperclassSubscriptExpression,
+    testTryOperator,
     testTupleElement,
     testTupleElementList,
     testTupleExpression,
@@ -598,6 +602,7 @@ private class TestElements {
   private(set) var testSuperclassInitializerExpression: SuperclassInitializerExpression!
   private(set) var testSuperclassMethodExpression: SuperclassMethodExpression!
   private(set) var testSuperclassSubscriptExpression: SuperclassSubscriptExpression!
+  private(set) var testTryOperator: TryOperator!
   private(set) var testTupleElement: TupleElement!
   private(set) var testTupleElementList: TupleElementList!
   private(set) var testTupleExpression: TupleExpression!
@@ -1086,6 +1091,11 @@ private class TestElements {
     override func visitSuperclassSubscriptExpression(_ element: SuperclassSubscriptExpression) {
       elements.testSuperclassSubscriptExpression = element
       super.visitSuperclassSubscriptExpression(element)
+    }
+
+    override func visitTryOperator(_ element: TryOperator) {
+      elements.testTryOperator = element
+      super.visitTryOperator(element)
     }
 
     override func visitTupleElement(_ element: TupleElement) {

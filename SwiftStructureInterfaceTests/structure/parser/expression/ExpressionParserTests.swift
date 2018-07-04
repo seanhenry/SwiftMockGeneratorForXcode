@@ -38,16 +38,6 @@ class ExpressionParserTests: XCTestCase {
         XCTAssertEqual(try parse(text).text, text)
     }
 
-    func test_shouldParseOptionalTryAtBeginningOfExpression() throws {
-        let text = "try? expression"
-        XCTAssertEqual(try parse(text).text, text)
-    }
-
-    func test_shouldParseForcedTryAtBeginningOfExpression() throws {
-        let text = "try! expression"
-        XCTAssertEqual(try parse(text).text, text)
-    }
-
     // TODO: parse binary expression
 
     private func parse(_ input: String) throws -> Expression {

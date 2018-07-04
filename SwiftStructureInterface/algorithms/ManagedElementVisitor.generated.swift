@@ -383,6 +383,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = SuperclassSubscriptExpressionProxy(element)
   }
 
+  override func visitTryOperator(_ element: TryOperator) {
+    proxy = TryOperatorProxy(element)
+  }
+
   override func visitTupleElement(_ element: TupleElement) {
     proxy = TupleElementProxy(element)
   }

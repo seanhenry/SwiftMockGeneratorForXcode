@@ -365,6 +365,13 @@ class Parser<ResultType> {
         throw LookAheadError()
     }
 
+    func parsePostfixOperator(_ op: String) throws -> Element {
+        if case let .postfixOperator(next) = peekAtNextKind(), next == op {
+            return try parseOperator()
+        }
+        throw LookAheadError()
+    }
+
     func parseArgumentNames() throws -> ArgumentNames {
         return try parse(ArgumentNamesParser.self)
     }
@@ -395,6 +402,10 @@ class Parser<ResultType> {
 
     func parseInOutExpression() throws -> InOutExpression {
         return try parse(InOutExpressionParser.self)
+    }
+
+    func parseTryOperator() throws -> TryOperator {
+        return try parse(TryOperatorParser.self)
     }
 
     func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {

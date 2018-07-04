@@ -1073,6 +1073,17 @@ class SuperclassSubscriptExpressionProxy: SuperclassExpressionProxy,
   }
 }
 
+class TryOperatorProxy: ElementProxy, TryOperator {
+
+  init(_ element: TryOperator) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitTryOperator(self)
+  }
+}
+
 class TupleElementProxy: ElementProxy, TupleElement {
 
   init(_ element: TupleElement) {

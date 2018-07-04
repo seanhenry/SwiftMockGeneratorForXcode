@@ -19,6 +19,8 @@ public class Punctuation {
     static let prefixAmp = "&"
     static let underscore = "_"
     static let assignmentOperator = "="
+    static let postfixQuestion = "?"
+    static let postfixExclaim = "!"
 
     static let punctuation: [String: String] = [
         "arrow": arrow,
@@ -40,6 +42,8 @@ public class Punctuation {
         "prefixAmp": prefixAmp,
         "underscore": underscore,
         "assignmentOperator": assignmentOperator,
+        "postfixQuestion": postfixQuestion,
+        "postfixExclaim": postfixExclaim,
     ]
 
     private init() {}

@@ -378,6 +378,10 @@ open class ElementVisitor {
     visitSuperclassExpression(element)
   }
 
+  open func visitTryOperator(_ element: TryOperator) {
+    visitElement(element)
+  }
+
   open func visitTupleElement(_ element: TupleElement) {
     visitElement(element)
   }

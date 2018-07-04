@@ -560,6 +560,12 @@ extension SuperclassSubscriptExpressionImpl {
   }
 }
 
+extension TryOperatorImpl {
+  static func emptyTryOperator() -> TryOperator {
+    return TryOperatorImpl(children: [])
+  }
+}
+
 extension TupleElementImpl {
   static func emptyTupleElement() -> TupleElement {
     return TupleElementImpl(children: [])

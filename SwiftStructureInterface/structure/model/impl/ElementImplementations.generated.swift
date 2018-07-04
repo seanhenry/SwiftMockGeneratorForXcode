@@ -1019,6 +1019,17 @@ class SuperclassSubscriptExpressionImpl: SuperclassExpressionImpl,
   }
 }
 
+class TryOperatorImpl: ElementImpl, TryOperator {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitTryOperator(self)
+  }
+}
+
 class TupleElementImpl: ElementImpl, TupleElement {
 
   override init(children: [Element]) {

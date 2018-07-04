@@ -488,6 +488,9 @@ extension SuperclassMethodExpression {
 extension SuperclassSubscriptExpression {
 
 }
+extension TryOperator {
+
+}
 extension TupleElement {
 
 }
