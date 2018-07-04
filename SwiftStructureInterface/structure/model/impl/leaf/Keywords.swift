@@ -72,11 +72,11 @@ class Keywords {
     static let `postfix` = "postfix"
     static let `precedence` = "precedence"
     static let `prefix` = "prefix"
-    static let _protocol = "Protocol"
+    static let _Protocol = "Protocol"
     static let `required` = "required"
     static let `right` = "right"
     static let `set` = "set"
-    static let type = "Type"
+    static let _Type = "Type"
     static let `unowned` = "unowned"
     static let `weak` = "weak"
     static let `willSet` = "willSet"
@@ -156,16 +156,45 @@ class Keywords {
         "postfix": `postfix`,
         "precedence": `precedence`,
         "prefix": `prefix`,
-        "Protocol": _protocol,
+        "Protocol": _Protocol,
         "required": `required`,
         "right": `right`,
         "set": `set`,
-        "Type": type,
+        "Type": _Type,
         "unowned": `unowned`,
         "weak": `weak`,
         "willSet": `willSet`,
         "unsafe": unsafe,
         "safe": safe,
+    ]
+
+    static let identifiers: [String: String] = [
+        "associativity": `associativity`,
+        "convenience": `convenience`,
+        "dynamic": `dynamic`,
+        "didSet": `didSet`,
+        "final": `final`,
+        "get": `get`,
+        "infix": `infix`,
+        "indirect": `indirect`,
+        "lazy": `lazy`,
+        "left": `left`,
+        "mutating": `mutating`,
+        "none": `none`,
+        "nonmutating": `nonmutating`,
+        "optional": `optional`,
+        "override": `override`,
+        "postfix": `postfix`,
+        "precedence": `precedence`,
+        "prefix": `prefix`,
+        "Protocol": _Protocol,
+        "required": `required`,
+        "right": `right`,
+        "set": `set`,
+        "Type": _Type,
+        "unowned": `unowned`,
+        "weak": `weak`,
+        "willSet": `willSet`,
     ]
 
     private init() {}

@@ -65,6 +65,13 @@ class VariableDeclarationParserTests: XCTestCase {
         XCTAssertEqual(variable.codeBlock?.text, "{ statement }")
     }
 
+    func test_parse_shouldParseKeywordIdentifier() throws {
+        let text = "var set: Int { statement }"
+        let variable = try parse(text)
+        XCTAssertEqual(variable.text, text)
+        XCTAssertEqual(variable.name, "set")
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) throws -> VariableDeclaration {

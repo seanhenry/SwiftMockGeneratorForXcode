@@ -260,6 +260,10 @@ class Parser<ResultType> {
         return try parse(WhitespaceParser.self)
     }
 
+    func parseDeclarationIdentifier() throws -> Identifier {
+        return try parse(DeclarationIdentifierParser.self)
+    }
+
     func parseIdentifierList() throws -> IdentifierList {
         return try parse(IdentifierListParser.self)
     }

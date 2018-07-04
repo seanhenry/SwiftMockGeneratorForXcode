@@ -91,6 +91,13 @@ class FunctionDeclarationParserTests: XCTestCase {
         assertElementText(function.codeBlock, "{ statement }")
     }
 
+    func test_parse_shouldParseFuncWithKeywordIdentifier() throws {
+        let text = "func final()"
+        let function = try parse(text)
+        assertElementText(function, text)
+        XCTAssertEqual(function.name, "final")
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) throws -> FunctionDeclaration {
