@@ -50,6 +50,10 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitBinaryExpression(_ element: BinaryExpression) {
+    visitElement(element)
+  }
+
   open func visitCaptureList(_ element: CaptureList) {
     visitElement(element)
   }
@@ -295,7 +299,7 @@ open class ElementVisitor {
   }
 
   open func visitPostfixExpression(_ element: PostfixExpression) {
-    visitExpression(element)
+    visitElement(element)
   }
 
   open func visitPostfixSelfExpression(_ element: PostfixSelfExpression) {
@@ -303,7 +307,7 @@ open class ElementVisitor {
   }
 
   open func visitPrefixExpression(_ element: PrefixExpression) {
-    visitExpression(element)
+    visitElement(element)
   }
 
   open func visitPrimaryExpression(_ element: PrimaryExpression) {
@@ -411,6 +415,10 @@ open class ElementVisitor {
   }
 
   open func visitTypeAnnotation(_ element: TypeAnnotation) {
+    visitElement(element)
+  }
+
+  open func visitTypeCastingOperator(_ element: TypeCastingOperator) {
     visitElement(element)
   }
 

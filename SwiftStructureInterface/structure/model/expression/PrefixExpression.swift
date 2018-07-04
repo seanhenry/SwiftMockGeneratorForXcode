@@ -1,3 +1,3 @@
-public protocol PrefixExpression: Expression {
+public protocol PrefixExpression: Element {
 
 }

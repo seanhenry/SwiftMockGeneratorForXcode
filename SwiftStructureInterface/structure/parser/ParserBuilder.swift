@@ -30,7 +30,12 @@ class ParserBuilder {
     }
 
     func either(_ either: @escaping ElementSupplier, or: @escaping ElementSupplier) -> ParserBuilder {
-        operations.append(EitherOrStrategy(either, or))
+        operations.append(EitherOrStrategy(RequireEitherOrStrategy(either, or)))
+        return self
+    }
+
+    func requireEither(_ either: @escaping ElementSupplier, or: @escaping ElementSupplier) -> ParserBuilder {
+        operations.append(RequireEitherOrStrategy(either, or))
         return self
     }
 
@@ -161,6 +166,20 @@ class ParserBuilder {
     }
 
     private class EitherOrStrategy: ParsingStrategy {
+        let strategy: RequireEitherOrStrategy
+
+        init(_ strategy: RequireEitherOrStrategy) {
+            self.strategy = strategy
+        }
+
+        func parse(into children: inout [Element]) throws {
+            do {
+                try strategy.parse(into: &children)
+            } catch {}
+        }
+    }
+
+    private class RequireEitherOrStrategy: ParsingStrategy {
         let either: ElementSupplier
         let or: ElementSupplier
 
@@ -174,6 +193,8 @@ class ParserBuilder {
                 children.append(first)
             } else if let second = try? or() {
                 children.append(second)
+            } else {
+                throw RequiredElementNotParsedError()
             }
         }
     }

@@ -6,6 +6,25 @@ class ParseBuilderTests: XCTestCase {
     var parser: Parser<File>!
     struct TestError: Error {}
 
+    override func tearDown() {
+        parser = nil
+        super.tearDown()
+    }
+
+    func test_shouldSetCheckpoint() {
+        let children = try? builder(" var a : A")
+                .required { try self.parser.parseKeyword() }
+                .required { try self.parser.parseKeyword() }
+                .build()
+        let nextTry = try! parser.builder()
+                .required { try self.parser.parseKeyword() }
+                .build()
+        XCTAssertNil(children)
+        XCTAssertEqual(nextTry[0].text, "var")
+    }
+
+    // MARK: - require
+
     func test_shouldBuildRequiredItem() {
         let children = try! builder("var a : A")
                 .required { try self.parser.parseKeyword() }
@@ -28,6 +47,8 @@ class ParseBuilderTests: XCTestCase {
     func test_shouldThrowWhenRequiredItemCannotBeParsed() throws {
         XCTAssertThrowsError(try builder("").required { throw TestError() }.build())
     }
+
+    // MARK: - optional
 
     func test_shouldBuildOptionalItems() {
         let children = try! builder("var a : A")
@@ -71,6 +92,8 @@ class ParseBuilderTests: XCTestCase {
         XCTAssertEqual(children.count, 1)
         XCTAssertEqual(children[0].text, "var")
     }
+
+    // MARK: - while(do:)
 
     func test_shouldContinueParsingUntilElementIsNil() {
         let children = try! builder("public final class")
@@ -136,17 +159,7 @@ class ParseBuilderTests: XCTestCase {
         XCTAssertEqual(children[8].text, "a")
     }
 
-    func test_shouldSetCheckpoint() {
-        let children = try? builder(" var a : A")
-                .required { try self.parser.parseKeyword() }
-                .required { try self.parser.parseKeyword() }
-                .build()
-        let nextTry = try! parser.builder()
-                .required { try self.parser.parseKeyword() }
-                .build()
-        XCTAssertNil(children)
-        XCTAssertEqual(nextTry[0].text, "var")
-    }
+    // MARK: - while
 
     func test_shouldContinueParsingUntilThrows() throws {
         let children = try builder(",,,")
@@ -170,7 +183,9 @@ class ParseBuilderTests: XCTestCase {
         XCTAssertEqual(children[4].text, ",")
     }
 
-    func test_shouldParseLhsIfExistsAndShouldNotParseRightHandSide() throws {
+    // MARK: - either
+
+    func test_either_shouldParseLhsIfExistsAndShouldNotParseRightHandSide() throws {
         let children = try builder(":,")
                 .either({ try self.parser.parsePunctuation(.colon) }) {
                     try self.parser.parsePunctuation(.comma)
@@ -180,7 +195,7 @@ class ParseBuilderTests: XCTestCase {
         XCTAssertEqual(children[0].text, ":")
     }
 
-    func test_shouldParseRhsWhenLhsCannotBeParsed() throws {
+    func test_either_shouldParseRhsWhenLhsCannotBeParsed() throws {
         let children = try builder(",:")
                 .either({ try self.parser.parsePunctuation(.colon) }) {
                     try self.parser.parsePunctuation(.comma)
@@ -189,6 +204,48 @@ class ParseBuilderTests: XCTestCase {
         XCTAssertEqual(children.count, 1)
         XCTAssertEqual(children[0].text, ",")
     }
+
+    func test_either_shouldNotThrowWhenNethierAreParsed() throws {
+        let children = try builder(",:")
+                .either({ try self.parser.parsePunctuation(.colon) }) {
+                    try self.parser.parsePunctuation(.comma)
+                }
+                .build()
+        XCTAssertEqual(children.count, 1)
+        XCTAssertEqual(children[0].text, ",")
+    }
+
+    // MARK: - requireEither
+
+    func test_requireEither_shouldParseLhsIfExistsAndShouldNotParseRightHandSide() throws {
+        let children = try builder(":,")
+                .requireEither({ try self.parser.parsePunctuation(.colon) }) {
+                    try self.parser.parsePunctuation(.comma)
+                }
+                .build()
+        XCTAssertEqual(children.count, 1)
+        XCTAssertEqual(children[0].text, ":")
+    }
+
+    func test_requireEither_shouldParseRhsWhenLhsCannotBeParsed() throws {
+        let children = try builder(",:")
+                .requireEither({ try self.parser.parsePunctuation(.colon) }) {
+                    try self.parser.parsePunctuation(.comma)
+                }
+                .build()
+        XCTAssertEqual(children.count, 1)
+        XCTAssertEqual(children[0].text, ",")
+    }
+
+    func test_requireEither_shouldThrowWhenNeitherRequiredParse() throws {
+        XCTAssertThrowsError(try builder("<")
+                .requireEither({ try self.parser.parsePunctuation(.colon) }) {
+                    try self.parser.parsePunctuation(.comma)
+                }
+                .build())
+    }
+
+    // MARK: - check
 
     func test_shouldAbandonParsingWhenCheckFails() {
         XCTAssertThrowsError(try builder(",,")

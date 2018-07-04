@@ -117,6 +117,17 @@ class AttributesProxy: ElementProxy, Attributes {
   }
 }
 
+class BinaryExpressionProxy: ElementProxy, BinaryExpression {
+
+  init(_ element: BinaryExpression) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitBinaryExpression(self)
+  }
+}
+
 class CaptureListProxy: ElementProxy, CaptureList {
 
   init(_ element: CaptureList) {
@@ -824,8 +835,7 @@ class PlaygroundLiteralExpressionProxy: LiteralExpressionProxy,
   }
 }
 
-class PostfixExpressionProxy: ExpressionProxy,
- PostfixExpression {
+class PostfixExpressionProxy: ElementProxy, PostfixExpression {
 
   init(_ element: PostfixExpression) {
     super.init(element)
@@ -848,8 +858,7 @@ class PostfixSelfExpressionProxy: PostfixExpressionProxy,
   }
 }
 
-class PrefixExpressionProxy: ExpressionProxy,
- PrefixExpression {
+class PrefixExpressionProxy: ElementProxy, PrefixExpression {
 
   init(_ element: PrefixExpression) {
     super.init(element)
@@ -1171,6 +1180,17 @@ class TypeAnnotationProxy: ElementProxy, TypeAnnotation {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitTypeAnnotation(self)
+  }
+}
+
+class TypeCastingOperatorProxy: ElementProxy, TypeCastingOperator {
+
+  init(_ element: TypeCastingOperator) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitTypeCastingOperator(self)
   }
 }
 

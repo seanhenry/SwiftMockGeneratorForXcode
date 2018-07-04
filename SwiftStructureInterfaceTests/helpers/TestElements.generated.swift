@@ -38,6 +38,8 @@ class TestClass {
   expression[a:expression];
   expression!;
   optChain?;
+
+  expression as T
 }
 
 public protocol TestProtocol: Z where A: B, C == D {
@@ -87,6 +89,9 @@ var testAttribute: Attribute {
 }
 var testAttributes: Attributes {
   return TestElements.instance.testAttributes!
+}
+var testBinaryExpression: BinaryExpression {
+  return TestElements.instance.testBinaryExpression!
 }
 var testCaptureList: CaptureList {
   return TestElements.instance.testCaptureList!
@@ -364,6 +369,9 @@ var testType: Type {
 var testTypeAnnotation: TypeAnnotation {
   return TestElements.instance.testTypeAnnotation!
 }
+var testTypeCastingOperator: TypeCastingOperator {
+  return TestElements.instance.testTypeCastingOperator!
+}
 var testTypeDeclaration: TypeDeclaration {
   return TestElements.instance.testTypeDeclaration!
 }
@@ -400,6 +408,7 @@ var allTestElements: [Element] {
     testAssociatedTypeDeclaration,
     testAttribute,
     testAttributes,
+    testBinaryExpression,
     testCaptureList,
     testCaptureListItem,
     testCaptureListItems,
@@ -492,6 +501,7 @@ var allTestElements: [Element] {
     testTupleTypeElementList,
     testType,
     testTypeAnnotation,
+    testTypeCastingOperator,
     testTypeDeclaration,
     testTypeIdentifier,
     testTypeInheritanceClause,
@@ -519,6 +529,7 @@ private class TestElements {
   private(set) var testAssociatedTypeDeclaration: AssociatedTypeDeclaration!
   private(set) var testAttribute: Attribute!
   private(set) var testAttributes: Attributes!
+  private(set) var testBinaryExpression: BinaryExpression!
   private(set) var testCaptureList: CaptureList!
   private(set) var testCaptureListItem: CaptureListItem!
   private(set) var testCaptureListItems: CaptureListItems!
@@ -611,6 +622,7 @@ private class TestElements {
   private(set) var testTupleTypeElementList: TupleTypeElementList!
   private(set) var testType: Type!
   private(set) var testTypeAnnotation: TypeAnnotation!
+  private(set) var testTypeCastingOperator: TypeCastingOperator!
   private(set) var testTypeDeclaration: TypeDeclaration!
   private(set) var testTypeIdentifier: TypeIdentifier!
   private(set) var testTypeInheritanceClause: TypeInheritanceClause!
@@ -676,6 +688,11 @@ private class TestElements {
     override func visitAttributes(_ element: Attributes) {
       elements.testAttributes = element
       super.visitAttributes(element)
+    }
+
+    override func visitBinaryExpression(_ element: BinaryExpression) {
+      elements.testBinaryExpression = element
+      super.visitBinaryExpression(element)
     }
 
     override func visitCaptureList(_ element: CaptureList) {
@@ -1136,6 +1153,11 @@ private class TestElements {
     override func visitTypeAnnotation(_ element: TypeAnnotation) {
       elements.testTypeAnnotation = element
       super.visitTypeAnnotation(element)
+    }
+
+    override func visitTypeCastingOperator(_ element: TypeCastingOperator) {
+      elements.testTypeCastingOperator = element
+      super.visitTypeCastingOperator(element)
     }
 
     override func visitTypeDeclaration(_ element: TypeDeclaration) {

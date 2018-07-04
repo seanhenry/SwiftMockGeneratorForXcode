@@ -62,6 +62,12 @@ extension AttributesImpl {
   }
 }
 
+extension BinaryExpressionImpl {
+  static func emptyBinaryExpression() -> BinaryExpression {
+    return BinaryExpressionImpl(children: [])
+  }
+}
+
 extension CaptureListImpl {
   static func emptyCaptureList() -> CaptureList {
     return CaptureListImpl(children: [])
@@ -611,6 +617,12 @@ extension TypeImpl {
 extension TypeAnnotationImpl {
   static func emptyTypeAnnotation() -> TypeAnnotation {
     return TypeAnnotationImpl(children: [])
+  }
+}
+
+extension TypeCastingOperatorImpl {
+  static func emptyTypeCastingOperator() -> TypeCastingOperator {
+    return TypeCastingOperatorImpl(children: [])
   }
 }
 

@@ -113,6 +113,17 @@ class AttributesImpl: ElementImpl, Attributes {
   }
 }
 
+class BinaryExpressionImpl: ElementImpl, BinaryExpression {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitBinaryExpression(self)
+  }
+}
+
 class CaptureListImpl: ElementImpl, CaptureList {
 
   override init(children: [Element]) {
@@ -774,8 +785,7 @@ class PlaygroundLiteralExpressionImpl: LiteralExpressionImpl,
   }
 }
 
-class PostfixExpressionImpl: ExpressionImpl,
- PostfixExpression {
+class PostfixExpressionImpl: ElementImpl, PostfixExpression {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -798,8 +808,7 @@ class PostfixSelfExpressionImpl: PostfixExpressionImpl,
   }
 }
 
-class PrefixExpressionImpl: ExpressionImpl,
- PrefixExpression {
+class PrefixExpressionImpl: ElementImpl, PrefixExpression {
 
   override init(children: [Element]) {
     super.init(children: children)
@@ -1113,6 +1122,17 @@ class TypeAnnotationImpl: ElementImpl, TypeAnnotation {
 
   override func accept(_ visitor: ElementVisitor) {
     visitor.visitTypeAnnotation(self)
+  }
+}
+
+class TypeCastingOperatorImpl: ElementImpl, TypeCastingOperator {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitTypeCastingOperator(self)
   }
 }
 

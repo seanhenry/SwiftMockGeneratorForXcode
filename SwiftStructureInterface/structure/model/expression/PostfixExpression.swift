@@ -1,1 +1,1 @@
-public protocol PostfixExpression: Expression {}
+public protocol PostfixExpression: Element {}

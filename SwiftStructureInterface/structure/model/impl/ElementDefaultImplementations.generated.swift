@@ -59,6 +59,9 @@ extension Attributes {
     return children.compactMap { $0 as? Attribute }
   }
 }
+extension BinaryExpression {
+
+}
 extension CaptureList {
 
   public var captureListItems: CaptureListItems {
@@ -538,6 +541,9 @@ extension TypeAnnotation {
   public var type: Type {
     return first(Type.self) ?? TypeImpl.emptyType()
   }
+}
+extension TypeCastingOperator {
+
 }
 extension TypeDeclaration {
 

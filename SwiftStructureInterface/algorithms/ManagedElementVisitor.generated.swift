@@ -55,6 +55,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = AttributesProxy(element)
   }
 
+  override func visitBinaryExpression(_ element: BinaryExpression) {
+    proxy = BinaryExpressionProxy(element)
+  }
+
   override func visitCaptureList(_ element: CaptureList) {
     proxy = CaptureListProxy(element)
   }
@@ -417,6 +421,10 @@ class ManagedElementVisitor: ElementVisitor {
 
   override func visitTypeAnnotation(_ element: TypeAnnotation) {
     proxy = TypeAnnotationProxy(element)
+  }
+
+  override func visitTypeCastingOperator(_ element: TypeCastingOperator) {
+    proxy = TypeCastingOperatorProxy(element)
   }
 
   override func visitTypeDeclaration(_ element: TypeDeclaration) {
