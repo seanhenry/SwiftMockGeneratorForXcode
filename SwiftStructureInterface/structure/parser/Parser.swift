@@ -408,6 +408,10 @@ class Parser<ResultType> {
         return try parse(TryOperatorParser.self)
     }
 
+    func parsePrefixExpression() throws -> PrefixExpression {
+        return try parse(PrefixExpressionParser.self)
+    }
+
     func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {
         return try P.init(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
     }
