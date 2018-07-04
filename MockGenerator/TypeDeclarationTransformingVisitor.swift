@@ -22,8 +22,8 @@ class TypeDeclarationTransformingVisitor: ElementVisitor {
     }
 
     private func transformInheritanceClause(_ element: TypeDeclaration) -> [UseCasesProtocol] {
-        let resolved = element.inheritedTypes
-            .compactMap { resolver.resolve($0) as? TypeDeclaration }
+        let resolved = element.typeInheritanceClause.inheritedTypes
+            .compactMap { resolver.resolve($0) as? ProtocolDeclaration }
         return resolved.map { transform($0) }
     }
 

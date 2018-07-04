@@ -16,12 +16,12 @@ class TypeResolverVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        genericClause = GenericParameterClauseImpl(text: "<T>", offset: 0, length: 0, parameters: [])
-        classType = TypeIdentifierImpl(text: "Int", offset: 0, length: 0, parentType: nil, typeName: "Int", genericArguments: [])
+        genericClause = try! ParserTestHelper.parseGenericParameterClause("<T>")
+        classType = (try! ParserTestHelper.parseType("Int")) as! TypeIdentifier
         type = createType("T")
-        array = createArray("[T]", type)
-        dictionary = createDictionary("[T: T]", type, type)
-        optional = createOptional("T?", type)
+        array = createArray(type)
+        dictionary = createDictionary(type, type)
+        optional = createOptional(type)
         mockResolver = MockResolver()
         visitor = TypeResolverVisitor(resolver: mockResolver)
     }
@@ -117,8 +117,7 @@ class TypeResolverVisitorTests: XCTestCase {
     }
 
     func test_visit_shouldTransformToTypealiasType() {
-        let assignment = TypealiasAssignmentImpl(text: "= T", offset: 0, length: 0, type: type)
-        let typeAlias = TypealiasDeclarationImpl(text: "typealias A = T", offset: 0, length: 0, name: "A", typealiasAssignment: assignment)
+        let typeAlias = try! ParserTestHelper.parseTypealias("typealias A = T")
         mockResolver.stubbedResolveResult = typeAlias
         let aliasedType = createType("A")
         aliasedType.accept(visitor)
@@ -145,19 +144,19 @@ class TypeResolverVisitorTests: XCTestCase {
     }
 
     private func createType(_ name: String) -> Type {
-        return TypeImpl(text: name, offset: 0, length: 0)
+        return try! ParserTestHelper.parseType(name)
     }
 
-    private func createDictionary(_ name: String, _ keyType: Type, _ valueType: Type) -> DictionaryType {
-        return DictionaryTypeImpl(text: name, offset: 0, length: 0, keyType: keyType, valueType: valueType)
+    private func createDictionary(_ keyType: Type, _ valueType: Type) -> DictionaryType {
+        return try! ParserTestHelper.parseType("[\(keyType.text): \(valueType.text)]") as! DictionaryType
     }
 
-    private func createArray(_ name: String, _ elementType: Type) -> ArrayType {
-        return ArrayTypeImpl(text: name, offset: 0, length: 0, elementType: elementType)
+    private func createArray(_ elementType: Type) -> ArrayType {
+        return try! ParserTestHelper.parseType("[\(elementType.text)]") as! ArrayType
     }
 
-    private func createOptional(_ name: String, _ type: Type) -> OptionalType {
-        return OptionalTypeImpl(text: name, offset: 0, length: 0, type: type)
+    private func createOptional(_ type: Type) -> OptionalType {
+        return try! ParserTestHelper.parseType("\(type.text)?") as! OptionalType
     }
 
     private func stubResolveToGenericClause() {

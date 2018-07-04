@@ -71,7 +71,7 @@ class FindElementLocationTests: XCTestCase {
                 .children.last!
         let (line, column) = FindElementLocation().findLineColumn(element)
         XCTAssertEqual(line, 2)
-        XCTAssertEqual(column, 10)
+        XCTAssertEqual(column, 9)
     }
 
     // MARK: - Offset
@@ -146,7 +146,7 @@ class FindElementLocationTests: XCTestCase {
                 .codeBlock
                 .children.last!
         let offset = FindElementLocation().findOffset(element)
-        XCTAssertEqual(offset, 32)
+        XCTAssertEqual(offset, 31)
     }
 
     // MARK: - UTF8
@@ -170,6 +170,18 @@ class FindElementLocationTests: XCTestCase {
         let (line, column) = FindElementLocation().findLineColumn(element, encoding: .utf8)
         XCTAssertEqual(line, 1)
         XCTAssertEqual(column, 12)
+    }
+
+    // MARK: leaf
+
+    func test_shouldFindLeafElement() throws {
+        let element = try parse("class A {}")
+                .typeDeclarations[0]
+                .codeBlock
+                .children[0] // "{"
+        let (line, column) = FindElementLocation().findLineColumn(element)
+        XCTAssertEqual(line, 0)
+        XCTAssertEqual(column, 8)
     }
 
     private func parse(_ input: String) throws -> File {

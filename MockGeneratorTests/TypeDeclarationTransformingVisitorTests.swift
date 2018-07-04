@@ -60,14 +60,14 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
         XCTAssert(protocols.isEmpty)
     }
 
-    func test_shouldIgnoreNonClassMocks() {
-        let p = ElementParser.parseType("Type")
+    func test_shouldIgnoreNonClassMocks() throws {
+        let p = try ElementParser.parseType("Type")
         let protocols = TypeDeclarationTransformingVisitor.transformMock(p, resolver: resolver).protocols
         XCTAssert(protocols.isEmpty)
     }
 
     private func transformProtocols(_ string: String) -> [UseCasesProtocol] {
-        let p = SKElementFactoryTestHelper.build(from: string)!.typeDeclarations[0]
+        let p = try! ElementParser.parseFile(string).typeDeclarations[0]
         let protocols = TypeDeclarationTransformingVisitor.transformMock(p, resolver: resolver).protocols
         return protocols
     }

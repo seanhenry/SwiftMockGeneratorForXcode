@@ -130,7 +130,7 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func transformType<T: UseCasesType>(_ input: String, _ t: T.Type) -> T {
-        let type = ElementParser.parseType(input)
+        let type = try! ElementParser.parseType(input)
         return MethodGatheringVisitor.transformType(type, resolver: resolver) as! T
     }
 
@@ -173,7 +173,7 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func transformMethod(_ input: String) -> UseCasesMethod {
-        let method = ElementParser.parseFunctionDeclaration(input)
+        let method = try! ElementParser.parseFunctionDeclaration(input)
         method.accept(visitor)
         return visitor.methods[0]
     }
@@ -211,7 +211,7 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func transformProperty(_ input: String) -> UseCasesProperty {
-        let property = ElementParser.parseVariableDeclaration(input)
+        let property = try! ElementParser.parseVariableDeclaration(input)
         property.accept(visitor)
         return visitor.properties[0]
     }
@@ -260,7 +260,7 @@ class MethodGatheringVisitorTests: XCTestCase {
     // MARK: - Helpers
 
     private func getMethodProtocol() -> Element {
-        let file = ElementParser.parseFile(getMethodProtocolString())
+        let file = try! ElementParser.parseFile(getMethodProtocolString())
         return file.typeDeclarations[0]
     }
 
@@ -275,7 +275,7 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func getPropertyProtocol() -> Element {
-        let file = ElementParser.parseFile(getPropertyProtocolString())
+        let file = try! ElementParser.parseFile(getPropertyProtocolString())
         return file.typeDeclarations[0]
     }
 
@@ -295,7 +295,7 @@ class MethodGatheringVisitorTests: XCTestCase {
     }
 
     private func getInitializerProtocol() -> Element {
-        let file = ElementParser.parseFile(getInitializerProtocolString())
+        let file = try! ElementParser.parseFile(getInitializerProtocolString())
         return file.typeDeclarations[0]
     }
 

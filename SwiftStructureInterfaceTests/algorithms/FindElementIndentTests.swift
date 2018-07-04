@@ -23,6 +23,21 @@ class FindElementIndentTests: XCTestCase {
         XCTAssertEqual(FindElementIndent().find(element), "")
     }
 
+    func test_shouldFindElementIndentWhenImmediatelyAfterManyNewlines() throws {
+        let element = try parse("\n\nclass A {}").typeDeclarations[0]
+        XCTAssertEqual(FindElementIndent().find(element), "")
+    }
+
+    func test_shouldFindElementIndentWhenImmediatelyAfterCarriageReturn() throws {
+        let element = try parse("\r\nclass A {}").typeDeclarations[0]
+        XCTAssertEqual(FindElementIndent().find(element), "")
+    }
+
+    func test_shouldFindElementIndentWhenImmediatelyAfterManyCarriageReturns() throws {
+        let element = try parse("\r\n\r\n\r\nclass A {}").typeDeclarations[0]
+        XCTAssertEqual(FindElementIndent().find(element), "")
+    }
+
     func test_shouldFindIndentWhenSiblingsAreBetweenTheTargetAndTheStartOfLine() throws {
         let element = try parse("  class A: B {}")
                 .typeDeclarations[0]

@@ -25,13 +25,13 @@ class FindElementIndent {
             if !isElementFound || isIndentFound {
                 return
             }
-            guard let index = element.text.index(of: "\n") else {
+            let reversedText = element.text.replacingOccurrences(of: "\r", with: "\n").reversed()
+            guard let index = reversedText.index(of: "\n") else {
                 indent = element.text
                 return
             }
             isIndentFound = true
-            let startIndex = element.text.index(after: index)
-            indent = String(element.text[startIndex...])
+            indent = String(reversedText[reversedText.startIndex..<index])
         }
 
         override func visitElement(_ element: Element) {

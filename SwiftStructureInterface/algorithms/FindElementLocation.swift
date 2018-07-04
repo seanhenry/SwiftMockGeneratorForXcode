@@ -1,21 +1,23 @@
-class FindElementLocation {
+public class FindElementLocation {
 
-    enum Encoding {
+    public enum Encoding {
         case utf32, utf8
     }
 
-    func findLineColumnOffset(_ element: Element, encoding: Encoding = .utf32) -> (line: Int, column: Int, offset: Int) {
+    public init() {}
+
+    public func findLineColumnOffset(_ element: Element, encoding: Encoding = .utf32) -> (line: Int, column: Int, offset: Int) {
         let visitor = Visitor(element, encoding)
         element.file!.accept(visitor)
         return (visitor.line, visitor.column, visitor.offset)
     }
 
-    func findLineColumn(_ element: Element, encoding: Encoding = .utf32) -> (line: Int, column: Int) {
+    public func findLineColumn(_ element: Element, encoding: Encoding = .utf32) -> (line: Int, column: Int) {
         let (line, column, _) = findLineColumnOffset(element, encoding: encoding)
         return (line, column)
     }
 
-    func findOffset(_ element: Element, encoding: Encoding = .utf32) -> Int {
+    public func findOffset(_ element: Element, encoding: Encoding = .utf32) -> Int {
         return findLineColumnOffset(element, encoding: encoding).offset
     }
 
@@ -66,6 +68,7 @@ class FindElementLocation {
         }
 
         override func visitLeafNode(_ element: LeafNode) {
+            super.visitLeafNode(element)
             if isFound {
                 return
             }

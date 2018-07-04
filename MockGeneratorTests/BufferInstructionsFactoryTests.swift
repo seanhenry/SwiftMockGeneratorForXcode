@@ -97,7 +97,7 @@ class BufferInstructionsFactoryTests: XCTestCase {
     }
 
     private func create(_ input: String, lines: [String] = []) -> BufferInstructions {
-        let file = SKElementFactoryTestHelper.build(from: input)!
+        let file = try! ParserTestHelper.parseFile(from: input)
         let classElement = file.typeDeclarations[0]
         return BufferInstructionsFactory().create(mockClass: classElement, lines: lines)!
     }
@@ -113,23 +113,25 @@ class BufferInstructionsFactoryTests: XCTestCase {
     class NoFileTypeDeclaration: TypeDeclaration {
 
         var accessLevelModifier: AccessLevelModifier {
-            return fatalError()
+            fatalError()
+        }
+        var declarationModifiers: [DeclarationModifier] {
+            return []
         }
         var typeInheritanceClause: TypeInheritanceClause {
-            return fatalError()
+            fatalError()
         }
-        var declarations: [Element] {
-            return []
+        var codeBlock: CodeBlock {
+            fatalError()
+        }
+        var attributes: Attributes {
+            fatalError()
         }
         var text: String {
             return ""
         }
         var children: [Element] {
-            set {
-            }
-            get {
-                return []
-            }
+            return []
         }
         var file: File? {
             return nil
@@ -137,14 +139,12 @@ class BufferInstructionsFactoryTests: XCTestCase {
         var parent: Element? {
             return nil
         }
-        var offset: Int64 {
-            return 0
-        }
-        var length: Int64 {
-            return 0
-        }
 
         func accept(_ visitor: ElementVisitor) {
+        }
+
+        func isIdentical(to: Element) -> Bool {
+            return false
         }
     }
 }

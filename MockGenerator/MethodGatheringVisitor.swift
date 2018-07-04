@@ -62,8 +62,15 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     }
 
     override func visitTupleType(_ element: TupleType) {
-        fatalError("TODO:")
-//        type = UseCasesTupleType(tupleElements: element.tupleTypeElementList.tupleTypeElements.map { UseCasesTupleTypeTupleElement(label: $0.label, type: transformType($0.typeAnnotation.type)) })
+        let tupleElements = element.tupleTypeElementList.tupleTypeElements.compactMap(transformTupleType)
+        type = UseCasesTupleType(tupleElements: tupleElements)
+    }
+
+    private func transformTupleType(_ e: TupleTypeElement) -> UseCasesTupleTypeTupleElement? {
+        if let type = e.type ?? e.typeAnnotation?.type {
+            return UseCasesTupleTypeTupleElement(label: e.label, type: transformType(type))
+        }
+        return nil
     }
 
     private func transformToIdentifiers(_ element: TypeIdentifier) -> [String] {
@@ -83,7 +90,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
 
     private func transform(_ element: FunctionDeclaration) -> UseCasesMethod {
         let genericParameter = transformGenericParameters(from: element)
-        let parameters = transformParameters(element.parameterClause)
+        let parameters = transformParameters(element.parameterClause.parameters)
         let returnType = element.returnType.map { transformType($0) } ?? UseCasesTypeIdentifier(identifier: "")
         return UseCasesMethod(name: element.name,
             genericParameters: genericParameter,
@@ -95,7 +102,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
 
     private func transformGenericParameters(from element: FunctionDeclaration) -> [String] {
         return element.genericParameterClause?.parameters.map { param in
-            param.typeName
+            param.name
         } ?? []
     }
 
@@ -134,7 +141,7 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
 
     override func visitInitializerDeclaration(_ element: InitializerDeclaration) {
         initializers.append(UseCasesInitializer(
-            parametersList: transformParameters(element.parameters),
+            parametersList: transformParameters(element.parameterClause.parameters),
             isFailable: element.isFailable,
             throws: element.throws))
     }

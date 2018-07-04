@@ -3,18 +3,31 @@ import SwiftStructureInterface
 class BufferInstructionsFactory {
 
     func create(mockClass: TypeDeclaration, lines: [String]) -> BufferInstructions? {
-        fatalError("TODO:")
-//        guard let fileText = mockClass.file?.text,
-//              let startLineColumn = LocationConverter.convert(caretOffset: mockClass.bodyOffset, in: fileText),
-//              let endLineColumn = LocationConverter.convert(caretOffset: mockClass.bodyOffset + mockClass.bodyLength, in: fileText) else {
-//            return nil
-//        }
-//        return getDeletionInstructions(startLineColumn: startLineColumn, endLineColumn: endLineColumn, lines: lines, fileText: fileText)
+        guard let fileText = mockClass.file?.text else {
+            return nil
+        }
+        let bodyStart = getFirstElementLineColumn(mockClass.codeBlock)
+        let bodyEnd = getLastElementLineColumn(mockClass.codeBlock)
+        return getDeletionInstructions(startLineColumn: bodyStart, endLineColumn: bodyEnd, lines: lines, fileText: fileText)
+    }
+
+    private func getFirstElementLineColumn(_ codeBlock: CodeBlock) -> (line: Int, column: Int) {
+        let lineColumn = FindElementLocation().findLineColumn(codeBlock)
+        return (lineColumn.line, column: lineColumn.column+1)
+    }
+
+    private func getLastElementLineColumn(_ codeBlock: CodeBlock) -> (line: Int, column: Int) {
+        let lastChild = codeBlock.children.last!
+        let lineColumn = FindElementLocation().findLineColumn(lastChild)
+        if codeBlock.children.last?.text == "}" {
+            return lineColumn
+        }
+        return (lineColumn.line, column: lineColumn.column + lastChild.text.count)
     }
 
     private func getDeletionInstructions(startLineColumn: (line: Int, column: Int), endLineColumn: (line: Int, column: Int), lines: [String], fileText: String) -> BufferInstructions {
         var lines = lines
-        var deleteIndex = startLineColumn.line
+        var deleteIndex = startLineColumn.line + 1
         var deleteLength = 0
         if startLineColumn.line != endLineColumn.line {
             deleteLength = endLineColumn.line - startLineColumn.line - 1
@@ -40,7 +53,7 @@ class BufferInstructionsFactory {
     }
 
     private func getLineText(at line: Int, from fileText: String) -> String {
-        let startOffset = LocationConverter.convert(line: line, column: 0, in: fileText)!
+        let startOffset = LocationConverter.convert(line: line + 1, column: 0, in: fileText)!
         let startIndex = fileText.index(fileText.startIndex, offsetBy: Int(startOffset))
         let startOfLine = fileText[startIndex...]
         if let endIndex = startOfLine.index(of: "\n") {
