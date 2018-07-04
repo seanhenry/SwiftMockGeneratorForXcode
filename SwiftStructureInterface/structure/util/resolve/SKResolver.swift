@@ -16,15 +16,15 @@ class SKResolver: ResolverDecorator {
     }
 
     private func doResolve(_ element: Element) -> [String: Any]? {
-//        return try? cursorInfoRequest.getCursorInfo(filePath: tempFile, offset: element.offset)
-        fatalError()
+        let offset = FindElementLocation().findOffset(element, encoding: .utf8)
+        return try? cursorInfoRequest.getCursorInfo(filePath: tempFile, offset: Int64(offset))
     }
 
     private func getResolvedElementInFile(from data: [String: Any]?) -> Element? {
         if let path = data?["key.filepath"] as? String,
-           let offset = data?["key.offset"] as? Int,
+           let offset = data?["key.offset"] as? Int64,
            let resolvedFile = try? ElementParser.parseFile(at: path) {
-            return CaretUtil().findElementUnderCaret(in: resolvedFile, cursorOffset: offset, type: Declaration.self)
+            return CaretUtil().findElementUnderCaret(in: resolvedFile, cursorOffset: Int(offset), type: Declaration.self)
         }
         return nil
     }

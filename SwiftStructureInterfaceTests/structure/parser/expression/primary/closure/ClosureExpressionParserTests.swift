@@ -13,8 +13,10 @@ class ClosureExpressionParserTests: XCTestCase {
         XCTAssertThrowsError(try parse("}"))
     }
 
-    func test_shouldNotParseClosureWithoutTrailingBrace() {
-        XCTAssertThrowsError(try parse("{ "))
+    func test_shouldParseClosureWithoutTrailingBrace() throws {
+        let text = "{"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
     }
 
     // MARK: - CaptureList

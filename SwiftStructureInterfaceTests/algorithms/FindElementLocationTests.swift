@@ -149,6 +149,29 @@ class FindElementLocationTests: XCTestCase {
         XCTAssertEqual(offset, 32)
     }
 
+    // MARK: - UTF8
+
+    func test_shouldFindUTF8Offset() throws {
+        XCTAssertEqual("💐".utf8.count, 4)
+        let element = try parse("class 💐: A {}")
+                .typeDeclarations[0]
+                .typeInheritanceClause
+                .inheritedTypes[0]
+        let offset = FindElementLocation().findOffset(element, encoding: .utf8)
+        XCTAssertEqual(offset, 12)
+    }
+
+    func test_shouldFindUTF8LineColumn() throws {
+        XCTAssertEqual("💐".utf8.count, 4)
+        let element = try parse("class A {}\nclass 💐: B {}")
+                .typeDeclarations[1]
+                .typeInheritanceClause
+                .inheritedTypes[0]
+        let (line, column) = FindElementLocation().findLineColumn(element, encoding: .utf8)
+        XCTAssertEqual(line, 1)
+        XCTAssertEqual(column, 12)
+    }
+
     private func parse(_ input: String) throws -> File {
         return try ParserTestHelper.parseFile(from: input)
     }
