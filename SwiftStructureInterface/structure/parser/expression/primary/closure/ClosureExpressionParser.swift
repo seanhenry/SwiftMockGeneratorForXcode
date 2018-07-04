@@ -6,7 +6,7 @@ class ClosureExpressionParser: Parser<ClosureExpression> {
                 .required { try self.parsePunctuation(.leftBrace) }
                 .optional { try self.parseClosureSignature() }
                 .while { try statementParser.parseCodeBlockStatement() }
-                .required { try self.parsePunctuation(.rightBrace) }
+                .optional { try self.parsePunctuation(.rightBrace) }
                 .build())
     }
 

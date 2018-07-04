@@ -3,6 +3,9 @@ class ExpressionParser: Parser<Expression> {
     override func parse() throws -> Expression {
         return try ExpressionImpl(children: builder()
                 .optional { try self.parseKeyword(.try) }
+                .either({ try self.parseOperator("?") }) {
+                    try self.parseOperator("!")
+                }
                 .optional { try self.parsePrefixOperator() }
                 .required { try self.parsePrefixExpression() }
                 .build())
