@@ -38,7 +38,17 @@ class ExpressionParserTests: XCTestCase {
         XCTAssertEqual(try parse(text).text, text)
     }
 
-    // TODO: parse binary expression
+    func test_shouldParseBinaryExpression() throws {
+        let text = "expression ?? expression"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
+    func test_shouldParseBinaryExpressions() throws {
+        let text = "expression ?? expression ? expr : expr as! T"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
 
     private func parse(_ input: String) throws -> Expression {
         return try createParser(input, ExpressionParser.self).parse()

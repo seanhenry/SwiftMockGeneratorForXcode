@@ -412,6 +412,10 @@ class Parser<ResultType> {
         return try parse(PrefixExpressionParser.self)
     }
 
+    func parseBinaryExpression() throws -> BinaryExpression {
+        return try parse(BinaryExpressionParser.self)
+    }
+
     func parseConditionalOperator() throws -> ConditionalOperator {
         return try parse(ConditionalOperatorParser.self)
     }

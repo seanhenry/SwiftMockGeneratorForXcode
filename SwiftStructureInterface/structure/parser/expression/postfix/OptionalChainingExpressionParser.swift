@@ -3,7 +3,7 @@ class OptionalChainingExpressionParser: CompoundPostfixExpressionParser<Optional
     override func parse() throws -> OptionalChainingExpression {
         return try OptionalChainingExpressionImpl(children: builder()
                 .required { self.postfixExpression }
-                .required { try self.parseOperator("?") }
+                .required { try self.parsePunctuation(.postfixQuestion) }
                 .build())
     }
 }

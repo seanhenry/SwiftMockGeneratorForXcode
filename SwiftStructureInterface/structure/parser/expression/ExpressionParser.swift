@@ -5,6 +5,7 @@ class ExpressionParser: Parser<Expression> {
         return try ExpressionImpl(children: builder()
                 .optional { try self.parseTryOperator() }
                 .required { try self.parsePrefixExpression() }
+                .while { try self.parseBinaryExpression() }
                 .build())
     }
 
