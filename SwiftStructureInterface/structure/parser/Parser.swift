@@ -412,6 +412,14 @@ class Parser<ResultType> {
         return try parse(PrefixExpressionParser.self)
     }
 
+    func parseConditionalOperator() throws -> ConditionalOperator {
+        return try parse(ConditionalOperatorParser.self)
+    }
+
+    func parseTypeCastingOperator() throws -> TypeCastingOperator {
+        return try parse(TypeCastingOperatorParser.self)
+    }
+
     func parse<T, P: Parser<T>>(_ parserType: P.Type) throws -> T {
         return try P.init(lexer: lexer, fileContents: fileContents, locationConverter: locationConverter).parse()
     }

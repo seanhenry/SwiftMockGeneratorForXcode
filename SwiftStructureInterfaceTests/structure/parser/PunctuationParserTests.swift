@@ -48,6 +48,12 @@ class PunctuationParserTests: XCTestCase {
         XCTAssertEqual(try parser.parsePunctuation(.postfixExclaim).text, "!")
     }
 
+    func test_parseBinaryQuestion() {
+        let parser = createParser("expression ? expression :", PunctuationParser.self)
+        _ = try! parser.parseIdentifier()
+        XCTAssertEqual(try parser.parsePunctuation(.binaryQuestion).text, "?")
+    }
+
     // MARK: - Helpers
 
     func parse(_ input: String) throws -> LeafNode {

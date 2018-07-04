@@ -21,6 +21,7 @@ public class Punctuation {
     static let assignmentOperator = "="
     static let postfixQuestion = "?"
     static let postfixExclaim = "!"
+    static let binaryQuestion = "?"
 
     static let punctuation: [String: String] = [
         "arrow": arrow,
@@ -44,6 +45,7 @@ public class Punctuation {
         "assignmentOperator": assignmentOperator,
         "postfixQuestion": postfixQuestion,
         "postfixExclaim": postfixExclaim,
+        "binaryQuestion": binaryQuestion,
     ]
 
     private init() {}
