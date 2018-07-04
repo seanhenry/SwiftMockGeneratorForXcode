@@ -236,6 +236,17 @@ class CodeBlockImpl: ElementImpl, CodeBlock {
   }
 }
 
+class ConditionalOperatorImpl: ElementImpl, ConditionalOperator {
+
+  override init(children: [Element]) {
+    super.init(children: children)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitConditionalOperator(self)
+  }
+}
+
 class ConformanceRequirementImpl: RequirementImpl,
  ConformanceRequirement {
 

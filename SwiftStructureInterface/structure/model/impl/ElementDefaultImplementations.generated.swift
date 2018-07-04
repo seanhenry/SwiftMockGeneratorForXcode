@@ -131,6 +131,9 @@ extension ClosureSignature {
 extension CodeBlock {
 
 }
+extension ConditionalOperator {
+
+}
 extension ConformanceRequirement {
 
   public var rightProtocolCompositionType: ProtocolCompositionType {

@@ -40,6 +40,7 @@ class TestClass {
   optChain?;
 
   expression as T
+  expression ? expression : expression
 }
 
 public protocol TestProtocol: Z where A: B, C == D {
@@ -122,6 +123,9 @@ var testClosureSignature: ClosureSignature {
 }
 var testCodeBlock: CodeBlock {
   return TestElements.instance.testCodeBlock!
+}
+var testConditionalOperator: ConditionalOperator {
+  return TestElements.instance.testConditionalOperator!
 }
 var testConformanceRequirement: ConformanceRequirement {
   return TestElements.instance.testConformanceRequirement!
@@ -419,6 +423,7 @@ var allTestElements: [Element] {
     testClosureParameterList,
     testClosureSignature,
     testCodeBlock,
+    testConditionalOperator,
     testConformanceRequirement,
     testDeclaration,
     testDeclarationModifier,
@@ -540,6 +545,7 @@ private class TestElements {
   private(set) var testClosureParameterList: ClosureParameterList!
   private(set) var testClosureSignature: ClosureSignature!
   private(set) var testCodeBlock: CodeBlock!
+  private(set) var testConditionalOperator: ConditionalOperator!
   private(set) var testConformanceRequirement: ConformanceRequirement!
   private(set) var testDeclaration: Declaration!
   private(set) var testDeclarationModifier: DeclarationModifier!
@@ -743,6 +749,11 @@ private class TestElements {
     override func visitCodeBlock(_ element: CodeBlock) {
       elements.testCodeBlock = element
       super.visitCodeBlock(element)
+    }
+
+    override func visitConditionalOperator(_ element: ConditionalOperator) {
+      elements.testConditionalOperator = element
+      super.visitConditionalOperator(element)
     }
 
     override func visitConformanceRequirement(_ element: ConformanceRequirement) {

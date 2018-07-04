@@ -37,6 +37,7 @@ class TestClass {
   optChain?;
 
   expression as T
+  expression ? expression : expression
 }
 
 public protocol TestProtocol: Z where A: B, C == D {

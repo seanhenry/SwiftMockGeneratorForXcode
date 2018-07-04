@@ -240,6 +240,17 @@ class CodeBlockProxy: ElementProxy, CodeBlock {
   }
 }
 
+class ConditionalOperatorProxy: ElementProxy, ConditionalOperator {
+
+  init(_ element: ConditionalOperator) {
+    super.init(element)
+  }
+
+  override func accept(_ visitor: ElementVisitor) {
+    visitor.visitConditionalOperator(self)
+  }
+}
+
 class ConformanceRequirementProxy: RequirementProxy,
  ConformanceRequirement {
 

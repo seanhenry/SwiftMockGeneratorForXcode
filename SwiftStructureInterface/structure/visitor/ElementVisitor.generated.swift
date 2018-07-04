@@ -94,6 +94,10 @@ open class ElementVisitor {
     visitElement(element)
   }
 
+  open func visitConditionalOperator(_ element: ConditionalOperator) {
+    visitElement(element)
+  }
+
   open func visitConformanceRequirement(_ element: ConformanceRequirement) {
     visitRequirement(element)
   }

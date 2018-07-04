@@ -99,6 +99,10 @@ class ManagedElementVisitor: ElementVisitor {
     proxy = CodeBlockProxy(element)
   }
 
+  override func visitConditionalOperator(_ element: ConditionalOperator) {
+    proxy = ConditionalOperatorProxy(element)
+  }
+
   override func visitConformanceRequirement(_ element: ConformanceRequirement) {
     proxy = ConformanceRequirementProxy(element)
   }

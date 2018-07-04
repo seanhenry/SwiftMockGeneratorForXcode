@@ -128,6 +128,12 @@ extension CodeBlockImpl {
   }
 }
 
+extension ConditionalOperatorImpl {
+  static func emptyConditionalOperator() -> ConditionalOperator {
+    return ConditionalOperatorImpl(children: [])
+  }
+}
+
 extension ConformanceRequirementImpl {
   static func emptyConformanceRequirement() -> ConformanceRequirement {
     return ConformanceRequirementImpl(children: [])
