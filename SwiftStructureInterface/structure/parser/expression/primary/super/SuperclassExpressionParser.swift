@@ -16,7 +16,7 @@ class SuperclassExpressionParser: Parser<SuperclassExpression> {
         return try? SuperclassMethodExpressionImpl(children: builder()
                 .required { try self.parseKeyword(.`super`) }
                 .required { try self.parsePunctuation(.dot) }
-                .required { try self.parseDeclarationIdentifier() }
+                .required { try self.parseIdentifier() }
                 .build())
     }
 

@@ -74,7 +74,7 @@ class ClosureExpressionParser: Parser<ClosureExpression> {
 
     private func parseClosureParameter() throws -> ClosureParameter {
         return try ClosureParameterImpl(children: builder()
-                .optional { try self.parseDeclarationIdentifier() }
+                .optional { try self.parseIdentifier() }
                 .optional { try self.parseTypeAnnotation() }
                 .optional { try self.parseVarArgs() }
                 .build())

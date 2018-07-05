@@ -13,7 +13,7 @@ class ExplicitMemberExpressionParser: CompoundPostfixExpressionParser<ExplicitMe
     }
 
     private func isIdentifierExplicitMember() -> Bool {
-        return isDeclarationIdentifier(peekAtKind(aheadBy: 1))
+        return isIdentifier(peekAtKind(aheadBy: 1))
     }
 
     private func parseIdentifierExplicitMember() throws -> ExplicitMemberExpression {
@@ -32,7 +32,7 @@ class ExplicitMemberExpressionParser: CompoundPostfixExpressionParser<ExplicitMe
         return try ExplicitMemberExpressionImpl(children: builder()
                 .required { self.postfixExpression }
                 .required { try self.parsePunctuation(.dot) }
-                .required { try self.parseDeclarationIdentifier() }
+                .required { try self.parseIdentifier() }
                 .build())
     }
 
@@ -40,7 +40,7 @@ class ExplicitMemberExpressionParser: CompoundPostfixExpressionParser<ExplicitMe
         return try ExplicitMemberExpressionImpl(children: builder()
                 .required { self.postfixExpression }
                 .required { try self.parsePunctuation(.dot) }
-                .required { try self.parseDeclarationIdentifier() }
+                .required { try self.parseIdentifier() }
                 .required { try self.parseGenericArgumentClause() }
                 .build())
     }
@@ -49,7 +49,7 @@ class ExplicitMemberExpressionParser: CompoundPostfixExpressionParser<ExplicitMe
         return try ExplicitMemberExpressionImpl(children: builder()
                 .required { self.postfixExpression }
                 .required { try self.parsePunctuation(.dot) }
-                .required { try self.parseDeclarationIdentifier() }
+                .required { try self.parseIdentifier() }
                 .required { try self.parsePunctuation(.leftParen) }
                 .optional { try self.parseArgumentNames() }
                 .required { try self.parsePunctuation(.rightParen) }

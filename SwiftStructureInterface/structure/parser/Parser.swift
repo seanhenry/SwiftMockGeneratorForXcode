@@ -59,7 +59,7 @@ class Parser<ResultType> {
         }
     }
 
-    func isDeclarationIdentifier(_ kind: Token.Kind) -> Bool {
+    func isIdentifier(_ kind: Token.Kind) -> Bool {
         if isStrictIdentifier(kind) {
             return true
         }
@@ -284,8 +284,8 @@ class Parser<ResultType> {
         throw LookAheadError()
     }
 
-    func parseDeclarationIdentifier() throws -> Identifier {
-        return try parse(DeclarationIdentifierParser.self)
+    func parseIdentifier() throws -> Identifier {
+        return try parse(IdentifierParser.self)
     }
 
     func parseIdentifierList() throws -> IdentifierList {

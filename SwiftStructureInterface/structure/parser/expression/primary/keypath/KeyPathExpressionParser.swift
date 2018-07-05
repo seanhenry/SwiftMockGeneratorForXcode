@@ -3,7 +3,7 @@ class KeyPathExpressionParser: Parser<KeyPathExpression> {
     override func parse() throws -> KeyPathExpression {
         return try KeyPathExpressionImpl(children: builder()
                 .required { try self.parsePunctuation(.backslash) }
-                .optional { try self.parseDeclarationIdentifier() }
+                .optional { try self.parseIdentifier() }
                 .required { try self.parsePunctuation(.dot) }
                 .required { try self.parseComponents() }
                 .build())
@@ -20,7 +20,7 @@ class KeyPathExpressionParser: Parser<KeyPathExpression> {
 
     private func parseComponent() throws -> KeyPathComponent {
         return try KeyPathComponentImpl(children: builder()
-                .optional { try self.parseDeclarationIdentifier() }
+                .optional { try self.parseIdentifier() }
                 .optional { try self.parsePostfixes() }
                 .build())
     }

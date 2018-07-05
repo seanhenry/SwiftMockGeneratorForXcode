@@ -13,7 +13,7 @@ class GenericParameterClauseParser: Parser<GenericParameterClause> {
 
     private func parseGenericParameter() throws -> GenericParameter {
         return try GenericParameterImpl(children: builder()
-                .required { try self.parseDeclarationIdentifier() }
+                .required { try self.parseIdentifier() }
                 .either({ try self.parsePunctuation(.colon) }) {
                     try self.parseBinaryOperator("==")
                 }

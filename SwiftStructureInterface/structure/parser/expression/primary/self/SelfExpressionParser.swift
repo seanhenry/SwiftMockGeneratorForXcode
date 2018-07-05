@@ -17,7 +17,7 @@ class SelfExpressionParser: Parser<SelfExpression> {
         return try? SelfMethodExpressionImpl(children: builder()
                 .required { try self.parseKeyword(.`self`) }
                 .required { try self.parsePunctuation(.dot) }
-                .required { try self.parseDeclarationIdentifier() }
+                .required { try self.parseIdentifier() }
                 .build())
     }
 

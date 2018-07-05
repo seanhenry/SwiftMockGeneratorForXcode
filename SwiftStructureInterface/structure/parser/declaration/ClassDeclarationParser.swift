@@ -5,7 +5,7 @@ class ClassDeclarationParser: Parser<ClassDeclaration> {
                 .optional { try self.parseAttributes() }
                 .while { try self.parseModifierExceptClass() }
                 .required { try self.parseKeyword(.class) }
-                .optional { try self.parseDeclarationIdentifier() }
+                .optional { try self.parseIdentifier() }
                 .optional { try self.parseGenericParameterClause() }
                 .optional { try self.parseTypeInheritanceClause() }
                 .optional { try self.parseWhereClause() }

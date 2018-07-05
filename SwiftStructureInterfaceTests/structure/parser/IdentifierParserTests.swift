@@ -1,7 +1,7 @@
 import XCTest
 @testable import SwiftStructureInterface
 
-class DeclarationIdentifierParserTests: XCTestCase {
+class IdentifierParserTests: XCTestCase {
 
     func test_shouldParseKeywordIdentifier() throws {
         let allowedKeywords = [
@@ -52,7 +52,7 @@ class DeclarationIdentifierParserTests: XCTestCase {
 
     func test_shouldAdvanceAfterParsingKeyword() throws {
         let text = "set final"
-        let parser = createParser(text, DeclarationIdentifierParser.self)
+        let parser = createParser(text, IdentifierParser.self)
         XCTAssertEqual(try parser.parse().text, "set")
         XCTAssertEqual(try parser.parse().text, "final")
     }
@@ -62,6 +62,6 @@ class DeclarationIdentifierParserTests: XCTestCase {
     }
 
     private func parse(_ input: String) throws -> Identifier {
-        return try createParser(input, DeclarationIdentifierParser.self).parse()
+        return try createParser(input, IdentifierParser.self).parse()
     }
 }
