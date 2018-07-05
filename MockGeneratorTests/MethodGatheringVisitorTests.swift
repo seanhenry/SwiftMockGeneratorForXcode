@@ -1,5 +1,4 @@
 import XCTest
-import SourceKittenFramework
 import UseCases
 @testable import SwiftStructureInterface
 @testable import MockGenerator

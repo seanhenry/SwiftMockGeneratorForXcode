@@ -1,2 +1,0 @@
-public protocol SelfMethodExpression: SelfExpression {
-}

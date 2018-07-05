@@ -1,1 +1,0 @@
-public protocol PrimaryExpression: PostfixExpression {}
