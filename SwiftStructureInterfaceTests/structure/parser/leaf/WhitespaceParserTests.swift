@@ -23,7 +23,7 @@ class WhitespaceParserTests: XCTestCase {
         createFileParser("func\r\na()")
         parseKeyword()
         XCTAssertEqual(parseWhitespace().text, "\r")
-        XCTAssertEqual(try parser.parseIdentifier().text, "a")
+        XCTAssertEqual(try parser.parseStrictIdentifier().text, "a")
     }
 
     func test_shouldCalculateDoubleWhitespace() {

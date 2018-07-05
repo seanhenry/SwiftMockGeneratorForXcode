@@ -1,7 +1,7 @@
 class DeclarationIdentifierParser: Parser<Identifier> {
 
     override func parse() throws -> Identifier {
-        if let identifier = try? parseIdentifier() {
+        if let identifier = try? parseStrictIdentifier() {
             return identifier
         }
         let key = String(describing: peekAtNextKind())

@@ -36,7 +36,7 @@ class ParseBuilderTests: XCTestCase {
     func test_shouldBuildWhitespaceBetweenItemsOnly() {
         let children = try! builder("var a : A")
                 .required { try self.parser.parseKeyword() }
-                .required { try self.parser.parseIdentifier() }
+                .required { try self.parser.parseStrictIdentifier() }
                 .build()
         XCTAssertEqual(children.count, 3)
         XCTAssertEqual(children[0].text, "var")
@@ -53,7 +53,7 @@ class ParseBuilderTests: XCTestCase {
     func test_shouldBuildOptionalItems() {
         let children = try! builder("var a : A")
                 .optional { try self.parser.parseKeyword() }
-                .optional { try self.parser.parseIdentifier() }
+                .optional { try self.parser.parseStrictIdentifier() }
                 .build()
         XCTAssertEqual(children.count, 3)
         XCTAssertEqual(children[0].text, "var")
@@ -65,7 +65,7 @@ class ParseBuilderTests: XCTestCase {
         let children = try! builder("var a : A")
                 .optional { try self.parser.parseKeyword() }
                 .optional { throw TestError() }
-                .optional { try self.parser.parseIdentifier() }
+                .optional { try self.parser.parseStrictIdentifier() }
                 .build()
         XCTAssertEqual(children.count, 3)
         XCTAssertEqual(children[0].text, "var")
@@ -76,7 +76,7 @@ class ParseBuilderTests: XCTestCase {
     func test_shouldNotParseWhitespaceForLastSuccessfulOperation() {
         let children = try! builder("var a : A")
                 .optional { try self.parser.parseKeyword() }
-                .optional { try self.parser.parseIdentifier() }
+                .optional { try self.parser.parseStrictIdentifier() }
                 .optional { throw TestError() }
                 .build()
         XCTAssertEqual(children.count, 3)
@@ -145,7 +145,7 @@ class ParseBuilderTests: XCTestCase {
                 .while(isParsed: { try self.parser.parsePunctuation(.comma) }) {
                     try self.parser.parseKeyword()
                 }
-                .optional { try self.parser.parseIdentifier() }
+                .optional { try self.parser.parseStrictIdentifier() }
                 .build()
         XCTAssertEqual(children.count, 9)
         XCTAssertEqual(children[0].text, ",")

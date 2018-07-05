@@ -1,7 +1,7 @@
 import XCTest
 @testable import SwiftStructureInterface
 
-class IdentifierParserTests: XCTestCase {
+class StrictIdentifierParserTests: XCTestCase {
 
     func test_shouldParseIdentifier() {
         XCTAssertEqual(try parse("identifier").text, "identifier")
@@ -12,7 +12,7 @@ class IdentifierParserTests: XCTestCase {
     }
 
     func test_shouldAdvanceLexer() {
-        let parser = createParser("identifier1 identifier2", IdentifierParser.self)
+        let parser = createParser("identifier1 identifier2", StrictIdentifierParser.self)
         XCTAssertEqual(try parser.parse().text, "identifier1")
         XCTAssertEqual(try parser.parse().text, "identifier2")
     }
@@ -30,6 +30,6 @@ class IdentifierParserTests: XCTestCase {
     }
 
     private func parse(_ input: String) throws -> Identifier {
-        return try createParser(input, IdentifierParser.self).parse()
+        return try createParser(input, StrictIdentifierParser.self).parse()
     }
 }

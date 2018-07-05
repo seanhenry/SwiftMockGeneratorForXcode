@@ -18,7 +18,7 @@ class PrefixExpressionParserTests: XCTestCase {
     func test_shouldParseNotPostfixExpressionWithBinaryOperator() throws {
         let text = "expression * expression"
         let parser = createParser(text, ExpressionParser.self)
-        _ = try parser.parseIdentifier()
+        _ = try parser.parseStrictIdentifier()
         XCTAssertThrowsError(try parser.parse())
     }
 

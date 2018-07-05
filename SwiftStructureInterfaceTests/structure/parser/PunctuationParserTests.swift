@@ -50,7 +50,7 @@ class PunctuationParserTests: XCTestCase {
 
     func test_parseBinaryQuestion() {
         let parser = createParser("expression ? expression :", PunctuationParser.self)
-        _ = try! parser.parseIdentifier()
+        _ = try! parser.parseStrictIdentifier()
         XCTAssertEqual(try parser.parsePunctuation(.binaryQuestion).text, "?")
     }
 

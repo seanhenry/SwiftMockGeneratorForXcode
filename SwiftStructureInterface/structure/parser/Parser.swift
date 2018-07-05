@@ -51,7 +51,7 @@ class Parser<ResultType> {
             return "_"
         }
         let next = peekAtNextKind()
-        guard isIdentifier(next),
+        guard isStrictIdentifier(next),
               let identifier = next.namedIdentifier else { return nil }
         switch identifier {
             case .backtickedName(let escaped): return "`\(escaped)`"
@@ -59,19 +59,19 @@ class Parser<ResultType> {
         }
     }
 
-    func isIdentifier(_ kind: Token.Kind) -> Bool {
-        if case .identifier(_, _) = kind {
-            return true
-        }
-        return kind == .underscore
-    }
-
     func isDeclarationIdentifier(_ kind: Token.Kind) -> Bool {
-        if isIdentifier(kind) {
+        if isStrictIdentifier(kind) {
             return true
         }
         let key = String(describing: kind)
         return Keywords.identifiers[key] != nil
+    }
+
+    private func isStrictIdentifier(_ kind: Token.Kind) -> Bool {
+        if case .identifier(_, _) = kind {
+            return true
+        }
+        return kind == .underscore
     }
 
     func isNext(_ kind: Token.Kind) -> Bool {
@@ -269,7 +269,7 @@ class Parser<ResultType> {
     }
 
     func parseParameterIdentifier() throws -> Element {
-        if let identifier = try? parseIdentifier() {
+        if let identifier = try? parseStrictIdentifier() {
             return identifier
         } else if case let .booleanLiteral(bool) = peekAtNextKind() {
             advance()
@@ -292,28 +292,28 @@ class Parser<ResultType> {
         return try parse(IdentifierListParser.self)
     }
 
-    func parseIdentifier() throws -> Identifier {
-        if isIdentifierNext() {
-            return try parse(IdentifierParser.self)
+    func parseStrictIdentifier() throws -> Identifier {
+        if isStrictIdentifierNext() {
+            return try parse(StrictIdentifierParser.self)
         }
         throw LookAheadError()
     }
 
-    func parseIdentifier(_ string: String) throws -> Identifier {
-        if isIdentifierNext([string]) {
-            return try parse(IdentifierParser.self)
+    func parseStrictIdentifier(_ string: String) throws -> Identifier {
+        if isStrictIdentifierNext([string]) {
+            return try parse(StrictIdentifierParser.self)
         }
         throw LookAheadError()
     }
 
-    func parseIdentifier(_ strings: [String]) throws -> Identifier {
-        if isIdentifierNext(strings) {
-            return try parseIdentifier()
+    func parseStrictIdentifier(_ strings: [String]) throws -> Identifier {
+        if isStrictIdentifierNext(strings) {
+            return try parseStrictIdentifier()
         }
         throw LookAheadError()
     }
 
-    private func isIdentifierNext(_ strings: [String] = []) -> Bool {
+    private func isStrictIdentifierNext(_ strings: [String] = []) -> Bool {
         guard let identifier = peekAtNextIdentifier() else {
             return false
         }

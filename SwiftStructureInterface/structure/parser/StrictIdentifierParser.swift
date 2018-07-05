@@ -1,4 +1,4 @@
-class IdentifierParser: Parser<Identifier> {
+class StrictIdentifierParser: Parser<Identifier> {
 
     override func parse() throws -> Identifier {
         if let identifier = peekAtNextIdentifier() {

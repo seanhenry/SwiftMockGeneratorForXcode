@@ -57,7 +57,7 @@ class DeclarationModifierParser: Parser<DeclarationModifier> {
         return try ElementImpl(children: parser.builder()
                 .required { try parser.parsePunctuation(.leftParen) }
                 .optional { try parser.parseKeyword() }
-                .optional { try parser.parseIdentifier() }
+                .optional { try parser.parseStrictIdentifier() }
                 .required { try parser.parsePunctuation(.rightParen) }
                 .build())
     }

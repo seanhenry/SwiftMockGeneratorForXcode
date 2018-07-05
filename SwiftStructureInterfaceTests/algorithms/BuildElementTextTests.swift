@@ -13,7 +13,7 @@ class BuildElementTextTests: XCTestCase {
         let type = TypeImpl(children: [
             try parser.parseKeyword(),
             try parser.parseWhitespace(),
-            try parser.parseIdentifier()
+            try parser.parseStrictIdentifier()
         ])
         XCTAssertEqual(type.text, text)
     }

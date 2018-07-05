@@ -10,7 +10,7 @@ class AttributesParser: Parser<Attributes> {
     private func parseAttribute() throws -> Attribute {
         let children = try builder()
                 .required { try self.parsePunctuation(.at) }
-                .optional { try self.parseIdentifier() }
+                .optional { try self.parseStrictIdentifier() }
                 .build()
 
         return AttributeImpl(children: children + parseArguments())
@@ -20,7 +20,7 @@ class AttributesParser: Parser<Attributes> {
         return tryToParse {
             let args: [Element] = [
                 try parsePunctuation(.leftParen),
-                try parseIdentifier(),
+                try parseStrictIdentifier(),
                 try parsePunctuation(.rightParen)
             ]
             if isNext([.arrow, .comma, .rightParen]) {

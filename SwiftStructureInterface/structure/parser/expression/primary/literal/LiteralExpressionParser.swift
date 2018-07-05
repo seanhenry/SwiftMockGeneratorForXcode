@@ -52,7 +52,7 @@ class LiteralExpressionParser: Parser<LiteralExpression> {
     private func parseKeywordLiteral() throws -> LiteralExpression {
         return try KeywordLiteralExpressionImpl(children: builder()
                 .required { try self.parsePunctuation(.hash) }
-                .required { try self.parseIdentifier(["file", "line", "column", "function"]) }
+                .required { try self.parseStrictIdentifier(["file", "line", "column", "function"]) }
                 .build())
     }
 
@@ -61,7 +61,7 @@ class LiteralExpressionParser: Parser<LiteralExpression> {
     private func parsePlaygroundLiteral() throws -> LiteralExpression {
         return try PlaygroundLiteralExpressionImpl(children: builder()
                 .required { try self.parsePunctuation(.hash) }
-                .required { try self.parseIdentifier(["fileLiteral", "imageLiteral", "colorLiteral"]) }
+                .required { try self.parseStrictIdentifier(["fileLiteral", "imageLiteral", "colorLiteral"]) }
                 .optional { try self.parsePunctuation(.leftParen) }
                 .optional { try self.parsePlaygroundArguments() }
                 .optional { try self.parsePunctuation(.rightParen) }
@@ -79,7 +79,7 @@ class LiteralExpressionParser: Parser<LiteralExpression> {
 
     private func parsePlaygroundArgument() throws -> PlaygroundLiteralArgument {
         return try PlaygroundLiteralArgumentImpl(children: builder()
-                .optional { try self.parseIdentifier() }
+                .optional { try self.parseStrictIdentifier() }
                 .optional { try self.parsePunctuation(.colon) }
                 .optional { try self.parseExpression() }
                 .build())

@@ -66,7 +66,7 @@ extension TypeParser {
     // MARK: - Nested
 
     private func parseIdentifierIncludingKeywords() throws -> Identifier {
-        if let identifier = try? parseIdentifier() {
+        if let identifier = try? parseStrictIdentifier() {
             return identifier
         } else if let keyword = try? parseKeyword([.Self, .Type, .Protocol, .Any]) {
             return IdentifierImpl(text: keyword.text)
@@ -207,7 +207,7 @@ extension TypeParser {
 
         private func parseArgumentName() throws -> Element {
             let parsed = tryToParse { () -> Element in
-                let name = try parseIdentifier()
+                let name = try parseStrictIdentifier()
                 if !isNext(.colon) {
                     throw LookAheadError()
                 }

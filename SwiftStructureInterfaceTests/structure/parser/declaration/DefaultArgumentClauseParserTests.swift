@@ -25,7 +25,7 @@ class DefaultArgumentClauseParserTests: XCTestCase {
 
     func test_shouldParseAsPartOfParameter() throws {
         let parser = createParser("a: Int = 0", DefaultArgumentClauseParser.self)
-        _ = try parser.parseIdentifier()
+        _ = try parser.parseStrictIdentifier()
         _ = try parser.parsePunctuation(.colon)
         _ = try parser.parseType()
         XCTAssertEqual(try parser.parse().text, "= 0")
