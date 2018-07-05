@@ -14,6 +14,11 @@ class GenericParameterClauseParserTests: XCTestCase {
         XCTAssertNil(clause.parameters[0].typeIdentifier)
     }
 
+    func test_parse_shouldParseClauseWithKeywordName() throws {
+        let clause = try parse("<none>")
+        XCTAssertEqual(clause.parameters[0].name, "none")
+    }
+
     func test_parse_shouldParseClauseWithTypeIdentifier() throws {
         let clause = try parse("<T:A>")
         XCTAssertEqual(clause.parameters.count, 1)

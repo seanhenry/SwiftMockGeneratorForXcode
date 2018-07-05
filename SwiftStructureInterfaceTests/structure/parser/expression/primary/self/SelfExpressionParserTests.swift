@@ -16,6 +16,13 @@ class SelfExpressionParserTests: XCTestCase {
         XCTAssert(expression is SelfMethodExpression)
     }
 
+    func test_shouldParseSelfMethodExpressionWithKeywordIdentifier() throws {
+        let text = "self.dynamic"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+        XCTAssert(expression is SelfMethodExpression)
+    }
+
     func test_shouldParseSelfInitializerExpression() throws {
         let text = "self.init"
         let expression = try parse(text)

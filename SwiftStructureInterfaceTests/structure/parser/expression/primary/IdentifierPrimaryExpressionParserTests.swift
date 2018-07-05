@@ -15,6 +15,12 @@ class IdentifierPrimaryExpressionParserTests: XCTestCase {
         XCTAssertEqual(expression.text, text)
     }
 
+    func test_shouldParseExpressionWithKeywordIdentifier() throws {
+        let text = "required"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
     func test_shouldNotParseExpressionWithOnlyGenericClause() {
         XCTAssertThrowsError(try parse("<T>").text)
     }

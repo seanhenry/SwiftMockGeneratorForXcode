@@ -112,6 +112,13 @@ class ProtocolDeclarationParserTests: XCTestCase {
         assertElementText(`protocol`.typeInheritanceClause.inheritedTypes[0], "Generic<T>")
     }
 
+    func test_parse_shouldParseKeywordName() throws {
+        let text = "protocol final {}"
+        let `protocol` = try parse(text)
+        assertElementText(`protocol`, text)
+        XCTAssertEqual(`protocol`.name, "final")
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) throws -> ProtocolDeclaration {

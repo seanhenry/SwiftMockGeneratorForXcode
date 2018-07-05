@@ -15,6 +15,12 @@ class ArgumentNamesParserTests: XCTestCase {
         XCTAssertEqual(names.text, text)
     }
 
+    func test_shouldParseKeywordNames() throws {
+        let text = "true:class:"
+        let names = try parse(text)
+        XCTAssertEqual(names.text, text)
+    }
+
     func test_shouldNotParseMissingName() {
         XCTAssertThrowsError(try parse(":"))
     }

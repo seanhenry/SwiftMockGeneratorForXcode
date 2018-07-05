@@ -9,6 +9,12 @@ class FunctionCallExpressionParserTests: XCTestCase {
         XCTAssertEqual(expression.text, text)
     }
 
+    func test_shouldParseExpressionWithKeywordNames() throws {
+        let text = "self.expression(class: expr, false: expr) { _ in }"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
     func test_shouldNotParseWhenMissingPostfixExpression() {
         XCTAssertThrowsError(try parse("class"))
     }

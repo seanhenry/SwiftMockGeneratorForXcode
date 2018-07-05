@@ -45,6 +45,11 @@ class TypealiasDeclarationParserTests: XCTestCase {
         assertElementText(try parse(text), text)
     }
 
+    func test_parse_shouldParseKeywordName() {
+        let text = "typealias get = Int"
+        assertElementText(try parse(text), text)
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) throws -> TypealiasDeclaration {

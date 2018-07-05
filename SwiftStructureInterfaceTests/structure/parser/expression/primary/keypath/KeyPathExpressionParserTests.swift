@@ -9,6 +9,12 @@ class KeyPathExpressionParserTests: XCTestCase {
         XCTAssertEqual(expression.text, text)
     }
 
+    func test_shouldParseKeywordTypeAndComponent() throws {
+        let text = "\\convenience.associativity"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
     func test_shouldParseLongExpression() throws {
         let text = "\\AType.path.to.item"
         let expression = try parse(text)

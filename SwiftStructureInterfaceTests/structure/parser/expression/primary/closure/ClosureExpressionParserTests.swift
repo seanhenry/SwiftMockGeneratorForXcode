@@ -95,6 +95,12 @@ class ClosureExpressionParserTests: XCTestCase {
         XCTAssertEqual(expression.text, text)
     }
 
+    func test_shouldParseClosureParameterClauseWithKeywordIdentifierOnly() throws {
+        let text = "{ (lazy) in }"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
     func test_shouldParseClosureParameterClauseWithIdentifierAndTypeAnnotation() throws {
         let text = "{ (identifier: T) in }"
         let expression = try parse(text)

@@ -3,7 +3,7 @@ class InOutExpressionParser: Parser<InOutExpression> {
     override func parse() throws -> InOutExpression {
         return try InOutExpressionImpl(children: builder()
                 .required { try self.parseAmp() }
-                .required { try self.parseIdentifier() }
+                .required { try self.parseDeclarationIdentifier() }
                 .build())
     }
 

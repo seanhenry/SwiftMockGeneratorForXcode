@@ -14,6 +14,13 @@ class SuperclassExpressionParserTests: XCTestCase {
         XCTAssert(expression is SuperclassMethodExpression)
     }
 
+    func test_shouldParseSuperMethodExpressionWithKeywordIdentifier() throws {
+        let text = "super.didSet"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+        XCTAssert(expression is SuperclassMethodExpression)
+    }
+
     func test_shouldParseSuperInitializerExpression() throws {
         let text = "super.init"
         let expression = try parse(text)

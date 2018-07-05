@@ -9,6 +9,12 @@ class InOutExpressionParserTests: XCTestCase {
         XCTAssertEqual(expression.text, text)
     }
 
+    func test_shouldParseKeywordIdentifier() throws {
+        let text = "&didSet"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
     func test_shouldNotParseWithoutAmp() throws {
         XCTAssertThrowsError(try parse("identifier"))
     }

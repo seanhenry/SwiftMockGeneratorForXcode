@@ -9,7 +9,7 @@ class ArgumentNamesParser: Parser<ArgumentNames> {
 
     private func parseArgumentName() throws -> ArgumentName {
         return try ArgumentNameImpl(children: builder()
-                .required { try self.parseIdentifier() }
+                .required { try self.parseParameterIdentifier() }
                 .required { try self.parsePunctuation(.colon) }
                 .build())
     }

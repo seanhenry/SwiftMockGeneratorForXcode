@@ -43,6 +43,12 @@ class TupleExpressionParserTests: XCTestCase {
         XCTAssertEqual(expression.text, text)
     }
 
+    func test_shouldParseTupleWithKeywordNamedElements() throws {
+        let text = "(true: expression, class: expression)"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
     func test_shouldParseTupleTree() throws {
         let text = "(expression, name: expression)"
         let expression = try parse(text)

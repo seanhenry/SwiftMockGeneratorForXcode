@@ -15,6 +15,12 @@ class IdentifierListParserTests: XCTestCase {
         XCTAssertEqual(identifier.text, text)
     }
 
+    func test_shouldParseKeywordIdentifiers() throws {
+        let text = "infix, indirect"
+        let identifier = try parse(text)
+        XCTAssertEqual(identifier.text, text)
+    }
+
     func test_shouldParseWildcards() throws {
         let text = "_, _"
         let identifier = try parse(text)

@@ -66,6 +66,14 @@ class Parser<ResultType> {
         return kind == .underscore
     }
 
+    func isDeclarationIdentifier(_ kind: Token.Kind) -> Bool {
+        if isIdentifier(kind) {
+            return true
+        }
+        let key = String(describing: kind)
+        return Keywords.identifiers[key] != nil
+    }
+
     func isNext(_ kind: Token.Kind) -> Bool {
         return lexer.isNext(kind)
     }
@@ -258,6 +266,22 @@ class Parser<ResultType> {
 
     func parseWhitespace() throws -> Whitespace {
         return try parse(WhitespaceParser.self)
+    }
+
+    func parseParameterIdentifier() throws -> Element {
+        if let identifier = try? parseIdentifier() {
+            return identifier
+        } else if case let .booleanLiteral(bool) = peekAtNextKind() {
+            advance()
+            let identifier = IdentifierImpl(text: String(describing: bool))
+            return identifier
+        } else {
+            let keyword = try parseKeyword()
+            if keyword.text != "" {
+                return IdentifierImpl(text: keyword.text)
+            }
+        }
+        throw LookAheadError()
     }
 
     func parseDeclarationIdentifier() throws -> Identifier {

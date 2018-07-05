@@ -9,6 +9,12 @@ class ImplicitMemberExpressionParserTests: XCTestCase {
         XCTAssertEqual(expression.text, text)
     }
 
+    func test_shouldParseKeywordIdentifier() throws {
+        let text = ".right"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
     func test_shouldNotParseExpressionWithoutLeadingDot() {
         XCTAssertThrowsError(try parse("identifier"))
     }

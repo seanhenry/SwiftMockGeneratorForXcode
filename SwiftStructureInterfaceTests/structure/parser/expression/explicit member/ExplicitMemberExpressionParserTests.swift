@@ -31,14 +31,32 @@ class ExplicitMemberExpressionParserTests: XCTestCase {
         XCTAssertEqual(expression.text, text)
     }
 
+    func test_shouldParseExpressionWithKeywordIdentifier() throws {
+        let text = "expression.lazy"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
     func test_shouldParseExpressionWithGenericArgumentClause() throws {
         let text = "expression.identifier<T>"
         let expression = try parse(text)
         XCTAssertEqual(expression.text, text)
     }
 
+    func test_shouldParseExpressionWithKeywordIdentifierAndGenericArgumentClause() throws {
+        let text = "expression.left<T>"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
     func test_shouldParseExpressionWithArgumentNames() throws {
         let text = "expression.identifier(name:)"
+        let expression = try parse(text)
+        XCTAssertEqual(expression.text, text)
+    }
+
+    func test_shouldParseExpressionWithKeywordIdentifierAndArgumentNames() throws {
+        let text = "expression.mutating(name:)"
         let expression = try parse(text)
         XCTAssertEqual(expression.text, text)
     }

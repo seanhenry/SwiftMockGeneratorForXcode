@@ -47,6 +47,12 @@ class AssociatedTypeDeclarationParserTests: XCTestCase {
         assertElementText(associatedType, text)
     }
 
+    func test_parse_shouldParseKeywordType() throws {
+        let text = "associatedtype indirect"
+        let associatedType = try parse(text)
+        assertElementText(associatedType, text)
+    }
+
     // MARK: - Helpers
 
     func parse(_ text: String) throws -> Element {

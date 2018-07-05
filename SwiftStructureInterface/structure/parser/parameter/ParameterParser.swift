@@ -14,20 +14,4 @@ class ParameterParser: Parser<Parameter> {
                 }
                 .build())
     }
-
-    private func parseParameterIdentifier() throws -> Element {
-        if let identifier = try? parseIdentifier() {
-            return identifier
-        } else if case let .booleanLiteral(bool) = peekAtNextKind() {
-            advance()
-            let identifier = IdentifierImpl(text: String(describing: bool))
-            return identifier
-        } else {
-            let keyword = try parseKeyword()
-            if keyword.text != "" {
-                return IdentifierImpl(text: keyword.text)
-            }
-        }
-        throw LookAheadError()
-    }
 }

@@ -117,6 +117,13 @@ class ClassDeclarationParserTests: XCTestCase {
         XCTAssertEqual(`class`.name, "MyClass")
     }
 
+    func test_parse_shouldParseClassWithKeywordName() throws {
+        let text = "class weak {}"
+        let `class` = try parse(text)
+        assertElementText(`class`, text)
+        XCTAssertEqual(`class`.name, "weak")
+    }
+
     // MARK: - Helpers
 
     private func parse(_ text: String) throws -> ClassDeclaration {

@@ -12,7 +12,7 @@ class FunctionCallArgumentListParser: Parser<FunctionCallArgumentList> {
     private func parseFunctionCallArgument() throws -> FunctionCallArgument {
         if peekAtKind(aheadBy: 1) == .colon {
             return try FunctionCallArgumentImpl(children: builder()
-                    .required { try self.parseIdentifier() }
+                    .required { try self.parseParameterIdentifier() }
                     .required { try self.parsePunctuation(.colon) }
                     .required { try self.parseExpressionOrOperator() }
                     .build())

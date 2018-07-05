@@ -19,7 +19,7 @@ class TupleExpressionParser: Parser<TupleExpression> {
 
     private func parseTupleElement() throws -> TupleElement {
         return try TupleElementImpl(children: builder()
-                .optional { try self.parseIdentifier() }
+                .optional { try self.parseParameterIdentifier() }
                 .optional { try self.parsePunctuation(.colon) }
                 .optional { try self.parseExpression() }
                 .build())

@@ -15,6 +15,12 @@ class FunctionCallArgumentListParserTests: XCTestCase {
         XCTAssertEqual(list.text, text)
     }
 
+    func test_shouldParseSingleItemListWithKeywordLabel() throws {
+        let text = "true: expression"
+        let list = try parse(text)
+        XCTAssertEqual(list.text, text)
+    }
+
     func test_shouldParseWildcardIdentifier() throws {
         let text = "_: expression, _"
         let list = try parse(text)
