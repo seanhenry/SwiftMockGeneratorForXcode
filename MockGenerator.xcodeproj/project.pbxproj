@@ -95,6 +95,8 @@
 		196F978D20EF08AC009A5FD6 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; };
 		196F978E20EF08AC009A5FD6 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; };
 		196F978F20EF08BB009A5FD6 /* UseCases.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		196F979020EF0ABB009A5FD6 /* UseCases.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		196F979120EF0AC7009A5FD6 /* libTestHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.a */; };
 		19821E8420EEE79A0084C6C1 /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E8520EEE79A0084C6C1 /* Lexer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E8620EEE79A0084C6C1 /* Source.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -388,6 +390,13 @@
 			remoteGlobalIDString = 19821DF920EE31760084C6C1;
 			remoteInfo = TestHelper;
 		};
+		196F979220EF0ACE009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 19821DF920EE31760084C6C1;
+			remoteInfo = TestHelper;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -494,6 +503,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				196F979020EF0ABB009A5FD6 /* UseCases.framework in Copy Frameworks */,
 				19821E8B20EEE7BF0084C6C1 /* Bocho.framework in Copy Frameworks */,
 				19821E8C20EEE7BF0084C6C1 /* Diagnostic.framework in Copy Frameworks */,
 				19821E8D20EEE7BF0084C6C1 /* Lexer.framework in Copy Frameworks */,
@@ -733,6 +743,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				196F979120EF0AC7009A5FD6 /* libTestHelper.a in Frameworks */,
 				14F866C820D9088F00E79758 /* libXcodePluginProxy.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1184,6 +1195,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				196F979320EF0ACE009A5FD6 /* PBXTargetDependency */,
 				14F866CA20D9088F00E79758 /* PBXTargetDependency */,
 				14F866E120D9090F00E79758 /* PBXTargetDependency */,
 			);
@@ -1299,13 +1311,13 @@
 					14F866C220D9088F00E79758 = {
 						CreatedOnToolsVersion = 9.4;
 						DevelopmentTeam = HU45578K6L;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						TestTargetID = 14F866D120D9090400E79758;
 					};
 					14F866D120D9090400E79758 = {
 						CreatedOnToolsVersion = 9.4;
 						DevelopmentTeam = HU45578K6L;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
@@ -1756,6 +1768,11 @@
 			isa = PBXTargetDependency;
 			name = TestHelper;
 			targetProxy = 196F978620EF088B009A5FD6 /* PBXContainerItemProxy */;
+		};
+		196F979320EF0ACE009A5FD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TestHelper;
+			targetProxy = 196F979220EF0ACE009A5FD6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2242,8 +2259,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2268,8 +2285,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2295,8 +2312,8 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = EndToEndTestHost/EndToEndTestHost.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2317,8 +2334,8 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = EndToEndTestHost/EndToEndTestHost.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

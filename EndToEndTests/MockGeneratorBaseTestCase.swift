@@ -1,5 +1,6 @@
 import XCTest
 import XcodeKit
+import TestHelper
 @testable import XcodePluginProxy
 
 class MockGeneratorBaseTestCase: XCTestCase {
