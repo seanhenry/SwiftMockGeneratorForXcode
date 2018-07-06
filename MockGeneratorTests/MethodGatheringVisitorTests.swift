@@ -1,6 +1,9 @@
 import XCTest
 import UseCases
-@testable import SwiftStructureInterface
+import Resolver
+import AST
+import Parser
+import TestHelper
 @testable import MockGenerator
 
 class MethodGatheringVisitorTests: XCTestCase {

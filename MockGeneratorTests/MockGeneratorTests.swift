@@ -1,4 +1,5 @@
 import XCTest
+import TestHelper
 @testable import MockGenerator
 
 class MockGeneratorTests: XCTestCase {

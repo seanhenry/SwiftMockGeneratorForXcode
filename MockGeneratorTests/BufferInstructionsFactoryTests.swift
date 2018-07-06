@@ -1,5 +1,6 @@
 import XCTest
-import SwiftStructureInterface
+import TestHelper
+import AST
 @testable import MockGenerator
 
 class BufferInstructionsFactoryTests: XCTestCase {

@@ -1,5 +1,6 @@
 import UseCases
-import SwiftStructureInterface
+import AST
+import Resolver
 import Foundation
 
 class MethodGatheringVisitor: RecursiveElementVisitor {

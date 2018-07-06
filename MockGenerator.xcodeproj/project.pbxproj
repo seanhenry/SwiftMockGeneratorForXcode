@@ -60,6 +60,32 @@
 		1918AB6020D9D4FE003BE795 /* ResolvePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */; };
 		1918AB6320D9D517003BE795 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
 		1918AB6520D9D52D003BE795 /* MockGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		196F976720EEFA57009A5FD6 /* libAlgorithms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974C20EEFA12009A5FD6 /* libAlgorithms.a */; };
+		196F976820EEFA57009A5FD6 /* libAST.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974020EEFA12009A5FD6 /* libAST.a */; };
+		196F976920EEFA57009A5FD6 /* libASTImpl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974420EEFA12009A5FD6 /* libASTImpl.a */; };
+		196F976A20EEFA57009A5FD6 /* libASTProxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974820EEFA12009A5FD6 /* libASTProxy.a */; };
+		196F976B20EEFA57009A5FD6 /* libParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975020EEFA12009A5FD6 /* libParser.a */; };
+		196F976C20EEFA57009A5FD6 /* libResolver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975420EEFA12009A5FD6 /* libResolver.a */; };
+		196F976D20EEFA57009A5FD6 /* libSourceKittenRequests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975820EEFA12009A5FD6 /* libSourceKittenRequests.a */; };
+		196F976E20EEFA57009A5FD6 /* libSwiftLexer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975A20EEFA12009A5FD6 /* libSwiftLexer.a */; };
+		196F976F20EF0428009A5FD6 /* Bocho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8120EEE7990084C6C1 /* Bocho.framework */; };
+		196F977020EF0428009A5FD6 /* Diagnostic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8020EEE7990084C6C1 /* Diagnostic.framework */; };
+		196F977120EF0428009A5FD6 /* Lexer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; };
+		196F977220EF0428009A5FD6 /* Source.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; };
+		196F977320EF0428009A5FD6 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; };
+		196F977420EF0428009A5FD6 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; };
+		196F977520EF0428009A5FD6 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; };
+		196F977720EF0442009A5FD6 /* libGRMustache7-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F977620EF0442009A5FD6 /* libGRMustache7-MacOS.a */; };
+		196F977920EF0452009A5FD6 /* UseCases.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; };
+		196F977A20EF0577009A5FD6 /* libTestHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.a */; };
+		196F977D20EF06BC009A5FD6 /* Bocho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8120EEE7990084C6C1 /* Bocho.framework */; };
+		196F977E20EF06BC009A5FD6 /* Diagnostic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8020EEE7990084C6C1 /* Diagnostic.framework */; };
+		196F977F20EF06BC009A5FD6 /* Lexer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; };
+		196F978020EF06BC009A5FD6 /* Source.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; };
+		196F978120EF06BC009A5FD6 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; };
+		196F978220EF06BC009A5FD6 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; };
+		196F978320EF06BC009A5FD6 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; };
+		196F978420EF06E9009A5FD6 /* UseCases.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E8420EEE79A0084C6C1 /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E8520EEE79A0084C6C1 /* Lexer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E8620EEE79A0084C6C1 /* Source.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -199,6 +225,153 @@
 			remoteGlobalIDString = 14276C601F4F312E00EA7753;
 			remoteInfo = MockGenerator;
 		};
+		196F973F20EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821E6420EE38820084C6C1;
+			remoteInfo = AST;
+		};
+		196F974120EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821E6520EE38820084C6C1;
+			remoteInfo = ASTTests;
+		};
+		196F974320EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821A4C20EE29370084C6C1;
+			remoteInfo = ASTImpl;
+		};
+		196F974520EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821A5A20EE29440084C6C1;
+			remoteInfo = ASTImplTests;
+		};
+		196F974720EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821AB420EE29FB0084C6C1;
+			remoteInfo = ASTProxy;
+		};
+		196F974920EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821AC220EE2A0C0084C6C1;
+			remoteInfo = ASTProxyTests;
+		};
+		196F974B20EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821AEA20EE2ABD0084C6C1;
+			remoteInfo = Algorithms;
+		};
+		196F974D20EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821AF820EE2AC60084C6C1;
+			remoteInfo = AlgorithmsTests;
+		};
+		196F974F20EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821B4020EE2B4B0084C6C1;
+			remoteInfo = Parser;
+		};
+		196F975120EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821B4E20EE2B550084C6C1;
+			remoteInfo = ParserTests;
+		};
+		196F975320EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821CD220EE2C1C0084C6C1;
+			remoteInfo = Resolver;
+		};
+		196F975520EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821CE020EE2C260084C6C1;
+			remoteInfo = ResolverTests;
+		};
+		196F975720EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821D1E20EE2C5D0084C6C1;
+			remoteInfo = SourceKittenRequests;
+		};
+		196F975920EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821D4120EE2C890084C6C1;
+			remoteInfo = SwiftLexer;
+		};
+		196F975B20EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821D4F20EE2C910084C6C1;
+			remoteInfo = SwiftLexerTests;
+		};
+		196F975D20EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19821DFA20EE31760084C6C1;
+			remoteInfo = TestHelper;
+		};
+		196F975F20EEFA50009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 198218FB20EE27750084C6C1;
+			remoteInfo = AST;
+		};
+		196F976120EEFA50009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 19821AE920EE2ABD0084C6C1;
+			remoteInfo = Algorithms;
+		};
+		196F976320EEFA50009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 19821B3F20EE2B4B0084C6C1;
+			remoteInfo = Parser;
+		};
+		196F976520EEFA50009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 19821CD120EE2C1C0084C6C1;
+			remoteInfo = Resolver;
+		};
+		196F977B20EF0580009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 19821DF920EE31760084C6C1;
+			remoteInfo = TestHelper;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -217,6 +390,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				196F978420EF06E9009A5FD6 /* UseCases.framework in CopyFiles */,
 				19821E8420EEE79A0084C6C1 /* Yams.framework in CopyFiles */,
 				19821E8520EEE79A0084C6C1 /* Lexer.framework in CopyFiles */,
 				19821E8620EEE79A0084C6C1 /* Source.framework in CopyFiles */,
@@ -410,13 +584,16 @@
 		1918AB4520D9D2A1003BE795 /* PerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1918AB4920D9D2A1003BE795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvePerformanceTests.swift; sourceTree = "<group>"; };
-		19821E7D20EEE7980084C6C1 /* Yams.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Yams.framework; sourceTree = "<group>"; };
-		19821E7E20EEE7990084C6C1 /* Lexer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Lexer.framework; sourceTree = "<group>"; };
-		19821E7F20EEE7990084C6C1 /* Source.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Source.framework; sourceTree = "<group>"; };
-		19821E8020EEE7990084C6C1 /* Diagnostic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Diagnostic.framework; sourceTree = "<group>"; };
-		19821E8120EEE7990084C6C1 /* Bocho.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bocho.framework; sourceTree = "<group>"; };
-		19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SourceKittenFramework.framework; sourceTree = "<group>"; };
-		19821E8320EEE7990084C6C1 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SWXMLHash.framework; sourceTree = "<group>"; };
+		196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftToolkit.xcodeproj; path = SwiftToolkit/SwiftToolkit.xcodeproj; sourceTree = "<group>"; };
+		196F977620EF0442009A5FD6 /* libGRMustache7-MacOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libGRMustache7-MacOS.a"; path = "lib/libGRMustache7-MacOS.a"; sourceTree = "<group>"; };
+		196F977820EF0452009A5FD6 /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UseCases.framework; path = lib/UseCases.framework; sourceTree = "<group>"; };
+		19821E7D20EEE7980084C6C1 /* Yams.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yams.framework; path = SwiftToolkit/Frameworks/Yams.framework; sourceTree = "<group>"; };
+		19821E7E20EEE7990084C6C1 /* Lexer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lexer.framework; path = SwiftToolkit/Frameworks/Lexer.framework; sourceTree = "<group>"; };
+		19821E7F20EEE7990084C6C1 /* Source.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Source.framework; path = SwiftToolkit/Frameworks/Source.framework; sourceTree = "<group>"; };
+		19821E8020EEE7990084C6C1 /* Diagnostic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diagnostic.framework; path = SwiftToolkit/Frameworks/Diagnostic.framework; sourceTree = "<group>"; };
+		19821E8120EEE7990084C6C1 /* Bocho.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bocho.framework; path = SwiftToolkit/Frameworks/Bocho.framework; sourceTree = "<group>"; };
+		19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceKittenFramework.framework; path = SwiftToolkit/Frameworks/SourceKittenFramework.framework; sourceTree = "<group>"; };
+		19821E8320EEE7990084C6C1 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWXMLHash.framework; path = SwiftToolkit/Frameworks/SWXMLHash.framework; sourceTree = "<group>"; };
 		1A93A0984050AAB172D12611 /* BufferInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferInstructions.swift; sourceTree = "<group>"; };
 		1A93A7FC328558098E5F8905 /* BufferEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferEditor.swift; sourceTree = "<group>"; };
 		1A93A92BFF242500EED35DEF /* XPCBufferInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPCBufferInstructions.swift; sourceTree = "<group>"; };
@@ -460,6 +637,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				196F977920EF0452009A5FD6 /* UseCases.framework in Frameworks */,
+				196F977720EF0442009A5FD6 /* libGRMustache7-MacOS.a in Frameworks */,
+				196F976F20EF0428009A5FD6 /* Bocho.framework in Frameworks */,
+				196F977020EF0428009A5FD6 /* Diagnostic.framework in Frameworks */,
+				196F977120EF0428009A5FD6 /* Lexer.framework in Frameworks */,
+				196F977220EF0428009A5FD6 /* Source.framework in Frameworks */,
+				196F977320EF0428009A5FD6 /* SourceKittenFramework.framework in Frameworks */,
+				196F977420EF0428009A5FD6 /* SWXMLHash.framework in Frameworks */,
+				196F977520EF0428009A5FD6 /* Yams.framework in Frameworks */,
+				196F976720EEFA57009A5FD6 /* libAlgorithms.a in Frameworks */,
+				196F976820EEFA57009A5FD6 /* libAST.a in Frameworks */,
+				196F976920EEFA57009A5FD6 /* libASTImpl.a in Frameworks */,
+				196F976A20EEFA57009A5FD6 /* libASTProxy.a in Frameworks */,
+				196F976B20EEFA57009A5FD6 /* libParser.a in Frameworks */,
+				196F976C20EEFA57009A5FD6 /* libResolver.a in Frameworks */,
+				196F976D20EEFA57009A5FD6 /* libSourceKittenRequests.a in Frameworks */,
+				196F976E20EEFA57009A5FD6 /* libSwiftLexer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +661,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				196F977D20EF06BC009A5FD6 /* Bocho.framework in Frameworks */,
+				196F977E20EF06BC009A5FD6 /* Diagnostic.framework in Frameworks */,
+				196F977F20EF06BC009A5FD6 /* Lexer.framework in Frameworks */,
+				196F978020EF06BC009A5FD6 /* Source.framework in Frameworks */,
+				196F978120EF06BC009A5FD6 /* SourceKittenFramework.framework in Frameworks */,
+				196F978220EF06BC009A5FD6 /* SWXMLHash.framework in Frameworks */,
+				196F978320EF06BC009A5FD6 /* Yams.framework in Frameworks */,
+				196F977A20EF0577009A5FD6 /* libTestHelper.a in Frameworks */,
 				14276C6A1F4F312E00EA7753 /* MockGenerator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,6 +787,7 @@
 		14CA2D4A1F40007000900937 = {
 			isa = PBXGroup;
 			children = (
+				196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */,
 				14CA2DAA1F41348100900937 /* Shared */,
 				14CA2D551F40007000900937 /* MockGeneratorApp */,
 				14872E7C1F59DBC50017AF3F /* MockGeneratorAppTests */,
@@ -639,6 +842,8 @@
 		14CA2D6A1F40008F00900937 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				196F977820EF0452009A5FD6 /* UseCases.framework */,
+				196F977620EF0442009A5FD6 /* libGRMustache7-MacOS.a */,
 				19821E8120EEE7990084C6C1 /* Bocho.framework */,
 				19821E8020EEE7990084C6C1 /* Diagnostic.framework */,
 				19821E7E20EEE7990084C6C1 /* Lexer.framework */,
@@ -739,6 +944,29 @@
 			path = PerformanceTests;
 			sourceTree = "<group>";
 		};
+		196F972D20EEFA12009A5FD6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				196F974020EEFA12009A5FD6 /* libAST.a */,
+				196F974220EEFA12009A5FD6 /* ASTTests.xctest */,
+				196F974420EEFA12009A5FD6 /* libASTImpl.a */,
+				196F974620EEFA12009A5FD6 /* ASTImplTests.xctest */,
+				196F974820EEFA12009A5FD6 /* libASTProxy.a */,
+				196F974A20EEFA12009A5FD6 /* ASTProxyTests.xctest */,
+				196F974C20EEFA12009A5FD6 /* libAlgorithms.a */,
+				196F974E20EEFA12009A5FD6 /* AlgorithmsTests.xctest */,
+				196F975020EEFA12009A5FD6 /* libParser.a */,
+				196F975220EEFA12009A5FD6 /* ParserTests.xctest */,
+				196F975420EEFA12009A5FD6 /* libResolver.a */,
+				196F975620EEFA12009A5FD6 /* ResolverTests.xctest */,
+				196F975820EEFA12009A5FD6 /* libSourceKittenRequests.a */,
+				196F975A20EEFA12009A5FD6 /* libSwiftLexer.a */,
+				196F975C20EEFA12009A5FD6 /* SwiftLexerTests.xctest */,
+				196F975E20EEFA12009A5FD6 /* libTestHelper.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		35CDF720F8CE28402647AF36 /* readme */ = {
 			isa = PBXGroup;
 			children = (
@@ -793,6 +1021,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				196F976020EEFA50009A5FD6 /* PBXTargetDependency */,
+				196F976220EEFA50009A5FD6 /* PBXTargetDependency */,
+				196F976420EEFA50009A5FD6 /* PBXTargetDependency */,
+				196F976620EEFA50009A5FD6 /* PBXTargetDependency */,
 			);
 			name = MockGenerator;
 			productName = MockGenerator;
@@ -812,6 +1044,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				196F977C20EF0580009A5FD6 /* PBXTargetDependency */,
 				14276C6C1F4F312E00EA7753 /* PBXTargetDependency */,
 			);
 			name = MockGeneratorTests;
@@ -1073,6 +1306,12 @@
 			mainGroup = 14CA2D4A1F40007000900937;
 			productRefGroup = 14CA2D541F40007000900937 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 196F972D20EEFA12009A5FD6 /* Products */;
+					ProjectRef = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				14CA2D521F40007000900937 /* MockGeneratorApp */,
@@ -1088,6 +1327,121 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		196F974020EEFA12009A5FD6 /* libAST.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAST.a;
+			remoteRef = 196F973F20EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F974220EEFA12009A5FD6 /* ASTTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ASTTests.xctest;
+			remoteRef = 196F974120EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F974420EEFA12009A5FD6 /* libASTImpl.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libASTImpl.a;
+			remoteRef = 196F974320EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F974620EEFA12009A5FD6 /* ASTImplTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ASTImplTests.xctest;
+			remoteRef = 196F974520EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F974820EEFA12009A5FD6 /* libASTProxy.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libASTProxy.a;
+			remoteRef = 196F974720EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F974A20EEFA12009A5FD6 /* ASTProxyTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ASTProxyTests.xctest;
+			remoteRef = 196F974920EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F974C20EEFA12009A5FD6 /* libAlgorithms.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAlgorithms.a;
+			remoteRef = 196F974B20EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F974E20EEFA12009A5FD6 /* AlgorithmsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AlgorithmsTests.xctest;
+			remoteRef = 196F974D20EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F975020EEFA12009A5FD6 /* libParser.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libParser.a;
+			remoteRef = 196F974F20EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F975220EEFA12009A5FD6 /* ParserTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ParserTests.xctest;
+			remoteRef = 196F975120EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F975420EEFA12009A5FD6 /* libResolver.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libResolver.a;
+			remoteRef = 196F975320EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F975620EEFA12009A5FD6 /* ResolverTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResolverTests.xctest;
+			remoteRef = 196F975520EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F975820EEFA12009A5FD6 /* libSourceKittenRequests.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSourceKittenRequests.a;
+			remoteRef = 196F975720EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F975A20EEFA12009A5FD6 /* libSwiftLexer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSwiftLexer.a;
+			remoteRef = 196F975920EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F975C20EEFA12009A5FD6 /* SwiftLexerTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftLexerTests.xctest;
+			remoteRef = 196F975B20EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		196F975E20EEFA12009A5FD6 /* libTestHelper.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTestHelper.a;
+			remoteRef = 196F975D20EEFA12009A5FD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		14276C5F1F4F312E00EA7753 /* Resources */ = {
@@ -1347,6 +1701,31 @@
 			target = 14276C601F4F312E00EA7753 /* MockGenerator */;
 			targetProxy = 1918AB6120D9D510003BE795 /* PBXContainerItemProxy */;
 		};
+		196F976020EEFA50009A5FD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AST;
+			targetProxy = 196F975F20EEFA50009A5FD6 /* PBXContainerItemProxy */;
+		};
+		196F976220EEFA50009A5FD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Algorithms;
+			targetProxy = 196F976120EEFA50009A5FD6 /* PBXContainerItemProxy */;
+		};
+		196F976420EEFA50009A5FD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Parser;
+			targetProxy = 196F976320EEFA50009A5FD6 /* PBXContainerItemProxy */;
+		};
+		196F976620EEFA50009A5FD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Resolver;
+			targetProxy = 196F976520EEFA50009A5FD6 /* PBXContainerItemProxy */;
+		};
+		196F977C20EF0580009A5FD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TestHelper;
+			targetProxy = 196F977B20EF0580009A5FD6 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1383,6 +1762,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/SwiftToolkit/Frameworks",
 				);
 				FRAMEWORK_VERSION = A;
 				HEADER_SEARCH_PATHS = lib/include/GRMustache;
@@ -1424,6 +1804,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/SwiftToolkit/Frameworks",
 				);
 				FRAMEWORK_VERSION = A;
 				HEADER_SEARCH_PATHS = lib/include/GRMustache;
@@ -1461,6 +1842,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/SwiftToolkit/Frameworks",
 				);
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -1484,6 +1866,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/SwiftToolkit/Frameworks",
 				);
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";

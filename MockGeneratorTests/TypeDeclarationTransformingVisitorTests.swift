@@ -1,6 +1,7 @@
 import XCTest
-import SwiftStructureInterface
+import Resolver
 import UseCases
+import Parser
 @testable import MockGenerator
 
 class TypeDeclarationTransformingVisitorTests: XCTestCase {

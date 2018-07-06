@@ -1,6 +1,9 @@
 import Foundation
 import UseCases
-import SwiftStructureInterface
+import AST
+import Resolver
+import Algorithms
+import Parser
 
 public class Generator {
 

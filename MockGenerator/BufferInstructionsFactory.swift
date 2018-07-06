@@ -1,4 +1,5 @@
-import SwiftStructureInterface
+import AST
+import Algorithms
 
 class BufferInstructionsFactory {
 

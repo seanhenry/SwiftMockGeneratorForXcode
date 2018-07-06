@@ -1,5 +1,7 @@
 import UseCases
-import SwiftStructureInterface
+import AST
+import Resolver
+import Parser
 
 class TypeResolverVisitor: ElementVisitor {
 

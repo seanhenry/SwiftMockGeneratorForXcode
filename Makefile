@@ -1,4 +1,4 @@
-USE_CASE_SHA=776bad689e57b8958083f72c54827bf689488847
+USE_CASE_SHA=7d323898e1b337b9c7e93b0f0c6d63a483bef0fc
 KOTLIN_NATIVE_SHA=v0.8
 MUSTACHE_SHA=v7.3.2
 SWIFT_TOOLKIT_SHA=master
@@ -15,7 +15,7 @@ DEST_PATH=$(ROOT)/lib
 
 .PHONY: test bootstrap clean cleanbuild usecases mklib mkkotlinnative xcpretty mustache swift-toolkit
 
-bootstrap: cleanbuild swift-toolkit usecases mustache swift-toolkit
+bootstrap: cleanbuild swift-toolkit usecases mustache
 
 cleanbuild:
 	rm -rf $(BUILD_PATH) || true
@@ -26,7 +26,7 @@ clean: cleanbuild
 
 # 1 - path to repo
 # 2 - remote url
-# 3 - sha
+# 3 - branch or tag
 define update_repo
 	if [ -d "$(1)/.git" ]; then \
 	  cd $(1); \
@@ -37,8 +37,21 @@ define update_repo
 	fi;
 endef
 
-usecases: mklib mkkotlinnative
-	$(call update_repo,$(USECASES_SRC_PATH),https://github.com/seanhenry/MockGenerator.git,$(USE_CASE_SHA))
+# 1 - path to repo
+# 2 - remote url
+# 3 - sha
+define update_repo_sha
+	if [ -d "$(1)/.git" ]; then \
+	  cd $(1); \
+	  git fetch; \
+	  git checkout $(3) || true; \
+	else \
+	  git clone $(2) $(1); \
+	fi;
+endef
+
+usecases: mklib
+	$(call update_repo_sha,$(USECASES_SRC_PATH),https://github.com/seanhenry/MockGenerator.git,$(USE_CASE_SHA))
 	cd $(USECASES_SRC_PATH); \
 	git checkout $(USE_CASE_SHA); \
 	source ~/.bash_profile; \

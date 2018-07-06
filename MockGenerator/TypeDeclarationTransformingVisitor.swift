@@ -1,4 +1,5 @@
-import SwiftStructureInterface
+import AST
+import Resolver
 import UseCases
 
 class TypeDeclarationTransformingVisitor: ElementVisitor {
