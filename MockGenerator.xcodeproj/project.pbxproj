@@ -86,6 +86,15 @@
 		196F978220EF06BC009A5FD6 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; };
 		196F978320EF06BC009A5FD6 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; };
 		196F978420EF06E9009A5FD6 /* UseCases.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		196F978520EF0885009A5FD6 /* libTestHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.a */; };
+		196F978820EF08AC009A5FD6 /* Bocho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8120EEE7990084C6C1 /* Bocho.framework */; };
+		196F978920EF08AC009A5FD6 /* Diagnostic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8020EEE7990084C6C1 /* Diagnostic.framework */; };
+		196F978A20EF08AC009A5FD6 /* Lexer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; };
+		196F978B20EF08AC009A5FD6 /* Source.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; };
+		196F978C20EF08AC009A5FD6 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; };
+		196F978D20EF08AC009A5FD6 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; };
+		196F978E20EF08AC009A5FD6 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; };
+		196F978F20EF08BB009A5FD6 /* UseCases.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E8420EEE79A0084C6C1 /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E8520EEE79A0084C6C1 /* Lexer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E8620EEE79A0084C6C1 /* Source.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -372,6 +381,13 @@
 			remoteGlobalIDString = 19821DF920EE31760084C6C1;
 			remoteInfo = TestHelper;
 		};
+		196F978620EF088B009A5FD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 19821DF920EE31760084C6C1;
+			remoteInfo = TestHelper;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -517,6 +533,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				196F978F20EF08BB009A5FD6 /* UseCases.framework in CopyFiles */,
 				19821E9220EEE7D50084C6C1 /* Bocho.framework in CopyFiles */,
 				19821E9320EEE7D50084C6C1 /* Diagnostic.framework in CopyFiles */,
 				19821E9420EEE7D50084C6C1 /* Lexer.framework in CopyFiles */,
@@ -732,6 +749,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				196F978820EF08AC009A5FD6 /* Bocho.framework in Frameworks */,
+				196F978920EF08AC009A5FD6 /* Diagnostic.framework in Frameworks */,
+				196F978A20EF08AC009A5FD6 /* Lexer.framework in Frameworks */,
+				196F978B20EF08AC009A5FD6 /* Source.framework in Frameworks */,
+				196F978C20EF08AC009A5FD6 /* SourceKittenFramework.framework in Frameworks */,
+				196F978D20EF08AC009A5FD6 /* SWXMLHash.framework in Frameworks */,
+				196F978E20EF08AC009A5FD6 /* Yams.framework in Frameworks */,
+				196F978520EF0885009A5FD6 /* libTestHelper.a in Frameworks */,
 				1918AB6320D9D517003BE795 /* MockGenerator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1201,6 +1226,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				196F978720EF088B009A5FD6 /* PBXTargetDependency */,
 				1918AB6220D9D510003BE795 /* PBXTargetDependency */,
 			);
 			name = PerformanceTests;
@@ -1725,6 +1751,11 @@
 			isa = PBXTargetDependency;
 			name = TestHelper;
 			targetProxy = 196F977B20EF0580009A5FD6 /* PBXContainerItemProxy */;
+		};
+		196F978720EF088B009A5FD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TestHelper;
+			targetProxy = 196F978620EF088B009A5FD6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2309,7 +2340,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/SwiftToolkit/Frameworks",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/lib/include";
 				INFOPLIST_FILE = PerformanceTests/Info.plist;
@@ -2330,7 +2364,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/SwiftToolkit/Frameworks",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/lib/include";
 				INFOPLIST_FILE = PerformanceTests/Info.plist;

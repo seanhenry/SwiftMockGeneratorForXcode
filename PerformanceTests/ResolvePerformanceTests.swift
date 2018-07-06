@@ -1,5 +1,6 @@
 import XCTest
-@testable import SwiftStructureInterface
+import TestHelper
+import Resolver
 @testable import MockGenerator
 
 class ResolvePerformanceTests: XCTestCase {
@@ -89,7 +90,7 @@ class ResolvePerformanceTests: XCTestCase {
         let sourceFiles = SourceFileFinder(projectRoot: URL(fileURLWithPath: testProject)).findSourceFiles()
         let fileContents = try! String(contentsOfFile: "\(testProject)/\(testFile).swift")
         let (contents, _) = CaretTestHelper.findCaretOffset(fileContents)
-        let classFile = SKElementFactoryTestHelper.build(from: contents)!
+        let classFile = try! ParserTestHelper.parseFile(from: contents)
         let classElement = classFile.typeDeclarations[0]
         _ = TypeDeclarationTransformingVisitor.transformMock(classElement, resolver: ResolverFactory.createResolver(filePaths: sourceFiles))
     }
