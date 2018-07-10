@@ -1,4 +1,4 @@
-@testable import MockableTypes
+@testable import TestProject
 
 class ArgumentInitializerClassMock: ArgumentInitializerClass {
 <caret>

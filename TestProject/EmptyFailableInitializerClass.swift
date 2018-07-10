@@ -1,0 +1,3 @@
+class EmptyFailableInitializerClass {
+    init?() {}
+}
