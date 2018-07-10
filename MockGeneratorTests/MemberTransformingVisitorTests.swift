@@ -6,19 +6,20 @@ import Parser
 import TestHelper
 @testable import MockGenerator
 
-class MethodGatheringVisitorTests: XCTestCase {
+class MemberTransformingVisitorTests: XCTestCase {
 
-    var visitor: MethodGatheringVisitor!
+    var visitor: MemberTransformingVisitor!
     var resolver: Resolver!
 
     override func setUp() {
         super.setUp()
         resolver = ResolverFactory.createResolver(filePaths: [])
-        visitor = MethodGatheringVisitor(resolver: resolver)
+        visitor = MemberTransformingVisitor(resolver: resolver)
     }
 
     override func tearDown() {
         visitor = nil
+        resolver = nil
         super.tearDown()
     }
 
@@ -133,7 +134,7 @@ class MethodGatheringVisitorTests: XCTestCase {
 
     private func transformType<T: UseCasesType>(_ input: String, _ t: T.Type) -> T {
         let type = try! ElementParser.parseType(input)
-        return MethodGatheringVisitor.transformType(type, resolver: resolver) as! T
+        return MemberTransformingVisitor.transformType(type, resolver: resolver) as! T
     }
 
     func test_visit_shouldTransformProtocolMethod() {

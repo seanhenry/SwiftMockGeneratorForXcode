@@ -3,7 +3,7 @@ import AST
 import Resolver
 import Foundation
 
-class MethodGatheringVisitor: RecursiveElementVisitor {
+class MemberTransformingVisitor: RecursiveElementVisitor {
 
     private(set) var initializers = [UseCasesInitializer]()
     private(set) var properties = [UseCasesProperty]()
@@ -16,13 +16,13 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
     }
 
     static func transformType(_ element: Element, resolver: Resolver) -> UseCasesType {
-        let visitor = MethodGatheringVisitor(resolver: resolver)
+        let visitor = MemberTransformingVisitor(resolver: resolver)
         element.accept(visitor)
         return visitor.type
     }
 
     func transformType(_ element: Element) -> UseCasesType {
-        return MethodGatheringVisitor.transformType(element, resolver: resolver)
+        return MemberTransformingVisitor.transformType(element, resolver: resolver)
     }
 
     override func visitType(_ element: Type) {

@@ -30,7 +30,7 @@ class TypeDeclarationTransformingVisitor: ElementVisitor {
     }
 
     private func transform(_ element: ProtocolDeclaration) -> UseCasesProtocol {
-        let visitor = MethodGatheringVisitor(resolver: resolver)
+        let visitor = MemberTransformingVisitor(resolver: resolver)
         element.accept(visitor)
         return UseCasesProtocol(
             initializers: visitor.initializers,
@@ -48,7 +48,7 @@ class TypeDeclarationTransformingVisitor: ElementVisitor {
     }
 
     private func transform(_ element: ClassDeclaration) -> UseCasesClass {
-        let visitor = MethodGatheringVisitor(resolver: resolver)
+        let visitor = MemberTransformingVisitor(resolver: resolver)
         element.accept(visitor)
         return UseCasesClass(
                 initializers: visitor.initializers,

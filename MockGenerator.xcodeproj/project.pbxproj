@@ -12,7 +12,7 @@
 		14276C711F4F312E00EA7753 /* MockGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 14276C631F4F312E00EA7753 /* MockGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14276C791F4F314600EA7753 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14276C781F4F314600EA7753 /* Generator.swift */; };
 		14276C7E1F4F33E300EA7753 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
-		14451D351F5F05C500833C61 /* MethodGatheringVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A9B1705ADFFC0CB415 /* MethodGatheringVisitorTests.swift */; };
+		14451D351F5F05C500833C61 /* MemberTransformingVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A9B1705ADFFC0CB415 /* MemberTransformingVisitorTests.swift */; };
 		145290EA1F981ED600947144 /* VersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145290E91F981ED600947144 /* VersionView.swift */; };
 		147437B61F79746A00241B8A /* TestProject in Copy Test Project */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
 		149DEC711F651B0C007DF43E /* MockGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -30,7 +30,7 @@
 		14CA2D911F4000C400900937 /* MockGeneratorXPC.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D801F4000AB00900937 /* MockGeneratorXPC.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */; };
 		14CA2DAC1F41349500900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
-		14E132281F58E6D300D75943 /* MethodGatheringVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDB834B634E694CF658C /* MethodGatheringVisitor.swift */; };
+		14E132281F58E6D300D75943 /* MemberTransformingVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDB834B634E694CF658C /* MemberTransformingVisitor.swift */; };
 		14F866C620D9088F00E79758 /* EndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F866C520D9088F00E79758 /* EndToEndTests.swift */; };
 		14F866C820D9088F00E79758 /* libXcodePluginProxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F866B620D9086800E79758 /* libXcodePluginProxy.a */; };
 		14F866D520D9090400E79758 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F866D420D9090400E79758 /* AppDelegate.swift */; };
@@ -656,13 +656,13 @@
 		35CDF66A5D6E3857898A5E23 /* XcodeProjectPathFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XcodeProjectPathFinder.swift; sourceTree = "<group>"; };
 		35CDF6D840276DE36906BC4C /* TypeDeclarationTransformingVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeDeclarationTransformingVisitor.swift; sourceTree = "<group>"; };
 		35CDF7966B174AC850706CB1 /* PreferencesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesTests.swift; sourceTree = "<group>"; };
-		35CDF7A9B1705ADFFC0CB415 /* MethodGatheringVisitorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodGatheringVisitorTests.swift; sourceTree = "<group>"; };
+		35CDF7A9B1705ADFFC0CB415 /* MemberTransformingVisitorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTransformingVisitorTests.swift; sourceTree = "<group>"; };
 		35CDF80E1E54FE98ADD6EC43 /* test */ = {isa = PBXFileReference; fileEncoding = 1; lastKnownFileType = text; path = test; sourceTree = "<group>"; };
 		35CDF9A2068DF1CD95B50147 /* ProjectFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectFinder.swift; sourceTree = "<group>"; };
 		35CDFB741733D825DD2B6508 /* XcodeProjectPathFinderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XcodeProjectPathFinderTests.swift; sourceTree = "<group>"; };
 		35CDFCB0E68CE74E1E1E031C /* TypeResolverVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeResolverVisitor.swift; sourceTree = "<group>"; };
 		35CDFD267465101B0B67217F /* GoogleAnalyticsTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalyticsTracker.swift; sourceTree = "<group>"; };
-		35CDFDB834B634E694CF658C /* MethodGatheringVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodGatheringVisitor.swift; sourceTree = "<group>"; };
+		35CDFDB834B634E694CF658C /* MemberTransformingVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTransformingVisitor.swift; sourceTree = "<group>"; };
 		35CDFE154C81653EC7127630 /* SpyCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyCommand.swift; sourceTree = "<group>"; };
 		35CDFE70EECA508E4E1A6742 /* spy.mustache */ = {isa = PBXFileReference; lastKnownFileType = file.mustache; path = spy.mustache; sourceTree = "<group>"; };
 		35CDFF76AF338D84655E5142 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
@@ -780,7 +780,7 @@
 		14276C621F4F312E00EA7753 /* MockGenerator */ = {
 			isa = PBXGroup;
 			children = (
-				35CDFDB834B634E694CF658C /* MethodGatheringVisitor.swift */,
+				35CDFDB834B634E694CF658C /* MemberTransformingVisitor.swift */,
 				14276C631F4F312E00EA7753 /* MockGenerator.h */,
 				14276C641F4F312E00EA7753 /* Info.plist */,
 				14276C781F4F314600EA7753 /* Generator.swift */,
@@ -801,7 +801,7 @@
 			isa = PBXGroup;
 			children = (
 				147437B51F79746000241B8A /* TestProject */,
-				35CDF7A9B1705ADFFC0CB415 /* MethodGatheringVisitorTests.swift */,
+				35CDF7A9B1705ADFFC0CB415 /* MemberTransformingVisitorTests.swift */,
 				14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */,
 				14276C701F4F312E00EA7753 /* Info.plist */,
 				35CDF1BC33337C41B5594674 /* ProjectFinderTests.swift */,
@@ -1646,7 +1646,7 @@
 			files = (
 				14276C791F4F314600EA7753 /* Generator.swift in Sources */,
 				35CDF3051C92D783E99E519D /* SourceFileFinder.swift in Sources */,
-				14E132281F58E6D300D75943 /* MethodGatheringVisitor.swift in Sources */,
+				14E132281F58E6D300D75943 /* MemberTransformingVisitor.swift in Sources */,
 				35CDF6B3B8F080E7AE114743 /* TypeResolverVisitor.swift in Sources */,
 				35CDF1D4B3EE5C1ED545361F /* MustacheView.swift in Sources */,
 				35CDFCCC54AA20F2E8E375D6 /* TypeDeclarationTransformingVisitor.swift in Sources */,
@@ -1660,7 +1660,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14276C6F1F4F312E00EA7753 /* MockGeneratorTests.swift in Sources */,
-				14451D351F5F05C500833C61 /* MethodGatheringVisitorTests.swift in Sources */,
+				14451D351F5F05C500833C61 /* MemberTransformingVisitorTests.swift in Sources */,
 				35CDF466D42585C5E3ADB6F7 /* TypeResolverVisitorTests.swift in Sources */,
 				35CDF835689882E184836A14 /* TypeDeclarationTransformingVisitorTests.swift in Sources */,
 				1A93A03A479FA67359E958BD /* BufferInstructionsFactoryTests.swift in Sources */,
