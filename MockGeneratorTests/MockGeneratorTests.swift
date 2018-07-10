@@ -119,8 +119,12 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("AvailableClassMock")
     }
 
+    func test_shouldFilterNSObject() {
+        assertMockGeneratesError(fileName: "NSObjectClassMock", "Could not find a class or protocol on NSObjectClassMock")
+    }
+
     func test_doesNotDeleteMockBody_whenMockGenerateFails() {
-        assertMockGeneratesError(fileName: "DoNotDeleteBodyMock", "Could not find a protocol on DoNotDeleteBodyMock")
+        assertMockGeneratesError(fileName: "DoNotDeleteBodyMock", "Could not find a class or protocol on DoNotDeleteBodyMock")
     }
 
     func test_returnsErrorWhenMockClassDoesNotInheritFromAnything() {

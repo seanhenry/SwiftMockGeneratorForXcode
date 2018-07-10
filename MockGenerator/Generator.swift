@@ -67,7 +67,7 @@ public class Generator {
     private func buildMock(toFile file: Element, atElement element: TypeDeclaration) -> (BufferInstructions?, Error?) {
         let mockLines = getMockBody(from: element)
         guard !mockLines.isEmpty else {
-            return reply(with: "Could not find a protocol on \(element.name)")
+            return reply(with: "Could not find a class or protocol on \(element.name)")
         }
         let formatted = format(mockLines, relativeTo: element).map { "\($0)\n" }
         guard let instructions = BufferInstructionsFactory().create(mockClass: element, lines: formatted) else {

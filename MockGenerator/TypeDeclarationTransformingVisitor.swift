@@ -25,6 +25,7 @@ class TypeDeclarationTransformingVisitor: ElementVisitor {
 
     private func transformImplementedProtocols(_ element: TypeDeclaration) -> [UseCasesProtocol] {
         let resolved = element.typeInheritanceClause.inheritedTypes
+            .filter { $0.text != "NSObjectProtocol" }
             .compactMap { resolver.resolve($0) as? ProtocolDeclaration }
         return resolved.map { transform($0) }
     }
@@ -42,6 +43,11 @@ class TypeDeclarationTransformingVisitor: ElementVisitor {
     private func transformInheritedClass(_ element: TypeDeclaration) -> UseCasesClass? {
         guard let firstInheritedType = element.typeInheritanceClause.inheritedTypes.first else {
             return nil
+        }
+        if firstInheritedType.text == "NSObject" {
+            return UseCasesClassBuilder()
+                    .initializer { _ in UseCasesStdlibUnit() }
+                    .build()
         }
         let resolved = resolver.resolve(firstInheritedType) as? ClassDeclaration
         return resolved.map { transform($0) }

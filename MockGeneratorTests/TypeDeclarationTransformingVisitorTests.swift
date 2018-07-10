@@ -146,6 +146,22 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
         XCTAssertNotNil(inherited?.inherited)
     }
 
+    func test_shouldIgnoreNSObjectAndReplaceItWithClassWithEmptyInitializer() {
+        let transformed = transform("class Mock: NSObject {} class NSObject {}")
+        let inherited = transformed.inheritedClass
+        XCTAssertNotNil(inherited)
+        XCTAssertEqual(inherited?.initializers.count, 1)
+        XCTAssertEqual(inherited?.initializers[0].parametersList.count, 0)
+        XCTAssertEqual(inherited?.initializers[0].isFailable, false)
+        XCTAssertEqual(inherited?.initializers[0].`throws`, false)
+    }
+
+    func test_shouldIgnoreNSObjectProtocol() {
+        let transformed = transform("class Mock: NSObjectProtocol {} protocol NSObjectProtocol {}")
+        let protocols = transformed.protocols
+        XCTAssertEqual(protocols.count, 0)
+    }
+
     private func transform(_ string: String) -> UseCasesMockClass {
         let mockClass = try! ElementParser.parseFile(string).typeDeclarations[0]
         return TypeDeclarationTransformingVisitor.transformMock(mockClass, resolver: resolver)
