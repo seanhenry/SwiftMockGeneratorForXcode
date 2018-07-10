@@ -1,5 +1,5 @@
 import Foundation
-@testable import MockGenerator
+import MockGenerator
 
 @objc class MockGeneratorXPC: NSObject, MockGeneratorXPCProtocol {
 
