@@ -115,6 +115,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("FailableInitializerClassMock")
     }
 
+    func test_handlesAvailableAttributeForClassMock() {
+        assertMockGeneratesExpected("AvailableClassMock")
+    }
+
     func test_doesNotDeleteMockBody_whenMockGenerateFails() {
         assertMockGeneratesError(fileName: "DoNotDeleteBodyMock", "Could not find a protocol on DoNotDeleteBodyMock")
     }
