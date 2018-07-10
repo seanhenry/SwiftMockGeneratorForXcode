@@ -99,6 +99,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("MultipleInitializerClassMock")
     }
 
+    func test_generatesInitializerWithArgumentsForClassMock() {
+        assertMockGeneratesExpected("ArgumentInitializerClassMock")
+    }
+
     func test_doesNotDeleteMockBody_whenMockGenerateFails() {
         assertMockGeneratesError(fileName: "DoNotDeleteBodyMock", "Could not find a protocol on DoNotDeleteBodyMock")
     }
