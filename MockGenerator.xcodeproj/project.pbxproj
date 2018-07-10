@@ -15,7 +15,6 @@
 		14451D351F5F05C500833C61 /* MethodGatheringVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A9B1705ADFFC0CB415 /* MethodGatheringVisitorTests.swift */; };
 		145290EA1F981ED600947144 /* VersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145290E91F981ED600947144 /* VersionView.swift */; };
 		147437B61F79746A00241B8A /* TestProject in Copy Test Project */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
-		147C18201F6589FC00F0A60B /* MockGenerator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		149DEC711F651B0C007DF43E /* MockGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14B4BC2C208B0A130052A085 /* XcodeProjectPathFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFB741733D825DD2B6508 /* XcodeProjectPathFinderTests.swift */; };
 		14B4BC2D208B0A160052A085 /* PreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7966B174AC850706CB1 /* PreferencesTests.swift */; };
@@ -59,16 +58,14 @@
 		1918AB5520D9D3B8003BE795 /* TestProject in Copy TestProject */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
 		1918AB6020D9D4FE003BE795 /* ResolvePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */; };
 		1918AB6320D9D517003BE795 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
-		1918AB6520D9D52D003BE795 /* MockGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		191EF68020F44B0100118C74 /* libFormatter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF66820F447D300118C74 /* libFormatter.a */; };
-		196F976720EEFA57009A5FD6 /* libAlgorithms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974C20EEFA12009A5FD6 /* libAlgorithms.a */; };
-		196F976820EEFA57009A5FD6 /* libAST.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974020EEFA12009A5FD6 /* libAST.a */; };
-		196F976920EEFA57009A5FD6 /* libASTImpl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974420EEFA12009A5FD6 /* libASTImpl.a */; };
-		196F976A20EEFA57009A5FD6 /* libASTProxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974820EEFA12009A5FD6 /* libASTProxy.a */; };
-		196F976B20EEFA57009A5FD6 /* libParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975020EEFA12009A5FD6 /* libParser.a */; };
-		196F976C20EEFA57009A5FD6 /* libResolver.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975420EEFA12009A5FD6 /* libResolver.a */; };
-		196F976D20EEFA57009A5FD6 /* libSourceKittenRequests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975820EEFA12009A5FD6 /* libSourceKittenRequests.a */; };
-		196F976E20EEFA57009A5FD6 /* libSwiftLexer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975A20EEFA12009A5FD6 /* libSwiftLexer.a */; };
+		191EF68220F44F4700118C74 /* UseCases.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68120F44F4600118C74 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		191EF68A20F44F6D00118C74 /* Diagnostic.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68320F44F6B00118C74 /* Diagnostic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		191EF68B20F44F6D00118C74 /* Source.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68420F44F6B00118C74 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		191EF68C20F44F6D00118C74 /* Yams.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68520F44F6C00118C74 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		191EF68D20F44F6D00118C74 /* SWXMLHash.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68620F44F6C00118C74 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		191EF68E20F44F6D00118C74 /* Lexer.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68720F44F6C00118C74 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		191EF68F20F44F6D00118C74 /* Bocho.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68820F44F6D00118C74 /* Bocho.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		191EF69020F44F6D00118C74 /* SourceKittenFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68920F44F6D00118C74 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		196F976F20EF0428009A5FD6 /* Bocho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8120EEE7990084C6C1 /* Bocho.framework */; };
 		196F977020EF0428009A5FD6 /* Diagnostic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8020EEE7990084C6C1 /* Diagnostic.framework */; };
 		196F977120EF0428009A5FD6 /* Lexer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; };
@@ -76,7 +73,6 @@
 		196F977320EF0428009A5FD6 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; };
 		196F977420EF0428009A5FD6 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; };
 		196F977520EF0428009A5FD6 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; };
-		196F977720EF0442009A5FD6 /* libGRMustache7-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F977620EF0442009A5FD6 /* libGRMustache7-MacOS.a */; };
 		196F977920EF0452009A5FD6 /* UseCases.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; };
 		196F977A20EF0577009A5FD6 /* libTestHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.a */; };
 		196F977D20EF06BC009A5FD6 /* Bocho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8120EEE7990084C6C1 /* Bocho.framework */; };
@@ -95,10 +91,8 @@
 		196F978C20EF08AC009A5FD6 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; };
 		196F978D20EF08AC009A5FD6 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; };
 		196F978E20EF08AC009A5FD6 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; };
-		196F978F20EF08BB009A5FD6 /* UseCases.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		196F979020EF0ABB009A5FD6 /* UseCases.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		196F979120EF0AC7009A5FD6 /* libTestHelper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.a */; };
-		196F97AC20EF0E96009A5FD6 /* UseCases.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E8420EEE79A0084C6C1 /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E8520EEE79A0084C6C1 /* Lexer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E8620EEE79A0084C6C1 /* Source.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -113,20 +107,6 @@
 		19821E8F20EEE7BF0084C6C1 /* SourceKittenFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E9020EEE7BF0084C6C1 /* SWXMLHash.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E9120EEE7BF0084C6C1 /* Yams.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9220EEE7D50084C6C1 /* Bocho.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E8120EEE7990084C6C1 /* Bocho.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9320EEE7D50084C6C1 /* Diagnostic.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E8020EEE7990084C6C1 /* Diagnostic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9420EEE7D50084C6C1 /* Lexer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9520EEE7D50084C6C1 /* Source.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9620EEE7D50084C6C1 /* SourceKittenFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9720EEE7D50084C6C1 /* SWXMLHash.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9820EEE7D50084C6C1 /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9920EEE7F10084C6C1 /* Bocho.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8120EEE7990084C6C1 /* Bocho.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9A20EEE7F10084C6C1 /* Diagnostic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8020EEE7990084C6C1 /* Diagnostic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9B20EEE7F10084C6C1 /* Lexer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9C20EEE7F20084C6C1 /* Source.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9D20EEE7F20084C6C1 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9E20EEE7F20084C6C1 /* SWXMLHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E9F20EEE7F20084C6C1 /* Yams.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19DFBC3220DCD0A600BBF8C2 /* XPCBufferInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A92BFF242500EED35DEF /* XPCBufferInstructions.swift */; };
 		1A93A021E80364CB35D30B2F /* BufferEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A7FC328558098E5F8905 /* BufferEditor.swift */; };
 		1A93A03A479FA67359E958BD /* BufferInstructionsFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AB0D73756734F2CF8A99 /* BufferInstructionsFactoryTests.swift */; };
@@ -457,25 +437,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		14276C911F4F37D500EA7753 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				196F97AC20EF0E96009A5FD6 /* UseCases.framework in Embed Frameworks */,
-				19821E9920EEE7F10084C6C1 /* Bocho.framework in Embed Frameworks */,
-				19821E9A20EEE7F10084C6C1 /* Diagnostic.framework in Embed Frameworks */,
-				19821E9B20EEE7F10084C6C1 /* Lexer.framework in Embed Frameworks */,
-				19821E9C20EEE7F20084C6C1 /* Source.framework in Embed Frameworks */,
-				19821E9D20EEE7F20084C6C1 /* SourceKittenFramework.framework in Embed Frameworks */,
-				19821E9E20EEE7F20084C6C1 /* SWXMLHash.framework in Embed Frameworks */,
-				19821E9F20EEE7F20084C6C1 /* Yams.framework in Embed Frameworks */,
-				147C18201F6589FC00F0A60B /* MockGenerator.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		147437681F79737600241B8A /* Copy Test Project */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -568,22 +529,22 @@
 			name = "Copy TestProject";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1918AB5620D9D46C003BE795 /* CopyFiles */ = {
+		1918AB5620D9D46C003BE795 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				196F978F20EF08BB009A5FD6 /* UseCases.framework in CopyFiles */,
-				19821E9220EEE7D50084C6C1 /* Bocho.framework in CopyFiles */,
-				19821E9320EEE7D50084C6C1 /* Diagnostic.framework in CopyFiles */,
-				19821E9420EEE7D50084C6C1 /* Lexer.framework in CopyFiles */,
-				19821E9520EEE7D50084C6C1 /* Source.framework in CopyFiles */,
-				19821E9620EEE7D50084C6C1 /* SourceKittenFramework.framework in CopyFiles */,
-				19821E9720EEE7D50084C6C1 /* SWXMLHash.framework in CopyFiles */,
-				19821E9820EEE7D50084C6C1 /* Yams.framework in CopyFiles */,
-				1918AB6520D9D52D003BE795 /* MockGenerator.framework in CopyFiles */,
+				191EF68A20F44F6D00118C74 /* Diagnostic.framework in Copy Frameworks */,
+				191EF68B20F44F6D00118C74 /* Source.framework in Copy Frameworks */,
+				191EF68C20F44F6D00118C74 /* Yams.framework in Copy Frameworks */,
+				191EF68D20F44F6D00118C74 /* SWXMLHash.framework in Copy Frameworks */,
+				191EF68E20F44F6D00118C74 /* Lexer.framework in Copy Frameworks */,
+				191EF68F20F44F6D00118C74 /* Bocho.framework in Copy Frameworks */,
+				191EF69020F44F6D00118C74 /* SourceKittenFramework.framework in Copy Frameworks */,
+				191EF68220F44F4700118C74 /* UseCases.framework in Copy Frameworks */,
 			);
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -642,6 +603,23 @@
 		1918AB4520D9D2A1003BE795 /* PerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1918AB4920D9D2A1003BE795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvePerformanceTests.swift; sourceTree = "<group>"; };
+		191EF68120F44F4600118C74 /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UseCases.framework; path = lib/Release/UseCases.framework; sourceTree = "<group>"; };
+		191EF68320F44F6B00118C74 /* Diagnostic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diagnostic.framework; path = SwiftToolkit/Frameworks/Release/Diagnostic.framework; sourceTree = "<group>"; };
+		191EF68420F44F6B00118C74 /* Source.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Source.framework; path = SwiftToolkit/Frameworks/Release/Source.framework; sourceTree = "<group>"; };
+		191EF68520F44F6C00118C74 /* Yams.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yams.framework; path = SwiftToolkit/Frameworks/Release/Yams.framework; sourceTree = "<group>"; };
+		191EF68620F44F6C00118C74 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWXMLHash.framework; path = SwiftToolkit/Frameworks/Release/SWXMLHash.framework; sourceTree = "<group>"; };
+		191EF68720F44F6C00118C74 /* Lexer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lexer.framework; path = SwiftToolkit/Frameworks/Release/Lexer.framework; sourceTree = "<group>"; };
+		191EF68820F44F6D00118C74 /* Bocho.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bocho.framework; path = SwiftToolkit/Frameworks/Release/Bocho.framework; sourceTree = "<group>"; };
+		191EF68920F44F6D00118C74 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceKittenFramework.framework; path = SwiftToolkit/Frameworks/Release/SourceKittenFramework.framework; sourceTree = "<group>"; };
+		191EF69F20F450A300118C74 /* libGRMustache7-MacOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libGRMustache7-MacOS.a"; path = "lib/Release/libGRMustache7-MacOS.a"; sourceTree = "<group>"; };
+		191EF6A220F451A000118C74 /* Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
+		191EF6A320F451D000118C74 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		191EF6A420F451D100118C74 /* Profile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Profile.xcconfig; sourceTree = "<group>"; };
+		191EF6A520F451D100118C74 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		191EF6B120F45D7000118C74 /* MockGenerator-Profile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "MockGenerator-Profile.xcconfig"; sourceTree = "<group>"; };
+		191EF6B220F45D7000118C74 /* MockGenerator-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "MockGenerator-Release.xcconfig"; sourceTree = "<group>"; };
+		191EF6B320F45D7000118C74 /* MockGenerator-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "MockGenerator-Debug.xcconfig"; sourceTree = "<group>"; };
+		191EF6B420F4616F00118C74 /* copyframeworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = copyframeworks.sh; sourceTree = "<group>"; };
 		196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftToolkit.xcodeproj; path = SwiftToolkit/SwiftToolkit.xcodeproj; sourceTree = "<group>"; };
 		196F977620EF0442009A5FD6 /* libGRMustache7-MacOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libGRMustache7-MacOS.a"; path = "lib/Debug/libGRMustache7-MacOS.a"; sourceTree = "<group>"; };
 		196F977820EF0452009A5FD6 /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UseCases.framework; path = lib/Debug/UseCases.framework; sourceTree = "<group>"; };
@@ -696,7 +674,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				196F977920EF0452009A5FD6 /* UseCases.framework in Frameworks */,
-				196F977720EF0442009A5FD6 /* libGRMustache7-MacOS.a in Frameworks */,
 				196F976F20EF0428009A5FD6 /* Bocho.framework in Frameworks */,
 				196F977020EF0428009A5FD6 /* Diagnostic.framework in Frameworks */,
 				196F977120EF0428009A5FD6 /* Lexer.framework in Frameworks */,
@@ -704,15 +681,6 @@
 				196F977320EF0428009A5FD6 /* SourceKittenFramework.framework in Frameworks */,
 				196F977420EF0428009A5FD6 /* SWXMLHash.framework in Frameworks */,
 				196F977520EF0428009A5FD6 /* Yams.framework in Frameworks */,
-				196F976720EEFA57009A5FD6 /* libAlgorithms.a in Frameworks */,
-				196F976820EEFA57009A5FD6 /* libAST.a in Frameworks */,
-				196F976920EEFA57009A5FD6 /* libASTImpl.a in Frameworks */,
-				196F976A20EEFA57009A5FD6 /* libASTProxy.a in Frameworks */,
-				196F976B20EEFA57009A5FD6 /* libParser.a in Frameworks */,
-				196F976C20EEFA57009A5FD6 /* libResolver.a in Frameworks */,
-				196F976D20EEFA57009A5FD6 /* libSourceKittenRequests.a in Frameworks */,
-				196F976E20EEFA57009A5FD6 /* libSwiftLexer.a in Frameworks */,
-				191EF68020F44B0100118C74 /* libFormatter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -855,6 +823,7 @@
 		14CA2D4A1F40007000900937 = {
 			isa = PBXGroup;
 			children = (
+				191EF6A120F4518000118C74 /* config */,
 				196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */,
 				14CA2DAA1F41348100900937 /* Shared */,
 				14CA2D551F40007000900937 /* MockGeneratorApp */,
@@ -1024,8 +993,31 @@
 		191EF66E20F4484500118C74 /* Release */ = {
 			isa = PBXGroup;
 			children = (
+				191EF69F20F450A300118C74 /* libGRMustache7-MacOS.a */,
+				191EF68120F44F4600118C74 /* UseCases.framework */,
+				191EF68820F44F6D00118C74 /* Bocho.framework */,
+				191EF68320F44F6B00118C74 /* Diagnostic.framework */,
+				191EF68720F44F6C00118C74 /* Lexer.framework */,
+				191EF68420F44F6B00118C74 /* Source.framework */,
+				191EF68920F44F6D00118C74 /* SourceKittenFramework.framework */,
+				191EF68620F44F6C00118C74 /* SWXMLHash.framework */,
+				191EF68520F44F6C00118C74 /* Yams.framework */,
 			);
 			name = Release;
+			sourceTree = "<group>";
+		};
+		191EF6A120F4518000118C74 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				191EF6B320F45D7000118C74 /* MockGenerator-Debug.xcconfig */,
+				191EF6B120F45D7000118C74 /* MockGenerator-Profile.xcconfig */,
+				191EF6B220F45D7000118C74 /* MockGenerator-Release.xcconfig */,
+				191EF6A320F451D000118C74 /* Debug.xcconfig */,
+				191EF6A420F451D100118C74 /* Profile.xcconfig */,
+				191EF6A520F451D100118C74 /* Release.xcconfig */,
+				191EF6A220F451A000118C74 /* Shared.xcconfig */,
+			);
+			path = config;
 			sourceTree = "<group>";
 		};
 		196F972D20EEFA12009A5FD6 /* Products */ = {
@@ -1070,6 +1062,7 @@
 				35CDF087FFEDD3FD8F68133F /* readlog */,
 				35CDF1979F49B7777F1BB71E /* swifttostring */,
 				35CDF80E1E54FE98ADD6EC43 /* test */,
+				191EF6B420F4616F00118C74 /* copyframeworks.sh */,
 			);
 			path = scripts;
 			sourceTree = "<group>";
@@ -1166,7 +1159,7 @@
 				14CA2D501F40007000900937 /* Frameworks */,
 				14CA2D511F40007000900937 /* Resources */,
 				14CA2D7B1F40009000900937 /* Embed App Extensions */,
-				14276C911F4F37D500EA7753 /* Embed Frameworks */,
+				191EF6B520F4636D00118C74 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1285,7 +1278,7 @@
 				1918AB4220D9D2A1003BE795 /* Frameworks */,
 				1918AB4320D9D2A1003BE795 /* Resources */,
 				1918AB5420D9D3AB003BE795 /* Copy TestProject */,
-				1918AB5620D9D46C003BE795 /* CopyFiles */,
+				1918AB5620D9D46C003BE795 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1627,6 +1620,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		191EF6B520F4636D00118C74 /* Embed Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh $SRCROOT/scripts/copyframeworks.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		14276C5C1F4F312E00EA7753 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1876,8 +1886,8 @@
 /* Begin XCBuildConfiguration section */
 		14276C721F4F312E00EA7753 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6B320F45D7000118C74 /* MockGenerator-Debug.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1885,32 +1895,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					$PROJECT_DIR/lib/Debug/include/GRMustache,
-					$PROJECT_DIR/lib/Release/include/GRMustache,
-				);
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					$PROJECT_DIR/lib/Debug,
-				);
-				OTHER_LDFLAGS = (
-					"-lstdc++",
-					"-lz",
-					"-ldl",
-					"-lpthread",
-				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1918,8 +1910,8 @@
 		};
 		14276C731F4F312E00EA7753 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6B220F45D7000118C74 /* MockGenerator-Release.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1927,31 +1919,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					$PROJECT_DIR/lib/Debug/include/GRMustache,
-					$PROJECT_DIR/lib/Release/include/GRMustache,
-				);
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					$PROJECT_DIR/lib/Release,
-				);
-				OTHER_LDFLAGS = (
-					"-lstdc++",
-					"-lz",
-					"-ldl",
-					"-lpthread",
-				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1959,45 +1934,41 @@
 		};
 		14276C741F4F312E00EA7753 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		14276C751F4F312E00EA7753 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 		14872E821F59DBC50017AF3F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "";
@@ -2008,13 +1979,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swift Mock Generator for Xcode.app/Contents/MacOS/Swift Mock Generator for Xcode";
 			};
 			name = Debug;
 		};
 		14872E831F59DBC50017AF3F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "";
@@ -2025,181 +1996,75 @@
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swift Mock Generator for Xcode.app/Contents/MacOS/Swift Mock Generator for Xcode";
 			};
 			name = Release;
 		};
 		14CA2D601F40007000900937 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					$PROJECT_DIR/SwiftToolkit/Frameworks/Debug,
-					$PROJECT_DIR/lib/Debug,
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-DDEBUG -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
-				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_COMPILATION_MODE = singlefile;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSION_NUMBER = 0.15;
 			};
 			name = Debug;
 		};
 		14CA2D611F40007000900937 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					$PROJECT_DIR/SwiftToolkit/Frameworks/Release,
-					$PROJECT_DIR/lib/Release,
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
-				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				VERSION_NUMBER = 0.15;
 			};
 			name = Release;
 		};
 		14CA2D631F40007000900937 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MockGeneratorApp/MockGeneratorApp.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MockGeneratorApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp;
 				PRODUCT_MODULE_NAME = MockGeneratorApp;
 				PRODUCT_NAME = "Swift Mock Generator for Xcode";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		14CA2D641F40007000900937 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MockGeneratorApp/MockGeneratorApp.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MockGeneratorApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp;
 				PRODUCT_MODULE_NAME = MockGeneratorApp;
 				PRODUCT_NAME = "Swift Mock Generator for Xcode";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 		14CA2D791F40009000900937 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = XcodePlugin/XcodePlugin.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -2213,12 +2078,12 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "XcodePlugin/XcodePlugin-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		14CA2D7A1F40009000900937 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = XcodePlugin/XcodePlugin.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -2232,18 +2097,16 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "XcodePlugin/XcodePlugin-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 		14CA2D8D1F4000AB00900937 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
@@ -2251,19 +2114,16 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "MockGeneratorXPC/MockGeneratorXPC-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		14CA2D8E1F4000AB00900937 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
@@ -2271,114 +2131,85 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "MockGeneratorXPC/MockGeneratorXPC-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 		14F866BC20D9086900E79758 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					$DEVELOPER_FRAMEWORKS_DIR,
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "XcodePlugin/XcodePlugin-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		14F866BD20D9086900E79758 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					$DEVELOPER_FRAMEWORKS_DIR,
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "XcodePlugin/XcodePlugin-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		14F866CC20D9088F00E79758 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					$DEVELOPER_FRAMEWORKS_DIR,
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EndToEndTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EndToEndTestHost.app/Contents/MacOS/EndToEndTestHost";
 			};
 			name = Debug;
 		};
 		14F866CD20D9088F00E79758 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					$DEVELOPER_FRAMEWORKS_DIR,
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EndToEndTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EndToEndTestHost.app/Contents/MacOS/EndToEndTestHost";
 			};
 			name = Release;
 		};
 		14F866DE20D9090700E79758 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = EndToEndTestHost/EndToEndTestHost.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -2390,17 +2221,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTestHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		14F866DF20D9090700E79758 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = EndToEndTestHost/EndToEndTestHost.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -2412,49 +2241,235 @@
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTestHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 		1918AB4D20D9D2A1003BE795 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				HEADER_SEARCH_PATHS = $PROJECT_DIR/lib/include;
 				INFOPLIST_FILE = PerformanceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = $PROJECT_DIR/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.PerformanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		1918AB4E20D9D2A1003BE795 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				HEADER_SEARCH_PATHS = $PROJECT_DIR/lib/include;
 				INFOPLIST_FILE = PerformanceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = $PROJECT_DIR/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.PerformanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
+		};
+		191EF6A620F4522F00118C74 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A420F451D100118C74 /* Profile.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+			};
+			name = Profile;
+		};
+		191EF6A720F4522F00118C74 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A420F451D100118C74 /* Profile.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MockGeneratorApp/MockGeneratorApp.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HU45578K6L;
+				INFOPLIST_FILE = MockGeneratorApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp;
+				PRODUCT_MODULE_NAME = MockGeneratorApp;
+				PRODUCT_NAME = "Swift Mock Generator for Xcode";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Profile;
+		};
+		191EF6A820F4522F00118C74 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A420F451D100118C74 /* Profile.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = MockGeneratorAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swift Mock Generator for Xcode.app/Contents/MacOS/Swift Mock Generator for Xcode";
+			};
+			name = Profile;
+		};
+		191EF6A920F4522F00118C74 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A420F451D100118C74 /* Profile.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = XcodePlugin/XcodePlugin.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HU45578K6L;
+				INFOPLIST_FILE = XcodePlugin/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MENU_DISPLAY_NAME = "Mock Generator";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp.XcodePlugin;
+				PRODUCT_NAME = "Mock Generator";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "XcodePlugin/XcodePlugin-Bridging-Header.h";
+			};
+			name = Profile;
+		};
+		191EF6AA20F4522F00118C74 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6B120F45D7000118C74 /* MockGenerator-Profile.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HU45578K6L;
+				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorXPC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MockGeneratorXPC/MockGeneratorXPC-Bridging-Header.h";
+			};
+			name = Profile;
+		};
+		191EF6AB20F4522F00118C74 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A420F451D100118C74 /* Profile.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = MockGenerator/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Profile;
+		};
+		191EF6AC20F4522F00118C74 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A420F451D100118C74 /* Profile.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Profile;
+		};
+		191EF6AD20F4522F00118C74 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A420F451D100118C74 /* Profile.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "XcodePlugin/XcodePlugin-Bridging-Header.h";
+			};
+			name = Profile;
+		};
+		191EF6AE20F4522F00118C74 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A420F451D100118C74 /* Profile.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HU45578K6L;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = EndToEndTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EndToEndTestHost.app/Contents/MacOS/EndToEndTestHost";
+			};
+			name = Profile;
+		};
+		191EF6AF20F4522F00118C74 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A420F451D100118C74 /* Profile.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_ENTITLEMENTS = EndToEndTestHost/EndToEndTestHost.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = HU45578K6L;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = EndToEndTestHost/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks $DEVELOPER_FRAMEWORKS_DIR";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTestHost;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Profile;
+		};
+		191EF6B020F4522F00118C74 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 191EF6A420F451D100118C74 /* Profile.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = PerformanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.PerformanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Profile;
 		};
 /* End XCBuildConfiguration section */
 
@@ -2464,6 +2479,7 @@
 			buildConfigurations = (
 				14276C721F4F312E00EA7753 /* Debug */,
 				14276C731F4F312E00EA7753 /* Release */,
+				191EF6AB20F4522F00118C74 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2473,6 +2489,7 @@
 			buildConfigurations = (
 				14276C741F4F312E00EA7753 /* Debug */,
 				14276C751F4F312E00EA7753 /* Release */,
+				191EF6AC20F4522F00118C74 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2482,6 +2499,7 @@
 			buildConfigurations = (
 				14872E821F59DBC50017AF3F /* Debug */,
 				14872E831F59DBC50017AF3F /* Release */,
+				191EF6A820F4522F00118C74 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2491,6 +2509,7 @@
 			buildConfigurations = (
 				14CA2D601F40007000900937 /* Debug */,
 				14CA2D611F40007000900937 /* Release */,
+				191EF6A620F4522F00118C74 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2500,6 +2519,7 @@
 			buildConfigurations = (
 				14CA2D631F40007000900937 /* Debug */,
 				14CA2D641F40007000900937 /* Release */,
+				191EF6A720F4522F00118C74 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2509,6 +2529,7 @@
 			buildConfigurations = (
 				14CA2D791F40009000900937 /* Debug */,
 				14CA2D7A1F40009000900937 /* Release */,
+				191EF6A920F4522F00118C74 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2518,6 +2539,7 @@
 			buildConfigurations = (
 				14CA2D8D1F4000AB00900937 /* Debug */,
 				14CA2D8E1F4000AB00900937 /* Release */,
+				191EF6AA20F4522F00118C74 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2527,6 +2549,7 @@
 			buildConfigurations = (
 				14F866BC20D9086900E79758 /* Debug */,
 				14F866BD20D9086900E79758 /* Release */,
+				191EF6AD20F4522F00118C74 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2536,6 +2559,7 @@
 			buildConfigurations = (
 				14F866CC20D9088F00E79758 /* Debug */,
 				14F866CD20D9088F00E79758 /* Release */,
+				191EF6AE20F4522F00118C74 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2545,6 +2569,7 @@
 			buildConfigurations = (
 				14F866DE20D9090700E79758 /* Debug */,
 				14F866DF20D9090700E79758 /* Release */,
+				191EF6AF20F4522F00118C74 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2554,6 +2579,7 @@
 			buildConfigurations = (
 				1918AB4D20D9D2A1003BE795 /* Debug */,
 				1918AB4E20D9D2A1003BE795 /* Release */,
+				191EF6B020F4522F00118C74 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
