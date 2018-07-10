@@ -87,6 +87,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("SimpleClassMock")
     }
 
+    func test_generatesClassMockWithThrowingMembers() {
+        assertMockGeneratesExpected("ThrowingClassMock")
+    }
+
     func test_doesNotDeleteMockBody_whenMockGenerateFails() {
         assertMockGeneratesError(fileName: "DoNotDeleteBodyMock", "Could not find a protocol on DoNotDeleteBodyMock")
     }
