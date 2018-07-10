@@ -7,7 +7,7 @@ class TypeDeclarationTransformingVisitor: ElementVisitor {
     static func transformMock(_ element: Element, resolver: Resolver) -> UseCasesMockClass {
         let visitor = TypeDeclarationTransformingVisitor(resolver: resolver)
         element.accept(visitor)
-        return visitor.transformed ?? UseCasesMockClass(superclass: nil, protocols: [], scope: nil)
+        return visitor.transformed ?? UseCasesMockClass(inheritedClass: nil, protocols: [], scope: nil)
     }
 
     private let resolver: Resolver
@@ -17,24 +17,43 @@ class TypeDeclarationTransformingVisitor: ElementVisitor {
         self.resolver = resolver
     }
 
-    override func visitTypeDeclaration(_ element: TypeDeclaration) {
-        let protocols = transformInheritanceClause(element)
-        transformed = UseCasesMockClass(superclass: nil, protocols: protocols, scope: nil)
+    override func visitClassDeclaration(_ element: ClassDeclaration) {
+        let superclass = transformInheritedClass(element)
+        let protocols = transformImplementedProtocols(element)
+        transformed = UseCasesMockClass(inheritedClass: superclass, protocols: protocols, scope: nil)
     }
 
-    private func transformInheritanceClause(_ element: TypeDeclaration) -> [UseCasesProtocol] {
+    private func transformImplementedProtocols(_ element: TypeDeclaration) -> [UseCasesProtocol] {
         let resolved = element.typeInheritanceClause.inheritedTypes
             .compactMap { resolver.resolve($0) as? ProtocolDeclaration }
         return resolved.map { transform($0) }
     }
 
-    private func transform(_ element: TypeDeclaration) -> UseCasesProtocol {
+    private func transform(_ element: ProtocolDeclaration) -> UseCasesProtocol {
         let visitor = MethodGatheringVisitor(resolver: resolver)
         element.accept(visitor)
         return UseCasesProtocol(
             initializers: visitor.initializers,
             properties: visitor.properties,
             methods: visitor.methods,
-            protocols: transformInheritanceClause(element))
+            protocols: transformImplementedProtocols(element))
+    }
+
+    private func transformInheritedClass(_ element: TypeDeclaration) -> UseCasesClass? {
+        guard let firstInheritedType = element.typeInheritanceClause.inheritedTypes.first else {
+            return nil
+        }
+        let resolved = resolver.resolve(firstInheritedType) as? ClassDeclaration
+        return resolved.map { transform($0) }
+    }
+
+    private func transform(_ element: ClassDeclaration) -> UseCasesClass {
+        let visitor = MethodGatheringVisitor(resolver: resolver)
+        element.accept(visitor)
+        return UseCasesClass(
+                initializers: visitor.initializers,
+                properties: visitor.properties,
+                methods: visitor.methods,
+                inheritedClass: transformInheritedClass(element))
     }
 }

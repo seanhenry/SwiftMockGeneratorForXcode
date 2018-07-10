@@ -2,6 +2,8 @@ import XCTest
 import Resolver
 import UseCases
 import Parser
+import AST
+import TestHelper
 @testable import MockGenerator
 
 class TypeDeclarationTransformingVisitorTests: XCTestCase {
@@ -62,9 +64,11 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
     }
 
     func test_shouldIgnoreNonClassMocks() throws {
-        let p = try ElementParser.parseType("Type")
-        let protocols = TypeDeclarationTransformingVisitor.transformMock(p, resolver: resolver).protocols
-        XCTAssert(protocols.isEmpty)
+        let type = try ParserTestHelper.parseFile(from: "protocol Mock: A {} protocol A {}")
+            .typeDeclarations[0]
+        let transformed = TypeDeclarationTransformingVisitor.transformMock(type, resolver: resolver)
+        XCTAssert(transformed.protocols.isEmpty)
+        XCTAssertNil(transformed.inheritedClass)
     }
 
     private func transformProtocols(_ string: String) -> [UseCasesProtocol] {
@@ -111,6 +115,61 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
         protocol A: B {
         }
         protocol P: A {
+        }
+        """
+    }
+
+    func test_shouldTransformEmptyClass() {
+        let transformed = transform("class Mock: C {} class C {}")
+        let inherited = transformed.inheritedClass
+        XCTAssertNotNil(inherited)
+        XCTAssertEqual(inherited?.properties.isEmpty, true)
+        XCTAssertEqual(inherited?.initializers.isEmpty, true)
+        XCTAssertEqual(inherited?.methods.isEmpty, true)
+        XCTAssertNil(inherited?.inherited)
+    }
+
+    func test_shouldTransformClass() {
+        let transformed = transform(getClassString())
+        let inherited = transformed.inheritedClass
+        XCTAssertNotNil(inherited)
+        XCTAssertEqual(inherited?.properties.count, 1)
+        XCTAssertEqual(inherited?.initializers.count, 1)
+        XCTAssertEqual(inherited?.methods.count, 1)
+        XCTAssertNil(inherited?.inherited)
+    }
+
+    func test_shouldTransformClassWithInheritedClass() {
+        let transformed = transform(getInheritanceClassString())
+        let inherited = transformed.inheritedClass
+        XCTAssertNotNil(inherited)
+        XCTAssertNotNil(inherited?.inherited)
+    }
+
+    private func transform(_ string: String) -> UseCasesMockClass {
+        let mockClass = try! ElementParser.parseFile(string).typeDeclarations[0]
+        return TypeDeclarationTransformingVisitor.transformMock(mockClass, resolver: resolver)
+    }
+
+    private func getClassString() -> String {
+        return """
+        class Mock: C {
+        }
+        class C {
+          init() {}
+          func a() {}
+          var a: A
+        }
+        """
+    }
+
+    private func getInheritanceClassString() -> String {
+        return """
+        class Mock: A {
+        }
+        class A: B {
+        }
+        class B {
         }
         """
     }

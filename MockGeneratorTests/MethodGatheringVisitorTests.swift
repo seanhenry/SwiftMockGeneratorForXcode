@@ -174,6 +174,16 @@ class MethodGatheringVisitorTests: XCTestCase {
         XCTAssertEqual(method.genericParameters[2], "V")
     }
 
+    func test_visit_shouldChopCodeBlockOffDeclarationText() {
+        let method = transformMethod("func a<T>(a: A) throws -> RetType where T: Element {}")
+        XCTAssertEqual(method.declarationText, "func a<T>(a: A) throws -> RetType where T: Element")
+    }
+
+    func test_visit_shouldChopDeclarationModifiersOffDeclarationText() {
+        let method = transformMethod("@objc public mutating override func a()")
+        XCTAssertEqual(method.declarationText, "func a()")
+    }
+
     private func transformMethod(_ input: String) -> UseCasesMethod {
         let method = try! ElementParser.parseFunctionDeclaration(input)
         method.accept(visitor)

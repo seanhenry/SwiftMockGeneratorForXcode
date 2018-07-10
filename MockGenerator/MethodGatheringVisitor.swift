@@ -97,8 +97,20 @@ class MethodGatheringVisitor: RecursiveElementVisitor {
             genericParameters: genericParameter,
             returnType: UseCasesResolvedType(originalType: returnType, resolvedType: returnType),
             parametersList: parameters,
-            declarationText: element.text,
+            declarationText: getDeclarationText(element),
             throws: element.throws)
+    }
+
+    private func getDeclarationText(_ element: FunctionDeclaration) -> String {
+        var text = ""
+        for child in element.children where isAllowedInDeclarationText(child) {
+            text.append(child.text)
+        }
+        return text.trimmingCharacters(in: .whitespaces)
+    }
+
+    private func isAllowedInDeclarationText(_ child: Element) -> Bool {
+        return !(child is CodeBlock) && !(child is DeclarationModifier) && !(child is Attributes)
     }
 
     private func transformGenericParameters(from element: FunctionDeclaration) -> [String] {
