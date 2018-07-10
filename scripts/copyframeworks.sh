@@ -26,3 +26,10 @@ FRAMEWORK_DIR="$SRCROOT/lib/$CONFIG"
 echo "Copying frameworks in $FRAMEWORK_DIR to $DEST_DIR"
 
 cp -R "$FRAMEWORK_DIR/UseCases.framework" "$DEST_DIR"
+
+if [ $CONFIGURATION = "Release" ]; then
+    cd "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/Frameworks"
+    for framework in *.framework; do
+        /usr/bin/codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --entitlements "${TARGET_TEMP_DIR}/${PRODUCT_NAME}.app.xcent" --timestamp=none $framework
+    done
+fi
