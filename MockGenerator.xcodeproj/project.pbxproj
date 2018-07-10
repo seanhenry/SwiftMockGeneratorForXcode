@@ -60,6 +60,7 @@
 		1918AB6020D9D4FE003BE795 /* ResolvePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */; };
 		1918AB6320D9D517003BE795 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
 		1918AB6520D9D52D003BE795 /* MockGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		191EF68020F44B0100118C74 /* libFormatter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF66820F447D300118C74 /* libFormatter.a */; };
 		196F976720EEFA57009A5FD6 /* libAlgorithms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974C20EEFA12009A5FD6 /* libAlgorithms.a */; };
 		196F976820EEFA57009A5FD6 /* libAST.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974020EEFA12009A5FD6 /* libAST.a */; };
 		196F976920EEFA57009A5FD6 /* libASTImpl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974420EEFA12009A5FD6 /* libASTImpl.a */; };
@@ -236,6 +237,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 14276C601F4F312E00EA7753;
 			remoteInfo = MockGenerator;
+		};
+		191EF66720F447D300118C74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 196F97B620EF1A0E009A5FD6;
+			remoteInfo = Formatter;
+		};
+		191EF66920F447D300118C74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 196F97D420EF1A26009A5FD6;
+			remoteInfo = FormatterTests;
+		};
+		191EF66B20F447D300118C74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 196F97F920EF2F76009A5FD6;
+			remoteInfo = ParserPerfTests;
+		};
+		191EF67E20F44AFA00118C74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 196F97B520EF1A0E009A5FD6;
+			remoteInfo = Formatter;
 		};
 		196F973F20EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -614,15 +643,15 @@
 		1918AB4920D9D2A1003BE795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvePerformanceTests.swift; sourceTree = "<group>"; };
 		196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftToolkit.xcodeproj; path = SwiftToolkit/SwiftToolkit.xcodeproj; sourceTree = "<group>"; };
-		196F977620EF0442009A5FD6 /* libGRMustache7-MacOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libGRMustache7-MacOS.a"; path = "lib/libGRMustache7-MacOS.a"; sourceTree = "<group>"; };
-		196F977820EF0452009A5FD6 /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UseCases.framework; path = lib/UseCases.framework; sourceTree = "<group>"; };
-		19821E7D20EEE7980084C6C1 /* Yams.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yams.framework; path = SwiftToolkit/Frameworks/Yams.framework; sourceTree = "<group>"; };
-		19821E7E20EEE7990084C6C1 /* Lexer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lexer.framework; path = SwiftToolkit/Frameworks/Lexer.framework; sourceTree = "<group>"; };
-		19821E7F20EEE7990084C6C1 /* Source.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Source.framework; path = SwiftToolkit/Frameworks/Source.framework; sourceTree = "<group>"; };
-		19821E8020EEE7990084C6C1 /* Diagnostic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diagnostic.framework; path = SwiftToolkit/Frameworks/Diagnostic.framework; sourceTree = "<group>"; };
-		19821E8120EEE7990084C6C1 /* Bocho.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bocho.framework; path = SwiftToolkit/Frameworks/Bocho.framework; sourceTree = "<group>"; };
-		19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceKittenFramework.framework; path = SwiftToolkit/Frameworks/SourceKittenFramework.framework; sourceTree = "<group>"; };
-		19821E8320EEE7990084C6C1 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWXMLHash.framework; path = SwiftToolkit/Frameworks/SWXMLHash.framework; sourceTree = "<group>"; };
+		196F977620EF0442009A5FD6 /* libGRMustache7-MacOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libGRMustache7-MacOS.a"; path = "lib/Debug/libGRMustache7-MacOS.a"; sourceTree = "<group>"; };
+		196F977820EF0452009A5FD6 /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UseCases.framework; path = lib/Debug/UseCases.framework; sourceTree = "<group>"; };
+		19821E7D20EEE7980084C6C1 /* Yams.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yams.framework; path = SwiftToolkit/Frameworks/Debug/Yams.framework; sourceTree = "<group>"; };
+		19821E7E20EEE7990084C6C1 /* Lexer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lexer.framework; path = SwiftToolkit/Frameworks/Debug/Lexer.framework; sourceTree = "<group>"; };
+		19821E7F20EEE7990084C6C1 /* Source.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Source.framework; path = SwiftToolkit/Frameworks/Debug/Source.framework; sourceTree = "<group>"; };
+		19821E8020EEE7990084C6C1 /* Diagnostic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diagnostic.framework; path = SwiftToolkit/Frameworks/Debug/Diagnostic.framework; sourceTree = "<group>"; };
+		19821E8120EEE7990084C6C1 /* Bocho.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bocho.framework; path = SwiftToolkit/Frameworks/Debug/Bocho.framework; sourceTree = "<group>"; };
+		19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceKittenFramework.framework; path = SwiftToolkit/Frameworks/Debug/SourceKittenFramework.framework; sourceTree = "<group>"; };
+		19821E8320EEE7990084C6C1 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWXMLHash.framework; path = SwiftToolkit/Frameworks/Debug/SWXMLHash.framework; sourceTree = "<group>"; };
 		1A93A0984050AAB172D12611 /* BufferInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferInstructions.swift; sourceTree = "<group>"; };
 		1A93A7FC328558098E5F8905 /* BufferEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferEditor.swift; sourceTree = "<group>"; };
 		1A93A92BFF242500EED35DEF /* XPCBufferInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPCBufferInstructions.swift; sourceTree = "<group>"; };
@@ -683,6 +712,7 @@
 				196F976C20EEFA57009A5FD6 /* libResolver.a in Frameworks */,
 				196F976D20EEFA57009A5FD6 /* libSourceKittenRequests.a in Frameworks */,
 				196F976E20EEFA57009A5FD6 /* libSwiftLexer.a in Frameworks */,
+				191EF68020F44B0100118C74 /* libFormatter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -880,15 +910,8 @@
 		14CA2D6A1F40008F00900937 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				196F977820EF0452009A5FD6 /* UseCases.framework */,
-				196F977620EF0442009A5FD6 /* libGRMustache7-MacOS.a */,
-				19821E8120EEE7990084C6C1 /* Bocho.framework */,
-				19821E8020EEE7990084C6C1 /* Diagnostic.framework */,
-				19821E7E20EEE7990084C6C1 /* Lexer.framework */,
-				19821E7F20EEE7990084C6C1 /* Source.framework */,
-				19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */,
-				19821E8320EEE7990084C6C1 /* SWXMLHash.framework */,
-				19821E7D20EEE7980084C6C1 /* Yams.framework */,
+				191EF66E20F4484500118C74 /* Release */,
+				191EF66D20F4483F00118C74 /* Debug */,
 				14F866EF20D90C3A00E79758 /* XcodeKit.framework */,
 				14CA2D6B1F40008F00900937 /* Cocoa.framework */,
 			);
@@ -982,19 +1005,45 @@
 			path = PerformanceTests;
 			sourceTree = "<group>";
 		};
+		191EF66D20F4483F00118C74 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				196F977820EF0452009A5FD6 /* UseCases.framework */,
+				196F977620EF0442009A5FD6 /* libGRMustache7-MacOS.a */,
+				19821E8120EEE7990084C6C1 /* Bocho.framework */,
+				19821E8020EEE7990084C6C1 /* Diagnostic.framework */,
+				19821E7E20EEE7990084C6C1 /* Lexer.framework */,
+				19821E7F20EEE7990084C6C1 /* Source.framework */,
+				19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */,
+				19821E8320EEE7990084C6C1 /* SWXMLHash.framework */,
+				19821E7D20EEE7980084C6C1 /* Yams.framework */,
+			);
+			name = Debug;
+			sourceTree = "<group>";
+		};
+		191EF66E20F4484500118C74 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Release;
+			sourceTree = "<group>";
+		};
 		196F972D20EEFA12009A5FD6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				196F974C20EEFA12009A5FD6 /* libAlgorithms.a */,
+				196F974E20EEFA12009A5FD6 /* AlgorithmsTests.xctest */,
 				196F974020EEFA12009A5FD6 /* libAST.a */,
 				196F974220EEFA12009A5FD6 /* ASTTests.xctest */,
 				196F974420EEFA12009A5FD6 /* libASTImpl.a */,
 				196F974620EEFA12009A5FD6 /* ASTImplTests.xctest */,
 				196F974820EEFA12009A5FD6 /* libASTProxy.a */,
 				196F974A20EEFA12009A5FD6 /* ASTProxyTests.xctest */,
-				196F974C20EEFA12009A5FD6 /* libAlgorithms.a */,
-				196F974E20EEFA12009A5FD6 /* AlgorithmsTests.xctest */,
+				191EF66820F447D300118C74 /* libFormatter.a */,
+				191EF66A20F447D300118C74 /* FormatterTests.xctest */,
 				196F975020EEFA12009A5FD6 /* libParser.a */,
 				196F975220EEFA12009A5FD6 /* ParserTests.xctest */,
+				191EF66C20F447D300118C74 /* ParserPerfTests.xctest */,
 				196F975420EEFA12009A5FD6 /* libResolver.a */,
 				196F975620EEFA12009A5FD6 /* ResolverTests.xctest */,
 				196F975820EEFA12009A5FD6 /* libSourceKittenRequests.a */,
@@ -1059,6 +1108,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				191EF67F20F44AFA00118C74 /* PBXTargetDependency */,
 				196F976020EEFA50009A5FD6 /* PBXTargetDependency */,
 				196F976220EEFA50009A5FD6 /* PBXTargetDependency */,
 				196F976420EEFA50009A5FD6 /* PBXTargetDependency */,
@@ -1369,6 +1419,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		191EF66820F447D300118C74 /* libFormatter.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFormatter.a;
+			remoteRef = 191EF66720F447D300118C74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		191EF66A20F447D300118C74 /* FormatterTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FormatterTests.xctest;
+			remoteRef = 191EF66920F447D300118C74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		191EF66C20F447D300118C74 /* ParserPerfTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ParserPerfTests.xctest;
+			remoteRef = 191EF66B20F447D300118C74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		196F974020EEFA12009A5FD6 /* libAST.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1741,6 +1812,11 @@
 			target = 14276C601F4F312E00EA7753 /* MockGenerator */;
 			targetProxy = 1918AB6120D9D510003BE795 /* PBXContainerItemProxy */;
 		};
+		191EF67F20F44AFA00118C74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Formatter;
+			targetProxy = 191EF67E20F44AFA00118C74 /* PBXContainerItemProxy */;
+		};
 		196F976020EEFA50009A5FD6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AST;
@@ -1809,19 +1885,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
-					"$(PROJECT_DIR)/SwiftToolkit/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = lib/include/GRMustache;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					$PROJECT_DIR/lib/Debug/include/GRMustache,
+					$PROJECT_DIR/lib/Release/include/GRMustache,
+				);
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
+					$PROJECT_DIR/lib/Debug,
 				);
 				OTHER_LDFLAGS = (
 					"-lstdc++",
@@ -1829,7 +1905,7 @@
 					"-ldl",
 					"-lpthread",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1851,19 +1927,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
-					"$(PROJECT_DIR)/SwiftToolkit/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = lib/include/GRMustache;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					$PROJECT_DIR/lib/Debug/include/GRMustache,
+					$PROJECT_DIR/lib/Release/include/GRMustache,
+				);
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
+					$PROJECT_DIR/lib/Release,
 				);
 				OTHER_LDFLAGS = (
 					"-lstdc++",
@@ -1871,7 +1947,7 @@
 					"-ldl",
 					"-lpthread",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1889,14 +1965,10 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
-					"$(PROJECT_DIR)/SwiftToolkit/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1913,14 +1985,10 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
-					"$(PROJECT_DIR)/SwiftToolkit/Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1997,6 +2065,11 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					$PROJECT_DIR/SwiftToolkit/Frameworks/Debug,
+					$PROJECT_DIR/lib/Debug,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2014,7 +2087,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				OTHER_SWIFT_FLAGS = "-DDEBUG -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
@@ -2059,6 +2132,11 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					$PROJECT_DIR/SwiftToolkit/Frameworks/Release,
+					$PROJECT_DIR/lib/Release,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -2070,7 +2148,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_SWIFT_FLAGS = "";
+				OTHER_SWIFT_FLAGS = "-Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSION_NUMBER = 0.15;
@@ -2087,10 +2165,7 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MockGeneratorApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp;
@@ -2112,10 +2187,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MockGeneratorApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp;
@@ -2171,13 +2243,10 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorXPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2194,13 +2263,10 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorXPC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2359,15 +2425,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/lib",
-					"$(PROJECT_DIR)/SwiftToolkit/Frameworks",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/lib/include";
+				HEADER_SEARCH_PATHS = $PROJECT_DIR/lib/include;
 				INFOPLIST_FILE = PerformanceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
+				LIBRARY_SEARCH_PATHS = $PROJECT_DIR/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.PerformanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -2383,15 +2445,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/lib",
-					"$(PROJECT_DIR)/SwiftToolkit/Frameworks",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/lib/include";
+				HEADER_SEARCH_PATHS = $PROJECT_DIR/lib/include;
 				INFOPLIST_FILE = PerformanceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
+				LIBRARY_SEARCH_PATHS = $PROJECT_DIR/lib;
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.PerformanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

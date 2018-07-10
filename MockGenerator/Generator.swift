@@ -4,6 +4,7 @@ import AST
 import Resolver
 import Algorithms
 import Parser
+import Formatter
 
 public class Generator {
 

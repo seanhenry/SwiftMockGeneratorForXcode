@@ -2,6 +2,7 @@ import XCTest
 import TestHelper
 import Algorithms
 import AST
+import Formatter
 
 class FormatPerformanceTests: XCTestCase {
     
