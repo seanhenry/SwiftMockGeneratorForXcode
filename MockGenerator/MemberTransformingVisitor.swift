@@ -113,7 +113,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
             throws: element.throws)
     }
 
-    private func getDeclarationText(_ element: FunctionDeclaration) -> String {
+    private func getDeclarationText(_ element: Declaration) -> String {
         var text = ""
         for child in element.children where isAllowedInDeclarationText(child) {
             text.append(child.text)
@@ -122,7 +122,10 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     private func isAllowedInDeclarationText(_ child: Element) -> Bool {
-        return !(child is CodeBlock) && !(child is DeclarationModifier) && !(child is Attributes)
+        return !(child is CodeBlock)
+               && !(child is DeclarationModifier)
+               && !(child is Attributes)
+               && !(child is GetterSetterKeywordBlock)
     }
 
     private func transformGenericParameters(from element: FunctionDeclaration) -> [String] {
@@ -163,8 +166,21 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
         }
         properties.append(UseCasesProperty(name: element.name,
             type: transformType(element.typeAnnotation.type),
-            isWritable: element.isWritable,
-            declarationText: element.text))
+            isWritable: isWritable(element),
+            declarationText: getDeclarationText(element)))
+    }
+
+    private func isWritable(_ element: VariableDeclaration) -> Bool {
+        if element.isSetPrivate || element.isSetFilePrivate {
+            return false
+        } else if element.getterSetterKeywordBlock?.setterKeywordClause != nil {
+            return true
+        } else if element.getterSetterBlock?.setterClause != nil {
+            return true
+        }
+        return (element.getterSetterKeywordBlock == nil
+                && element.getterSetterBlock == nil
+                && element.codeBlock == nil)
     }
 
     private func isPropertyOverridable(_ element: VariableDeclaration) -> Bool {

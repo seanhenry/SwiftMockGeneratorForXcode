@@ -237,7 +237,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssertEqual(property.name, "a")
         XCTAssertEqual(property.type.text, "B")
         XCTAssert(property.isWritable)
-        XCTAssertEqual(property.declarationText, "var a: B { get set }")
+        XCTAssertEqual(property.declarationText, "var a: B")
     }
 
     func test_visit_shouldTransformComplexTypeProtocolProperty() {
@@ -247,6 +247,46 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssertEqual(array.text, "[B]")
         XCTAssert(array.type is UseCasesTypeIdentifier)
         XCTAssertEqual(array.type.text, "B")
+    }
+
+    func test_visit_shouldChopCodeBlockOffPropertyDeclarationText() {
+        let property = transformProperty("var a: A {}")
+        XCTAssertEqual(property.declarationText, "var a: A")
+    }
+
+    func test_visit_shouldChopDeclarationModifiersOffPropertyDeclarationText() {
+        let property = transformProperty("@objc public mutating override var a: A")
+        XCTAssertEqual(property.declarationText, "var a: A")
+    }
+
+    func test_visit_propertyShouldBeWritableWhenItHasASetterBlock() {
+        let property = transformProperty("var a: A { set {} get {} }")
+        XCTAssert(property.isWritable)
+    }
+
+    func test_visit_propertyShouldBeWritableWhenItHasNoBlock() {
+        let property = transformProperty("var a: A = 0")
+        XCTAssert(property.isWritable)
+    }
+
+    func test_visit_propertyShouldBeReadonlyWhenItHasOnlyAGetterBlock() {
+        let property = transformProperty("var a: A { get {} }")
+        XCTAssertFalse(property.isWritable)
+    }
+
+    func test_visit_propertyShouldBeReadonlyWhenItHasOnlyACodeBlock() {
+        let property = transformProperty("var a: A {  }")
+        XCTAssertFalse(property.isWritable)
+    }
+
+    func test_visit_propertyShouldBeReadonlyWhenIsPrivateSet() {
+        let property = transformProperty("private(set) var a: A")
+        XCTAssertFalse(property.isWritable)
+    }
+
+    func test_visit_propertyShouldBeReadonlyWhenIsFilePrivateSet() {
+        let property = transformProperty("fileprivate(set) var a: A")
+        XCTAssertFalse(property.isWritable)
     }
 
     private func transformProperty(_ input: String) -> UseCasesProperty {

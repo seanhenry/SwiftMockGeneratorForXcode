@@ -127,12 +127,20 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("PrivateInitializerClassMock")
     }
 
+    func test_supportsClassProperties() {
+        assertMockGeneratesExpected("PropertyClassMock")
+    }
+
     func test_doesNotOverrideInvisibleMembers() {
         assertMockGeneratesError(fileName: "UnoverridableClassMock", "Found inherited types but there was nothing to mock")
     }
 
     func test_doesNotYetSupportInferredTypeVariableDeclarations() {
         assertMockGeneratesError(fileName: "InferredTypeClassMock", "Found inherited types but there was nothing to mock")
+    }
+
+    func test_doesNotYetSupportMultipleVariableDeclarations() {
+        assertMockGeneratesExpected("MultipleVariableMock")
     }
 
     func test_shouldFilterNSObject() {
