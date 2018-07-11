@@ -81,9 +81,59 @@ class ResolvePerformanceTests: XCTestCase {
     }
     
     func test_generatesFromTupleTypes() {
-        measure {
-            resolve("TupleProtocolMock")
-        }
+        measure { resolve("TupleProtocolMock") }
+    }
+
+    func test_generatesSimpleClass() {
+        measure { resolve("SimpleClassMock") }
+    }
+
+    func test_generatesClassMockWithThrowingMembers() {
+        measure { resolve("ThrowingClassMock") }
+    }
+
+    func test_generatesClassMockInheritingAnotherClass() {
+        measure { resolve("SuperclassMock") }
+    }
+
+    func test_choosesSimplestInitializerForClassMock() {
+        measure { resolve("MultipleInitializerClassMock") }
+    }
+
+    func test_generatesInitializerWithArgumentsForClassMock() {
+        measure { resolve("ArgumentInitializerClassMock") }
+    }
+
+    func test_generatesMembersFromClassesAndProtocols() {
+        measure { resolve("ClassAndProtocolMock") }
+    }
+
+    func test_handlesEmptyFailableInitializerForClassMock() {
+        measure { resolve("EmptyFailableInitializerClassMock") }
+    }
+
+    func test_handlesFailableInitializerForClassMock() {
+        measure { resolve("FailableInitializerClassMock") }
+    }
+
+    func test_handlesAvailableAttributeForClassMock() {
+        measure { resolve("AvailableClassMock") }
+    }
+
+    func test_handlesClassRequiredInitializers() {
+        measure { resolve("RequiredInitializerClassMock") }
+    }
+
+    func test_handlesClassPrivateInitializers() {
+        measure { resolve("PrivateInitializerClassMock") }
+    }
+
+    func test_supportsClassProperties() {
+        measure { resolve("PropertyClassMock") }
+    }
+
+    func test_stripsModifiers() {
+        measure { resolve("ModifierClassMock") }
     }
     
     func resolve(_ testFile: String) {

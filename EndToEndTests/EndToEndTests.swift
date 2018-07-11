@@ -78,4 +78,56 @@ class EndToEndTests: MockGeneratorBaseTestCase {
     func test_generatesFromTupleTypes() {
         assertMockGeneratesExpected("TupleProtocolMock")
     }
+
+    func test_generatesSimpleClass() {
+        assertMockGeneratesExpected("SimpleClassMock")
+    }
+
+    func test_generatesClassMockWithThrowingMembers() {
+        assertMockGeneratesExpected("ThrowingClassMock")
+    }
+
+    func test_generatesClassMockInheritingAnotherClass() {
+        assertMockGeneratesExpected("SuperclassMock")
+    }
+
+    func test_choosesSimplestInitializerForClassMock() {
+        assertMockGeneratesExpected("MultipleInitializerClassMock")
+    }
+
+    func test_generatesInitializerWithArgumentsForClassMock() {
+        assertMockGeneratesExpected("ArgumentInitializerClassMock")
+    }
+
+    func test_generatesMembersFromClassesAndProtocols() {
+        assertMockGeneratesExpected("ClassAndProtocolMock")
+    }
+
+    func test_handlesEmptyFailableInitializerForClassMock() {
+        assertMockGeneratesExpected("EmptyFailableInitializerClassMock")
+    }
+
+    func test_handlesFailableInitializerForClassMock() {
+        assertMockGeneratesExpected("FailableInitializerClassMock")
+    }
+
+    func test_handlesAvailableAttributeForClassMock() {
+        assertMockGeneratesExpected("AvailableClassMock")
+    }
+
+    func test_handlesClassRequiredInitializers() {
+        assertMockGeneratesExpected("RequiredInitializerClassMock")
+    }
+
+    func test_handlesClassPrivateInitializers() {
+        assertMockGeneratesExpected("PrivateInitializerClassMock")
+    }
+
+    func test_supportsClassProperties() {
+        assertMockGeneratesExpected("PropertyClassMock")
+    }
+
+    func test_stripsModifiers() {
+        assertMockGeneratesExpected("ModifierClassMock")
+    }
 }
