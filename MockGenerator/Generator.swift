@@ -65,9 +65,13 @@ public class Generator {
     }
     
     private func buildMock(toFile file: Element, atElement element: TypeDeclaration) -> (BufferInstructions?, Error?) {
-        let mockLines = getMockBody(from: element)
-        guard !mockLines.isEmpty else {
+        let mockClass = transformToMockClass(element: element)
+        guard !isEmpty(mockClass: mockClass) else {
             return reply(with: "Could not find a class or protocol on \(element.name)")
+        }
+        let mockLines = getMockBody(from: mockClass)
+        guard !mockLines.isEmpty else {
+            return reply(with: "Found inherited types but there was nothing to mock")
         }
         let formatted = format(mockLines, relativeTo: element).map { "\($0)\n" }
         guard let instructions = BufferInstructionsFactory().create(mockClass: element, lines: formatted) else {
@@ -75,8 +79,12 @@ public class Generator {
         }
         return (instructions, nil)
     }
-    
-    private func getMockBody(from element: Element) -> [String] {
+
+    private func isEmpty(mockClass: UseCasesMockClass) -> Bool {
+        return mockClass.protocols.isEmpty && mockClass.inheritedClass == nil
+    }
+
+    private func getMockBody(from mockClass: UseCasesMockClass) -> [String] {
         let templateName = self.templateName
         let view = UseCasesCallbackMockView { model in
             let view = MustacheView(templateName: templateName)
@@ -84,11 +92,15 @@ public class Generator {
             return view.result
         }
         let generator = UseCasesGenerator(view: view)
-        generator.set(c: TypeDeclarationTransformingVisitor.transformMock(element, resolver: resolver))
+        generator.set(c: mockClass)
         generator.generate()
         return view.result
     }
-    
+
+    private func transformToMockClass(element: Element) -> UseCasesMockClass {
+        return TypeDeclarationTransformingVisitor.transformMock(element, resolver: resolver)
+    }
+
     private func format(_ lines: [String], relativeTo element: Element) -> [String] {
         return FormatUtil(useTabs: useTabsForIndentation, spaces: indentationWidth)
                 .format(lines, relativeTo: element)

@@ -1,5 +1,6 @@
 import UseCases
 import AST
+import ASTImpl
 import Resolver
 import Foundation
 
@@ -85,8 +86,19 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     override func visitFunctionDeclaration(_ element: FunctionDeclaration) {
+        guard isOverridable(element) else {
+            return
+        }
         methods.append(transform(element))
         super.visitFunctionDeclaration(element)
+    }
+
+    private func isOverridable(_ element: Declaration) -> Bool {
+        return !element.hasPrivateModifier
+               && !element.hasFilePrivateModifier
+               && !element.isStatic
+               && !element.hasClassDeclarationModifier
+               && !element.isFinal
     }
 
     private func transform(_ element: FunctionDeclaration) -> UseCasesMethod {
@@ -146,6 +158,9 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     override func visitVariableDeclaration(_ element: VariableDeclaration) {
+        guard isOverridable(element) else {
+            return
+        }
         properties.append(UseCasesProperty(name: element.name,
             type: transformType(element.typeAnnotation.type),
             isWritable: element.isWritable,
@@ -153,6 +168,9 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     override func visitInitializerDeclaration(_ element: InitializerDeclaration) {
+        guard isOverridable(element) else {
+            return
+        }
         initializers.append(UseCasesInitializer(
             parametersList: transformParameters(element.parameterClause.parameters),
             isFailable: element.isFailable,

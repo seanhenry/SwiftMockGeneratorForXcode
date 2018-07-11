@@ -133,7 +133,7 @@ class MemberTransformingVisitorTests: XCTestCase {
     }
 
     private func transformType<T: UseCasesType>(_ input: String, _ t: T.Type) -> T {
-        let type = try! ElementParser.parseType(input)
+        let type = try! ParserTestHelper.parseType(input)
         return MemberTransformingVisitor.transformType(type, resolver: resolver) as! T
     }
 
@@ -185,10 +185,36 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssertEqual(method.declarationText, "func a()")
     }
 
+    func test_visit_shouldIgnorePrivateMethod() {
+        assertMethodIsNotTransformed("private func a()")
+    }
+
+    func test_visit_shouldIgnoreFilePrivateMethod() {
+        assertMethodIsNotTransformed("fileprivate func a()")
+    }
+
+    func test_visit_shouldIgnoreStaticMethod() {
+        assertMethodIsNotTransformed("static func a()")
+    }
+
+    func test_visit_shouldIgnoreClassMethod() {
+        assertMethodIsNotTransformed("class func a()")
+    }
+
+    func test_visit_shouldIgnoreFinalMethod() {
+        assertMethodIsNotTransformed("final func a()")
+    }
+
     private func transformMethod(_ input: String) -> UseCasesMethod {
-        let method = try! ElementParser.parseFunctionDeclaration(input)
+        let method = try! ParserTestHelper.parseFunctionDeclaration(input)
         method.accept(visitor)
         return visitor.methods[0]
+    }
+
+    private func assertMethodIsNotTransformed(_ text: String, line: UInt = #line) {
+        let method = try! ParserTestHelper.parseFunctionDeclaration(text)
+        method.accept(visitor)
+        XCTAssert(visitor.methods.isEmpty, line: line)
     }
 
     private func assertParameter(_ parameter: UseCasesParameter, externalName: String? = nil, internalName: String, type: String, isEscaping: Bool = false, line: UInt = #line) {
@@ -224,9 +250,35 @@ class MemberTransformingVisitorTests: XCTestCase {
     }
 
     private func transformProperty(_ input: String) -> UseCasesProperty {
-        let property = try! ElementParser.parseVariableDeclaration(input)
+        let property = try! ParserTestHelper.parseVariableDeclaration(input)
         property.accept(visitor)
         return visitor.properties[0]
+    }
+
+    func test_visit_shouldIgnorePrivateProperty() {
+        assertPropertyIsNotTransformed("private var a: A")
+    }
+
+    func test_visit_shouldIgnoreFilePrivateProperty() {
+        assertPropertyIsNotTransformed("fileprivate var a: A")
+    }
+
+    func test_visit_shouldIgnoreStaticProperty() {
+        assertPropertyIsNotTransformed("static var a: A")
+    }
+
+    func test_visit_shouldIgnoreClassProperty() {
+        assertPropertyIsNotTransformed("class var a: A")
+    }
+
+    func test_visit_shouldIgnoreFinalProperty() {
+        assertPropertyIsNotTransformed("final var a: A")
+    }
+
+    private func assertPropertyIsNotTransformed(_ text: String, line: UInt = #line) {
+        let variable = try! ParserTestHelper.parseVariableDeclaration(text)
+        variable.accept(visitor)
+        XCTAssert(visitor.properties.isEmpty, line: line)
     }
 
     func test_visit_shouldGetAllMethodsFromProtocol() {
@@ -270,10 +322,28 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssert(initializer.isFailable)
     }
 
+    func test_visit_shouldIgnorePrivateInitializer() {
+        assertInitializerIsNotTransformed("private init()")
+    }
+
+    func test_visit_shouldIgnoreFilePrivateInitializer() {
+        assertInitializerIsNotTransformed("fileprivate init()")
+    }
+
+    func test_visit_shouldIgnoreFinalInitializer() {
+        assertInitializerIsNotTransformed("final init()")
+    }
+
+    private func assertInitializerIsNotTransformed(_ text: String, line: UInt = #line) {
+        let initializer = try! ParserTestHelper.parseInitializerDeclaration(text)
+        initializer.accept(visitor)
+        XCTAssert(visitor.initializers.isEmpty, line: line)
+    }
+
     // MARK: - Helpers
 
     private func getMethodProtocol() -> Element {
-        let file = try! ElementParser.parseFile(getMethodProtocolString())
+        let file = try! ParserTestHelper.parseFile(from: getMethodProtocolString())
         return file.typeDeclarations[0]
     }
 
@@ -288,7 +358,7 @@ class MemberTransformingVisitorTests: XCTestCase {
     }
 
     private func getPropertyProtocol() -> Element {
-        let file = try! ElementParser.parseFile(getPropertyProtocolString())
+        let file = try! ParserTestHelper.parseFile(from: getPropertyProtocolString())
         return file.typeDeclarations[0]
     }
 
@@ -308,7 +378,7 @@ class MemberTransformingVisitorTests: XCTestCase {
     }
 
     private func getInitializerProtocol() -> Element {
-        let file = try! ElementParser.parseFile(getInitializerProtocolString())
+        let file = try! ParserTestHelper.parseFile(from: getInitializerProtocolString())
         return file.typeDeclarations[0]
     }
 

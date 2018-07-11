@@ -119,8 +119,12 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("AvailableClassMock")
     }
 
+    func test_doesNotOverrideInvisibleMembers() {
+        assertMockGeneratesError(fileName: "UnoverridableClassMock", "Found inherited types but there was nothing to mock")
+    }
+
     func test_shouldFilterNSObject() {
-        assertMockGeneratesError(fileName: "NSObjectClassMock", "Could not find a class or protocol on NSObjectClassMock")
+        assertMockGeneratesError(fileName: "NSObjectClassMock", "Found inherited types but there was nothing to mock")
     }
 
     func test_doesNotDeleteMockBody_whenMockGenerateFails() {
