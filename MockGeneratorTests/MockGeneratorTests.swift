@@ -123,6 +123,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesError(fileName: "UnoverridableClassMock", "Found inherited types but there was nothing to mock")
     }
 
+    func test_doesNotYetSupportInferredTypeVariableDeclarations() {
+        assertMockGeneratesError(fileName: "InferredTypeClassMock", "Found inherited types but there was nothing to mock")
+    }
+
     func test_shouldFilterNSObject() {
         assertMockGeneratesError(fileName: "NSObjectClassMock", "Found inherited types but there was nothing to mock")
     }

@@ -158,13 +158,17 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     override func visitVariableDeclaration(_ element: VariableDeclaration) {
-        guard isOverridable(element) else {
+        guard isOverridable(element) && isPropertyOverridable(element) else {
             return
         }
         properties.append(UseCasesProperty(name: element.name,
             type: transformType(element.typeAnnotation.type),
             isWritable: element.isWritable,
             declarationText: element.text))
+    }
+
+    private func isPropertyOverridable(_ element: VariableDeclaration) -> Bool {
+        return !element.typeAnnotation.type.text.isEmpty
     }
 
     override func visitInitializerDeclaration(_ element: InitializerDeclaration) {

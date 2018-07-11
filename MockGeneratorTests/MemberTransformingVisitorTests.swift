@@ -275,6 +275,10 @@ class MemberTransformingVisitorTests: XCTestCase {
         assertPropertyIsNotTransformed("final var a: A")
     }
 
+    func test_visit_shouldIgnorePropertyWithoutTypeAnnotation() {
+        assertPropertyIsNotTransformed("var a = 0")
+    }
+
     private func assertPropertyIsNotTransformed(_ text: String, line: UInt = #line) {
         let variable = try! ParserTestHelper.parseVariableDeclaration(text)
         variable.accept(visitor)
