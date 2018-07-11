@@ -49,7 +49,7 @@ class GenericMethodMockTests: XCTestCase {
     func test_return_shouldLegallyCastTypeInNSObjectReturnType() {
         let string = NSString(string: "string")
         genericMethod.stubbedTestReturn3Result = string
-        XCTAssertEqual(genericMethod.testReturn3(), string)
+        XCTAssert(genericMethod.testReturn3() === string)
     }
 
     func test_return_shouldLegallyCastDictionaryReturnType() {

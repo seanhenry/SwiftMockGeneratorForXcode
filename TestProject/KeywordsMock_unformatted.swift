@@ -1,5 +1,3 @@
-@testable import TestProject
-
 class KeywordsMock: Keywords {
 var invokedClassSetter = false
 var invokedClassSetterCount = 0

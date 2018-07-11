@@ -76,7 +76,7 @@ class MockPropertyProtocol: PropertyProtocol {
     var invokedWeakVarGetter = false
     var invokedWeakVarGetterCount = 0
     var stubbedWeakVar: AnyObject!
-    weak var weakVar: AnyObject? {
+    var weakVar: AnyObject? {
         set {
             invokedWeakVarSetter = true
             invokedWeakVarSetterCount += 1

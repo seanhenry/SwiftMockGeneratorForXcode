@@ -1,7 +1,6 @@
 class UnoverridableClass {
     private init(a: String) {}
     fileprivate init(b: String) {}
-    final init(c: String) {}
     init() { }
     let constant: Int = 0
     static var staticProperty: Int = 0
