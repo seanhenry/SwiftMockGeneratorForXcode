@@ -2,6 +2,8 @@ import Foundation
 import XcodeKit
 
 open class BaseCommand: NSObject, XCSourceEditorCommand {
+    
+    private weak var invocation: SourceEditorCommandInvocation?
 
     open var templateName: String {
         fatalError("override me")
@@ -12,10 +14,11 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     }
     
     public func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) -> Void {
-        self.perform(with: invocation as SourceEditorCommandInvocation, completionHandler: completionHandler)
+        perform(with: invocation as SourceEditorCommandInvocation, completionHandler: completionHandler)
     }
     
     func perform(with invocation: SourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) -> Void {
+        self.invocation = invocation
         setCancelHandler(invocation, completionHandler)
         setErrorHandlers(completionHandler)
         connection.remoteObjectProxyWithErrorHandler({ [weak self] proxy in
@@ -42,6 +45,7 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     }
 
     private func finish(with error: Error?, handler: @escaping (Error?) -> ()) {
+        invocation?.cancellationHandler = {} // remove retain cycle
         track(error)
         DispatchQueue.main.async {
             handler(error)
