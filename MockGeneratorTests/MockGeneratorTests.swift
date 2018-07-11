@@ -123,6 +123,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("RequiredInitializerClassMock")
     }
 
+    func test_handlesClassPrivateInitializers() {
+        assertMockGeneratesExpected("PrivateInitializerClassMock")
+    }
+
     func test_doesNotOverrideInvisibleMembers() {
         assertMockGeneratesError(fileName: "UnoverridableClassMock", "Found inherited types but there was nothing to mock")
     }
