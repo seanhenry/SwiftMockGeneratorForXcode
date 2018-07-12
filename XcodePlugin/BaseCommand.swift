@@ -24,7 +24,6 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         connection.remoteObjectProxyWithErrorHandler({ [weak self] proxy in
             self?.generateMock(proxy: proxy, invocation: invocation, completionHandler: completionHandler)
         }) { [weak self] error in
-            XPCManager.resetConnection()
             self?.finish(with: error, handler: completionHandler)
         }
     }
@@ -45,9 +44,11 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     }
 
     private func finish(with error: Error?, handler: @escaping (Error?) -> ()) {
-        invocation?.cancellationHandler = {} // remove retain cycle
-        track(error)
+        connection.interruptionHandler {}
+        connection.invalidationHandler {}
         DispatchQueue.main.async {
+            self.invocation?.cancellationHandler = {} // remove retain cycle
+            self.track(error)
             handler(error)
         }
     }
