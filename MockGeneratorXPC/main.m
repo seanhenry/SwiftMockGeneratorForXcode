@@ -28,7 +28,7 @@
 
 int main(int argc, const char *argv[])
 {
-    [StartUp initCrashlytics];
+    [Analytics initCrashlytics];
     // Create the delegate for the service.
     ServiceDelegate *delegate = [ServiceDelegate new];
     

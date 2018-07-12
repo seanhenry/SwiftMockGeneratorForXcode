@@ -124,6 +124,7 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         let tracker = GoogleAnalyticsTracker()
         if let insertCount = instructions?.linesToInsert.count {
             tracker.track(category: templateName, action: "generated", value: insertCount)
+            Analytics.track(templateName, attributes: ["lines": insertCount])
         }
     }
 
@@ -132,6 +133,7 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         if let error = error {
             let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
             tracker.track(category: templateName, action: "\(version)_\(error.localizedDescription)")
+            Analytics.track("error", attributes: ["version": version, "description": error.localizedDescription])
         }
     }
     

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1426D39120F741760020479B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D620F6452900118C74 /* Crashlytics.framework */; };
+		1426D39220F741760020479B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D720F6452900118C74 /* Fabric.framework */; };
 		14276C6A1F4F312E00EA7753 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
 		14276C6F1F4F312E00EA7753 /* MockGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */; };
 		14276C711F4F312E00EA7753 /* MockGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 14276C631F4F312E00EA7753 /* MockGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -68,11 +70,8 @@
 		191EF6B820F4C9DD00118C74 /* UseCases.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; };
 		191EF6D820F6453D00118C74 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D620F6452900118C74 /* Crashlytics.framework */; };
 		191EF6D920F6453E00118C74 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D720F6452900118C74 /* Fabric.framework */; };
-		191EF6DE20F6C6E200118C74 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D620F6452900118C74 /* Crashlytics.framework */; };
-		191EF6DF20F6C6E200118C74 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D720F6452900118C74 /* Fabric.framework */; };
-		191EF6E120F6C81F00118C74 /* StartUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* StartUp.swift */; };
-		191EF6E220F6C81F00118C74 /* StartUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* StartUp.swift */; };
-		191EF6E320F6C81F00118C74 /* StartUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* StartUp.swift */; };
+		191EF6E120F6C81F00118C74 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* Analytics.swift */; };
+		191EF6E320F6C81F00118C74 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* Analytics.swift */; };
 		191EF6E420F6C92B00118C74 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D620F6452900118C74 /* Crashlytics.framework */; };
 		191EF6E520F6C92C00118C74 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D720F6452900118C74 /* Fabric.framework */; };
 		196F976F20EF0428009A5FD6 /* Bocho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8120EEE7990084C6C1 /* Bocho.framework */; };
@@ -116,6 +115,9 @@
 		19821E8F20EEE7BF0084C6C1 /* SourceKittenFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E9020EEE7BF0084C6C1 /* SWXMLHash.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19821E9120EEE7BF0084C6C1 /* Yams.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		19A86B3D20F734D100C891F6 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* Analytics.swift */; };
+		19A86B3E20F734DA00C891F6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D620F6452900118C74 /* Crashlytics.framework */; };
+		19A86B3F20F734DA00C891F6 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D720F6452900118C74 /* Fabric.framework */; };
 		19DFBC3220DCD0A600BBF8C2 /* XPCBufferInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A92BFF242500EED35DEF /* XPCBufferInstructions.swift */; };
 		1A93A021E80364CB35D30B2F /* BufferEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A7FC328558098E5F8905 /* BufferEditor.swift */; };
 		1A93A03A479FA67359E958BD /* BufferInstructionsFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AB0D73756734F2CF8A99 /* BufferInstructionsFactoryTests.swift */; };
@@ -630,7 +632,7 @@
 		191EF6B420F4616F00118C74 /* copyframeworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = copyframeworks.sh; sourceTree = "<group>"; };
 		191EF6D620F6452900118C74 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = lib/Crashlytics.framework; sourceTree = "<group>"; };
 		191EF6D720F6452900118C74 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = lib/Fabric.framework; sourceTree = "<group>"; };
-		191EF6E020F6C81F00118C74 /* StartUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUp.swift; sourceTree = "<group>"; };
+		191EF6E020F6C81F00118C74 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftToolkit.xcodeproj; path = SwiftToolkit/SwiftToolkit.xcodeproj; sourceTree = "<group>"; };
 		196F977620EF0442009A5FD6 /* libGRMustache7-MacOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libGRMustache7-MacOS.a"; path = "lib/Debug/libGRMustache7-MacOS.a"; sourceTree = "<group>"; };
 		196F977820EF0452009A5FD6 /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UseCases.framework; path = lib/Debug/UseCases.framework; sourceTree = "<group>"; };
@@ -733,9 +735,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				14F8671520D92DB900E79758 /* libXcodePluginProxy.a in Frameworks */,
-				191EF6DE20F6C6E200118C74 /* Crashlytics.framework in Frameworks */,
+				1426D39120F741760020479B /* Crashlytics.framework in Frameworks */,
 				14CA2D6C1F40008F00900937 /* Cocoa.framework in Frameworks */,
-				191EF6DF20F6C6E200118C74 /* Fabric.framework in Frameworks */,
+				1426D39220F741760020479B /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,7 +755,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19A86B3E20F734DA00C891F6 /* Crashlytics.framework in Frameworks */,
 				14F866F020D90C3A00E79758 /* XcodeKit.framework in Frameworks */,
+				19A86B3F20F734DA00C891F6 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -955,7 +959,7 @@
 				35CDF66A5D6E3857898A5E23 /* XcodeProjectPathFinder.swift */,
 				35CDFD267465101B0B67217F /* GoogleAnalyticsTracker.swift */,
 				35CDF9A2068DF1CD95B50147 /* ProjectFinder.swift */,
-				191EF6E020F6C81F00118C74 /* StartUp.swift */,
+				191EF6E020F6C81F00118C74 /* Analytics.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1752,7 +1756,7 @@
 				14B4BC2E208B0A620052A085 /* ProjectFinder.swift in Sources */,
 				35CDFAEF8D8C85FDC471B35A /* PreferencesView.swift in Sources */,
 				35CDF670951C86B8934F8D27 /* XcodeProjectPathFinder.swift in Sources */,
-				191EF6E120F6C81F00118C74 /* StartUp.swift in Sources */,
+				191EF6E120F6C81F00118C74 /* Analytics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1761,7 +1765,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				14F866F120D90C5600E79758 /* SourceEditorExtension.swift in Sources */,
-				191EF6E220F6C81F00118C74 /* StartUp.swift in Sources */,
 				35CDFC1714DE626B1E71A7CC /* SpyCommand.swift in Sources */,
 				35CDF80097FBC72B6A2550A5 /* StubCommand.swift in Sources */,
 				35CDF3FCD960FF97E00313B9 /* DummyCommand.swift in Sources */,
@@ -1773,7 +1776,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CA2D871F4000AB00900937 /* main.m in Sources */,
-				191EF6E320F6C81F00118C74 /* StartUp.swift in Sources */,
+				191EF6E320F6C81F00118C74 /* Analytics.swift in Sources */,
 				14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */,
 				1A93A592375D1E4B0EE6252E /* XPCBufferInstructions.swift in Sources */,
 				35CDF7F2EA060154856EBA05 /* XPCMockGeneratorModel.swift in Sources */,
@@ -1786,6 +1789,7 @@
 			files = (
 				14F866EA20D90BAF00E79758 /* XPCManager.swift in Sources */,
 				14F866EE20D90BD300E79758 /* BaseCommand.swift in Sources */,
+				19A86B3D20F734D100C891F6 /* Analytics.swift in Sources */,
 				14F866F320D90D0200E79758 /* XcodeProjectPathFinder.swift in Sources */,
 				19DFBC3220DCD0A600BBF8C2 /* XPCBufferInstructions.swift in Sources */,
 				14F8671220D927B900E79758 /* Connection.swift in Sources */,
@@ -2230,6 +2234,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2245,6 +2253,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2507,6 +2519,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CODE_SIGN_STYLE = Automatic;
 				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -6,7 +6,7 @@ import XcodePluginProxy
 class SourceEditorExtension: NSObject, XCSourceEditorExtension {
 
     func extensionDidFinishLaunching() {
-        StartUp.initCrashlytics()
+        Analytics.initCrashlytics()
         XPCManager.setUpConnection()
     }
 }

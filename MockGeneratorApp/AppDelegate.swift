@@ -4,7 +4,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        StartUp.initCrashlytics()
+        Analytics.initCrashlytics()
         let name = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
         NSApplication.shared.windows.forEach { window in
             var mask = window.styleMask
