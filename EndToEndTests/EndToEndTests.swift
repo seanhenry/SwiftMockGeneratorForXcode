@@ -130,4 +130,8 @@ class EndToEndTests: MockGeneratorBaseTestCase {
     func test_stripsModifiers() {
         assertMockGeneratesExpected("ModifierClassMock")
     }
+
+    func test_supportsDefaultArgumentsInMethods() {
+        assertMockGeneratesExpected("DefaultArgumentClassMock")
+    }
 }

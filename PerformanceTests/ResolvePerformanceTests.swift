@@ -135,6 +135,10 @@ class ResolvePerformanceTests: XCTestCase {
     func test_stripsModifiers() {
         measure { resolve("ModifierClassMock") }
     }
+
+    func test_supportsDefaultArgumentsInMethods() {
+        measure { resolve("DefaultArgumentClassMock") }
+    }
     
     func resolve(_ testFile: String) {
         let sourceFiles = SourceFileFinder(projectRoot: URL(fileURLWithPath: testProject)).findSourceFiles()
