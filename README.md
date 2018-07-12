@@ -10,18 +10,19 @@ An Xcode extension (plugin) to generate spy, stub, and dummy classes automatical
 ## Install Swift Mock Generator Xcode Source Editor Extension
 
 - Download the latest release [here](https://github.com/seanhenry/SwiftMockGeneratorForXcode/releases)
+- Close Xcode if it is open
 - Copy the app to the `Applications` folder.
 - Open the app
 - Go to `System Preferences -> Extensions -> Xcode Source Editor` and make sure `Mock Generator` is enabled.
 - Open Xcode
 
-## How to create a new Swift mock
+## How to create a new Swift test double
 
-- Create an empty mock class conforming to a protocol.
+- Create an empty class conforming to a protocol.
 
 Example:
 ```
-class MySpy: MyProtocol {
+class MyProtocolSpy: MyProtocol {
 }
 ```
 - Place the cursor inside the class declaration.
@@ -29,9 +30,7 @@ class MySpy: MyProtocol {
 
 ## How to recreate a Swift mock
 
-If you change the underlying protocol its mock will need to be regenerated.
-
-To regenerate the mock, simply follow the steps above.
+There's no need to delete the old code. Simply place the cursor anywhere inside the class declaration and generate the test double as before.
 
 ## Recommended: assign a shortcut
 
@@ -56,8 +55,8 @@ Undo is supported for Xcode plugins but you're safer to use a version control sy
 | Generate and regenerate a dummy.|✅|
 | **Classes and protocols** |
 | Generates test doubles conforming to one or many protocols.|✅|
-| Generates test doubles conforming to a class.||
-| Generates test doubles conforming to both classes and protocols.||
+| Generates test doubles conforming to a class.|✅|
+| Generates test doubles conforming to both classes and protocols.|✅\*|
 | **Recording methods and properties** |
 | Captures invocation status of methods.|✅|
 | Captures invocation status of properties.|✅|
@@ -71,25 +70,26 @@ Undo is supported for Xcode plugins but you're safer to use a version control sy
 | Stubs a default value for return values where possible.|✅|
 | Automatically calls closure parameters with stubbed values.|✅|
 | **Initializers** |
-| Generates convenience initializers requiring no parameters.||
+| Generates convenience initializers requiring no parameters.|✅|
 | Supports initializers with arguments.|✅|
 | Supports failable initializers.|✅|
-| Supports required initializers.||
+| Supports required initializers.|✅|
 | **Throws** |
 | Stub an error for your overridden method to throw. |✅|
 | Supports throwing initializers. |✅|
 | Supports throwing closures. |✅|
 | **Generics** |
 | Generates generic test doubles from protocols with associated types.||
-| Captures invoked generic parameters. |✅ \*|
-| Captures invoked generic return values. |✅ \*|
+| Captures invoked generic parameters. |✅ \*\*|
+| Captures invoked generic return values. |✅ \*\*|
 | **Scope, keywords, and more** |
 | Avoids naming clashes from overloaded methods.|✅|
 | Supports parameter type-annotation attributes and `inout`.|✅|
 | Respects the test double scope and generates `public` and `open` methods and properties.||
 | Generate test doubles inheriting from items in 3rd party frameworks.||
 
-\* generic arguments in closures and generic types are not supported
+\* properties with inferred types are not supported
+\*\* generic arguments in closures and generic types are not supported
 
 ## Feature requests
 
@@ -213,10 +213,7 @@ Despite being called a Mock Generator, this plugin actually generates a spy, stu
 
 ## Build
 
-To bootstrap the project's dependencies use:
-```
-make
-```
+This project currently depends on some private libraries so it cannot currently be built by a third party.
 
 # Credits
 
