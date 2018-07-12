@@ -2,10 +2,11 @@ import Cocoa
 
 public class XPCManager {
     
+    private static let xpcBundleIdentifier = Bundle.main.object(forInfoDictionaryKey: "XPC_BUNDLE_IDENTIFIER") as! String
     public static var connection: Connection!
     
     public static func setUpConnection() {
-        let xpcConnection = NSXPCConnection(serviceName: "codes.seanhenry.MockGeneratorXPC")
+        let xpcConnection = NSXPCConnection(serviceName: xpcBundleIdentifier)
         xpcConnection.remoteObjectInterface = createXPCInterface()
         xpcConnection.resume()
         connection = Connection(xpcConnection)

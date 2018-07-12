@@ -7,6 +7,7 @@ fi
 
 DEST_DIR="$CONFIGURATION_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"
 
+mkdir -p "$DEST_DIR"
 rm -rf "$DEST_DIR"/*.framework || true
 
 FRAMEWORK_DIR="$SRCROOT/SwiftToolkit/Frameworks/$CONFIG"
@@ -28,8 +29,11 @@ echo "Copying frameworks in $FRAMEWORK_DIR to $DEST_DIR"
 cp -R "$FRAMEWORK_DIR/UseCases.framework" "$DEST_DIR"
 
 if [ $CONFIGURATION = "Release" ]; then
+
+    ENTITLEMENTS="${PROJECT_DIR}/MockGeneratorApp/MockGeneratorApp.entitlements"
+
     cd "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/Frameworks"
     for framework in *.framework; do
-        /usr/bin/codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --entitlements "${TARGET_TEMP_DIR}/${PRODUCT_NAME}.app.xcent" --timestamp=none $framework
+        /usr/bin/codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --entitlements "$ENTITLEMENTS" --timestamp=none $framework
     done
 fi
