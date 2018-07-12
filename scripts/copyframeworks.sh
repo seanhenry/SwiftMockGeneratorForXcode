@@ -24,9 +24,12 @@ cp -R \
 "$DEST_DIR"
 
 FRAMEWORK_DIR="$SRCROOT/lib/$CONFIG"
-echo "Copying frameworks in $FRAMEWORK_DIR to $DEST_DIR"
-
+echo "Copying $FRAMEWORK_DIR/UseCases.framework to $DEST_DIR"
 cp -R "$FRAMEWORK_DIR/UseCases.framework" "$DEST_DIR"
+
+FRAMEWORK_DIR="$BUILT_PRODUCTS_DIR"
+echo "Copying $FRAMEWORK_DIR/MockGenerator.framework to $DEST_DIR"
+cp -R "$FRAMEWORK_DIR/MockGenerator.framework" "$DEST_DIR"
 
 if [ $CONFIGURATION = "Release" ]; then
 

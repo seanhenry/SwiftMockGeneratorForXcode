@@ -1183,7 +1183,7 @@
 				14CA2D511F40007000900937 /* Resources */,
 				14CA2D7B1F40009000900937 /* Embed App Extensions */,
 				191EF6E620F6C99600118C74 /* Crashlytics */,
-				191EF6B520F4636D00118C74 /* Embed Frameworks */,
+				191EF6B520F4636D00118C74 /* Manually Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1647,14 +1647,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		191EF6B520F4636D00118C74 /* Embed Frameworks */ = {
+		191EF6B520F4636D00118C74 /* Manually Embed Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Frameworks";
+			name = "Manually Embed Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2199,7 +2199,7 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2219,7 +2219,7 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2455,7 +2455,7 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
