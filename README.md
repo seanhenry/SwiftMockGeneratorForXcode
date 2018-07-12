@@ -89,6 +89,7 @@ Undo is supported for Xcode plugins but you're safer to use a version control sy
 | Generate test doubles inheriting from items in 3rd party frameworks.||
 
 \* properties with inferred types are not supported
+
 \*\* generic arguments in closures and generic types are not supported
 
 ## Feature requests
