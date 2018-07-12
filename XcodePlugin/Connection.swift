@@ -2,8 +2,8 @@ import Cocoa
 
 public class Connection {
 
+    let connection: NSXPCConnection
     private let queue: DispatchQueue
-    private let connection: NSXPCConnection
     private var externalInvalidationHandler: (() -> ())?
     private var externalInterruptionHandler: (() -> ())?
 

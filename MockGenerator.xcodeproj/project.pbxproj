@@ -50,7 +50,6 @@
 		14F8670120D90E5100E79758 /* MockGenerator.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14F8670520D90F3F00E79758 /* TestProject in CopyFiles */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
 		14F8670920D9126A00E79758 /* TestLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F8670820D9126A00E79758 /* TestLocations.swift */; };
-		14F8670D20D9257B00E79758 /* XPCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F8670C20D9257B00E79758 /* XPCTests.swift */; };
 		14F8670F20D9260700E79758 /* MockGeneratorBaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F8670E20D9260700E79758 /* MockGeneratorBaseTestCase.swift */; };
 		14F8671220D927B900E79758 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F8671020D9270E00E79758 /* Connection.swift */; };
 		14F8671520D92DB900E79758 /* libXcodePluginProxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F866B620D9086800E79758 /* libXcodePluginProxy.a */; };
@@ -607,7 +606,6 @@
 		14F866EF20D90C3A00E79758 /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
 		14F8670620D911D800E79758 /* FormatPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatPerformanceTests.swift; sourceTree = "<group>"; };
 		14F8670820D9126A00E79758 /* TestLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLocations.swift; sourceTree = "<group>"; };
-		14F8670C20D9257B00E79758 /* XPCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPCTests.swift; sourceTree = "<group>"; };
 		14F8670E20D9260700E79758 /* MockGeneratorBaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGeneratorBaseTestCase.swift; sourceTree = "<group>"; };
 		14F8671020D9270E00E79758 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		1918AB4520D9D2A1003BE795 /* PerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -968,7 +966,6 @@
 				14F866C520D9088F00E79758 /* EndToEndTests.swift */,
 				14F866C720D9088F00E79758 /* Info.plist */,
 				14F8670820D9126A00E79758 /* TestLocations.swift */,
-				14F8670C20D9257B00E79758 /* XPCTests.swift */,
 				14F8670E20D9260700E79758 /* MockGeneratorBaseTestCase.swift */,
 				1A93A952DD841C71CC1D8772 /* BufferEditorTests.swift */,
 			);
@@ -1806,7 +1803,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				14F8670F20D9260700E79758 /* MockGeneratorBaseTestCase.swift in Sources */,
-				14F8670D20D9257B00E79758 /* XPCTests.swift in Sources */,
 				14F866C620D9088F00E79758 /* EndToEndTests.swift in Sources */,
 				14F8670920D9126A00E79758 /* TestLocations.swift in Sources */,
 				1A93AC8A431EB9540996B52F /* BufferEditorTests.swift in Sources */,
@@ -2199,7 +2195,7 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2219,7 +2215,7 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2455,7 +2451,7 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
