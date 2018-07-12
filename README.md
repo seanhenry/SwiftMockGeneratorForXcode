@@ -9,8 +9,8 @@ An Xcode extension (plugin) to generate spy, stub, and dummy classes automatical
 
 ## Install Swift Mock Generator Xcode Source Editor Extension
 
-- Download the latest release [here](https://github.com/seanhenry/SwiftMockGeneratorForXcode/releases)
 - Close Xcode if it is open
+- Download the latest release [here](https://github.com/seanhenry/SwiftMockGeneratorForXcode/releases)
 - Copy the app to the `Applications` folder.
 - Open the app
 - Go to `System Preferences -> Extensions -> Xcode Source Editor` and make sure `Mock Generator` is enabled.
