@@ -18,7 +18,7 @@ An Xcode extension (plugin) to generate spy, stub, and dummy classes automatical
 
 ## How to create a new Swift test double
 
-- Create an empty class conforming to a protocol.
+- Create an empty class inheriting from a class or protocols that you wish to mock.
 
 Example:
 ```
@@ -55,7 +55,7 @@ Undo is supported for Xcode plugins but you're safer to use a version control sy
 | Generate and regenerate a dummy.|✅|
 | **Classes and protocols** |
 | Generates test doubles conforming to one or many protocols.|✅|
-| Generates test doubles conforming to a class.|✅|
+| Generates test doubles conforming to a class.|✅\*|
 | Generates test doubles conforming to both classes and protocols.|✅\*|
 | **Recording methods and properties** |
 | Captures invocation status of methods.|✅|
