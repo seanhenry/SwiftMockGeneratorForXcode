@@ -1,0 +1,24 @@
+update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Create a release build."
+  lane :release do
+    `rm -r release_output`
+    `rm -r /tmp/fastlaneBuild`
+    scan
+    gym
+    upload_symbols_to_crashlytics(platform: 'mac', dsym_path: ENV['GYM_OUTPUT_DIRECTORY'] + '/Swift Mock Generator for Xcode.app.dSYM.zip')
+    dmg
+  end
+
+  desc "Create a dmg from the built app"
+  private_lane :dmg do
+    src_dir = 'src_dir'
+    `mkdir -p #{src_dir}`
+    `cp -R 'release_output/Swift Mock Generator for Xcode.app' #{src_dir}`
+    `ln -s /Applications #{src_dir}/Applications`
+    `hdiutil create -volname 'Swift Mock Generator for Xcode' -srcfolder '#{src_dir}' -ov -format UDZO 'Swift Mock Generator for Xcode.dmg'`
+  end
+end
