@@ -112,7 +112,6 @@ class BufferInstructionsFactoryTests: XCTestCase {
     }
 
     class NoFileTypeDeclaration: TypeDeclaration {
-
         var accessLevelModifier: AccessLevelModifier {
             fatalError()
         }
@@ -132,7 +131,11 @@ class BufferInstructionsFactoryTests: XCTestCase {
             return ""
         }
         var children: [Element] {
-            return []
+            set {
+            }
+            get {
+                return []
+            }
         }
         var file: File? {
             return nil
@@ -140,10 +143,8 @@ class BufferInstructionsFactoryTests: XCTestCase {
         var parent: Element? {
             return nil
         }
-
         func accept(_ visitor: ElementVisitor) {
         }
-
         func isIdentical(to: Element) -> Bool {
             return false
         }

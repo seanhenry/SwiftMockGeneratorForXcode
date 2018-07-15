@@ -27,10 +27,6 @@ FRAMEWORK_DIR="$SRCROOT/lib/$CONFIG"
 echo "Copying $FRAMEWORK_DIR/UseCases.framework to $DEST_DIR"
 cp -R "$FRAMEWORK_DIR/UseCases.framework" "$DEST_DIR"
 
-FRAMEWORK_DIR="$BUILT_PRODUCTS_DIR"
-echo "Copying $FRAMEWORK_DIR/MockGenerator.framework to $DEST_DIR"
-cp -R "$FRAMEWORK_DIR/MockGenerator.framework" "$DEST_DIR"
-
 if [ $CONFIGURATION = "Release" ]; then
 
     ENTITLEMENTS="${PROJECT_DIR}/MockGeneratorApp/MockGeneratorApp.entitlements"
