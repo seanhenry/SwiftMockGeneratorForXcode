@@ -25,3 +25,6 @@ platform :ios do
     `rm -rf #{src_dir}`
   end
 end
+
+# verify bundle:
+# spctl --assess --verbose path/to.app
