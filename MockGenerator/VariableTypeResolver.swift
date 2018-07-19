@@ -1,5 +1,4 @@
 import AST
-import ASTImpl
 import Resolver
 
 class VariableTypeResolver: RecursiveElementVisitor {
