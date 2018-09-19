@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		14AA09741F50D95B00968958 /* TestProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14AA096A1F50D95B00968958 /* TestProject.framework */; };
 		14AA097B1F50D95B00968958 /* TestProject.h in Headers */ = {isa = PBXBuildFile; fileRef = 14AA096D1F50D95B00968958 /* TestProject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14F6107221524122006EE58B /* UTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6107121524122006EE58B /* UTF.swift */; };
+		14F6107421524187006EE58B /* UTFMock_expected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6107321524187006EE58B /* UTFMock_expected.swift */; };
 		1A93A01A13E563D04529D00F /* MethodParameterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A04493E011EF2A63062B /* MethodParameterProtocol.swift */; };
 		1A93A02DD410AD3A95F0C5AC /* ThrowingClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AD94883CAEBDAC70D244 /* ThrowingClass.swift */; };
 		1A93A02FFD60A5C193D15480 /* NSObjectClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AC6C44423D173FC69CAF /* NSObjectClass.swift */; };
@@ -107,6 +109,9 @@
 		14AA096E1F50D95B00968958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14AA09731F50D95B00968958 /* TestProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14AA097A1F50D95B00968958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14F6106F215240CD006EE58B /* UTFMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTFMock.swift; sourceTree = "<group>"; };
+		14F6107121524122006EE58B /* UTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTF.swift; sourceTree = "<group>"; };
+		14F6107321524187006EE58B /* UTFMock_expected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTFMock_expected.swift; sourceTree = "<group>"; };
 		1A93A0271AD98762290F4716 /* DeepInheritance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepInheritance.swift; sourceTree = "<group>"; };
 		1A93A035697D431EA925C5FB /* PropertyProtocolMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyProtocolMock.swift; sourceTree = "<group>"; };
 		1A93A04493E011EF2A63062B /* MethodParameterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodParameterProtocol.swift; sourceTree = "<group>"; };
@@ -252,6 +257,9 @@
 		14AA09601F50D95B00968958 = {
 			isa = PBXGroup;
 			children = (
+				14F6106F215240CD006EE58B /* UTFMock.swift */,
+				14F6107321524187006EE58B /* UTFMock_expected.swift */,
+				14F6107121524122006EE58B /* UTF.swift */,
 				14AA096C1F50D95B00968958 /* TestProject */,
 				14AA09771F50D95B00968958 /* TestProjectTests */,
 				14AA096B1F50D95B00968958 /* Products */,
@@ -544,6 +552,7 @@
 				35CDFC3894E7CF5A54DC7F14 /* DataStore.swift in Sources */,
 				35CDF134CC433FB7B36EBDAF /* HelperClasses.swift in Sources */,
 				1A93AA35E7FA42E3465CEB66 /* NestedClassPerformanceTest_formatted.swift in Sources */,
+				14F6107421524187006EE58B /* UTFMock_expected.swift in Sources */,
 				1A93AE4AD2DBA95FF89C8B9A /* ClosureProtocol.swift in Sources */,
 				1A93A46E0F63D5E91FFEE68F /* DefaultValues.swift in Sources */,
 				1A93A52E779B46157171C1BB /* DeepInheritance.swift in Sources */,
@@ -563,6 +572,7 @@
 				1A93A5BD25540C3DEF514BFD /* PropertyProtocol.swift in Sources */,
 				1A93A6CCA032B7EDFD22E4A4 /* ThrowingProtocol.swift in Sources */,
 				1A93A554C3BEFA46F56B848F /* OverloadProtocol.swift in Sources */,
+				14F6107221524122006EE58B /* UTF.swift in Sources */,
 				1A93ACE75E23A48046096A9C /* AvailableClass.swift in Sources */,
 				1A93A02DD410AD3A95F0C5AC /* ThrowingClass.swift in Sources */,
 				1A93A7333E13D1FF26FDA972 /* RequiredInitializerClass.swift in Sources */,

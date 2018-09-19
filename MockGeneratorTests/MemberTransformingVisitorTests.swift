@@ -295,6 +295,10 @@ class MemberTransformingVisitorTests: XCTestCase {
         return visitor.properties[0]
     }
 
+    func test_visit_shouldIgnoreConstant() {
+        assertPropertyIsNotTransformed("let a: B")
+    }
+
     func test_visit_shouldIgnorePrivateProperty() {
         assertPropertyIsNotTransformed("private var a: A")
     }

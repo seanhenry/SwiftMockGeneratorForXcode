@@ -103,7 +103,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     private func transform(_ element: FunctionDeclaration) -> UseCasesMethod {
         let genericParameter = transformGenericParameters(from: element)
         let parameters = transformParameters(element.parameterClause.parameters)
-        let returnType = element.returnType.map { transformType($0) } ?? UseCasesTypeIdentifier(identifier: "")
+        let returnType = element.functionResult.map { transformType($0.type) } ?? UseCasesTypeIdentifier(identifier: "")
         return UseCasesMethod(name: element.name,
             genericParameters: genericParameter,
             returnType: UseCasesResolvedType(originalType: returnType, resolvedType: returnType),
@@ -112,7 +112,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
             throws: element.throws)
     }
 
-    private func getDeclarationText(_ element: Declaration) -> String {
+    private func getDeclarationText(_ element: Element) -> String {
         var text = ""
         for child in element.children where isAllowedInDeclarationText(child) {
             text.append(child.text)
@@ -125,6 +125,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
                && !(child is DeclarationModifier)
                && !(child is Attributes)
                && !(child is GetterSetterKeywordBlock)
+               && !(child is Initializer)
     }
 
     private func transformGenericParameters(from element: FunctionDeclaration) -> [String] {
@@ -160,13 +161,15 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     override func visitVariableDeclaration(_ element: VariableDeclaration) {
-        guard isOverridable(element) && isPropertyOverridable(element) else {
+        guard isOverridable(element) && isPropertyOverridable(element),
+              let name = element.name,
+              let typeAnnotation = element.typeAnnotation else {
             return
         }
-        properties.append(UseCasesProperty(name: element.name,
-            type: transformType(element.typeAnnotation.type),
+        properties.append(UseCasesProperty(name: name,
+            type: transformType(typeAnnotation.type),
             isWritable: isWritable(element),
-            declarationText: getDeclarationText(element)))
+            declarationText: "var \(getDeclarationText(element.patternInitializerList.patternInitializers[0]))"))
     }
 
     private func isWritable(_ element: VariableDeclaration) -> Bool {
@@ -183,7 +186,8 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     private func isPropertyOverridable(_ element: VariableDeclaration) -> Bool {
-        return !element.typeAnnotation.type.text.isEmpty
+        return element.typeAnnotation != nil
+            && !element.isConstant
     }
 
     override func visitInitializerDeclaration(_ element: InitializerDeclaration) {

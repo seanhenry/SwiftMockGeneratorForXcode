@@ -19,7 +19,7 @@ class TypeResolverVisitorTests: XCTestCase {
     override func setUp() {
         super.setUp()
         genericClause = try! ParserTestHelper.parseGenericParameterClause("<T>")
-        classType = (try! ParserTestHelper.parseType("Int")) as! TypeIdentifier
+        classType = (try! ParserTestHelper.parseType("Int")) as? TypeIdentifier
         type = createType("T")
         array = createArray(type)
         dictionary = createDictionary(type, type)

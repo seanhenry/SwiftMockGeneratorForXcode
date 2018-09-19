@@ -44,7 +44,7 @@ public class Generator {
     public func tryGenerateMock() throws -> (BufferInstructions?, Error?) {
         let file = try ElementParser.parseFile(fileContents)
         // TODO: create findElementAtLine:column:
-        guard let cursorOffset = LocationConverter.convert(line: line, column: column, in: fileContents) else {
+        guard let cursorOffset = LocationConverter(from: .utf16, to: .utf32).convert(line: line, column: column, in: fileContents) else {
             return reply(with: "Could not get the cursor position")
         }
         guard let elementUnderCaret = CaretUtil().findElementUnderCaret(in: file, cursorOffset: Int(cursorOffset), type: Element.self) else {
@@ -53,8 +53,8 @@ public class Generator {
         guard let typeElement = (elementUnderCaret as? TypeDeclaration) ?? ElementTreeUtil().findParentType(elementUnderCaret) else {
             return reply(with: "Place the cursor on a mock class declaration")
         }
-        guard typeElement.typeInheritanceClause.inheritedTypes.count > 0 else {
-            return reply(with: "MockClass must implement at least 1 protocol")
+        guard let types = typeElement.typeInheritanceClause?.inheritedTypes, types.count > 0 else {
+            return reply(with: "MockClass must inherit from a class or implement at least 1 protocol")
         }
         return buildMock(toFile: file, atElement: typeElement)
     }

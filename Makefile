@@ -87,8 +87,8 @@ mustache: xcpretty mkdestpath
 	cd $(MUSTACHE_SRC_PATH); \
 	git submodule update --init src/vendor/groue/jrswizzle; \
 	$(call build_mustache,Debug); \
+    cp -Rf build/Build/Products/Debug/libGRMustache7-MacOS.a build/Build/Products/Debug/include $(DEST_PATH_DEBUG); \
 	$(call build_mustache,Release); \
-	cp -Rf build/Build/Products/Debug/libGRMustache7-MacOS.a build/Build/Products/Debug/include $(DEST_PATH_DEBUG); \
 	cp -Rf build/Build/Products/Release/libGRMustache7-MacOS.a build/Build/Products/Release/include $(DEST_PATH_RELEASE); \
 	echo "$$MUSTACHE_MODULE_MAP" > $(DEST_PATH_DEBUG)/include/GRMustache/module.modulemap; \
 	echo "$$MUSTACHE_MODULE_MAP" > $(DEST_PATH_RELEASE)/include/GRMustache/module.modulemap;

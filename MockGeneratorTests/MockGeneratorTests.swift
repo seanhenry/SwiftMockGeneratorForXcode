@@ -139,6 +139,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("DefaultArgumentClassMock")
     }
 
+    func test_supportsUTF32Characters() {
+        assertMockGeneratesExpected("UTFMock")
+    }
+
     func test_doesNotOverrideInvisibleMembers() {
         assertMockGeneratesError(fileName: "UnoverridableClassMock", "Found inherited types but there was nothing to mock")
     }
@@ -160,7 +164,7 @@ class MockGeneratorTests: XCTestCase {
     }
 
     func test_returnsErrorWhenMockClassDoesNotInheritFromAnything() {
-        assertMockGeneratesError(contents: "class MockClass {<caret>}", "MockClass must implement at least 1 protocol")
+        assertMockGeneratesError(contents: "class MockClass {<caret>}", "MockClass must inherit from a class or implement at least 1 protocol")
     }
 
     func test_generatesMockForAllCaretPositions() {
