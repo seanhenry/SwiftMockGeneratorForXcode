@@ -12,7 +12,11 @@ class XcodeProjectPathFinder {
 
     func findOpenWorkspacePath() -> String? {
         precondition(Thread.isMainThread, "NSAppleScript must be run on the main thread.")
-        let script = NSAppleScript(source: "tell application \"Xcode\" to path of active workspace document")
+        let script = NSAppleScript(source: """
+        if application id "com.apple.dt.Xcode" is running then
+          tell application id "com.apple.dt.Xcode" to path of active workspace document
+        end if
+        """)
         return script?.executeAndReturnError(nil).stringValue
     }
 }
