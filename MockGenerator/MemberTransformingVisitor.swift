@@ -163,13 +163,23 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     override func visitVariableDeclaration(_ element: VariableDeclaration) {
         guard isOverridable(element) && isPropertyOverridable(element),
               let name = element.name,
-              let typeAnnotation = element.typeAnnotation else {
+              let type = findType(element) else {
             return
         }
+        let typeAnnotation = element.typeAnnotation == nil ? ": \(type.text)" : ""
         properties.append(UseCasesProperty(name: name,
-            type: transformType(typeAnnotation.type),
+            type: type,
             isWritable: isWritable(element),
-            declarationText: "var \(getDeclarationText(element.patternInitializerList.patternInitializers[0]))"))
+            declarationText: "var \(getDeclarationText(element.patternInitializerList.patternInitializers[0]))\(typeAnnotation)"))
+    }
+
+    private func findType(_ element: VariableDeclaration) -> UseCasesType? {
+        if let type = element.typeAnnotation?.type {
+            return transformType(type)
+        } else if let typeName = VariableTypeResolver.resolve(element, resolver: resolver) {
+            return UseCasesTypeIdentifierBuilder(identifier: typeName).build()
+        }
+        return nil
     }
 
     private func isWritable(_ element: VariableDeclaration) -> Bool {
@@ -186,8 +196,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     private func isPropertyOverridable(_ element: VariableDeclaration) -> Bool {
-        return element.typeAnnotation != nil
-            && !element.isConstant
+        return !element.isConstant
     }
 
     override func visitInitializerDeclaration(_ element: InitializerDeclaration) {

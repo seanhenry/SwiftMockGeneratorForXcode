@@ -289,8 +289,47 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssertFalse(property.isWritable)
     }
 
+    func test_visit_shouldFindInferredIntLiteralType() {
+        XCTAssertEqual(transformProperty("var a = 0").type.text, "Int")
+    }
+
+    func test_visit_shouldFindInferredBoolLiteralType() {
+        XCTAssertEqual(transformProperty("var a = false").type.text, "Bool")
+    }
+
+    func test_visit_shouldFindInferredStringLiteralType() {
+        XCTAssertEqual(transformProperty("var a = \"\"").type.text, "String")
+    }
+
+    func test_visit_shouldFindInferredDoubleLiteralType() {
+        XCTAssertEqual(transformProperty("var a = 0.0").type.text, "Double")
+    }
+
+    func test_visit_shouldFindClassType() {
+        XCTAssertEqual(transformProperty("class A {}\nvar a = A()").type.text, "A")
+    }
+
+    func test_visit_shouldFindStructType() {
+        XCTAssertEqual(transformProperty("struct A {}\nvar a = A()").type.text, "A")
+    }
+
+    func test_visit_shouldFindEnumType() {
+        XCTAssertEqual(transformProperty("enum A {}\nvar a = A()").type.text, "A")
+    }
+
+    func test_visit_shouldFindArrayLiteralType() {
+        let property: UseCasesType = transformProperty("class A {}\nvar a = [A]()").type
+        XCTAssertEqual(property.text, "[A]")
+        XCTAssert(property is UseCasesArrayType)
+    }
+
+    func test_visit_shouldAppendTypeAnnotationToSignatureWhenInferredType() {
+        XCTAssertEqual(transformProperty("var a = 0").declarationText, "var a: Int")
+    }
+
     private func transformProperty(_ input: String) -> UseCasesProperty {
-        let property = try! ParserTestHelper.parseVariableDeclaration(input)
+        let file = try! ParserTestHelper.parseFile(from: input)
+        let property = file.variableDeclarations[0]
         property.accept(visitor)
         return visitor.properties[0]
     }
@@ -319,8 +358,8 @@ class MemberTransformingVisitorTests: XCTestCase {
         assertPropertyIsNotTransformed("final var a: A")
     }
 
-    func test_visit_shouldIgnorePropertyWithoutTypeAnnotation() {
-        assertPropertyIsNotTransformed("var a = 0")
+    func test_visit_shouldIgnoreUnresolvableProperty() {
+        assertPropertyIsNotTransformed("var a = cannotResolve")
     }
 
     private func assertPropertyIsNotTransformed(_ text: String, line: UInt = #line) {

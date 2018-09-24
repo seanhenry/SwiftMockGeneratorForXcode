@@ -30,21 +30,41 @@ class VariableTypeResolverTests: XCTestCase {
   }
 
   func test_shouldResolveInitializerWithArrayFunctionCall() {
-    assertResolve("var a = [Int]()", "[Int]")
+    assertResolve("var a = [ClassType]()", "[ClassType]")
+  }
+
+  func test_shouldResolveToClassType() {
+    assertResolve("var a = ClassType()", "ClassType")
+  }
+
+  func test_shouldResolveToStructType() {
+    assertResolve("var a = StructType()", "StructType")
+  }
+
+  func test_shouldResolveToEnumType() {
+    assertResolve("var a = EnumType()", "EnumType")
   }
 
   func test_shouldResolveInitializerWithDictionaryFunctionCall() {
-    assertResolve("var a = [Int: String]()", "[Int: String]")
+    assertResolve("var a = [ClassType: ClassType]()", "[ClassType: ClassType]")
   }
 
-  func test_shouldResolveInitializerWithFunctionCallResolvingToMethod() {
-    assertResolve("var a = returnMethod()", "ReturnMethodType")
+  func test_shouldNotResolveToUnresolvableItem() {
+    assertResolveNil("var a = cannotResolve")
   }
+
+  // TODO: support resolving to declarations
+//  func test_shouldResolveInitializerWithFunctionCallResolvingToMethod() {
+//    assertResolve("var a = returnMethod()", "ReturnMethodType")
+//  }
 
   private func assertResolve(_ text: String, _ expected: String, line: UInt = #line) {
     let fullText = """
     \(text)
     func returnMethod() -> ReturnMethodType {}
+    class ClassType {}
+    struct StructType {}
+    enum EnumType {}
     """
     XCTAssertEqual(try resolve(fullText), expected, line: line)
   }

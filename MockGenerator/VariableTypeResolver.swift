@@ -61,7 +61,11 @@ class VariableTypeResolver: RecursiveElementVisitor {
   }
 
   override func visitFunctionCallExpression(_ element: FunctionCallExpression) {
-    name = resolve(element.postfixExpression)
+    if let name = resolve(element.postfixExpression) {
+        self.name = name
+    } else {
+        super.visitFunctionCallExpression(element)
+    }
   }
 
   override func visitExpression(_ element: Expression) {
@@ -72,14 +76,17 @@ class VariableTypeResolver: RecursiveElementVisitor {
     super.visitExpression(element)
   }
 
-  override func visitPrefixExpression(_ element: PrefixExpression) {
-    name = element.text
-    super.visitPrefixExpression(element)
-  }
-
   override func visitIdentifierPrimaryExpression(_ element: IdentifierPrimaryExpression) {
     if let resolved = resolve(resolver.resolve(element)) {
       name = resolved
     }
   }
+
+    override func visitTypeDeclaration(_ element: TypeDeclaration) {
+        name = element.name
+    }
+
+    override func visitFunctionDeclaration(_ element: FunctionDeclaration) {
+        name = element.functionResult?.type.text
+    }
 }

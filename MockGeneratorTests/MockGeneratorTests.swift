@@ -147,8 +147,8 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesError(fileName: "UnoverridableClassMock", "Found inherited types but there was nothing to mock")
     }
 
-    func test_doesNotYetSupportInferredTypeVariableDeclarations() {
-        assertMockGeneratesError(fileName: "InferredTypeClassMock", "Found inherited types but there was nothing to mock")
+    func test_supportsInferredTypeVariableDeclarations() {
+        assertMockGeneratesExpected("InferredTypeClassMock")
     }
 
     func test_doesNotYetSupportMultipleVariableDeclarations() {

@@ -1,4 +1,7 @@
 typealias StringAlias = String
+struct String {}
+struct Int {}
+struct UInt {}
 
 class InferredTypeClass {
     var string = String("")
