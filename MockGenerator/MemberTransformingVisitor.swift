@@ -176,8 +176,8 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     private func findType(_ element: VariableDeclaration) -> UseCasesType? {
         if let type = element.typeAnnotation?.type {
             return transformType(type)
-        } else if let typeName = VariableTypeResolver.resolve(element, resolver: resolver) {
-            return UseCasesTypeIdentifierBuilder(identifier: typeName).build()
+        } else if let type = VariableTypeResolver.resolve(element, resolver: resolver) {
+            return type
         }
         return nil
     }

@@ -1,76 +1,75 @@
 import AST
 import Resolver
+import UseCases
 
 class VariableTypeResolver: RecursiveElementVisitor {
-  public class func resolve(_ element: Element?, resolver: Resolver) -> String? {
+  public class func resolve(_ element: Element?, resolver: Resolver) -> UseCasesType? {
     let visitor = VariableTypeResolver(resolver: resolver)
     element?.accept(visitor)
-    return visitor.name
+    return visitor.type
   }
 
   let resolver: Resolver
-  var name: String?
+  var type: UseCasesType?
 
   init(resolver: Resolver) {
     self.resolver = resolver
   }
 
-  private func resolve(_ element: Element?) -> String? {
+  private func resolve(_ element: Element?) -> UseCasesType? {
     return VariableTypeResolver.resolve(element, resolver: resolver)
   }
 
   override func visitVariableDeclaration(_ element: VariableDeclaration) {
     if let typeAnnotation = element.typeAnnotation {
-      name = typeAnnotation.type.text
+      setTypeIdentifier(typeAnnotation.type.text)
     } else {
       element.patternInitializerList.patternInitializers.first?.accept(self)
     }
   }
 
   override func visitStaticStringLiteralExpression(_ element: StaticStringLiteralExpression) {
-    name = "String"
+    setTypeIdentifier("String")
   }
 
   override func visitFloatingPointLiteralExpression(_ element: FloatingPointLiteralExpression) {
-    name = "Double"
+    setTypeIdentifier("Double")
   }
 
   override func visitIntegerLiteralExpression(_ element: IntegerLiteralExpression) {
-    name = "Int"
+    setTypeIdentifier("Int")
   }
 
   override func visitBooleanLiteralExpression(_ element: BooleanLiteralExpression) {
-    name = "Bool"
+    setTypeIdentifier("Bool")
   }
 
   override func visitArrayLiteralExpression(_ element: ArrayLiteralExpression) {
     guard let value = resolve(element.arrayLiteralItems?.items.first?.expression) else {
-      name = nil
+      type = nil
       return
     }
-    name = "[\(value)]"
+    type = UseCasesArrayType(type: value, useVerboseSyntax: false)
   }
 
   override func visitDictionaryLiteralExpression(_ element: DictionaryLiteralExpression) {
     guard let key = resolve(element.dictionaryLiteralItems?.items.first?.keyExpression),
-          let value = resolve(element.dictionaryLiteralItems?.items.first?.valueExpression) else {
-      name = nil
-      return
+      let value = resolve(element.dictionaryLiteralItems?.items.first?.valueExpression) else {
+        type = nil
+        return
     }
-    name = "[\(key): \(value)]"
+    type = UseCasesDictionaryType(keyType: key, valueType: value, useVerboseSyntax: false)
   }
 
   override func visitFunctionCallExpression(_ element: FunctionCallExpression) {
-    if let name = resolve(element.postfixExpression) {
-        self.name = name
-    } else {
-        super.visitFunctionCallExpression(element)
+    if let type = resolve(element.postfixExpression) {
+      self.type = type
     }
   }
 
   override func visitExpression(_ element: Expression) {
-    if let identifier = resolve(element.prefixExpression) {
-      name = identifier
+    if let type = resolve(element.prefixExpression) {
+      self.type = type
       return
     }
     super.visitExpression(element)
@@ -78,15 +77,17 @@ class VariableTypeResolver: RecursiveElementVisitor {
 
   override func visitIdentifierPrimaryExpression(_ element: IdentifierPrimaryExpression) {
     if let resolved = resolve(resolver.resolve(element)) {
-      name = resolved
+      type = resolved
     }
   }
 
-    override func visitTypeDeclaration(_ element: TypeDeclaration) {
-        name = element.name
-    }
+  override func visitTypeDeclaration(_ element: TypeDeclaration) {
+    setTypeIdentifier(element.name)
+  }
 
-    override func visitFunctionDeclaration(_ element: FunctionDeclaration) {
-        name = element.functionResult?.type.text
+  private func setTypeIdentifier(_ name: String?) {
+    if let name = name {
+      type = UseCasesTypeIdentifier(identifier: name)
     }
+  }
 }
