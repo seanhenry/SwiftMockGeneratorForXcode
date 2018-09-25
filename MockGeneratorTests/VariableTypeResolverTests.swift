@@ -54,10 +54,17 @@ class VariableTypeResolverTests: XCTestCase {
         assertResolveNil("var a = cannotResolve")
     }
 
-    // TODO: support resolving to declarations
-    //  func test_shouldResolveInitializerWithFunctionCallResolvingToMethod() {
-    //    assertResolve("var a = returnMethod()", "ReturnMethodType")
-    //  }
+    func test_shouldResolveAsPattern() {
+        assertResolve("var a = a as A", "A")
+    }
+
+    func test_shouldResolveAsArrayPattern() {
+        assertResolveArray("var a = a as [ClassType]", "ClassType")
+    }
+
+    func test_shouldResolveIsPattern() {
+        assertResolve("var a = a is A", "Bool")
+    }
 
     private func assertResolve(_ text: String, _ expected: String, line: UInt = #line) {
         XCTAssertEqual(try resolve(text)?.text, expected, line: line)

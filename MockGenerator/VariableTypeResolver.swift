@@ -23,9 +23,31 @@ class VariableTypeResolver: RecursiveElementVisitor {
   override func visitVariableDeclaration(_ element: VariableDeclaration) {
     if let typeAnnotation = element.typeAnnotation {
       setTypeIdentifier(typeAnnotation.type.text)
+    } else if let last = getLastBinaryExpression(element) {
+      last.accept(self)
     } else {
       element.patternInitializerList.patternInitializers.first?.accept(self)
     }
+  }
+
+  private func getLastBinaryExpression(_ element: VariableDeclaration) -> BinaryExpression? {
+    return element
+      .patternInitializerList
+      .patternInitializers
+      .first?
+      .initializer?
+      .expression
+      .binaryExpressions?
+      .expressions
+      .last
+  }
+
+  override func visitType(_ element: Type) {
+    type = transformType(element)
+  }
+
+  private func transformType(_ element: Element) -> UseCasesType {
+    return MemberTransformingVisitor.transformType(element, resolver: resolver)
   }
 
   override func visitStaticStringLiteralExpression(_ element: StaticStringLiteralExpression) {
@@ -85,9 +107,21 @@ class VariableTypeResolver: RecursiveElementVisitor {
     setTypeIdentifier(element.name)
   }
 
+  override func visitTypeCastingOperator(_ element: TypeCastingOperator) {
+    if element.isAs {
+      super.visitTypeCastingOperator(element)
+    } else {
+      setTypeIdentifier("Bool")
+    }
+  }
+
   private func setTypeIdentifier(_ name: String?) {
     if let name = name {
       type = UseCasesTypeIdentifier(identifier: name)
     }
+  }
+
+  override func visitIsPattern(_ element: IsPattern) {
+    type = resolve(element)
   }
 }
