@@ -89,6 +89,12 @@ class VariableTypeResolver: RecursiveElementVisitor {
     }
   }
 
+  override func visitExplicitMemberExpression(_ element: ExplicitMemberExpression) {
+    if let identifier = element.identifier {
+      type = resolve(resolver.resolve(identifier))
+    }
+  }
+
   override func visitExpression(_ element: Expression) {
     if let type = resolve(element.prefixExpression) {
       self.type = type

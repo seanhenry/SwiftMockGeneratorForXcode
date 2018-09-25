@@ -6,6 +6,15 @@ import UseCases
 @testable import MockGenerator
 
 class VariableTypeResolverTests: XCTestCase {
+    func test_shouldNotResolveUnsupportedItems() {
+        assertResolveNil("var a = unresolved")
+        assertResolveNil("var a = unresolved()")
+        assertResolveNil("var a = ClassType.unresolved()")
+        assertResolveNil("var a = a?.b?.c?()")
+        assertResolveNil("var a = a!.b!.c!()")
+        assertResolveNil("var a = a.b.c?()")
+    }
+
     func test_shouldResolveTypeAnnotation() {
         assertResolve("var a: A", "A")
     }
