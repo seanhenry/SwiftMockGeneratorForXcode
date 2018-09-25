@@ -103,6 +103,15 @@ class VariableTypeResolver: RecursiveElementVisitor {
     }
   }
 
+  override func visitTupleExpression(_ element: TupleExpression) {
+    let resolved = element.tupleElementList.elements.map {
+      resolve($0) ?? UseCasesTypeIdentifier(identifier: "Any")
+    }.map {
+        UseCasesTupleTypeTupleElement(label: nil, type: $0)
+    }
+    type = UseCasesTupleType(tupleElements: resolved)
+  }
+
   override func visitTypeDeclaration(_ element: TypeDeclaration) {
     setTypeIdentifier(element.name)
   }

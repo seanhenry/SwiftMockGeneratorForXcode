@@ -66,6 +66,18 @@ class VariableTypeResolverTests: XCTestCase {
         assertResolve("var a = a is A", "Bool")
     }
 
+    func test_shouldResolveTuple() {
+        assertResolveTuple("var a = (0, false)", "Int", "Bool")
+    }
+
+    func test_shouldResolveEmptyTuple() {
+        assertResolveTuple("var a = ()")
+    }
+
+    func test_shouldResolveTupleElementToAnyWhenCannotResolve() {
+        assertResolveTuple("var a = (a, b, c)", "Any", "Any", "Any")
+    }
+
     private func assertResolve(_ text: String, _ expected: String, line: UInt = #line) {
         XCTAssertEqual(try resolve(text)?.text, expected, line: line)
     }
@@ -85,6 +97,19 @@ class VariableTypeResolverTests: XCTestCase {
         XCTAssertEqual(dict?.text, "[\(expectedKey): \(expectedValue)]", line: line)
         XCTAssertEqual(dict?.keyType.text, expectedKey, line: line)
         XCTAssertEqual(dict?.valueType.text, expectedValue, line: line)
+    }
+
+    private func assertResolveTuple(_ text: String, _ expected: String..., line: UInt = #line) {
+        let resolved = try! resolve(text)
+        XCTAssert(resolved is UseCasesTupleType, line: line)
+        guard let tuple = resolved as? UseCasesTupleType else {
+            XCTFail("Expected tuple type", line: line)
+            return
+        }
+        XCTAssertEqual(tuple.text, "(\(expected.joined(separator: ", ")))", line: line)
+        zip(expected, tuple.types).forEach { expected, type in
+            XCTAssertEqual(type.text, expected, line: line)
+        }
     }
 
     private func assertResolveNil(_ text: String, line: UInt = #line) {
