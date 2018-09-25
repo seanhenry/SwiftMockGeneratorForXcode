@@ -161,91 +161,6 @@ class InferredTypeClassMock: InferredTypeClass {
             return stubbedIsExpression
         }
     }
-    var invokedEmptyClosureSetter = false
-    var invokedEmptyClosureSetterCount = 0
-    var invokedEmptyClosure: (() -> ())?
-    var invokedEmptyClosureList = [() -> ()]()
-    var invokedEmptyClosureGetter = false
-    var invokedEmptyClosureGetterCount = 0
-    var stubbedEmptyClosure: (() -> ())! = {
-    }
-    override var emptyClosure: () -> () {
-        set {
-            invokedEmptyClosureSetter = true
-            invokedEmptyClosureSetterCount += 1
-            invokedEmptyClosure = newValue
-            invokedEmptyClosureList.append(newValue)
-        }
-        get {
-            invokedEmptyClosureGetter = true
-            invokedEmptyClosureGetterCount += 1
-            return stubbedEmptyClosure
-        }
-    }
-    var invokedClosureSignatureSetter = false
-    var invokedClosureSignatureSetterCount = 0
-    var invokedClosureSignature: ((Int, String) throws -> UInt)?
-    var invokedClosureSignatureList = [(Int, String) throws -> UInt]()
-    var invokedClosureSignatureGetter = false
-    var invokedClosureSignatureGetterCount = 0
-    var stubbedClosureSignature: ((Int, String) throws -> UInt)! = { _, _ in
-        return 0
-    }
-    override var closureSignature: (Int, String) throws -> UInt {
-        set {
-            invokedClosureSignatureSetter = true
-            invokedClosureSignatureSetterCount += 1
-            invokedClosureSignature = newValue
-            invokedClosureSignatureList.append(newValue)
-        }
-        get {
-            invokedClosureSignatureGetter = true
-            invokedClosureSignatureGetterCount += 1
-            return stubbedClosureSignature
-        }
-    }
-    var invokedReturnClosureSetter = false
-    var invokedReturnClosureSetterCount = 0
-    var invokedReturnClosure: (() -> Int)?
-    var invokedReturnClosureList = [() -> Int]()
-    var invokedReturnClosureGetter = false
-    var invokedReturnClosureGetterCount = 0
-    var stubbedReturnClosure: (() -> Int)! = {
-        return 0
-    }
-    override var returnClosure: () -> Int {
-        set {
-            invokedReturnClosureSetter = true
-            invokedReturnClosureSetterCount += 1
-            invokedReturnClosure = newValue
-            invokedReturnClosureList.append(newValue)
-        }
-        get {
-            invokedReturnClosureGetter = true
-            invokedReturnClosureGetterCount += 1
-            return stubbedReturnClosure
-        }
-    }
-    var invokedClosureCallSetter = false
-    var invokedClosureCallSetterCount = 0
-    var invokedClosureCall: String?
-    var invokedClosureCallList = [String]()
-    var invokedClosureCallGetter = false
-    var invokedClosureCallGetterCount = 0
-    var stubbedClosureCall: String! = ""
-    override var closureCall: String {
-        set {
-            invokedClosureCallSetter = true
-            invokedClosureCallSetterCount += 1
-            invokedClosureCall = newValue
-            invokedClosureCallList.append(newValue)
-        }
-        get {
-            invokedClosureCallGetter = true
-            invokedClosureCallGetterCount += 1
-            return stubbedClosureCall
-        }
-    }
     var invokedTupleSetter = false
     var invokedTupleSetterCount = 0
     var invokedTuple: (Int, String)?
@@ -264,6 +179,26 @@ class InferredTypeClassMock: InferredTypeClass {
             invokedTupleGetter = true
             invokedTupleGetterCount += 1
             return stubbedTuple
+        }
+    }
+    var invokedPropertyAssignedSetter = false
+    var invokedPropertyAssignedSetterCount = 0
+    var invokedPropertyAssigned: String?
+    var invokedPropertyAssignedList = [String]()
+    var invokedPropertyAssignedGetter = false
+    var invokedPropertyAssignedGetterCount = 0
+    var stubbedPropertyAssigned: String! = ""
+    override var propertyAssigned: String {
+        set {
+            invokedPropertyAssignedSetter = true
+            invokedPropertyAssignedSetterCount += 1
+            invokedPropertyAssigned = newValue
+            invokedPropertyAssignedList.append(newValue)
+        }
+        get {
+            invokedPropertyAssignedGetter = true
+            invokedPropertyAssignedGetterCount += 1
+            return stubbedPropertyAssigned
         }
     }
 }

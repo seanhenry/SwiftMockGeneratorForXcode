@@ -8,11 +8,21 @@ import UseCases
 class VariableTypeResolverTests: XCTestCase {
     func test_shouldNotResolveUnsupportedItems() {
         assertResolveNil("var a = unresolved")
-        assertResolveNil("var a = unresolved()")
-        assertResolveNil("var a = ClassType.unresolved()")
-        assertResolveNil("var a = a?.b?.c?()")
-        assertResolveNil("var a = a!.b!.c!()")
-        assertResolveNil("var a = a.b.c?()")
+        assertResolveNil("var a = returnMethod()")
+        assertResolveNil("var a = ClassType.returnMethod()")
+        assertResolveNil("var a = ClassType.returnMethod[a: 0]")
+        assertResolveNil("var a = a?.b?.returnMethod?()")
+        assertResolveNil("var a = a!.b!.returnMethod!()")
+        assertResolveNil("var a = a.b.returnMethod?()")
+        assertResolveNil("var a = {}")
+        assertResolveNil("var a = { (a: A) in return B() }")
+        assertResolveNil("var a = a ?? 0")
+        assertResolveNil("var a = a && 0")
+        assertResolveNil("var a = a?")
+        assertResolveNil("var a = a ? 0 : 1")
+        assertResolveNil("var a = #colorLiteral()")
+        assertResolveNil("var a = #fileLiteral()")
+        assertResolveNil("var a = #imageLiteral()")
     }
 
     func test_shouldResolveTypeAnnotation() {

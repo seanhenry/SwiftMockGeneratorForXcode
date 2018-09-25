@@ -43,11 +43,13 @@ class VariableTypeResolver: RecursiveElementVisitor {
   }
 
   override func visitType(_ element: Type) {
-    type = transformType(element)
+    transformType(element)
   }
 
-  private func transformType(_ element: Element) -> UseCasesType {
-    return MemberTransformingVisitor.transformType(element, resolver: resolver)
+  private func transformType(_ element: Element?) {
+    if let element = element {
+      type = MemberTransformingVisitor.transformType(element, resolver: resolver)
+    }
   }
 
   override func visitStaticStringLiteralExpression(_ element: StaticStringLiteralExpression) {
@@ -118,6 +120,33 @@ class VariableTypeResolver: RecursiveElementVisitor {
     type = UseCasesTupleType(tupleElements: resolved)
   }
 
+  override func visitClosureExpression(_ element: ClosureExpression) {
+    // TODO: not supported
+  }
+
+  override func visitSubscriptExpression(_ element: SubscriptExpression) {
+    // TODO: not supported
+  }
+
+  override func visitOperatorPostfixExpression(_ element: OperatorPostfixExpression) {
+    // TODO: not supported
+  }
+
+  override func visitConditionalOperator(_ element: ConditionalOperator) {
+    // TODO: not supported
+  }
+
+  override func visitBinaryExpression(_ element: BinaryExpression) {
+    if element.children.contains(where: { $0 is Operator }) {
+      // TODO: support operators
+      return
+    } else if element.children.contains(where: { $0 is ConditionalOperator }) {
+      // TODO: support conditional operator
+      return
+    }
+    super.visitBinaryExpression(element)
+  }
+
   override func visitTypeDeclaration(_ element: TypeDeclaration) {
     setTypeIdentifier(element.name)
   }
@@ -134,9 +163,5 @@ class VariableTypeResolver: RecursiveElementVisitor {
     if let name = name {
       type = UseCasesTypeIdentifier(identifier: name)
     }
-  }
-
-  override func visitIsPattern(_ element: IsPattern) {
-    type = resolve(element)
   }
 }
