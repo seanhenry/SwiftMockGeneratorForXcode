@@ -1,16 +1,18 @@
 #!/bin/sh
-if [ $CONFIGURATION = "Debug" ]; then
-    CONFIG="Debug"
-else
-    CONFIG="Release"
-fi
 
 DEST_DIR="$CONFIGURATION_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"
 
 mkdir -p "$DEST_DIR"
-rm -rf "$DEST_DIR"/*.framework || true
+rm -rf "$DEST_DIR/Bocho.framework" \
+"$DEST_DIR/Diagnostic.framework" \
+"$DEST_DIR/Lexer.framework" \
+"$DEST_DIR/Source.framework" \
+"$DEST_DIR/SourceKittenFramework.framework" \
+"$DEST_DIR/SWXMLHash.framework" \
+"$DEST_DIR/Yams.framework" \
+"$DEST_DIR/UseCases.framework" || true
 
-FRAMEWORK_DIR="$SRCROOT/SwiftToolkit/Frameworks/$CONFIG"
+FRAMEWORK_DIR="$SRCROOT/SwiftToolkit/Frameworks/$CONFIGURATION"
 echo "Copying frameworks in $FRAMEWORK_DIR to $DEST_DIR"
 
 cp -R \
@@ -23,16 +25,14 @@ cp -R \
 "$FRAMEWORK_DIR/Yams.framework" \
 "$DEST_DIR"
 
-FRAMEWORK_DIR="$SRCROOT/lib/$CONFIG"
+FRAMEWORK_DIR="$SRCROOT/lib/$CONFIGURATION"
 echo "Copying $FRAMEWORK_DIR/UseCases.framework to $DEST_DIR"
 cp -R "$FRAMEWORK_DIR/UseCases.framework" "$DEST_DIR"
 
-if [ $CONFIGURATION = "Release" ]; then
+ENTITLEMENTS="${PROJECT_DIR}/MockGeneratorApp/MockGeneratorApp.entitlements"
 
-    ENTITLEMENTS="${PROJECT_DIR}/MockGeneratorApp/MockGeneratorApp.entitlements"
+cd "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/Frameworks"
 
-    cd "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/Frameworks"
-    for framework in *.framework; do
-        /usr/bin/codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --entitlements "$ENTITLEMENTS" --timestamp=none $framework
-    done
-fi
+for framework in *.framework; do
+  /usr/bin/codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --entitlements "$ENTITLEMENTS" --timestamp=none $framework
+done
