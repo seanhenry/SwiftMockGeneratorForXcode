@@ -5,11 +5,11 @@ class XcodeAccess {
         guard #available(OSX 10.14, *) else {
             return true
         }
-        var addressDesc = AEAddressDesc(descriptorType: typeApplicationBundleID, dataHandle: nil)
-        let bundleIdentifier = "com.apple.dt.Xcode"
-        _ = AECreateDesc(typeApplicationBundleID, bundleIdentifier, strlen(bundleIdentifier), &addressDesc)
-        let appleScriptPermission = AEDeterminePermissionToAutomateTarget(&addressDesc, typeWildCard, typeWildCard, true)
-        AEDisposeDesc(&addressDesc)
-        return appleScriptPermission == noErr
+        if var addressDesc = NSAppleEventDescriptor(bundleIdentifier: "com.apple.dt.Xcode").aeDesc?.pointee {
+            let appleScriptPermission = AEDeterminePermissionToAutomateTarget(&addressDesc, typeWildCard, typeWildCard, true)
+            AEDisposeDesc(&addressDesc)
+            return appleScriptPermission == noErr
+        }
+        return false
     }
 }
