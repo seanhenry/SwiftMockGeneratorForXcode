@@ -36,3 +36,7 @@ cd "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Contents/Frameworks"
 for framework in *.framework; do
   /usr/bin/codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --entitlements "$ENTITLEMENTS" --timestamp=none $framework
 done
+
+for lib in *.dylib; do
+  /usr/bin/codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --entitlements "$ENTITLEMENTS" --timestamp=none $lib
+done
