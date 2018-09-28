@@ -1,8 +1,8 @@
 update_fastlane
 
-default_platform(:ios)
+default_platform(:mac)
 
-platform :ios do
+platform :mac do
   desc "Create a release build."
   lane :release do
     `rm -r release_output`
