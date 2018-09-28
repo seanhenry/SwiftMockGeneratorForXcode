@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [ $CONFIGURATION == "Debug" ] || [ $CONFIGURATION == "Profile" ]; then
+  exit 0
+fi
+
 DEST_DIR="$CONFIGURATION_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"
 
 mkdir -p "$DEST_DIR"
