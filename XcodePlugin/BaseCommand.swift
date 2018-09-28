@@ -80,11 +80,10 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
 
     private func tryToGenerateMock(atProjectURL projectURL: URL, proxy: MockGeneratorXPCProtocol, invocation: SourceEditorCommandInvocation, completionHandler: @escaping (XPCBufferInstructions?, Error?) -> Void) throws {
         let range = try getRange(selections: try getSelection(invocation: invocation))
-        let actualLineNumber = range.start.line + 1
         let model = XPCMockGeneratorModel(
                 contents: invocation.sourceTextBuffer.completeBuffer,
                 projectURL: projectURL,
-                line: actualLineNumber,
+                line: range.start.line,
                 column: range.start.column,
                 templateName: templateName,
                 usesTabsForIndentation: invocation.sourceTextBuffer.usesTabsForIndentation,
