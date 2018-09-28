@@ -20,8 +20,8 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     func perform(with invocation: SourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) -> Void {
         self.invocation = invocation
         setCancelHandler(invocation, completionHandler)
-        setErrorHandlers(completionHandler)
         connection.remoteObjectProxyWithErrorHandler({ [weak self] proxy in
+            self?.setErrorHandlers(completionHandler)
             self?.generateMock(proxy: proxy, invocation: invocation, completionHandler: completionHandler)
         }) { [weak self] error in
             self?.finish(with: error, handler: completionHandler)
