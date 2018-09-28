@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
-        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -666,7 +664,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="200"/>
@@ -688,14 +686,14 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="MockGeneratorApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="473" height="176"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="VQz-9A-PX1" customClass="PreferencesView" customModule="MockGeneratorApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="473" height="176"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                 <subviews>
                                     <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="geP-s4-QHR">
-                                        <rect key="frame" x="8" y="37" width="457" height="131"/>
+                                        <rect key="frame" x="8" y="61" width="584" height="131"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cnF-nW-tKi">
                                                 <rect key="frame" x="-2" y="110" width="102" height="21"/>
@@ -716,10 +714,10 @@
                                                 </connections>
                                             </button>
                                             <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qoq-TC-fWq" userLabel="Auto detect stack view">
-                                                <rect key="frame" x="0.0" y="66" width="457" height="14"/>
+                                                <rect key="frame" x="0.0" y="66" width="584" height="14"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UO1-kO-sN0">
-                                                        <rect key="frame" x="-2" y="0.0" width="461" height="14"/>
+                                                        <rect key="frame" x="-2" y="0.0" width="588" height="14"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Cannot find a project. Make sure a project is open in Xcode." id="fC7-MG-fX4">
                                                             <font key="font" metaFont="systemLight" size="11"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -739,10 +737,10 @@
                                                 </customSpacing>
                                             </stackView>
                                             <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4D-w1-Fmx" userLabel="Manual project path stack view" customClass="ManualProjectPathView" customModule="MockGeneratorApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="453" height="58"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="580" height="58"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="X6l-7z-ih7">
-                                                        <rect key="frame" x="-2" y="30" width="457" height="28"/>
+                                                        <rect key="frame" x="-2" y="30" width="584" height="28"/>
                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3l5-3e-Uj7">
                                                             <font key="font" metaFont="systemLight" size="11"/>
                                                             <string key="title">Select the root folder of your project. The mock generator will scan this directory when you generate a mock. Your data will never be stored or shared.</string>
@@ -751,11 +749,14 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kf8-Tc-urf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="453" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="580" height="22"/>
                                                         <subviews>
                                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fdb-x4-GA6">
-                                                                <rect key="frame" x="-2" y="-2" width="432" height="26"/>
-                                                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="OVW-ZW-l36" id="6dS-DY-Wsi">
+                                                                <rect key="frame" x="-2" y="-2" width="555" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="550" id="oGU-2J-SF3"/>
+                                                                </constraints>
+                                                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingMiddle" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="OVW-ZW-l36" id="6dS-DY-Wsi">
                                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="menu"/>
                                                                     <menu key="menu" id="xXq-GF-hAP">
@@ -767,8 +768,8 @@
                                                                     </menu>
                                                                 </popUpButtonCell>
                                                             </popUpButton>
-                                                            <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8jp-hi-4ON">
-                                                                <rect key="frame" x="435" y="-1" width="18" height="24"/>
+                                                            <button horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8jp-hi-4ON">
+                                                                <rect key="frame" x="558" y="-1" width="22" height="24"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="22" id="ThL-rF-GRo"/>
                                                                 </constraints>
@@ -832,7 +833,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="X5W-wq-O3t" customClass="VersionView" customModule="MockGeneratorApp" customModuleProvider="target">
-                                        <rect key="frame" x="172" y="8" width="129" height="14"/>
+                                        <rect key="frame" x="236" y="8" width="129" height="14"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="MockAppGenerator 0.5" usesSingleLineMode="YES" id="fxU-Xr-OAp">
                                             <font key="font" metaFont="systemLight" size="11"/>
                                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
