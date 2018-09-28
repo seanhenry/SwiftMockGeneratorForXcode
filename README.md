@@ -13,7 +13,9 @@ An Xcode extension (plugin) to generate spy, stub, and dummy classes automatical
 - Download the latest release [here](https://github.com/seanhenry/SwiftMockGeneratorForXcode/releases)
 - Copy the app to the `Applications` folder.
 - Open the app
+- For Mojave users, select OK for '"Swift Mock Generator for Xcode" wants access to control "Xcode"'
 - Go to `System Preferences -> Extensions -> Xcode Source Editor` and make sure `Mock Generator` is enabled.
+- For Mojave users, go to `System Preferences -> Security & Privacy -> Privacy -> Automation` and make sure `Swift Mock Generator` is enabled.
 - Open Xcode
 
 ## How to create a new Swift test double
