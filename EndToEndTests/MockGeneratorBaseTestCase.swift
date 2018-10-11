@@ -48,7 +48,7 @@ class MockGeneratorBaseTestCase: XCTestCase {
         let contents = readFile(named: fileName + ".swift")
         let contentsLineColumn = CaretTestHelper.findCaretLineColumn(contents)
         let (line, column) = contentsLineColumn.lineColumn!
-        let selection = XCSourceTextRange(start: XCSourceTextPosition(line: line - 1, column: column), end: XCSourceTextPosition(line: line, column: column))
+        let selection = XCSourceTextRange(start: XCSourceTextPosition(line: line, column: column), end: XCSourceTextPosition(line: line, column: column))
         let buffer = SourceTextBufferStub(buffer: contentsLineColumn.contents, selections: NSMutableArray(object: selection))
         let stub = CommandInvocationStub(buffer: buffer)
         return stub
