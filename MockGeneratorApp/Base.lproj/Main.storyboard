@@ -693,8 +693,54 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                 <subviews>
                                     <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="geP-s4-QHR">
-                                        <rect key="frame" x="8" y="61" width="584" height="131"/>
+                                        <rect key="frame" x="8" y="36" width="584" height="156"/>
                                         <subviews>
+                                            <customView placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="eff-9G-rXA" customClass="XcodeAccessView" customModule="MockGeneratorApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="139" width="584" height="17"/>
+                                                <subviews>
+                                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="prk-fB-bOl">
+                                                        <rect key="frame" x="0.0" y="0.0" width="584" height="17"/>
+                                                        <subviews>
+                                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Gqc-Su-it3">
+                                                                <rect key="frame" x="-2" y="0.0" width="588" height="17"/>
+                                                                <textFieldCell key="cell" selectable="YES" title="Checking Xcode access..." id="vcQ-cG-knZ">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                            <button hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="bur-6Z-day">
+                                                                <rect key="frame" x="-6" y="-11" width="58" height="32"/>
+                                                                <buttonCell key="cell" type="push" title="Fix" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Ak-1C-Hfv">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="didTapFixButton:" target="eff-9G-rXA" id="W2o-TT-A34"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <visibilityPriorities>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                        </visibilityPriorities>
+                                                        <customSpacing>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                        </customSpacing>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="prk-fB-bOl" secondAttribute="bottom" id="Uyk-DV-tHr"/>
+                                                    <constraint firstItem="prk-fB-bOl" firstAttribute="leading" secondItem="eff-9G-rXA" secondAttribute="leading" id="ZPi-ec-NIY"/>
+                                                    <constraint firstItem="prk-fB-bOl" firstAttribute="top" secondItem="eff-9G-rXA" secondAttribute="top" id="hTc-sx-rTe"/>
+                                                    <constraint firstAttribute="trailing" secondItem="prk-fB-bOl" secondAttribute="trailing" id="imM-gm-fjR"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="fixButton" destination="bur-6Z-day" id="oH0-Ib-OhN"/>
+                                                    <outlet property="messageField" destination="Gqc-Su-it3" id="4ZQ-mM-DC2"/>
+                                                </connections>
+                                            </customView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cnF-nW-tKi">
                                                 <rect key="frame" x="-2" y="110" width="102" height="21"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Project path" id="OlE-51-ShT">
@@ -815,8 +861,10 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="eff-9G-rXA" firstAttribute="leading" secondItem="geP-s4-QHR" secondAttribute="leading" id="01f-jJ-J0S"/>
                                             <constraint firstAttribute="trailing" secondItem="s4D-w1-Fmx" secondAttribute="trailing" constant="4" id="39l-e2-nxY"/>
                                             <constraint firstItem="qoq-TC-fWq" firstAttribute="leading" secondItem="geP-s4-QHR" secondAttribute="leading" id="EeP-mQ-mMV"/>
+                                            <constraint firstAttribute="trailing" secondItem="eff-9G-rXA" secondAttribute="trailing" id="SI7-Ml-Efg"/>
                                             <constraint firstAttribute="trailing" secondItem="qoq-TC-fWq" secondAttribute="trailing" id="lMU-Om-q1e"/>
                                         </constraints>
                                         <visibilityPriorities>
@@ -824,8 +872,10 @@
                                             <integer value="1000"/>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>

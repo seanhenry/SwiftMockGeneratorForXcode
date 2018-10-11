@@ -1,15 +1,9 @@
-import AppleScriptObjC
+protocol XcodeAccess {
+    typealias Status = XcodeAccessStatus
+    func check() -> Status
+    func request() -> Status
+}
 
-class XcodeAccess {
-    static func requestAccess() -> Bool {
-        guard #available(OSX 10.14, *) else {
-            return true
-        }
-        if var addressDesc = NSAppleEventDescriptor(bundleIdentifier: "com.apple.dt.Xcode").aeDesc?.pointee {
-            let appleScriptPermission = AEDeterminePermissionToAutomateTarget(&addressDesc, typeWildCard, typeWildCard, true)
-            AEDisposeDesc(&addressDesc)
-            return appleScriptPermission == noErr
-        }
-        return false
-    }
+enum XcodeAccessStatus {
+    case granted, denied, requiresConsent, notRunning, unknown(Int)
 }

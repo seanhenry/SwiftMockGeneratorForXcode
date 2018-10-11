@@ -75,6 +75,9 @@
 		14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */; };
 		14CA2DAC1F41349500900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
 		14E132281F58E6D300D75943 /* MemberTransformingVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDB834B634E694CF658C /* MemberTransformingVisitor.swift */; };
+		14E9A2F9216EEABC00A677FA /* XcodeAccessImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E9A2F8216EEABC00A677FA /* XcodeAccessImpl.swift */; };
+		14E9A31B216EEB6000A677FA /* XcodeAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E9A31A216EEB6000A677FA /* XcodeAccessView.swift */; };
+		14E9A31D216EEBF100A677FA /* XcodeAccessViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E9A31C216EEBF100A677FA /* XcodeAccessViewTests.swift */; };
 		14F866C620D9088F00E79758 /* EndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F866C520D9088F00E79758 /* EndToEndTests.swift */; };
 		14F866C820D9088F00E79758 /* libXcodePluginProxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F866B620D9086800E79758 /* libXcodePluginProxy.a */; };
 		14F866D520D9090400E79758 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F866D420D9090400E79758 /* AppDelegate.swift */; };
@@ -805,6 +808,9 @@
 		14CA2D9C1F40049700900937 /* MockGeneratorXPC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MockGeneratorXPC-Bridging-Header.h"; sourceTree = "<group>"; };
 		14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGeneratorXPC.swift; sourceTree = "<group>"; };
 		14CA2DAB1F41349500900937 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		14E9A2F8216EEABC00A677FA /* XcodeAccessImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeAccessImpl.swift; sourceTree = "<group>"; };
+		14E9A31A216EEB6000A677FA /* XcodeAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeAccessView.swift; sourceTree = "<group>"; };
+		14E9A31C216EEBF100A677FA /* XcodeAccessViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeAccessViewTests.swift; sourceTree = "<group>"; };
 		14F866B620D9086800E79758 /* libXcodePluginProxy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXcodePluginProxy.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F866C320D9088F00E79758 /* EndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14F866C520D9088F00E79758 /* EndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndToEndTests.swift; sourceTree = "<group>"; };
@@ -1072,6 +1078,7 @@
 				14872E7F1F59DBC50017AF3F /* Info.plist */,
 				35CDF7966B174AC850706CB1 /* PreferencesTests.swift */,
 				35CDFB741733D825DD2B6508 /* XcodeProjectPathFinderTests.swift */,
+				14E9A31C216EEBF100A677FA /* XcodeAccessViewTests.swift */,
 			);
 			path = MockGeneratorAppTests;
 			sourceTree = "<group>";
@@ -1128,6 +1135,7 @@
 				35CDF41BB007A5C1F4180748 /* ManualProjectPathView.swift */,
 				145290E91F981ED600947144 /* VersionView.swift */,
 				35CDF201B90CE8E6BB86393A /* PreferencesView.swift */,
+				14E9A31A216EEB6000A677FA /* XcodeAccessView.swift */,
 			);
 			path = MockGeneratorApp;
 			sourceTree = "<group>";
@@ -1193,6 +1201,7 @@
 				14CA2DAB1F41349500900937 /* Preferences.swift */,
 				35CDF66A5D6E3857898A5E23 /* XcodeProjectPathFinder.swift */,
 				1497FE76215D0B5C00CD670B /* XcodeAccess.swift */,
+				14E9A2F8216EEABC00A677FA /* XcodeAccessImpl.swift */,
 				35CDFD267465101B0B67217F /* GoogleAnalyticsTracker.swift */,
 				35CDF9A2068DF1CD95B50147 /* ProjectFinder.swift */,
 				191EF6E020F6C81F00118C74 /* Analytics.swift */,
@@ -2139,6 +2148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E9A31D216EEBF100A677FA /* XcodeAccessViewTests.swift in Sources */,
 				14B4BC2D208B0A160052A085 /* PreferencesTests.swift in Sources */,
 				14B4BC2C208B0A130052A085 /* XcodeProjectPathFinderTests.swift in Sources */,
 				14B4BC2F208B0A970052A085 /* ProjectFinderTests.swift in Sources */,
@@ -2149,6 +2159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E9A31B216EEB6000A677FA /* XcodeAccessView.swift in Sources */,
 				14CA2D591F40007000900937 /* ViewController.swift in Sources */,
 				1497FE77215D0B5C00CD670B /* XcodeAccess.swift in Sources */,
 				14CA2D571F40007000900937 /* AppDelegate.swift in Sources */,
@@ -2159,6 +2170,7 @@
 				35CDFAEF8D8C85FDC471B35A /* PreferencesView.swift in Sources */,
 				35CDF670951C86B8934F8D27 /* XcodeProjectPathFinder.swift in Sources */,
 				191EF6E120F6C81F00118C74 /* Analytics.swift in Sources */,
+				14E9A2F9216EEABC00A677FA /* XcodeAccessImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
