@@ -49,6 +49,7 @@ define update_repo_sha
 	  git checkout $(3) || true; \
 	else \
 	  git clone $(2) $(1); \
+	  git checkout $(3); \
 	fi;
 endef
 

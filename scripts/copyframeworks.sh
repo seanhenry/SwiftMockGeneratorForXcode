@@ -1,8 +1,10 @@
 #!/bin/sh
 
-if [ $CONFIGURATION == "Debug" ] || [ $CONFIGURATION == "Profile" ]; then
+if [ $CODE_SIGNING_ALLOWED != "YES" ]; then
   exit 0
 fi
+
+rm -rf || "$TARGET_BUILD_DIR/$PLUGINS_FOLDER_PATH/*.xctest" || true
 
 DEST_DIR="$CONFIGURATION_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH"
 

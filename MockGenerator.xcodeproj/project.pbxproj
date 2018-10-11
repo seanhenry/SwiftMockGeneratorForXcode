@@ -2386,7 +2386,7 @@
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Debug/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2413,7 +2413,7 @@
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2433,7 +2433,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Debug/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2450,7 +2450,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2631,7 +2631,7 @@
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Debug/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Debug/include/GRMustache/module.modulemap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2654,7 +2654,7 @@
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2905,7 +2905,7 @@
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2930,7 +2930,7 @@
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2950,7 +2950,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=lib/Release/include/GRMustache/module.modulemap";
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
