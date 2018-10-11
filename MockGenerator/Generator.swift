@@ -30,7 +30,20 @@ public class Generator {
         self.useTabsForIndentation = useTabsForIndentation
         self.indentationWidth = indentationWidth
         let sourceFiles = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
-        self.resolver = ResolverFactory.createResolver(filePaths: sourceFiles)
+        self.resolver = ResolverFactory.createResolver(filePaths: Generator.filterUniqueFileNames(sourceFiles))
+    }
+
+    private static func filterUniqueFileNames(_ fileNames: [String]) -> [String] {
+        var sourceFileSet = Set<String>()
+        return fileNames.map { file in
+            (file, URL(fileURLWithPath: file).lastPathComponent)
+        }.compactMap { (file, name) in
+            if sourceFileSet.contains(name) {
+                return nil
+            }
+            sourceFileSet.insert(name)
+            return file
+        }
     }
 
     public func generateMock() -> (BufferInstructions?, Error?) {
