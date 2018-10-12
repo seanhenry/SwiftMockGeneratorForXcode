@@ -3,32 +3,30 @@ update_fastlane
 default_platform(:mac)
 
 platform :mac do
-  desc "Create a release build."
-  lane :release do
-    `rm -r release_output`
-    `rm -r /tmp/fastlaneBuild`
-    scan
-    gym
-    upload_symbols_to_crashlytics(platform: 'mac', dsym_path: ENV['GYM_OUTPUT_DIRECTORY'] + '/Swift Mock Generator for Xcode.app.dSYM.zip')
-    resign_app
-    dmg
+  def cleanup
     `rm -r release_output`
     `rm -r /tmp/fastlaneBuild`
   end
 
+  desc "Create a release build."
+  lane :release do
+    cleanup
+    scan
+    gym
+    upload_symbols_to_crashlytics(platform: 'mac', dsym_path: ENV['GYM_OUTPUT_DIRECTORY'] + '/Swift Mock Generator for Xcode.app.dSYM.zip')
+    dmg
+    cleanup
+  end
+
   desc "Create a dmg from the built app"
   private_lane :dmg do
+    `rm 'Swift Mock Generator for Xcode.dmg'`
     src_dir = 'src_dir'
     `mkdir -p #{src_dir}`
     `cp -R 'release_output/Swift Mock Generator for Xcode.app' #{src_dir}`
     `ln -s /Applications #{src_dir}/Applications`
     `hdiutil create -volname 'Swift Mock Generator for Xcode' -srcfolder '#{src_dir}' -ov -format UDZO 'Swift Mock Generator for Xcode.dmg'`
     `rm -rf #{src_dir}`
-  end
-
-  desc "Manually resign the app bundle"
-  private_lane :resign_app do
-    `/usr/bin/codesign --deep --force --sign 'Developer ID Application: S HENRY' --entitlements '../MockGeneratorApp/MockGeneratorApp.entitlements' --timestamp=none 'release_output/Swift Mock Generator for Xcode.app'`
   end
 end
 
