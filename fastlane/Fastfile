@@ -10,6 +10,7 @@ platform :mac do
     scan
     gym
     upload_symbols_to_crashlytics(platform: 'mac', dsym_path: ENV['GYM_OUTPUT_DIRECTORY'] + '/Swift Mock Generator for Xcode.app.dSYM.zip')
+    resign_app
     dmg
     `rm -r release_output`
     `rm -r /tmp/fastlaneBuild`
@@ -23,6 +24,11 @@ platform :mac do
     `ln -s /Applications #{src_dir}/Applications`
     `hdiutil create -volname 'Swift Mock Generator for Xcode' -srcfolder '#{src_dir}' -ov -format UDZO 'Swift Mock Generator for Xcode.dmg'`
     `rm -rf #{src_dir}`
+  end
+
+  desc "Manually resign the app bundle"
+  private_lane :resign_app do
+    `/usr/bin/codesign --deep --force --sign 'Developer ID Application: S HENRY' --entitlements '../MockGeneratorApp/MockGeneratorApp.entitlements' --timestamp=none 'release_output/Swift Mock Generator for Xcode.app'`
   end
 end
 

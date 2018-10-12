@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		142B02192170942A005DE573 /* Frameworks */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 142B021A2170942A005DE573 /* Build configuration list for PBXAggregateTarget "Frameworks" */;
+			buildPhases = (
+				142B021E21709432005DE573 /* Copy Frameworks */,
+			);
+			dependencies = (
+			);
+			name = Frameworks;
+			productName = Frameworks;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1425EBA721528FB000009D60 /* libResolver.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975420EEFA12009A5FD6 /* libResolver.dylib */; };
 		1425EBA821528FD600009D60 /* libAST.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974020EEFA12009A5FD6 /* libAST.dylib */; };
@@ -33,6 +47,23 @@
 		142B0216216FA39E005DE573 /* libSourceKittenRequests.dylib in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975820EEFA12009A5FD6 /* libSourceKittenRequests.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		142B0217216FA39E005DE573 /* libSwiftLexer.dylib in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975A20EEFA12009A5FD6 /* libSwiftLexer.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		142B0218216FA3A7005DE573 /* MockGenerator.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B022621709979005DE573 /* Bocho.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B021F217098F6005DE573 /* Bocho.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B022721709979005DE573 /* Diagnostic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02232170994A005DE573 /* Diagnostic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B022821709979005DE573 /* Lexer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02202170994A005DE573 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B022921709979005DE573 /* Source.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02212170994A005DE573 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B022A21709979005DE573 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02252170994B005DE573 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B022B21709979005DE573 /* SWXMLHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02222170994A005DE573 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B022C21709979005DE573 /* Yams.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02242170994B005DE573 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B023021709A97005DE573 /* UseCases.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B022F21709A85005DE573 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B023121709AFF005DE573 /* UseCases.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B022F21709A85005DE573 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B023221709AFF005DE573 /* Bocho.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B021F217098F6005DE573 /* Bocho.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B023321709AFF005DE573 /* Diagnostic.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02232170994A005DE573 /* Diagnostic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B023421709AFF005DE573 /* Lexer.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02202170994A005DE573 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B023521709AFF005DE573 /* Source.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02212170994A005DE573 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B023621709AFF005DE573 /* SourceKittenFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02252170994B005DE573 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B023721709B00005DE573 /* SWXMLHash.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02222170994A005DE573 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B023821709B00005DE573 /* Yams.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02242170994B005DE573 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		142B023A21709BFB005DE573 /* libGRMustache7-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 142B023921709BC5005DE573 /* libGRMustache7-MacOS.a */; };
 		14451D351F5F05C500833C61 /* MemberTransformingVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A9B1705ADFFC0CB415 /* MemberTransformingVisitorTests.swift */; };
 		145290EA1F981ED600947144 /* VersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145290E91F981ED600947144 /* VersionView.swift */; };
 		147437B61F79746A00241B8A /* TestProject in Copy Test Project */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
@@ -104,54 +135,15 @@
 		1918AB5520D9D3B8003BE795 /* TestProject in Copy TestProject */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
 		1918AB6020D9D4FE003BE795 /* ResolvePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */; };
 		1918AB6320D9D517003BE795 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
-		191EF68220F44F4700118C74 /* UseCases.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68120F44F4600118C74 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		191EF68A20F44F6D00118C74 /* Diagnostic.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68320F44F6B00118C74 /* Diagnostic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		191EF68B20F44F6D00118C74 /* Source.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68420F44F6B00118C74 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		191EF68C20F44F6D00118C74 /* Yams.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68520F44F6C00118C74 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		191EF68D20F44F6D00118C74 /* SWXMLHash.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68620F44F6C00118C74 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		191EF68E20F44F6D00118C74 /* Lexer.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68720F44F6C00118C74 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		191EF68F20F44F6D00118C74 /* Bocho.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68820F44F6D00118C74 /* Bocho.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		191EF69020F44F6D00118C74 /* SourceKittenFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF68920F44F6D00118C74 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		191EF6B820F4C9DD00118C74 /* UseCases.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; };
 		191EF6D820F6453D00118C74 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D620F6452900118C74 /* Crashlytics.framework */; };
 		191EF6D920F6453E00118C74 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D720F6452900118C74 /* Fabric.framework */; };
 		191EF6E120F6C81F00118C74 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* Analytics.swift */; };
 		191EF6E320F6C81F00118C74 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* Analytics.swift */; };
 		191EF6E420F6C92B00118C74 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D620F6452900118C74 /* Crashlytics.framework */; };
 		191EF6E520F6C92C00118C74 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D720F6452900118C74 /* Fabric.framework */; };
-		196F976F20EF0428009A5FD6 /* Bocho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8120EEE7990084C6C1 /* Bocho.framework */; };
-		196F977020EF0428009A5FD6 /* Diagnostic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8020EEE7990084C6C1 /* Diagnostic.framework */; };
-		196F977120EF0428009A5FD6 /* Lexer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; };
-		196F977220EF0428009A5FD6 /* Source.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; };
-		196F977320EF0428009A5FD6 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; };
-		196F977420EF0428009A5FD6 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; };
-		196F977520EF0428009A5FD6 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; };
-		196F977920EF0452009A5FD6 /* UseCases.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; };
 		196F977A20EF0577009A5FD6 /* libTestHelper.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.dylib */; };
-		196F977D20EF06BC009A5FD6 /* Bocho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8120EEE7990084C6C1 /* Bocho.framework */; };
-		196F977E20EF06BC009A5FD6 /* Diagnostic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8020EEE7990084C6C1 /* Diagnostic.framework */; };
-		196F977F20EF06BC009A5FD6 /* Lexer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; };
-		196F978020EF06BC009A5FD6 /* Source.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; };
-		196F978120EF06BC009A5FD6 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; };
-		196F978220EF06BC009A5FD6 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; };
-		196F978320EF06BC009A5FD6 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; };
-		196F978420EF06E9009A5FD6 /* UseCases.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 196F977820EF0452009A5FD6 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		196F978520EF0885009A5FD6 /* libTestHelper.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.dylib */; };
-		196F978820EF08AC009A5FD6 /* Bocho.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8120EEE7990084C6C1 /* Bocho.framework */; };
-		196F978920EF08AC009A5FD6 /* Diagnostic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8020EEE7990084C6C1 /* Diagnostic.framework */; };
-		196F978A20EF08AC009A5FD6 /* Lexer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; };
-		196F978B20EF08AC009A5FD6 /* Source.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; };
-		196F978C20EF08AC009A5FD6 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; };
-		196F978D20EF08AC009A5FD6 /* SWXMLHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; };
-		196F978E20EF08AC009A5FD6 /* Yams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; };
 		196F979120EF0AC7009A5FD6 /* libTestHelper.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.dylib */; };
-		19821E8420EEE79A0084C6C1 /* Yams.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7D20EEE7980084C6C1 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E8520EEE79A0084C6C1 /* Lexer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7E20EEE7990084C6C1 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E8620EEE79A0084C6C1 /* Source.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E7F20EEE7990084C6C1 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E8720EEE79A0084C6C1 /* Diagnostic.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E8020EEE7990084C6C1 /* Diagnostic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E8820EEE79A0084C6C1 /* Bocho.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E8120EEE7990084C6C1 /* Bocho.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E8920EEE79A0084C6C1 /* SourceKittenFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		19821E8A20EEE79A0084C6C1 /* SWXMLHash.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 19821E8320EEE7990084C6C1 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		19A86B3D20F734D100C891F6 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* Analytics.swift */; };
 		19A86B3E20F734DA00C891F6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D620F6452900118C74 /* Crashlytics.framework */; };
 		19A86B3F20F734DA00C891F6 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D720F6452900118C74 /* Fabric.framework */; };
@@ -337,6 +329,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 14276C601F4F312E00EA7753;
 			remoteInfo = MockGenerator;
+		};
+		142B022D2170998A005DE573 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 142B02192170942A005DE573;
+			remoteInfo = Frameworks;
+		};
+		142B023B21709C06005DE573 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 142B02192170942A005DE573;
+			remoteInfo = Frameworks;
 		};
 		14872E801F59DBC50017AF3F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -608,14 +614,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				196F978420EF06E9009A5FD6 /* UseCases.framework in CopyFiles */,
-				19821E8420EEE79A0084C6C1 /* Yams.framework in CopyFiles */,
-				19821E8520EEE79A0084C6C1 /* Lexer.framework in CopyFiles */,
-				19821E8620EEE79A0084C6C1 /* Source.framework in CopyFiles */,
-				19821E8720EEE79A0084C6C1 /* Diagnostic.framework in CopyFiles */,
-				19821E8820EEE79A0084C6C1 /* Bocho.framework in CopyFiles */,
-				19821E8920EEE79A0084C6C1 /* SourceKittenFramework.framework in CopyFiles */,
-				19821E8A20EEE79A0084C6C1 /* SWXMLHash.framework in CopyFiles */,
 				149DEC711F651B0C007DF43E /* MockGenerator.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -637,6 +635,14 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				142B023021709A97005DE573 /* UseCases.framework in Embed Frameworks */,
+				142B022621709979005DE573 /* Bocho.framework in Embed Frameworks */,
+				142B022721709979005DE573 /* Diagnostic.framework in Embed Frameworks */,
+				142B022821709979005DE573 /* Lexer.framework in Embed Frameworks */,
+				142B022921709979005DE573 /* Source.framework in Embed Frameworks */,
+				142B022A21709979005DE573 /* SourceKittenFramework.framework in Embed Frameworks */,
+				142B022B21709979005DE573 /* SWXMLHash.framework in Embed Frameworks */,
+				142B022C21709979005DE573 /* Yams.framework in Embed Frameworks */,
 				1497FEC8215E200100CD670B /* libAlgorithms.dylib in Embed Frameworks */,
 				1497FEC9215E200100CD670B /* libAST.dylib in Embed Frameworks */,
 				1497FECA215E200100CD670B /* libASTImpl.dylib in Embed Frameworks */,
@@ -700,6 +706,14 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				142B023121709AFF005DE573 /* UseCases.framework in Copy Frameworks */,
+				142B023221709AFF005DE573 /* Bocho.framework in Copy Frameworks */,
+				142B023321709AFF005DE573 /* Diagnostic.framework in Copy Frameworks */,
+				142B023421709AFF005DE573 /* Lexer.framework in Copy Frameworks */,
+				142B023521709AFF005DE573 /* Source.framework in Copy Frameworks */,
+				142B023621709AFF005DE573 /* SourceKittenFramework.framework in Copy Frameworks */,
+				142B023721709B00005DE573 /* SWXMLHash.framework in Copy Frameworks */,
+				142B023821709B00005DE573 /* Yams.framework in Copy Frameworks */,
 				142B0218216FA3A7005DE573 /* MockGenerator.framework in Copy Frameworks */,
 				142B020D216FA39E005DE573 /* libAlgorithms.dylib in Copy Frameworks */,
 				142B020E216FA39E005DE573 /* libAST.dylib in Copy Frameworks */,
@@ -743,14 +757,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				191EF68A20F44F6D00118C74 /* Diagnostic.framework in Copy Frameworks */,
-				191EF68B20F44F6D00118C74 /* Source.framework in Copy Frameworks */,
-				191EF68C20F44F6D00118C74 /* Yams.framework in Copy Frameworks */,
-				191EF68D20F44F6D00118C74 /* SWXMLHash.framework in Copy Frameworks */,
-				191EF68E20F44F6D00118C74 /* Lexer.framework in Copy Frameworks */,
-				191EF68F20F44F6D00118C74 /* Bocho.framework in Copy Frameworks */,
-				191EF69020F44F6D00118C74 /* SourceKittenFramework.framework in Copy Frameworks */,
-				191EF68220F44F4700118C74 /* UseCases.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -765,6 +771,15 @@
 		14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGeneratorTests.swift; sourceTree = "<group>"; };
 		14276C701F4F312E00EA7753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14276C781F4F314600EA7753 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		142B021F217098F6005DE573 /* Bocho.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bocho.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		142B02202170994A005DE573 /* Lexer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Lexer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		142B02212170994A005DE573 /* Source.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Source.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		142B02222170994A005DE573 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SWXMLHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		142B02232170994A005DE573 /* Diagnostic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Diagnostic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		142B02242170994B005DE573 /* Yams.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Yams.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		142B02252170994B005DE573 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SourceKittenFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		142B022F21709A85005DE573 /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UseCases.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		142B023921709BC5005DE573 /* libGRMustache7-MacOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGRMustache7-MacOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		145290E91F981ED600947144 /* VersionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionView.swift; sourceTree = "<group>"; };
 		147437B51F79746000241B8A /* TestProject */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestProject; sourceTree = SOURCE_ROOT; };
 		14872E7B1F59DBC50017AF3F /* MockGeneratorAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MockGeneratorAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -815,15 +830,6 @@
 		1918AB4520D9D2A1003BE795 /* PerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1918AB4920D9D2A1003BE795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolvePerformanceTests.swift; sourceTree = "<group>"; };
-		191EF68120F44F4600118C74 /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UseCases.framework; path = lib/Release/UseCases.framework; sourceTree = "<group>"; };
-		191EF68320F44F6B00118C74 /* Diagnostic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diagnostic.framework; path = SwiftToolkit/Frameworks/Release/Diagnostic.framework; sourceTree = "<group>"; };
-		191EF68420F44F6B00118C74 /* Source.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Source.framework; path = SwiftToolkit/Frameworks/Release/Source.framework; sourceTree = "<group>"; };
-		191EF68520F44F6C00118C74 /* Yams.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yams.framework; path = SwiftToolkit/Frameworks/Release/Yams.framework; sourceTree = "<group>"; };
-		191EF68620F44F6C00118C74 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWXMLHash.framework; path = SwiftToolkit/Frameworks/Release/SWXMLHash.framework; sourceTree = "<group>"; };
-		191EF68720F44F6C00118C74 /* Lexer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lexer.framework; path = SwiftToolkit/Frameworks/Release/Lexer.framework; sourceTree = "<group>"; };
-		191EF68820F44F6D00118C74 /* Bocho.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bocho.framework; path = SwiftToolkit/Frameworks/Release/Bocho.framework; sourceTree = "<group>"; };
-		191EF68920F44F6D00118C74 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceKittenFramework.framework; path = SwiftToolkit/Frameworks/Release/SourceKittenFramework.framework; sourceTree = "<group>"; };
-		191EF69F20F450A300118C74 /* libGRMustache7-MacOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libGRMustache7-MacOS.a"; path = "lib/Release/libGRMustache7-MacOS.a"; sourceTree = "<group>"; };
 		191EF6A220F451A000118C74 /* Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
 		191EF6A320F451D000118C74 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		191EF6A420F451D100118C74 /* Profile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Profile.xcconfig; sourceTree = "<group>"; };
@@ -831,20 +837,11 @@
 		191EF6B120F45D7000118C74 /* MockGenerator-Profile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "MockGenerator-Profile.xcconfig"; sourceTree = "<group>"; };
 		191EF6B220F45D7000118C74 /* MockGenerator-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "MockGenerator-Release.xcconfig"; sourceTree = "<group>"; };
 		191EF6B320F45D7000118C74 /* MockGenerator-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "MockGenerator-Debug.xcconfig"; sourceTree = "<group>"; };
-		191EF6B420F4616F00118C74 /* copyframeworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = copyframeworks.sh; sourceTree = "<group>"; };
+		191EF6B420F4616F00118C74 /* signlibs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = signlibs.sh; sourceTree = "<group>"; };
 		191EF6D620F6452900118C74 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = lib/Crashlytics.framework; sourceTree = "<group>"; };
 		191EF6D720F6452900118C74 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = lib/Fabric.framework; sourceTree = "<group>"; };
 		191EF6E020F6C81F00118C74 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftToolkit.xcodeproj; path = SwiftToolkit/SwiftToolkit.xcodeproj; sourceTree = "<group>"; };
-		196F977620EF0442009A5FD6 /* libGRMustache7-MacOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libGRMustache7-MacOS.a"; path = "lib/Debug/libGRMustache7-MacOS.a"; sourceTree = "<group>"; };
-		196F977820EF0452009A5FD6 /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UseCases.framework; path = lib/Debug/UseCases.framework; sourceTree = "<group>"; };
-		19821E7D20EEE7980084C6C1 /* Yams.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yams.framework; path = SwiftToolkit/Frameworks/Debug/Yams.framework; sourceTree = "<group>"; };
-		19821E7E20EEE7990084C6C1 /* Lexer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lexer.framework; path = SwiftToolkit/Frameworks/Debug/Lexer.framework; sourceTree = "<group>"; };
-		19821E7F20EEE7990084C6C1 /* Source.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Source.framework; path = SwiftToolkit/Frameworks/Debug/Source.framework; sourceTree = "<group>"; };
-		19821E8020EEE7990084C6C1 /* Diagnostic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diagnostic.framework; path = SwiftToolkit/Frameworks/Debug/Diagnostic.framework; sourceTree = "<group>"; };
-		19821E8120EEE7990084C6C1 /* Bocho.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bocho.framework; path = SwiftToolkit/Frameworks/Debug/Bocho.framework; sourceTree = "<group>"; };
-		19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SourceKittenFramework.framework; path = SwiftToolkit/Frameworks/Debug/SourceKittenFramework.framework; sourceTree = "<group>"; };
-		19821E8320EEE7990084C6C1 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWXMLHash.framework; path = SwiftToolkit/Frameworks/Debug/SWXMLHash.framework; sourceTree = "<group>"; };
 		1A93A0984050AAB172D12611 /* BufferInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferInstructions.swift; sourceTree = "<group>"; };
 		1A93A7FC328558098E5F8905 /* BufferEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferEditor.swift; sourceTree = "<group>"; };
 		1A93A92BFF242500EED35DEF /* XPCBufferInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPCBufferInstructions.swift; sourceTree = "<group>"; };
@@ -890,6 +887,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				142B023A21709BFB005DE573 /* libGRMustache7-MacOS.a in Frameworks */,
 				1497FE78215E147200CD670B /* libAlgorithms.dylib in Frameworks */,
 				1497FE79215E147200CD670B /* libAST.dylib in Frameworks */,
 				1497FE7A215E147200CD670B /* libASTImpl.dylib in Frameworks */,
@@ -901,14 +899,6 @@
 				1497FE80215E147200CD670B /* libResolver.dylib in Frameworks */,
 				1497FE81215E147200CD670B /* libSourceKittenRequests.dylib in Frameworks */,
 				1497FE82215E147200CD670B /* libSwiftLexer.dylib in Frameworks */,
-				196F977920EF0452009A5FD6 /* UseCases.framework in Frameworks */,
-				196F976F20EF0428009A5FD6 /* Bocho.framework in Frameworks */,
-				196F977020EF0428009A5FD6 /* Diagnostic.framework in Frameworks */,
-				196F977120EF0428009A5FD6 /* Lexer.framework in Frameworks */,
-				196F977220EF0428009A5FD6 /* Source.framework in Frameworks */,
-				196F977320EF0428009A5FD6 /* SourceKittenFramework.framework in Frameworks */,
-				196F977420EF0428009A5FD6 /* SWXMLHash.framework in Frameworks */,
-				196F977520EF0428009A5FD6 /* Yams.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,14 +909,6 @@
 				1425EBA92152909A00009D60 /* libParser.dylib in Frameworks */,
 				1425EBA821528FD600009D60 /* libAST.dylib in Frameworks */,
 				1425EBA721528FB000009D60 /* libResolver.dylib in Frameworks */,
-				191EF6B820F4C9DD00118C74 /* UseCases.framework in Frameworks */,
-				196F977D20EF06BC009A5FD6 /* Bocho.framework in Frameworks */,
-				196F977E20EF06BC009A5FD6 /* Diagnostic.framework in Frameworks */,
-				196F977F20EF06BC009A5FD6 /* Lexer.framework in Frameworks */,
-				196F978020EF06BC009A5FD6 /* Source.framework in Frameworks */,
-				196F978120EF06BC009A5FD6 /* SourceKittenFramework.framework in Frameworks */,
-				196F978220EF06BC009A5FD6 /* SWXMLHash.framework in Frameworks */,
-				196F978320EF06BC009A5FD6 /* Yams.framework in Frameworks */,
 				196F977A20EF0577009A5FD6 /* libTestHelper.dylib in Frameworks */,
 				14276C6A1F4F312E00EA7753 /* MockGenerator.framework in Frameworks */,
 			);
@@ -1004,13 +986,6 @@
 				1425EBD121529E5800009D60 /* libFormatter.dylib in Frameworks */,
 				1425EBCE21529E3600009D60 /* libAST.dylib in Frameworks */,
 				1425EBCF21529E3600009D60 /* libResolver.dylib in Frameworks */,
-				196F978820EF08AC009A5FD6 /* Bocho.framework in Frameworks */,
-				196F978920EF08AC009A5FD6 /* Diagnostic.framework in Frameworks */,
-				196F978A20EF08AC009A5FD6 /* Lexer.framework in Frameworks */,
-				196F978B20EF08AC009A5FD6 /* Source.framework in Frameworks */,
-				196F978C20EF08AC009A5FD6 /* SourceKittenFramework.framework in Frameworks */,
-				196F978D20EF08AC009A5FD6 /* SWXMLHash.framework in Frameworks */,
-				196F978E20EF08AC009A5FD6 /* Yams.framework in Frameworks */,
 				196F978520EF0885009A5FD6 /* libTestHelper.dylib in Frameworks */,
 				1918AB6320D9D517003BE795 /* MockGenerator.framework in Frameworks */,
 			);
@@ -1084,6 +1059,15 @@
 				1918AB4620D9D2A1003BE795 /* PerformanceTests */,
 				14CA2D6A1F40008F00900937 /* Frameworks */,
 				14CA2D541F40007000900937 /* Products */,
+				142B023921709BC5005DE573 /* libGRMustache7-MacOS.a */,
+				142B022F21709A85005DE573 /* UseCases.framework */,
+				142B021F217098F6005DE573 /* Bocho.framework */,
+				142B02232170994A005DE573 /* Diagnostic.framework */,
+				142B02202170994A005DE573 /* Lexer.framework */,
+				142B02212170994A005DE573 /* Source.framework */,
+				142B02252170994B005DE573 /* SourceKittenFramework.framework */,
+				142B02222170994A005DE573 /* SWXMLHash.framework */,
+				142B02242170994B005DE573 /* Yams.framework */,
 				35CDFCBA18471CBB83E38C32 /* scripts */,
 				35CDF720F8CE28402647AF36 /* readme */,
 				35CDFF76AF338D84655E5142 /* Makefile */,
@@ -1127,8 +1111,6 @@
 		14CA2D6A1F40008F00900937 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				191EF66E20F4484500118C74 /* Release */,
-				191EF66D20F4483F00118C74 /* Debug */,
 				191EF6D620F6452900118C74 /* Crashlytics.framework */,
 				191EF6D720F6452900118C74 /* Fabric.framework */,
 				14F866EF20D90C3A00E79758 /* XcodeKit.framework */,
@@ -1227,38 +1209,6 @@
 			path = PerformanceTests;
 			sourceTree = "<group>";
 		};
-		191EF66D20F4483F00118C74 /* Debug */ = {
-			isa = PBXGroup;
-			children = (
-				196F977820EF0452009A5FD6 /* UseCases.framework */,
-				196F977620EF0442009A5FD6 /* libGRMustache7-MacOS.a */,
-				19821E8120EEE7990084C6C1 /* Bocho.framework */,
-				19821E8020EEE7990084C6C1 /* Diagnostic.framework */,
-				19821E7E20EEE7990084C6C1 /* Lexer.framework */,
-				19821E7F20EEE7990084C6C1 /* Source.framework */,
-				19821E8220EEE7990084C6C1 /* SourceKittenFramework.framework */,
-				19821E8320EEE7990084C6C1 /* SWXMLHash.framework */,
-				19821E7D20EEE7980084C6C1 /* Yams.framework */,
-			);
-			name = Debug;
-			sourceTree = "<group>";
-		};
-		191EF66E20F4484500118C74 /* Release */ = {
-			isa = PBXGroup;
-			children = (
-				191EF69F20F450A300118C74 /* libGRMustache7-MacOS.a */,
-				191EF68120F44F4600118C74 /* UseCases.framework */,
-				191EF68820F44F6D00118C74 /* Bocho.framework */,
-				191EF68320F44F6B00118C74 /* Diagnostic.framework */,
-				191EF68720F44F6C00118C74 /* Lexer.framework */,
-				191EF68420F44F6B00118C74 /* Source.framework */,
-				191EF68920F44F6D00118C74 /* SourceKittenFramework.framework */,
-				191EF68620F44F6C00118C74 /* SWXMLHash.framework */,
-				191EF68520F44F6C00118C74 /* Yams.framework */,
-			);
-			name = Release;
-			sourceTree = "<group>";
-		};
 		191EF6A120F4518000118C74 /* config */ = {
 			isa = PBXGroup;
 			children = (
@@ -1334,7 +1284,7 @@
 				35CDF087FFEDD3FD8F68133F /* readlog */,
 				35CDF1979F49B7777F1BB71E /* swifttostring */,
 				35CDF80E1E54FE98ADD6EC43 /* test */,
-				191EF6B420F4616F00118C74 /* copyframeworks.sh */,
+				191EF6B420F4616F00118C74 /* signlibs.sh */,
 			);
 			path = scripts;
 			sourceTree = "<group>";
@@ -1373,6 +1323,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				142B023C21709C06005DE573 /* PBXTargetDependency */,
 				191EF67F20F44AFA00118C74 /* PBXTargetDependency */,
 				196F976020EEFA50009A5FD6 /* PBXTargetDependency */,
 				196F976220EEFA50009A5FD6 /* PBXTargetDependency */,
@@ -1433,11 +1384,12 @@
 				14CA2D7B1F40009000900937 /* Embed App Extensions */,
 				191EF6E620F6C99600118C74 /* Crashlytics */,
 				14887ABB20FB858000D50A73 /* Embed Frameworks */,
-				191EF6B520F4636D00118C74 /* Manually Embed Frameworks */,
+				191EF6B520F4636D00118C74 /* Manually Sign dylib */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				142B022E2170998A005DE573 /* PBXTargetDependency */,
 				14CA2D761F40009000900937 /* PBXTargetDependency */,
 				14276C901F4F37D500EA7753 /* PBXTargetDependency */,
 			);
@@ -1534,7 +1486,7 @@
 				14F866D020D9090400E79758 /* Resources */,
 				14F866E720D9094800E79758 /* Copy XPC */,
 				14F866F720D90E3300E79758 /* Copy Frameworks */,
-				142B020C216FA30B005DE573 /* Manually Embed Frameworks */,
+				142B020C216FA30B005DE573 /* Manually Sign dylib */,
 			);
 			buildRules = (
 			);
@@ -1586,6 +1538,10 @@
 					14276C681F4F312E00EA7753 = {
 						CreatedOnToolsVersion = 8.3.2;
 						LastSwiftMigration = 0830;
+					};
+					142B02192170942A005DE573 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
 					};
 					14872E7A1F59DBC50017AF3F = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -1696,6 +1652,7 @@
 				14F866C220D9088F00E79758 /* EndToEndTests */,
 				14F866D120D9090400E79758 /* EndToEndTestHost */,
 				1918AB4420D9D2A1003BE795 /* PerformanceTests */,
+				142B02192170942A005DE573 /* Frameworks */,
 			);
 		};
 /* End PBXProject section */
@@ -2043,7 +2000,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		142B020C216FA30B005DE573 /* Manually Embed Frameworks */ = {
+		142B020C216FA30B005DE573 /* Manually Sign dylib */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2051,29 +2008,87 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libAST.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libASTImpl.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libASTProxy.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libAlgorithms.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libASTSerialize.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libFormatter.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libParser.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libResolver.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libSourceKittenRequests.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libSwiftLexer.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libIndexer.dylib",
 			);
-			name = "Manually Embed Frameworks";
+			name = "Manually Sign dylib";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/scripts/copyframeworks.sh\n";
+			shellScript = "sh $SRCROOT/scripts/signlibs.sh\n";
 		};
-		191EF6B520F4636D00118C74 /* Manually Embed Frameworks */ = {
+		142B021E21709432005DE573 /* Copy Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Bocho.framework",
+				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Diagnostic.framework",
+				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Lexer.framework",
+				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Source.framework",
+				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/SourceKittenFramework.framework",
+				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/SWXMLHash.framework",
+				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Yams.framework",
+				"$(SRCROOT)/lib/$(CONFIGURATION)/UseCases.framework",
+				"$(SRCROOT)/lib/$(CONFIGURATION)/libGRMustache7-MacOS.a",
+			);
+			name = "Copy Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/Bocho.framework",
+				"$(BUILT_PRODUCTS_DIR)/Diagnostic.framework",
+				"$(BUILT_PRODUCTS_DIR)/Lexer.framework",
+				"$(BUILT_PRODUCTS_DIR)/Source.framework",
+				"$(BUILT_PRODUCTS_DIR)/SourceKittenFramework.framework",
+				"$(BUILT_PRODUCTS_DIR)/SWXMLHash.framework",
+				"$(BUILT_PRODUCTS_DIR)/Yams.framework",
+				"$(BUILT_PRODUCTS_DIR)/UseCases.framework",
+				"$(BUILT_PRODUCTS_DIR)/libGRMustache7-MacOS.a",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "count=0\nwhile [ $count -lt ${SCRIPT_INPUT_FILE_COUNT} ]; do\ninput=\"SCRIPT_INPUT_FILE_$count\"\noutput=\"SCRIPT_OUTPUT_FILE_$count\"\nrm -rf \"${!output}\" || true\ncp -R \"${!input}\" \"${!output}\"\necho \"${!input} ${!output}\"\nlet count=count+1\ndone\n";
+		};
+		191EF6B520F4636D00118C74 /* Manually Sign dylib */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libAST.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libASTImpl.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libASTProxy.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libAlgorithms.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libASTSerialize.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libFormatter.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libParser.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libResolver.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libSourceKittenRequests.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libSwiftLexer.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libIndexer.dylib",
 			);
-			name = "Manually Embed Frameworks";
+			name = "Manually Sign dylib";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/scripts/copyframeworks.sh\n";
+			shellScript = "sh $SRCROOT/scripts/signlibs.sh \n";
 		};
 		191EF6DC20F6C1D100118C74 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2266,6 +2281,16 @@
 			isa = PBXTargetDependency;
 			target = 14276C601F4F312E00EA7753 /* MockGenerator */;
 			targetProxy = 14276C8F1F4F37D500EA7753 /* PBXContainerItemProxy */;
+		};
+		142B022E2170998A005DE573 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 142B02192170942A005DE573 /* Frameworks */;
+			targetProxy = 142B022D2170998A005DE573 /* PBXContainerItemProxy */;
+		};
+		142B023C21709C06005DE573 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 142B02192170942A005DE573 /* Frameworks */;
+			targetProxy = 142B023B21709C06005DE573 /* PBXContainerItemProxy */;
 		};
 		14872E811F59DBC50017AF3F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2462,6 +2487,30 @@
 			};
 			name = Release;
 		};
+		142B021B2170942A005DE573 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		142B021C2170942A005DE573 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		142B021D2170942A005DE573 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Profile;
+		};
 		14872E821F59DBC50017AF3F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
@@ -2554,8 +2603,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MockGeneratorApp/MockGeneratorApp.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2568,8 +2617,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp;
 				PRODUCT_MODULE_NAME = MockGeneratorApp;
 				PRODUCT_NAME = "Swift Mock Generator for Xcode";
-				PROVISIONING_PROFILE = "11914808-9a87-45c8-a454-563e068144f5";
-				PROVISIONING_PROFILE_SPECIFIER = "Mock Generator Developer ID";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -2603,8 +2651,8 @@
 			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = XcodePlugin/XcodePlugin.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2650,8 +2698,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3059,6 +3107,16 @@
 				14276C741F4F312E00EA7753 /* Debug */,
 				14276C751F4F312E00EA7753 /* Release */,
 				191EF6AC20F4522F00118C74 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		142B021A2170942A005DE573 /* Build configuration list for PBXAggregateTarget "Frameworks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				142B021B2170942A005DE573 /* Debug */,
+				142B021C2170942A005DE573 /* Release */,
+				142B021D2170942A005DE573 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
