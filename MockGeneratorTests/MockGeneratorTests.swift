@@ -155,6 +155,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("MultipleVariableMock")
     }
 
+    func test_generatesAPartialSpy() {
+        assertMockGeneratesExpected("PartialSpyClassMock", templateName: "partial")
+    }
+
     func test_shouldFilterNSObject() {
         assertMockGeneratesError(fileName: "NSObjectClassMock", "Found inherited types but there was nothing to mock")
     }
@@ -211,9 +215,9 @@ class MockGeneratorTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func assertMockGeneratesExpected(_ fileName: String, line: UInt = #line) {
+    private func assertMockGeneratesExpected(_ fileName: String, templateName: String = "spy", line: UInt = #line) {
         let (mock, expected) = readMock(named: fileName)
-        assertMock(mock, generates: expected, line: line)
+        assertMock(mock, generates: expected, templateName: templateName, line: line)
     }
 
     private func assertMockGeneratesError(fileName: String, _ expectedError: String, line: UInt = #line) {
@@ -238,19 +242,19 @@ class MockGeneratorTests: XCTestCase {
         return try! String(contentsOfFile: testProject + "/" + fileName)
     }
 
-    private func assertMock(_ mock: String, generates expected: String, line: UInt = #line) {
-        let (lines, error) = generateMock(mock)
+    private func assertMock(_ mock: String, generates expected: String, templateName: String = "spy", line: UInt = #line) {
+        let (lines, error) = generateMock(mock, templateName: templateName)
         XCTAssertNil(error, line: line)
         StringCompareTestHelper.assertEqualStrings(join(lines), expected, line: line)
     }
 
-    private func generateMock(_ mock: String) -> ([String]?, Error?) {
+    private func generateMock(_ mock: String, templateName: String = "spy") -> ([String]?, Error?) {
         let result = CaretTestHelper.findCaretLineColumn(mock)
         let (instructions, error) = Generator(fromFileContents: result.contents,
                                       projectURL: URL(fileURLWithPath: testProject),
                                       line: result.lineColumn!.line,
                                       column: result.lineColumn!.column,
-                                      templateName: "spy",
+                                      templateName: templateName,
                                       useTabsForIndentation: false,
                                       indentationWidth: 4).generateMock()
         return (applyInstructions(instructions, to: result.contents), error)

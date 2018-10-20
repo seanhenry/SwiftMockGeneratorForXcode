@@ -47,13 +47,17 @@ extension UseCasesPropertyViewModel {
 
     fileprivate func toDictionary() -> NSDictionary {
         let dictionary = NSMutableDictionary()
+        dictionary["name"] = name
         dictionary["capitalizedUniqueName"] = capitalizedUniqueName
         dictionary["hasSetter"] = hasSetter
         dictionary["type"] = type
         dictionary["optionalType"] = optionalType
         dictionary["iuoType"] = iuoType
         dictionary["defaultValueAssignment"] = defaultValueAssignment
-        dictionary["defaultValue"] = defaultValue
+        if let defaultValue = defaultValue {
+            dictionary["defaultValue"] = defaultValue
+        }
+        dictionary["isImplemented"] = isImplemented
         dictionary["declarationText"] = declarationText
         return dictionary
     }
@@ -65,14 +69,19 @@ extension UseCasesMethodViewModel {
         let dictionary = NSMutableDictionary()
         dictionary["capitalizedUniqueName"] = capitalizedUniqueName
         dictionary["closureParameter"] = closureParameter.map { $0.toDictionary() }
-        dictionary["declarationText"] = declarationText
         if let escapingParameters = escapingParameters {
             dictionary["escapingParameters"] = escapingParameters.toDictionary()
         }
-        dictionary["throws"] = `throws`
         if let resultType = resultType {
             dictionary["resultType"] = resultType.toDictionary()
         }
+        if let functionCall = functionCall {
+            dictionary["functionCall"] = functionCall
+        }
+        dictionary["throws"] = `throws`
+        dictionary["rethrows"] = `rethrows`
+        dictionary["isImplemented"] = isImplemented
+        dictionary["declarationText"] = declarationText
         return dictionary
     }
 }
@@ -105,7 +114,9 @@ extension UseCasesResultTypeViewModel {
     fileprivate func toDictionary() -> NSDictionary {
         let dictionary = NSMutableDictionary()
         dictionary["defaultValueAssignment"] = defaultValueAssignment
-        dictionary["defaultValue"] = defaultValue
+        if let defaultValue = defaultValue {
+            dictionary["defaultValue"] = defaultValue
+        }
         dictionary["optionalType"] = optionalType
         dictionary["iuoType"] = iuoType
         dictionary["returnCastStatement"] = returnCastStatement

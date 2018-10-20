@@ -91,6 +91,8 @@
 		1497FED0215E200100CD670B /* libResolver.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975420EEFA12009A5FD6 /* libResolver.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1497FED1215E200100CD670B /* libSourceKittenRequests.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975820EEFA12009A5FD6 /* libSourceKittenRequests.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1497FED2215E200100CD670B /* libSwiftLexer.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975A20EEFA12009A5FD6 /* libSwiftLexer.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		149CF7B3217B115B005892B4 /* partial.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 149CF792217B115A005892B4 /* partial.mustache */; };
+		149CF7B5217B1301005892B4 /* PartialSpyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CF7B4217B1301005892B4 /* PartialSpyCommand.swift */; };
 		149DEC711F651B0C007DF43E /* MockGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14B4BC2C208B0A130052A085 /* XcodeProjectPathFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFB741733D825DD2B6508 /* XcodeProjectPathFinderTests.swift */; };
 		14B4BC2D208B0A160052A085 /* PreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7966B174AC850706CB1 /* PreferencesTests.swift */; };
@@ -786,6 +788,8 @@
 		14872E7F1F59DBC50017AF3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1497FE75215CE18A00CD670B /* MockGeneratorXPC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MockGeneratorXPC.entitlements; sourceTree = "<group>"; };
 		1497FE76215D0B5C00CD670B /* XcodeAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeAccess.swift; sourceTree = "<group>"; };
+		149CF792217B115A005892B4 /* partial.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = partial.mustache; sourceTree = "<group>"; };
+		149CF7B4217B1301005892B4 /* PartialSpyCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialSpyCommand.swift; sourceTree = "<group>"; };
 		14CA2D531F40007000900937 /* Swift Mock Generator for Xcode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift Mock Generator for Xcode.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14CA2D561F40007000900937 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14CA2D581F40007000900937 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1008,6 +1012,7 @@
 				35CDF2EF71ED0A21E89CBC94 /* dummy.mustache */,
 				35CDF512D0EA7664390189DC /* stub.mustache */,
 				35CDFE70EECA508E4E1A6742 /* spy.mustache */,
+				149CF792217B115A005892B4 /* partial.mustache */,
 				1A93A0984050AAB172D12611 /* BufferInstructions.swift */,
 				1A93AB42E130574B292EF001 /* BufferInstructionsFactory.swift */,
 				35CDFFDC332CE5615DA47863 /* VariableTypeResolver.swift */,
@@ -1130,6 +1135,7 @@
 				35CDFE154C81653EC7127630 /* SpyCommand.swift */,
 				35CDFFDBE599C4E0238A240C /* StubCommand.swift */,
 				35CDF2B6AA231A57A21D6EE3 /* DummyCommand.swift */,
+				149CF7B4217B1301005892B4 /* PartialSpyCommand.swift */,
 				14F866EB20D90BC500E79758 /* XcodeKit+Transformers.swift */,
 				14F866E920D90BAF00E79758 /* XPCManager.swift */,
 				14F8671020D9270E00E79758 /* Connection.swift */,
@@ -1932,6 +1938,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35CDF75348948FB1299E08E1 /* dummy.mustache in Resources */,
+				149CF7B3217B115B005892B4 /* partial.mustache in Resources */,
 				35CDF049C3AFB0095D61A0F0 /* stub.mustache in Resources */,
 				35CDF73F6A5C30CCED194681 /* spy.mustache in Resources */,
 			);
@@ -2202,6 +2209,7 @@
 				35CDFC1714DE626B1E71A7CC /* SpyCommand.swift in Sources */,
 				35CDF80097FBC72B6A2550A5 /* StubCommand.swift in Sources */,
 				35CDF3FCD960FF97E00313B9 /* DummyCommand.swift in Sources */,
+				149CF7B5217B1301005892B4 /* PartialSpyCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

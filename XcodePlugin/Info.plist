@@ -28,30 +28,38 @@
 		<dict>
 			<key>XCSourceEditorCommandDefinitions</key>
 			<array>
-                <dict>
-                    <key>XCSourceEditorCommandClassName</key>
-                    <string>$(PRODUCT_MODULE_NAME).SpyCommand</string>
-                    <key>XCSourceEditorCommandIdentifier</key>
-                    <string>$(PRODUCT_BUNDLE_IDENTIFIER).spy</string>
-                    <key>XCSourceEditorCommandName</key>
-                    <string>Generate spy</string>
-                </dict>
-                <dict>
-                    <key>XCSourceEditorCommandClassName</key>
-                    <string>$(PRODUCT_MODULE_NAME).StubCommand</string>
-                    <key>XCSourceEditorCommandIdentifier</key>
-                    <string>$(PRODUCT_BUNDLE_IDENTIFIER).stub</string>
-                    <key>XCSourceEditorCommandName</key>
-                    <string>Generate stub</string>
-                </dict>
-                <dict>
-                    <key>XCSourceEditorCommandClassName</key>
-                    <string>$(PRODUCT_MODULE_NAME).DummyCommand</string>
-                    <key>XCSourceEditorCommandIdentifier</key>
-                    <string>$(PRODUCT_BUNDLE_IDENTIFIER).dummy</string>
-                    <key>XCSourceEditorCommandName</key>
-                    <string>Generate dummy</string>
-                </dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).SpyCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).spy</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Generate spy</string>
+				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).StubCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).stub</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Generate stub</string>
+				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).DummyCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).dummy</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Generate dummy</string>
+				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).PartialSpyCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).partialspy</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Generate partial spy</string>
+				</dict>
 			</array>
 			<key>XCSourceEditorExtensionPrincipalClass</key>
 			<string>$(PRODUCT_MODULE_NAME).SourceEditorExtension</string>
@@ -61,21 +69,21 @@
 	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2017 Sean Henry. All rights reserved.</string>
-    <key>XPC_BUNDLE_IDENTIFIER</key>
-    <string>$(XPC_BUNDLE_IDENTIFIER)</string>
-    <key>Fabric</key>
-    <dict>
-        <key>APIKey</key>
-        <string>e23964297fda9fdebedf7a8871f4b45f32416c88</string>
-        <key>Kits</key>
-        <array>
-            <dict>
-                <key>KitInfo</key>
-                <dict/>
-                <key>KitName</key>
-                <string>Crashlytics</string>
-            </dict>
-        </array>
-    </dict>
+	<key>XPC_BUNDLE_IDENTIFIER</key>
+	<string>$(XPC_BUNDLE_IDENTIFIER)</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>e23964297fda9fdebedf7a8871f4b45f32416c88</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 </dict>
 </plist>
