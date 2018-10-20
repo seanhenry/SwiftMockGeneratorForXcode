@@ -1,0 +1,3 @@
+protocol FolderSpaces {
+    func simpleMethod()
+}

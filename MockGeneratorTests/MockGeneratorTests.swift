@@ -205,6 +205,10 @@ class MockGeneratorTests: XCTestCase {
         }
     }
 
+    func test_supportsFoldersWithSpacesInTheirSpace() {
+        assertMockGeneratesExpected("Test Folder With Spaces/FolderSpacesMock")
+    }
+
     // MARK: - Helpers
 
     private func assertMockGeneratesExpected(_ fileName: String, line: UInt = #line) {

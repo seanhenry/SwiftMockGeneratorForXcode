@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		146F2875217741E100689278 /* FolderSpacesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F2872217741E000689278 /* FolderSpacesMock.swift */; };
+		146F2877217741E800689278 /* FolderSpacesMock_expected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146F2871217741E000689278 /* FolderSpacesMock_expected.swift */; };
+		146F2878217741EE00689278 /* UTFMock_expected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6107321524187006EE58B /* UTFMock_expected.swift */; };
 		14AA09741F50D95B00968958 /* TestProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14AA096A1F50D95B00968958 /* TestProject.framework */; };
 		14AA097B1F50D95B00968958 /* TestProject.h in Headers */ = {isa = PBXBuildFile; fileRef = 14AA096D1F50D95B00968958 /* TestProject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F6107221524122006EE58B /* UTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6107121524122006EE58B /* UTF.swift */; };
-		14F6107421524187006EE58B /* UTFMock_expected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6107321524187006EE58B /* UTFMock_expected.swift */; };
 		1A93A01A13E563D04529D00F /* MethodParameterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A04493E011EF2A63062B /* MethodParameterProtocol.swift */; };
 		1A93A02DD410AD3A95F0C5AC /* ThrowingClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AD94883CAEBDAC70D244 /* ThrowingClass.swift */; };
 		1A93A02FFD60A5C193D15480 /* NSObjectClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AC6C44423D173FC69CAF /* NSObjectClass.swift */; };
@@ -104,6 +106,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		146F2871217741E000689278 /* FolderSpacesMock_expected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderSpacesMock_expected.swift; sourceTree = "<group>"; };
+		146F2872217741E000689278 /* FolderSpacesMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderSpacesMock.swift; sourceTree = "<group>"; };
+		146F2873217741E100689278 /* FolderSpaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderSpaces.swift; sourceTree = "<group>"; };
 		14AA096A1F50D95B00968958 /* TestProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TestProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14AA096D1F50D95B00968958 /* TestProject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestProject.h; sourceTree = "<group>"; };
 		14AA096E1F50D95B00968958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -254,9 +259,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		146F28702177414C00689278 /* Test Folder With Spaces */ = {
+			isa = PBXGroup;
+			children = (
+				146F2873217741E100689278 /* FolderSpaces.swift */,
+				146F2871217741E000689278 /* FolderSpacesMock_expected.swift */,
+				146F2872217741E000689278 /* FolderSpacesMock.swift */,
+			);
+			path = "Test Folder With Spaces";
+			sourceTree = "<group>";
+		};
 		14AA09601F50D95B00968958 = {
 			isa = PBXGroup;
 			children = (
+				146F28702177414C00689278 /* Test Folder With Spaces */,
 				14F6106F215240CD006EE58B /* UTFMock.swift */,
 				14F6107321524187006EE58B /* UTFMock_expected.swift */,
 				14F6107121524122006EE58B /* UTF.swift */,
@@ -310,59 +326,59 @@
 			isa = PBXGroup;
 			children = (
 				1A93AD53B28089C16FF25801 /* ArgumentInitializerClass.swift */,
-				1A93AE303BAE5C9082F899D5 /* ClassAndProtocolMock_expected.swift */,
-				1A93A2ECEA019B062A5A7B02 /* AvailableClassMock.swift */,
-				1A93A3EC65CD862BB8DC1984 /* ClassAndProtocolMock.swift */,
-				1A93A3455334EC9A6D0C047C /* ArgumentInitializerClassMock.swift */,
-				1A93AA9BDDF1BB758E84F852 /* ClassAndProtocol.swift */,
 				1A93AC6F85379FAA4406C5CC /* ArgumentInitializerClassMock_expected.swift */,
+				1A93A3455334EC9A6D0C047C /* ArgumentInitializerClassMock.swift */,
+				1A93A34985C7AF293D6E2E91 /* AvailableClass.swift */,
 				1A93A4A98013ABB462FFAD7C /* AvailableClassMock_expected.swift */,
-				1A93AFA92F0E9B4C0C0F202E /* FailableInitializerClass.swift */,
-				1A93AC78403661459DDDA797 /* FailableInitializerClassMock.swift */,
+				1A93A2ECEA019B062A5A7B02 /* AvailableClassMock.swift */,
+				1A93AA9BDDF1BB758E84F852 /* ClassAndProtocol.swift */,
+				1A93AE303BAE5C9082F899D5 /* ClassAndProtocolMock_expected.swift */,
+				1A93A3EC65CD862BB8DC1984 /* ClassAndProtocolMock.swift */,
+				35CDF970C2AAEF0B776EE1A7 /* DefaultArgumentClass.swift */,
+				35CDFE23FA4767FA82D4E6A4 /* DefaultArgumentClassMock_expected.swift */,
+				35CDFAF2A34D4B68A336CDB0 /* DefaultArgumentClassMock.swift */,
 				1A93A2516C1441D399358CC6 /* EmptyFailableInitializerClass.swift */,
 				1A93A7CD1714D5FD8411D6F6 /* EmptyFailableInitializerClassMock_expected.swift */,
-				1A93AE8AE906A390628EAF73 /* FailableInitializerClassMock_expected.swift */,
 				1A93A9C1B97825BC02D764D9 /* EmptyFailableInitializerClassMock.swift */,
+				1A93AFA92F0E9B4C0C0F202E /* FailableInitializerClass.swift */,
+				1A93AE8AE906A390628EAF73 /* FailableInitializerClassMock_expected.swift */,
+				1A93AC78403661459DDDA797 /* FailableInitializerClassMock.swift */,
+				1A93A261381A8D870DDAD7A1 /* InferredTypeClass.swift */,
 				1A93AFC86B062516E2153F97 /* InferredTypeClassMock_expected.swift */,
 				1A93A634CE7E712BEF58CFEE /* InferredTypeClassMock.swift */,
-				1A93A261381A8D870DDAD7A1 /* InferredTypeClass.swift */,
-				1A93A59FA90DAED1C69A13F5 /* MultipleInitializerClassMock.swift */,
-				1A93A05421C1F23F739C6B81 /* MultipleInitializerClassMock_expected.swift */,
+				1A93A8D08D67B8B31F44ED34 /* ModifierClass.swift */,
+				1A93A4869BA54095DB4B157D /* ModifierClassMock_expected.swift */,
+				1A93A0B488E74C4B3EA1EDAC /* ModifierClassMock.swift */,
 				1A93AAA6163EF03A1A4B2682 /* MultipleInitializerClass.swift */,
-				1A93AAB1F41417478A83DFF3 /* MultipleVariableMock_expected.swift */,
+				1A93A05421C1F23F739C6B81 /* MultipleInitializerClassMock_expected.swift */,
+				1A93A59FA90DAED1C69A13F5 /* MultipleInitializerClassMock.swift */,
 				1A93A936740E26A75E132A38 /* MultipleVariable.swift */,
+				1A93AAB1F41417478A83DFF3 /* MultipleVariableMock_expected.swift */,
 				1A93ACDCDDF8355E7ED7A1CB /* MultipleVariableMock.swift */,
 				1A93AC6C44423D173FC69CAF /* NSObjectClass.swift */,
 				1A93A05C500DF2D6D657E3E9 /* NSObjectClassMock_expected.swift */,
 				1A93A2E84E81F3F34787566D /* NSObjectClassMock.swift */,
-				1A93A411BA113BF9A132CC25 /* PrivateInitializerClassMock.swift */,
 				1A93AEA42B1C62CDD12ED2EC /* PrivateInitializerClass.swift */,
-				1A93A8734002DB689321BE95 /* PropertyClassMock.swift */,
-				1A93A85FA39B031D6F2CBB1F /* PropertyClassMock_expected.swift */,
 				1A93A55293D785072F233481 /* PrivateInitializerClassMock_expected.swift */,
+				1A93A411BA113BF9A132CC25 /* PrivateInitializerClassMock.swift */,
 				1A93A367331415DA988ED764 /* PropertyClass.swift */,
-				1A93AB8569BFC148EB1865BF /* SimpleClassMock.swift */,
+				1A93A85FA39B031D6F2CBB1F /* PropertyClassMock_expected.swift */,
+				1A93A8734002DB689321BE95 /* PropertyClassMock.swift */,
 				1A93A3F5DF4AC36D686A419E /* RequiredInitializerClass.swift */,
-				1A93A6B85883326D4E18C43D /* SimpleClassMock_expected.swift */,
 				1A93A2DC7550ED5136AEB935 /* RequiredInitializerClassMock_expected.swift */,
-				1A93A4326A339ECD2D27B7A9 /* SimpleClass.swift */,
 				1A93A0E12D3190DEF40D85C8 /* RequiredInitializerClassMock.swift */,
+				1A93A4326A339ECD2D27B7A9 /* SimpleClass.swift */,
+				1A93A6B85883326D4E18C43D /* SimpleClassMock_expected.swift */,
+				1A93AB8569BFC148EB1865BF /* SimpleClassMock.swift */,
 				1A93ADE9C79AF6DE67541F29 /* Superclass.swift */,
 				1A93ADB096B430926D7ED2A3 /* SuperclassMock_expected.swift */,
 				1A93A7E57EDECC024F03DFDE /* SuperclassMock.swift */,
+				1A93AD94883CAEBDAC70D244 /* ThrowingClass.swift */,
 				1A93A69035C2CDA95E7632F7 /* ThrowingClassMock_expected.swift */,
 				1A93AB297C7BE4AAE96F2E8B /* ThrowingClassMock.swift */,
-				1A93AD94883CAEBDAC70D244 /* ThrowingClass.swift */,
-				1A93A1CCBD1A79816116D517 /* UnoverridableClassMock.swift */,
-				1A93A79A7B45A36B487C4C36 /* UnoverridableClassMock_expected.swift */,
 				1A93A1C63CEC92B282977BE8 /* UnoverridableClass.swift */,
-				1A93A34985C7AF293D6E2E91 /* AvailableClass.swift */,
-				1A93A8D08D67B8B31F44ED34 /* ModifierClass.swift */,
-				1A93A4869BA54095DB4B157D /* ModifierClassMock_expected.swift */,
-				1A93A0B488E74C4B3EA1EDAC /* ModifierClassMock.swift */,
-				35CDF970C2AAEF0B776EE1A7 /* DefaultArgumentClass.swift */,
-				35CDFAF2A34D4B68A336CDB0 /* DefaultArgumentClassMock.swift */,
-				35CDFE23FA4767FA82D4E6A4 /* DefaultArgumentClassMock_expected.swift */,
+				1A93A79A7B45A36B487C4C36 /* UnoverridableClassMock_expected.swift */,
+				1A93A1CCBD1A79816116D517 /* UnoverridableClassMock.swift */,
 			);
 			name = class;
 			sourceTree = "<group>";
@@ -370,61 +386,61 @@
 		1A93AC2132CD4582B0C374B4 /* protocol */ = {
 			isa = PBXGroup;
 			children = (
-				1A93A550AA72108760454199 /* ClosureProtocolMock.swift */,
 				1A93AB41671C56453FE752EE /* ClosureProtocol.swift */,
 				1A93AC51D9E3A33B22501FB8 /* ClosureProtocolMock_expected.swift */,
+				1A93A550AA72108760454199 /* ClosureProtocolMock.swift */,
+				1A93A0271AD98762290F4716 /* DeepInheritance.swift */,
+				1A93A8350AA5EB7CBA39EB88 /* DeepInheritanceMock_expected.swift */,
 				1A93AABC8F1595C7E782ED57 /* DeepInheritanceMock.swift */,
 				1A93AB944F17B31E3330BF7D /* DefaultValues.swift */,
-				1A93A8350AA5EB7CBA39EB88 /* DeepInheritanceMock_expected.swift */,
 				1A93AF5BD0ED6E32D3A286BE /* DefaultValuesMock_expected.swift */,
-				1A93A0271AD98762290F4716 /* DeepInheritance.swift */,
 				1A93A767BC7451FFA13D1A9E /* DefaultValuesMock.swift */,
-				1A93A47F988F84B033A3C63F /* DiamondInheritanceProtocolMock.swift */,
-				1A93A3FBFD17903CF9D4EC3D /* DiamondInheritanceProtocolMock_expected.swift */,
 				1A93A061AE676CB3DBD5E045 /* DiamondInheritanceProtocol.swift */,
+				1A93A3FBFD17903CF9D4EC3D /* DiamondInheritanceProtocolMock_expected.swift */,
+				1A93A47F988F84B033A3C63F /* DiamondInheritanceProtocolMock.swift */,
 				1A93A1A4C5F631B07CA0913C /* GenericMethod.swift */,
-				1A93A25EA47AD0BED73B706F /* GenericMethodMock.swift */,
 				1A93A2F654F519C80EC09720 /* GenericMethodMock_expected.swift */,
-				1A93AB98CC559E78F2C56903 /* MethodParameterProtocolMock_expected.swift */,
-				1A93A8DBEE546E03658F15B2 /* InitialiserProtocolMock.swift */,
-				1A93A052BA1B63B1F6EEFB93 /* KeywordsMock_unformatted.swift */,
-				1A93A3B30BF8CCD6F6576C86 /* MethodParameterProtocolMock.swift */,
-				1A93A9291DFAA7BB215A1FAA /* Keywords.swift */,
+				1A93A25EA47AD0BED73B706F /* GenericMethodMock.swift */,
 				1A93A92701E13A7D02075B80 /* InitialiserProtocol.swift */,
 				1A93A4DFC54B158FB85CCE35 /* InitialiserProtocolMock_expected.swift */,
-				1A93A04493E011EF2A63062B /* MethodParameterProtocol.swift */,
+				1A93A8DBEE546E03658F15B2 /* InitialiserProtocolMock.swift */,
+				1A93A9291DFAA7BB215A1FAA /* Keywords.swift */,
 				1A93ACD690DBECDC27C0969D /* KeywordsMock_expected.swift */,
+				1A93A052BA1B63B1F6EEFB93 /* KeywordsMock_unformatted.swift */,
 				1A93A12788CF805546C92B83 /* KeywordsMock.swift */,
+				1A93A04493E011EF2A63062B /* MethodParameterProtocol.swift */,
+				1A93AB98CC559E78F2C56903 /* MethodParameterProtocolMock_expected.swift */,
+				1A93A3B30BF8CCD6F6576C86 /* MethodParameterProtocolMock.swift */,
+				1A93A21BD4D76A251F9466A6 /* MultipleProtocol.swift */,
 				1A93AE02A6FAD734586EBFF3 /* MultipleProtocolMock_expected.swift */,
 				1A93A36C4E4D09FF3C50E831 /* MultipleProtocolMock.swift */,
-				1A93A21BD4D76A251F9466A6 /* MultipleProtocol.swift */,
-				1A93AAF60F0E3357426FADB7 /* ReturnProtocol.swift */,
-				1A93AAA61DC1274735663AE4 /* OverloadProtocolMock_expected.swift */,
-				1A93A74C19CAF2916F866657 /* TupleProtocolMock_expected.swift */,
-				1A93A035697D431EA925C5FB /* PropertyProtocolMock.swift */,
-				1A93A1BFB6A7A25A3F830816 /* TypealiasProtocol.swift */,
-				1A93A3223B77F2C61C26669F /* SimpleProtocolMock.swift */,
-				1A93A72F5912F59161FD8BA1 /* ThrowingProtocolMock_expected.swift */,
-				1A93ADEB4F4BA8D8F10D08C6 /* SimpleProtocolMock_expected.swift */,
-				1A93AA408E55A979DC68E61C /* ParameterAnnotation.swift */,
-				1A93AD1C8E8078F5253DAD98 /* ThrowingProtocolMock.swift */,
-				1A93AD6AE3FDBC261779D24A /* TypealiasProtocolMock.swift */,
-				1A93AC1AFE3740D0AB6C5544 /* ParameterAnnotationMock_expected.swift */,
-				1A93AFC78FDD063B348A6C27 /* RecursiveProtocolMock_expected.swift */,
-				1A93A103B52E0B9663053DCA /* SimpleProtocol.swift */,
-				1A93ABA81B71E6050F54B1FD /* PropertyProtocolMock_expected.swift */,
-				1A93A9F12F7F8A539CBA5D40 /* RecursiveProtocol.swift */,
-				1A93A3581770F5E48DE9C199 /* TupleProtocol.swift */,
-				1A93A2457707CCAEF4710FA8 /* RecursiveProtocolMock.swift */,
-				1A93AFE4C5CCFE19660E39AB /* ReturnProtocolMock.swift */,
-				1A93ACBC179D6C1314A5EF24 /* PropertyProtocol.swift */,
-				1A93AD19E201C6EBC0F0F83F /* ThrowingProtocol.swift */,
-				1A93A310BECE0AF2E785EC3D /* TupleProtocolMock.swift */,
-				1A93A5BA96F9532FA48F5B98 /* ParameterAnnotationMock.swift */,
-				1A93AC11090F4CF1015E9878 /* OverloadProtocolMock.swift */,
-				1A93ACB632C0C827A1BCB3CA /* ReturnProtocolMock_expected.swift */,
-				1A93A23D4F3F7FA810A11F62 /* TypealiasProtocolMock_expected.swift */,
 				1A93A531EC15407DB73DA83B /* OverloadProtocol.swift */,
+				1A93AAA61DC1274735663AE4 /* OverloadProtocolMock_expected.swift */,
+				1A93AC11090F4CF1015E9878 /* OverloadProtocolMock.swift */,
+				1A93AA408E55A979DC68E61C /* ParameterAnnotation.swift */,
+				1A93AC1AFE3740D0AB6C5544 /* ParameterAnnotationMock_expected.swift */,
+				1A93A5BA96F9532FA48F5B98 /* ParameterAnnotationMock.swift */,
+				1A93ACBC179D6C1314A5EF24 /* PropertyProtocol.swift */,
+				1A93ABA81B71E6050F54B1FD /* PropertyProtocolMock_expected.swift */,
+				1A93A035697D431EA925C5FB /* PropertyProtocolMock.swift */,
+				1A93A9F12F7F8A539CBA5D40 /* RecursiveProtocol.swift */,
+				1A93AFC78FDD063B348A6C27 /* RecursiveProtocolMock_expected.swift */,
+				1A93A2457707CCAEF4710FA8 /* RecursiveProtocolMock.swift */,
+				1A93AAF60F0E3357426FADB7 /* ReturnProtocol.swift */,
+				1A93ACB632C0C827A1BCB3CA /* ReturnProtocolMock_expected.swift */,
+				1A93AFE4C5CCFE19660E39AB /* ReturnProtocolMock.swift */,
+				1A93A103B52E0B9663053DCA /* SimpleProtocol.swift */,
+				1A93ADEB4F4BA8D8F10D08C6 /* SimpleProtocolMock_expected.swift */,
+				1A93A3223B77F2C61C26669F /* SimpleProtocolMock.swift */,
+				1A93AD19E201C6EBC0F0F83F /* ThrowingProtocol.swift */,
+				1A93A72F5912F59161FD8BA1 /* ThrowingProtocolMock_expected.swift */,
+				1A93AD1C8E8078F5253DAD98 /* ThrowingProtocolMock.swift */,
+				1A93A3581770F5E48DE9C199 /* TupleProtocol.swift */,
+				1A93A74C19CAF2916F866657 /* TupleProtocolMock_expected.swift */,
+				1A93A310BECE0AF2E785EC3D /* TupleProtocolMock.swift */,
+				1A93A1BFB6A7A25A3F830816 /* TypealiasProtocol.swift */,
+				1A93A23D4F3F7FA810A11F62 /* TypealiasProtocolMock_expected.swift */,
+				1A93AD6AE3FDBC261779D24A /* TypealiasProtocolMock.swift */,
 			);
 			name = protocol;
 			sourceTree = "<group>";
@@ -552,13 +568,13 @@
 				35CDFC3894E7CF5A54DC7F14 /* DataStore.swift in Sources */,
 				35CDF134CC433FB7B36EBDAF /* HelperClasses.swift in Sources */,
 				1A93AA35E7FA42E3465CEB66 /* NestedClassPerformanceTest_formatted.swift in Sources */,
-				14F6107421524187006EE58B /* UTFMock_expected.swift in Sources */,
 				1A93AE4AD2DBA95FF89C8B9A /* ClosureProtocol.swift in Sources */,
 				1A93A46E0F63D5E91FFEE68F /* DefaultValues.swift in Sources */,
 				1A93A52E779B46157171C1BB /* DeepInheritance.swift in Sources */,
 				1A93AA5C8AFA8A61A5518EE7 /* DiamondInheritanceProtocol.swift in Sources */,
 				1A93A7EAB360548EF547D976 /* GenericMethod.swift in Sources */,
 				1A93A13740E25EB9EE6D0637 /* KeywordsMock_unformatted.swift in Sources */,
+				146F2875217741E100689278 /* FolderSpacesMock.swift in Sources */,
 				1A93AA5745B9729DE9DB85F0 /* Keywords.swift in Sources */,
 				1A93A6CFBCC2561EB79DCC99 /* InitialiserProtocol.swift in Sources */,
 				1A93A01A13E563D04529D00F /* MethodParameterProtocol.swift in Sources */,
@@ -607,7 +623,9 @@
 				1A93A7715EE73ED929607F35 /* DiamondInheritanceProtocolMock_expected.swift in Sources */,
 				1A93AD9D54068E50D6875D9C /* GenericMethodMock_expected.swift in Sources */,
 				1A93A0C5366013D14414E99B /* MethodParameterProtocolMock_expected.swift in Sources */,
+				146F2877217741E800689278 /* FolderSpacesMock_expected.swift in Sources */,
 				1A93A7274B374D6566730D84 /* InitialiserProtocolMock_expected.swift in Sources */,
+				146F2878217741EE00689278 /* UTFMock_expected.swift in Sources */,
 				1A93A8EF01B9BCBABFA8A1C6 /* KeywordsMock_expected.swift in Sources */,
 				1A93AD1DB230524816F8D7E5 /* MultipleProtocolMock_expected.swift in Sources */,
 				1A93A74EA84270E112307254 /* OverloadProtocolMock_expected.swift in Sources */,
