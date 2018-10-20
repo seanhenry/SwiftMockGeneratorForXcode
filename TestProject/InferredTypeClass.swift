@@ -1,14 +1,12 @@
 typealias StringAlias = String
-struct String {}
-struct Int {}
-struct UInt {}
+struct HelperClass {}
 
 class InferredTypeClass {
-    var string = String("")
+    var fromInitializer = HelperClass()
     var stringLiteral = ""
-    var dictionaryLiteral = [String: Int]()
+    var dictionaryLiteral = [HelperClass: HelperClass]()
     var dictionaryLiteral2 = ["": 0]
-    var arrayLiteral = [Int]()
+    var arrayLiteral = [HelperClass]()
     var arrayLiteral2 = [0]
     var asExpression = ["", 0] as [Any]
     var isExpression = "" is String
@@ -16,7 +14,7 @@ class InferredTypeClass {
     var closureSignature = { (a: Int, b: String) throws -> UInt in return 0 }
     var returnClosure = { return 0 }
     var closureCall = { return "" }()
-    var tuple = (0, String())
+    var tuple = (0, "")
     var methodAssigned = InferredTypeClass.method()
     var propertyAssigned = InferredTypeClass.property
 

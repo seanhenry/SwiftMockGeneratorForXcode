@@ -6,6 +6,8 @@
 //  Copyright © 2018 Sean Henry. All rights reserved.
 //
 
+@testable import TestProject
+
 class UTFMock: UTF {
 <caret>
 }

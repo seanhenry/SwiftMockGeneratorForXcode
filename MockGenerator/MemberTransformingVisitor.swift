@@ -109,7 +109,9 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
             returnType: UseCasesResolvedType(originalType: returnType, resolvedType: returnType),
             parametersList: parameters,
             declarationText: getDeclarationText(element),
-            throws: element.throws)
+            throws: element.throws,
+            rethrows: element.rethrows
+        )
     }
 
     private func getDeclarationText(_ element: Element) -> String {

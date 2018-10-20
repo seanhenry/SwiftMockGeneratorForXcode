@@ -6,6 +6,8 @@
 //  Copyright © 2018 Sean Henry. All rights reserved.
 //
 
+@testable import TestProject
+
 class UTFMock: UTF {
     var invokedUtfCount4 = false
     var invokedUtfCount4Count = 0

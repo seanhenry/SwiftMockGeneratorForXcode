@@ -1,4 +1,4 @@
-USE_CASE_SHA=824b1a8334231edac3eeccf154acda9a34bb6197
+USE_CASE_SHA=v15
 MUSTACHE_SHA=v7.3.2
 KOTLIN_NATIVE_SHA=v0.8
 KOTLINC_VERSION=0.8-dev
@@ -54,7 +54,7 @@ define update_repo_sha
 endef
 
 usecases: mkdestpath mkkotlinnative
-	$(call update_repo_sha,$(USECASES_SRC_PATH),https://github.com/seanhenry/MockGenerator.git,$(USE_CASE_SHA))
+	$(call update_repo,$(USECASES_SRC_PATH),https://github.com/seanhenry/MockGenerator.git,$(USE_CASE_SHA))
 	cd $(USECASES_SRC_PATH)/UseCases/src/main/java; \
 	$(KOTLINC) -nomain -p framework -o $(DEST_PATH_DEBUG)/UseCases .; \
 	$(KOTLINC) -nomain -p framework -opt -o $(DEST_PATH_RELEASE)/UseCases .;

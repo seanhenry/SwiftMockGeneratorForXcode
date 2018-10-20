@@ -1,24 +1,24 @@
 @testable import TestProject
 
 class InferredTypeClassMock: InferredTypeClass {
-    var invokedStringSetter = false
-    var invokedStringSetterCount = 0
-    var invokedString: String?
-    var invokedStringList = [String]()
-    var invokedStringGetter = false
-    var invokedStringGetterCount = 0
-    var stubbedString: String! = ""
-    override var string: String {
+    var invokedFromInitializerSetter = false
+    var invokedFromInitializerSetterCount = 0
+    var invokedFromInitializer: HelperClass?
+    var invokedFromInitializerList = [HelperClass]()
+    var invokedFromInitializerGetter = false
+    var invokedFromInitializerGetterCount = 0
+    var stubbedFromInitializer: HelperClass!
+    override var fromInitializer: HelperClass {
         set {
-            invokedStringSetter = true
-            invokedStringSetterCount += 1
-            invokedString = newValue
-            invokedStringList.append(newValue)
+            invokedFromInitializerSetter = true
+            invokedFromInitializerSetterCount += 1
+            invokedFromInitializer = newValue
+            invokedFromInitializerList.append(newValue)
         }
         get {
-            invokedStringGetter = true
-            invokedStringGetterCount += 1
-            return stubbedString
+            invokedFromInitializerGetter = true
+            invokedFromInitializerGetterCount += 1
+            return stubbedFromInitializer
         }
     }
     var invokedStringLiteralSetter = false
@@ -43,12 +43,12 @@ class InferredTypeClassMock: InferredTypeClass {
     }
     var invokedDictionaryLiteralSetter = false
     var invokedDictionaryLiteralSetterCount = 0
-    var invokedDictionaryLiteral: [String: Int]?
-    var invokedDictionaryLiteralList = [[String: Int]]()
+    var invokedDictionaryLiteral: [HelperClass: HelperClass]?
+    var invokedDictionaryLiteralList = [[HelperClass: HelperClass]]()
     var invokedDictionaryLiteralGetter = false
     var invokedDictionaryLiteralGetterCount = 0
-    var stubbedDictionaryLiteral: [String: Int]! = [:]
-    override var dictionaryLiteral: [String: Int] {
+    var stubbedDictionaryLiteral: [HelperClass: HelperClass]! = [:]
+    override var dictionaryLiteral: [HelperClass: HelperClass] {
         set {
             invokedDictionaryLiteralSetter = true
             invokedDictionaryLiteralSetterCount += 1
@@ -83,12 +83,12 @@ class InferredTypeClassMock: InferredTypeClass {
     }
     var invokedArrayLiteralSetter = false
     var invokedArrayLiteralSetterCount = 0
-    var invokedArrayLiteral: [Int]?
-    var invokedArrayLiteralList = [[Int]]()
+    var invokedArrayLiteral: [HelperClass]?
+    var invokedArrayLiteralList = [[HelperClass]]()
     var invokedArrayLiteralGetter = false
     var invokedArrayLiteralGetterCount = 0
-    var stubbedArrayLiteral: [Int]! = []
-    override var arrayLiteral: [Int] {
+    var stubbedArrayLiteral: [HelperClass]! = []
+    override var arrayLiteral: [HelperClass] {
         set {
             invokedArrayLiteralSetter = true
             invokedArrayLiteralSetterCount += 1
@@ -179,6 +179,26 @@ class InferredTypeClassMock: InferredTypeClass {
             invokedTupleGetter = true
             invokedTupleGetterCount += 1
             return stubbedTuple
+        }
+    }
+    var invokedMethodAssignedSetter = false
+    var invokedMethodAssignedSetterCount = 0
+    var invokedMethodAssigned: String?
+    var invokedMethodAssignedList = [String]()
+    var invokedMethodAssignedGetter = false
+    var invokedMethodAssignedGetterCount = 0
+    var stubbedMethodAssigned: String! = ""
+    override var methodAssigned: String {
+        set {
+            invokedMethodAssignedSetter = true
+            invokedMethodAssignedSetterCount += 1
+            invokedMethodAssigned = newValue
+            invokedMethodAssignedList.append(newValue)
+        }
+        get {
+            invokedMethodAssignedGetter = true
+            invokedMethodAssignedGetterCount += 1
+            return stubbedMethodAssigned
         }
     }
     var invokedPropertyAssignedSetter = false

@@ -159,6 +159,13 @@ class MemberTransformingVisitorTests: XCTestCase {
     func test_visit_shouldTransformThrowingProtocolMethod() {
         let method = transformMethod("func a() throws")
         XCTAssert(method.throws)
+        XCTAssertFalse(method.rethrows)
+    }
+
+    func test_visit_shouldTransformRethrowingProtocolMethod() {
+        let method = transformMethod("func a() rethrows")
+        XCTAssert(method.rethrows)
+        XCTAssertFalse(method.throws)
     }
 
     func test_visit_shouldTransformReturningProtocolMethod() {
