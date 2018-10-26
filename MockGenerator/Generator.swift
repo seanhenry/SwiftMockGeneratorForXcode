@@ -33,10 +33,10 @@ public class Generator {
         self.resolver = ResolverFactory.createResolver(filePaths: Generator.filterUniqueFileNames(sourceFiles))
     }
 
-    private static func filterUniqueFileNames(_ fileNames: [String]) -> [String] {
+    private static func filterUniqueFileNames(_ fileNames: [URL]) -> [String] {
         var sourceFileSet = Set<String>()
         return fileNames.map { file in
-            (file, URL(fileURLWithPath: file).lastPathComponent)
+            (file.path, file.lastPathComponent)
         }.compactMap { (file, name) in
             if sourceFileSet.contains(name) {
                 return nil
