@@ -1,7 +1,7 @@
 # Swift Mock Generator Xcode Source Editor Extension
 ![Mock Generator Icon](readme/AppIcon_256.png)
 
-An Xcode extension (plugin) to generate [spy](#what-is-a-spy-), [stub](#what-is-a-stub-), [dummy](#what-is-a-dummy-), and [partial spy](#what-is-a-partial-spy-) classes automatically.
+An Xcode extension (plugin) to generate [spy](#what-is-a-spy), [stub](#what-is-a-stub), [dummy](#what-is-a-dummy), and [partial spy](#what-is-a-partial-spy) classes automatically.
 
 ![Xcode mock generator](readme/XcodeMockGenerator.gif)
 
