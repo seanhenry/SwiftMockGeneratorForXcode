@@ -1,7 +1,7 @@
 # Swift Mock Generator Xcode Source Editor Extension
 ![Mock Generator Icon](readme/AppIcon_256.png)
 
-An Xcode extension (plugin) to generate spy, stub, and dummy classes automatically.
+An Xcode extension (plugin) to generate [spy](#what-is-a-spy-), [stub](#what-is-a-stub-), [dummy](#what-is-a-dummy-), and [partial spy](#what-is-a-partial-spy-) classes automatically.
 
 ![Xcode mock generator](readme/XcodeMockGenerator.gif)
 
@@ -52,9 +52,10 @@ Undo is supported for Xcode plugins but you're safer to use a version control sy
 | Feature | Supported |
 |---|---|
 | Swift 3 and 4.|✅|
-| Generate and regenerate a spy.|✅|
-| Generate and regenerate a stub.|✅|
-| Generate and regenerate a dummy.|✅|
+| Generate a spy.|✅|
+| Generate a stub.|✅|
+| Generate a dummy.|✅|
+| Generate a partial spy.|✅|
 | **Classes and protocols** |
 | Generates test doubles conforming to one or many protocols.|✅|
 | Generates test doubles conforming to a class.|✅\*|
@@ -199,6 +200,22 @@ func test_spyCanCallClosure_withStubbedValue() {
   XCTAssertFalse(object.animationDidComplete)
 }
 ```
+
+## What is a spy?
+
+Spies are stubs that also record some information based on how they were called. One form of this might be an email service that records how many messages it was sent. [See reference](https://martinfowler.com/bliki/TestDouble.html)
+
+## What is a stub?
+
+Stubs provide canned answers to calls made during the test, usually not responding at all to anything outside what's programmed in for the test. [See reference](https://martinfowler.com/bliki/TestDouble.html)
+
+## What is a dummy?
+
+Dummy objects are passed around but never actually used. Usually they are just used to fill parameter lists. [See reference](https://martinfowler.com/bliki/TestDouble.html)
+
+## What is a partial spy?
+
+Partial spies are spies which can also forward calls to the original implementation.
 
 ## Disable or remove the plugin
 
