@@ -50,7 +50,7 @@ class GenericMethodMock: GenericMethod {
     var invokedTestReturn3 = false
     var invokedTestReturn3Count = 0
     var stubbedTestReturn3Result: Any!
-    func testReturn3<T: NSObject>() -> T {
+    func testReturn3<T: Foundation.NSObject>() -> T {
         invokedTestReturn3 = true
         invokedTestReturn3Count += 1
         return stubbedTestReturn3Result as! T

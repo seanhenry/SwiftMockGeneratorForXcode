@@ -175,14 +175,4 @@ class ClosureProtocolMock: ClosureProtocol {
             _ = closure()
         }
     }
-    var invokedSuppressWarning4 = false
-    var invokedSuppressWarning4Count = 0
-    var shouldInvokeSuppressWarning4Closure = false
-    func suppressWarning4(_ closure: () -> String!) {
-        invokedSuppressWarning4 = true
-        invokedSuppressWarning4Count += 1
-        if shouldInvokeSuppressWarning4Closure {
-            _ = closure()
-        }
-    }
 }

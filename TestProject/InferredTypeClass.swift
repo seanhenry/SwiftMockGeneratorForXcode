@@ -1,5 +1,5 @@
 typealias StringAlias = String
-struct HelperClass {}
+struct HelperClass: Hashable {}
 
 class InferredTypeClass {
     var fromInitializer = HelperClass()

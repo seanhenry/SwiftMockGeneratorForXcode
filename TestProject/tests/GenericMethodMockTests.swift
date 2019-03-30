@@ -34,7 +34,7 @@ class GenericMethodMockTests: XCTestCase {
     // MARK: - returnType
 
     func test_return_shouldLegallyCastTypeInOptionalReturnType() {
-        XCTAssertNil(genericMethod.testReturn1())
+        XCTAssertNil(genericMethod.testReturn1() as String?)
         let string = "string"
         genericMethod.stubbedTestReturn1Result = string
         XCTAssertEqual(genericMethod.testReturn1(), string)

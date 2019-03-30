@@ -43,7 +43,7 @@ class Preferences {
     private func appendToProjectPathHistory(path: URL?) {
         guard let path = path else { return }
         var history = projectPathHistory
-        if let index = history.index(of: path) {
+        if let index = history.firstIndex(of: path) {
             history.remove(at: index)
         }
         history.insert(path, at: 0)

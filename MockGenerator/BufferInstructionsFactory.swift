@@ -57,7 +57,7 @@ class BufferInstructionsFactory {
         let startOffset = LocationConverter.convert(line: line, column: 0, in: fileText)!
         let startIndex = fileText.index(fileText.startIndex, offsetBy: Int(startOffset))
         let startOfLine = fileText[startIndex...]
-        if let endIndex = startOfLine.index(of: "\n") {
+        if let endIndex = startOfLine.firstIndex(of: "\n") {
             return String(startOfLine[..<endIndex])
         }
         return String(startOfLine)

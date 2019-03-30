@@ -16,5 +16,4 @@ protocol ClosureProtocol {
     func suppressWarning1(_ closure: () -> String)
     func suppressWarning2(_ closure: () -> (String))
     func suppressWarning3(_ closure: () -> String?)
-    func suppressWarning4(_ closure: () -> String!)
 }
