@@ -26,6 +26,11 @@ Create a release build.
 fastlane mac upload_sym
 ```
 Uploads symbols to crashlytics
+### mac notarize_bundle
+```
+fastlane mac notarize_bundle
+```
+Notarize the app bundle
 
 ----
 
