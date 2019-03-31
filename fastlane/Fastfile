@@ -2,6 +2,9 @@ update_fastlane
 
 default_platform(:mac)
 
+app_file = 'release_output/Swift Mock Generator for Xcode.app'
+zip_file = 'release_output/Swift Mock Generator for Xcode.zip'
+
 platform :mac do
   def cleanup
     `rm -r release_output`
@@ -14,8 +17,39 @@ platform :mac do
     scan
     gym
     upload_symbols_to_crashlytics(platform: 'mac', dsym_path: ENV['GYM_OUTPUT_DIRECTORY'] + '/Swift Mock Generator for Xcode.app.dSYM.zip')
+    notarize_bundle
     dmg
     cleanup
+  end
+
+  desc "Notarize the app bundle"
+  lane :notarize_bundle do
+    `/usr/bin/ditto -c -k --keepParent "#{app_file}" "#{zip_file}"`
+    UI.success "Compressed app to #{zip_file}"
+    uuid = `xcrun altool --notarize-app -t osx -f "#{zip_file}" --primary-bundle-id "codes.seanhenry.MockGeneratorApp" -u "sean.henry6@gmail.com" -itc_provider "SeanHenry108383506" -p "@keychain:ASC_PASSWORD" 2>&1 | awk '$1 ~ /RequestUUID/ { print $3 }'`.strip
+    UI.success "Uploaded app. UUID: #{uuid}"
+    UI.message 'Waiting 40s for app to be notarized'
+    sleep 40
+    poll(uuid)
+  end
+
+  def poll(uuid)
+    result = `xcrun altool --notarization-info "#{uuid}" -u "sean.henry6@gmail.com" -p "@keychain:ASC_PASSWORD" 2>&1 | awk '$1 ~ /Status:/ { print $2 }'`.strip
+    if result == 'success'
+      UI.success "Notarization succeeded!"
+      staple
+    elsif result == 'in'
+      UI.message "Notarization still in progress..."
+      sleep 10
+      poll(uuid)
+    else
+      UI.crash! "Notarization failed!"    
+    end
+  end
+
+  private_lane :staple do
+    `xcrun stapler staple "#{app_file}"`
+    UI.success "Stapled notarization ticket"
   end
 
   desc "Create a dmg from the built app"
@@ -23,7 +57,7 @@ platform :mac do
     `rm 'Swift Mock Generator for Xcode.dmg'`
     src_dir = 'src_dir'
     `mkdir -p #{src_dir}`
-    `cp -R 'release_output/Swift Mock Generator for Xcode.app' #{src_dir}`
+    `cp -R '#{app_file}' #{src_dir}`
     `ln -s /Applications #{src_dir}/Applications`
     `hdiutil create -volname 'Swift Mock Generator for Xcode' -srcfolder '#{src_dir}' -ov -format UDZO 'Swift Mock Generator for Xcode.dmg'`
     `rm -rf #{src_dir}`
