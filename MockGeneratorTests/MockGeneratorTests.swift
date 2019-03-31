@@ -159,6 +159,26 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("ReadOnlySubscriptProtocolMock")
     }
 
+    func test_readWriteSubscript() {
+        assertMockGeneratesExpected("SubscriptProtocolMock")
+    }
+
+    func test_subscriptWithArguments() {
+        assertMockGeneratesExpected("ArgumentsSubscriptProtocolMock")
+    }
+
+    func test_subscriptWithOverloads() {
+        assertMockGeneratesExpected("OverloadedSubscriptProtocolMock")
+    }
+
+    func test_subscriptInClass() {
+        assertMockGeneratesExpected("ClassSubscriptMock")
+    }
+    
+    func test_overriddenSubscripts() {
+        assertMockGeneratesExpected("AugmentedClassSubscriptMock")
+    }
+
     func test_generatesAPartialSpy() {
         assertMockGeneratesExpected("PartialSpyClassMock", templateName: "partial")
     }

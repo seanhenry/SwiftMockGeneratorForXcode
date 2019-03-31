@@ -128,6 +128,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
                && !(child is DeclarationModifier)
                && !(child is Attributes)
                && !(child is GetterSetterKeywordBlock)
+               && !(child is GetterSetterBlock)
                && !(child is Initializer)
     }
 
@@ -185,7 +186,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
         return nil
     }
 
-    private func isWritable(_ element: VariableDeclaration) -> Bool {
+    private func isWritable(_ element: GetterSetterDeclaration) -> Bool {
         if element.isSetPrivate || element.isSetFilePrivate {
             return false
         } else if element.getterSetterKeywordBlock?.setterKeywordClause != nil {
@@ -213,17 +214,17 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     override func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
-        guard let functionResult = element.functionResult else {
+        guard isOverridable(element),
+            let functionResult = element.functionResult else {
             return
         }
         let returnType = transformType(functionResult.type)
         let resolvedType = UseCasesResolvedType(originalType: returnType, resolvedType: returnType)
-        let isWritable = element.getterSetterKeywordBlock?.setterKeywordClause != nil
         subscripts.append(
             UseCasesSubscript(
                 returnType: resolvedType,
                 parameters: transformParameters(element.parameterClause.parameters),
-                isWritable: isWritable,
+                isWritable: isWritable(element),
                 declarationText: getDeclarationText(element)
             )
         )

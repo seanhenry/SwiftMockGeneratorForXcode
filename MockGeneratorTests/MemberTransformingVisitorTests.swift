@@ -464,6 +464,75 @@ class MemberTransformingVisitorTests: XCTestCase {
         """)
     }
 
+    func test_visit_shouldTransformWritableClassSubscript() {
+        getReadWriteClassSubscript().accept(visitor)
+        let sub = visitor!.subscripts[0]
+        XCTAssert(sub.isWritable)
+        XCTAssertEqual(sub.declarationText, "subscript() -> Int")
+    }
+
+    private func getReadWriteClassSubscript() -> Element {
+        return getFirstSubscript(fromFile: """
+        class TestClass {
+        subscript() -> Int { get {} set {} }
+        }
+        """)
+    }
+
+    func test_visit_shouldNotTransformPrivateSubscript() {
+        getPrivateSubscript().accept(visitor)
+        XCTAssert(visitor!.subscripts.isEmpty)
+    }
+
+    private func getPrivateSubscript() -> Element {
+        return getFirstSubscript(fromFile: """
+        class TestClass {
+        private subscript() -> Int { get {} set {} }
+        }
+        """)
+    }
+
+    func test_visit_shouldNotTransformFilePrivateSubscript() {
+        getFilePrivateSubscript().accept(visitor)
+        XCTAssert(visitor!.subscripts.isEmpty)
+    }
+
+    private func getFilePrivateSubscript() -> Element {
+        return getFirstSubscript(fromFile: """
+        class TestClass {
+        fileprivate subscript() -> Int { get {} set {} }
+        }
+        """)
+    }
+
+    func test_visit_shouldTransformPrivateSetSubscript() {
+        getPrivateSetSubscript().accept(visitor)
+        let sub = visitor!.subscripts[0]
+        XCTAssertFalse(sub.isWritable)
+    }
+
+    private func getPrivateSetSubscript() -> Element {
+        return getFirstSubscript(fromFile: """
+        class TestClass {
+        private(set) subscript() -> Int { get {} set {} }
+        }
+        """)
+    }
+
+    func test_visit_shouldTransformFilePrivateSetSubscript() {
+        getFilePrivateSetSubscript().accept(visitor)
+        let sub = visitor!.subscripts[0]
+        XCTAssertFalse(sub.isWritable)
+    }
+
+    private func getFilePrivateSetSubscript() -> Element {
+        return getFirstSubscript(fromFile: """
+        class TestClass {
+        fileprivate(set) subscript() -> Int { get {} set {} }
+        }
+        """)
+    }
+
     func test_visit_shouldTransformSubscriptWithParameters() {
         getParameterSubscriptProtocol().accept(visitor)
         let sub = visitor!.subscripts[0]

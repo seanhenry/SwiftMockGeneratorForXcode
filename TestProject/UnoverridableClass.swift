@@ -13,6 +13,10 @@ class UnoverridableClass {
     fileprivate var filePrivateProperty: Int = 0
     class func classMethod() {} // not yet supported
     class var classProperty: Int { return 0 }
+    private subscript(private a: Int) -> Int { return 0 }
+    fileprivate subscript(fileprivate a: Int) -> Int { return 0 }
+//    static subscript(static a: Int) -> Int { return 0 }
+//    class subscript(class a: Int) -> Int { return 0 }
 }
 
 extension UnoverridableClass {
