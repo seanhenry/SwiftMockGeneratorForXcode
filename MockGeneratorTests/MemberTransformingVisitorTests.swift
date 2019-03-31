@@ -434,6 +434,68 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssert(visitor.initializers.isEmpty, line: line)
     }
 
+    func test_visit_shouldTransformReadonlySubscript() {
+        getReadOnlySubscriptProtocol().accept(visitor)
+        let sub = visitor!.subscripts[0]
+        XCTAssertFalse(sub.isWritable)
+        XCTAssertEqual(sub.parameters.count, 0)
+        XCTAssertEqual(sub.declarationText, "subscript() -> Int")
+    }
+
+    private func getReadOnlySubscriptProtocol() -> Element {
+        return getFirstSubscript(fromFile: """
+        protocol TestProtocol {
+        subscript() -> Int { get }
+        }
+        """)
+    }
+
+    func test_visit_shouldTransformWritableSubscript() {
+        getReadWriteSubscriptProtocol().accept(visitor)
+        let sub = visitor!.subscripts[0]
+        XCTAssert(sub.isWritable)
+    }
+
+    private func getReadWriteSubscriptProtocol() -> Element {
+        return getFirstSubscript(fromFile: """
+        protocol TestProtocol {
+        subscript() -> Int { get set }
+        }
+        """)
+    }
+
+    func test_visit_shouldTransformSubscriptWithParameters() {
+        getParameterSubscriptProtocol().accept(visitor)
+        let sub = visitor!.subscripts[0]
+        XCTAssertEqual(sub.parameters.count, 2)
+        XCTAssertEqual(sub.parameters[0].internalName, "a")
+        XCTAssertEqual(sub.parameters[1].externalName, "b")
+        XCTAssertEqual(sub.parameters[1].internalName, "c")
+        XCTAssertEqual(sub.declarationText, "subscript(a: A, b c: [B]) -> Int")
+    }
+
+    private func getParameterSubscriptProtocol() -> Element {
+        return getFirstSubscript(fromFile: """
+        protocol TestProtocol {
+        subscript(a: A, b c: [B]) -> Int { get }
+        }
+        """)
+    }
+
+    func test_shouldNotParseSubscriptMissingReturnType() {
+        let sub = getFirstSubscript(fromFile: "protocol P { subscript() { get } }")
+        sub.accept(visitor)
+        XCTAssert(visitor.subscripts.isEmpty)
+    }
+
+    private func getFirstSubscript(fromFile file: String) -> SubscriptDeclaration {
+        let file = try! ParserTestHelper.parseFile(from: file)
+        return file
+            .typeDeclarations[0]
+            .codeBlock
+            .subscriptDeclarations[0]
+    }
+
     // MARK: - Helpers
 
     private func getMethodProtocol() -> Element {

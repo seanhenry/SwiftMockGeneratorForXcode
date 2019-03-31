@@ -26,6 +26,7 @@ extension UseCasesMockViewModel {
         dictionary["initializer"] = initializer.map { $0.toDictionary() }
         dictionary["property"] = property.map { $0.toDictionary() }
         dictionary["method"] = method.map { $0.toDictionary() }
+        dictionary["subscript"] = `subscript`.map { $0.toDictionary() }
         if let scope = scope {
             dictionary["scope"] = scope
         }
@@ -119,7 +120,27 @@ extension UseCasesResultTypeViewModel {
         }
         dictionary["optionalType"] = optionalType
         dictionary["iuoType"] = iuoType
+        dictionary["type"] = type
         dictionary["returnCastStatement"] = returnCastStatement
+        return dictionary
+    }
+}
+
+extension UseCasesSubscriptViewModel {
+
+    fileprivate func toDictionary() -> NSDictionary {
+        let dictionary = NSMutableDictionary()
+        dictionary["capitalizedUniqueName"] = capitalizedUniqueName
+        if let escapingParameters = escapingParameters {
+            dictionary["escapingParameters"] = escapingParameters.toDictionary()
+        }
+        dictionary["hasSetter"] = hasSetter
+        dictionary["resultType"] = resultType.toDictionary()
+        if let functionCall = functionCall {
+            dictionary["functionCall"] = functionCall
+        }
+        dictionary["isImplemented"] = isImplemented
+        dictionary["declarationText"] = declarationText
         return dictionary
     }
 }

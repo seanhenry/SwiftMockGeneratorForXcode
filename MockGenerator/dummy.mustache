@@ -1,6 +1,6 @@
 {{#initializer}}
     {{{declarationText}}} {
-      {{{initializerCall}}}
+    {{{initializerCall}}}
     }
 {{/initializer}}
 
@@ -10,30 +10,52 @@
     {{#hasSetter}}
 
         {{{declarationText}}} {
-            set {
-            }
-            get {
-                return {{{defaultValue}}}
-            }
+        set {
+        }
+        get {
+        {{#defaultValue}}return {{{defaultValue}}}{{/defaultValue}}
+        {{^defaultValue}}fatalError("Dummy implementation"){{/defaultValue}}
+        }
         }
 
     {{/hasSetter}}
     {{^hasSetter}}
 
         {{{declarationText}}} {
-            return {{{defaultValue}}}
+        {{#defaultValue}}return {{{defaultValue}}}{{/defaultValue}}
+        {{^defaultValue}}fatalError("Dummy implementation"){{/defaultValue}}
         }
 
     {{/hasSetter}}
 
 {{/property}}
 
+{{#subscript}}
+
+    {{{declarationText}}} {
+
+    {{#hasSetter}}
+        set {
+        }
+        get {
+        return {{{resultType.defaultValue}}}
+        }
+    {{/hasSetter}}
+    {{^hasSetter}}
+        {{#resultType.defaultValue}}return {{{resultType.defaultValue}}}{{/resultType.defaultValue}}
+        {{^resultType.defaultValue}}fatalError("Dummy implementation"){{/resultType.defaultValue}}
+    {{/hasSetter}}
+    }
+
+{{/subscript}}
+
 {{#method}}
 
     {{{declarationText}}} {
 
     {{#resultType}}
-        return {{{defaultValue}}}
+        {{#defaultValue}}return {{{defaultValue}}}{{/defaultValue}}
+        {{^defaultValue}}fatalError("Dummy implementation"){{/defaultValue}}
     {{/resultType}}
 
     }

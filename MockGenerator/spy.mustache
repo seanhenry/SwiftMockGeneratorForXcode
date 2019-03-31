@@ -1,6 +1,6 @@
 {{#initializer}}
     {{{declarationText}}} {
-      {{{initializerCall}}}
+    {{{initializerCall}}}
     }
 {{/initializer}}
 
@@ -39,6 +39,63 @@
 
     }
 {{/property}}
+
+{{#subscript}}
+
+    {{scope}} var invoked{{capitalizedUniqueName}}Getter = false
+    {{scope}} var invoked{{capitalizedUniqueName}}GetterCount = 0
+    {{#escapingParameters}}
+        {{scope}} var invoked{{capitalizedUniqueName}}GetterParameters: {{{tupleRepresentation}}}?
+        {{scope}} var invoked{{capitalizedUniqueName}}GetterParametersList = [{{{tupleRepresentation}}}]()
+    {{/escapingParameters}}
+    {{scope}} var stubbed{{capitalizedUniqueName}}Result: {{{resultType.iuoType}}} {{{resultType.defaultValueAssignment}}}
+
+    {{#hasSetter}}
+        {{scope}} var invoked{{capitalizedUniqueName}}Setter = false
+        {{scope}} var invoked{{capitalizedUniqueName}}SetterCount = 0
+        {{#escapingParameters}}
+            {{scope}} var invoked{{capitalizedUniqueName}}SetterParameters: {{{tupleRepresentation}}}?
+            {{scope}} var invoked{{capitalizedUniqueName}}SetterParametersList = [{{{tupleRepresentation}}}]()
+        {{/escapingParameters}}
+        {{scope}} var invoked{{capitalizedUniqueName}}: {{{resultType.type}}}?
+        {{scope}} var invoked{{capitalizedUniqueName}}List = [{{{resultType.type}}}]()
+    {{/hasSetter}}
+
+    {{{declarationText}}} {
+
+    {{#hasSetter}}
+        set {
+        invoked{{capitalizedUniqueName}}Setter = true
+        invoked{{capitalizedUniqueName}}SetterCount += 1
+        {{#escapingParameters}}
+            invoked{{capitalizedUniqueName}}SetterParameters = {{{tupleAssignment}}}
+            invoked{{capitalizedUniqueName}}SetterParametersList.append({{{tupleAssignment}}})
+        {{/escapingParameters}}
+        invoked{{capitalizedUniqueName}} = newValue
+        invoked{{capitalizedUniqueName}}List.append(newValue)
+        }
+        get {
+        invoked{{capitalizedUniqueName}}Getter = true
+        invoked{{capitalizedUniqueName}}GetterCount += 1
+        {{#escapingParameters}}
+            invoked{{capitalizedUniqueName}}GetterParameters = {{{tupleAssignment}}}
+            invoked{{capitalizedUniqueName}}GetterParametersList.append({{{tupleAssignment}}})
+        {{/escapingParameters}}
+        return stubbed{{capitalizedUniqueName}}Result
+        }
+    {{/hasSetter}}
+    {{^hasSetter}}
+        invoked{{capitalizedUniqueName}}Getter = true
+        invoked{{capitalizedUniqueName}}GetterCount += 1
+        {{#escapingParameters}}
+            invoked{{capitalizedUniqueName}}GetterParameters = {{{tupleAssignment}}}
+            invoked{{capitalizedUniqueName}}GetterParametersList.append({{{tupleAssignment}}})
+        {{/escapingParameters}}
+        return stubbed{{capitalizedUniqueName}}Result
+    {{/hasSetter}}
+    }
+
+{{/subscript}}
 
 {{#method}}
 
@@ -80,19 +137,19 @@
     {{#closureParameter}}
         {{#hasArguments}}
             if let result = stubbed{{capitalizedUniqueName}}{{capitalizedName}}Result {
-              {{{implicitClosureCall}}}
+            {{{implicitClosureCall}}}
             }
         {{/hasArguments}}
         {{^hasArguments}}
             if shouldInvoke{{capitalizedUniqueName}}{{capitalizedName}} {
-              {{{implicitClosureCall}}}
+            {{{implicitClosureCall}}}
             }
         {{/hasArguments}}
     {{/closureParameter}}
 
     {{#throws}}
         if let error = stubbed{{capitalizedUniqueName}}Error {
-          throw error
+        throw error
         }
     {{/throws}}
 

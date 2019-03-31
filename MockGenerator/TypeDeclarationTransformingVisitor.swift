@@ -37,6 +37,7 @@ class TypeDeclarationTransformingVisitor: ElementVisitor {
             initializers: visitor.initializers,
             properties: visitor.properties,
             methods: visitor.methods,
+            subscripts: visitor.subscripts,
             protocols: transformImplementedProtocols(element))
     }
 
@@ -60,6 +61,7 @@ class TypeDeclarationTransformingVisitor: ElementVisitor {
                 initializers: visitor.initializers,
                 properties: visitor.properties,
                 methods: visitor.methods,
+                subscripts: visitor.subscripts,
                 inheritedClass: transformInheritedClass(element))
     }
 }

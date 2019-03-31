@@ -17,7 +17,7 @@
     {{scope}} var stubbed{{capitalizedUniqueName}}: {{{iuoType}}} {{{defaultValueAssignment}}}
 
     {{#isImplemented}}
-        var forwardToOriginal{{capitalizedUniqueName}} = false
+        {{scope}} var forwardToOriginal{{capitalizedUniqueName}} = false
     {{/isImplemented}}
 
     {{{declarationText}}} {
@@ -30,7 +30,7 @@
         invoked{{capitalizedUniqueName}}List.append(newValue)
         {{#isImplemented}}
             if forwardToOriginal{{capitalizedUniqueName}} {
-                super.{{name}} = newValue
+            super.{{name}} = newValue
             }
         {{/isImplemented}}
         }
@@ -39,7 +39,7 @@
         invoked{{capitalizedUniqueName}}GetterCount += 1
         {{#isImplemented}}
             if forwardToOriginal{{capitalizedUniqueName}} {
-                return super.{{name}}
+            return super.{{name}}
             }
         {{/isImplemented}}
         return stubbed{{capitalizedUniqueName}}
@@ -48,16 +48,93 @@
     {{^hasSetter}}
         invoked{{capitalizedUniqueName}}Getter = true
         invoked{{capitalizedUniqueName}}GetterCount += 1
-    {{#isImplemented}}
-        if forwardToOriginal{{capitalizedUniqueName}} {
-        return super.{{name}}
-        }
-    {{/isImplemented}}
+        {{#isImplemented}}
+            if forwardToOriginal{{capitalizedUniqueName}} {
+            return super.{{name}}
+            }
+        {{/isImplemented}}
         return stubbed{{capitalizedUniqueName}}
     {{/hasSetter}}
 
     }
 {{/property}}
+
+
+{{#subscript}}
+
+    {{scope}} var invoked{{capitalizedUniqueName}}Getter = false
+    {{scope}} var invoked{{capitalizedUniqueName}}GetterCount = 0
+    {{#escapingParameters}}
+        {{scope}} var invoked{{capitalizedUniqueName}}GetterParameters: {{{tupleRepresentation}}}?
+        {{scope}} var invoked{{capitalizedUniqueName}}GetterParametersList = [{{{tupleRepresentation}}}]()
+    {{/escapingParameters}}
+    {{scope}} var stubbed{{capitalizedUniqueName}}Result: {{{resultType.iuoType}}} {{{resultType.defaultValueAssignment}}}
+
+    {{#hasSetter}}
+        {{scope}} var invoked{{capitalizedUniqueName}}Setter = false
+        {{scope}} var invoked{{capitalizedUniqueName}}SetterCount = 0
+        {{#escapingParameters}}
+            {{scope}} var invoked{{capitalizedUniqueName}}SetterParameters: {{{tupleRepresentation}}}?
+            {{scope}} var invoked{{capitalizedUniqueName}}SetterParametersList = [{{{tupleRepresentation}}}]()
+        {{/escapingParameters}}
+        {{scope}} var invoked{{capitalizedUniqueName}}: {{{resultType.type}}}?
+        {{scope}} var invoked{{capitalizedUniqueName}}List = [{{{resultType.type}}}]()
+    {{/hasSetter}}
+
+    {{#isImplemented}}
+        {{scope}} var forwardToOriginal{{capitalizedUniqueName}} = false
+    {{/isImplemented}}
+
+    {{{declarationText}}} {
+
+    {{#hasSetter}}
+        set {
+        invoked{{capitalizedUniqueName}}Setter = true
+        invoked{{capitalizedUniqueName}}SetterCount += 1
+        {{#escapingParameters}}
+            invoked{{capitalizedUniqueName}}SetterParameters = {{{tupleAssignment}}}
+            invoked{{capitalizedUniqueName}}SetterParametersList.append({{{tupleAssignment}}})
+        {{/escapingParameters}}
+        invoked{{capitalizedUniqueName}} = newValue
+        invoked{{capitalizedUniqueName}}List.append(newValue)
+        {{#isImplemented}}
+            if forwardToOriginal{{capitalizedUniqueName}} {
+            super{{functionCall}} = newValue
+            }
+        {{/isImplemented}}
+        }
+        get {
+        invoked{{capitalizedUniqueName}}Getter = true
+        invoked{{capitalizedUniqueName}}GetterCount += 1
+        {{#escapingParameters}}
+            invoked{{capitalizedUniqueName}}GetterParameters = {{{tupleAssignment}}}
+            invoked{{capitalizedUniqueName}}GetterParametersList.append({{{tupleAssignment}}})
+        {{/escapingParameters}}
+        {{#isImplemented}}
+            if forwardToOriginal{{capitalizedUniqueName}} {
+            return super{{functionCall}}
+            }
+        {{/isImplemented}}
+        return stubbed{{capitalizedUniqueName}}Result
+        }
+    {{/hasSetter}}
+    {{^hasSetter}}
+        invoked{{capitalizedUniqueName}}Getter = true
+        invoked{{capitalizedUniqueName}}GetterCount += 1
+        {{#escapingParameters}}
+            invoked{{capitalizedUniqueName}}GetterParameters = {{{tupleAssignment}}}
+            invoked{{capitalizedUniqueName}}GetterParametersList.append({{{tupleAssignment}}})
+        {{/escapingParameters}}
+        {{#isImplemented}}
+            if forwardToOriginal{{capitalizedUniqueName}} {
+            return super{{functionCall}}
+            }
+        {{/isImplemented}}
+        return stubbed{{capitalizedUniqueName}}Result
+    {{/hasSetter}}
+    }
+
+{{/subscript}}
 
 {{#method}}
 
@@ -87,7 +164,7 @@
     {{/resultType}}
 
     {{#isImplemented}}
-    var forwardToOriginal{{capitalizedUniqueName}} = false
+        {{scope}} var forwardToOriginal{{capitalizedUniqueName}} = false
     {{/isImplemented}}
 
     {{{declarationText}}} {
@@ -101,10 +178,10 @@
     {{/escapingParameters}}
 
     {{#isImplemented}}
-    if forwardToOriginal{{capitalizedUniqueName}} {
-    {{#resultType}}return {{/resultType}}{{#throws}}try {{/throws}}{{#rethrows}}try {{/rethrows}}super.{{functionCall}}
-    {{^resultType}}return{{/resultType}}
-    }
+        if forwardToOriginal{{capitalizedUniqueName}} {
+        {{#resultType}}return {{/resultType}}{{#throws}}try {{/throws}}{{#rethrows}}try {{/rethrows}}super.{{functionCall}}
+        {{^resultType}}return{{/resultType}}
+        }
     {{/isImplemented}}
 
     {{#closureParameter}}

@@ -8,6 +8,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     private(set) var initializers = [UseCasesInitializer]()
     private(set) var properties = [UseCasesProperty]()
     private(set) var methods = [UseCasesMethod]()
+    private(set) var subscripts = [UseCasesSubscript]()
     private(set) var type: UseCasesType = UseCasesTypeIdentifierBuilder(identifier: "").build()
     private let resolver: Resolver
 
@@ -209,5 +210,22 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
             parametersList: transformParameters(element.parameterClause.parameters),
             isFailable: element.isFailable,
             throws: element.throws))
+    }
+
+    override func visitSubscriptDeclaration(_ element: SubscriptDeclaration) {
+        guard let functionResult = element.functionResult else {
+            return
+        }
+        let returnType = transformType(functionResult.type)
+        let resolvedType = UseCasesResolvedType(originalType: returnType, resolvedType: returnType)
+        let isWritable = element.getterSetterKeywordBlock?.setterKeywordClause != nil
+        subscripts.append(
+            UseCasesSubscript(
+                returnType: resolvedType,
+                parameters: transformParameters(element.parameterClause.parameters),
+                isWritable: isWritable,
+                declarationText: getDeclarationText(element)
+            )
+        )
     }
 }
