@@ -60,13 +60,17 @@ Undo is supported for Xcode plugins but you're safer to use a version control sy
 | Generates test doubles conforming to one or many protocols.|✅|
 | Generates test doubles conforming to a class.|✅\*|
 | Generates test doubles conforming to both classes and protocols.|✅\*|
-| **Recording methods and properties** |
+| **Recording methods, properties and subscripts ** |
 | Captures invocation status of methods.|✅|
 | Captures invocation status of properties.|✅|
+| Captures invocation status of subscripts.|✅|
 | Records multiple invocations of methods.|✅|
 | Records multiple invocations of properties.|✅|
+| Records multiple invocations of subscripts.|✅|
 | Captures invoked method parameters.|✅|
+| Captures invoked subscript parameters.|✅|
 | Records multiple invocations of method parameters.|✅|
+| Records multiple invocations of subscript parameters.|✅|
 | Supports multiple properties in the same declaration.||
 | **Stubbing return values and closures** |
 | Stubs values for your test doubles to return.|✅|
@@ -93,7 +97,7 @@ Undo is supported for Xcode plugins but you're safer to use a version control sy
 
 \* properties with inferred types are not supported
 
-\*\* generic arguments in closures and generic types are not supported
+\*\* generic arguments in closures and generic types are not supported, generic subscript parameters are also not supported
 
 ## Feature requests
 
