@@ -134,4 +134,28 @@ class EndToEndTests: MockGeneratorBaseTestCase {
     func test_supportsDefaultArgumentsInMethods() {
         assertMockGeneratesExpected("DefaultArgumentClassMock")
     }
+
+    func test_readOnlySubscript() {
+        assertMockGeneratesExpected("ReadOnlySubscriptProtocolMock")
+    }
+
+    func test_readWriteSubscript() {
+        assertMockGeneratesExpected("SubscriptProtocolMock")
+    }
+
+    func test_subscriptWithArguments() {
+        assertMockGeneratesExpected("ArgumentsSubscriptProtocolMock")
+    }
+
+    func test_subscriptWithOverloads() {
+        assertMockGeneratesExpected("OverloadedSubscriptProtocolMock")
+    }
+
+    func test_subscriptInClass() {
+        assertMockGeneratesExpected("ClassSubscriptMock")
+    }
+
+    func test_overriddenSubscripts() {
+        assertMockGeneratesExpected("AugmentedClassSubscriptMock")
+    }
 }
