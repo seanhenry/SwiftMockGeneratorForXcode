@@ -57,7 +57,8 @@ usecases: mkdestpath mkkotlinnative
 	$(call update_repo,$(USECASES_SRC_PATH),https://github.com/seanhenry/MockGenerator.git,$(USE_CASE_SHA))
 	cd $(USECASES_SRC_PATH)/UseCases/src/main/java; \
 	$(KOTLINC) -nomain -p framework -o $(DEST_PATH_DEBUG)/UseCases .; \
-	$(KOTLINC) -nomain -p framework -opt -o $(DEST_PATH_RELEASE)/UseCases .;
+	$(KOTLINC) -nomain -p framework -opt -o $(DEST_PATH_RELEASE)/UseCases .; \
+	cp $(USECASES_SRC_PATH)/MockGenerator/resources/*.mustache $(ROOT)/MockGenerator;
 
 mkkotlinnative:
 	if [[ "$$($(KOTLINC) -version)" =~ '$(KOTLINC_VERSION)' ]]; then \

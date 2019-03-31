@@ -155,6 +155,10 @@ class MockGeneratorTests: XCTestCase {
         assertMockGeneratesExpected("MultipleVariableMock")
     }
 
+    func test_readOnlySubscript() {
+        assertMockGeneratesExpected("ReadOnlySubscriptProtocolMock")
+    }
+
     func test_generatesAPartialSpy() {
         assertMockGeneratesExpected("PartialSpyClassMock", templateName: "partial")
     }
