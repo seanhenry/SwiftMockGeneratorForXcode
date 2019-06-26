@@ -81,4 +81,10 @@ class KeywordsMock: Keywords {
         invokedReservedParameters = (associativity, convenience, dynamic, didSet, final, get, infix, indirect, lazy, left, mutating, none, nonmutating, optional, override, postfix, precedence, prefix, Protocol, required, right, set, Type, unowned, weak, willSet)
         invokedReservedParametersList.append((associativity, convenience, dynamic, didSet, final, get, infix, indirect, lazy, left, mutating, none, nonmutating, optional, override, postfix, precedence, prefix, Protocol, required, right, set, Type, unowned, weak, willSet))
     }
+    var invokedOpen = false
+    var invokedOpenCount = 0
+    func open() {
+        invokedOpen = true
+        invokedOpenCount += 1
+    }
 }
