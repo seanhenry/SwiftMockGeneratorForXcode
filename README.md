@@ -231,6 +231,25 @@ To remove:
 
 Delete the app.
 
+## Troubleshooting
+
+You might find that you are not able to see the plugin in the Editor menu or even in the Extensions preference pane. This seems to be caused by installing your Xcode version(s) outside of the App Store. If this happens, open Terminal and run:
+
+```
+$ pluginkit -m -p com.apple.dt.Xcode.extension.source-editor -A -D -vvv
+```
+
+If you can't see the plugin in this list then you can reset your list of plugins by running the following in Terminal:
+
+```
+$ PATH=/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support:"$PATH"
+$ lsregister -f /Applications/Xcode.app
+```
+
+See [here](https://nshipster.com/xcode-source-extensions/) for more information.
+
+If the above fails, then completely removing the plugin and downloading/installing it again seems to work.
+
 ## Nomenclature
 
 Despite being called a Mock Generator, this plugin actually generates a spy, stub or dummy. The word 'mock', whilst not technically correct, has been used because test doubles such as spies, mocks, and stubs have become commonly known as mocks.
