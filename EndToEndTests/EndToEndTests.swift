@@ -158,4 +158,12 @@ class EndToEndTests: MockGeneratorBaseTestCase {
     func test_overriddenSubscripts() {
         assertMockGeneratesExpected("AugmentedClassSubscriptMock")
     }
+
+    func test_returnsErrorWhenSDKPathDoesNotExist() {
+        let preferences = Preferences()
+        let sdkPath = preferences.sdkPath
+        preferences.sdkPath = "/path/to/nowhere"
+        assertMockGeneratesError(fileName: "SimpleProtocolMock", "The SDK path does not exist. Change it in the companion app.")
+        preferences.sdkPath = sdkPath
+    }
 }

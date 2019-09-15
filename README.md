@@ -13,9 +13,10 @@ An Xcode extension (plugin) to generate [spy](#what-is-a-spy), [stub](#what-is-a
 - Download the latest release [here](https://github.com/seanhenry/SwiftMockGeneratorForXcode/releases)
 - Copy the app to the `Applications` folder.
 - Open the app
-- For Mojave users, select OK for '"Swift Mock Generator for Xcode" wants access to control "Xcode"'
+- Select OK for '"Swift Mock Generator for Xcode" wants access to control "Xcode"'
+- Set the SDK Path. Xcode 11 example: `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk`. [Why do I need to do this?](#setting-the-sdk-path)
 - Go to `System Preferences -> Extensions -> Xcode Source Editor` and make sure `Mock Generator` is enabled.
-- For Mojave users, go to `System Preferences -> Security & Privacy -> Privacy -> Automation` and make sure `Swift Mock Generator` is enabled.
+- Go to `System Preferences -> Security & Privacy -> Privacy -> Automation` and make sure `Swift Mock Generator` is enabled.
 - Open Xcode
 
 ## How to create a new Swift test double
@@ -51,7 +52,7 @@ Undo is supported for Xcode plugins but you're safer to use a version control sy
 
 | Feature | Supported |
 |---|---|
-| Swift 3 and 4.|✅|
+| Swift 5.|✅|
 | Generate a spy.|✅|
 | Generate a stub.|✅|
 | Generate a dummy.|✅|
@@ -220,6 +221,18 @@ Dummy objects are passed around but never actually used. Usually they are just u
 ## What is a partial spy?
 
 Partial spies are spies which can also forward calls to the original implementation.
+
+## Setting the sdk path
+
+Since Xcode 11, SourceKit needs to know which sdk is being used. For the purposes of this plugin, it doesn't seem to matter which platform this sdk belongs to so this can just be the macOS sdk. To list the macOS SDKs bundled in Xcode:
+
+```
+$ ls /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs
+```
+
+You will need to copy the full path of one of these SDKs to the companion app.
+
+If you have more that one Xcode installed you will also need to make sure the SDK is belongs to the right version of Xcode. For example, the SDKs in Xcode 10 do not work with SourceKit in Xcode 11.
 
 ## Disable or remove the plugin
 

@@ -13,7 +13,7 @@ class MemberTransformingVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        resolver = ResolverFactory.createResolver(filePaths: [])
+        resolver = ResolverFactory.createResolver(filePaths: [], sdkPath: getValidSDK())
         visitor = MemberTransformingVisitor(resolver: resolver)
     }
 
@@ -615,5 +615,9 @@ class MemberTransformingVisitorTests: XCTestCase {
               init?(b: B)
             }
         """
+    }
+
+    private func getValidSDK() -> String {
+        return Bundle(for: MemberTransformingVisitorTests.self).infoDictionary?["SDK_DIR"] as! String
     }
 }

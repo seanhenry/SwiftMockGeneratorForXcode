@@ -1,11 +1,13 @@
 import AppKit
 
-class PreferencesView: NSView {
+class PreferencesView: NSView, NSTextFieldDelegate {
 
     @IBOutlet private var manualContainer: NSView!
     @IBOutlet private var automaticContainer: NSView!
     @IBOutlet private var automaticPathCheckbox: NSButton!
     @IBOutlet private var projectPathField: NSTextField!
+
+    @IBOutlet private var sdkPath: NSTextField!
     private let preferences = Preferences()
 
     required init?(coder aDecoder: NSCoder) {
@@ -30,6 +32,7 @@ class PreferencesView: NSView {
 
     private func updateView() {
         automaticPathCheckbox.state = preferences.automaticallyDetectProjectPath ? .on : .off
+        sdkPath.stringValue = preferences.sdkPath
         updateContainers()
     }
 
@@ -45,5 +48,9 @@ class PreferencesView: NSView {
         } else {
             projectPathField.stringValue = "Cannot find a project. Make sure a project is open in Xcode."
         }
+    }
+
+    func controlTextDidChange(_ obj: Notification) {
+        preferences.sdkPath = sdkPath.stringValue
     }
 }

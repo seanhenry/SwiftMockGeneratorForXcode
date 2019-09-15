@@ -75,4 +75,17 @@ class PreferencesTests: XCTestCase {
         preferences.automaticallyDetectProjectPath = true
         XCTAssert(preferences.automaticallyDetectProjectPath)
     }
+
+    // MARK: - sdkPath
+
+    func test_sdkPath_shouldHaveDefaultPath() {
+        XCTAssertEqual(preferences.sdkPath, "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk")
+    }
+
+    func test_sdkPath_shouldChangeValue() {
+        preferences.sdkPath = "/Path"
+        XCTAssertEqual(preferences.sdkPath, "/Path")
+        preferences.sdkPath = "/AnotherPath"
+        XCTAssertEqual(preferences.sdkPath, "/AnotherPath")
+    }
 }

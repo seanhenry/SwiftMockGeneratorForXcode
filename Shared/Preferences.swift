@@ -13,6 +13,7 @@ class Preferences {
     private let projectPathKey = "project.path"
     private let projectPathHistoryKey = "project.path.history"
     private let automaticallyDetectProjectPathKey = "project.path.autoDetect"
+    private let sdkPathKey = "sdk.path"
 
     init(userDefaults: UserDefaults = UserDefaults(suiteName: "group.codes.seanhenry.MockGenerator")!) {
         self.userDefaults = userDefaults
@@ -57,6 +58,16 @@ class Preferences {
         }
         get {
             return userDefaults.object(forKey: automaticallyDetectProjectPathKey) as? Bool ?? true
+        }
+    }
+
+    var sdkPath: String {
+        set {
+            userDefaults.set(newValue, forKey: sdkPathKey)
+        }
+        get {
+            return userDefaults.string(forKey: sdkPathKey)
+                ??  "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk"
         }
     }
 }

@@ -7,11 +7,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         Analytics.initCrashlytics()
         let name = Bundle.main.infoDictionary!["CFBundleExecutable"] as! String
         NSApplication.shared.windows.forEach { window in
-            var mask = window.styleMask
-            mask.remove(.resizable)
-            window.styleMask = mask
             window.title = name
-            window.setContentSize(NSSize(width: 600, height: 200))
+            window.setContentSize(NSSize(width: 600, height: 250))
+            window.contentMinSize = NSSize(width: 600, height: 250)
         }
     }
 

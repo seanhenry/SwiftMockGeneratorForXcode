@@ -12,7 +12,7 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        resolver = ResolverFactory.createResolver(filePaths: [])
+        resolver = ResolverFactory.createResolver(filePaths: [], sdkPath: getValidSDK())
     }
 
     override func tearDown() {
@@ -188,5 +188,9 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
         class B {
         }
         """
+    }
+
+    private func getValidSDK() -> String {
+        return Bundle(for: TypeDeclarationTransformingVisitorTests.self).infoDictionary?["SDK_DIR"] as! String
     }
 }

@@ -10,6 +10,7 @@ class MockGeneratorBaseTestCase: XCTestCase {
         let prefs = Preferences()
         prefs.automaticallyDetectProjectPath = false
         prefs.projectPath = URL(fileURLWithPath: testProject)
+        prefs.sdkPath = getValidSDK()
         XPCManager.setUpConnection()
     }
 
@@ -35,6 +36,18 @@ class MockGeneratorBaseTestCase: XCTestCase {
             zip(invocation.sourceTextBuffer.lines as! [String], expected).forEach {
                 XCTAssertEqual($0.0, $0.1, file: file, line: line)
             }
+            e.fulfill()
+        }
+        waitForExpectations(timeout: 10, handler: nil)
+    }
+
+    func assertMockGeneratesError(fileName: String, _ expectedDescription: String, file: StaticString = #file, line: UInt = #line) {
+        let command = TestCommand()
+        let invocation = createCommandInvocation(fileName)
+        let e = expectation(description: #function)
+        command.perform(with: invocation) { (error) in
+            let error = error as NSError?
+            XCTAssertEqual(error?.localizedDescription, expectedDescription, file: file, line: line)
             e.fulfill()
         }
         waitForExpectations(timeout: 10, handler: nil)
@@ -87,5 +100,9 @@ class MockGeneratorBaseTestCase: XCTestCase {
         init(buffer: SourceTextBuffer) {
             self.sourceTextBuffer = buffer
         }
+    }
+
+    private static func getValidSDK() -> String {
+        return Bundle(for: MockGeneratorBaseTestCase.self).infoDictionary?["SDK_DIR"] as! String
     }
 }
