@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -47,23 +47,19 @@
 		142B0216216FA39E005DE573 /* libSourceKittenRequests.dylib in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975820EEFA12009A5FD6 /* libSourceKittenRequests.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		142B0217216FA39E005DE573 /* libSwiftLexer.dylib in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975A20EEFA12009A5FD6 /* libSwiftLexer.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		142B0218216FA3A7005DE573 /* MockGenerator.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B022621709979005DE573 /* Bocho.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B021F217098F6005DE573 /* Bocho.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B022721709979005DE573 /* Diagnostic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02232170994A005DE573 /* Diagnostic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B022821709979005DE573 /* Lexer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02202170994A005DE573 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B022921709979005DE573 /* Source.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02212170994A005DE573 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142B022A21709979005DE573 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02252170994B005DE573 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142B022B21709979005DE573 /* SWXMLHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02222170994A005DE573 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142B022C21709979005DE573 /* Yams.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02242170994B005DE573 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142B023021709A97005DE573 /* UseCases.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B022F21709A85005DE573 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142B023121709AFF005DE573 /* UseCases.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B022F21709A85005DE573 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B023221709AFF005DE573 /* Bocho.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B021F217098F6005DE573 /* Bocho.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B023321709AFF005DE573 /* Diagnostic.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02232170994A005DE573 /* Diagnostic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B023421709AFF005DE573 /* Lexer.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02202170994A005DE573 /* Lexer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B023521709AFF005DE573 /* Source.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02212170994A005DE573 /* Source.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142B023621709AFF005DE573 /* SourceKittenFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02252170994B005DE573 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142B023721709B00005DE573 /* SWXMLHash.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02222170994A005DE573 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142B023821709B00005DE573 /* Yams.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02242170994B005DE573 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142B023A21709BFB005DE573 /* libGRMustache7-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 142B023921709BC5005DE573 /* libGRMustache7-MacOS.a */; };
+		14354103232E4FF80019615B /* Lexer in Frameworks */ = {isa = PBXBuildFile; productRef = 14354102232E4FF80019615B /* Lexer */; };
+		14354104232E4FF80019615B /* Lexer in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 14354102232E4FF80019615B /* Lexer */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1435412A232E50610019615B /* Lexer in Frameworks */ = {isa = PBXBuildFile; productRef = 14354129232E50610019615B /* Lexer */; };
+		1435412B232E50610019615B /* Lexer in Copy Frameworks */ = {isa = PBXBuildFile; productRef = 14354129232E50610019615B /* Lexer */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		14451D351F5F05C500833C61 /* MemberTransformingVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A9B1705ADFFC0CB415 /* MemberTransformingVisitorTests.swift */; };
 		145290EA1F981ED600947144 /* VersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145290E91F981ED600947144 /* VersionView.swift */; };
 		147437B61F79746A00241B8A /* TestProject in Copy Test Project */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
@@ -638,14 +634,11 @@
 			dstSubfolderSpec = 10;
 			files = (
 				142B023021709A97005DE573 /* UseCases.framework in Embed Frameworks */,
-				142B022621709979005DE573 /* Bocho.framework in Embed Frameworks */,
-				142B022721709979005DE573 /* Diagnostic.framework in Embed Frameworks */,
-				142B022821709979005DE573 /* Lexer.framework in Embed Frameworks */,
-				142B022921709979005DE573 /* Source.framework in Embed Frameworks */,
 				142B022A21709979005DE573 /* SourceKittenFramework.framework in Embed Frameworks */,
 				142B022B21709979005DE573 /* SWXMLHash.framework in Embed Frameworks */,
 				142B022C21709979005DE573 /* Yams.framework in Embed Frameworks */,
 				1497FEC8215E200100CD670B /* libAlgorithms.dylib in Embed Frameworks */,
+				14354104232E4FF80019615B /* Lexer in Embed Frameworks */,
 				1497FEC9215E200100CD670B /* libAST.dylib in Embed Frameworks */,
 				1497FECA215E200100CD670B /* libASTImpl.dylib in Embed Frameworks */,
 				1497FECB215E200100CD670B /* libASTProxy.dylib in Embed Frameworks */,
@@ -709,14 +702,11 @@
 			dstSubfolderSpec = 10;
 			files = (
 				142B023121709AFF005DE573 /* UseCases.framework in Copy Frameworks */,
-				142B023221709AFF005DE573 /* Bocho.framework in Copy Frameworks */,
-				142B023321709AFF005DE573 /* Diagnostic.framework in Copy Frameworks */,
-				142B023421709AFF005DE573 /* Lexer.framework in Copy Frameworks */,
-				142B023521709AFF005DE573 /* Source.framework in Copy Frameworks */,
 				142B023621709AFF005DE573 /* SourceKittenFramework.framework in Copy Frameworks */,
 				142B023721709B00005DE573 /* SWXMLHash.framework in Copy Frameworks */,
 				142B023821709B00005DE573 /* Yams.framework in Copy Frameworks */,
 				142B0218216FA3A7005DE573 /* MockGenerator.framework in Copy Frameworks */,
+				1435412B232E50610019615B /* Lexer in Copy Frameworks */,
 				142B020D216FA39E005DE573 /* libAlgorithms.dylib in Copy Frameworks */,
 				142B020E216FA39E005DE573 /* libAST.dylib in Copy Frameworks */,
 				142B020F216FA39E005DE573 /* libASTImpl.dylib in Copy Frameworks */,
@@ -773,11 +763,7 @@
 		14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGeneratorTests.swift; sourceTree = "<group>"; };
 		14276C701F4F312E00EA7753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14276C781F4F314600EA7753 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
-		142B021F217098F6005DE573 /* Bocho.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bocho.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		142B02202170994A005DE573 /* Lexer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Lexer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		142B02212170994A005DE573 /* Source.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Source.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		142B02222170994A005DE573 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SWXMLHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		142B02232170994A005DE573 /* Diagnostic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Diagnostic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		142B02242170994B005DE573 /* Yams.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Yams.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		142B02252170994B005DE573 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SourceKittenFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		142B022F21709A85005DE573 /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UseCases.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -929,6 +915,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14354103232E4FF80019615B /* Lexer in Frameworks */,
 				191EF6E420F6C92B00118C74 /* Crashlytics.framework in Frameworks */,
 				191EF6E520F6C92C00118C74 /* Fabric.framework in Frameworks */,
 			);
@@ -979,6 +966,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14F866E420D9093300E79758 /* libXcodePluginProxy.a in Frameworks */,
+				1435412A232E50610019615B /* Lexer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1066,10 +1054,6 @@
 				14CA2D541F40007000900937 /* Products */,
 				142B023921709BC5005DE573 /* libGRMustache7-MacOS.a */,
 				142B022F21709A85005DE573 /* UseCases.framework */,
-				142B021F217098F6005DE573 /* Bocho.framework */,
-				142B02232170994A005DE573 /* Diagnostic.framework */,
-				142B02202170994A005DE573 /* Lexer.framework */,
-				142B02212170994A005DE573 /* Source.framework */,
 				142B02252170994B005DE573 /* SourceKittenFramework.framework */,
 				142B02222170994A005DE573 /* SWXMLHash.framework */,
 				142B02242170994B005DE573 /* Yams.framework */,
@@ -1400,6 +1384,9 @@
 				14276C901F4F37D500EA7753 /* PBXTargetDependency */,
 			);
 			name = MockGeneratorApp;
+			packageProductDependencies = (
+				14354102232E4FF80019615B /* Lexer */,
+			);
 			productName = MockGeneratorApp;
 			productReference = 14CA2D531F40007000900937 /* Swift Mock Generator for Xcode.app */;
 			productType = "com.apple.product-type.application";
@@ -1479,6 +1466,8 @@
 				14F866E120D9090F00E79758 /* PBXTargetDependency */,
 			);
 			name = EndToEndTests;
+			packageProductDependencies = (
+			);
 			productName = EndToEndTests;
 			productReference = 14F866C320D9088F00E79758 /* EndToEndTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1501,6 +1490,9 @@
 				14F866E320D9092B00E79758 /* PBXTargetDependency */,
 			);
 			name = EndToEndTestHost;
+			packageProductDependencies = (
+				14354129232E50610019615B /* Lexer */,
+			);
 			productName = EndToEndTestHost;
 			productReference = 14F866D220D9090400E79758 /* EndToEndTestHost.app */;
 			productType = "com.apple.product-type.application";
@@ -1533,7 +1525,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Sean Henry";
 				TargetAttributes = {
 					14276C601F4F312E00EA7753 = {
@@ -2423,7 +2415,11 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Debug/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2450,7 +2446,11 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = MockGenerator/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGenerator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2470,7 +2470,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Debug/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2487,7 +2491,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2529,7 +2537,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
 				INFOPLIST_FILE = MockGeneratorAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2547,7 +2559,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
 				INFOPLIST_FILE = MockGeneratorAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2590,13 +2606,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = MockGeneratorApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp.debug;
 				PRODUCT_MODULE_NAME = MockGeneratorApp;
 				PRODUCT_NAME = "Swift Mock Generator for Xcode";
@@ -2615,13 +2633,15 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = MockGeneratorApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp;
 				PRODUCT_MODULE_NAME = MockGeneratorApp;
 				PRODUCT_NAME = "Swift Mock Generator for Xcode";
@@ -2644,7 +2664,11 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = XcodePlugin/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				MENU_DISPLAY_NAME = "Debug Mock Generator";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp.debug.XcodePlugin;
 				PRODUCT_NAME = "Mock Generator";
@@ -2669,7 +2693,11 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = XcodePlugin/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				MENU_DISPLAY_NAME = "Mock Generator";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp.XcodePlugin;
 				PRODUCT_NAME = "Mock Generator";
@@ -2693,8 +2721,12 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../../../../../../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Debug/include/GRMustache/module.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(XPC_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2716,8 +2748,12 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../../../../../../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Release/include/GRMustache/module.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(XPC_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -2737,7 +2773,11 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "XcodePlugin/XcodePlugin-Bridging-Header.h";
@@ -2756,7 +2796,11 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "XcodePlugin/XcodePlugin-Bridging-Header.h";
@@ -2775,7 +2819,11 @@
 				DEVELOPMENT_TEAM = HU45578K6L;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EndToEndTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2795,7 +2843,11 @@
 				DEVELOPMENT_TEAM = HU45578K6L;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EndToEndTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2816,7 +2868,11 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EndToEndTestHost/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks $DEVELOPER_FRAMEWORKS_DIR";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					$DEVELOPER_FRAMEWORKS_DIR,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTestHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2836,7 +2892,11 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EndToEndTestHost/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks $DEVELOPER_FRAMEWORKS_DIR";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					$DEVELOPER_FRAMEWORKS_DIR,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTestHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2853,7 +2913,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = PerformanceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.PerformanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2869,7 +2933,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = PerformanceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.PerformanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2897,13 +2965,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = MockGeneratorApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp.debug;
 				PRODUCT_MODULE_NAME = MockGeneratorApp;
 				PRODUCT_NAME = "Swift Mock Generator for Xcode";
@@ -2921,7 +2991,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
 				INFOPLIST_FILE = MockGeneratorAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2944,7 +3018,11 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = XcodePlugin/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				MENU_DISPLAY_NAME = "Mock Generator";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorApp.debug.XcodePlugin;
 				PRODUCT_NAME = "Mock Generator";
@@ -2968,8 +3046,12 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				INFOPLIST_FILE = MockGeneratorXPC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../../../../../../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/../../../../../../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Release/include/GRMustache/module.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(XPC_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -3013,7 +3095,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MockGeneratorTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=${PROJECT_DIR}/lib/Release/include/GRMustache/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3033,7 +3119,11 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "XcodePlugin/XcodePlugin-Bridging-Header.h";
@@ -3052,7 +3142,11 @@
 				DEVELOPMENT_TEAM = HU45578K6L;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EndToEndTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3073,7 +3167,11 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = EndToEndTestHost/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks $DEVELOPER_FRAMEWORKS_DIR";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					$DEVELOPER_FRAMEWORKS_DIR,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.EndToEndTestHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3090,7 +3188,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = PerformanceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = codes.seanhenry.PerformanceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -3220,6 +3322,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		14354102232E4FF80019615B /* Lexer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Lexer;
+		};
+		14354129232E50610019615B /* Lexer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Lexer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 14CA2D4B1F40007000900937 /* Project object */;
 }
