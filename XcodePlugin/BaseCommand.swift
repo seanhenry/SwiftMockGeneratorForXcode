@@ -83,7 +83,7 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         let model = XPCMockGeneratorModel(
                 contents: invocation.sourceTextBuffer.completeBuffer,
                 projectURL: projectURL,
-                sdkPath: try getSDKPath(),
+                moduleCachePath: try getModuleCachePath(),
                 line: range.start.line,
                 column: range.start.column,
                 templateName: templateName,
@@ -141,11 +141,11 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         return NSError(domain: "codes.seanhenry.mockgenerator", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
     }
 
-    private func getSDKPath() throws -> String {
-        let sdkPath = Preferences().sdkPath
-        guard FileManager.default.fileExists(atPath: sdkPath) else {
-            throw createError("The SDK path does not exist. Change it in the companion app.")
+    private func getModuleCachePath() throws -> String {
+        let moduleCachePath = Preferences().moduleCachePath
+        guard FileManager.default.fileExists(atPath: moduleCachePath) else {
+            throw createError("The module cache path does not exist. Change it in the companion app.")
         }
-        return sdkPath
+        return moduleCachePath
     }
 }

@@ -227,7 +227,7 @@ class MockGeneratorTests: XCTestCase {
         } while contentsLineColumn.lineColumn != nil
         XCTAssertGreaterThan(caretLineColumns.count, 0)
         caretLineColumns.forEach { lineColumn in
-            let (lines, error) = Generator(fromFileContents: contentsLineColumn.contents, projectURL: URL(fileURLWithPath: testProject), sdkPath: getValidSDK(), line: lineColumn.line, column: lineColumn.column, templateName: "spy", useTabsForIndentation: false, indentationWidth: 4).generateMock()
+            let (lines, error) = Generator(fromFileContents: contentsLineColumn.contents, projectURL: URL(fileURLWithPath: testProject), moduleCachePath: getValidModuleCachePath(), line: lineColumn.line, column: lineColumn.column, templateName: "spy", useTabsForIndentation: false, indentationWidth: 4).generateMock()
             XCTAssertNotNil(error, "Should not be generating a mock from caret at line: \(lineColumn.line) column: \(lineColumn.column)")
             XCTAssertNil(lines)
         }
@@ -276,7 +276,7 @@ class MockGeneratorTests: XCTestCase {
         let result = CaretTestHelper.findCaretLineColumn(mock)
         let (instructions, error) = Generator(fromFileContents: result.contents,
                                       projectURL: URL(fileURLWithPath: testProject),
-                                      sdkPath: getValidSDK(),
+                                      moduleCachePath: getValidModuleCachePath(),
                                       line: result.lineColumn!.line,
                                       column: result.lineColumn!.column,
                                       templateName: templateName,
@@ -311,7 +311,7 @@ class MockGeneratorTests: XCTestCase {
         return lines.joined()
     }
 
-    private func getValidSDK() -> String {
-        return Bundle(for: MockGeneratorTests.self).infoDictionary?["SDK_DIR"] as! String
+    private func getValidModuleCachePath() -> String {
+        return "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex"
     }
 }

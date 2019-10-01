@@ -13,7 +13,8 @@ class Preferences {
     private let projectPathKey = "project.path"
     private let projectPathHistoryKey = "project.path.history"
     private let automaticallyDetectProjectPathKey = "project.path.autoDetect"
-    private let sdkPathKey = "sdk.path"
+    private let sdkPathKey = "sdk.path" // This was once used
+    private let moduleCachePathKey = "moduleCache.path"
 
     init(userDefaults: UserDefaults = UserDefaults(suiteName: "group.codes.seanhenry.MockGenerator")!) {
         self.userDefaults = userDefaults
@@ -61,13 +62,17 @@ class Preferences {
         }
     }
 
-    var sdkPath: String {
+    var moduleCachePath: String {
         set {
-            userDefaults.set(newValue, forKey: sdkPathKey)
+            userDefaults.set(newValue, forKey: moduleCachePathKey)
         }
         get {
-            return userDefaults.string(forKey: sdkPathKey)
-                ??  "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk"
+            let path = "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex"
+            guard let value = userDefaults.string(forKey: moduleCachePathKey),
+                !value.isEmpty else {
+                return path
+            }
+            return value
         }
     }
 }

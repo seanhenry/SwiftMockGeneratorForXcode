@@ -161,9 +161,9 @@ class EndToEndTests: MockGeneratorBaseTestCase {
 
     func test_returnsErrorWhenSDKPathDoesNotExist() {
         let preferences = Preferences()
-        let sdkPath = preferences.sdkPath
-        preferences.sdkPath = "/path/to/nowhere"
-        assertMockGeneratesError(fileName: "SimpleProtocolMock", "The SDK path does not exist. Change it in the companion app.")
-        preferences.sdkPath = sdkPath
+        let moduleCachePath = preferences.moduleCachePath
+        preferences.moduleCachePath = "/path/to/nowhere"
+        assertMockGeneratesError(fileName: "SimpleProtocolMock", "The module cache path does not exist. Change it in the companion app.")
+        preferences.moduleCachePath = moduleCachePath
     }
 }

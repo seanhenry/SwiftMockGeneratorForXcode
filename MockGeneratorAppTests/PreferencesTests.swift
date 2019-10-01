@@ -76,16 +76,21 @@ class PreferencesTests: XCTestCase {
         XCTAssert(preferences.automaticallyDetectProjectPath)
     }
 
-    // MARK: - sdkPath
+    // MARK: - moduleCachePath
 
-    func test_sdkPath_shouldHaveDefaultPath() {
-        XCTAssertEqual(preferences.sdkPath, "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk")
+    func test_moduleCachePath_shouldHaveDefaultPath() {
+        XCTAssertEqual(preferences.moduleCachePath, "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex")
     }
 
-    func test_sdkPath_shouldChangeValue() {
-        preferences.sdkPath = "/Path"
-        XCTAssertEqual(preferences.sdkPath, "/Path")
-        preferences.sdkPath = "/AnotherPath"
-        XCTAssertEqual(preferences.sdkPath, "/AnotherPath")
+    func test_moduleCachePath_shouldHaveDefaultPath_whenEmptyString() {
+        preferences.moduleCachePath = ""
+        XCTAssertEqual(preferences.moduleCachePath, "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex")
+    }
+
+    func test_moduleCachePath_shouldChangeValue() {
+        preferences.moduleCachePath = "/Path"
+        XCTAssertEqual(preferences.moduleCachePath, "/Path")
+        preferences.moduleCachePath = "/AnotherPath"
+        XCTAssertEqual(preferences.moduleCachePath, "/AnotherPath")
     }
 }

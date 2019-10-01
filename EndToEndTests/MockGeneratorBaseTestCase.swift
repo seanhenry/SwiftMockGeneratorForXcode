@@ -5,18 +5,14 @@ import TestHelper
 
 class MockGeneratorBaseTestCase: XCTestCase {
 
-    override class func setUp() {
-        super.setUp()
-        let prefs = Preferences()
-        prefs.automaticallyDetectProjectPath = false
-        prefs.projectPath = URL(fileURLWithPath: testProject)
-        prefs.sdkPath = getValidSDK()
-        XPCManager.setUpConnection()
-    }
-
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
+        let prefs = Preferences()
+        prefs.automaticallyDetectProjectPath = false
+        prefs.projectPath = URL(fileURLWithPath: testProject)
+        prefs.moduleCachePath = getValidModuleCachePath()
+        XPCManager.setUpConnection()
     }
 
     override class func tearDown() {
@@ -102,7 +98,7 @@ class MockGeneratorBaseTestCase: XCTestCase {
         }
     }
 
-    private static func getValidSDK() -> String {
-        return Bundle(for: MockGeneratorBaseTestCase.self).infoDictionary?["SDK_DIR"] as! String
+    private func getValidModuleCachePath() -> String {
+        return "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex"
     }
 }

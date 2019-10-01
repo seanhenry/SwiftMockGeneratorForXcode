@@ -12,7 +12,7 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        resolver = ResolverFactory.createResolver(filePaths: [], sdkPath: getValidSDK())
+        resolver = ResolverFactory.createResolver(filePaths: [], moduleCachePath: getValidModuleCachePath())
     }
 
     override func tearDown() {
@@ -190,7 +190,7 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
         """
     }
 
-    private func getValidSDK() -> String {
-        return Bundle(for: TypeDeclarationTransformingVisitorTests.self).infoDictionary?["SDK_DIR"] as! String
+    private func getValidModuleCachePath() -> String {
+        return "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex"
     }
 }

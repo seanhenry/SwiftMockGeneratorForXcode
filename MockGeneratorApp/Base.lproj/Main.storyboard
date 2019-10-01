@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -686,17 +686,17 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="MockGeneratorApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="286"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="VQz-9A-PX1" customClass="PreferencesView" customModule="MockGeneratorApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="275"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="286"/>
                                 <subviews>
                                     <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="geP-s4-QHR">
-                                        <rect key="frame" x="8" y="11" width="584" height="256"/>
+                                        <rect key="frame" x="8" y="8" width="584" height="270"/>
                                         <subviews>
                                             <customView placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="eff-9G-rXA" customClass="XcodeAccessView" customModule="MockGeneratorApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="239" width="584" height="17"/>
+                                                <rect key="frame" x="0.0" y="253" width="584" height="17"/>
                                                 <subviews>
                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="prk-fB-bOl">
                                                         <rect key="frame" x="0.0" y="0.0" width="584" height="17"/>
@@ -742,7 +742,7 @@
                                                 </connections>
                                             </customView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cnF-nW-tKi">
-                                                <rect key="frame" x="-2" y="211" width="102" height="20"/>
+                                                <rect key="frame" x="-2" y="225" width="102" height="20"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Project path" id="OlE-51-ShT">
                                                     <font key="font" size="17" name=".AppleSystemUIFontDemi"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -750,7 +750,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Phs-LO-OP4">
-                                                <rect key="frame" x="-2" y="187" width="224" height="18"/>
+                                                <rect key="frame" x="-2" y="201" width="224" height="18"/>
                                                 <buttonCell key="cell" type="check" title="Automatically detect project path" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="uDL-qi-lVL">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -760,7 +760,7 @@
                                                 </connections>
                                             </button>
                                             <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qoq-TC-fWq" userLabel="Auto detect stack view">
-                                                <rect key="frame" x="0.0" y="167" width="584" height="14"/>
+                                                <rect key="frame" x="0.0" y="181" width="584" height="14"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UO1-kO-sN0">
                                                         <rect key="frame" x="-2" y="0.0" width="588" height="14"/>
@@ -783,7 +783,7 @@
                                                 </customSpacing>
                                             </stackView>
                                             <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4D-w1-Fmx" userLabel="Manual project path stack view" customClass="ManualProjectPathView" customModule="MockGeneratorApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="101" width="580" height="58"/>
+                                                <rect key="frame" x="0.0" y="115" width="580" height="58"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="X6l-7z-ih7">
                                                         <rect key="frame" x="-2" y="30" width="584" height="28"/>
@@ -860,24 +860,25 @@
                                                 </connections>
                                             </stackView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rSj-pJ-kOx">
-                                                <rect key="frame" x="-2" y="73" width="79" height="20"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="SDK path" id="EOh-0n-yN5">
+                                                <rect key="frame" x="-2" y="87" width="157" height="20"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Module cache path" id="EOh-0n-yN5">
                                                     <font key="font" size="17" name=".AppleSystemUIFontDemi"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gmI-OG-jl9">
-                                                <rect key="frame" x="-2" y="51" width="178" height="14"/>
-                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="The full path to the platform SDK." id="1l6-bs-niy">
+                                                <rect key="frame" x="-2" y="51" width="588" height="28"/>
+                                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="1l6-bs-niy">
                                                     <font key="font" metaFont="systemLight" size="11"/>
+                                                    <string key="title">The path to the module cache. This is in your derived data directory named: Module.noindex and should not be changed unless you use a custom derived data directory.</string>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="17B-TO-vuB">
                                                 <rect key="frame" x="0.0" y="22" width="584" height="21"/>
-                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="E.g. /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk" drawsBackground="YES" usesSingleLineMode="YES" id="Rqf-09-gI0">
+                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="/path/to/Module.noindex" drawsBackground="YES" usesSingleLineMode="YES" id="Rqf-09-gI0">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -939,8 +940,8 @@
                                     <outlet property="automaticContainer" destination="qoq-TC-fWq" id="RWp-Sd-2aK"/>
                                     <outlet property="automaticPathCheckbox" destination="Phs-LO-OP4" id="IrX-BE-MLD"/>
                                     <outlet property="manualContainer" destination="s4D-w1-Fmx" id="3Yi-e8-eSp"/>
+                                    <outlet property="moduleCachePath" destination="17B-TO-vuB" id="Luu-U5-pIk"/>
                                     <outlet property="projectPathField" destination="UO1-kO-sN0" id="8zk-1R-HSj"/>
-                                    <outlet property="sdkPath" destination="17B-TO-vuB" id="Yia-yq-S43"/>
                                 </connections>
                             </customView>
                         </subviews>
@@ -954,7 +955,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="709.5"/>
+            <point key="canvasLocation" x="75" y="715"/>
         </scene>
     </scenes>
     <resources>

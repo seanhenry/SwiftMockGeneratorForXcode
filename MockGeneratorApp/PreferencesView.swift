@@ -7,7 +7,7 @@ class PreferencesView: NSView, NSTextFieldDelegate {
     @IBOutlet private var automaticPathCheckbox: NSButton!
     @IBOutlet private var projectPathField: NSTextField!
 
-    @IBOutlet private var sdkPath: NSTextField!
+    @IBOutlet private var moduleCachePath: NSTextField!
     private let preferences = Preferences()
 
     required init?(coder aDecoder: NSCoder) {
@@ -32,7 +32,7 @@ class PreferencesView: NSView, NSTextFieldDelegate {
 
     private func updateView() {
         automaticPathCheckbox.state = preferences.automaticallyDetectProjectPath ? .on : .off
-        sdkPath.stringValue = preferences.sdkPath
+        moduleCachePath.stringValue = preferences.moduleCachePath
         updateContainers()
     }
 
@@ -51,6 +51,6 @@ class PreferencesView: NSView, NSTextFieldDelegate {
     }
 
     func controlTextDidChange(_ obj: Notification) {
-        preferences.sdkPath = sdkPath.stringValue
+        preferences.moduleCachePath = moduleCachePath.stringValue
     }
 }

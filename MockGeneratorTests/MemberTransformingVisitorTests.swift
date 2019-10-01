@@ -13,7 +13,7 @@ class MemberTransformingVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        resolver = ResolverFactory.createResolver(filePaths: [], sdkPath: getValidSDK())
+        resolver = ResolverFactory.createResolver(filePaths: [], moduleCachePath: getValidModuleCachePath())
         visitor = MemberTransformingVisitor(resolver: resolver)
     }
 
@@ -617,7 +617,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         """
     }
 
-    private func getValidSDK() -> String {
-        return Bundle(for: MemberTransformingVisitorTests.self).infoDictionary?["SDK_DIR"] as! String
+    private func getValidModuleCachePath() -> String {
+        return "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex"
     }
 }
