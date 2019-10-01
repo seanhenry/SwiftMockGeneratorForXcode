@@ -97,6 +97,14 @@ class BufferInstructionsFactoryTests: XCTestCase {
         assertInsertsLines(buffer, ["INSERTED\n"], "class A {\nINSERTED\n")
     }
 
+    func test_shouldHandleSpecialCharacters() {
+        let buffer = [
+            "//  Copyright © 2019 Discovery. All rights reserved.\n",
+            "class A: B {}"
+        ]
+        assertInsertsLines(buffer, ["INSERTED\n"], "//  Copyright © 2019 Discovery. All rights reserved.\nclass A: B {\nINSERTED\n}")
+    }
+
     private func create(_ input: String, lines: [String] = []) -> BufferInstructions {
         let file = try! ParserTestHelper.parseFile(from: input)
         let classElement = file.typeDeclarations[0]

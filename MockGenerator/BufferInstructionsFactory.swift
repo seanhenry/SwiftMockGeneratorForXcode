@@ -54,7 +54,8 @@ class BufferInstructionsFactory {
     }
 
     private func getLineText(at line: Int, from fileText: String) -> String {
-        let startOffset = LocationConverter.convert(line: line, column: 0, in: fileText)!
+        let startOffset = LocationConverter(from: .utf32, to: .utf32)
+            .convert(line: line, column: 0, in: fileText)!
         let startIndex = fileText.index(fileText.startIndex, offsetBy: Int(startOffset))
         let startOfLine = fileText[startIndex...]
         if let endIndex = startOfLine.firstIndex(of: "\n") {
