@@ -70,6 +70,12 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     private func generateMock(proxy: MockGeneratorXPCProtocol, invocation: SourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) {
         do {
             let projectURL = try getProjectURLOnMainThread()
+            guard ["xcodeproj", "xcworkspace"].contains(projectURL.pathExtension) else {
+                throw createError("The project path '\(projectURL.path)' must be an .xcodeproj or .xcworkspace file. Change it in the companion app.")
+            }
+            guard FileManager.default.fileExists(atPath: projectURL.path) else {
+                throw createError("The project path '\(projectURL.path)' does not exist. Change it in the companion app.")
+            }
             try tryToGenerateMock(atProjectURL: projectURL, proxy: proxy, invocation: invocation) { [weak self] (result, error) in
                 self?.handleGenerateMock(invocation: invocation, result: result, error: error, completionHandler: completionHandler)
             }
@@ -83,7 +89,6 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         let model = XPCMockGeneratorModel(
                 contents: invocation.sourceTextBuffer.completeBuffer,
                 projectURL: projectURL,
-                moduleCachePath: try getModuleCachePath(),
                 line: range.start.line,
                 column: range.start.column,
                 templateName: templateName,
@@ -139,13 +144,5 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     
     private func createError(_ message: String) -> Error {
         return NSError(domain: "codes.seanhenry.mockgenerator", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
-    }
-
-    private func getModuleCachePath() throws -> String {
-        let moduleCachePath = Preferences().moduleCachePath
-        guard FileManager.default.fileExists(atPath: moduleCachePath) else {
-            throw createError("The module cache path does not exist. Change it in the companion app.")
-        }
-        return moduleCachePath
     }
 }

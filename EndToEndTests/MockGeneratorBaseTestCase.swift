@@ -10,8 +10,7 @@ class MockGeneratorBaseTestCase: XCTestCase {
         continueAfterFailure = false
         let prefs = Preferences()
         prefs.automaticallyDetectProjectPath = false
-        prefs.projectPath = URL(fileURLWithPath: testProject)
-        prefs.moduleCachePath = getValidModuleCachePath()
+        prefs.projectPath = testProject
         XPCManager.setUpConnection()
     }
 
@@ -64,7 +63,7 @@ class MockGeneratorBaseTestCase: XCTestCase {
     }
 
     private func readFile(named fileName: String) -> String {
-        return try! String(contentsOfFile: testProject + "/" + fileName)
+        return try! String(contentsOfFile: testProjectPath + "/" + fileName)
     }
 
     class TestCommand: BaseCommand {
@@ -98,7 +97,7 @@ class MockGeneratorBaseTestCase: XCTestCase {
         }
     }
 
-    private func getValidModuleCachePath() -> String {
-        return "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex"
+    private func getProjectURL() -> URL {
+        return URL(fileURLWithPath: "/Users/sean/source/plugins/XcodeMockGenerator/MockGenerator.xcworkspace")
     }
 }

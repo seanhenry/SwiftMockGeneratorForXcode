@@ -159,11 +159,17 @@ class EndToEndTests: MockGeneratorBaseTestCase {
         assertMockGeneratesExpected("AugmentedClassSubscriptMock")
     }
 
-    func test_returnsErrorWhenSDKPathDoesNotExist() {
+    func test_returnsErrorWhenProjectURLIsNotProjectOrWorkspace() {
         let preferences = Preferences()
-        let moduleCachePath = preferences.moduleCachePath
-        preferences.moduleCachePath = "/path/to/nowhere"
-        assertMockGeneratesError(fileName: "SimpleProtocolMock", "The module cache path does not exist. Change it in the companion app.")
-        preferences.moduleCachePath = moduleCachePath
+        preferences.automaticallyDetectProjectPath = false
+        preferences.projectPath = URL(fileURLWithPath: "/not/project")
+        assertMockGeneratesError(fileName: "SimpleProtocolMock", "The project path '/not/project' must be an .xcodeproj or .xcworkspace file. Change it in the companion app.")
+    }
+
+    func test_returnsErrorWhenProjectURLDoesNotExist() {
+        let preferences = Preferences()
+        preferences.automaticallyDetectProjectPath = false
+        preferences.projectPath = URL(fileURLWithPath: "/not/project.xcodeproj")
+        assertMockGeneratesError(fileName: "SimpleProtocolMock", "The project path '/not/project.xcodeproj' does not exist. Change it in the companion app.")
     }
 }

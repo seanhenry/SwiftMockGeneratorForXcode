@@ -43,10 +43,10 @@ class ProjectFinderTests: XCTestCase {
         assertEqualError("Could not detect your project. Enter one in the companion app.")
     }
 
-    func test_getProjectPath_shouldReturnAutomaticProjectPath() {
+    func test_getProjectPath_shouldReturnAutomaticPathToProjectOrWorkspace() {
         preferences.automaticallyDetectProjectPath = true
         mockProjectFinder.stubbedFindOpenWorkspacePathResult = projectFolder
-        assertEqualProjectPath(projectPath)
+        assertEqualProjectPath(projectFolder)
     }
 
     // MARK: - Helpers

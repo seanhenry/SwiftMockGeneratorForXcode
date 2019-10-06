@@ -143,14 +143,14 @@ class VariableTypeResolverTests: XCTestCase {
         struct StructType {}
         enum EnumType {}
         """
-        return VariableTypeResolver.resolve(try parse(fullText), resolver: ResolverFactory.createResolver(filePaths: [], moduleCachePath: getValidModuleCachePath()))
+        return VariableTypeResolver.resolve(try parse(fullText), resolver: ResolverFactory.createResolver(filePaths: [], projectURL: getProjectURL()))
     }
 
     private func parse(_ text: String) throws -> Element {
         return try ParserTestHelper.parseFile(from: text).children[0]
     }
 
-    private func getValidModuleCachePath() -> String {
-        return "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex"
+    private func getProjectURL() -> URL {
+        return URL(fileURLWithPath: "/Users/sean/source/plugins/XcodeMockGenerator/MockGenerator.xcworkspace")
     }
 }

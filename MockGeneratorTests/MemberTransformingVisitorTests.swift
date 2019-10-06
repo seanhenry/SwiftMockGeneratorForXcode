@@ -13,7 +13,7 @@ class MemberTransformingVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        resolver = ResolverFactory.createResolver(filePaths: [], moduleCachePath: getValidModuleCachePath())
+        resolver = ResolverFactory.createResolver(filePaths: [], projectURL: getProjectURL())
         visitor = MemberTransformingVisitor(resolver: resolver)
     }
 
@@ -617,7 +617,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         """
     }
 
-    private func getValidModuleCachePath() -> String {
-        return "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex"
+    private func getProjectURL() -> URL {
+        return URL(fileURLWithPath: "/Users/sean/source/plugins/XcodeMockGenerator/MockGenerator.xcworkspace")
     }
 }

@@ -89,6 +89,7 @@
 		1497FED2215E200100CD670B /* libSwiftLexer.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975A20EEFA12009A5FD6 /* libSwiftLexer.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		149CF7B3217B115B005892B4 /* partial.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 149CF792217B115A005892B4 /* partial.mustache */; };
 		149CF7B5217B1301005892B4 /* PartialSpyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CF7B4217B1301005892B4 /* PartialSpyCommand.swift */; };
+		149D9289234AA499006FD765 /* Xcode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 149D9288234AA499006FD765 /* Xcode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		149DEC711F651B0C007DF43E /* MockGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14B4BC2C208B0A130052A085 /* XcodeProjectPathFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFB741733D825DD2B6508 /* XcodeProjectPathFinderTests.swift */; };
 		14B4BC2D208B0A160052A085 /* PreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7966B174AC850706CB1 /* PreferencesTests.swift */; };
@@ -348,6 +349,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 14CA2D521F40007000900937;
 			remoteInfo = MockGeneratorApp;
+		};
+		149D9287234AA499006FD765 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 14B05550234A938C001BA24F;
+			remoteInfo = Xcode;
 		};
 		14CA2D751F40009000900937 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -633,6 +641,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				149D9289234AA499006FD765 /* Xcode.framework in Embed Frameworks */,
 				142B023021709A97005DE573 /* UseCases.framework in Embed Frameworks */,
 				142B022A21709979005DE573 /* SourceKittenFramework.framework in Embed Frameworks */,
 				142B022B21709979005DE573 /* SWXMLHash.framework in Embed Frameworks */,
@@ -1254,6 +1263,7 @@
 				1425EBA121528F8F00009D60 /* SwiftierKitTests.xctest */,
 				1425EBA321528F8F00009D60 /* libSwiftyPluginTest.dylib */,
 				1425EBA521528F8F00009D60 /* SwiftyPluginTestTests.xctest */,
+				149D9288234AA499006FD765 /* Xcode.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1787,6 +1797,13 @@
 			fileType = wrapper.cfbundle;
 			path = SwiftyPluginTestTests.xctest;
 			remoteRef = 1425EBA421528F8F00009D60 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		149D9288234AA499006FD765 /* Xcode.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Xcode.framework;
+			remoteRef = 149D9287234AA499006FD765 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		191EF66820F447D300118C74 /* libFormatter.dylib */ = {
