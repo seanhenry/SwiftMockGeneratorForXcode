@@ -17,19 +17,19 @@ class XcodeProjectPathFinderTests: XCTestCase {
         XCTAssertNil(finder.findOpenProjectPath())
     }
 
-    func test_findOpenProjectPath_shouldReturnWorkspace_whenWorkspaceIsFound() {
+    func test_findOpenProjectPath_shouldReturnParentPath_whenWorkspaceIsFound() {
         finder.stubbedFindOpenWorkspacePathResult = "/path/to/workspace.xcworkspace"
-        XCTAssertEqual(finder.findOpenProjectPath()?.path, "/path/to/workspace.xcworkspace")
+        XCTAssertEqual(finder.findOpenProjectPath()?.path, "/path/to")
     }
 
-    func test_findOpenProjectPath_shouldReturnProjectPath_whenProjectIsFound() {
+    func test_findOpenProjectPath_shouldReturnParentPath_whenProjectIsFound() {
         finder.stubbedFindOpenWorkspacePathResult = "/path/to/project.xcodeproj"
-        XCTAssertEqual(finder.findOpenProjectPath()?.path, "/path/to/project.xcodeproj")
+        XCTAssertEqual(finder.findOpenProjectPath()?.path, "/path/to")
     }
 
-    func test_findOpenProjectPath_shouldReturnProjectPath_whenRootProjectIsFound() {
+    func test_findOpenProjectPath_shouldReturnParentPath_whenRootProjectIsFound() {
         finder.stubbedFindOpenWorkspacePathResult = "/project.xcodeproj"
-        XCTAssertEqual(finder.findOpenProjectPath()?.path, "/project.xcodeproj")
+        XCTAssertEqual(finder.findOpenProjectPath()?.path, "/")
     }
 
     func test_findOpenProjectPath_shouldReturnNil_whenLocalProjectIsFound() {

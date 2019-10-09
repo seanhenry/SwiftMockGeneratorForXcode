@@ -30,7 +30,7 @@ public class Generator {
         self.templateName = templateName
         self.useTabsForIndentation = useTabsForIndentation
         self.indentationWidth = indentationWidth
-        let sourceFiles = SourceFileFinder(projectRoot: projectURL.deletingLastPathComponent()).findSourceFiles()
+        let sourceFiles = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
         self.resolver = ResolverFactory.createResolver(filePaths: Generator.filterUniqueFileNames(sourceFiles), platform: platform)
     }
 

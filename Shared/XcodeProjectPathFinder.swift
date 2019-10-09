@@ -5,7 +5,7 @@ class XcodeProjectPathFinder {
 
     func findOpenProjectPath() -> URL? {
         if let workspace = findOpenWorkspacePath(), workspace.hasPrefix("/") {
-            return URL(fileURLWithPath: workspace)
+            return URL(fileURLWithPath: workspace).deletingLastPathComponent()
         }
         return nil
     }

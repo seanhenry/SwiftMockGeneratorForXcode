@@ -10,7 +10,7 @@ class MockGeneratorBaseTestCase: XCTestCase {
         continueAfterFailure = false
         let prefs = Preferences()
         prefs.automaticallyDetectProjectPath = false
-        prefs.projectPath = testProject
+        prefs.projectPath = URL(fileURLWithPath: testProject)
         XPCManager.setUpConnection()
     }
 
@@ -63,7 +63,7 @@ class MockGeneratorBaseTestCase: XCTestCase {
     }
 
     private func readFile(named fileName: String) -> String {
-        return try! String(contentsOfFile: testProjectPath + "/" + fileName)
+        return try! String(contentsOfFile: testProject + "/" + fileName)
     }
 
     class TestCommand: BaseCommand {
@@ -95,9 +95,5 @@ class MockGeneratorBaseTestCase: XCTestCase {
         init(buffer: SourceTextBuffer) {
             self.sourceTextBuffer = buffer
         }
-    }
-
-    private func getProjectURL() -> URL {
-        return URL(fileURLWithPath: "/Users/sean/source/plugins/XcodeMockGenerator/MockGenerator.xcworkspace")
     }
 }
