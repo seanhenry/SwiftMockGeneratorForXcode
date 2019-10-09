@@ -143,14 +143,10 @@ class VariableTypeResolverTests: XCTestCase {
         struct StructType {}
         enum EnumType {}
         """
-        return VariableTypeResolver.resolve(try parse(fullText), resolver: ResolverFactory.createResolver(filePaths: [], projectURL: getProjectURL()))
+        return VariableTypeResolver.resolve(try parse(fullText), resolver: ResolverFactory.createResolver(filePaths: [], platform: "macosx"))
     }
 
     private func parse(_ text: String) throws -> Element {
         return try ParserTestHelper.parseFile(from: text).children[0]
-    }
-
-    private func getProjectURL() -> URL {
-        return URL(fileURLWithPath: "/Users/sean/source/plugins/XcodeMockGenerator/MockGenerator.xcworkspace")
     }
 }

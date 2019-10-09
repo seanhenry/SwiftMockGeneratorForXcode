@@ -70,9 +70,6 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     private func generateMock(proxy: MockGeneratorXPCProtocol, invocation: SourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) {
         do {
             let projectURL = try getProjectURLOnMainThread()
-            guard ["xcodeproj", "xcworkspace"].contains(projectURL.pathExtension) else {
-                throw createError("The project path '\(projectURL.path)' must be an .xcodeproj or .xcworkspace file. Change it in the companion app.")
-            }
             guard FileManager.default.fileExists(atPath: projectURL.path) else {
                 throw createError("The project path '\(projectURL.path)' does not exist. Change it in the companion app.")
             }
@@ -89,6 +86,7 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         let model = XPCMockGeneratorModel(
                 contents: invocation.sourceTextBuffer.completeBuffer,
                 projectURL: projectURL,
+                platform: try getPlatform(),
                 line: range.start.line,
                 column: range.start.column,
                 templateName: templateName,
@@ -144,5 +142,12 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     
     private func createError(_ message: String) -> Error {
         return NSError(domain: "codes.seanhenry.mockgenerator", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
+    }
+
+    private func getPlatform() throws -> String {
+        guard let platform = Preferences().platform else {
+            throw createError("No platform has been selected. Choose one in the companion app.")
+        }
+        return platform
     }
 }

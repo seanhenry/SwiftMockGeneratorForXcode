@@ -63,6 +63,7 @@
 		14451D351F5F05C500833C61 /* MemberTransformingVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A9B1705ADFFC0CB415 /* MemberTransformingVisitorTests.swift */; };
 		145290EA1F981ED600947144 /* VersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145290E91F981ED600947144 /* VersionView.swift */; };
 		147437B61F79746A00241B8A /* TestProject in Copy Test Project */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
+		1485244A234E5B19007F3D26 /* libCommandLine.dylib in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 14D345DE234DC20700054682 /* libCommandLine.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		14887ABC20FB859B00D50A73 /* MockGenerator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1497FE77215D0B5C00CD670B /* XcodeAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497FE76215D0B5C00CD670B /* XcodeAccess.swift */; };
 		1497FE78215E147200CD670B /* libAlgorithms.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974C20EEFA12009A5FD6 /* libAlgorithms.dylib */; };
@@ -89,7 +90,6 @@
 		1497FED2215E200100CD670B /* libSwiftLexer.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975A20EEFA12009A5FD6 /* libSwiftLexer.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		149CF7B3217B115B005892B4 /* partial.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 149CF792217B115A005892B4 /* partial.mustache */; };
 		149CF7B5217B1301005892B4 /* PartialSpyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CF7B4217B1301005892B4 /* PartialSpyCommand.swift */; };
-		149D9289234AA499006FD765 /* Xcode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 149D9288234AA499006FD765 /* Xcode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		149DEC711F651B0C007DF43E /* MockGenerator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14B4BC2C208B0A130052A085 /* XcodeProjectPathFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFB741733D825DD2B6508 /* XcodeProjectPathFinderTests.swift */; };
 		14B4BC2D208B0A160052A085 /* PreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7966B174AC850706CB1 /* PreferencesTests.swift */; };
@@ -105,6 +105,8 @@
 		14CA2D911F4000C400900937 /* MockGeneratorXPC.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D801F4000AB00900937 /* MockGeneratorXPC.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */; };
 		14CA2DAC1F41349500900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
+		14D345DF234DC20700054682 /* libCommandLine.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14D345DE234DC20700054682 /* libCommandLine.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		14D345E0234DC22000054682 /* libCommandLine.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D345DE234DC20700054682 /* libCommandLine.dylib */; };
 		14E132281F58E6D300D75943 /* MemberTransformingVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDB834B634E694CF658C /* MemberTransformingVisitor.swift */; };
 		14E9A2F9216EEABC00A677FA /* XcodeAccessImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E9A2F8216EEABC00A677FA /* XcodeAccessImpl.swift */; };
 		14E9A31B216EEB6000A677FA /* XcodeAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E9A31A216EEB6000A677FA /* XcodeAccessView.swift */; };
@@ -350,13 +352,6 @@
 			remoteGlobalIDString = 14CA2D521F40007000900937;
 			remoteInfo = MockGeneratorApp;
 		};
-		149D9287234AA499006FD765 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 14B05550234A938C001BA24F;
-			remoteInfo = Xcode;
-		};
 		14CA2D751F40009000900937 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
@@ -370,6 +365,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 14CA2D7F1F4000AB00900937;
 			remoteInfo = MockGeneratorXPC;
+		};
+		14D345DD234DC20700054682 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 14D345AF234DC0E400054682;
+			remoteInfo = CommandLine;
 		};
 		14F866C920D9088F00E79758 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -641,7 +643,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				149D9289234AA499006FD765 /* Xcode.framework in Embed Frameworks */,
+				14D345DF234DC20700054682 /* libCommandLine.dylib in Embed Frameworks */,
 				142B023021709A97005DE573 /* UseCases.framework in Embed Frameworks */,
 				142B022A21709979005DE573 /* SourceKittenFramework.framework in Embed Frameworks */,
 				142B022B21709979005DE573 /* SWXMLHash.framework in Embed Frameworks */,
@@ -710,6 +712,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				1485244A234E5B19007F3D26 /* libCommandLine.dylib in Copy Frameworks */,
 				142B023121709AFF005DE573 /* UseCases.framework in Copy Frameworks */,
 				142B023621709AFF005DE573 /* SourceKittenFramework.framework in Copy Frameworks */,
 				142B023721709B00005DE573 /* SWXMLHash.framework in Copy Frameworks */,
@@ -924,6 +927,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D345E0234DC22000054682 /* libCommandLine.dylib in Frameworks */,
 				14354103232E4FF80019615B /* Lexer in Frameworks */,
 				191EF6E420F6C92B00118C74 /* Crashlytics.framework in Frameworks */,
 				191EF6E520F6C92C00118C74 /* Fabric.framework in Frameworks */,
@@ -1236,6 +1240,7 @@
 				1425EB8121528F8F00009D60 /* libASTSerialize.dylib */,
 				1425EB8321528F8F00009D60 /* ASTSerializeTests.xctest */,
 				1425EB8521528F8F00009D60 /* ASTSerializePerfTests.xctest */,
+				14D345DE234DC20700054682 /* libCommandLine.dylib */,
 				191EF66820F447D300118C74 /* libFormatter.dylib */,
 				191EF66A20F447D300118C74 /* FormatterTests.xctest */,
 				1425EB8721528F8F00009D60 /* libIndexer.dylib */,
@@ -1263,7 +1268,6 @@
 				1425EBA121528F8F00009D60 /* SwiftierKitTests.xctest */,
 				1425EBA321528F8F00009D60 /* libSwiftyPluginTest.dylib */,
 				1425EBA521528F8F00009D60 /* SwiftyPluginTestTests.xctest */,
-				149D9288234AA499006FD765 /* Xcode.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1799,11 +1803,11 @@
 			remoteRef = 1425EBA421528F8F00009D60 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		149D9288234AA499006FD765 /* Xcode.framework */ = {
+		14D345DE234DC20700054682 /* libCommandLine.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Xcode.framework;
-			remoteRef = 149D9287234AA499006FD765 /* PBXContainerItemProxy */;
+			fileType = "compiled.mach-o.dylib";
+			path = libCommandLine.dylib;
+			remoteRef = 14D345DD234DC20700054682 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		191EF66820F447D300118C74 /* libFormatter.dylib */ = {
@@ -2035,6 +2039,7 @@
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libSourceKittenRequests.dylib",
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libSwiftLexer.dylib",
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libIndexer.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libCommandLine.dylib",
 			);
 			name = "Manually Sign dylib";
 			outputFileListPaths = (
@@ -2053,10 +2058,6 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Bocho.framework",
-				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Diagnostic.framework",
-				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Lexer.framework",
-				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Source.framework",
 				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/SourceKittenFramework.framework",
 				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/SWXMLHash.framework",
 				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Yams.framework",
@@ -2067,10 +2068,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/Bocho.framework",
-				"$(BUILT_PRODUCTS_DIR)/Diagnostic.framework",
-				"$(BUILT_PRODUCTS_DIR)/Lexer.framework",
-				"$(BUILT_PRODUCTS_DIR)/Source.framework",
 				"$(BUILT_PRODUCTS_DIR)/SourceKittenFramework.framework",
 				"$(BUILT_PRODUCTS_DIR)/SWXMLHash.framework",
 				"$(BUILT_PRODUCTS_DIR)/Yams.framework",
@@ -2098,6 +2095,7 @@
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libSourceKittenRequests.dylib",
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libSwiftLexer.dylib",
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libIndexer.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libCommandLine.dylib",
 			);
 			name = "Manually Sign dylib";
 			outputPaths = (
@@ -2675,7 +2673,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -2704,7 +2701,6 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -2728,11 +2724,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MockGeneratorXPC/MockGeneratorXPC.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -2755,11 +2751,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MockGeneratorXPC/MockGeneratorXPC.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -3033,7 +3029,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -3057,11 +3052,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 191EF6A420F451D100118C74 /* Profile.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MockGeneratorXPC/MockGeneratorXPC.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",

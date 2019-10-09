@@ -18,6 +18,7 @@ public class Generator {
 
     public init(fromFileContents fileContents: String,
                 projectURL: URL,
+                platform: String,
                 line: Int,
                 column: Int,
                 templateName: String,
@@ -30,7 +31,7 @@ public class Generator {
         self.useTabsForIndentation = useTabsForIndentation
         self.indentationWidth = indentationWidth
         let sourceFiles = SourceFileFinder(projectRoot: projectURL.deletingLastPathComponent()).findSourceFiles()
-        self.resolver = ResolverFactory.createResolver(filePaths: Generator.filterUniqueFileNames(sourceFiles), projectURL: projectURL)
+        self.resolver = ResolverFactory.createResolver(filePaths: Generator.filterUniqueFileNames(sourceFiles), platform: platform)
     }
 
     private static func filterUniqueFileNames(_ fileNames: [URL]) -> [String] {

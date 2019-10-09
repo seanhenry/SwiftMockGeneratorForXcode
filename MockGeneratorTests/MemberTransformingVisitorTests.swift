@@ -13,7 +13,7 @@ class MemberTransformingVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        resolver = ResolverFactory.createResolver(filePaths: [], projectURL: getProjectURL())
+        resolver = ResolverFactory.createResolver(filePaths: [], platform: "macosx")
         visitor = MemberTransformingVisitor(resolver: resolver)
     }
 
@@ -615,9 +615,5 @@ class MemberTransformingVisitorTests: XCTestCase {
               init?(b: B)
             }
         """
-    }
-
-    private func getProjectURL() -> URL {
-        return URL(fileURLWithPath: "/Users/sean/source/plugins/XcodeMockGenerator/MockGenerator.xcworkspace")
     }
 }

@@ -3,6 +3,11 @@ import XCTest
 
 class EndToEndTests: MockGeneratorBaseTestCase {
 
+    override func setUp() {
+        super.setUp()
+        Preferences().platform = "macosx"
+    }
+
     func test_generatesSimpleMock() {
         assertMockGeneratesExpected("SimpleProtocolMock")
     }
@@ -159,17 +164,16 @@ class EndToEndTests: MockGeneratorBaseTestCase {
         assertMockGeneratesExpected("AugmentedClassSubscriptMock")
     }
 
-    func test_returnsErrorWhenProjectURLIsNotProjectOrWorkspace() {
+    func test_returnsErrorWhenPlatformIsNil() {
         let preferences = Preferences()
-        preferences.automaticallyDetectProjectPath = false
-        preferences.projectPath = URL(fileURLWithPath: "/not/project")
-        assertMockGeneratesError(fileName: "SimpleProtocolMock", "The project path '/not/project' must be an .xcodeproj or .xcworkspace file. Change it in the companion app.")
+        preferences.platform = nil
+        assertMockGeneratesError(fileName: "SimpleProtocolMock", "No platform has been selected. Choose one in the companion app.")
     }
 
     func test_returnsErrorWhenProjectURLDoesNotExist() {
         let preferences = Preferences()
         preferences.automaticallyDetectProjectPath = false
-        preferences.projectPath = URL(fileURLWithPath: "/not/project.xcodeproj")
-        assertMockGeneratesError(fileName: "SimpleProtocolMock", "The project path '/not/project.xcodeproj' does not exist. Change it in the companion app.")
+        preferences.projectPath = URL(fileURLWithPath: "/not/project")
+        assertMockGeneratesError(fileName: "SimpleProtocolMock", "The project path '/not/project' does not exist. Change it in the companion app.")
     }
 }

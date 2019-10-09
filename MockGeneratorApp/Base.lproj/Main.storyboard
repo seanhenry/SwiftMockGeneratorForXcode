@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -686,23 +686,23 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="MockGeneratorApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="286"/>
+                        <rect key="frame" x="0.0" y="0.0" width="610" height="306"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="VQz-9A-PX1" customClass="PreferencesView" customModule="MockGeneratorApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="286"/>
+                                <rect key="frame" x="0.0" y="0.0" width="610" height="306"/>
                                 <subviews>
                                     <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="geP-s4-QHR">
-                                        <rect key="frame" x="8" y="101" width="584" height="177"/>
+                                        <rect key="frame" x="8" y="42" width="594" height="256"/>
                                         <subviews>
                                             <customView placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="eff-9G-rXA" customClass="XcodeAccessView" customModule="MockGeneratorApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="160" width="584" height="17"/>
+                                                <rect key="frame" x="0.0" y="239" width="594" height="17"/>
                                                 <subviews>
                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="prk-fB-bOl">
-                                                        <rect key="frame" x="0.0" y="0.0" width="584" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="594" height="17"/>
                                                         <subviews>
                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Gqc-Su-it3">
-                                                                <rect key="frame" x="-2" y="1" width="588" height="16"/>
+                                                                <rect key="frame" x="-2" y="1" width="598" height="16"/>
                                                                 <textFieldCell key="cell" selectable="YES" title="Checking Xcode access..." id="vcQ-cG-knZ">
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -742,7 +742,7 @@
                                                 </connections>
                                             </customView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cnF-nW-tKi">
-                                                <rect key="frame" x="-2" y="132" width="102" height="20"/>
+                                                <rect key="frame" x="-2" y="211" width="102" height="20"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Project path" id="OlE-51-ShT">
                                                     <font key="font" size="17" name=".AppleSystemUIFontDemi"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -750,7 +750,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Phs-LO-OP4">
-                                                <rect key="frame" x="-2" y="108" width="224" height="18"/>
+                                                <rect key="frame" x="-2" y="187" width="224" height="18"/>
                                                 <buttonCell key="cell" type="check" title="Automatically detect project path" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="uDL-qi-lVL">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -760,10 +760,10 @@
                                                 </connections>
                                             </button>
                                             <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qoq-TC-fWq" userLabel="Auto detect stack view">
-                                                <rect key="frame" x="0.0" y="88" width="584" height="14"/>
+                                                <rect key="frame" x="0.0" y="167" width="594" height="14"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UO1-kO-sN0">
-                                                        <rect key="frame" x="-2" y="0.0" width="588" height="14"/>
+                                                        <rect key="frame" x="-2" y="0.0" width="598" height="14"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Cannot find a project. Make sure a project is open in Xcode." id="fC7-MG-fX4">
                                                             <font key="font" metaFont="systemLight" size="11"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -783,10 +783,10 @@
                                                 </customSpacing>
                                             </stackView>
                                             <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4D-w1-Fmx" userLabel="Manual project path stack view" customClass="ManualProjectPathView" customModule="MockGeneratorApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="22" width="580" height="58"/>
+                                                <rect key="frame" x="0.0" y="101" width="590" height="58"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="X6l-7z-ih7">
-                                                        <rect key="frame" x="-2" y="30" width="584" height="28"/>
+                                                        <rect key="frame" x="-2" y="30" width="594" height="28"/>
                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="3l5-3e-Uj7">
                                                             <font key="font" metaFont="systemLight" size="11"/>
                                                             <string key="title">Select the root folder of your project. The mock generator will scan this directory when you generate a mock. Your data will never be stored or shared.</string>
@@ -795,7 +795,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kf8-Tc-urf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="580" height="22"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="590" height="22"/>
                                                         <subviews>
                                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fdb-x4-GA6">
                                                                 <rect key="frame" x="-2" y="-2" width="555" height="25"/>
@@ -815,7 +815,7 @@
                                                                 </popUpButtonCell>
                                                             </popUpButton>
                                                             <button horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8jp-hi-4ON">
-                                                                <rect key="frame" x="558" y="-1" width="22" height="24"/>
+                                                                <rect key="frame" x="558" y="-1" width="32" height="24"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="22" id="ThL-rF-GRo"/>
                                                                 </constraints>
@@ -859,8 +859,40 @@
                                                     <outlet property="projectPathHistory" destination="fdb-x4-GA6" id="iCN-G5-2zA"/>
                                                 </connections>
                                             </stackView>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tMf-I7-fnG">
+                                                <rect key="frame" x="-2" y="73" width="73" height="20"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Platform" id="VCi-qB-ROD">
+                                                    <font key="font" size="17" name=".AppleSystemUIFontDemi"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xrr-lE-hIU">
+                                                <rect key="frame" x="-2" y="51" width="597" height="14"/>
+                                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Select the platform you develop for. The wrong platform can cause SourceKit to fail or have very bad performance." id="VLn-NP-eu0">
+                                                    <font key="font" metaFont="systemLight" size="11"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rGm-4M-jua">
+                                                <rect key="frame" x="-2" y="19" width="82" height="25"/>
+                                                <popUpButtonCell key="cell" type="push" title="macOS" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="mvP-th-UIg" id="i5t-Tv-VhF">
+                                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <menu key="menu" id="uqS-dv-4sL">
+                                                        <items>
+                                                            <menuItem title="macOS" id="mvP-th-UIg"/>
+                                                            <menuItem title="iOS" id="YRo-Uw-NHd"/>
+                                                        </items>
+                                                    </menu>
+                                                </popUpButtonCell>
+                                                <connections>
+                                                    <action selector="comboBoxSelectionDidChange:" target="VQz-9A-PX1" id="xGU-zO-MDs"/>
+                                                </connections>
+                                            </popUpButton>
                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="X5W-wq-O3t" customClass="VersionView" customModule="MockGeneratorApp" customModuleProvider="target">
-                                                <rect key="frame" x="-2" y="0.0" width="588" height="14"/>
+                                                <rect key="frame" x="-2" y="0.0" width="598" height="14"/>
                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="MockAppGenerator 0.5" usesSingleLineMode="YES" id="fxU-Xr-OAp">
                                                     <font key="font" metaFont="systemLight" size="11"/>
                                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -884,8 +916,14 @@
                                             <integer value="1000"/>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
@@ -904,6 +942,7 @@
                                     <outlet property="automaticContainer" destination="qoq-TC-fWq" id="RWp-Sd-2aK"/>
                                     <outlet property="automaticPathCheckbox" destination="Phs-LO-OP4" id="IrX-BE-MLD"/>
                                     <outlet property="manualContainer" destination="s4D-w1-Fmx" id="3Yi-e8-eSp"/>
+                                    <outlet property="platformPopUpButton" destination="rGm-4M-jua" id="M1b-ta-gj1"/>
                                     <outlet property="projectPathField" destination="UO1-kO-sN0" id="8zk-1R-HSj"/>
                                 </connections>
                             </customView>
@@ -918,7 +957,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="715"/>
+            <point key="canvasLocation" x="75" y="725"/>
         </scene>
     </scenes>
     <resources>
