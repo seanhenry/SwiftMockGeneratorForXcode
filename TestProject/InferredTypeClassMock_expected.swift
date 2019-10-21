@@ -181,44 +181,4 @@ class InferredTypeClassMock: InferredTypeClass {
             return stubbedTuple
         }
     }
-    var invokedMethodAssignedSetter = false
-    var invokedMethodAssignedSetterCount = 0
-    var invokedMethodAssigned: String?
-    var invokedMethodAssignedList = [String]()
-    var invokedMethodAssignedGetter = false
-    var invokedMethodAssignedGetterCount = 0
-    var stubbedMethodAssigned: String! = ""
-    override var methodAssigned: String {
-        set {
-            invokedMethodAssignedSetter = true
-            invokedMethodAssignedSetterCount += 1
-            invokedMethodAssigned = newValue
-            invokedMethodAssignedList.append(newValue)
-        }
-        get {
-            invokedMethodAssignedGetter = true
-            invokedMethodAssignedGetterCount += 1
-            return stubbedMethodAssigned
-        }
-    }
-    var invokedPropertyAssignedSetter = false
-    var invokedPropertyAssignedSetterCount = 0
-    var invokedPropertyAssigned: String?
-    var invokedPropertyAssignedList = [String]()
-    var invokedPropertyAssignedGetter = false
-    var invokedPropertyAssignedGetterCount = 0
-    var stubbedPropertyAssigned: String! = ""
-    override var propertyAssigned: String {
-        set {
-            invokedPropertyAssignedSetter = true
-            invokedPropertyAssignedSetterCount += 1
-            invokedPropertyAssigned = newValue
-            invokedPropertyAssignedList.append(newValue)
-        }
-        get {
-            invokedPropertyAssignedGetter = true
-            invokedPropertyAssignedGetterCount += 1
-            return stubbedPropertyAssigned
-        }
-    }
 }
