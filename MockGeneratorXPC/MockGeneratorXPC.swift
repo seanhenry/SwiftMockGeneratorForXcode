@@ -20,10 +20,4 @@ import MockGenerator
         }
         reply(transformed, error)
     }
-
-    #if DEBUG
-    func crash() {
-        fatalError()
-    }
-    #endif
 }

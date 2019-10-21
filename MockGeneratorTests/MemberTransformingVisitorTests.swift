@@ -13,7 +13,7 @@ class MemberTransformingVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        resolver = ResolverFactory.createResolver(filePaths: [], platform: "macosx")
+        resolver = ResolverFactory.createResolver(filePaths: [])
         visitor = MemberTransformingVisitor(resolver: resolver)
     }
 

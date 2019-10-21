@@ -12,7 +12,7 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        resolver = ResolverFactory.createResolver(filePaths: [], platform: "macosx")
+        resolver = ResolverFactory.createResolver(filePaths: [])
     }
 
     override func tearDown() {

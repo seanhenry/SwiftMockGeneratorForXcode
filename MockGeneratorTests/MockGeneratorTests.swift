@@ -227,7 +227,7 @@ class MockGeneratorTests: XCTestCase {
         } while contentsLineColumn.lineColumn != nil
         XCTAssertGreaterThan(caretLineColumns.count, 0)
         caretLineColumns.forEach { lineColumn in
-            let (lines, error) = Generator(fromFileContents: contentsLineColumn.contents, projectURL: URL(fileURLWithPath: testProject), platform: "macosx", line: lineColumn.line, column: lineColumn.column, templateName: "spy", useTabsForIndentation: false, indentationWidth: 4).generateMock()
+            let (lines, error) = Generator(fromFileContents: contentsLineColumn.contents, projectURL: URL(fileURLWithPath: testProject), line: lineColumn.line, column: lineColumn.column, templateName: "spy", useTabsForIndentation: false, indentationWidth: 4).generateMock()
             XCTAssertNotNil(error, "Should not be generating a mock from caret at line: \(lineColumn.line) column: \(lineColumn.column)")
             XCTAssertNil(lines)
         }
@@ -276,7 +276,6 @@ class MockGeneratorTests: XCTestCase {
         let result = CaretTestHelper.findCaretLineColumn(mock)
         let (instructions, error) = Generator(fromFileContents: result.contents,
                                       projectURL: URL(fileURLWithPath: testProject),
-                                      platform: "macosx",
                                       line: result.lineColumn!.line,
                                       column: result.lineColumn!.column,
                                       templateName: templateName,

@@ -3,11 +3,6 @@ import XCTest
 
 class EndToEndTests: MockGeneratorBaseTestCase {
 
-    override func setUp() {
-        super.setUp()
-        Preferences().platform = "macosx"
-    }
-
     func test_generatesSimpleMock() {
         assertMockGeneratesExpected("SimpleProtocolMock")
     }
@@ -162,12 +157,6 @@ class EndToEndTests: MockGeneratorBaseTestCase {
 
     func test_overriddenSubscripts() {
         assertMockGeneratesExpected("AugmentedClassSubscriptMock")
-    }
-
-    func test_returnsErrorWhenPlatformIsNil() {
-        let preferences = Preferences()
-        preferences.platform = nil
-        assertMockGeneratesError(fileName: "SimpleProtocolMock", "No platform has been selected. Choose one in the companion app.")
     }
 
     func test_returnsErrorWhenProjectURLDoesNotExist() {

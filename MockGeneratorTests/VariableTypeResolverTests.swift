@@ -143,7 +143,7 @@ class VariableTypeResolverTests: XCTestCase {
         struct StructType {}
         enum EnumType {}
         """
-        return VariableTypeResolver.resolve(try parse(fullText), resolver: ResolverFactory.createResolver(filePaths: [], platform: "macosx"))
+        return VariableTypeResolver.resolve(try parse(fullText), resolver: ResolverFactory.createResolver(filePaths: []))
     }
 
     private func parse(_ text: String) throws -> Element {
