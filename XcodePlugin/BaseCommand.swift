@@ -86,7 +86,6 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         let model = XPCMockGeneratorModel(
                 contents: invocation.sourceTextBuffer.completeBuffer,
                 projectURL: projectURL,
-                platform: try getPlatform(),
                 line: range.start.line,
                 column: range.start.column,
                 templateName: templateName,
@@ -127,7 +126,6 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         let tracker = GoogleAnalyticsTracker()
         if let insertCount = instructions?.linesToInsert.count {
             tracker.track(category: templateName, action: "generated", value: insertCount)
-            Analytics.track(templateName, attributes: ["lines": insertCount])
         }
     }
 
@@ -136,18 +134,10 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         if let error = error {
             let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
             tracker.track(category: templateName, action: "\(version)_\(error.localizedDescription)")
-            Analytics.track("error", attributes: ["version": version, "description": error.localizedDescription])
         }
     }
     
     private func createError(_ message: String) -> Error {
         return NSError(domain: "codes.seanhenry.mockgenerator", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
-    }
-
-    private func getPlatform() throws -> String {
-        guard let platform = Preferences().platform else {
-            throw createError("No platform has been selected. Choose one in the companion app.")
-        }
-        return platform
     }
 }

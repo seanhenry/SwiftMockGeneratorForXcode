@@ -6,7 +6,6 @@ class PreferencesView: NSView {
     @IBOutlet private var automaticContainer: NSView!
     @IBOutlet private var automaticPathCheckbox: NSButton!
     @IBOutlet private var projectPathField: NSTextField!
-    @IBOutlet private var platformPopUpButton: NSPopUpButton!
 
     private let preferences = Preferences()
 
@@ -33,7 +32,6 @@ class PreferencesView: NSView {
     private func updateView() {
         automaticPathCheckbox.state = preferences.automaticallyDetectProjectPath ? .on : .off
         updateContainers()
-        updatePlatformPopUpButton()
     }
 
     private func updateContainers() {
@@ -47,23 +45,6 @@ class PreferencesView: NSView {
             projectPathField.stringValue = project.path
         } else {
             projectPathField.stringValue = "Cannot find a project. Make sure a project is open in Xcode."
-        }
-    }
-
-    @IBAction private func comboBoxSelectionDidChange(_ sender: Any) {
-        switch platformPopUpButton.selectedItem?.title {
-        case "macOS": preferences.platform = "macosx"
-        case "iOS": preferences.platform = "iphonesimulator"
-        default: preferences.platform = nil
-        }
-        updatePlatformPopUpButton()
-    }
-
-    private func updatePlatformPopUpButton() {
-        switch preferences.platform {
-        case "macosx": platformPopUpButton.selectItem(withTitle: "macOS")
-        case "iphonesimulator": platformPopUpButton.selectItem(withTitle: "iOS")
-        default: platformPopUpButton.selectItem(at: -1)
         }
     }
 }

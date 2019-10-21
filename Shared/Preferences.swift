@@ -15,7 +15,7 @@ class Preferences {
     private let automaticallyDetectProjectPathKey = "project.path.autoDetect"
     private let sdkPathKey = "sdk.path" // This was once used
     private let moduleCachePathKey = "moduleCache.path" // This was once used
-    private let platformKey = "platform"
+    private let platformKey = "platform" // This was once used
 
     init(userDefaults: UserDefaults = UserDefaults(suiteName: "group.codes.seanhenry.MockGenerator")!) {
         self.userDefaults = userDefaults
@@ -60,20 +60,6 @@ class Preferences {
         }
         get {
             return userDefaults.object(forKey: automaticallyDetectProjectPathKey) as? Bool ?? true
-        }
-    }
-
-    var platform: String? {
-        set {
-            if let value = newValue {
-                userDefaults.set(value, forKey: platformKey)
-            } else {
-                userDefaults.removeObject(forKey: platformKey)
-            }
-            userDefaults.synchronize()
-        }
-        get {
-            return userDefaults.string(forKey: platformKey)
         }
     }
 }

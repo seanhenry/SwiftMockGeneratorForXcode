@@ -134,12 +134,9 @@
 		1918AB5520D9D3B8003BE795 /* TestProject in Copy TestProject */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
 		1918AB6020D9D4FE003BE795 /* ResolvePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */; };
 		1918AB6320D9D517003BE795 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
-		191EF6E120F6C81F00118C74 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* Analytics.swift */; };
-		191EF6E320F6C81F00118C74 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* Analytics.swift */; };
 		196F977A20EF0577009A5FD6 /* libTestHelper.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.dylib */; };
 		196F978520EF0885009A5FD6 /* libTestHelper.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.dylib */; };
 		196F979120EF0AC7009A5FD6 /* libTestHelper.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.dylib */; };
-		19A86B3D20F734D100C891F6 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* Analytics.swift */; };
 		19DFBC3220DCD0A600BBF8C2 /* XPCBufferInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A92BFF242500EED35DEF /* XPCBufferInstructions.swift */; };
 		1A93A021E80364CB35D30B2F /* BufferEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A7FC328558098E5F8905 /* BufferEditor.swift */; };
 		1A93A03A479FA67359E958BD /* BufferInstructionsFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AB0D73756734F2CF8A99 /* BufferInstructionsFactoryTests.swift */; };
@@ -832,7 +829,6 @@
 		191EF6B220F45D7000118C74 /* MockGenerator-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "MockGenerator-Release.xcconfig"; sourceTree = "<group>"; };
 		191EF6B320F45D7000118C74 /* MockGenerator-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "MockGenerator-Debug.xcconfig"; sourceTree = "<group>"; };
 		191EF6B420F4616F00118C74 /* signlibs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = signlibs.sh; sourceTree = "<group>"; };
-		191EF6E020F6C81F00118C74 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftToolkit.xcodeproj; path = SwiftToolkit/SwiftToolkit.xcodeproj; sourceTree = "<group>"; };
 		1A93A0984050AAB172D12611 /* BufferInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferInstructions.swift; sourceTree = "<group>"; };
 		1A93A7FC328558098E5F8905 /* BufferEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferEditor.swift; sourceTree = "<group>"; };
@@ -1153,7 +1149,6 @@
 				14E9A2F8216EEABC00A677FA /* XcodeAccessImpl.swift */,
 				35CDFD267465101B0B67217F /* GoogleAnalyticsTracker.swift */,
 				35CDF9A2068DF1CD95B50147 /* ProjectFinder.swift */,
-				191EF6E020F6C81F00118C74 /* Analytics.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -2138,7 +2133,6 @@
 				14B4BC2E208B0A620052A085 /* ProjectFinder.swift in Sources */,
 				35CDFAEF8D8C85FDC471B35A /* PreferencesView.swift in Sources */,
 				35CDF670951C86B8934F8D27 /* XcodeProjectPathFinder.swift in Sources */,
-				191EF6E120F6C81F00118C74 /* Analytics.swift in Sources */,
 				14E9A2F9216EEABC00A677FA /* XcodeAccessImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2160,7 +2154,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CA2D871F4000AB00900937 /* main.m in Sources */,
-				191EF6E320F6C81F00118C74 /* Analytics.swift in Sources */,
 				14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */,
 				1A93A592375D1E4B0EE6252E /* XPCBufferInstructions.swift in Sources */,
 				35CDF7F2EA060154856EBA05 /* XPCMockGeneratorModel.swift in Sources */,
@@ -2173,7 +2166,6 @@
 			files = (
 				14F866EA20D90BAF00E79758 /* XPCManager.swift in Sources */,
 				14F866EE20D90BD300E79758 /* BaseCommand.swift in Sources */,
-				19A86B3D20F734D100C891F6 /* Analytics.swift in Sources */,
 				14F866F320D90D0200E79758 /* XcodeProjectPathFinder.swift in Sources */,
 				19DFBC3220DCD0A600BBF8C2 /* XPCBufferInstructions.swift in Sources */,
 				14F8671220D927B900E79758 /* Connection.swift in Sources */,

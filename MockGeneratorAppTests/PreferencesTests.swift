@@ -75,23 +75,4 @@ class PreferencesTests: XCTestCase {
         preferences.automaticallyDetectProjectPath = true
         XCTAssert(preferences.automaticallyDetectProjectPath)
     }
-
-    // MARK: - platform
-
-    func testPlatformIsNilByDefault() {
-        XCTAssertNil(preferences.platform)
-    }
-
-    func testPlatformShouldChangeValue() {
-        preferences.platform = "macosx"
-        XCTAssertEqual(preferences.platform, "macosx")
-        preferences.platform = "iphonesimulator"
-        XCTAssertEqual(preferences.platform, "iphonesimulator")
-    }
-
-    func testPlatformRemovesKeyWhenSettingToNil() {
-        preferences.platform = "macosx"
-        preferences.platform = nil
-        XCTAssertNil(preferences.platform)
-    }
 }
