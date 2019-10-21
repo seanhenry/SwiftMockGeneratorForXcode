@@ -21,11 +21,6 @@ or alternatively using `brew cask install fastlane`
 fastlane mac release
 ```
 Create a release build.
-### mac upload_sym
-```
-fastlane mac upload_sym
-```
-Uploads symbols to crashlytics
 ### mac notarize_bundle
 ```
 fastlane mac notarize_bundle

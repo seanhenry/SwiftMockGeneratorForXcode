@@ -75,22 +75,4 @@ class PreferencesTests: XCTestCase {
         preferences.automaticallyDetectProjectPath = true
         XCTAssert(preferences.automaticallyDetectProjectPath)
     }
-
-    // MARK: - moduleCachePath
-
-    func test_moduleCachePath_shouldHaveDefaultPath() {
-        XCTAssertEqual(preferences.moduleCachePath, "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex")
-    }
-
-    func test_moduleCachePath_shouldHaveDefaultPath_whenEmptyString() {
-        preferences.moduleCachePath = ""
-        XCTAssertEqual(preferences.moduleCachePath, "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex")
-    }
-
-    func test_moduleCachePath_shouldChangeValue() {
-        preferences.moduleCachePath = "/Path"
-        XCTAssertEqual(preferences.moduleCachePath, "/Path")
-        preferences.moduleCachePath = "/AnotherPath"
-        XCTAssertEqual(preferences.moduleCachePath, "/AnotherPath")
-    }
 }

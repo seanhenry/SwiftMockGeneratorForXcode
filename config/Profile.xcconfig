@@ -1,7 +1,7 @@
 #include "../SwiftToolkit/config/Profile.xcconfig"
 #include "Shared.xcconfig"
 
-FRAMEWORK_SEARCH_PATHS = $DEVELOPER_FRAMEWORKS_DIR $PROJECT_DIR/SwiftToolkit/Frameworks/Release $PROJECT_DIR/lib/Release
+FRAMEWORK_SEARCH_PATHS = $DEVELOPER_FRAMEWORKS_DIR $PROJECT_DIR/lib/Release
 HEADER_SEARCH_PATHS = $PROJECT_DIR/lib/Release/include/GRMustache
 LIBRARY_SEARCH_PATHS = $PROJECT_DIR/lib/Release
 OTHER_SWIFT_FLAGS = -Xcc -fmodule-map-file=$PROJECT_DIR/lib/Release/include/GRMustache/module.modulemap

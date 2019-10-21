@@ -6,7 +6,6 @@ import MockGenerator
     func generateMock(from model: XPCMockGeneratorModel, withReply reply: @escaping (XPCBufferInstructions?, Error?) -> ()) {
         let (instructions, error) = Generator(fromFileContents: model.contents,
                 projectURL: model.projectURL,
-                moduleCachePath: model.moduleCachePath,
                 line: model.line,
                 column: model.column,
                 templateName: model.templateName,
@@ -21,10 +20,4 @@ import MockGenerator
         }
         reply(transformed, error)
     }
-
-    #if DEBUG
-    func crash() {
-        fatalError()
-    }
-    #endif
 }

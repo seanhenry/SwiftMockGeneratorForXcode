@@ -70,6 +70,9 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     private func generateMock(proxy: MockGeneratorXPCProtocol, invocation: SourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> Void) {
         do {
             let projectURL = try getProjectURLOnMainThread()
+            guard FileManager.default.fileExists(atPath: projectURL.path) else {
+                throw createError("The project path '\(projectURL.path)' does not exist. Change it in the companion app.")
+            }
             try tryToGenerateMock(atProjectURL: projectURL, proxy: proxy, invocation: invocation) { [weak self] (result, error) in
                 self?.handleGenerateMock(invocation: invocation, result: result, error: error, completionHandler: completionHandler)
             }
@@ -83,7 +86,6 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         let model = XPCMockGeneratorModel(
                 contents: invocation.sourceTextBuffer.completeBuffer,
                 projectURL: projectURL,
-                moduleCachePath: try getModuleCachePath(),
                 line: range.start.line,
                 column: range.start.column,
                 templateName: templateName,
@@ -124,7 +126,6 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         let tracker = GoogleAnalyticsTracker()
         if let insertCount = instructions?.linesToInsert.count {
             tracker.track(category: templateName, action: "generated", value: insertCount)
-            Analytics.track(templateName, attributes: ["lines": insertCount])
         }
     }
 
@@ -133,19 +134,10 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         if let error = error {
             let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
             tracker.track(category: templateName, action: "\(version)_\(error.localizedDescription)")
-            Analytics.track("error", attributes: ["version": version, "description": error.localizedDescription])
         }
     }
     
     private func createError(_ message: String) -> Error {
         return NSError(domain: "codes.seanhenry.mockgenerator", code: 0, userInfo: [NSLocalizedDescriptionKey: message])
-    }
-
-    private func getModuleCachePath() throws -> String {
-        let moduleCachePath = Preferences().moduleCachePath
-        guard FileManager.default.fileExists(atPath: moduleCachePath) else {
-            throw createError("The module cache path does not exist. Change it in the companion app.")
-        }
-        return moduleCachePath
     }
 }

@@ -12,7 +12,7 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        resolver = ResolverFactory.createResolver(filePaths: [], moduleCachePath: getValidModuleCachePath())
+        resolver = ResolverFactory.createResolver(filePaths: [])
     }
 
     override func tearDown() {
@@ -188,9 +188,5 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
         class B {
         }
         """
-    }
-
-    private func getValidModuleCachePath() -> String {
-        return "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex"
     }
 }

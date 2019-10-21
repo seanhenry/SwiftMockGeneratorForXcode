@@ -4,7 +4,6 @@ default_platform(:mac)
  
 app_file = "release_output/Swift Mock Generator for Xcode.app"
 zip_file = "release_output/Swift Mock Generator for Xcode.zip"
-dsym_file = "#{ENV['GYM_OUTPUT_DIRECTORY']}/Swift Mock Generator for Xcode.app.dSYM.zip"
 
 platform :mac do
   def cleanup
@@ -17,19 +16,9 @@ platform :mac do
     cleanup
     scan
     gym
-    upload_sym
     notarize_bundle
     dmg
     cleanup
-  end
-
-  desc "Uploads symbols to crashlytics"
-  lane :upload_sym do
-    upload_symbols_to_crashlytics(
-      platform: 'mac', 
-      dsym_path: dsym_file,
-      binary_path: 'lib/Fabric.framework/uploadDSYM'
-    )
   end
 
   desc "Notarize the app bundle"

@@ -28,8 +28,6 @@
 		1425EBCF21529E3600009D60 /* libResolver.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975420EEFA12009A5FD6 /* libResolver.dylib */; };
 		1425EBD021529E5800009D60 /* libAlgorithms.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974C20EEFA12009A5FD6 /* libAlgorithms.dylib */; };
 		1425EBD121529E5800009D60 /* libFormatter.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF66820F447D300118C74 /* libFormatter.dylib */; };
-		1426D39120F741760020479B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D620F6452900118C74 /* Crashlytics.framework */; };
-		1426D39220F741760020479B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D720F6452900118C74 /* Fabric.framework */; };
 		14276C6A1F4F312E00EA7753 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
 		14276C6F1F4F312E00EA7753 /* MockGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */; };
 		14276C711F4F312E00EA7753 /* MockGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 14276C631F4F312E00EA7753 /* MockGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -44,17 +42,10 @@
 		142B0213216FA39E005DE573 /* libIndexer.dylib in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1425EB8721528F8F00009D60 /* libIndexer.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		142B0214216FA39E005DE573 /* libParser.dylib in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975020EEFA12009A5FD6 /* libParser.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		142B0215216FA39E005DE573 /* libResolver.dylib in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975420EEFA12009A5FD6 /* libResolver.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		142B0216216FA39E005DE573 /* libSourceKittenRequests.dylib in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975820EEFA12009A5FD6 /* libSourceKittenRequests.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		142B0217216FA39E005DE573 /* libSwiftLexer.dylib in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975A20EEFA12009A5FD6 /* libSwiftLexer.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		142B0218216FA3A7005DE573 /* MockGenerator.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B022A21709979005DE573 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02252170994B005DE573 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B022B21709979005DE573 /* SWXMLHash.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02222170994A005DE573 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B022C21709979005DE573 /* Yams.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02242170994B005DE573 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142B023021709A97005DE573 /* UseCases.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B022F21709A85005DE573 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142B023121709AFF005DE573 /* UseCases.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B022F21709A85005DE573 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B023621709AFF005DE573 /* SourceKittenFramework.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02252170994B005DE573 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B023721709B00005DE573 /* SWXMLHash.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02222170994A005DE573 /* SWXMLHash.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		142B023821709B00005DE573 /* Yams.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 142B02242170994B005DE573 /* Yams.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		142B023A21709BFB005DE573 /* libGRMustache7-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 142B023921709BC5005DE573 /* libGRMustache7-MacOS.a */; };
 		14354103232E4FF80019615B /* Lexer in Frameworks */ = {isa = PBXBuildFile; productRef = 14354102232E4FF80019615B /* Lexer */; };
 		14354104232E4FF80019615B /* Lexer in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 14354102232E4FF80019615B /* Lexer */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -63,6 +54,7 @@
 		14451D351F5F05C500833C61 /* MemberTransformingVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A9B1705ADFFC0CB415 /* MemberTransformingVisitorTests.swift */; };
 		145290EA1F981ED600947144 /* VersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145290E91F981ED600947144 /* VersionView.swift */; };
 		147437B61F79746A00241B8A /* TestProject in Copy Test Project */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
+		1485244A234E5B19007F3D26 /* libCommandLine.dylib in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 14D345DE234DC20700054682 /* libCommandLine.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		14887ABC20FB859B00D50A73 /* MockGenerator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1497FE77215D0B5C00CD670B /* XcodeAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497FE76215D0B5C00CD670B /* XcodeAccess.swift */; };
 		1497FE78215E147200CD670B /* libAlgorithms.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974C20EEFA12009A5FD6 /* libAlgorithms.dylib */; };
@@ -74,7 +66,6 @@
 		1497FE7E215E147200CD670B /* libIndexer.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1425EB8721528F8F00009D60 /* libIndexer.dylib */; };
 		1497FE7F215E147200CD670B /* libParser.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975020EEFA12009A5FD6 /* libParser.dylib */; };
 		1497FE80215E147200CD670B /* libResolver.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975420EEFA12009A5FD6 /* libResolver.dylib */; };
-		1497FE81215E147200CD670B /* libSourceKittenRequests.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975820EEFA12009A5FD6 /* libSourceKittenRequests.dylib */; };
 		1497FE82215E147200CD670B /* libSwiftLexer.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975A20EEFA12009A5FD6 /* libSwiftLexer.dylib */; };
 		1497FEC8215E200100CD670B /* libAlgorithms.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974C20EEFA12009A5FD6 /* libAlgorithms.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1497FEC9215E200100CD670B /* libAST.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 196F974020EEFA12009A5FD6 /* libAST.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -85,7 +76,6 @@
 		1497FECE215E200100CD670B /* libIndexer.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1425EB8721528F8F00009D60 /* libIndexer.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1497FECF215E200100CD670B /* libParser.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975020EEFA12009A5FD6 /* libParser.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1497FED0215E200100CD670B /* libResolver.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975420EEFA12009A5FD6 /* libResolver.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		1497FED1215E200100CD670B /* libSourceKittenRequests.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975820EEFA12009A5FD6 /* libSourceKittenRequests.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1497FED2215E200100CD670B /* libSwiftLexer.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975A20EEFA12009A5FD6 /* libSwiftLexer.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		149CF7B3217B115B005892B4 /* partial.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 149CF792217B115A005892B4 /* partial.mustache */; };
 		149CF7B5217B1301005892B4 /* PartialSpyCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149CF7B4217B1301005892B4 /* PartialSpyCommand.swift */; };
@@ -104,6 +94,8 @@
 		14CA2D911F4000C400900937 /* MockGeneratorXPC.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14CA2D801F4000AB00900937 /* MockGeneratorXPC.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2D9D1F40049700900937 /* MockGeneratorXPC.swift */; };
 		14CA2DAC1F41349500900937 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CA2DAB1F41349500900937 /* Preferences.swift */; };
+		14D345DF234DC20700054682 /* libCommandLine.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14D345DE234DC20700054682 /* libCommandLine.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		14D345E0234DC22000054682 /* libCommandLine.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D345DE234DC20700054682 /* libCommandLine.dylib */; };
 		14E132281F58E6D300D75943 /* MemberTransformingVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFDB834B634E694CF658C /* MemberTransformingVisitor.swift */; };
 		14E9A2F9216EEABC00A677FA /* XcodeAccessImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E9A2F8216EEABC00A677FA /* XcodeAccessImpl.swift */; };
 		14E9A31B216EEB6000A677FA /* XcodeAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E9A31A216EEB6000A677FA /* XcodeAccessView.swift */; };
@@ -133,18 +125,9 @@
 		1918AB5520D9D3B8003BE795 /* TestProject in Copy TestProject */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
 		1918AB6020D9D4FE003BE795 /* ResolvePerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1918AB5F20D9D4FE003BE795 /* ResolvePerformanceTests.swift */; };
 		1918AB6320D9D517003BE795 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
-		191EF6D820F6453D00118C74 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D620F6452900118C74 /* Crashlytics.framework */; };
-		191EF6D920F6453E00118C74 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D720F6452900118C74 /* Fabric.framework */; };
-		191EF6E120F6C81F00118C74 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* Analytics.swift */; };
-		191EF6E320F6C81F00118C74 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* Analytics.swift */; };
-		191EF6E420F6C92B00118C74 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D620F6452900118C74 /* Crashlytics.framework */; };
-		191EF6E520F6C92C00118C74 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D720F6452900118C74 /* Fabric.framework */; };
 		196F977A20EF0577009A5FD6 /* libTestHelper.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.dylib */; };
 		196F978520EF0885009A5FD6 /* libTestHelper.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.dylib */; };
 		196F979120EF0AC7009A5FD6 /* libTestHelper.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F975E20EEFA12009A5FD6 /* libTestHelper.dylib */; };
-		19A86B3D20F734D100C891F6 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191EF6E020F6C81F00118C74 /* Analytics.swift */; };
-		19A86B3E20F734DA00C891F6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D620F6452900118C74 /* Crashlytics.framework */; };
-		19A86B3F20F734DA00C891F6 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 191EF6D720F6452900118C74 /* Fabric.framework */; };
 		19DFBC3220DCD0A600BBF8C2 /* XPCBufferInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A92BFF242500EED35DEF /* XPCBufferInstructions.swift */; };
 		1A93A021E80364CB35D30B2F /* BufferEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93A7FC328558098E5F8905 /* BufferEditor.swift */; };
 		1A93A03A479FA67359E958BD /* BufferInstructionsFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93AB0D73756734F2CF8A99 /* BufferInstructionsFactoryTests.swift */; };
@@ -363,6 +346,13 @@
 			remoteGlobalIDString = 14CA2D7F1F4000AB00900937;
 			remoteInfo = MockGeneratorXPC;
 		};
+		14D345DD234DC20700054682 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 14D345AF234DC0E400054682;
+			remoteInfo = CommandLine;
+		};
 		14F866C920D9088F00E79758 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 14CA2D4B1F40007000900937 /* Project object */;
@@ -517,13 +507,6 @@
 			remoteGlobalIDString = 19821CE020EE2C260084C6C1;
 			remoteInfo = ResolverTests;
 		};
-		196F975720EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 19821D1E20EE2C5D0084C6C1;
-			remoteInfo = SourceKittenRequests;
-		};
 		196F975920EEFA12009A5FD6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */;
@@ -633,10 +616,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				14D345DF234DC20700054682 /* libCommandLine.dylib in Embed Frameworks */,
 				142B023021709A97005DE573 /* UseCases.framework in Embed Frameworks */,
-				142B022A21709979005DE573 /* SourceKittenFramework.framework in Embed Frameworks */,
-				142B022B21709979005DE573 /* SWXMLHash.framework in Embed Frameworks */,
-				142B022C21709979005DE573 /* Yams.framework in Embed Frameworks */,
 				1497FEC8215E200100CD670B /* libAlgorithms.dylib in Embed Frameworks */,
 				14354104232E4FF80019615B /* Lexer in Embed Frameworks */,
 				1497FEC9215E200100CD670B /* libAST.dylib in Embed Frameworks */,
@@ -647,7 +628,6 @@
 				1497FECE215E200100CD670B /* libIndexer.dylib in Embed Frameworks */,
 				1497FECF215E200100CD670B /* libParser.dylib in Embed Frameworks */,
 				1497FED0215E200100CD670B /* libResolver.dylib in Embed Frameworks */,
-				1497FED1215E200100CD670B /* libSourceKittenRequests.dylib in Embed Frameworks */,
 				1497FED2215E200100CD670B /* libSwiftLexer.dylib in Embed Frameworks */,
 				14887ABC20FB859B00D50A73 /* MockGenerator.framework in Embed Frameworks */,
 			);
@@ -701,10 +681,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				1485244A234E5B19007F3D26 /* libCommandLine.dylib in Copy Frameworks */,
 				142B023121709AFF005DE573 /* UseCases.framework in Copy Frameworks */,
-				142B023621709AFF005DE573 /* SourceKittenFramework.framework in Copy Frameworks */,
-				142B023721709B00005DE573 /* SWXMLHash.framework in Copy Frameworks */,
-				142B023821709B00005DE573 /* Yams.framework in Copy Frameworks */,
 				142B0218216FA3A7005DE573 /* MockGenerator.framework in Copy Frameworks */,
 				1435412B232E50610019615B /* Lexer in Copy Frameworks */,
 				142B020D216FA39E005DE573 /* libAlgorithms.dylib in Copy Frameworks */,
@@ -716,7 +694,6 @@
 				142B0213216FA39E005DE573 /* libIndexer.dylib in Copy Frameworks */,
 				142B0214216FA39E005DE573 /* libParser.dylib in Copy Frameworks */,
 				142B0215216FA39E005DE573 /* libResolver.dylib in Copy Frameworks */,
-				142B0216216FA39E005DE573 /* libSourceKittenRequests.dylib in Copy Frameworks */,
 				142B0217216FA39E005DE573 /* libSwiftLexer.dylib in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
@@ -828,9 +805,6 @@
 		191EF6B220F45D7000118C74 /* MockGenerator-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "MockGenerator-Release.xcconfig"; sourceTree = "<group>"; };
 		191EF6B320F45D7000118C74 /* MockGenerator-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "MockGenerator-Debug.xcconfig"; sourceTree = "<group>"; };
 		191EF6B420F4616F00118C74 /* signlibs.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = signlibs.sh; sourceTree = "<group>"; };
-		191EF6D620F6452900118C74 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = lib/Crashlytics.framework; sourceTree = "<group>"; };
-		191EF6D720F6452900118C74 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = lib/Fabric.framework; sourceTree = "<group>"; };
-		191EF6E020F6C81F00118C74 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		196F972C20EEFA12009A5FD6 /* SwiftToolkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftToolkit.xcodeproj; path = SwiftToolkit/SwiftToolkit.xcodeproj; sourceTree = "<group>"; };
 		1A93A0984050AAB172D12611 /* BufferInstructions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferInstructions.swift; sourceTree = "<group>"; };
 		1A93A7FC328558098E5F8905 /* BufferEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferEditor.swift; sourceTree = "<group>"; };
@@ -887,7 +861,6 @@
 				1497FE7E215E147200CD670B /* libIndexer.dylib in Frameworks */,
 				1497FE7F215E147200CD670B /* libParser.dylib in Frameworks */,
 				1497FE80215E147200CD670B /* libResolver.dylib in Frameworks */,
-				1497FE81215E147200CD670B /* libSourceKittenRequests.dylib in Frameworks */,
 				1497FE82215E147200CD670B /* libSwiftLexer.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -915,9 +888,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D345E0234DC22000054682 /* libCommandLine.dylib in Frameworks */,
 				14354103232E4FF80019615B /* Lexer in Frameworks */,
-				191EF6E420F6C92B00118C74 /* Crashlytics.framework in Frameworks */,
-				191EF6E520F6C92C00118C74 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -926,9 +898,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14F8671520D92DB900E79758 /* libXcodePluginProxy.a in Frameworks */,
-				1426D39120F741760020479B /* Crashlytics.framework in Frameworks */,
 				14CA2D6C1F40008F00900937 /* Cocoa.framework in Frameworks */,
-				1426D39220F741760020479B /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -936,9 +906,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				191EF6D820F6453D00118C74 /* Crashlytics.framework in Frameworks */,
 				14276C7E1F4F33E300EA7753 /* MockGenerator.framework in Frameworks */,
-				191EF6D920F6453E00118C74 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -946,9 +914,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19A86B3E20F734DA00C891F6 /* Crashlytics.framework in Frameworks */,
 				14F866F020D90C3A00E79758 /* XcodeKit.framework in Frameworks */,
-				19A86B3F20F734DA00C891F6 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1100,8 +1066,6 @@
 		14CA2D6A1F40008F00900937 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				191EF6D620F6452900118C74 /* Crashlytics.framework */,
-				191EF6D720F6452900118C74 /* Fabric.framework */,
 				14F866EF20D90C3A00E79758 /* XcodeKit.framework */,
 				14CA2D6B1F40008F00900937 /* Cocoa.framework */,
 			);
@@ -1160,7 +1124,6 @@
 				14E9A2F8216EEABC00A677FA /* XcodeAccessImpl.swift */,
 				35CDFD267465101B0B67217F /* GoogleAnalyticsTracker.swift */,
 				35CDF9A2068DF1CD95B50147 /* ProjectFinder.swift */,
-				191EF6E020F6C81F00118C74 /* Analytics.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1227,6 +1190,7 @@
 				1425EB8121528F8F00009D60 /* libASTSerialize.dylib */,
 				1425EB8321528F8F00009D60 /* ASTSerializeTests.xctest */,
 				1425EB8521528F8F00009D60 /* ASTSerializePerfTests.xctest */,
+				14D345DE234DC20700054682 /* libCommandLine.dylib */,
 				191EF66820F447D300118C74 /* libFormatter.dylib */,
 				191EF66A20F447D300118C74 /* FormatterTests.xctest */,
 				1425EB8721528F8F00009D60 /* libIndexer.dylib */,
@@ -1238,7 +1202,6 @@
 				196F975420EEFA12009A5FD6 /* libResolver.dylib */,
 				196F975620EEFA12009A5FD6 /* ResolverTests.xctest */,
 				1425EB8D21528F8F00009D60 /* ResolverPerfTests.xctest */,
-				196F975820EEFA12009A5FD6 /* libSourceKittenRequests.dylib */,
 				196F975A20EEFA12009A5FD6 /* libSwiftLexer.dylib */,
 				196F975C20EEFA12009A5FD6 /* SwiftLexerTests.xctest */,
 				196F975E20EEFA12009A5FD6 /* libTestHelper.dylib */,
@@ -1372,7 +1335,6 @@
 				14CA2D501F40007000900937 /* Frameworks */,
 				14CA2D511F40007000900937 /* Resources */,
 				14CA2D7B1F40009000900937 /* Embed App Extensions */,
-				191EF6E620F6C99600118C74 /* Crashlytics */,
 				14887ABB20FB858000D50A73 /* Embed Frameworks */,
 				191EF6B520F4636D00118C74 /* Manually Sign dylib */,
 			);
@@ -1399,7 +1361,6 @@
 				14CA2D661F40008F00900937 /* Frameworks */,
 				14CA2D671F40008F00900937 /* Resources */,
 				14CA2D901F4000BB00900937 /* CopyFiles */,
-				191EF6DD20F6C6AD00118C74 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -1420,7 +1381,6 @@
 				14CA2D7D1F4000AB00900937 /* Frameworks */,
 				14CA2D7E1F4000AB00900937 /* Resources */,
 				149DEC671F65198B007DF43E /* CopyFiles */,
-				191EF6DC20F6C1D100118C74 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -1789,6 +1749,13 @@
 			remoteRef = 1425EBA421528F8F00009D60 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		14D345DE234DC20700054682 /* libCommandLine.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libCommandLine.dylib;
+			remoteRef = 14D345DD234DC20700054682 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		191EF66820F447D300118C74 /* libFormatter.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1892,13 +1859,6 @@
 			fileType = wrapper.cfbundle;
 			path = ResolverTests.xctest;
 			remoteRef = 196F975520EEFA12009A5FD6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		196F975820EEFA12009A5FD6 /* libSourceKittenRequests.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSourceKittenRequests.dylib;
-			remoteRef = 196F975720EEFA12009A5FD6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		196F975A20EEFA12009A5FD6 /* libSwiftLexer.dylib */ = {
@@ -2018,6 +1978,7 @@
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libSourceKittenRequests.dylib",
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libSwiftLexer.dylib",
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libIndexer.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libCommandLine.dylib",
 			);
 			name = "Manually Sign dylib";
 			outputFileListPaths = (
@@ -2036,10 +1997,6 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Bocho.framework",
-				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Diagnostic.framework",
-				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Lexer.framework",
-				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Source.framework",
 				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/SourceKittenFramework.framework",
 				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/SWXMLHash.framework",
 				"$(SRCROOT)/SwiftToolkit/Frameworks/$(CONFIGURATION)/Yams.framework",
@@ -2050,10 +2007,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/Bocho.framework",
-				"$(BUILT_PRODUCTS_DIR)/Diagnostic.framework",
-				"$(BUILT_PRODUCTS_DIR)/Lexer.framework",
-				"$(BUILT_PRODUCTS_DIR)/Source.framework",
 				"$(BUILT_PRODUCTS_DIR)/SourceKittenFramework.framework",
 				"$(BUILT_PRODUCTS_DIR)/SWXMLHash.framework",
 				"$(BUILT_PRODUCTS_DIR)/Yams.framework",
@@ -2081,6 +2034,7 @@
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libSourceKittenRequests.dylib",
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libSwiftLexer.dylib",
 				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libIndexer.dylib",
+				"$(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/libCommandLine.dylib",
 			);
 			name = "Manually Sign dylib";
 			outputPaths = (
@@ -2088,48 +2042,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "sh $SRCROOT/scripts/signlibs.sh \n";
-		};
-		191EF6DC20F6C1D100118C74 /* Crashlytics */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Crashlytics;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION == Release ]; then\n  \"${PROJECT_DIR}/lib/Fabric.framework/run\" e23964297fda9fdebedf7a8871f4b45f32416c88 b5a56d03f6359fb625e2fbef2c52d112e22fc7b86146ce402eef4bc887cc439c\nfi";
-		};
-		191EF6DD20F6C6AD00118C74 /* Crashlytics */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Crashlytics;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION == Release ]; then\n  \"${PROJECT_DIR}/lib/Fabric.framework/run\" e23964297fda9fdebedf7a8871f4b45f32416c88 b5a56d03f6359fb625e2fbef2c52d112e22fc7b86146ce402eef4bc887cc439c\nfi";
-		};
-		191EF6E620F6C99600118C74 /* Crashlytics */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Crashlytics;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION == Release ]; then\n  \"${PROJECT_DIR}/lib/Fabric.framework/run\" e23964297fda9fdebedf7a8871f4b45f32416c88 b5a56d03f6359fb625e2fbef2c52d112e22fc7b86146ce402eef4bc887cc439c\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2188,7 +2100,6 @@
 				14B4BC2E208B0A620052A085 /* ProjectFinder.swift in Sources */,
 				35CDFAEF8D8C85FDC471B35A /* PreferencesView.swift in Sources */,
 				35CDF670951C86B8934F8D27 /* XcodeProjectPathFinder.swift in Sources */,
-				191EF6E120F6C81F00118C74 /* Analytics.swift in Sources */,
 				14E9A2F9216EEABC00A677FA /* XcodeAccessImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2210,7 +2121,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CA2D871F4000AB00900937 /* main.m in Sources */,
-				191EF6E320F6C81F00118C74 /* Analytics.swift in Sources */,
 				14CA2D9E1F40049700900937 /* MockGeneratorXPC.swift in Sources */,
 				1A93A592375D1E4B0EE6252E /* XPCBufferInstructions.swift in Sources */,
 				35CDF7F2EA060154856EBA05 /* XPCMockGeneratorModel.swift in Sources */,
@@ -2223,7 +2133,6 @@
 			files = (
 				14F866EA20D90BAF00E79758 /* XPCManager.swift in Sources */,
 				14F866EE20D90BD300E79758 /* BaseCommand.swift in Sources */,
-				19A86B3D20F734D100C891F6 /* Analytics.swift in Sources */,
 				14F866F320D90D0200E79758 /* XcodeProjectPathFinder.swift in Sources */,
 				19DFBC3220DCD0A600BBF8C2 /* XPCBufferInstructions.swift in Sources */,
 				14F8671220D927B900E79758 /* Connection.swift in Sources */,
@@ -2658,7 +2567,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -2687,7 +2595,6 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -2711,11 +2618,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 191EF6A320F451D000118C74 /* Debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MockGeneratorXPC/MockGeneratorXPC.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -2738,11 +2645,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 191EF6A520F451D100118C74 /* Release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MockGeneratorXPC/MockGeneratorXPC.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -3016,7 +2923,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
@@ -3040,11 +2946,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 191EF6A420F451D100118C74 /* Profile.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MockGeneratorXPC/MockGeneratorXPC.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = HU45578K6L;
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",

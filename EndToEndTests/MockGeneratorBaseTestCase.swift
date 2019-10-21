@@ -11,7 +11,6 @@ class MockGeneratorBaseTestCase: XCTestCase {
         let prefs = Preferences()
         prefs.automaticallyDetectProjectPath = false
         prefs.projectPath = URL(fileURLWithPath: testProject)
-        prefs.moduleCachePath = getValidModuleCachePath()
         XPCManager.setUpConnection()
     }
 
@@ -96,9 +95,5 @@ class MockGeneratorBaseTestCase: XCTestCase {
         init(buffer: SourceTextBuffer) {
             self.sourceTextBuffer = buffer
         }
-    }
-
-    private func getValidModuleCachePath() -> String {
-        return "/Users/\(NSUserName())/Library/Developer/Xcode/DerivedData/ModuleCache.noindex"
     }
 }
