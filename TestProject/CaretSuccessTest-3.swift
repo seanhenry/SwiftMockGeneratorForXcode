@@ -8,5 +8,11 @@ class AnotherDeclarationInTheFileShouldNotBeAffected {
 }
 
 class SimpleProtocolMock: SimpleProtocol {
-    <selection></selection>
-}
+    var anOldMock = false
+    func anOldMockMethod() {
+        anOldMock = true
+        class Inner {
+
+        }<selection></selection>
+    }
+<selection></selection>}

@@ -1,5 +1,5 @@
 @testable import TestProject
 
 class ThrowingProtocolMock: ThrowingProtocol {
-<caret>
+<selection></selection>
 }

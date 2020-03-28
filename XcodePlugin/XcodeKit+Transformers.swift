@@ -1,12 +1,14 @@
 import XcodeKit
 
-protocol SourceEditorCommandInvocation: class {
+public protocol SourceEditorCommandInvocation: class {
     var commandIdentifier: String { get }
     var sourceTextBuffer: SourceTextBuffer { get }
     var cancellationHandler: () -> () { get set }
 }
 
-protocol SourceTextBuffer: class {
+public protocol SourceTextBuffer: class {
+    var contentUTI: String { get }
+    var tabWidth: Int { get }
     var completeBuffer: String { get set }
     var selections: NSMutableArray { get }
     var lines: NSMutableArray { get }
@@ -16,7 +18,7 @@ protocol SourceTextBuffer: class {
 
 extension XCSourceEditorCommandInvocation: SourceEditorCommandInvocation {
     
-    var sourceTextBuffer: SourceTextBuffer {
+    public var sourceTextBuffer: SourceTextBuffer {
         return buffer as SourceTextBuffer
     }
 }

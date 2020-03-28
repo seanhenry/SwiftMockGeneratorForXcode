@@ -1,5 +1,5 @@
 @testable import TestProject
 
 class FolderSpacesMock: FolderSpaces {
-    <caret>
+    <selection></selection>
 }

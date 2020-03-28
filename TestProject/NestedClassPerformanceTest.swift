@@ -394,6 +394,6 @@ class Parser<ResultType> {
     }
 
     class MockClass: ClosureProtocol {
-        <caret>
+        <selection></selection>
     }
 }

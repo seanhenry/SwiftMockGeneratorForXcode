@@ -29,6 +29,18 @@ class MemberTransformingVisitorTests: XCTestCase {
         assertTypeIs("Type", UseCasesTypeIdentifier.self, "Type")
     }
 
+    func test_shouldTransformMetadataTypeIdentifier() {
+        assertTypeIs("T.Type", UseCasesTypeIdentifier.self, "T.Type")
+    }
+
+    func test_shouldTransformProtocolMetadataTypeIdentifier() {
+        assertTypeIs("T.Protocol", UseCasesTypeIdentifier.self, "T.Protocol")
+    }
+
+    func test_shouldTransformParenthesizedType() {
+        assertTypeIs("(T)", UseCasesTupleType.self, "(T)")
+    }
+
     func test_shouldTransformGenericType() {
         assertTypeIs("Type<A>", UseCasesGenericType.self, "Type<A>")
     }

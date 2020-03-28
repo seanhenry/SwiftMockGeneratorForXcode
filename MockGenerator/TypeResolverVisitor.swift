@@ -1,7 +1,7 @@
 import UseCases
 import AST
 import Resolver
-import Parser
+import SwiftyKit
 
 class TypeResolverVisitor: ElementVisitor {
 
@@ -22,7 +22,7 @@ class TypeResolverVisitor: ElementVisitor {
     override func visitArrayType(_ element: ArrayType) {
         let resolved = resolveType(element.elementType)
         if let r = resolved {
-            resolvedType = try? ElementParser.parseType("[\(r.text)]")
+            resolvedType = try? parserFactory.make().parseType("[\(r.text)]")
         }
     }
 
@@ -32,13 +32,13 @@ class TypeResolverVisitor: ElementVisitor {
         if resolvedKeyType == nil && resolvedValueType == nil {
             return
         }
-        resolvedType = try? ElementParser.parseType("[\(resolvedKeyType?.text ?? element.keyType.text): \(resolvedValueType?.text ?? element.valueType.text)]")
+        resolvedType = try? parserFactory.make().parseType("[\(resolvedKeyType?.text ?? element.keyType.text): \(resolvedValueType?.text ?? element.valueType.text)]")
     }
 
     override func visitOptionalType(_ element: OptionalType) {
         let resolved = resolveType(element.type)
         if let r = resolved {
-            resolvedType = try? ElementParser.parseType("\(r.text)?")
+            resolvedType = try? parserFactory.make().parseType("\(r.text)?")
         }
     }
 

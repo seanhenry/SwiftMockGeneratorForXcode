@@ -9,5 +9,5 @@
 @testable import TestProject
 
 class UTFMock: UTF {
-<caret>
+<selection></selection>
 }

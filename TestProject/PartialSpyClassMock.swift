@@ -1,5 +1,5 @@
 @testable import TestProject
 
 class PartialSpyClassMock: PartialSpyClass, PartialSpyProtocol {
-<caret>
+<selection></selection>
 }

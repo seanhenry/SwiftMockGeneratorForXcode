@@ -1,5 +1,5 @@
 @testable import TestProject
 
 class KeywordsMock: Keywords {
-<caret>
+<selection></selection>
 }

@@ -3,6 +3,7 @@ import Resolver
 import UseCases
 
 class VariableTypeResolver: RecursiveElementVisitor {
+
   public class func resolve(_ element: Element?, resolver: Resolver) -> UseCasesType? {
     let visitor = VariableTypeResolver(resolver: resolver)
     element?.accept(visitor)
@@ -56,12 +57,12 @@ class VariableTypeResolver: RecursiveElementVisitor {
     setTypeIdentifier("String")
   }
 
-  override func visitFloatingPointLiteralExpression(_ element: FloatingPointLiteralExpression) {
-    setTypeIdentifier("Double")
-  }
-
-  override func visitIntegerLiteralExpression(_ element: IntegerLiteralExpression) {
-    setTypeIdentifier("Int")
+  override func visitNumericLiteralExpression(_ element: NumericLiteralExpression) {
+    if element.literal is FloatingPointLiteral {
+      setTypeIdentifier("Double")
+    } else if element.literal is IntegerLiteral {
+      setTypeIdentifier("Int")
+    }
   }
 
   override func visitBooleanLiteralExpression(_ element: BooleanLiteralExpression) {
@@ -78,9 +79,10 @@ class VariableTypeResolver: RecursiveElementVisitor {
 
   override func visitDictionaryLiteralExpression(_ element: DictionaryLiteralExpression) {
     guard let key = resolve(element.dictionaryLiteralItems?.items.first?.keyExpression),
-      let value = resolve(element.dictionaryLiteralItems?.items.first?.valueExpression) else {
-        type = nil
-        return
+          let value = resolve(element.dictionaryLiteralItems?.items.first?.valueExpression)
+    else {
+      type = nil
+      return
     }
     type = UseCasesDictionaryType(keyType: key, valueType: value, useVerboseSyntax: false)
   }
@@ -115,7 +117,7 @@ class VariableTypeResolver: RecursiveElementVisitor {
     let resolved = element.tupleElementList.elements.map {
       resolve($0) ?? UseCasesTypeIdentifier(identifier: "Any")
     }.map {
-        UseCasesTupleTypeTupleElement(label: nil, type: $0)
+      UseCasesTupleTypeTupleElement(label: nil, type: $0)
     }
     type = UseCasesTupleType(tupleElements: resolved)
   }

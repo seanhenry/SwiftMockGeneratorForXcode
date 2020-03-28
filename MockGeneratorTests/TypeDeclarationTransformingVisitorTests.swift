@@ -72,7 +72,7 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
     }
 
     private func transformProtocols(_ string: String) -> [UseCasesProtocol] {
-        let p = try! ElementParser.parseFile(string).typeDeclarations[0]
+        let p = try! ParserTestHelper.parseFile(from: string).typeDeclarations[0]
         let protocols = TypeDeclarationTransformingVisitor.transformMock(p, resolver: resolver).protocols
         return protocols
     }
@@ -163,7 +163,7 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
     }
 
     private func transform(_ string: String) -> UseCasesMockClass {
-        let mockClass = try! ElementParser.parseFile(string).typeDeclarations[0]
+        let mockClass = try! ParserTestHelper.parseFile(from: string).typeDeclarations[0]
         return TypeDeclarationTransformingVisitor.transformMock(mockClass, resolver: resolver)
     }
 

@@ -1,5 +1,8 @@
 import XCTest
 import TestHelper
+import SwiftyPluginTest
+import SwiftyKit
+import AST
 @testable import MockGenerator
 
 class MockGeneratorTests: XCTestCase {
@@ -192,44 +195,42 @@ class MockGeneratorTests: XCTestCase {
     }
 
     func test_returnsErrorWhenMockClassDoesNotInheritFromAnything() {
-        assertMockGeneratesError(contents: "class MockClass {<caret>}", "MockClass must inherit from a class or implement at least 1 protocol")
+        assertMockGeneratesError(contents: "class MockClass {<selection></selection>}", "MockClass must inherit from a class or implement at least 1 protocol")
     }
 
-    func test_generatesMockForAllCaretPositions() {
+    func test_generatesMockForAllCaretPositions() throws {
         let expected = readFile(named: "SimpleProtocolMock_expected.swift")
         let caretFile = readFile(named: "CaretSuccessTest.swift")
-        var contentsLineColumn: (contents: String, lineColumn: (line: Int, column: Int)?) = (caretFile, nil)
-        var caretLineColumns = [(line: Int, column: Int)]()
-        repeat {
-            contentsLineColumn = CaretTestHelper.findCaretLineColumn(contentsLineColumn.contents)
-            if let lineColumn = contentsLineColumn.lineColumn {
-                caretLineColumns.append(lineColumn)
-            }
-        } while contentsLineColumn.lineColumn != nil
-        XCTAssertGreaterThan(caretLineColumns.count, 0)
-        caretLineColumns.forEach { lineColumn in
+        let buffer = try TestTextBuffer.builder(buffer: caretFile)
+            .findSelections()
+            .build()
+        XCTAssertGreaterThan(buffer.selectionRange.count, 0)
+        buffer.selectionRange.forEach { selection in
             let file = try! String(contentsOfFile: testProject + "/SimpleProtocolMock.swift")
             let (lines, error) = generateMock(file)
-            XCTAssertNil(error, "Failed to generate mock from caret at line: \(lineColumn.line) column: \(lineColumn.column)")
+            XCTAssertNil(error, "Failed to generate mock from caret at line: \(selection.start.line) column: \(selection.start.column)")
             StringCompareTestHelper.assertEqualStrings(join(lines), expected)
         }
     }
 
-    func test_generatesErrorForAllBadCaretPositions() {
+    func test_generatesErrorForAllBadCaretPositions() throws {
         let caretFile = readFile(named: "CaretFailureTest.swift")
-        var contentsLineColumn: (contents: String, lineColumn: (line: Int, column: Int)?) = (caretFile, nil)
-        var caretLineColumns = [(line: Int, column: Int)]()
-        repeat {
-            contentsLineColumn = CaretTestHelper.findCaretLineColumn(contentsLineColumn.contents)
-            if let lineColumn = contentsLineColumn.lineColumn {
-                caretLineColumns.append(lineColumn)
+        let buffer = try TestTextBuffer.builder(buffer: caretFile)
+            .findSelections()
+            .build()
+        XCTAssertGreaterThan(buffer.selectionRange.count, 0)
+        buffer.selectionRange.forEach { selection in
+            do {
+                _ = try Generator(
+                    projectURL: URL(fileURLWithPath: testProject),
+                    templateName: "spy",
+                    useTabsForIndentation: false,
+                    indentationWidth: 4
+                ).execute(buffer: buffer)
+            } catch {
+                return
             }
-        } while contentsLineColumn.lineColumn != nil
-        XCTAssertGreaterThan(caretLineColumns.count, 0)
-        caretLineColumns.forEach { lineColumn in
-            let (lines, error) = Generator(fromFileContents: contentsLineColumn.contents, projectURL: URL(fileURLWithPath: testProject), line: lineColumn.line, column: lineColumn.column, templateName: "spy", useTabsForIndentation: false, indentationWidth: 4).generateMock()
-            XCTAssertNotNil(error, "Should not be generating a mock from caret at line: \(lineColumn.line) column: \(lineColumn.column)")
-            XCTAssertNil(lines)
+            XCTFail("Should not be generating a mock from caret at line: \(selection.start.line) column: \(selection.start.column)")
         }
     }
 
@@ -273,37 +274,23 @@ class MockGeneratorTests: XCTestCase {
     }
 
     private func generateMock(_ mock: String, templateName: String = "spy") -> ([String]?, Error?) {
-        let result = CaretTestHelper.findCaretLineColumn(mock)
-        let (instructions, error) = Generator(fromFileContents: result.contents,
-                                      projectURL: URL(fileURLWithPath: testProject),
-                                      line: result.lineColumn!.line,
-                                      column: result.lineColumn!.column,
-                                      templateName: templateName,
-                                      useTabsForIndentation: false,
-                                      indentationWidth: 4).generateMock()
-        return (applyInstructions(instructions, to: result.contents), error)
+        do {
+            let buffer = try TestTextBuffer.builder(buffer: mock)
+                .findSelections()
+                .build()
+            let generator = Generator(
+                projectURL: URL(fileURLWithPath: testProject),
+                templateName: templateName,
+                useTabsForIndentation: false,
+                indentationWidth: 4
+            )
+            let result = try CommandTestHelper().execute(buffer: buffer, command: generator)
+            return (result.lines, nil)
+        } catch {
+            return (nil, error)
+        }
     }
 
-    private func applyInstructions(_ instructions: BufferInstructions?, to contents: String) -> [String]? {
-        guard let instructions = instructions else {
-            return nil
-        }
-        var lines = split(contents)
-        lines.removeSubrange(instructions.deleteIndex..<instructions.deleteIndex+instructions.deleteLength)
-        lines.insert(contentsOf: instructions.linesToInsert, at: instructions.insertIndex)
-        return lines
-    }
-
-    private func split(_ contents: String) -> [String] {
-        var lines = contents.components(separatedBy: "\n")
-        lines = lines.enumerated().map { (i, line) in
-            if i == lines.count-1 {
-                return line
-            }
-            return "\(line)\n"
-        }
-        return lines
-    }
 
     private func join(_ lines: [String]?) -> String? {
         guard let lines = lines else { return nil }

@@ -1,5 +1,5 @@
 @testable import TestProject
 
 class ReturnProtocolMock: ReturnProtocol {
-    <caret>
+    <selection></selection>
 }

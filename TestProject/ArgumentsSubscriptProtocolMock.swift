@@ -1,5 +1,5 @@
 @testable import TestProject
 
 class ArgumentsSubscriptProtocolMock: ArgumentsSubscriptProtocol {
-<caret>
+<selection></selection>
 }

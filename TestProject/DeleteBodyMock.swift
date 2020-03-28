@@ -1,6 +1,6 @@
 @testable import TestProject
 
-class DeleteBodyMock: DeleteBody {<caret>
+class DeleteBodyMock: DeleteBody {<selection></selection>
     // should delete comments
     should delete error statements
     func shouldDeleteFunctions() {

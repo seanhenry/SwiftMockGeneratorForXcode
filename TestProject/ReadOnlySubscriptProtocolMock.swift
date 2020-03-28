@@ -1,5 +1,5 @@
 @testable import TestProject
 
 class ReadOnlySubscriptProtocolMock: ReadOnlySubscriptProtocol {
-<caret>
+<selection></selection>
 }

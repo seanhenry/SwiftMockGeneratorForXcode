@@ -1,5 +1,5 @@
 @testable import TestProject
 
 class SuperclassMock: Superclass {
-<caret>
+<selection></selection>
 }

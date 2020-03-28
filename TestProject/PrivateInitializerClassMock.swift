@@ -1,5 +1,5 @@
 @testable import TestProject
 
 class PrivateInitializerClassMock: PrivateInitializerClass {
-<caret>
+<selection></selection>
 }

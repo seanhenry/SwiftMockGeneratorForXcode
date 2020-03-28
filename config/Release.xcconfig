@@ -4,5 +4,7 @@
 FRAMEWORK_SEARCH_PATHS = $DEVELOPER_FRAMEWORKS_DIR $PROJECT_DIR/lib/Release
 HEADER_SEARCH_PATHS = $PROJECT_DIR/lib/Release/include/GRMustache
 LIBRARY_SEARCH_PATHS = $PROJECT_DIR/lib/Release
+// Frameworks only find the SwiftToolkit.swiftmodule (which doesn't exist) so we point the framework to include all the swiftmodule files.
+SWIFT_INCLUDE_PATHS = $PROJECT_DIR/lib/Release/SwiftToolkit.framework/Modules
 OTHER_SWIFT_FLAGS = -Xcc -fmodule-map-file=$PROJECT_DIR/lib/Release/include/GRMustache/module.modulemap
 XPC_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorXPC

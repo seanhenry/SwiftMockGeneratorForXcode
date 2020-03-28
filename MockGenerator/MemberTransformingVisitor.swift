@@ -31,11 +31,11 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     override func visitTypeIdentifier(_ element: TypeIdentifier) {
-        if element.genericArgumentClause.arguments.isEmpty {
-            let identifiers = transformToIdentifiers(element)
-            type = UseCasesTypeIdentifier(identifiers: NSMutableArray(array: identifiers as NSArray))
+        if let genericArgumentClause = element.genericArgumentClause {
+            type = UseCasesGenericType(identifier: element.typeName, arguments: genericArgumentClause.arguments.map { transformType($0) })
         } else {
-            type = UseCasesGenericType(identifier: element.typeName, arguments: element.genericArgumentClause.arguments.map { transformType($0) })
+            let identifiers = element.typeNames
+            type = UseCasesTypeIdentifier(identifiers: NSMutableArray(array: identifiers as NSArray))
         }
     }
 
@@ -56,11 +56,20 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     override func visitFunctionType(_ element: FunctionType) {
-        type = UseCasesFunctionType(arguments: element.arguments.tupleTypeElementList.tupleTypeElements
+        type = UseCasesFunctionType(arguments: element.functionTypeArgumentClause.arguments
             .compactMap { $0.typeAnnotation?.type ?? $0.type }
             .map { transformType($0) },
             returnType: transformType(element.returnType),
             throws: element.throws)
+    }
+
+    override func visitParenthesizedType(_ element: ParenthesizedType) {
+        let tupleType = UseCasesTupleTypeTupleElement(label: nil, type: transformType(element.type))
+        type = UseCasesTupleType(tupleElements: [tupleType])
+    }
+
+    override func visitMetatypeType(_ element: MetatypeType) {
+        type = UseCasesTypeIdentifier(identifiers: NSMutableArray(array: [element.type.text, element.metatype.text]))
     }
 
     override func visitTupleType(_ element: TupleType) {
@@ -73,16 +82,6 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
             return UseCasesTupleTypeTupleElement(label: e.label, type: transformType(type))
         }
         return nil
-    }
-
-    private func transformToIdentifiers(_ element: TypeIdentifier) -> [String] {
-        var typeIdentifier: TypeIdentifier? = element
-        var identifiers = [element.typeName]
-        while let parent = typeIdentifier?.parentType {
-            typeIdentifier = parent
-            identifiers.append(parent.typeName)
-        }
-        return identifiers.reversed()
     }
 
     override func visitFunctionDeclaration(_ element: FunctionDeclaration) {
@@ -116,20 +115,9 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     private func getDeclarationText(_ element: Element) -> String {
-        var text = ""
-        for child in element.children where isAllowedInDeclarationText(child) {
-            text.append(child.text)
-        }
-        return text.trimmingCharacters(in: .whitespaces)
-    }
-
-    private func isAllowedInDeclarationText(_ child: Element) -> Bool {
-        return !(child is CodeBlock)
-               && !(child is DeclarationModifier)
-               && !(child is Attributes)
-               && !(child is GetterSetterKeywordBlock)
-               && !(child is GetterSetterBlock)
-               && !(child is Initializer)
+        let visitor = DeclarationTextVisitor()
+        element.accept(visitor)
+        return visitor.text.trimmingCharacters(in: .whitespaces)
     }
 
     private func transformGenericParameters(from element: FunctionDeclaration) -> [String] {
@@ -229,4 +217,41 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
             )
         )
     }
+}
+
+extension ParameterClause {
+
+    var parameters: [Parameter] {
+        return parameterList?.parameters ?? []
+    }
+}
+
+
+extension FunctionTypeArgumentClause {
+
+    var arguments: [FunctionTypeArgument] {
+        return functionTypeArgumentList?.arguments ?? []
+    }
+
+}
+
+private class DeclarationTextVisitor: RecursiveElementVisitor {
+    var text = ""
+
+    override func visitLeafNode(_ element: LeafNode) {
+        text += element.text
+    }
+
+    override func visitParameterClause(_ element: ParameterClause) {
+        // attributes are allowed in here
+        text += element.text
+    }
+
+    // These elements are ignored
+    override func visitAttributes(_ element: Attributes) {}
+    override func visitDeclarationModifier(_ element: DeclarationModifier) {}
+    override func visitCodeBlock(_ element: CodeBlock) {}
+    override func visitGetterSetterBlock(_ element: GetterSetterBlock) {}
+    override func visitGetterSetterKeywordBlock(_ element: GetterSetterKeywordBlock) {}
+    override func visitInitializer(_ element: Initializer) {}
 }

@@ -113,5 +113,14 @@ swift-toolkit: mkdestpath
 	fi;
 
 	cd $(SWIFT_TOOLKIT_SRC_PATH); \
-	make
+	make lib; \
+	rm -rf "$(DEST_PATH_RELEASE)/SwiftToolkit.framework"; \
+	rm -rf "$(DEST_PATH_DEBUG)/SwiftToolkit.framework"; \
+	rm -rf "$(DEST_PATH_DEBUG)/TestHelper.framework"; \
+	rm -rf "$(DEST_PATH_DEBUG)/SwiftyPluginTest.framework"; \
+	cp -R SwiftToolkit/out/release/SwiftToolkit.framework "$(DEST_PATH_RELEASE)"; \
+	cp -R SwiftToolkit/out/debug/SwiftToolkit.framework "$(DEST_PATH_DEBUG)"; \
+	cp -R SwiftToolkit/out/debug/TestHelper.framework "$(DEST_PATH_DEBUG)"; \
+	cp -R SwiftToolkit/out/debug/SwiftyPluginTest.framework "$(DEST_PATH_DEBUG)";
+
 

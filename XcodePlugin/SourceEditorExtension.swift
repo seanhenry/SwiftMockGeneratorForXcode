@@ -1,11 +1,18 @@
 import Foundation
 import XcodeKit
-import Cocoa
-import XcodePluginProxy
+import SwiftyKit
+import SwiftyServiceImpl
+import ASTSerialize
+import Parser
+import MockGenerator
 
 class SourceEditorExtension: NSObject, XCSourceEditorExtension {
 
-    func extensionDidFinishLaunching() {
-        XPCManager.setUpConnection()
-    }
+  var connection: NSXPCConnection!
+
+  func extensionDidFinishLaunching() {
+    makeService = { SwiftyServiceImpl() }
+    makeDeserializer = { ASTDeserializer() }
+    parserFactory = ParserFactory { PositionParser() }
+  }
 }

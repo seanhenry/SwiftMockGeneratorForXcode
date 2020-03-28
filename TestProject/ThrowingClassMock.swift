@@ -1,5 +1,5 @@
 @testable import TestProject
 
 class ThrowingClassMock: ThrowingClass {
-<caret>
+<selection></selection>
 }
