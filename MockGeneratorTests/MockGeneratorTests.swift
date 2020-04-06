@@ -6,6 +6,8 @@ import AST
 @testable import MockGenerator
 
 class MockGeneratorTests: XCTestCase {
+
+    var trackedLines: Int?
     
     // The test project is copied to the resources directory build phases
     let testProject = Bundle(for: MockGeneratorTests.self).resourcePath! + "/TestProject"
@@ -199,43 +201,61 @@ class MockGeneratorTests: XCTestCase {
     }
 
     func test_generatesMockForAllCaretPositions() throws {
-        let expected = readFile(named: "SimpleProtocolMock_expected.swift")
-        let caretFile = readFile(named: "CaretSuccessTest.swift")
-        let buffer = try TestTextBuffer.builder(buffer: caretFile)
-            .findSelections()
-            .build()
-        XCTAssertGreaterThan(buffer.selectionRange.count, 0)
-        buffer.selectionRange.forEach { selection in
-            let file = try! String(contentsOfFile: testProject + "/SimpleProtocolMock.swift")
-            let (lines, error) = generateMock(file)
-            XCTAssertNil(error, "Failed to generate mock from caret at line: \(selection.start.line) column: \(selection.start.column)")
-            StringCompareTestHelper.assertEqualStrings(join(lines), expected)
+        let testFiles = [
+            "CaretSuccessTest-1.swift",
+            "CaretSuccessTest-2.swift",
+            "CaretSuccessTest-3.swift",
+            "CaretSuccessTest-4.swift",
+        ]
+        try testFiles.forEach {
+            let file = readFile(named: $0)
+            let buffer = try TestTextBuffer.builder(buffer: file)
+                .findSelections()
+                .build()
+            _ = try Generator(
+                projectURL: URL(fileURLWithPath: testProject),
+                templateName: "spy",
+                useTabsForIndentation: false,
+                indentationWidth: 4,
+                trackLines: { self.trackedLines = $0 }
+            ).execute(buffer: buffer)
         }
     }
 
     func test_generatesErrorForAllBadCaretPositions() throws {
-        let caretFile = readFile(named: "CaretFailureTest.swift")
-        let buffer = try TestTextBuffer.builder(buffer: caretFile)
-            .findSelections()
-            .build()
-        XCTAssertGreaterThan(buffer.selectionRange.count, 0)
-        buffer.selectionRange.forEach { selection in
+        let testFiles = [
+            "CaretFailureTest-1.swift",
+            "CaretFailureTest-2.swift",
+            "CaretFailureTest-3.swift",
+            "CaretFailureTest-4.swift",
+        ]
+        try testFiles.forEach {
+            let file = readFile(named: $0)
+            let buffer = try TestTextBuffer.builder(buffer: file)
+                .findSelections()
+                .build()
             do {
                 _ = try Generator(
                     projectURL: URL(fileURLWithPath: testProject),
                     templateName: "spy",
                     useTabsForIndentation: false,
-                    indentationWidth: 4
+                    indentationWidth: 4,
+                    trackLines: { self.trackedLines = $0 }
                 ).execute(buffer: buffer)
             } catch {
                 return
             }
-            XCTFail("Should not be generating a mock from caret at line: \(selection.start.line) column: \(selection.start.column)")
+            XCTFail("Should not be generating a mock from caret in file '\($0)'")
         }
     }
 
     func test_supportsFoldersWithSpacesInTheirSpace() {
         assertMockGeneratesExpected("Test Folder With Spaces/FolderSpacesMock")
+    }
+
+    func test_tracksNumberOfGeneratedLines() {
+        assertMockGeneratesExpected("SimpleProtocolMock")
+        XCTAssertEqual(trackedLines, 6)
     }
 
     // MARK: - Helpers
@@ -282,7 +302,8 @@ class MockGeneratorTests: XCTestCase {
                 projectURL: URL(fileURLWithPath: testProject),
                 templateName: templateName,
                 useTabsForIndentation: false,
-                indentationWidth: 4
+                indentationWidth: 4,
+                trackLines: { self.trackedLines = $0 }
             )
             let result = try CommandTestHelper().execute(buffer: buffer, command: generator)
             return (result.lines, nil)

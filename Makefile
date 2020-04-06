@@ -118,9 +118,9 @@ swift-toolkit: mkdestpath
 	rm -rf "$(DEST_PATH_DEBUG)/SwiftToolkit.framework"; \
 	rm -rf "$(DEST_PATH_DEBUG)/TestHelper.framework"; \
 	rm -rf "$(DEST_PATH_DEBUG)/SwiftyPluginTest.framework"; \
-	cp -R SwiftToolkit/out/release/SwiftToolkit.framework "$(DEST_PATH_RELEASE)"; \
-	cp -R SwiftToolkit/out/debug/SwiftToolkit.framework "$(DEST_PATH_DEBUG)"; \
-	cp -R SwiftToolkit/out/debug/TestHelper.framework "$(DEST_PATH_DEBUG)"; \
-	cp -R SwiftToolkit/out/debug/SwiftyPluginTest.framework "$(DEST_PATH_DEBUG)";
+	cp -R lib/Release/SwiftToolkit.framework "$(DEST_PATH_RELEASE)"; \
+	cp -R lib/Debug/SwiftToolkit.framework "$(DEST_PATH_DEBUG)"; \
+	cp -R lib/Debug/TestHelper.framework "$(DEST_PATH_DEBUG)"; \
+	cp -R lib/Debug/SwiftyPluginTest.framework "$(DEST_PATH_DEBUG)";
 
 

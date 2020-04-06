@@ -1,5 +1,3 @@
-import XcodePluginProxy
-
 class StubCommand: BaseCommand {
 
     override var templateName: String {
