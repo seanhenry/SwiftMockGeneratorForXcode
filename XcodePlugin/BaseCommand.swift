@@ -15,6 +15,12 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
     }
 
     func perform(with invocation: SourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> ()) {
+        formatterFactory = FormatterFactory {
+            DefaultFormatter(
+                useTabs: invocation.sourceTextBuffer.usesTabsForIndentation,
+                indentationWidth: invocation.sourceTextBuffer.indentationWidth
+            )
+        }
         invocation.cancellationHandler = {
             completionHandler(nil)
         }

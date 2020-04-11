@@ -1,14 +1,17 @@
 @testable import TestProject
 
 class ClassSubscriptMock: ClassSubscript {
+
     var invokedSubscriptGetter = false
     var invokedSubscriptGetterCount = 0
     var stubbedSubscriptResult: Int! = 0
+
     override subscript() -> Int {
         invokedSubscriptGetter = true
         invokedSubscriptGetterCount += 1
         return stubbedSubscriptResult
     }
+
     var invokedSubscriptBGetter = false
     var invokedSubscriptBGetterCount = 0
     var invokedSubscriptBGetterParameters: (b: Int, Void)?
@@ -20,6 +23,7 @@ class ClassSubscriptMock: ClassSubscript {
     var invokedSubscriptBSetterParametersList = [(b: Int, Void)]()
     var invokedSubscriptB: Int?
     var invokedSubscriptBList = [Int]()
+
     override subscript(b: Int) -> Int {
         set {
             invokedSubscriptBSetter = true
@@ -37,11 +41,13 @@ class ClassSubscriptMock: ClassSubscript {
             return stubbedSubscriptBResult
         }
     }
+
     var invokedSubscriptDGetter = false
     var invokedSubscriptDGetterCount = 0
     var invokedSubscriptDGetterParameters: (d: Int, Void)?
     var invokedSubscriptDGetterParametersList = [(d: Int, Void)]()
     var stubbedSubscriptDResult: Int! = 0
+
     override subscript(d d: Int) -> Int {
         invokedSubscriptDGetter = true
         invokedSubscriptDGetterCount += 1

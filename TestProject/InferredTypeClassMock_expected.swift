@@ -1,6 +1,7 @@
 @testable import TestProject
 
 class InferredTypeClassMock: InferredTypeClass {
+
     var invokedFromInitializerSetter = false
     var invokedFromInitializerSetterCount = 0
     var invokedFromInitializer: HelperClass?
@@ -8,6 +9,7 @@ class InferredTypeClassMock: InferredTypeClass {
     var invokedFromInitializerGetter = false
     var invokedFromInitializerGetterCount = 0
     var stubbedFromInitializer: HelperClass!
+
     override var fromInitializer: HelperClass {
         set {
             invokedFromInitializerSetter = true
@@ -21,6 +23,7 @@ class InferredTypeClassMock: InferredTypeClass {
             return stubbedFromInitializer
         }
     }
+
     var invokedStringLiteralSetter = false
     var invokedStringLiteralSetterCount = 0
     var invokedStringLiteral: String?
@@ -28,6 +31,7 @@ class InferredTypeClassMock: InferredTypeClass {
     var invokedStringLiteralGetter = false
     var invokedStringLiteralGetterCount = 0
     var stubbedStringLiteral: String! = ""
+
     override var stringLiteral: String {
         set {
             invokedStringLiteralSetter = true
@@ -41,6 +45,7 @@ class InferredTypeClassMock: InferredTypeClass {
             return stubbedStringLiteral
         }
     }
+
     var invokedDictionaryLiteralSetter = false
     var invokedDictionaryLiteralSetterCount = 0
     var invokedDictionaryLiteral: [HelperClass: HelperClass]?
@@ -48,6 +53,7 @@ class InferredTypeClassMock: InferredTypeClass {
     var invokedDictionaryLiteralGetter = false
     var invokedDictionaryLiteralGetterCount = 0
     var stubbedDictionaryLiteral: [HelperClass: HelperClass]! = [:]
+
     override var dictionaryLiteral: [HelperClass: HelperClass] {
         set {
             invokedDictionaryLiteralSetter = true
@@ -61,6 +67,7 @@ class InferredTypeClassMock: InferredTypeClass {
             return stubbedDictionaryLiteral
         }
     }
+
     var invokedDictionaryLiteral2Setter = false
     var invokedDictionaryLiteral2SetterCount = 0
     var invokedDictionaryLiteral2: [String: Int]?
@@ -68,6 +75,7 @@ class InferredTypeClassMock: InferredTypeClass {
     var invokedDictionaryLiteral2Getter = false
     var invokedDictionaryLiteral2GetterCount = 0
     var stubbedDictionaryLiteral2: [String: Int]! = [:]
+
     override var dictionaryLiteral2: [String: Int] {
         set {
             invokedDictionaryLiteral2Setter = true
@@ -81,6 +89,7 @@ class InferredTypeClassMock: InferredTypeClass {
             return stubbedDictionaryLiteral2
         }
     }
+
     var invokedArrayLiteralSetter = false
     var invokedArrayLiteralSetterCount = 0
     var invokedArrayLiteral: [HelperClass]?
@@ -88,6 +97,7 @@ class InferredTypeClassMock: InferredTypeClass {
     var invokedArrayLiteralGetter = false
     var invokedArrayLiteralGetterCount = 0
     var stubbedArrayLiteral: [HelperClass]! = []
+
     override var arrayLiteral: [HelperClass] {
         set {
             invokedArrayLiteralSetter = true
@@ -101,6 +111,7 @@ class InferredTypeClassMock: InferredTypeClass {
             return stubbedArrayLiteral
         }
     }
+
     var invokedArrayLiteral2Setter = false
     var invokedArrayLiteral2SetterCount = 0
     var invokedArrayLiteral2: [Int]?
@@ -108,6 +119,7 @@ class InferredTypeClassMock: InferredTypeClass {
     var invokedArrayLiteral2Getter = false
     var invokedArrayLiteral2GetterCount = 0
     var stubbedArrayLiteral2: [Int]! = []
+
     override var arrayLiteral2: [Int] {
         set {
             invokedArrayLiteral2Setter = true
@@ -121,6 +133,7 @@ class InferredTypeClassMock: InferredTypeClass {
             return stubbedArrayLiteral2
         }
     }
+
     var invokedAsExpressionSetter = false
     var invokedAsExpressionSetterCount = 0
     var invokedAsExpression: [Any]?
@@ -128,6 +141,7 @@ class InferredTypeClassMock: InferredTypeClass {
     var invokedAsExpressionGetter = false
     var invokedAsExpressionGetterCount = 0
     var stubbedAsExpression: [Any]! = []
+
     override var asExpression: [Any] {
         set {
             invokedAsExpressionSetter = true
@@ -141,6 +155,7 @@ class InferredTypeClassMock: InferredTypeClass {
             return stubbedAsExpression
         }
     }
+
     var invokedIsExpressionSetter = false
     var invokedIsExpressionSetterCount = 0
     var invokedIsExpression: Bool?
@@ -148,6 +163,7 @@ class InferredTypeClassMock: InferredTypeClass {
     var invokedIsExpressionGetter = false
     var invokedIsExpressionGetterCount = 0
     var stubbedIsExpression: Bool! = false
+
     override var isExpression: Bool {
         set {
             invokedIsExpressionSetter = true
@@ -161,6 +177,7 @@ class InferredTypeClassMock: InferredTypeClass {
             return stubbedIsExpression
         }
     }
+
     var invokedTupleSetter = false
     var invokedTupleSetterCount = 0
     var invokedTuple: (Int, String)?
@@ -168,6 +185,7 @@ class InferredTypeClassMock: InferredTypeClass {
     var invokedTupleGetter = false
     var invokedTupleGetterCount = 0
     var stubbedTuple: (Int, String)! = (0, "")
+
     override var tuple: (Int, String) {
         set {
             invokedTupleSetter = true

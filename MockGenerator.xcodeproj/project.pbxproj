@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		141BECDC243B8AEB00AE0E2B /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BECDB243B8AEB00AE0E2B /* Formatter.swift */; };
 		14276C6A1F4F312E00EA7753 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
 		14276C6F1F4F312E00EA7753 /* MockGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14276C6E1F4F312E00EA7753 /* MockGeneratorTests.swift */; };
 		14276C791F4F314600EA7753 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14276C781F4F314600EA7753 /* Generator.swift */; };
@@ -29,6 +30,7 @@
 		14451D351F5F05C500833C61 /* MemberTransformingVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A9B1705ADFFC0CB415 /* MemberTransformingVisitorTests.swift */; };
 		145290EA1F981ED600947144 /* VersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145290E91F981ED600947144 /* VersionView.swift */; };
 		147437B61F79746A00241B8A /* TestProject in Copy Test Project */ = {isa = PBXBuildFile; fileRef = 147437B51F79746000241B8A /* TestProject */; };
+		14812327243B8554001CA005 /* PositionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14812326243B8554001CA005 /* PositionParser.swift */; };
 		14887ABC20FB859B00D50A73 /* MockGenerator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		148D5E08242E801000ED04DC /* TestHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 149A5AEB242BCCD4003DDAE2 /* TestHelper.framework */; };
 		148D5E0A242E801100ED04DC /* SwiftyPluginTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 148D5E09242E801100ED04DC /* SwiftyPluginTest.framework */; };
@@ -198,6 +200,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		141BECDB243B8AEB00AE0E2B /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		14276C611F4F312E00EA7753 /* MockGenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MockGenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14276C641F4F312E00EA7753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14276C691F4F312E00EA7753 /* MockGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MockGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +211,7 @@
 		142B023921709BC5005DE573 /* libGRMustache7-MacOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGRMustache7-MacOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		145290E91F981ED600947144 /* VersionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionView.swift; sourceTree = "<group>"; };
 		147437B51F79746000241B8A /* TestProject */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestProject; sourceTree = SOURCE_ROOT; };
+		14812326243B8554001CA005 /* PositionParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionParser.swift; sourceTree = "<group>"; };
 		14872E7B1F59DBC50017AF3F /* MockGeneratorAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MockGeneratorAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		14872E7F1F59DBC50017AF3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		148D5E09242E801100ED04DC /* SwiftyPluginTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyPluginTest.framework; path = lib/Debug/SwiftyPluginTest.framework; sourceTree = "<group>"; };
@@ -330,6 +334,8 @@
 				35CDF512D0EA7664390189DC /* stub.mustache */,
 				14276C641F4F312E00EA7753 /* Info.plist */,
 				14276C781F4F314600EA7753 /* Generator.swift */,
+				14812326243B8554001CA005 /* PositionParser.swift */,
+				141BECDB243B8AEB00AE0E2B /* Formatter.swift */,
 				35CDFDB834B634E694CF658C /* MemberTransformingVisitor.swift */,
 				35CDF33B8A857EED9FEB1F7A /* MustacheView.swift */,
 				35CDF4695C73C787CC3952DB /* SourceFileFinder.swift */,
@@ -778,7 +784,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				14276C791F4F314600EA7753 /* Generator.swift in Sources */,
+				14812327243B8554001CA005 /* PositionParser.swift in Sources */,
 				35CDF3051C92D783E99E519D /* SourceFileFinder.swift in Sources */,
+				141BECDC243B8AEB00AE0E2B /* Formatter.swift in Sources */,
 				14E132281F58E6D300D75943 /* MemberTransformingVisitor.swift in Sources */,
 				35CDF6B3B8F080E7AE114743 /* TypeResolverVisitor.swift in Sources */,
 				35CDF1D4B3EE5C1ED545361F /* MustacheView.swift in Sources */,

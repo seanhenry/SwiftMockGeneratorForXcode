@@ -79,7 +79,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
 
     private func transformTupleType(_ e: TupleTypeElement) -> UseCasesTupleTypeTupleElement? {
         if let type = e.type ?? e.typeAnnotation?.type {
-            return UseCasesTupleTypeTupleElement(label: e.label, type: transformType(type))
+            return UseCasesTupleTypeTupleElement(label: e.elementName?.text, type: transformType(type))
         }
         return nil
     }
@@ -128,9 +128,15 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
 
     private func transformParameters(_ parameters: [Parameter]) -> [UseCasesParameter] {
         return parameters.map { parameter in
-            UseCasesParameter(
+            var internalName = parameter.localParameterName
+            if internalName == "`let`" {
+                internalName = "let"
+            } else if internalName == "`var`" {
+                internalName = "var"
+            }
+            return UseCasesParameter(
                 externalName: parameter.externalParameterName,
-                internalName: parameter.localParameterName,
+                internalName: internalName,
                 type: UseCasesResolvedType(originalType: transformType(parameter.typeAnnotation.type), resolvedType: resolveAndTransform(parameter.typeAnnotation.type)),
                 text: parameter.text,
                 isEscaping: isEscaping(parameter))

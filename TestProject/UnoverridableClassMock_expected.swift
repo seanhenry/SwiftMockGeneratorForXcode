@@ -1,5 +1,3 @@
 @testable import TestProject
 
-class UnoverridableClassMock: UnoverridableClass {
-
-}
+class UnoverridableClassMock: UnoverridableClass {}

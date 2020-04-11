@@ -1,19 +1,19 @@
 import AppKit
 
 class ManualProjectPathView: NSStackView {
-    
+
     @IBOutlet var projectPathHistory: NSPopUpButton!
     private static let clearTitle = "Clear history"
     private static let browseTitle = "Browse..."
     private let preferences = Preferences()
-    
+
     override func viewDidMoveToWindow() {
         super.viewDidMoveToWindow()
         refreshHistory()
         projectPathHistory.target = self
         projectPathHistory.action = #selector(didChangeSelection(_:))
     }
-    
+
     @IBAction func didTapProjectPathButton(_ sender: Any?) {
         let panel = NSOpenPanel()
         panel.allowsMultipleSelection = false

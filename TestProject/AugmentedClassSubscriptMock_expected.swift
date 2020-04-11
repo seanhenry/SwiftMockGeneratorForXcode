@@ -1,6 +1,7 @@
 @testable import TestProject
 
 class AugmentedClassSubscriptMock: AugmentedClassSubscript {
+
     var invokedSubscriptGetter = false
     var invokedSubscriptGetterCount = 0
     var stubbedSubscriptResult: Int! = 0
@@ -8,6 +9,7 @@ class AugmentedClassSubscriptMock: AugmentedClassSubscript {
     var invokedSubscriptSetterCount = 0
     var invokedSubscript: Int?
     var invokedSubscriptList = [Int]()
+
     override subscript() -> Int {
         set {
             invokedSubscriptSetter = true
@@ -21,6 +23,7 @@ class AugmentedClassSubscriptMock: AugmentedClassSubscript {
             return stubbedSubscriptResult
         }
     }
+
     var invokedSubscriptBGetter = false
     var invokedSubscriptBGetterCount = 0
     var invokedSubscriptBGetterParameters: (b: Int, Void)?
@@ -32,6 +35,7 @@ class AugmentedClassSubscriptMock: AugmentedClassSubscript {
     var invokedSubscriptBSetterParametersList = [(b: Int, Void)]()
     var invokedSubscriptB: Int?
     var invokedSubscriptBList = [Int]()
+
     override subscript(b: Int) -> Int {
         set {
             invokedSubscriptBSetter = true

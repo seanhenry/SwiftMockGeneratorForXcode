@@ -9,8 +9,10 @@
 @testable import TestProject
 
 class UTFMock: UTF {
+
     var invokedUtfCount4 = false
     var invokedUtfCount4Count = 0
+
     func utfCount4💐() {
         invokedUtfCount4 = true
         invokedUtfCount4Count += 1

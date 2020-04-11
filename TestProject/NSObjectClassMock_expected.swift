@@ -1,5 +1,3 @@
 @testable import TestProject
 
-class NSObjectClassMock: NSObjectClass, NSObjectProtocol {
-
-}
+class NSObjectClassMock: NSObjectClass, NSObjectProtocol {}

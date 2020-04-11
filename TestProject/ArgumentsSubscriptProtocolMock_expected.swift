@@ -1,6 +1,7 @@
 @testable import TestProject
 
 class ArgumentsSubscriptProtocolMock: ArgumentsSubscriptProtocol {
+
     var invokedSubscriptGetter = false
     var invokedSubscriptGetterCount = 0
     var invokedSubscriptGetterParameters: (a: Int, Void)?
@@ -12,6 +13,7 @@ class ArgumentsSubscriptProtocolMock: ArgumentsSubscriptProtocol {
     var invokedSubscriptSetterParametersList = [(a: Int, Void)]()
     var invokedSubscript: Int?
     var invokedSubscriptList = [Int]()
+
     subscript(a: Int) -> Int {
         set {
             invokedSubscriptSetter = true

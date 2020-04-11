@@ -1,6 +1,7 @@
 @testable import TestProject
 
 class MultipleVariableMock: MultipleVariable {
+
     var invokedASetter = false
     var invokedASetterCount = 0
     var invokedA: String?
@@ -8,6 +9,7 @@ class MultipleVariableMock: MultipleVariable {
     var invokedAGetter = false
     var invokedAGetterCount = 0
     var stubbedA: String! = ""
+
     override var a: String {
         set {
             invokedASetter = true

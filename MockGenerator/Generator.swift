@@ -13,21 +13,15 @@ public class Generator: ASTCommandImpl {
     public override var identifier: String { "codes.seanhenry.mockgenerator" }
 
     private let templateName: String
-    private let useTabsForIndentation: Bool
-    private let indentationWidth: Int
     private let resolver: Resolver
     private let trackLines: (Int) -> Void
 
     public init(
         projectURL: URL,
         templateName: String,
-        useTabsForIndentation: Bool,
-        indentationWidth: Int,
         trackLines: @escaping (Int) -> Void
     ) {
         self.templateName = templateName
-        self.useTabsForIndentation = useTabsForIndentation
-        self.indentationWidth = indentationWidth
         let sourceFiles = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
         self.resolver = ResolverFactory.createResolver(filePaths: Generator.filterUniqueFileNames(sourceFiles))
         self.trackLines = trackLines
@@ -66,7 +60,7 @@ public class Generator: ASTCommandImpl {
         }
         try buildMock(toFile: file, atElement: typeElement)
     }
-    
+
     private func buildMock(toFile file: Element, atElement element: TypeDeclaration) throws  {
         let mockClass = transformToMockClass(element: element)
         guard !isEmpty(mockClass: mockClass) else {
@@ -76,14 +70,15 @@ public class Generator: ASTCommandImpl {
         guard !mockLines.isEmpty else {
             throw error("Found inherited types but there was nothing to mock")
         }
-        let formatted = format(mockLines, relativeTo: element).joined(separator: "\n")
-        let mock = "class Mock {\n\(formatted)\n}"
+        let mockString = mockLines.joined(separator: "\n")
+        let mock = "class Mock {\n\(mockString)\n}"
         guard let codeBlock = try? parserFactory.make().parseFile(mock, url: nil).typeDeclarations.first?.codeBlock else {
             throw error("The resulting mock could not be parsed")
         }
         trackLines(mockLines.count)
         codeBlock.delete()
         element.codeBlock.swap(with: codeBlock)
+        formatterFactory.make().format(element)
     }
 
     private func isEmpty(mockClass: UseCasesMockClass) -> Bool {
@@ -105,10 +100,5 @@ public class Generator: ASTCommandImpl {
 
     private func transformToMockClass(element: Element) -> UseCasesMockClass {
         return TypeDeclarationTransformingVisitor.transformMock(element, resolver: resolver)
-    }
-
-    private func format(_ lines: [String], relativeTo element: Element) -> [String] {
-        return FormatUtil(useTabs: useTabsForIndentation, spaces: indentationWidth)
-                .format(lines, relativeTo: element)
     }
 }

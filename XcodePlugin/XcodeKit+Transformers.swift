@@ -17,7 +17,7 @@ public protocol SourceTextBuffer: class {
 }
 
 extension XCSourceEditorCommandInvocation: SourceEditorCommandInvocation {
-    
+
     public var sourceTextBuffer: SourceTextBuffer {
         return buffer as SourceTextBuffer
     }

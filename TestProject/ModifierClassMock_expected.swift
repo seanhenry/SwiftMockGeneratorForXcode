@@ -1,9 +1,11 @@
 @testable import TestProject
 
 class ModifierClassMock: ModifierClass {
+
     convenience init() {
         self.init(a: "")
     }
+
     var invokedBSetter = false
     var invokedBSetterCount = 0
     var invokedB: Int?
@@ -11,6 +13,7 @@ class ModifierClassMock: ModifierClass {
     var invokedBGetter = false
     var invokedBGetterCount = 0
     var stubbedB: Int! = 0
+
     override var b: Int {
         set {
             invokedBSetter = true
@@ -24,6 +27,7 @@ class ModifierClassMock: ModifierClass {
             return stubbedB
         }
     }
+
     var invokedCSetter = false
     var invokedCSetterCount = 0
     var invokedC: Int?
@@ -31,6 +35,7 @@ class ModifierClassMock: ModifierClass {
     var invokedCGetter = false
     var invokedCGetterCount = 0
     var stubbedC: Int! = 0
+
     override var c: Int {
         set {
             invokedCSetter = true
@@ -44,6 +49,7 @@ class ModifierClassMock: ModifierClass {
             return stubbedC
         }
     }
+
     var invokedDSetter = false
     var invokedDSetterCount = 0
     var invokedD: NSObject?
@@ -51,6 +57,7 @@ class ModifierClassMock: ModifierClass {
     var invokedDGetter = false
     var invokedDGetterCount = 0
     var stubbedD: NSObject!
+
     override var d: NSObject {
         set {
             invokedDSetter = true
@@ -64,6 +71,7 @@ class ModifierClassMock: ModifierClass {
             return stubbedD
         }
     }
+
     var invokedESetter = false
     var invokedESetterCount = 0
     var invokedE: NSObject?
@@ -71,6 +79,7 @@ class ModifierClassMock: ModifierClass {
     var invokedEGetter = false
     var invokedEGetterCount = 0
     var stubbedE: NSObject!
+
     override var e: NSObject {
         set {
             invokedESetter = true
@@ -84,6 +93,7 @@ class ModifierClassMock: ModifierClass {
             return stubbedE
         }
     }
+
     var invokedFSetter = false
     var invokedFSetterCount = 0
     var invokedF: NSObject?
@@ -91,6 +101,7 @@ class ModifierClassMock: ModifierClass {
     var invokedFGetter = false
     var invokedFGetterCount = 0
     var stubbedF: NSObject!
+
     override var f: NSObject {
         set {
             invokedFSetter = true
@@ -104,6 +115,7 @@ class ModifierClassMock: ModifierClass {
             return stubbedF
         }
     }
+
     var invokedGSetter = false
     var invokedGSetterCount = 0
     var invokedG: NSObject?
@@ -111,6 +123,7 @@ class ModifierClassMock: ModifierClass {
     var invokedGGetter = false
     var invokedGGetterCount = 0
     var stubbedG: NSObject!
+
     override var g: NSObject? {
         set {
             invokedGSetter = true
