@@ -24,7 +24,7 @@ class MemberTransformingVisitorTests: XCTestCase {
     }
 
     // MARK: - visit
-    
+
     func test_shouldTransformTypeIdentifier() {
         assertTypeIs("Type", UseCasesTypeIdentifier.self, "Type")
     }
@@ -166,6 +166,13 @@ class MemberTransformingVisitorTests: XCTestCase {
         assertParameter(method.parametersList[1], externalName: "b", internalName: "c", type: "D")
         assertParameter(method.parametersList[2], externalName: "_", internalName: "e", type: "F", isEscaping: true)
         XCTAssertEqual(method.declarationText, "func a(a: A, b c: D, _ e: @escaping F)")
+    }
+
+    func test_visit_shouldRemoveBackticksFromLetAndVar() {
+        let method = transformMethod("func a(`let`: A, `var`: B)")
+        assertParameter(method.parametersList[0], internalName: "let", type: "A")
+        assertParameter(method.parametersList[1], internalName: "var", type: "B")
+        XCTAssertEqual(method.declarationText, "func a(`let`: A, `var`: B)")
     }
 
     func test_visit_shouldTransformThrowingProtocolMethod() {

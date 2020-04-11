@@ -8,12 +8,22 @@ import AST
 class MockGeneratorTests: XCTestCase {
 
     var trackedLines: Int?
-    
+
     // The test project is copied to the resources directory build phases
     let testProject = Bundle(for: MockGeneratorTests.self).resourcePath! + "/TestProject"
 
+    override func setUp() {
+        super.setUp()
+        formatterFactory = FormatterFactory { DefaultFormatter(useTabs: false, indentationWidth: 4) }
+    }
+
     func test_generatesSimpleMock() {
         assertMockGeneratesExpected("SimpleProtocolMock")
+    }
+
+    func test_generatesSimpleMockWithTabs() {
+        formatterFactory = FormatterFactory { DefaultFormatter(useTabs: true, indentationWidth: 4) }
+        assertMockGeneratesExpected("TabSimpleProtocolMock")
     }
 
     func test_deletesMockBody() {
@@ -179,7 +189,7 @@ class MockGeneratorTests: XCTestCase {
     func test_subscriptInClass() {
         assertMockGeneratesExpected("ClassSubscriptMock")
     }
-    
+
     func test_overriddenSubscripts() {
         assertMockGeneratesExpected("AugmentedClassSubscriptMock")
     }
@@ -215,8 +225,6 @@ class MockGeneratorTests: XCTestCase {
             _ = try Generator(
                 projectURL: URL(fileURLWithPath: testProject),
                 templateName: "spy",
-                useTabsForIndentation: false,
-                indentationWidth: 4,
                 trackLines: { self.trackedLines = $0 }
             ).execute(buffer: buffer)
         }
@@ -238,8 +246,6 @@ class MockGeneratorTests: XCTestCase {
                 _ = try Generator(
                     projectURL: URL(fileURLWithPath: testProject),
                     templateName: "spy",
-                    useTabsForIndentation: false,
-                    indentationWidth: 4,
                     trackLines: { self.trackedLines = $0 }
                 ).execute(buffer: buffer)
             } catch {
@@ -276,7 +282,7 @@ class MockGeneratorTests: XCTestCase {
         let nsError = error as NSError?
         XCTAssertEqual(nsError?.localizedDescription, expectedError, line: line)
     }
-    
+
     private func readMock(named fileName: String) -> (String, String) {
         let mock = readFile(named: fileName + ".swift")
         let expected = readFile(named: fileName + "_expected.swift")
@@ -301,8 +307,6 @@ class MockGeneratorTests: XCTestCase {
             let generator = Generator(
                 projectURL: URL(fileURLWithPath: testProject),
                 templateName: templateName,
-                useTabsForIndentation: false,
-                indentationWidth: 4,
                 trackLines: { self.trackedLines = $0 }
             )
             let result = try CommandTestHelper().execute(buffer: buffer, command: generator)
