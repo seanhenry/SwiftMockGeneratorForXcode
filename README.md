@@ -254,15 +254,7 @@ If the above fails, then completely removing the plugin and downloading/installi
 
 Despite being called a Mock Generator, this plugin actually generates a spy, stub or dummy. The word 'mock', whilst not technically correct, has been used because test doubles such as spies, mocks, and stubs have become commonly known as mocks.
 
-## Build
-
-This project currently depends on some private libraries so it cannot currently be built by a third party.
-
 # Credits
-
-Many thanks to the contributors of [SourceKitten](https://github.com/jpsim/SourceKitten) for making such an easy-to-use wrapper around SourceKit.
-
-Many thanks to the contributors of [swift-ast](https://github.com/yanagiba/swift-ast) for a great lexer which has made writing a parser much easier.
 
 Many thanks to the contributors of [kotlin-native](https://github.com/JetBrains/kotlin-native) for a Kotlin LLVM backend which enables code sharing between the Xcode and AppCode plugins.
 
