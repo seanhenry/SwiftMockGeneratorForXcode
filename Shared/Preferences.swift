@@ -13,6 +13,8 @@ class Preferences {
     private let projectPathKey = "project.path"
     private let projectPathHistoryKey = "project.path.history"
     private let automaticallyDetectProjectPathKey = "project.path.autoDetect"
+    private let extensionBookmarkKey = "bookmarks.extension"
+    private let temporaryBookmarkKey = "bookmarks.temporary"
     private let sdkPathKey = "sdk.path" // This was once used
     private let moduleCachePathKey = "moduleCache.path" // This was once used
     private let platformKey = "platform" // This was once used
@@ -61,5 +63,37 @@ class Preferences {
         get {
             return userDefaults.object(forKey: automaticallyDetectProjectPathKey) as? Bool ?? true
         }
+    }
+
+    func extensionBookmark(forURL url: URL) -> Data? {
+        return extensionBookmarks[url.path]
+    }
+
+    func setExtensionBookmark(_ bookmark: Data, forURL url: URL) {
+        var bookmarks = extensionBookmarks
+        bookmarks[url.path] = bookmark
+        userDefaults.set(bookmarks, forKey: extensionBookmarkKey)
+        userDefaults.synchronize()
+    }
+
+    private var extensionBookmarks: [String: Data] {
+        return userDefaults.dictionary(forKey: extensionBookmarkKey)?
+            .compactMapValues { $0 as? Data } ?? [:]
+    }
+
+    func temporaryBookmark(forURL url: URL) -> Data? {
+        return temporaryBookmarks[url.path]
+    }
+
+    func setTemporaryBookmark(_ bookmark: Data, forURL url: URL) {
+        var bookmarks = temporaryBookmarks
+        bookmarks[url.path] = bookmark
+        userDefaults.set(bookmarks, forKey: temporaryBookmarkKey)
+        userDefaults.synchronize()
+    }
+
+    private var temporaryBookmarks: [String: Data] {
+        return userDefaults.dictionary(forKey: temporaryBookmarkKey)?
+            .compactMapValues { $0 as? Data } ?? [:]
     }
 }

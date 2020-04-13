@@ -37,6 +37,7 @@ class GenerateMockCommandTests: XCTestCase {
                 invokedSimpleMethodCount += 1
             }
         }
+
         """)
     }
 

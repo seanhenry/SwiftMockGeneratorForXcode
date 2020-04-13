@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -693,10 +692,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="610" height="193"/>
                                 <subviews>
                                     <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="geP-s4-QHR">
-                                        <rect key="frame" x="8" y="8" width="594" height="177"/>
+                                        <rect key="frame" x="8" y="-21" width="594" height="206"/>
                                         <subviews>
                                             <customView placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="17" translatesAutoresizingMaskIntoConstraints="NO" id="eff-9G-rXA" customClass="XcodeAccessView" customModule="MockGeneratorApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="160" width="594" height="17"/>
+                                                <rect key="frame" x="0.0" y="189" width="594" height="17"/>
                                                 <subviews>
                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="prk-fB-bOl">
                                                         <rect key="frame" x="0.0" y="0.0" width="594" height="17"/>
@@ -742,7 +741,7 @@
                                                 </connections>
                                             </customView>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cnF-nW-tKi">
-                                                <rect key="frame" x="-2" y="132" width="102" height="20"/>
+                                                <rect key="frame" x="-2" y="161" width="102" height="20"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Project path" id="OlE-51-ShT">
                                                     <font key="font" metaFont="systemSemibold" size="17"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -750,7 +749,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Phs-LO-OP4">
-                                                <rect key="frame" x="-2" y="108" width="224" height="18"/>
+                                                <rect key="frame" x="-2" y="137" width="224" height="18"/>
                                                 <buttonCell key="cell" type="check" title="Automatically detect project path" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="uDL-qi-lVL">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -760,16 +759,26 @@
                                                 </connections>
                                             </button>
                                             <stackView distribution="equalSpacing" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qoq-TC-fWq" userLabel="Auto detect stack view">
-                                                <rect key="frame" x="0.0" y="88" width="594" height="14"/>
+                                                <rect key="frame" x="0.0" y="88" width="594" height="43"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UO1-kO-sN0">
-                                                        <rect key="frame" x="-2" y="0.0" width="598" height="14"/>
+                                                        <rect key="frame" x="-2" y="29" width="598" height="14"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" title="Cannot find a project. Make sure a project is open in Xcode." id="fC7-MG-fX4">
                                                             <font key="font" metaFont="systemLight" size="11"/>
                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                     </textField>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Wz-di-eIz">
+                                                        <rect key="frame" x="-6" y="-7" width="241" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Give permission to read directory" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Oeh-Ex-mih">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="selectDirectory:" target="VQz-9A-PX1" id="gEo-Zo-Bhr"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="UO1-kO-sN0" firstAttribute="leading" secondItem="qoq-TC-fWq" secondAttribute="leading" id="O9X-v9-jVn"/>
@@ -777,8 +786,10 @@
                                                 </constraints>
                                                 <visibilityPriorities>
                                                     <integer value="1000"/>
+                                                    <integer value="1000"/>
                                                 </visibilityPriorities>
                                                 <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>

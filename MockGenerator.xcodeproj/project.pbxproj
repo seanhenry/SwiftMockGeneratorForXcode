@@ -27,9 +27,10 @@
 		14276C791F4F314600EA7753 /* InsertMockCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14276C781F4F314600EA7753 /* InsertMockCommand.swift */; };
 		142B023021709A97005DE573 /* UseCases.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 142B022F21709A85005DE573 /* UseCases.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		14451D351F5F05C500833C61 /* MemberTransformingVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF7A9B1705ADFFC0CB415 /* MemberTransformingVisitorTests.swift */; };
+		144EF1A12444CEB400C8EE9A /* NSView+Bookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144EF1A02444CEB400C8EE9A /* NSView+Bookmarks.swift */; };
 		145290EA1F981ED600947144 /* VersionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145290E91F981ED600947144 /* VersionView.swift */; };
 		1453D0A024425C5900340789 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1453D09F24425C5900340789 /* main.swift */; };
-		1453D0A524425C9400340789 /* genmock in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1453D09D24425C5900340789 /* genmock */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1453D0A524425C9400340789 /* genmock in Copy executable */ = {isa = PBXBuildFile; fileRef = 1453D09D24425C5900340789 /* genmock */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1453D0AB24425FAC00340789 /* MockGenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14276C611F4F312E00EA7753 /* MockGenerator.framework */; };
 		1453D0AD2444894000340789 /* GenerateMockCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1453D0AC2444894000340789 /* GenerateMockCommand.swift */; };
 		1453D0AF2444911600340789 /* GenerateMockCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1453D0AE2444911600340789 /* GenerateMockCommandTests.swift */; };
@@ -194,14 +195,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		1453D0A424425C6700340789 /* CopyFiles */ = {
+		1453D0A424425C6700340789 /* Copy executable */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 12;
+			dstSubfolderSpec = 6;
 			files = (
-				1453D0A524425C9400340789 /* genmock in CopyFiles */,
+				1453D0A524425C9400340789 /* genmock in Copy executable */,
 			);
+			name = "Copy executable";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		147437681F79737600241B8A /* Copy Test Project */ = {
@@ -251,6 +253,7 @@
 		14276C781F4F314600EA7753 /* InsertMockCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsertMockCommand.swift; sourceTree = "<group>"; };
 		142B022F21709A85005DE573 /* UseCases.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UseCases.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		142B023921709BC5005DE573 /* libGRMustache7-MacOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGRMustache7-MacOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		144EF1A02444CEB400C8EE9A /* NSView+Bookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Bookmarks.swift"; sourceTree = "<group>"; };
 		145290E91F981ED600947144 /* VersionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionView.swift; sourceTree = "<group>"; };
 		1453D09D24425C5900340789 /* genmock */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = genmock; sourceTree = BUILT_PRODUCTS_DIR; };
 		1453D09F24425C5900340789 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -490,6 +493,7 @@
 				14CA2D5F1F40007000900937 /* Info.plist */,
 				14CA2D561F40007000900937 /* AppDelegate.swift */,
 				35CDF41BB007A5C1F4180748 /* ManualProjectPathView.swift */,
+				144EF1A02444CEB400C8EE9A /* NSView+Bookmarks.swift */,
 				35CDF201B90CE8E6BB86393A /* PreferencesView.swift */,
 				145290E91F981ED600947144 /* VersionView.swift */,
 				14CA2D581F40007000900937 /* ViewController.swift */,
@@ -680,7 +684,7 @@
 				14CA2D511F40007000900937 /* Resources */,
 				14CA2D7B1F40009000900937 /* Embed App Extensions */,
 				14887ABB20FB858000D50A73 /* Embed Frameworks */,
-				1453D0A424425C6700340789 /* CopyFiles */,
+				1453D0A424425C6700340789 /* Copy executable */,
 			);
 			buildRules = (
 			);
@@ -951,6 +955,7 @@
 				145290EA1F981ED600947144 /* VersionView.swift in Sources */,
 				14B4BC2E208B0A620052A085 /* ProjectFinder.swift in Sources */,
 				35CDFAEF8D8C85FDC471B35A /* PreferencesView.swift in Sources */,
+				144EF1A12444CEB400C8EE9A /* NSView+Bookmarks.swift in Sources */,
 				35CDF670951C86B8934F8D27 /* XcodeProjectPathFinder.swift in Sources */,
 				14E9A2F9216EEABC00A677FA /* XcodeAccessImpl.swift in Sources */,
 			);

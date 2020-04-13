@@ -19,11 +19,13 @@ class ManualProjectPathView: NSStackView {
         panel.allowsMultipleSelection = false
         panel.canChooseDirectories = true
         panel.canChooseFiles = false
+        panel.allowedFileTypes = ["none"]
         let startingDirectory = self.startingDirectory()
         panel.directoryURL = URL(fileURLWithPath: startingDirectory)
         if panel.runModal() == NSApplication.ModalResponse.OK {
             preferences.projectPath = panel.directoryURL
             refreshHistory()
+            bookmark(panel.directoryURL)
         }
     }
 

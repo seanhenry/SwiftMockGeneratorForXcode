@@ -54,6 +54,7 @@ public class GenerateMockCommand: MockGenerator {
         \(testableImportDeclarations)
 
         class \(className): \(targetName) {}
+        
         """
         return try parserFactory.make().parseFile(contents, url: nil)
     }

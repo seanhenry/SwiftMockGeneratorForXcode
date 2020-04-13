@@ -6,6 +6,7 @@ class PreferencesTests: XCTestCase {
     var preferences: Preferences!
     let testURL = URL(string: "path")!
     let testURL2 = URL(string: "path2")!
+    let testData = Data()
     var defaults: UserDefaults!
 
     override func setUp() {
@@ -74,5 +75,29 @@ class PreferencesTests: XCTestCase {
         XCTAssertFalse(preferences.automaticallyDetectProjectPath)
         preferences.automaticallyDetectProjectPath = true
         XCTAssert(preferences.automaticallyDetectProjectPath)
+    }
+
+    // MARK: - extensionBookmarks
+
+    func test_extensionBookmarks_returnsNilWhenNoBookmarks() {
+        XCTAssertNil(preferences.extensionBookmark(forURL: testURL))
+    }
+
+    func test_extensionBookmarks_returnsDataWhenBookmarked() {
+        preferences.setExtensionBookmark(testData, forURL: testURL)
+        XCTAssertEqual(preferences.extensionBookmark(forURL: testURL), testData)
+        XCTAssertNil(preferences.extensionBookmark(forURL: testURL2))
+    }
+
+    // MARK: - temporaryBookmarks
+
+    func test_temporaryBookmarks_returnsNilWhenNoBookmarks() {
+        XCTAssertNil(preferences.temporaryBookmark(forURL: testURL))
+    }
+
+    func test_temporaryBookmarks_returnsDataWhenBookmarked() {
+        preferences.setTemporaryBookmark(testData, forURL: testURL)
+        XCTAssertEqual(preferences.temporaryBookmark(forURL: testURL), testData)
+        XCTAssertNil(preferences.temporaryBookmark(forURL: testURL2))
     }
 }

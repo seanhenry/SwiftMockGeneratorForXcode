@@ -41,10 +41,28 @@ class PreferencesView: NSView {
     }
 
     @objc private func detectProjectPath() {
-        if let project = XcodeProjectPathFinder().findOpenProjectPath() {
+        if let project = projectPath {
             projectPathField.stringValue = project.path
         } else {
             projectPathField.stringValue = "Cannot find a project. Make sure a project is open in Xcode."
+        }
+    }
+
+    private var projectPath: URL? {
+        return XcodeProjectPathFinder().findOpenProjectPath()
+    }
+
+    @IBAction private func selectDirectory(_ sender: Any?) {
+        let panel = NSOpenPanel()
+        panel.message = "Choose your project directory"
+        panel.prompt = "Grant permission"
+        panel.allowedFileTypes = ["none"]
+        panel.allowsOtherFileTypes = false
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.directoryURL = projectPath
+        if panel.runModal() == NSApplication.ModalResponse.OK {
+            bookmark(panel.url)
         }
     }
 }
