@@ -1,6 +1,6 @@
 import UseCases
 import AST
-import Resolver
+import SwiftyKit
 import Foundation
 
 class MemberTransformingVisitor: RecursiveElementVisitor {

@@ -4,6 +4,7 @@ import Resolver
 import AST
 import Parser
 import TestHelper
+import SwiftyKit
 @testable import MockGenerator
 
 class MemberTransformingVisitorTests: XCTestCase {

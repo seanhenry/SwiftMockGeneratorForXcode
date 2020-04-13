@@ -1,5 +1,5 @@
 import AST
-import Resolver
+import SwiftyKit
 import UseCases
 
 class VariableTypeResolver: RecursiveElementVisitor {

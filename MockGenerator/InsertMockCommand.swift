@@ -1,32 +1,32 @@
 import Foundation
 import UseCases
 import AST
-import Resolver
+import class Resolver.ResolverFactory
 import Algorithms
 import SwiftyKit
 import Formatter
 
-public class Generator: ASTCommandImpl {
+
+public class InsertMockCommand: ASTCommandImpl {
 
     public override var name: String { "Mock Generator" }
 
     public override var identifier: String { "codes.seanhenry.mockgenerator" }
 
     private let templateName: String
-    private let resolver: Resolver
     private let trackLines: (Int) -> Void
 
-    public init(
-        projectURL: URL,
-        templateName: String,
-        trackLines: @escaping (Int) -> Void
-    ) {
+
+    public init(projectURL: URL, templateName: String, trackLines: @escaping (Int) -> Void) {
         self.templateName = templateName
-        let sourceFiles = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
-        self.resolver = ResolverFactory.createResolver(filePaths: Generator.filterUniqueFileNames(sourceFiles))
         self.trackLines = trackLines
+        let sourceFiles = SourceFileFinder(projectRoot: projectURL).findSourceFiles()
+        resolverFactory = .init {
+            ResolverFactory.createResolver(filePaths: InsertMockCommand.filterUniqueFileNames(sourceFiles))
+        }
         super.init()
     }
+
 
     private static func filterUniqueFileNames(_ fileNames: [URL]) -> [String] {
         var sourceFileSet = Set<String>()
@@ -41,18 +41,29 @@ public class Generator: ASTCommandImpl {
         }
     }
 
+
     private func error(_ description: String) -> Error {
         return NSError(domain: "MockGenerator", code: 1, userInfo: [NSLocalizedDescriptionKey: description])
     }
+
 
     public override func execute(buffer: TextBuffer, file: File) throws {
         guard let selection = buffer.selectionRange.first?.start else {
             throw error("No selections. Place the cursor on a mock class declaration")
         }
-        guard let elementUnderCaret = CaretUtil().findElementUnderCaret(in: file, line: selection.line, column: selection.column, type: Element.self) else {
+        guard let elementUnderCaret = CaretUtil().findElementUnderCaret(
+            in: file,
+            line: selection.line,
+            column: selection.column,
+            type: Element.self
+        )
+        else {
             throw error("No Swift element found under the cursor")
         }
-        guard let typeElement = (elementUnderCaret as? TypeDeclaration) ?? ElementTreeUtil().findParentType(elementUnderCaret) else {
+        guard let typeElement = (elementUnderCaret as? TypeDeclaration) ?? ElementTreeUtil().findParentType(
+            elementUnderCaret
+        )
+        else {
             throw error("Place the cursor on a mock class declaration")
         }
         guard let types = typeElement.typeInheritanceClause?.inheritedTypes, types.count > 0 else {
@@ -61,7 +72,8 @@ public class Generator: ASTCommandImpl {
         try buildMock(toFile: file, atElement: typeElement)
     }
 
-    private func buildMock(toFile file: Element, atElement element: TypeDeclaration) throws  {
+
+    private func buildMock(toFile file: Element, atElement element: TypeDeclaration) throws {
         let mockClass = transformToMockClass(element: element)
         guard !isEmpty(mockClass: mockClass) else {
             throw error("Could not find a class or protocol on \(element.name)")
@@ -72,7 +84,11 @@ public class Generator: ASTCommandImpl {
         }
         let mockString = mockLines.joined(separator: "\n")
         let mock = "class Mock {\n\(mockString)\n}"
-        guard let codeBlock = try? parserFactory.make().parseFile(mock, url: nil).typeDeclarations.first?.codeBlock else {
+        guard let codeBlock = try? parserFactory.make().parseFile(
+            mock,
+            url: nil
+        ).typeDeclarations.first?.codeBlock
+        else {
             throw error("The resulting mock could not be parsed")
         }
         trackLines(mockLines.count)
@@ -81,9 +97,11 @@ public class Generator: ASTCommandImpl {
         formatterFactory.make().format(element)
     }
 
+
     private func isEmpty(mockClass: UseCasesMockClass) -> Bool {
         return mockClass.protocols.isEmpty && mockClass.inheritedClass == nil
     }
+
 
     private func getMockBody(from mockClass: UseCasesMockClass) -> [String] {
         let templateName = self.templateName
@@ -98,7 +116,9 @@ public class Generator: ASTCommandImpl {
         return view.result
     }
 
+
     private func transformToMockClass(element: Element) -> UseCasesMockClass {
-        return TypeDeclarationTransformingVisitor.transformMock(element, resolver: resolver)
+        return TypeDeclarationTransformingVisitor.transformMock(element, resolver: resolverFactory.make())
     }
+
 }

@@ -3,6 +3,7 @@ import UseCases
 import AST
 import TestHelper
 import Resolver
+import SwiftyKit
 @testable import MockGenerator
 
 class TypeResolverVisitorTests: XCTestCase {

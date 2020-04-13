@@ -28,7 +28,7 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
             let projectURL = try getProjectURLOnMainThread()
             _ = projectURL.startAccessingSecurityScopedResource()
             defer { projectURL.stopAccessingSecurityScopedResource() }
-            let instructions = try Generator(
+            let instructions = try InsertMockCommand(
                 projectURL: projectURL,
                 templateName: templateName,
                 useTabsForIndentation: invocation.sourceTextBuffer.usesTabsForIndentation,

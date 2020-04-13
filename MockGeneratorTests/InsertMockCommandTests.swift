@@ -5,12 +5,12 @@ import SwiftyKit
 import AST
 @testable import MockGenerator
 
-class MockGeneratorTests: XCTestCase {
+class InsertMockCommandTests: XCTestCase {
 
     var trackedLines: Int?
 
     // The test project is copied to the resources directory build phases
-    let testProject = Bundle(for: MockGeneratorTests.self).resourcePath! + "/TestProject"
+    let testProject = Bundle(for: InsertMockCommandTests.self).resourcePath! + "/TestProject"
 
     override func setUp() {
         super.setUp()
@@ -222,7 +222,7 @@ class MockGeneratorTests: XCTestCase {
             let buffer = try TestTextBuffer.builder(buffer: file)
                 .findSelections()
                 .build()
-            _ = try Generator(
+            _ = try InsertMockCommand(
                 projectURL: URL(fileURLWithPath: testProject),
                 templateName: "spy",
                 trackLines: { self.trackedLines = $0 }
@@ -243,7 +243,7 @@ class MockGeneratorTests: XCTestCase {
                 .findSelections()
                 .build()
             do {
-                _ = try Generator(
+                _ = try InsertMockCommand(
                     projectURL: URL(fileURLWithPath: testProject),
                     templateName: "spy",
                     trackLines: { self.trackedLines = $0 }
@@ -304,7 +304,7 @@ class MockGeneratorTests: XCTestCase {
             let buffer = try TestTextBuffer.builder(buffer: mock)
                 .findSelections()
                 .build()
-            let generator = Generator(
+            let generator = InsertMockCommand(
                 projectURL: URL(fileURLWithPath: testProject),
                 templateName: templateName,
                 trackLines: { self.trackedLines = $0 }
