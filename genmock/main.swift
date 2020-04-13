@@ -3,6 +3,23 @@ import Foundation
 import SwiftyKit
 import MockGenerator
 
+func validateTargetNames(_ targetNames: [String]) throws -> [String] {
+    if targetNames.isEmpty {
+        throw error("You must specify at least one --target-name")
+    }
+    return targetNames
+}
+
+func validateTemplateName(_ templateName: String) throws -> String {
+    guard validTemplateNames.contains(templateName) else {
+        throw error("You must choose a valid template name: \(formattedValidTemplateNames)")
+    }
+    return templateName
+}
+
+var formattedValidTemplateNames: String = validTemplateNames.joined(separator: "|")
+let validTemplateNames = ["spy", "stub", "dummy", "partial"]
+
 command(
     Argument<String>(
         "project-directory",
@@ -74,20 +91,3 @@ command(
         ).execute()
     }
 }.run()
-
-func validateTargetNames(_ targetNames: [String]) throws -> [String] {
-    if targetNames.isEmpty {
-        throw error("You must specify at least one --target-name")
-    }
-    return targetNames
-}
-
-func validateTemplateName(_ templateName: String) throws -> String {
-    guard validTemplateNames.contains(templateName) else {
-        throw error("You must choose a valid template name: \(formattedValidTemplateNames)")
-    }
-    return templateName
-}
-
-var formattedValidTemplateNames: String = validTemplateNames.joined(separator: "|")
-let validTemplateNames = ["spy", "stub", "dummy", "partial"]
