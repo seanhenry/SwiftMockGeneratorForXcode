@@ -1,7 +1,7 @@
 # Swift Mock Generator Xcode Source Editor Extension
 ![Mock Generator Icon](readme/AppIcon_256.png)
 
-An Xcode extension (plugin) to generate [spy](#what-is-a-spy), [stub](#what-is-a-stub), [dummy](#what-is-a-dummy), and [partial spy](#what-is-a-partial-spy) classes automatically.
+An Xcode extension (plugin) and command line tool to generate [spy](#what-is-a-spy), [stub](#what-is-a-stub), [dummy](#what-is-a-dummy), and [partial spy](#what-is-a-partial-spy) classes automatically.
 
 ![Xcode mock generator](readme/XcodeMockGenerator.gif)
 
@@ -17,6 +17,26 @@ An Xcode extension (plugin) to generate [spy](#what-is-a-spy), [stub](#what-is-a
 - Go to `System Preferences -> Extensions -> Xcode Source Editor` and make sure `Mock Generator` is enabled.
 - Go to `System Preferences -> Security & Privacy -> Privacy -> Automation` and make sure `Swift Mock Generator` is enabled.
 - Open Xcode
+
+## Sandboxing
+
+This extension is fully sandboxed which means you need to give permission to read your project files before using it.
+
+### Give permission when automatically detecting the project path
+
+- Open the companion app.
+- Press "Give permission to read directory".
+- Select the directory and press "Grant permission".
+- In Xcode, generate your test double.
+
+### Give permission when manually choosing the project path
+
+- Open the companion app.
+- Press the select directory button.
+- Select the directory and press "Open".
+- In Xcode, generate your test double.
+
+**Please note if using manual project paths before v0.25 you will have to select your project path again.**
 
 ## How to create a new Swift test double
 
@@ -46,6 +66,18 @@ There's no need to delete the old code. Simply place the cursor anywhere inside 
 The mock generator will replace anything that is currently in your class with the generated test double.
 
 Undo is supported for Xcode plugins but you're safer to use a version control system such as `git` in the event of unexpectedly generating a test double.
+
+## Using the command line tool
+
+For convenience, create a symbolic link to the CLI.
+
+```
+$ ln -s "/Applications/Swift Mock Generator for Xcode.app/Contents/MacOS/genmock" /usr/local/bin/genmock
+```
+
+Use `$ genmock --help` for a list of options.
+
+See how this project generates its mocks [here](https://github.com/seanhenry/SwiftMockGeneratorForXcode/blob/master/genmocks.sh).
 
 ## Features
 
