@@ -1,4 +1,3 @@
-#include "../SwiftToolkit/config/Release.xcconfig"
 #include "Shared.xcconfig"
 
 FRAMEWORK_SEARCH_PATHS = $DEVELOPER_FRAMEWORKS_DIR $PROJECT_DIR/lib/Release
@@ -7,4 +6,11 @@ LIBRARY_SEARCH_PATHS = $PROJECT_DIR/lib/Release
 // Frameworks only find the SwiftToolkit.swiftmodule (which doesn't exist) so we point the framework to include all the swiftmodule files.
 SWIFT_INCLUDE_PATHS = $PROJECT_DIR/lib/Release/SwiftToolkit.framework/Modules
 OTHER_SWIFT_FLAGS = -Xcc -fmodule-map-file=$PROJECT_DIR/lib/Release/include/GRMustache/module.modulemap
-XPC_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorXPC
+
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+SWIFT_OPTIMIZATION_LEVEL = -O
+ENABLE_NS_ASSERTIONS = NO
+MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE
+GCC_OPTIMIZATION_LEVEL = s
+SWIFT_COMPILATION_MODE = wholemodule
+ENABLE_TESTABILITY = NO

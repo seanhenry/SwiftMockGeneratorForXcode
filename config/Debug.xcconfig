@@ -7,5 +7,13 @@ LIBRARY_SEARCH_PATHS = $PROJECT_DIR/lib/Debug
 // Frameworks only find the SwiftToolkit.swiftmodule (which doesn't exist) so we point the framework to include all the swiftmodule files.
 SWIFT_INCLUDE_PATHS = $PROJECT_DIR/lib/Debug/SwiftToolkit.framework/Modules
 OTHER_SWIFT_FLAGS = -Xcc -fmodule-map-file=$PROJECT_DIR/lib/Debug/include/GRMustache/module.modulemap
-XPC_BUNDLE_IDENTIFIER = codes.seanhenry.MockGeneratorXPC.debug
+
+DEBUG_INFORMATION_FORMAT = dwarf
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+ENABLE_NS_ASSERTIONS = YES
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG
 ONLY_ACTIVE_ARCH = YES
+ENABLE_TESTABILITY = YES
+GCC_PREPROCESSOR_DEFINITIONS = DEBUG=1
+MTL_ENABLE_DEBUG_INFO = YES
+GCC_OPTIMIZATION_LEVEL = 0
