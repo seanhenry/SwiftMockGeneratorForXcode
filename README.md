@@ -260,6 +260,8 @@ Many thanks to the contributors of [kotlin-native](https://github.com/JetBrains/
 
 Many thanks to the contributors of [GRMustache](https://github.com/groue/GRMustache) for a enabling great Mustache test double templates.
 
+Many thanks to the contributors of [Commander](https://github.com/kylef/Commander) for enabling an easy-to-use CLI.
+
 And special thanks to everyone who is contributing by raising issues and feature requests.
 
 This tool wouldn't exist without you all!

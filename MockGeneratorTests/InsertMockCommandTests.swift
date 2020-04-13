@@ -7,16 +7,6 @@ import AST
 
 class InsertMockCommandTests: XCTestCase {
 
-    var trackedLines: Int?
-
-    // The test project is copied to the resources directory build phases
-    let testProject = Bundle(for: InsertMockCommandTests.self).resourcePath! + "/TestProject"
-
-    override func setUp() {
-        super.setUp()
-        formatterFactory = FormatterFactory { DefaultFormatter(useTabs: false, indentationWidth: 4) }
-    }
-
     func test_generatesSimpleMock() {
         assertMockGeneratesExpected("SimpleProtocolMock")
     }
@@ -24,6 +14,7 @@ class InsertMockCommandTests: XCTestCase {
     func test_generatesSimpleMockWithTabs() {
         formatterFactory = FormatterFactory { DefaultFormatter(useTabs: true, indentationWidth: 4) }
         assertMockGeneratesExpected("TabSimpleProtocolMock")
+        formatterFactory = FormatterFactory { DefaultFormatter(useTabs: false, indentationWidth: 4) }
     }
 
     func test_deletesMockBody() {
@@ -222,11 +213,7 @@ class InsertMockCommandTests: XCTestCase {
             let buffer = try TestTextBuffer.builder(buffer: file)
                 .findSelections()
                 .build()
-            _ = try InsertMockCommand(
-                projectURL: URL(fileURLWithPath: testProject),
-                templateName: "spy",
-                trackLines: { self.trackedLines = $0 }
-            ).execute(buffer: buffer)
+            _ = try InsertMockCommand(templateName: "spy").execute(buffer: buffer)
         }
     }
 
@@ -243,11 +230,7 @@ class InsertMockCommandTests: XCTestCase {
                 .findSelections()
                 .build()
             do {
-                _ = try InsertMockCommand(
-                    projectURL: URL(fileURLWithPath: testProject),
-                    templateName: "spy",
-                    trackLines: { self.trackedLines = $0 }
-                ).execute(buffer: buffer)
+                _ = try InsertMockCommand(templateName: "spy").execute(buffer: buffer)
             } catch {
                 return
             }
@@ -257,11 +240,6 @@ class InsertMockCommandTests: XCTestCase {
 
     func test_supportsFoldersWithSpacesInTheirSpace() {
         assertMockGeneratesExpected("Test Folder With Spaces/FolderSpacesMock")
-    }
-
-    func test_tracksNumberOfGeneratedLines() {
-        assertMockGeneratesExpected("SimpleProtocolMock")
-        XCTAssertEqual(trackedLines, 6)
     }
 
     // MARK: - Helpers
@@ -304,11 +282,7 @@ class InsertMockCommandTests: XCTestCase {
             let buffer = try TestTextBuffer.builder(buffer: mock)
                 .findSelections()
                 .build()
-            let generator = InsertMockCommand(
-                projectURL: URL(fileURLWithPath: testProject),
-                templateName: templateName,
-                trackLines: { self.trackedLines = $0 }
-            )
+            let generator = InsertMockCommand(templateName: templateName)
             let result = try CommandTestHelper().execute(buffer: buffer, command: generator)
             return (result.lines, nil)
         } catch {

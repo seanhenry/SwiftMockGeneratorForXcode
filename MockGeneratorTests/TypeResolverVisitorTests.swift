@@ -15,7 +15,7 @@ class TypeResolverVisitorTests: XCTestCase {
     var array: ArrayType!
     var dictionary: DictionaryType!
     var optional: OptionalType!
-    var mockResolver: MockResolver!
+    var resolverSpy: ResolverSpy!
 
     override func setUp() {
         super.setUp()
@@ -25,13 +25,13 @@ class TypeResolverVisitorTests: XCTestCase {
         array = createArray(type)
         dictionary = createDictionary(type, type)
         optional = createOptional(type)
-        mockResolver = MockResolver()
-        visitor = TypeResolverVisitor(resolver: mockResolver)
+        resolverSpy = ResolverSpy()
+        visitor = TypeResolverVisitor(resolver: resolverSpy)
     }
 
     override func tearDown() {
         visitor = nil
-        mockResolver = nil
+        resolverSpy = nil
         genericClause = nil
         classType = nil
         type = nil
@@ -121,30 +121,13 @@ class TypeResolverVisitorTests: XCTestCase {
 
     func test_visit_shouldTransformToTypealiasType() {
         let typeAlias = try! ParserTestHelper.parseTypealias("typealias A = T")
-        mockResolver.stubbedResolveResult = typeAlias
+        resolverSpy.stubbedResolveResult = typeAlias
         let aliasedType = createType("A")
         aliasedType.accept(visitor)
         XCTAssertEqual(visitor.resolvedType?.text, "T")
     }
 
     // MARK: - Helpers
-
-    class MockResolver: Resolver {
-
-        var invokedResolve = false
-        var invokedResolveCount = 0
-        var invokedResolveParameters: (element: Element, Void)?
-        var invokedResolveParametersList = [(element: Element, Void)]()
-        var stubbedResolveResult: Element!
-
-        func resolve(_ element: Element) -> Element? {
-            invokedResolve = true
-            invokedResolveCount += 1
-            invokedResolveParameters = (element, ())
-            invokedResolveParametersList.append((element, ()))
-            return stubbedResolveResult
-        }
-    }
 
     private func createType(_ name: String) -> Type {
         return try! ParserTestHelper.parseType(name)
@@ -163,10 +146,10 @@ class TypeResolverVisitorTests: XCTestCase {
     }
 
     private func stubResolveToGenericClause() {
-        mockResolver.stubbedResolveResult = genericClause
+        resolverSpy.stubbedResolveResult = genericClause
     }
 
     private func stubResolveToNormalType() {
-        mockResolver.stubbedResolveResult = classType
+        resolverSpy.stubbedResolveResult = classType
     }
 }

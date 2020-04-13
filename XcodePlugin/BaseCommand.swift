@@ -4,37 +4,39 @@ import SwiftyKit
 import MockGenerator
 import AppKit
 
+
 open class BaseCommand: NSObject, XCSourceEditorCommand {
 
     open var templateName: String {
         fatalError("override me")
     }
 
-    public func perform(with invocation: XCSourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> ()) {
+
+    public func perform(
+        with invocation: XCSourceEditorCommandInvocation,
+        completionHandler: @escaping (Error?) -> ()
+    ) {
         perform(with: invocation as SourceEditorCommandInvocation, completionHandler: completionHandler)
     }
 
-    func perform(with invocation: SourceEditorCommandInvocation, completionHandler: @escaping (Error?) -> ()) {
-        formatterFactory = FormatterFactory {
-            DefaultFormatter(
-                useTabs: invocation.sourceTextBuffer.usesTabsForIndentation,
-                indentationWidth: invocation.sourceTextBuffer.indentationWidth
-            )
-        }
+
+    func perform(
+        with invocation: SourceEditorCommandInvocation,
+        completionHandler: @escaping (Error?) -> ()
+    ) {
         invocation.cancellationHandler = {
             completionHandler(nil)
         }
         do {
             let projectURL = try getProjectURLOnMainThread()
             _ = projectURL.startAccessingSecurityScopedResource()
-            defer { projectURL.stopAccessingSecurityScopedResource() }
-            let instructions = try InsertMockCommand(
+            setUpSwifty(
                 projectURL: projectURL,
-                templateName: templateName,
-                useTabsForIndentation: invocation.sourceTextBuffer.usesTabsForIndentation,
-                indentationWidth: invocation.sourceTextBuffer.indentationWidth,
-                trackLines: { [weak self] in self?.track(lineCount: $0) }
+                useTabs: invocation.sourceTextBuffer.usesTabsForIndentation,
+                indentationWidth: invocation.sourceTextBuffer.indentationWidth
             )
+            defer { projectURL.stopAccessingSecurityScopedResource() }
+            let instructions = try InsertMockCommand(templateName: templateName)
                 .execute(buffer: TextBufferImpl(invocation.sourceTextBuffer))
             let selections = NSMutableArray()
             try instructions.forEach { instruction in
@@ -43,10 +45,10 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
             transformSelections(in: invocation.sourceTextBuffer.selections, selections)
             completionHandler(nil)
         } catch {
-            track(error)
             completionHandler(error)
         }
     }
+
 
     private func transformSelections(in selections: NSMutableArray, _ toTransform: NSMutableArray) {
         selections.removeAllObjects()
@@ -55,6 +57,7 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
             .map { $0.toXCSourceTextRange() }
             .forEach { selections.add($0) }
     }
+
 
     private func getProjectURLOnMainThread() throws -> URL {
         if Thread.isMainThread {
@@ -65,28 +68,15 @@ open class BaseCommand: NSObject, XCSourceEditorCommand {
         }
     }
 
+
     private func getProjectURL() throws -> URL {
-        let url = try ProjectFinder(
-            projectFinder: XcodeProjectPathFinder(),
-            preferences: Preferences()
-        )
+        let url = try ProjectFinder(projectFinder: XcodeProjectPathFinder(), preferences: Preferences())
             .getProjectPath()
         return try BookmarkedURL.bookmarkedURL(url: url)
     }
 
-    private func track(lineCount: Int) {
-        let tracker = GoogleAnalyticsTracker()
-        tracker.track(category: templateName, action: "generated", value: lineCount)
-    }
-
-    private func track(_ error: Error?) {
-        let tracker = GoogleAnalyticsTracker()
-        if let error = error {
-            let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-            tracker.track(category: templateName, action: "\(version)_\(error.localizedDescription)")
-        }
-    }
 }
+
 
 extension SelectionRange {
 
@@ -96,5 +86,6 @@ extension SelectionRange {
             end: XCSourceTextPosition(line: end.line, column: end.column)
         )
     }
+
 }
 
