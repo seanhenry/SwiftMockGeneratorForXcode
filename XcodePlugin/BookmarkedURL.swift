@@ -16,7 +16,7 @@ enum BookmarkedURL {
             return bookmarkedURL
         }
         throw error(
-            "The directory '\(url.lastPathComponent)' could not be opened. Grant permission in the componion app."
+            "The directory '\(url.lastPathComponent)' could not be opened. Grant permission in the companion app."
         )
     }
 
