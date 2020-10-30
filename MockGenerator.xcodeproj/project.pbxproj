@@ -95,6 +95,8 @@
 		35CDFCCC54AA20F2E8E375D6 /* TypeDeclarationTransformingVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF6D840276DE36906BC4C /* TypeDeclarationTransformingVisitor.swift */; };
 		35CDFD1935A027AD6624A741 /* VariableTypeResolverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDFFCFBA4A510F93250CFF /* VariableTypeResolverTests.swift */; };
 		35CDFF1EBDCD49B97A999ABA /* ManualProjectPathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CDF41BB007A5C1F4180748 /* ManualProjectPathView.swift */; };
+		BF14E748254C57D90010956B /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F866EF20D90C3A00E79758 /* XcodeKit.framework */; };
+		BF14E749254C57D90010956B /* XcodeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14F866EF20D90C3A00E79758 /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,6 +243,17 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BF14E74A254C57D90010956B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BF14E749254C57D90010956B /* XcodeKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -381,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14CA2D6C1F40008F00900937 /* Cocoa.framework in Frameworks */,
+				BF14E748254C57D90010956B /* XcodeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +722,7 @@
 				14CA2D651F40008F00900937 /* Sources */,
 				14CA2D661F40008F00900937 /* Frameworks */,
 				14CA2D671F40008F00900937 /* Resources */,
+				BF14E74A254C57D90010956B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
