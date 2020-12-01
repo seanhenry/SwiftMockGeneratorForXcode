@@ -1,0 +1,700 @@
+
+ËH
+platform
+AppKit
+NSViewController
+viewController
+,NSViewControllerPresentationAnimatorProtocol
+animator
+kotlin
+Unit
+kotlinx
+cinterop
+
+ObjCMethod
+selector
+presentViewController:animator:
+encoding
+v32@0:8@16@24
+isStret
+presentViewController
+dismissViewController:
+
+v24@0:8@16
+dismissViewController
+Any
+sender
+dismissController:
+dismissController
+collections
+List
+presentedViewControllers
+@16@0:8
+presentingViewController
+presentViewControllerAsSheet:
+presentViewControllerAsSheet
+#presentViewControllerAsModalWindow:
+"presentViewControllerAsModalWindow
+CValue
+CoreGraphics
+CGRect
+
+Foundation
+NSRect
+asPopoverRelativeToRect
+NSView
+ofView
+ULong
+
+NSRectEdge
+preferredEdge
+Long
+NSPopoverBehavior
+behavior
+LpresentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:
+5v80@0:8@16{CGRect={CGPoint=dd}{CGSize=dd}}24@56Q64q72
+fromViewController
+toViewController
+!NSViewControllerTransitionOptions
+options
+	Function0
+completionHandler
+HtransitionFromViewController:toViewController:options:completionHandler:
+v48@0:8@16@24Q32@?40
+transitionFromViewController
+childViewController
+addChildViewController:
+addChildViewController
+removeFromParentViewController
+v16@0:8
+darwin
+	NSInteger
+atIndex
+"insertChildViewController:atIndex:
+v32@0:8@16q24
+insertChildViewController
+index
+!removeChildViewControllerAtIndex:
+
+v24@0:8q16
+ removeChildViewControllerAtIndex
+/preferredContentSizeDidChangeForViewController:
+.preferredContentSizeDidChangeForViewController
+CGSize
+NSSize
+newSize
+viewWillTransitionToSize:
+v32@0:8{CGSize=dd}16
+viewWillTransitionToSize
+parentViewController
+childViewControllers
+setChildViewControllers:
+setChildViewControllers
+NSStoryboard
+
+storyboard
+NSExtensionContext
+extensionContext
+sourceItemView
+setSourceItemView:
+setSourceItemView
+CGPoint
+NSPoint
+preferredScreenOrigin
+{CGPoint=dd}16@0:8
+setPreferredScreenOrigin:
+v32@0:8{CGPoint=dd}16
+setPreferredScreenOrigin
+preferredMinimumSize
+{CGSize=dd}16@0:8
+preferredMaximumSize
+NSIndexPathMeta
+item
+	inSection
+NSIndexPath
+indexPathForItem:inSection:
+@32@0:8q16q24
+indexPathForItem
+q16@0:8
+section
+	NSSetMeta
+	indexPath
+Set
+setWithCollectionViewIndexPath:
+
+@24@0:8@16
+setWithCollectionViewIndexPath
+
+indexPaths
+ setWithCollectionViewIndexPaths:
+setWithCollectionViewIndexPaths
+NSSet
+NSEnumerationOptions
+opts
+	Function2
+CPointer
+BooleanVarOf
+Boolean
+
+BooleanVar
+
+usingBlock
+*enumerateIndexPathsWithOptions:usingBlock:
+v32@0:8Q16@?24
+enumerateIndexPathsWithOptions
+NSCollectionView
+object
+NSCollectionViewItem
+newItemForRepresentedObject:
+internal
+CCall
+ReturnsRetained
+newItemForRepresentedObject
+itemPrototype
+setItemPrototype:
+setItemPrototype
+
+NSUInteger
+maxNumberOfRows
+Q16@0:8
+setMaxNumberOfRows:
+
+v24@0:8Q16
+setMaxNumberOfRows
+maxNumberOfColumns
+setMaxNumberOfColumns:
+setMaxNumberOfColumns
+minItemSize
+setMinItemSize:
+setMinItemSize
+maxItemSize
+setMaxItemSize:
+setMaxItemSize
+NSCollectionViewLayout
+prepareLayout
+rect
+"layoutAttributesForElementsInRect:
+)@48@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16
+!layoutAttributesForElementsInRect
+ NSCollectionViewLayoutAttributes
+#layoutAttributesForItemAtIndexPath:
+"layoutAttributesForItemAtIndexPath
+String
+(NSCollectionViewSupplementaryElementKind
+elementKind
+atIndexPath
+7layoutAttributesForSupplementaryViewOfKind:atIndexPath:
+@32@0:8@16@24
+*layoutAttributesForSupplementaryViewOfKind
+%NSCollectionViewDecorationElementKind
+4layoutAttributesForDecorationViewOfKind:atIndexPath:
+'layoutAttributesForDecorationViewOfKind
+pointInCollectionView
+%layoutAttributesForDropTargetAtPoint:
+@32@0:8{CGPoint=dd}16
+$layoutAttributesForDropTargetAtPoint
+/layoutAttributesForInterItemGapBeforeIndexPath:
+.layoutAttributesForInterItemGapBeforeIndexPath
+	newBounds
+&shouldInvalidateLayoutForBoundsChange:
+)c48@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16
+%shouldInvalidateLayoutForBoundsChange
+)NSCollectionViewLayoutInvalidationContext
+#invalidationContextForBoundsChange:
+"invalidationContextForBoundsChange
+preferredAttributes
+withOriginalAttributes
+JshouldInvalidateLayoutForPreferredLayoutAttributes:withOriginalAttributes:
+c32@0:8@16@24
+2shouldInvalidateLayoutForPreferredLayoutAttributes
+GinvalidationContextForPreferredLayoutAttributes:withOriginalAttributes:
+/invalidationContextForPreferredLayoutAttributes
+proposedContentOffset
+withScrollingVelocity
+BtargetContentOffsetForProposedContentOffset:withScrollingVelocity:
+.{CGPoint=dd}48@0:8{CGPoint=dd}16{CGPoint=dd}32
++targetContentOffsetForProposedContentOffset
+,targetContentOffsetForProposedContentOffset:
+ {CGPoint=dd}32@0:8{CGPoint=dd}16
+NSCollectionViewLayoutMeta
+	ObjCClass
+layoutAttributesClass
+#16@0:8
+invalidationContextClass
+collectionViewContentSize
+updateItems
+ prepareForCollectionViewUpdates:
+prepareForCollectionViewUpdates
+finalizeCollectionViewUpdates
+	oldBounds
+prepareForAnimatedBoundsChange:
+)v48@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16
+prepareForAnimatedBoundsChange
+finalizeAnimatedBoundsChange
+	newLayout
+prepareForTransitionToLayout:
+prepareForTransitionToLayout
+	oldLayout
+prepareForTransitionFromLayout:
+prepareForTransitionFromLayout
+finalizeLayoutTransition
+itemIndexPath
+3initialLayoutAttributesForAppearingItemAtIndexPath:
+2initialLayoutAttributesForAppearingItemAtIndexPath
+4finalLayoutAttributesForDisappearingItemAtIndexPath:
+3finalLayoutAttributesForDisappearingItemAtIndexPath
+JinitialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath:
+=initialLayoutAttributesForAppearingSupplementaryElementOfKind
+KfinalLayoutAttributesForDisappearingSupplementaryElementOfKind:atIndexPath:
+>finalLayoutAttributesForDisappearingSupplementaryElementOfKind
+GinitialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath:
+:initialLayoutAttributesForAppearingDecorationElementOfKind
+HfinalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:
+;finalLayoutAttributesForDisappearingDecorationElementOfKind
+-indexPathsToDeleteForSupplementaryViewOfKind:
+,indexPathsToDeleteForSupplementaryViewOfKind
+*indexPathsToDeleteForDecorationViewOfKind:
+)indexPathsToDeleteForDecorationViewOfKind
+-indexPathsToInsertForSupplementaryViewOfKind:
+,indexPathsToInsertForSupplementaryViewOfKind
+*indexPathsToInsertForDecorationViewOfKind:
+)indexPathsToInsertForDecorationViewOfKind
+NSFont
+name
+UInt
+NSGlyph
+glyphWithName:
+
+I24@0:8@16
+glyphWithName
+glyph
+boundingRectForGlyph:
+){CGRect={CGPoint=dd}{CGSize=dd}}20@0:8I16
+boundingRectForGlyph
+advancementForGlyph:
+{CGSize=dd}20@0:8I16
+advancementForGlyph
+NSRectArray
+bounds
+	UIntVarOf
+
+NSGlyphVar
+	forGlyphs
+count
+!getBoundingRects:forGlyphs:count:
+2v40@0:8^{CGRect={CGPoint=dd}{CGSize=dd}}16r^I24Q32
+getBoundingRects
+NSSizeArray
+advancements
+ getAdvancements:forGlyphs:count:
+v40@0:8^{CGSize=dd}16r^I24Q32
+getAdvancements
+CPointed
+COpaquePointer
+forPackedGlyphs
+length
+'getAdvancements:forPackedGlyphs:length:
+v40@0:8^{CGSize=dd}16r^v24Q32
+NSFontRenderingMode
+renderingMode
+screenFontWithRenderingMode:
+
+@24@0:8Q16
+screenFontWithRenderingMode
+printerFont
+
+screenFont
+NSFontManager
+fName
+NSFontTraitMask
+	hasTraits
+fontNamed:hasTraits:
+c32@0:8@16Q24
+	fontNamed
+
+someTraits
+availableFontNamesWithTraits:
+availableFontNamesWithTraits
+addFontTrait:
+addFontTrait
+removeFontTrait:
+removeFontTrait
+modifyFontViaPanel:
+modifyFontViaPanel
+modifyFont:
+
+modifyFont
+orderFrontFontPanel:
+orderFrontFontPanel
+orderFrontStylesPanel:
+orderFrontStylesPanel
+NSObject
+willIncludeFont
+fontManager:willIncludeFont:
+fontManager
+changeFont:
+
+changeFont
+NSWindow
+NSEventMask
+mask
+Double
+NSTimeInterval
+timeout
+NSRunLoopMode
+mode
+NSEvent
+handler
+-trackEventsMatchingMask:timeout:mode:handler:
+v48@0:8Q16d24@32@?40
+trackEventsMatchingMask
+nextEventMatchingMask:
+nextEventMatchingMask
+NSDate
+	untilDate
+inMode
+dequeue
+/nextEventMatchingMask:untilDate:inMode:dequeue:
+@44@0:8Q16@24@32c40
+beforeEvent
+&discardEventsMatchingMask:beforeEvent:
+v32@0:8Q16@24
+discardEventsMatchingMask
+event
+atStart
+postEvent:atStart:
+v28@0:8@16c24
+	postEvent
+
+sendEvent:
+	sendEvent
+currentEvent
+acceptsMouseMovedEvents
+c16@0:8
+setAcceptsMouseMovedEvents:
+
+v20@0:8c16
+setAcceptsMouseMovedEvents
+ignoresMouseEvents
+setIgnoresMouseEvents:
+setIgnoresMouseEvents
+!mouseLocationOutsideOfEventStream
+disableCursorRects
+enableCursorRects
+discardCursorRects
+view
+invalidateCursorRectsForView:
+invalidateCursorRectsForView
+resetCursorRects
+areCursorRectsEnabled
+NSImage
+image
+at
+offset
+NSPasteboard
+
+pasteboard
+source
+	slideBack
+6dragImage:at:offset:event:pasteboard:source:slideBack:
+1v84@0:8@16{CGPoint=dd}24{CGSize=dd}40@56@64@72c80
+	dragImage
+newTypes
+registerForDraggedTypes:
+registerForDraggedTypes
+unregisterDraggedTypes
+	windowRef
+
+Deprecated
+message
+Use factory method instead
+replaceWith
+ReplaceWith
+imports
+
+expression
+NSWindow.create(windowRef)
+level
+DeprecationLevel
+ERROR
+initWithWindowRef:
+@24@0:8^v16
+ConsumesReceiver
+initWithWindowRef
+T
+ObjCClassOf
+ObjCFactory
+create
+^v16@0:8
+cacheImageInRect:
+cacheImageInRect
+restoreCachedImage
+discardCachedImage
+NSWindowMeta
+NSMenu
+menu
+menuChanged:
+menuChanged
+gState
+point
+convertBaseToScreen:
+convertBaseToScreen
+convertScreenToBase:
+convertScreenToBase
+CGFloat
+userSpaceScaleFactor
+d16@0:8”
+ 
+ 
+ 
+ 
+
+ 
+
+	
+
+ 
+ 
+
+
+ 
+! 
+ "
+# 
+ $
+% 
+' 
+) 
+* 
+, 
+- 
+3 
+5 
+ ?
+@ 
+K 
+L 
+U 
+W 
+\ 
+] 
+f 
+i 
+o 
+
+q 
+x 
+y 
+{ 
+| 
+} 
+~ 
+ 
+Ñ 
+Ü 
+à
+-â 
+.ä 
+è 
+û 
+§ 
+ß 
+® 
+Æ 
+ª 
+Ã 
+Õ 
+˜ 
+˘ 
+˙ 
+Ö 
+á 
+à 
+é 
+ì 
+î 
+ô 
+† 
+¢ 
+∂ 
+º 
+Ω 
+ø 
+¿ 
+¬ 
+ƒ 
+À 
+Ó 
+Ú 
+˛ 
+Ç 
+á 
+.ã 
+é 
+è 
+ñ 
+ó 
+° ∂D@0*02020Há “
+ (( 80*020Há “
+ (( :0*020	Há “
+ (( 60*0Há “
+ (( 20*0Há “
+ (( 80*020Há “
+ (( 8 0*020Há “
+ (( j0*0202&0j`02(02
++0j`2
+.0j`Há “
+ (/(0 \90*02102202
+40j`26
+00Há “
+ (7(8 8<0*02:0Há “
+ (;( 0=0*0Há “
+ (=(> DD0*02:02
+A0j`Há “
+ (B(C <H0*02
+E0j`Há “
+ (F(G 8J0*020Há “
+ (I( BP0*02M0j`0Há “
+ (N(O 2Q0*0Há “
+ (Q( 4R0*0Há “
+ (R( <T0*02
+R0Há “
+ (S( 2V0*0Há “
+ (V( 2X0*0Há “
+ (X( 2Y0*0Há “
+ (Y( :[0*02Y0Há “
+ (Z( :^0j`0*0Há “
+ (^(_ Bb0*02^0j`0Há “
+ (`(a :c0j`0*0Há “
+ (c(d :e0j`0*0Há “
+ (e(d Hl0!*0 2
+g0j`2
+h0j`Há “
+ (j(k 4g0j`*0!Há “
+ (g(m 4n0j`*0!Há “
+ (n(m <t0#*0"2p0!Há “
+ (r(s @w0#*0"2
+u0Há “
+ (v(s nÉ0*0$2
+z0j`%2-Ä(0!0)0(j`*0'00&Há “
+"	(Å	(Ç @ã0,*0+2Ö0	Há “
+!	(á(s “
+/4å0,*0+Há “
+!	(å( =é0*0+2	å0,Há “
+!	(ç( 7ê0j`0*0+Há “
+"	(ê	(ë @î0*0+2ê0j`0Há “
+"	(í	(ì 7ï0j`0*0+Há “
+"	(ï	(ë @ó0*0+2ï0j`0Há “
+"	(ñ	(ì <ò0j`0*0+Há “
+!	(ò(d Eö0*0+2ò0j`0Há “
+!	(ô(O <õ0j`0*0+Há “
+!	(õ(d Eù0*0+2õ0j`0Há “
+!	(ú(O 2ü0*01Há “
+!	(ü(> J£0*012†0j`0Há “
+"	(°	(¢ <¶02*012p0!Há “
+!	(•(s O≠02*012©
+03j`42™0!Há “
+"	(´	(¨ O∞02*012©
+03j`52™0!Há “
+"	(Ø	(¨ H¥02*012±0j`0Há “
+"	(≤	(≥ <∂02*012p0!Há “
+!	(µ(s F∫0)*012∑0j`0Há “
+"	(∏	(π FΩ06*012∑0j`0Há “
+"	(º	(¢ E¬0)*012æ022ø02Há “
+"	(¿	(¡ Eƒ06*012æ022ø02Há “
+"	(√	(¨ c…0j`0*012≈0j`02∆0j`0Há “
+"	(«	(» P…0j`0*012≈0j`0Há “
+"	( 	(À 3Œ08*07Há “
+"	(Œ	(œ 3–08*07Há “
+"	(–	(œ <—0j`0*01Há “
+!	(—(d ?‘0*012“0Há “
+!	(”( 2’0*01Há “
+!	(’(> FŸ0*012÷0j`0Há “
+"	(◊	(ÿ 2⁄0*01Há “
+!	(⁄(> ;›0*012€01Há “
+!	(‹( ;‡0*012ﬁ01Há “
+!	(ﬂ( 2·0*01Há “
+!	(·(> =‰02*012‚0!Há “
+!	(„(s =Ê02*012‚0!Há “
+!	(Â(s OË02*012©
+03j`42™0!Há “
+"	(Á	(¨ OÍ02*012©
+03j`42™0!Há “
+"	(È	(¨ OÏ02*012©
+03j`52™0!Há “
+"	(Î	(¨ OÓ02*012©
+03j`52™0!Há “
+"	(Ì	(¨ G0#*012©
+03j`4Há “
+!	(Ô(s GÚ0#*012©
+03j`5Há “
+!	(Ò(s GÙ0#*012©
+03j`4Há “
+!	(Û(s Gˆ0#*012©
+03j`5Há “
+!	(ı(s @˝0:j`;*092¯03Há “
+"	(˚	(¸ JÅ0j`0*092˛0:j`;Há “
+"	(ˇ	(ÄJÑ0j`0*092˛0:j`;Há “
+"	(Ç	(É vç0*092Ü0j`0'j`<2â0:0=j`>0'2ä0j`0Há “
+"	(ã	(å ví0*092è0j`0'j`?2â0:0=j`>0'2ä0j`0Há “
+"	(ê	(ë tí0*092è0j`0'j`?2ï0@0'j`A2ñ0j`0Há “
+"	(ó	(ò @ù09*092ö0j`BHá “
+"	(õ	(ú 2û09*09Há “
+!	(û( 2ü09*09Há “
+!	(ü( 7ö0j`B*09Há “
+"	(ö	(ë I¶0)*0C2°032£0j`DHá “
+"	(§	(• F©0*0C2ß0j`DHá “
+"	(®	(ú <´0*0C20	Há “
+!	(™( <≠0*0C20	Há “
+!	(¨( <Ø0*0C20	Há “
+!	(Æ( <±0*0C20	Há “
+!	(∞( <≥0*0C20	Há “
+!	(≤( <µ0*0C20	Há “
+!	(¥( Dπ0)*0E20	2∑03Há “
+"	(∏	(¡ <ª0*0E20	Há “
+!	(∫( ç»0*0F2æ0j`G2¡0Hj`I2√
+03j`J2-≈(0K0)0(j`*0'00&Há “
+"	(∆	(« B 0K*0F2æ0j`GHá “
+"	(…	(ú g 0K*0F2æ0j`G2	Ã0L2Õ
+03j`J2Œ0)Há “
+"	(œ	(– K‘0*0F2æ0j`G2	—0KHá “
+"	(“	(” EŸ0*0F2’0K2÷0)Há “
+"	(◊	(ÿ ;€0*0F2’0KHá “
+!	(⁄( 4‹0K*0FHá “
+!	(‹( 3›0)*0FHá “
+"	(›	(ﬁ <·0*0F2›0)Há “
+"	(ﬂ	(‡ 3‚0)*0FHá “
+"	(‚	(ﬁ <‰0*0F2‚0)Há “
+"	(„	(‡ <Â0j`0*0FHá “
+!	(Â(_ 2Ê0*0FHá “
+!	(Ê(> 2Á0*0FHá “
+!	(Á(> 2Ë0*0FHá “
+!	(Ë(> ;Î0*0F2È0Há “
+!	(Í( 2Ï0*0FHá “
+!	(Ï(> 3Ì0)*0FHá “
+"	(Ì	(ﬁ Ü¯0*0F2Ô0M20j`02Ò0j`02’0K2Û0N2Ù0	2ı0)Há “
+"	(ˆ	(˜ ?˚0*0F2˘0Há “
+!	(˙( 2¸0*0FHá “
+!	(¸(> ôå0F*0F2˝0@0'j`AHá “
+>O
+ˇ(Ä ÅBPÉ
+Ñ(ÖÜ
+0Q8à“
+"	(â	(ä “
+R“
+/iê8"	ç*0F*80S2˝0@0'j`AHá “
+"T	(â	(ä “
+R“
+/C˝0@0'j`A*0FHá “
+"	(˝	(ë Fì0*0F2†0j`0Há “
+"	(í	(ÿ 2î0*0FHá “
+!	(î(> 2ï0*0FHá “
+!	(ï(> ;ö0*0U2ò0VHá “
+!	(ô( 6õ0j`*0FHá “
+!	(õ(m Pû0j`0*0F2ú0j`0Há “
+"	(ù	(À P†0j`0*0F2ú0j`0Há “
+"	(ü	(À 7¢0Hj`W*0FHá “
+"	(¢	(£ ÿ
+‡
+ Í
+platform.AppKit

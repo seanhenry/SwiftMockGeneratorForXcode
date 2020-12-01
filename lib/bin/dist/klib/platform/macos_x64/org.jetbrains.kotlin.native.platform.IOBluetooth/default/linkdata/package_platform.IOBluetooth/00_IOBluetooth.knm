@@ -1,0 +1,2586 @@
+
+คร
+platform
+IOBluetooth
++IOBluetoothDeviceAsyncCallbacksProtocolMeta
+kotlinx
+cinterop
+	ObjCClass
+ObjCObjectMeta
+ExternalObjCClass
+protocolGetter
+kniprot_platform_IOBluetooth0
+'IOBluetoothDeviceAsyncCallbacksProtocol
+
+ObjCObject
+IOBluetoothDevice
+device
+kotlin
+Int
+IOKit
+IOReturn
+status
+Unit
+
+ObjCMethod
+selector
+!remoteNameRequestComplete:status:
+encoding
+v28@0:8@16i24
+isStret
+remoteNameRequestComplete
+connectionComplete:status:
+connectionComplete
+sdpQueryComplete:status:
+sdpQueryComplete
+,IOBluetoothDeviceInquiryDelegateProtocolMeta
+kniprot_platform_IOBluetooth1
+(IOBluetoothDeviceInquiryDelegateProtocol
+IOBluetoothDeviceInquiry
+sender
+deviceInquiryStarted:
+
+v24@0:8@16
+deviceInquiryStarted
+ deviceInquiryDeviceFound:device:
+v32@0:8@16@24
+deviceInquiryDeviceFound
+UInt
+posix
+uint32_t
+devicesRemaining
+9deviceInquiryUpdatingDeviceNamesStarted:devicesRemaining:
+v28@0:8@16I24
+'deviceInquiryUpdatingDeviceNamesStarted
+7deviceInquiryDeviceNameUpdated:device:devicesRemaining:
+v36@0:8@16@24I32
+deviceInquiryDeviceNameUpdated
+error
+Boolean
+aborted
+$deviceInquiryComplete:error:aborted:
+v32@0:8@16i24c28
+deviceInquiryComplete
+)IOBluetoothDevicePairDelegateProtocolMeta
+darwin
+NSObjectProtocolMeta
+kniprot_platform_IOBluetooth2
+%IOBluetoothDevicePairDelegateProtocol
+NSObjectProtocol
+Any
+devicePairingStarted:
+devicePairingStarted
+devicePairingConnecting:
+devicePairingConnecting
+devicePairingPINCodeRequest:
+devicePairingPINCodeRequest
+BluetoothNumericValue
+numericValue
+2devicePairingUserConfirmationRequest:numericValue:
+$devicePairingUserConfirmationRequest
+BluetoothPasskey
+passkey
+-devicePairingUserPasskeyNotification:passkey:
+$devicePairingUserPasskeyNotification
+devicePairingFinished:error:
+devicePairingFinished
+UByte
+BluetoothHCIEventStatus
+#deviceSimplePairingComplete:status:
+v28@0:8@16C24
+deviceSimplePairingComplete
++IOBluetoothL2CAPChannelDelegateProtocolMeta
+kniprot_platform_IOBluetooth3
+'IOBluetoothL2CAPChannelDelegateProtocol
+IOBluetoothL2CAPChannel
+l2capChannel
+CPointer
+CPointed
+COpaquePointer
+data
+ULong
+size_t
+length
+l2capChannelData:data:length:
+v40@0:8@16^v24Q32
+l2capChannelData
+ l2capChannelOpenComplete:status:
+l2capChannelOpenComplete
+l2capChannelClosed:
+l2capChannelClosed
+l2capChannelReconfigured:
+l2capChannelReconfigured
+refcon
+(l2capChannelWriteComplete:refcon:status:
+v36@0:8@16^v24i32
+l2capChannelWriteComplete
+ l2capChannelQueueSpaceAvailable:
+l2capChannelQueueSpaceAvailable
+,IOBluetoothRFCOMMChannelDelegateProtocolMeta
+kniprot_platform_IOBluetooth4
+(IOBluetoothRFCOMMChannelDelegateProtocol
+IOBluetoothRFCOMMChannel
+rfcommChannel
+rfcommChannelData:data:length:
+rfcommChannelData
+!rfcommChannelOpenComplete:status:
+rfcommChannelOpenComplete
+rfcommChannelClosed:
+rfcommChannelClosed
+#rfcommChannelControlSignalsChanged:
+"rfcommChannelControlSignalsChanged
+ rfcommChannelFlowControlChanged:
+rfcommChannelFlowControlChanged
+)rfcommChannelWriteComplete:refcon:status:
+rfcommChannelWriteComplete
+!rfcommChannelQueueSpaceAvailable:
+ rfcommChannelQueueSpaceAvailable
+(IOBluetoothHandsFreeDelegateProtocolMeta
+kniprot_platform_IOBluetooth5
+$IOBluetoothHandsFreeDelegateProtocol
+IOBluetoothHandsFree
+
+Foundation
+NSNumber
+	connected
+handsFree:connected:
+	handsFree
+disconnected
+handsFree:disconnected:
+scoConnectionOpened
+handsFree:scoConnectionOpened:
+scoConnectionClosed
+handsFree:scoConnectionClosed:
+4IOBluetoothHandsFreeAudioGatewayDelegateProtocolMeta
+kniprot_platform_IOBluetooth6
+0IOBluetoothHandsFreeAudioGatewayDelegateProtocol
+ IOBluetoothHandsFreeAudioGateway
+hangup
+handsFree:hangup:
+redial
+handsFree:redial:
+.IOBluetoothHandsFreeDeviceDelegateProtocolMeta
+kniprot_platform_IOBluetooth7
+*IOBluetoothHandsFreeDeviceDelegateProtocol
+IOBluetoothHandsFreeDevice
+isServiceAvailable
+handsFree:isServiceAvailable:
+isCallActive
+handsFree:isCallActive:
+callSetupMode
+handsFree:callSetupMode:
+callHoldState
+handsFree:callHoldState:
+signalStrength
+handsFree:signalStrength:
+	isRoaming
+handsFree:isRoaming:
+batteryCharge
+handsFree:batteryCharge:
+String
+incomingCallFrom
+handsFree:incomingCallFrom:
+ringAttempt
+handsFree:ringAttempt:
+collections
+Map
+currentCall
+handsFree:currentCall:
+subscriberNumber
+handsFree:subscriberNumber:
+incomingSMS
+handsFree:incomingSMS:
+unhandledResultCode
+handsFree:unhandledResultCode:
+IOBluetoothObjectMeta
+NSObjectMeta
+NSCopyingProtocolMeta
+IOBluetoothObject
+new
+@16@0:8
+cnames
+structs
+_NSZone
+zone
+allocWithZone:
+@24@0:8^{_NSZone=}16
+allocWithZone
+alloc
+NSObject
+NSCopyingProtocol
+
+Deprecated
+message
+Use constructor instead
+replaceWith
+ReplaceWith
+imports
+
+expression
+IOBluetoothObject()
+level
+DeprecationLevel
+ERROR
+init
+internal
+CCall
+ConsumesReceiver
+ReturnsRetained
+NSZone
+copyWithZone:
+copyWithZone
+ObjCConstructor
+
+designated
+initSelector
+	Companion
+ObjCClassOf
+IOBluetoothUserNotificationMeta
+IOBluetoothUserNotification
+
+unregister
+v16@0:8
+IOBluetoothUserNotification()
+IOBluetoothDeviceMeta
+NSCodingProtocolMeta
+NSSecureCodingProtocolMeta
+observer
+)registerForConnectNotifications:selector:
+@32@0:8@16:24
+registerForConnectNotifications
+BluetoothDeviceAddress
+address
+deviceWithAddress:
+(@24@0:8r^{BluetoothDeviceAddress=[6C]}16
+deviceWithAddress
+deviceWithAddressString:
+
+@24@0:8@16
+deviceWithAddressString
+List
+favoriteDevices
+
+numDevices
+recentDevices:
+
+@24@0:8Q16
+recentDevices
+pairedDevices
+supportsSecureCoding
+c16@0:8
+NSCodingProtocol
+NSSecureCodingProtocol
++registerForDisconnectNotification:selector:
+!registerForDisconnectNotification
+ObjCObjectVar
+
+newChannel
+UShort
+BluetoothL2CAPPSM
+withPSM
+delegate
+&openL2CAPChannelSync:withPSM:delegate:
+i36@0:8^@16S24@28
+openL2CAPChannelSync
+'openL2CAPChannelAsync:withPSM:delegate:
+openL2CAPChannelAsync
+psm
+findExisting
+)openL2CAPChannel:findExisting:newChannel:
+i32@0:8S16c20^@24
+openL2CAPChannel
+UInt16
+sendL2CAPEchoRequest:length:
+i28@0:8^v16S24
+sendL2CAPEchoRequest
+BluetoothRFCOMMChannelID
+withChannelID
+-openRFCOMMChannelSync:withChannelID:delegate:
+i36@0:8^@16C24@28
+openRFCOMMChannelSync
+.openRFCOMMChannelAsync:withChannelID:delegate:
+openRFCOMMChannelAsync
+
+getAddress
+%r^{BluetoothDeviceAddress=[6C]}16@0:8
+BluetoothPageScanRepetitionMode
+getPageScanRepetitionMode
+C16@0:8
+BluetoothPageScanPeriodMode
+getPageScanPeriodMode
+BluetoothPageScanMode
+getPageScanMode
+BluetoothClockOffset
+getClockOffset
+S16@0:8
+NSDate
+getLastInquiryUpdate
+Byte
+BluetoothHCIRSSIValue
+RSSI
+rawRSSI
+isConnected
+openConnection
+i16@0:8
+target
+openConnection:
+
+i24@0:8@16
+BluetoothHCIPageTimeout
+withPageTimeout
+authenticationRequired
+6openConnection:withPageTimeout:authenticationRequired:
+i32@0:8@16S24c28
+closeConnection
+remoteNameRequest:
+remoteNameRequest
+"remoteNameRequest:withPageTimeout:
+i28@0:8@16S24
+requestAuthentication
+
+isIncoming
+BluetoothLinkType
+getLinkType
+BluetoothHCIEncryptionMode
+getEncryptionMode
+performSDPQuery:
+performSDPQuery
+uuids
+performSDPQuery:uuids:
+i32@0:8@16@24
+getLastServicesUpdate
+IOBluetoothSDPUUID
+sdpUUID
+IOBluetoothSDPServiceRecord
+getServiceRecordForUUID:
+getServiceRecordForUUID
+
+isFavorite
+addToFavorites
+removeFromFavorites
+recentAccessDate
+isPaired
+timeout
+setSupervisionTimeout:
+
+i20@0:8S16
+setSupervisionTimeout
+withConfiguration
+8openL2CAPChannelSync:withPSM:withConfiguration:delegate:
+i44@0:8^@16S24@28@36
+9openL2CAPChannelAsync:withPSM:withConfiguration:delegate:
+NSCoder
+coder
+awakeAfterUsingCoder:
+awakeAfterUsingCoder
+BluetoothClassOfDevice
+classOfDevice
+I16@0:8
+BluetoothServiceClassMajor
+serviceClassMajor
+BluetoothDeviceClassMajor
+deviceClassMajor
+BluetoothDeviceClassMinor
+deviceClassMinor
+name
+nameOrAddress
+lastNameUpdate
+addressString
+BluetoothConnectionHandle
+connectionHandle
+services
+IOBluetoothDevice()
+IOBluetoothDevice(coder)
+initWithCoder:
+initWithCoder
+encodeWithCoder:
+encodeWithCoder
+IOBluetoothL2CAPChannelMeta
+NSPortDelegateProtocolMeta
+object
+-registerForChannelOpenNotifications:selector:
+#registerForChannelOpenNotifications
++IOBluetoothUserNotificationChannelDirection
+	direction
+?registerForChannelOpenNotifications:selector:withPSM:direction:
+@40@0:8@16:24S32i36
+IOBluetoothObjectID
+objectID
+withObjectID:
+withObjectID
+NSPortDelegateProtocol
+closeChannel
+BluetoothL2CAPMTU
+	remoteMTU
+requestRemoteMTU:
+requestRemoteMTU
+writeAsyncTrap:length:refcon:
+i36@0:8^v16S24^v28
+writeAsyncTrap
+writeAsync:length:refcon:
+
+writeAsync
+writeSync:length:
+	writeSync
+channelDelegate
+setDelegate:
+setDelegate
+setDelegate:withConfiguration:
+-registerForChannelCloseNotification:selector:
+#registerForChannelCloseNotification
+outgoingMTU
+incomingMTU
+Q16@0:8
+PSM
+BluetoothL2CAPChannelID
+localChannelID
+remoteChannelID
+IOBluetoothL2CAPChannel()
+isEqual:
+
+c24@0:8@16
+isEqual
+class
+#16@0:8
+	aSelector
+performSelector:
+
+@24@0:8:16
+performSelector
+
+withObject
+performSelector:withObject:
+@32@0:8:16@24
+_withObject
+&performSelector:withObject:withObject:
+@40@0:8:16@24@32
+isProxy
+aClass
+isKindOfClass:
+
+c24@0:8#16
+isKindOfClass
+isMemberOfClass:
+isMemberOfClass
+	objcnames
+classes
+Protocol
+	aProtocol
+conformsToProtocol:
+conformsToProtocol
+respondsToSelector:
+
+c24@0:8:16
+respondsToSelector
+
+NSUInteger
+hash
+
+superclass
+description
+debugDescription
+IOBluetoothRFCOMMChannelMeta
+EregisterForChannelOpenNotifications:selector:withChannelID:direction:
+@40@0:8@16:24C32i36
+OpaqueIOBluetoothObjectRef
+IOBluetoothRFCOMMChannelRef
+rfcommChannelRef
+withRFCOMMChannelRef:
+'@24@0:8^{OpaqueIOBluetoothObjectRef=}16
+withRFCOMMChannelRef
+getRFCOMMChannelRef
+$^{OpaqueIOBluetoothObjectRef=}16@0:8
+isOpen
+BluetoothRFCOMMMTU
+getMTU
+isTransmissionPaused
+UInt32
+speed
+UInt8
+dataBits
+BluetoothRFCOMMParityType
+parity
+stopBits
+-setSerialParameters:dataBits:parity:stopBits:
+i32@0:8I16C20i24C28
+setSerialParameters
+BluetoothRFCOMMLineStatus
+
+lineStatus
+sendRemoteLineStatus:
+
+i20@0:8i16
+sendRemoteLineStatus
+getChannelID
+	getDevice
+getObjectID
+IOBluetoothRFCOMMChannel()
+IOBluetoothSDPServiceRecordMeta
+serviceDict
+%publishedServiceRecordWithDictionary:
+$publishedServiceRecordWithDictionary
+withServiceDictionary:device:
+@32@0:8@16@24
+withServiceDictionary
+IOBluetoothSDPServiceRecordRef
+sdpServiceRecordRef
+withSDPServiceRecordRef:
+withSDPServiceRecordRef
+removeServiceRecord
+0IOBluetoothSDPServiceRecord(serviceDict, device)
+!initWithServiceDictionary:device:
+initWithServiceDictionary
+getSDPServiceRecordRef
+BluetoothSDPServiceAttributeID
+attributeID
+IOBluetoothSDPDataElement
+getAttributeDataElement:
+
+@20@0:8S16
+getAttributeDataElement
+getServiceName
+
+UByteVarOf
+BluetoothRFCOMMChannelIDVar
+rfcommChannelID
+getRFCOMMChannelID:
+
+i24@0:8*16
+getRFCOMMChannelID
+UShortVarOf
+BluetoothL2CAPPSMVar
+outPSM
+getL2CAPPSM:
+i24@0:8^S16
+getL2CAPPSM
+	UIntVarOf
+"BluetoothSDPServiceRecordHandleVar
+outServiceRecordHandle
+getServiceRecordHandle:
+i24@0:8^I16
+getServiceRecordHandle
+BluetoothSDPUUID16
+uuid16
+matchesUUID16:
+
+c20@0:8S16
+matchesUUID16
+	uuidArray
+matchesUUIDArray:
+matchesUUIDArray
+searchArray
+matchesSearchArray:
+matchesSearchArray
+array
+hasServiceFromArray:
+hasServiceFromArray
+
+attributes
+sortedAttributes
+IOBluetoothSDPServiceRecord()
+"IOBluetoothSDPServiceRecord(coder)
+serviceDictionary
+IOBluetoothSDPDataElementMeta
+element
+withElementValue:
+withElementValue
+%BluetoothSDPDataElementTypeDescriptor
+type
+%BluetoothSDPDataElementSizeDescriptor
+sizeDescriptor
+size
+value
+#withType:sizeDescriptor:size:value:
+@36@0:8C16C20I24@28
+withType
+IOBluetoothSDPDataElementRef
+sdpDataElementRef
+withSDPDataElementRef:
+withSDPDataElementRef
+"IOBluetoothSDPDataElement(element)
+initWithElementValue:
+initWithElementValue
+newType
+?IOBluetoothSDPDataElement(newType, sizeDescriptor, size, value)
+'initWithType:sizeDescriptor:size:value:
+initWithType
+getSDPDataElementRef
+getTypeDescriptor
+getSizeDescriptor
+getSize
+getNumberValue
+NSData
+getDataValue
+getStringValue
+getArrayValue
+getUUIDValue
+getValue
+dataElement
+containsDataElement:
+containsDataElement
+cmpValue
+containsValue:
+containsValue
+IOBluetoothSDPDataElement()
+ IOBluetoothSDPDataElement(coder)
+elementValue
+IOBluetoothSDPUUIDMeta
+
+NSDataMeta
+bytes
+uuidWithBytes:length:
+@28@0:8r^v16I24
+uuidWithBytes
+uuidWithData:
+uuidWithData
+uuid16:
+BluetoothSDPUUID32
+uuid32
+uuid32:
+
+@20@0:8I16
+IOBluetoothSDPUUID(uuid16)
+initWithUUID16:
+initWithUUID16
+IOBluetoothSDPUUID(uuid32)
+initWithUUID32:
+initWithUUID32
+	newLength
+getUUIDWithLength:
+getUUIDWithLength
+	otherUUID
+isEqualToUUID:
+isEqualToUUID
+classForCoder
+classForArchiver
+classForPortCoder
+IOBluetoothSDPUUID()
+IOBluetoothSDPUUID(coder)
+uUID16
+uUID32
+IOBluetoothDeviceInquiryMeta
+inquiryWithDelegate:
+inquiryWithDelegate
+"IOBluetoothDeviceInquiry(delegate)
+initWithDelegate:
+initWithDelegate
+start
+stop
+foundDevices
+clearFoundDevices
+inServiceClassMajor
+majorDeviceClass
+minorDeviceClass
+4setSearchCriteria:majorDeviceClass:minorDeviceClass:
+v28@0:8I16I20I24
+setSearchCriteria
+uint8_t
+inquiryLength
+setInquiryLength:
+
+v20@0:8C16
+setInquiryLength
+IOBluetoothDeviceSearchTypes
+
+searchType
+setSearchType:
+
+v20@0:8I16
+setSearchType
+updateNewDeviceNames
+setUpdateNewDeviceNames:
+
+v20@0:8c16
+setUpdateNewDeviceNames
+IOBluetoothDeviceInquiry()
+IOBluetoothDevicePairMeta
+IOBluetoothDevicePair
+pairWithDevice:
+pairWithDevice
+inDevice
+
+setDevice:
+	setDevice
+	ByteCount
+PINCodeSize
+BluetoothPINCode
+PINCode
+replyPINCode:PINCode:
+%v32@0:8Q16^{BluetoothPINCode=[16C]}24
+replyPINCode
+reply
+replyUserConfirmation:
+replyUserConfirmation
+IOBluetoothDevicePair()
+IOBluetoothHostControllerMeta
+IOBluetoothHostController
+defaultController
+Double
+NSTimeInterval
+forTimeInterval
+!setClassOfDevice:forTimeInterval:
+i28@0:8I16d20
+setClassOfDevice
+addressAsString
+nameAsString
+BluetoothHCIPowerState
+
+powerState
+IOBluetoothHostController()
+"IOBluetoothSDPServiceAttributeMeta
+newAttributeID
+attributeElementValue
+IOBluetoothSDPServiceAttribute
+withID:attributeElementValue:
+@28@0:8S16@20
+withID
+attributeElement
+withID:attributeElement:
+EIOBluetoothSDPServiceAttribute(newAttributeID, attributeElementValue)
+!initWithID:attributeElementValue:
+
+initWithID
+@IOBluetoothSDPServiceAttribute(newAttributeID, attributeElement)
+initWithID:attributeElement:
+getAttributeID
+getDataElement
+getIDDataElement
+ IOBluetoothSDPServiceAttribute()
+%IOBluetoothSDPServiceAttribute(coder)
+iD
+OBEXSessionMeta
+OBEXSession
+	OBEXFlags
+inFlags
+OBEXMaxPacketLength
+maxPacketLength
+optionalHeaders
+optionalHeadersLength
+eventSelector
+selectorTarget
+refCon
+	OBEXError
+fOBEXConnect:maxPacketLength:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:
+i64@0:8C16S20^v24Q32:40@48^v56
+OBEXConnect
+inOptionalHeaders
+IOBEXDisconnect:optionalHeadersLength:eventSelector:selectorTarget:refCon:
+i56@0:8^v16Q24:32@40^v48
+OBEXDisconnect
+isFinalChunk
+headersData
+headersDataLength
+bodyData
+bodyDataLength
+bOBEXPut:headersData:headersDataLength:bodyData:bodyDataLength:eventSelector:selectorTarget:refCon:
+"i76@0:8C16^v20Q28^v36Q44:52@60^v68
+OBEXPut
+headers
+headersLength
+BOBEXGet:headers:headersLength:eventSelector:selectorTarget:refCon:
+i60@0:8C16^v20Q28:36@44^v52
+OBEXGet
+DOBEXAbort:optionalHeadersLength:eventSelector:selectorTarget:refCon:
+	OBEXAbort
+OBEXConstants
+	constants
+`OBEXSetPath:constants:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:
+i64@0:8C16C20^v24Q32:40@48^v56
+OBEXSetPath
+
+OBEXOpCode
+inResponseOpCode
+flags
+tOBEXConnectResponse:flags:maxPacketLength:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:
+!i68@0:8C16C20S24^v28Q36:44@52^v60
+OBEXConnectResponse
+aOBEXDisconnectResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:
+OBEXDisconnectResponse
+ZOBEXPutResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:
+OBEXPutResponse
+ZOBEXGetResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:
+OBEXGetResponse
+\OBEXAbortResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:
+OBEXAbortResponse
+^OBEXSetPathResponse:optionalHeaders:optionalHeadersLength:eventSelector:selectorTarget:refCon:
+OBEXSetPathResponse
+inOpCode
+!getAvailableCommandPayloadLength:
+
+S20@0:8C16
+ getAvailableCommandPayloadLength
+)getAvailableCommandResponsePayloadLength:
+(getAvailableCommandResponsePayloadLength
+getMaxPacketLength
+hasOpenOBEXConnection
+	CFunction
+	Function1
+OBEXSessionEvent
+OBEXSessionEventCallback
+inEventCallback
+setEventCallback:
+v24@0:8^?16
+setEventCallback
+inRefCon
+setEventRefCon:
+v24@0:8^v16
+setEventRefCon
+inEventSelector
+setEventSelector:target:refCon:
+v40@0:8:16@24@32
+setEventSelector
+OBEXTransportEvent
+event
+serverHandleIncomingData:
+$v24@0:8^{OBEXTransportEvent=Ii^vQ}16
+serverHandleIncomingData
+clientHandleIncomingData:
+clientHandleIncomingData
+inDataToSend
+
+dataLength
+sendDataToTransport:dataLength:
+i32@0:8^v16Q24
+sendDataToTransport
+
+inSelector
+.openTransportConnection:selectorTarget:refCon:
+i40@0:8:16@24^v32
+openTransportConnection
+hasOpenTransportConnection
+closeTransportConnection
+OBEXSession()
+IOBluetoothOBEXSessionMeta
+inSDPServiceRecord
+IOBluetoothOBEXSession
+withSDPServiceRecord:
+withSDPServiceRecord
+	channelID
+withDevice:channelID:
+@28@0:8@16C24
+
+withDevice
+	inChannel
+>withIncomingRFCOMMChannel:eventSelector:selectorTarget:refCon:
+@48@0:8@16:24@32^v40
+withIncomingRFCOMMChannel
+*IOBluetoothOBEXSession(inSDPServiceRecord)
+initWithSDPServiceRecord:
+initWithSDPServiceRecord
++IOBluetoothOBEXSession(inDevice, channelID)
+initWithDevice:channelID:
+initWithDevice
+HIOBluetoothOBEXSession(inChannel, eventSelector, selectorTarget, refCon)
+BinitWithIncomingRFCOMMChannel:eventSelector:selectorTarget:refCon:
+initWithIncomingRFCOMMChannel
+getRFCOMMChannel
+sendBufferTroughChannel
+restartTransmission
+isSessionTargetAMac
+6setOpenTransportConnectionAsyncSelector:target:refCon:
+'setOpenTransportConnectionAsyncSelector
+	Function3
+OpaqueOBEXSessionRef
+OBEXSessionRef
+,IOBluetoothOBEXSessionOpenConnectionCallback
+
+inCallback
+,setOBEXSessionOpenConnectionCallback:refCon:
+v32@0:8^?16^v24
+$setOBEXSessionOpenConnectionCallback
+IOBluetoothOBEXSession()
+sDPServiceRecord
+incomingRFCOMMChannel
+OBEXFileTransferServicesMeta
+inOBEXSession
+OBEXFileTransferServices
+withOBEXSession:
+withOBEXSession
+'OBEXFileTransferServices(inOBEXSession)
+initWithOBEXSession:
+initWithOBEXSession
+currentPath
+isBusy
+connectToFTPService
+connectToObjectPushService
+
+disconnect
+changeCurrentFolderToRoot
+changeCurrentFolderBackward
+	inDirName
+!changeCurrentFolderForwardToPath:
+ changeCurrentFolderForwardToPath
+createFolder:
+createFolder
+
+inItemName
+removeItem:
+
+removeItem
+retrieveFolderListing
+inLocalPathAndName
+	sendFile:
+sendFile
+inRemoteFileName
+toLocalPath
+copyRemoteFile:toLocalPath:
+copyRemoteFile
+inData
+sendData:type:name:
+i40@0:8@16@24@32
+sendData
+getDefaultVCard:
+getDefaultVCard
+abort
+OBEXFileTransferServices()
+oBEXSession
+IOBluetoothHandsFreeMeta
+indicatorName
+
+indicator:
+	indicator
+setIndicator:value:
+setIndicator
+&IOBluetoothHandsFree(device, delegate)
+initWithDevice:delegate:
+connect
+
+connectSCO
+disconnectSCO
+isSCOConnected
+supportedFeatures
+setSupportedFeatures:
+setSupportedFeatures
+Float
+inputVolume
+f16@0:8
+setInputVolume:
+
+v20@0:8f16
+setInputVolume
+isInputMuted
+
+inputMuted
+setInputMuted:
+setInputMuted
+outputVolume
+setOutputVolume:
+setOutputVolume
+isOutputMuted
+outputMuted
+setOutputMuted:
+setOutputMuted
+deviceSupportedFeatures
+deviceSupportedSMSServices
+deviceCallHoldModes
+IOBluetoothSMSMode
+SMSMode
+isSMSEnabled
+IOBluetoothHandsFree()
+
+SMSEnabled
+$IOBluetoothHandsFreeAudioGatewayMeta
+2IOBluetoothHandsFreeAudioGateway(device, delegate)
+min
+max
+currentValue
+%createIndicator:min:max:currentValue:
+v36@0:8@16i24i28i32
+createIndicator
+	atCommand
+processATCommand:
+processATCommand
+sendOKResponse
+response
+sendResponse:
+sendResponse
+withOK
+sendResponse:withOK:
+v28@0:8@16c24
+"IOBluetoothHandsFreeAudioGateway()
+IOBluetoothHandsFreeDeviceMeta
+,IOBluetoothHandsFreeDevice(device, delegate)
+aNumber
+dialNumber:
+
+dialNumber
+memoryLocation
+memoryDial:
+
+v20@0:8i16
+
+memoryDial
+endCall
+
+acceptCall
+acceptCallOnPhone
+	character
+	sendDTMF:
+sendDTMF
+currentCallList
+releaseHeldCalls
+releaseActiveCalls
+index
+releaseCall:
+releaseCall
+holdCall
+placeAllOthersOnHold:
+placeAllOthersOnHold
+addHeldCall
+callTransfer
+transferAudioToComputer
+transferAudioToPhone
+sendSMS:message:
+sendSMS
+sendATCommand:
+sendATCommand
+&sendATCommand:timeout:selector:target:
+v44@0:8@16f24:28@36
+IOBluetoothHandsFreeDevice()
+
+CStructVar
+
+uint8_tVar
+CArrayPointer
+CStruct
+ArrayMemberAt
+offset
+native
+	NativePtr
+rawPtr
+spelling
+struct { unsigned char p0[6]; }
+Type
+VarType
+align
+(Use sizeOf<T>() or alignOf<T>() instead.
+WARNING
+BluetoothKey
+ struct { unsigned char p0[16]; }
+BluetoothIRK
+BluetoothSetEventMask
+struct { unsigned char p0[8]; }
+%BluetoothL2CAPQualityOfServiceOptions
+MemberAt
+serviceType
+	tokenRate
+tokenBucketSize
+peakBandwidth
+latency
+delayVariation
+struct { unsigned char p0; unsigned char p1; unsigned int p2; unsigned int p3; unsigned int p4; unsigned int p5; unsigned int p6; }
+1BluetoothL2CAPRetransmissionAndFlowControlOptions
+txWindowSize
+maxTransmit
+uint16_t
+retransmissionTimeout
+monitorTimeout
+maxPDUPayloadSize
+ystruct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned short p3; unsigned short p4; unsigned short p5; }
+BluetoothHCISupportedCommands
+ struct { unsigned char p0[64]; }
+BluetoothHCISupportedFeatures
+ BluetoothHCIExtendedFeaturesInfo
+BluetoothHCIPageNumber
+page
+maxPage
+Cstruct { unsigned char p0; unsigned char p1; unsigned char p2[8]; }
+BluetoothEventFilterCondition
+struct { unsigned char p0[7]; }
+BluetoothHCIFailedContactInfo
+BluetoothHCIFailedContactCount
+count
+handle
+0struct { unsigned short p0; unsigned short p1; }
+BluetoothHCIRSSIInfo
+	RSSIValue
+-struct { unsigned short p0; signed char p1; }
+BluetoothHCILinkQualityInfo
+BluetoothHCILinkQuality
+qualityValue
+/struct { unsigned short p0; unsigned char p1; }
+!BluetoothHCIEncryptionKeySizeInfo
+BluetoothHCIEncryptionKeySize
+keySize
+BluetoothHCIRoleInfo
+role
+/struct { unsigned char p0; unsigned short p1; }
+"BluetoothHCILinkPolicySettingsInfo
+BluetoothHCILinkPolicySettings
+settings
+'BluetoothHCIQualityOfServiceSetupParams
+rstruct { unsigned char p0; unsigned char p1; unsigned int p2; unsigned int p3; unsigned int p4; unsigned int p5; }
+,BluetoothHCISetupSynchronousConnectionParams
+transmitBandwidth
+receiveBandwidth
+
+maxLatency
+voiceSetting
+retransmissionEffort
+
+packetType
+wstruct { unsigned int p0; unsigned int p1; unsigned short p2; unsigned short p3; unsigned char p4; unsigned short p5; }
+4BluetoothHCIAcceptSynchronousConnectionRequestParams
+contentFormat
+4BluetoothHCIEnhancedSetupSynchronousConnectionParams
+uint64_t
+transmitCodingFormat
+receiveCodingFormat
+transmitCodecFrameSize
+receiveCodecFrameSize
+inputBandwidth
+outputBandwidth
+inputCodingFormat
+outputCodingFormat
+inputCodedDataSize
+outputCodedDataSize
+inputPCMDataFormat
+outputPCMDataFormat
+ inputPCMSamplePayloadMSBPosition
+!outputPCMSamplePayloadMSBPosition
+inputDataPath
+outputDataPath
+inputTransportUnitSize
+outputTransportUnitSize
+หstruct { unsigned int p0; unsigned int p1; unsigned long long p2; unsigned long long p3; unsigned short p4; unsigned short p5; unsigned int p6; unsigned int p7; unsigned long long p8; unsigned long long p9; unsigned short p10; unsigned short p11; unsigned char p12; unsigned char p13; unsigned char p14; unsigned char p15; unsigned char p16; unsigned char p17; unsigned char p18; unsigned char p19; unsigned short p20; unsigned short p21; unsigned char p22; }
+<BluetoothHCIEnhancedAcceptSynchronousConnectionRequestParams
+BluetoothReadClockInfo
+clock
+accuracy
+Astruct { unsigned short p0; unsigned int p1; unsigned short p2; }
+&BluetoothHCIEventFlowSpecificationData
+flowDirection
+accessLatency
+—struct { unsigned short p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned int p4; unsigned int p5; unsigned int p6; unsigned int p7; }
+BluetoothHCIVersionInfo
+BluetoothManufacturerName
+manufacturerName
+BluetoothLMPVersion
+
+lmpVersion
+BluetoothLMPSubversion
+lmpSubVersion
+
+hciVersion
+hciRevision
+gstruct { unsigned short p0; unsigned char p1; unsigned short p2; unsigned char p3; unsigned short p4; }
+BluetoothHCIBufferSize
+ACLDataPacketLength
+SCODataPacketLength
+totalNumACLDataPackets
+totalNumSCODataPackets
+Ustruct { unsigned short p0; unsigned char p1; unsigned short p2; unsigned short p3; }
+BluetoothHCILEBufferSize
+BluetoothHCIStoredLinkKeysInfo
+numLinkKeysRead
+maxNumLinkKeysAllowedInDevice
+BluetoothHCIScanActivity
+scanInterval
+
+scanWindowร
+ 
+ 
+ 
+
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+! 
+" 
+* 
+ +
+, 
+5 
+: 
+ ;
+< 
+> 
+? 
+@ 
+G 
+K 
+Q 
+R 
+V 
+X 
+Y 
+[ 
+\ 
+] 
+_ 
+` 
+q 
+s 
+t 
+ 
+ 
+ 
+ 
+0 
+“ 
+• 
+– 
+ 
+ 
+ 
+ญ 
+ฒ
+9ณ 
+ผ 
+ฝ 
+0พ 
+ฟ 
+ย
+?ร
+@ฤ 
+ส 
+0ห 
+ฬ 
+ะ 
+ี 
+ุ
+Gู 
+Hฺ 
+HÛ 
+0Ü 
+฿ 
+>โ 
+ใ 
+ไ 
+ๅ 
+Pโ 
+้ 
+0๊ 
+0๋ 
+๐ 
+9๘ 
+0 
+0 
+… 
+ 
+ 
+• 
+ 
+ข 
+ฅ 
+ง 
+ฉ 
+0ฌ 
+ฎ 
+ฏ 
+ธ 
+ฤ 
+ฦ 
+ฮ 
+ะ 
+0เ 
+ไ 
+็ 
+้ 
+๋ 
+๑ 
+
+โ 
+๚ 
+0๛ 
+ÿ 
+ 
+0 
+ 
+ 
+ธ
+xน
+yบ 
+ม 
+$โ 
+ฦ 
+@ษ 
+ส 
+า 
+ี 
+ื 
+ู 
+฿ 
+,โ 
+่ 
+๏ 
+๘ 
+๚ 
+ÿ 
+€ 
+… 
+ 
+ 
+ 
+‘ 
+iโ 
+ค 
+จ 
+ช 
+ฑ 
+0ม 
+โ 
+ะ 
+0ั 
+ู 
+hโ 
+๐ 
+€ 
+… 
+โ 
+ 
+ 
+– 
+ 
+กโ 
+ก 
+ข 
+ค 
+0ฅ 
+ฌ 
+ฆโ 
+ฏ 
+ฒ 
+ฌโ 
+ร 
+ฤ 
+ล 
+ว 
+ฮ 
+ๅ 
+๊ 
+ 
+ 
+ 
+… 
+’ 
+ฏโ 
+ฅ 
+ง 
+ม 
+@ย 
+ร 
+ฤ 
+ผโ 
+ฬ 
+ฮ 
+รโ 
+๔ 
+ 
+— 
+/โ 
+ 
+4โ 
+ฏ 
+7โ 
+า 
+ำ 
+ิ 
+Gี 
+ะึ 
+ุ
+าุ
+ำู 
+ู 
+Uโ 
+อÝ 
+ะÞ 
+โ 
+ูโ 
+ไ 
+Ûโ 
+ฃโ 
+ๅ 
+Þโ 
+็ 
+ะ่ 
+เโ 
+๐ 
+๓ 
+ใโ 
+๘ 
+ๆโ 
+๚ 
+่โ 
+๛ 
+ü 
+๊โ 
+€ 
+ํโ 
+ 
+ 
+๏โ 
+ 
+๒โ 
+ 
+ 
+๔โ 
+ 
+ 
+๗โ 
+‘ 
+๚โ 
+” 
+• 
+üโ 
+— 
+ÿโ 
+ 
+โ 
+ก 
+โ 
+ฃ 
+ค 
+…โ 
+ธ 
+โ 
+น 
+โ 
+ฝ 
+โ 
+ม 
+ย 
+ฤ 
+ฦ 
+โ 
+ห 
+“โ 
+ั 
+•โ 
+า 
+—โ 
+ี 
+โ "g20j`า
+(	"เg20	JA020
+2
+0j`H'า
+ (( JA020
+2
+0j`H'า
+ (( JA020
+2
+0j`H'า
+ (( า
+(	"g20j`า
+( "๊g20	J5&02#0Hา
+ ($(% J?)02#020
+Hา
+ ('(( JA002#02
+-0j`Hา
+ (.(/ JK302#020
+2
+-0j`Hา
+ (1(2 JI902#02
+40j`260Hา
+ (7(8 า
+( "g20า
+(="ศg20J5B02#0Hา
+ (A(% J5D02#0Hา
+ (C(% J5F02#0Hา
+ (E(% JAJ02#02
+H0j`Hา
+ (I(/ JAN02#02
+L0j`Hา
+ (M(/ JAP02#02
+40j`Hา
+ (O( JAU02#02
+0 j`!Hา
+ (S(T า
+(="g"20j`า
+(W"ตg#20	JYd02Z0$2^0&0%j`'2
+a0(j`)Hา
+ (b(c JAf02Z0$2
+0j`Hา
+ (e( J5h02Z0$Hา
+ (g(% J5j02Z0$Hา
+ (i(% JYn02Z0$2k0&0%j`'2
+0j`Hา
+ (l(m J5p02Z0$Hา
+ (o(% า
+(W"g*20j`า
+(r"๐g+20	JYw02u0,2^0&0%j`'2
+a0(j`)Hา
+ (v(c JAy02u0,2
+0j`Hา
+ (x( J5{02u0,Hา
+ (z(% J5}02u0,Hา
+ (|(% J502u0,Hา
+ (~(% J[02u0,2k0&0%j`'2
+0j`Hา
+!	(€(m J702u0,Hา
+!	((% า
+(r"g-20า
+	(…"จg.20JB020/2	01Hา
+!	((( JB020/2	01Hา
+!	((( JB020/2	01Hา
+!	((( JB020/2	‘01Hา
+!	(’(( า
+	(…"g220j`า
+	(”" g320	JB02042	—01Hา
+!	((( JB02042	01Hา
+!	((( า
+	(”"g520-า
+	("คg620.JB02072	01Hา
+!	( (( JB02072	ก01Hา
+!	(ข(( JB02072	ฃ01Hา
+!	(ค(( JB02072	ฅ01Hา
+!	(ฆ(( JB02072	ง01Hา
+!	(จ(( JB02072	ฉ01Hา
+!	(ช(( JB02072	ซ01Hา
+!	(ฌ(( JB02072	ฎ08Hา
+!	(ฏ(( JB02072	ฐ01Hา
+!	(ฑ(( JN02072ด00:Hา
+!	(ต(( JB02072	ถ08Hา
+!	(ท(( JN02072ธ00:Hา
+!	(น(( JB02072	บ08Hา
+!	(ป(( า
+	("ฟ;20<20=BJ1ภ0>H— า
+"	(ภ	(ม JBศ0>2ล
+0A0%H— า
+"	(ฦ	(ว J1ษ0>H— า
+"	(ษ	(ม า
+"> โ20B20C:โBา
+L	เ
+แ(ืJ|ื0>H— า
+>D
+อ(ฮ ฯBEั
+า(ำิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JJIÞ02ล0Aj`K0%H— า
+"	(Ý	(ว า
+Jา
+"M20;20>0NB"ปO20<BJ1ภ0PH— า
+"	(ภ	(ม JBศ0P2ล
+0A0%H— า
+"	(ฦ	(ว J1ษ0PH— า
+"	(ษ	(ม า
+"ใP โ20B:โBา
+L	เ
+แ(ืJ/ๆ0H— า
+"	(ๆ	(็ J|ื0PH— า
+>D
+อ(ฮ ฯBEั
+า(่ิ
+0F8ึา
+"	(ื	(ม า
+Iา
+Jา
+"Q20O20P0NB"๚R20;20S20TBJT๏0P2	์020&0%j`'H— า
+"	(ํ	(๎ JB๔0
+2๑
+0U0%H— า
+"	(๒	(๓ J<๗0
+2	๑08H— า
+"	(๕	(๖ J5๙0VH— า
+"	(๙	(ม J>ý0V2๚0(H— า
+"	(๛	(ü J5þ0VH— า
+"	(þ	(ม J1ภ0
+H— า
+"	(ภ	(ม JBศ0
+2ล
+0A0%H— า
+"	(ฦ	(ว J1ษ0
+H— า
+"	(ษ	(ม J/ÿ0H— า
+"	(ÿ	(€ า
+"ด 
+ โ20>20W20X:โBา
+L	เ
+แ(ืB'แ0jา
+L	เ
+แ(๖JT0P2	์020&0%j`'H— า
+"	(	(๎ Jd0j`2
+0$0Y0%20Zj`[2	0H— า
+"	(	( Jd0j`2
+0$0Y0%20Zj`[2	0H— า
+"	(	( Jb”0j`20Zj`[2‘02
+0$0Y0%H— า
+"	(’	(“ JW0j`2^0&0%j`'2
+a0Zj`\H— า
+"	(–	(— Jc0j`2u
+0,0Y0%20 j`]2	0H— า
+"	(	( Jc0j`2u
+0,0Y0%20 j`]2	0H— า
+"	(	( J7 
+0U0%H— า
+"	( 	(ก J3ฃ0 j`^H— า
+"	(ฃ	(ค J3ฆ0 j`_H— า
+"	(ฆ	(ค J3จ0 j``H— า
+"	(จ	(ค J3ช0Zj`aH— า
+"	(ช	(ซ J1ญ0bH— า
+"	(ญ	(ม J3ฐ0cj`dH— า
+"	(ฐ	(€ J3ฑ0cj`dH— า
+"	(ฑ	(€ J/ฒ0H— า
+"	(ฒ	(€ J3ณ0j`H— า
+"	(ณ	(ด J>ณ0j`2	ต0H— า
+"	(ถ	(ท JTณ0j`2	ต02น0Zj`e2บ0H— า
+"	(ป	(ผ J3ฝ0j`H— า
+"	(ฝ	(ด J>ฟ0j`2	ต0H— า
+"	(พ	(ท JKฟ0j`2	ต02น0Zj`eH— า
+"	(ภ	(ม J3ย0j`H— า
+"	(ย	(ด J/ร0H— า
+"	(ร	(€ J3ล0 j`fH— า
+"	(ล	(ค J3ว0 j`gH— า
+"	(ว	(ค J>ษ0j`2	ต0H— า
+"	(ศ	(ท JMษ0j`2	ต02ส0VH— า
+"	(ห	(ฬ J1อ0bH— า
+"	(อ	(ม J<า0i2	ฯ0hH— า
+"	(ั	(๖ J/ำ0H— า
+"	(ำ	(€ J3ิ0j`H— า
+"	(ิ	(ด J3ี0j`H— า
+"	(ี	(ด J1ึ0bH— า
+"	(ึ	(ม J/ื0H— า
+"	(ื	(€ J@Û0j`2ุ0Zj`\H— า
+"	(ู	(ฺ J{0j`2
+0$0Y0%20Zj`[2Ü00:2	0H— า
+"	(Ý	(Þ J{0j`2
+0$0Y0%20Zj`[2Ü00:2	0H— า
+"	(฿	(Þ JFใ02	แ0jH— า
+"	(โ	(๖ า
+Iา
+JJ3ๅ0j`kH— า
+"	(ๅ	(ๆ J3่0j`lH— า
+"	(่	(ๆ J3๊0j`mH— า
+"	(๊	(ๆ J3์0j`nH— า
+"	(์	(ๆ J1ํ08H— า
+"	(ํ	(ม J1๎08H— า
+"	(๎	(ม J1๏0bH— า
+"	(๏	(ม J1๐08H— า
+"	(๐	(ม J3๒0Zj`oH— า
+"	(๒	(ซ J5๓0VH— า
+"	(๓	(ม J|ื0
+H— า
+>D
+อ(ฮ ฯBEั
+า(๔ิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JJ…๗0
+2แ0jH— า
+>D
+อ(ฮ ฯBEั
+า(๕ิ
+0F8ึา
+"	(๖	(๖ า
+Iา
+JJ7๙02แ0jH— า
+!	(๘(% R5ๅ0j`k8ว@ "	(ๅ	(ๆ R5่0j`l8ว@ "	(่	(ๆ R5๊0j`m8ว@ "	(๊	(ๆ R5์0j`n8ว@ "	(์	(ๆ R3ํ088ว@ "	(ํ	(ม R3๎088ว@ "	(๎	(ม R3๏0b8ว@ "	(๏	(ม R3๐088ว@ "	(๐	(ม R5๒0Zj`o8ว@ "	(๒	(ซ R7๓0V8ว@ "	(๓	(ม า
+"p20R20
+0NB"ลq20;20rBJTþ0P2	ü020&0%j`'H— า
+"	(ý	(๎ Jnþ0P2	ü020&0%j`'20Zj`[2€0j`sH— า
+"	(	( J>0$20(j`tH— า
+"	(…	(ü J1ภ0$H— า
+"	(ภ	(ม JBศ0$2ล
+0A0%H— า
+"	(ฦ	(ว J1ษ0$H— า
+"	(ษ	(ม า
+"–$ โ20>20u:โBา
+L	เ
+แ(ืJ30j`H— า
+"	(	(ด J@0j`20Zj`vH— า
+"	(	(ฺ Jo0j`2^0&0%j`'2
+a0Zj`\2k0&0%j`'H— า
+"	(	( Jo‘0j`2^0&0%j`'2
+a0Zj`\2k0&0%j`'H— า
+"	(	( JW“0j`2^0&0%j`'2
+a0Zj`\H— า
+"	(’	(— J>–0j`2	”0H— า
+"	(•	(ท JU–0j`2	”02Ü00:H— า
+"	(—	(ฬ J10H— า
+"	(	(ม J/ร0H— า
+"	(ร	(€ JT0P2	์020&0%j`'H— า
+"	(	(๎ J30Zj`vH— า
+"	(	(ซ J30Zj`vH— า
+"	(	(ซ J/0
+H— า
+!(	(ม J30(j`tH— า
+"	(	( J30Zj`[H— า
+"	(	(ซ J30Zj`wH— า
+"	(	(ซ J3 0Zj`wH— า
+"	( 	(ซ J|ื0$H— า
+>D
+อ(ฮ ฯBEั
+า(กิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JJ:ค02	ü0H— า
+"	(ข	(ฃ J1ฅ0H— า
+"	(ฅ	(ฆ JJช02ง0&0%j`'H— า
+"	(จ	(ฉ JUช02ง0&0%j`'2	ซ0H— า
+"	(ฌ	(ญ J`ช02ง0&0%j`'2	ซ02	ฎ0H— า
+"	(ฏ	(ฐ J/ฑ0H— า
+"	(ฑ	(€ J:ต02	ฒ0H— า
+"	(ณ	(ด J:ท02	ฒ0H— า
+"	(ถ	(ด J:ฝ02	ป0zH— า
+"	(ผ	(ฃ JHภ02ง0&0%j`'H— า
+"	(พ	(ฟ J3ย0(j`{H— า
+"	(ย	( J1ร0H— า
+"	(ร	(ฆ J1ฤ08H— า
+"	(ฤ	(ม J1ล08H— า
+"	(ล	(ม R50Zj`v8ว@ "	(	(ซ R50Zj`v8ว@ "	(	(ซ R10
+8ว@ !(	(ม R50(j`t8ว@ "	(	( R50Zj`[8ว@ "	(	(ซ R50Zj`w8ว@ "	(	(ซ R5 0Zj`w8ว@ "	( 	(ซ า
+"|20q20$0NB"}20;20rBJTþ0P2	ü020&0%j`'H— า
+"	(ý	(๎ Jnþ0P2	ü020&0%j`'20 j`]2€0j`sH— า
+"	(ว	(ศ JHฮ0,2ห0~0%j`H— า
+"	(ฬ	(อ J>0,20(j`tH— า
+"	(…	(ü J1ภ0,H— า
+"	(ภ	(ม JBศ0,2ล
+0A0%H— า
+"	(ฦ	(ว J1ษ0,H— า
+"	(ษ	(ม า
+"ฤ, โ20>20u:โBา
+L	เ
+แ(ืJ=ฯ0~0%j`H— า
+"	(ฯ	(ะ J30j`H— า
+"	(	(ด J/ั0H— า
+"	(ั	(€ J4ำ0Zj`€H— า
+"	(ำ	(ซ J/ิ0H— า
+"	(ิ	(€ Jo‘0j`2^0&0%j`'2
+a0Zj`\2k0&0%j`'H— า
+"	(	( JW“0j`2^0&0%j`'2
+a0Zj`\H— า
+"	(’	(— JkÞ0j`2ึ0j`2ุ0 j`2ฺ0j`2Û0 j`H— า
+"	(Ü	(Ý JAใ0j`2เ0j`H— า
+"	(แ	(โ J>–0j`2	0H— า
+"	(•	(ท J10H— า
+"	(	(ม J3ไ0 j`]H— า
+"	(ไ	(ค J/ร0H— า
+"	(ร	(€ J1ๅ0
+H— า
+"	(ๅ	(ม J3ๆ0(j`tH— า
+"	(ๆ	( JT0P2	์020&0%j`'H— า
+"	(	(๎ J|ื0,H— า
+>D
+อ(ฮ ฯBEั
+า(็ิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JJ:ค02	ü0H— า
+"	(ข	(ฃ J1ฅ0H— า
+"	(ฅ	(ฆ JJช02ง0&0%j`'H— า
+"	(จ	(ฉ JUช02ง0&0%j`'2	ซ0H— า
+"	(ฌ	(ญ J`ช02ง0&0%j`'2	ซ02	ฎ0H— า
+"	(ฏ	(ฐ J/ฑ0H— า
+"	(ฑ	(€ J:ต02	ฒ0H— า
+"	(ณ	(ด J:ท02	ฒ0H— า
+"	(ถ	(ด J:ฝ02	ป0zH— า
+"	(ผ	(ฃ JHภ02ง0&0%j`'H— า
+"	(พ	(ฟ J3ย0(j`{H— า
+"	(ย	( J1ร0H— า
+"	(ร	(ฆ J1ฤ08H— า
+"	(ฤ	(ม J1ล08H— า
+"	(ล	(ม า
+"…20}20,0NB"Þ20<20S20TBJH๋0i2้00:H— า
+"	(๊	(๖ JR๎0i2้00:20
+H— า
+"	(์	(ํ JI๒0i2๐0~0%j`H— า
+"	(๑	(อ J1ภ0iH— า
+"	(ภ	(ม JBศ0i2ล
+0A0%H— า
+"	(ฦ	(ว J1ษ0iH— า
+"	(ษ	(ม J/ÿ0H— า
+"	(ÿ	(€ า
+"ธi โ20B20W20X:โB?ฃ00:0
+า
+L	เ
+แ(๕Bา
+L	เ
+แ(ืB'แ0jา
+L	เ
+แ(๖J3๓0j`H— า
+"	(๓	(ด J๖0i2้00:20
+H— า
+>D
+อ(ฮ ฯBEั
+า(๔ิ
+0F8ึา
+"	(๕	(ํ า
+Iา
+JJ>๗0~0%j`H— า
+"	(๗	(ะ J@ý02๙0Zj`H— า
+"	(๛	(ü J1þ08H— า
+"	(þ	(ม JP0j`20 0j`0%H— า
+"	(	( JP0j`20Z0j`0%H— า
+"	(	( JP0j`200j`0%H— า
+"	(	( J=•02’0Zj`H— า
+"	(“	(” J>02–0VH— า
+"	(—	(ฃ J>020VH— า
+"	(	(ฃ J>020VH— า
+"	(	(ฃ J/0
+H— า
+!(	(ม J=00:H— า
+"	(	(ม J5 0VH— า
+"	( 	(ม J|ื0iH— า
+>D
+อ(ฮ ฯBEั
+า(กิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JJ…๗0i2แ0jH— า
+>D
+อ(ฮ ฯBEั
+า(ขิ
+0F8ึา
+"	(๖	(๖ า
+Iา
+JJ7๙02แ0jH— า
+!	(๘(% R10
+8ว@ !(	(ม R?00:8ว@ "	(	(ม R7 0V8ว@ "	( 	(ม า
+"‘2020i0NB"๋’20<20S20TBJ=ง02	ฅ0BH— า
+"	(ฆ	(๖ Jfฐ02ฉ0 j`“2ซ0 j`”2ฌ0j`2	ญ0BH— า
+"	(ฎ	(ฏ JJด02ฒ0~0%j`•H— า
+"	(ณ	(อ J2ภ0H— า
+"	(ภ	(ม JCศ02ล
+0A0%H— า
+"	(ฦ	(ว J2ษ0H— า
+"	(ษ	(ม J/ÿ0H— า
+"	(ÿ	(€ า
+"๖ โ20B20W20X:โB)	ฯ0Bา
+L	เ
+แ(ถBRฉ0 j`“ซ0 j`”ฌ0j`	ญ0Bา
+L	เ
+แ(บBา
+L	เ
+แ(ืB'แ0jา
+L	เ
+แ(๖Jท02	ฅ0BH— า
+>D
+อ(ฮ ฯBEั
+า(ติ
+0F8ึา
+"	(ถ	(๖ า
+Iา
+JJฑป02ธ0 j`“2ซ0 j`”2ฌ0j`2	ญ0BH— า
+>D
+อ(ฮ ฯBEั
+า(นิ
+0F8ึา
+"	(บ	(ฏ า
+Iา
+JJ>ผ0~0%j`•H— า
+"	(ผ	(ะ J4ฝ0 j`“H— า
+"	(ฝ	(ค J4พ0 j`”H— า
+"	(พ	(ค J3ฟ0j`H— า
+"	(ฟ	(ๆ J1ภ01H— า
+"	(ภ	(ม J2ย0–H— า
+"	(ย	(ม J1ร08H— า
+"	(ร	(ม J5ฤ0VH— า
+"	(ฤ	(ม J1ล0hH— า
+"	(ล	(ม J1ฦ0BH— า
+"	(ฦ	(ม J;ษ02
+ว0H— า
+"	(ศ	(ฃ J:ฬ02	ส0BH— า
+"	(ห	(ฃ J}ื0H— า
+>D
+อ(ฮ ฯBEั
+า(อิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JJ๗02แ0jH— า
+>D
+อ(ฮ ฯBEั
+า(ฮิ
+0F8ึา
+"	(๖	(๖ า
+Iา
+JJ7๙02แ0jH— า
+!	(๘(% า
+"—20’2	00NB"2020S20TBJRี0h2า0&0%j`'2a0H— า
+"	(ำ	(ิ J<ื0h2	^0–H— า
+"	(ึ	(๖ J?’0h2’0Zj`H— า
+"	(ุ	(ü J?ฺ0h2ฺ0j`H— า
+"	(Û	(Ü J1ภ0hH— า
+"	(ภ	(ม JBศ0h2ล
+0A0%H— า
+"	(ฦ	(ว J1ษ0hH— า
+"	(ษ	(ม J/ÿ0H— า
+"	(ÿ	(€ า
+"ฌh โ20–20W20X:โB,๎0Zj`า
+L	เ
+แ(ÞB,๏0j`า
+L	เ
+แ(แBา
+L	เ
+แ(ืB'แ0jา
+L	เ
+แ(๖J฿0h2’0Zj`H— า
+>D
+อ(ฮ ฯBEั
+า(Ýิ
+0F8ึา
+"	(Þ	(ü า
+Iา
+JJโ0h2ฺ0j`H— า
+>D
+อ(ฮ ฯBEั
+า(เิ
+0F8ึา
+"	(แ	(Ü า
+Iา
+JJ:ๅ0h2ใ0H— า
+"	(ไ	(Ü J:่02	ๆ0hH— า
+"	(็	(ฃ J1้0H— า
+"	(้	(ฆ J1๊0H— า
+"	(๊	(ฆ J1๋0H— า
+"	(๋	(ฆ J|ื0hH— า
+>D
+อ(ฮ ฯBEั
+า(์ิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JJ…๗0h2แ0jH— า
+>D
+อ(ฮ ฯBEั
+า(ํิ
+0F8ึา
+"	(๖	(๖ า
+Iา
+JJ7๙02แ0jH— า
+!	(๘(% า
+"2020h0NB"๚20<BJ<๒02	0H— า
+"	(๑	(๖ J1ภ0H— า
+"	(ภ	(ม JBศ02ล
+0A0%H— า
+"	(ฦ	(ว J1ษ0H— า
+"	(ษ	(ม า
+"ÿ โ20B:โB)	0า
+L	เ
+แ(๔Bา
+L	เ
+แ(ืJ๕02	0H— า
+>D
+อ(ฮ ฯBEั
+า(๓ิ
+0F8ึา
+"	(๔	(๖ า
+Iา
+JJ3๖0j`H— า
+"	(๖	(ด J3๗0j`H— า
+"	(๗	(ด J5๘0VH— า
+"	(๘	(ม J/๙0H— า
+"	(๙	(็ JVÿ02๚0j`l2๛0j`m2ü0j`nH— า
+"	(ý	(þ J10H— า
+"	(	(ม J9–02	0H— า
+!	(•(% J40 j`H— า
+"	(	(ค J=020 j`H— า
+"	(	( J40j`H— า
+"	(	(ๆ J=020j`H— า
+"	(	( J/0H— า
+"	(	(€ J8020H— า
+"	(	( J|ื0H— า
+>D
+อ(ฮ ฯBEั
+า(ิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JRf02	ญ08ว@วX"	(	(ม ’!	(•(% Rm0 j`2ญ0 j`8ว@วX"	(	(ค ’"	(	( Rm0j`2ญ0j`8ว@วX"	(	(ๆ ’"	(	( Rc02ญ08ว@วX"	(	(€ ’"	(	( า
+"20200NB"ý 20<BJ<’0ก20
+H— า
+"	(‘	(๖ J2ภ0กH— า
+"	(ภ	(ม JCศ0ก2ล
+0A0%H— า
+"	(ฦ	(ว J2ษ0กH— า
+"	(ษ	(ม า
+"็ก โ20B:โBา
+L	เ
+แ(ืJ3๖0j`H— า
+"	(๖	(ด J/๗0H— า
+"	(๗	(็ J/0
+H— า
+!(	(ม J9•02	“0
+H— า
+!	(”(% JO02—0(j`ข20ฃ0%H— า
+"	(	( J8020H— า
+"	(	( J10H— า
+"	(	(ม J9–02	0H— า
+!	(•(% J}ื0กH— า
+>D
+อ(ฮ ฯBEั
+า( ิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JRf02	ญ08ว@วX"	(	(ม ’!	(•(% า
+"ค20 2	0ก0NB"๓ฅ20<BJ2ฃ0ฆH— า
+"	(ฃ	(ม J2ภ0ฆH— า
+"	(ภ	(ม JCศ0ฆ2ล
+0A0%H— า
+"	(ฦ	(ว J2ษ0ฆH— า
+"	(ษ	(ม า
+"ไฆ โ20B:โBา
+L	เ
+แ(ืJ3ๅ0j`kH— า
+"	(ๅ	(ๆ JOฉ0j`2ๅ0j`k2ฆ0งj`จH— า
+"	(ง	(จ J1ช08H— า
+"	(ช	(ม J1ซ08H— า
+"	(ซ	(ม J10H— า
+"	(	(ม J9–02	0H— า
+!	(•(% J4ญ0j`ฉH— า
+"	(ญ	(ด J}ื0ฆH— า
+>D
+อ(ฮ ฯBEั
+า(ฎิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JRf02	ญ08ว@วX"	(	(ม ’!	(•(% R6ญ0j`ฉ8ว@ "	(ญ	(ด า
+"ช20ฅ2	0ฆ0NB"“ซ20<20S20TBJKต0ฌ2ฐ0Zj`2	ฑ0BH— า
+"	(ณ	(ด JLต0ฌ2ฐ0Zj`2
+ถ0H— า
+"	(ท	(ด J2ภ0ฌH— า
+"	(ภ	(ม JCศ0ฌ2ล
+0A0%H— า
+"	(ฦ	(ว J2ษ0ฌH— า
+"	(ษ	(ม J/ÿ0H— า
+"	(ÿ	(€ า
+"๋ฌ โ20B20W20X:โB7ย0Zj`	ฑ0Bา
+L	เ
+แ(นB8ย0Zj`
+ถ0า
+L	เ
+แ(ผBา
+L	เ
+แ(ืB'แ0jา
+L	เ
+แ(๖J–บ0ฌ2ฐ0Zj`2	ฑ0BH— า
+>D
+อ(ฮ ฯBEั
+า(ธิ
+0F8ึา
+"	(น	(ด า
+Iา
+JJ—บ0ฌ2ฐ0Zj`2
+ถ0H— า
+>D
+อ(ฮ ฯBEั
+า(ปิ
+0F8ึา
+"	(ผ	(ด า
+Iา
+JJ4ฝ0Zj`H— า
+"	(ฝ	(ซ J2พ0H— า
+"	(พ	(ม J2ฟ0H— า
+"	(ฟ	(ม J}ื0ฌH— า
+>D
+อ(ฮ ฯBEั
+า(ภิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JJ๗0ฌ2แ0jH— า
+>D
+อ(ฮ ฯBEั
+า(มิ
+0F8ึา
+"	(๖	(๖ า
+Iา
+JJ7๙02แ0jH— า
+!	(๘(% า
+"ญ20ซ2	0ฌ0NB"ฟฎ20<BJ2ภ0ฏH— า
+"	(ภ	(ม JCศ0ฏ2ล
+0A0%H— า
+"	(ฦ	(ว J2ษ0ฏH— า
+"	(ษ	(ม า
+"ฏ โ20B:โBา
+L	เ
+แ(ืJณั0j`ฒ2ฦ0 j`ฐ2ศ0Zj`ฑ2ษ0&0%j`'2ส0(j`)2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(ฯ	(ะ J—ี0j`ฒ2า0&0%j`'2ส0(j`)2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(ำ	(ิ JฦÝ0j`ฒ2ึ02ื0&0%j`'2ุ0(j`)2ู0&0%j`'2ฺ0(j`)2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(Û	(Ü J โ0j`ฒ2ึ02Þ0&0%j`'2฿0(j`)2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(เ	(แ J—ไ0j`ฒ2า0&0%j`'2ส0(j`)2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(ใ	(ิ Jณ้0j`ฒ2ฦ0 j`ฐ2ๆ0 j`ณ2ษ0&0%j`'2ส0(j`)2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(็	(่ Jม๏0j`ฒ2๋0 j`ด2์0 j`ฐ2ศ0Zj`ฑ2ษ0&0%j`'2ส0(j`)2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(ํ	(๎ Jฅ๑0j`ฒ2๋0 j`ด2ษ0&0%j`'2ส0(j`)2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(๐	(แ Jฅ๓0j`ฒ2๋0 j`ด2ษ0&0%j`'2ส0(j`)2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(๒	(แ Jฅ๕0j`ฒ2๋0 j`ด2ษ0&0%j`'2ส0(j`)2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(๔	(แ Jฅ๗0j`ฒ2๋0 j`ด2ษ0&0%j`'2ส0(j`)2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(๖	(แ Jฅ๙0j`ฒ2๋0 j`ด2ษ0&0%j`'2ส0(j`)2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(๘	(แ JBý0Zj`ฑ2๚0 j`ดH— า
+"	(๛	(ü JBÿ0Zj`ฑ2๚0 j`ดH— า
+"	(þ	(ü J4€0Zj`ฑH— า
+"	(€	(ซ J/0H— า
+"	(	(€ Jd023.!0ท0%00ถ0ต0%j`ธH— า
+"	(	( JH020&0%j`'H— า
+"	(	( J^‘020&0%j`'2	ต02	อ0H— า
+"	(	( JA–02“0น0%H— า
+"	(”	(• JA02“0น0%H— า
+"	(—	(• JZ0j`ฒ20&0%j`'20(j`)H— า
+"	(	( Jqก0j`ฒ20&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(	(  J/ข0H— า
+"	(ข	(ค J4ฃ0j`ฒH— า
+"	(ฃ	(ด J}ื0ฏH— า
+>D
+อ(ฮ ฯBEั
+า(คิ
+0F8ึา
+"	(ื	(ม า
+Iา
+Jา
+"บ20ฎ2	0ฏ0NB"หป20ฎ20*BJ=ฉ0ผ2	ฆ0iH— า
+"	(จ	(๖ JJญ0ผ2	“0
+2ช0 j`]H— า
+"	(ซ	(ฌ Jzฑ0ผ2	ฎ0,2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+"	(ฏ	(ฐ J2ภ0ผH— า
+"	(ภ	(ม JCศ0ผ2ล
+0A0%H— า
+"	(ฦ	(ว J2ษ0ผH— า
+"	(ษ	(ม า
+"คผ โ20ฏ20+:โB)	ส0iา
+L	เ
+แ(ณB50
+ช0 j`]า
+L	เ
+แ(ถBf	ห0,ห0&0%j`'	ฬ0อ0&0%j`'า
+L	เ
+แ(นBา
+L	เ
+แ(ืJด0ผ2	ฆ0iH— า
+>D
+อ(ฮ ฯBEั
+า(ฒิ
+0F8ึา
+"	(ณ	(๖ า
+Iา
+JJ•ท0ผ2	“0
+2ช0 j`]H— า
+>D
+อ(ฮ ฯBEั
+า(ติ
+0F8ึา
+"	(ถ	(ฌ า
+Iา
+JJลบ0ผ2	ฎ0,2ห0&0%j`'2	ฬ02อ0&0%j`'H— า
+>D
+อ(ฮ ฯBEั
+า(ธิ
+0F8ึา
+"	(น	(ฐ า
+Iา
+JJ1ป0,H— า
+"	(ป	(ม J1ๅ0
+H— า
+"	(ๅ	(ม J3ผ0j`H— า
+"	(ผ	(ด J/ฝ0H— า
+"	(ฝ	(็ J/พ0H— า
+"	(พ	(€ J/ข0H— า
+"	(ข	(€ J^ภ020&0%j`'2	ต02	อ0H— า
+"	(ฟ	( Jฅศ02[ลVIGB@0พ0%j`ฟ	0j`ฒ0&0%j`'00ฝ0ต0%j`ภ2อ0&0%j`'H— า
+"	(ฦ	(ว J}ื0ผH— า
+>D
+อ(ฮ ฯBEั
+า(ษิ
+0F8ึา
+"	(ื	(ม า
+Iา
+Jา
+"ม20ป2	0ผ0NB"ÿย20<BJ>ะ0ร2
+อ0ผH— า
+"	(ฯ	(๖ J2ภ0รH— า
+"	(ภ	(ม JCศ0ร2ล
+0A0%H— า
+"	(ฦ	(ว J2ษ0รH— า
+"	(ษ	(ม า
+"บร โ20B:โB*
+๓0ผา
+L	เ
+แ(าBา
+L	เ
+แ(ืJำ0ร2
+อ0ผH— า
+>D
+อ(ฮ ฯBEั
+า(ัิ
+0F8ึา
+"	(า	(๖ า
+Iา
+JJ1ิ08H— า
+"	(ิ	(ม J/ี0H— า
+"	(ี	(€ J/ฒ0H— า
+"	(ฒ	(€ J4ึ0j`ฒH— า
+"	(ึ	(ด J4ื0j`ฒH— า
+"	(ื	(ด J4ุ0j`ฒH— า
+"	(ุ	(ด J4ู0j`ฒH— า
+"	(ู	(ด J4ฺ0j`ฒH— า
+"	(ฺ	(ด J?Ý0j`ฒ2	Û08H— า
+"	(Ü	(ท J?฿0j`ฒ2	Û08H— า
+"	(Þ	(ท J?โ0j`ฒ2	เ08H— า
+"	(แ	(ท J4ใ0j`ฒH— า
+"	(ใ	(ด J?ๆ0j`ฒ2	ไ08H— า
+"	(ๅ	(ท JJ๊0j`ฒ2	็082	่08H— า
+"	(้	(ฬ JV๎0j`ฒ2
+๋0–2	ฉ082	ํ08H— า
+"	(์	(ํ J?๐0j`ฒ2	ไ08H— า
+"	(๏	(ท J4๑0j`ฒH— า
+"	(๑	(ด J10H— า
+"	(	(ม J9–02	0H— า
+!	(•(% J}ื0รH— า
+>D
+อ(ฮ ฯBEั
+า(๒ิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JRf02	ญ08ว@วX"	(	(ม ’!	(•(% า
+"ฤ20ย2	0ร0NB"ผล20<BJ1ภ0/H— า
+"	(ภ	(ม JBศ0/2ล
+0A0%H— า
+"	(ฦ	(ว J1ษ0/H— า
+"	(ษ	(ม า
+"ฤ/ โ20B:โB30
+	0.า
+L	เ
+แ(๛Bา
+L	เ
+แ(ืJ:๗02	๕08H— า
+"	(๖	(ท JB๙02	๕082ญ0H— า
+!	(๘( J‘ท0/20
+2	0.H— า
+>D
+อ(ฮ ฯBEั
+า(๚ิ
+0F8ึา
+"	(๛	(ํ า
+Iา
+JJ/ü0H— า
+"	(ü	(็ J/ุ0H— า
+"	(ุ	(็ J/ý0H— า
+"	(ý	(็ J/þ0H— า
+"	(þ	(็ J/ÿ0H— า
+"	(ÿ	(€ J3€0j`H— า
+"	(€	(ๆ J<02€0j`H— า
+"	(	( J00ฦH— า
+"	(	(… J9020ฦH— า
+"	(	( J/0H— า
+"	(	(€ J8020H— า
+"	(	( J00ฦH— า
+"	(	(… J9020ฦH— า
+"	(	( J/0H— า
+"	(	(€ J8“02‘0H— า
+"	(’	( J/0
+H— า
+!(	(ม J3”0j`H— า
+"	(”	(ๆ J3•0j`H— า
+"	(•	(ๆ J3–0j`H— า
+"	(–	(ๆ J00วH— า
+"	(	( J/0H— า
+"	(	(€ J10.H— า
+"	(	(ม J9–02	0.H— า
+!	(•(% J/ฒ0H— า
+"	(ฒ	(€ J|ื0/H— า
+>D
+อ(ฮ ฯBEั
+า(ิ
+0F8ึา
+"	(ื	(ม า
+Iา
+JRk€0j`2ญ0j`8ว@วX"	(€	(ๆ ’"	(	( Re0ฦ2ญ0ฦ8ว@วX"	(	(… ’"	(	( Rc02ญ08ว@วX"	(	(€ ’"	(	( Re0ฦ2ญ0ฦ8ว@วX"	(	(… ’"	(	( Rc‘02ญ08ว@วX"	(	(€ ’"	(’	( R10
+8ว@ !(	(ม R5”0j`8ว@ "	(”	(ๆ R5•0j`8ว@ "	(•	(ๆ R5–0j`8ว@ "	(–	(ๆ R20ว8ว@ "	(	( R108ว@ "	(	(€ Rf0.2	ญ0.8ว@วX"	(	(ม ’!	(•(% R108ว@ "	(ฒ	(€ า
+"ศ20ล20/0NB"ฝษ20ลBJ1ภ04H— า
+"	(ภ	(ม JBศ042ล
+0A0%H— า
+"	(ฦ	(ว J1ษ04H— า
+"	(ษ	(ม า
+"พ4 โ20/:โB30
+	0า
+L	เ
+แ(๛Bา
+L	เ
+แ(ืJ‘ท0420
+2	0H— า
+>D
+อ(ฮ ฯBEั
+า(ิ
+0F8ึา
+"	(๛	(ํ า
+Iา
+JJUฃ02	๕0820202 0H— า
+"	(ก	(ข J9ฆ02	ค08H— า
+!	(ฅ(% J/ง0H— า
+"	(ง	(็ J9ช02	จ08H— า
+!	(ฉ(% JCช02	จ082ซ0H— า
+"	(ฌ	(ญ J|ื04H— า
+>D
+อ(ฮ ฯBEั
+า(ฎิ
+0F8ึา
+"	(ื	(ม า
+Iา
+Jา
+"ส20ษ2040NB"ฝห20ลBJ1ภ07H— า
+"	(ภ	(ม JBศ072ล
+0A0%H— า
+"	(ฦ	(ว J1ษ07H— า
+"	(ษ	(ม า
+"7 โ20/:โB30
+	0า
+L	เ
+แ(๛Bา
+L	เ
+แ(ืJ‘ท0720
+2	0H— า
+>D
+อ(ฮ ฯBEั
+า(ฐิ
+0F8ึา
+"	(๛	(ํ า
+Iา
+JJ9ณ02	ฑ08H— า
+!	(ฒ(% J8ท02ด0H— า
+"	(ต	(ถ J/0H— า
+"	(	(็ J/ธ0H— า
+"	(ธ	(็ J/น0H— า
+"	(น	(็ J/บ0H— า
+"	(บ	(็ J9ฝ02	ป08H— า
+!	(ผ(% J/ถ0H— า
+"	(ถ	(็ J/พ0H— า
+"	(พ	(็ J/ฟ0H— า
+"	(ฟ	(็ J/ภ0H— า
+"	(ภ	(็ J8ร02ม0H— า
+"	(ย	(ถ J/ฤ0H— า
+"	(ฤ	(็ J8ฦ02ม0H— า
+"	(ล	(ถ J/ว0H— า
+"	(ว	(็ J/ศ0H— า
+"	(ศ	(็ J/ษ0H— า
+"	(ษ	(็ J/ส0H— า
+"	(ส	(็ JDฬ02	ฑ082	อ08H— า
+!	(ห(( J9ฮ02	ค08H— า
+!	(อ(% Jgฮ02	ค082ุ0ฦ20&0%j`'2	ต0H— า
+"	(ฯ	(ะ J|ื07H— า
+>D
+อ(ฮ ฯBEั
+า(ัิ
+0F8ึา
+"	(ื	(ม า
+Iา
+Jา
+"ฬ20ห2070NB"zU โ20อ:โBฺ0ิj`ีRE^+0 0j`ฮ0%j0 0j`ฮ`ฯ8ว@ ั	ื า
+ะ
+Û(Ü"`ึ20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"{ู โ20อ:โBฺ0ิj`ีRE^+0 0j`ฮ0%j0 0j`ฮ`ฯ8ว@ ั	ื า
+ะ
+Û(ใ"`ฺ20ืBา
+ุ	ฌ 	฿า
+2D
+อ(เฯBEัิ
+0F8แ"{Û โ20อ:โBฺ0ิj`ีRE^+0 0j`ฮ0%j0 0j`ฮ`ฯ8ว@ ั	ื า
+ะ
+Û(ใ"`Ü20ืBา
+ุ	ฌ 	฿า
+2D
+อ(เฯBEัิ
+0F8แ"{ฃ โ20อ:โBฺ0ิj`ีRE^+0 0j`ฮ0%j0 0j`ฮ`ฯ8ว@ ั	ื า
+ะ
+Û(ใ"`Ý20ืBา
+ุ	ฌ 	฿า
+2D
+อ(เฯBEัิ
+0F8แ"{Þ โ20อ:โBฺ0ิj`ีRE^+0 0j`ฮ0%j0 0j`ฮ`ฯ8ว@ ั	ื า
+ะ
+Û(ๆ"`฿20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"เ โ20อ:โBฺ0ิj`ีRE์0 j`2ญ0 j`8ว@วXแ	ื ’แ	ื RE้0 j`2ญ0 j`8ว@วXแ	ื’แ	ืRC๊0j`2ญ0j`8ว@วXแ	ื’แ	ืRC๋0j`2ญ0j`8ว@วXแ	ื’แ	ืRC์0j`2ญ0j`8ว@วXแ	ื’แ	ืRCํ0j`2ญ0j`8ว@วXแ	ื ’แ	ื RC๎0j`2ญ0j`8ว@วXแ	ื(’แ	ื(า
+ะ
+Û(๏"`โ20ืBา
+ุ	ฌ0	฿า
+2D
+อ(เฯBEัิ
+0F8แ"Þใ โ20อ:โBฺ0ิj`ีRE์0 j`2ญ0 j`8ว@วXแ	ื ’แ	ื RE๑0 j`2ญ0 j`8ว@วXแ	ื’แ	ืRE๒0 j`2ญ0 j`8ว@วXแ	ื’แ	ืRE๔0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืRE๕0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืRE๖0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืา
+ะ
+Û(๗"`ๅ20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"{ๆ โ20อ:โBฺ0ิj`ีRE^+0 0j`ฮ0%j0 0j`ฮ`ฯ8ว@ ั	ื า
+ะ
+Û(๙"a็20ืBา
+ุ
+ฌ€	฿า
+2D
+อ(เฯBEัิ
+0F8แ"{่ โ20อ:โBฺ0ิj`ีRE^+0 0j`ฮ0%j0 0j`ฮ`ฯ8ว@ ั	ื า
+ะ
+Û(ๆ"`้20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"๊ โ20อ:โBฺ0ิj`ีREý0 j`๋2ญ0 j`๋8ว@วXแ	ื ’แ	ื REþ0 j`๋2ญ0 j`๋8ว@วXแ	ื’แ	ืRE^+0 0j`ฮ0%j0 0j`ฮ`ฯ8ว@ ั	ืา
+ะ
+Û(ÿ"`์20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"{ํ โ20อ:โBฺ0ิj`ีRE^+0 0j`ฮ0%j0 0j`ฮ`ฯ8ว@ ั	ื า
+ะ
+Û("`๎20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"ภ๏ โ20อ:โBฺ0ิj`ีRE0Zj`๐2ญ0Zj`๐8ว@วXแ	ื ’แ	ื RC…0Zj`o2ญ0Zj`o8ว@วXแ	ื’แ	ืา
+ะ
+Û("`๑20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"พ๒ โ20อ:โBฺ0ิj`ีRC…0Zj`o2ญ0Zj`o8ว@วXแ	ื ’แ	ื RC0cj`d2ญ0cj`d8ว@วXแ	ื’แ	ืา
+ะ
+Û("`๓20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"ภ๔ โ20อ:โBฺ0ิj`ีRC…0Zj`o2ญ0Zj`o8ว@วXแ	ื ’แ	ื RE0 j`๕2ญ0 j`๕8ว@วXแ	ื’แ	ืา
+ะ
+Û("`๖20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"ภ๗ โ20อ:โBฺ0ิj`ีRC…0Zj`o2ญ0Zj`o8ว@วXแ	ื ’แ	ื RE0 j`๘2ญ0 j`๘8ว@วXแ	ื’แ	ืา
+ะ
+Û("`๙20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"ภ๚ โ20อ:โBฺ0ิj`ีRE’0 j`2ญ0 j`8ว@วXแ	ื ’แ	ื RC…0Zj`o2ญ0Zj`o8ว@วXแ	ื’แ	ืา
+ะ
+Û(“"`๛20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"ภü โ20อ:โBฺ0ิj`ีRE–0Zj`ý2ญ0Zj`ý8ว@วXแ	ื ’แ	ื RC…0Zj`o2ญ0Zj`o8ว@วXแ	ื’แ	ืา
+ะ
+Û("`þ20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"ึÿ โ20อ:โBฺ0ิj`ีRE์0 j`2ญ0 j`8ว@วXแ	ื ’แ	ื RE้0 j`2ญ0 j`8ว@วXแ	ื’แ	ืRC๊0j`2ญ0j`8ว@วXแ	ื’แ	ืRC์0j`2ญ0j`8ว@วXแ	ื’แ	ืRCํ0j`2ญ0j`8ว@วXแ	ื’แ	ืRC๎0j`2ญ0j`8ว@วXแ	ื ’แ	ื า
+ะ
+Û("`€20ืBา
+ุ	ฌ(	฿า
+2D
+อ(เฯBEัิ
+0F8แ"ฺ โ20อ:โBฺ0ิj`ีRC0j`2ญ0j`8ว@วXแ	ื ’แ	ื RC0j`2ญ0j`8ว@วXแ	ื’แ	ืRE0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืRE0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืRE0 j`2ญ0 j`8ว@วXแ	ื’แ	ืRE0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืา
+ะ
+Û( "`20ืBา
+ุ	ฌ 	฿า
+2D
+อ(เฯBEัิ
+0F8แ"ฺ โ20อ:โBฺ0ิj`ีRC0j`2ญ0j`8ว@วXแ	ื ’แ	ื RC0j`2ญ0j`8ว@วXแ	ื’แ	ืRE0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืREข0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืRE0 j`2ญ0 j`8ว@วXแ	ื’แ	ืRE0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืา
+ะ
+Û( "`20ืBา
+ุ	ฌ 	฿า
+2D
+อ(เฯBEัิ
+0F8แ"… โ20อ:โBฺ0ิj`ีRC0j`2ญ0j`8ว@วXแ	ื ’แ	ื RC0j`2ญ0j`8ว@วXแ	ื’แ	ืREฅ0(j`2ญ0(j`8ว@วXแ	ื’แ	ืREฆ0(j`2ญ0(j`8ว@วXแ	ื ’แ	ื REง0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื0’แ	ื0REจ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื4’แ	ื4RCฉ0j`2ญ0j`8ว@วXแ	ื8’แ	ื8RCช0j`2ญ0j`8ว@วXแ	ื@’แ	ื@REซ0(j`2ญ0(j`8ว@วXแ	ืP’แ	ืPREฌ0(j`2ญ0(j`8ว@วXแ	ื`’แ	ื`REญ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ืp’แ	ืpREฎ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ืt’แ	ืtREฏ0 j`2ญ0 j`8ว@วXแ	ืx’แ	ืxREฐ0 j`2ญ0 j`8ว@วXแ	ืz’แ	ืzREฑ0 j`2ญ0 j`8ว@วXแ	ื|’แ	ื|REฒ0 j`2ญ0 j`8ว@วXแ	ื~’แ	ื~RGณ0 j`2ญ0 j`8ว@วXแ
+ื€’แ
+ื€RGด0 j`2ญ0 j`8ว@วXแ
+ื’แ
+ืRGต0 j`2ญ0 j`8ว@วXแ
+ื’แ
+ืRGถ0 j`2ญ0 j`8ว@วXแ
+ื’แ
+ืRG0Zj`ไ2ญ0Zj`ไ8ว@วXแ
+ื’แ
+ืRG0Zj`ไ2ญ0Zj`ไ8ว@วXแ
+ื’แ
+ืRG0 j`2ญ0 j`8ว@วXแ
+ื’แ
+ืา
+ะ
+Û(ท"a20ืBา
+ุ
+ฌ 	฿า
+2D
+อ(เฯBEัิ
+0F8แ" โ20อ:โBฺ0ิj`ีRC0j`2ญ0j`8ว@วXแ	ื ’แ	ื RC0j`2ญ0j`8ว@วXแ	ื’แ	ืREฅ0(j`2ญ0(j`8ว@วXแ	ื’แ	ืREฆ0(j`2ญ0(j`8ว@วXแ	ื ’แ	ื REง0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื0’แ	ื0REจ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื4’แ	ื4RCฉ0j`2ญ0j`8ว@วXแ	ื8’แ	ื8RCช0j`2ญ0j`8ว@วXแ	ื@’แ	ื@REซ0(j`2ญ0(j`8ว@วXแ	ืP’แ	ืPREฌ0(j`2ญ0(j`8ว@วXแ	ื`’แ	ื`REญ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ืp’แ	ืpREฎ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ืt’แ	ืtREฏ0 j`2ญ0 j`8ว@วXแ	ืx’แ	ืxREฐ0 j`2ญ0 j`8ว@วXแ	ืz’แ	ืzREฑ0 j`2ญ0 j`8ว@วXแ	ื|’แ	ื|REฒ0 j`2ญ0 j`8ว@วXแ	ื~’แ	ื~RGณ0 j`2ญ0 j`8ว@วXแ
+ื€’แ
+ื€RGด0 j`2ญ0 j`8ว@วXแ
+ื’แ
+ืRGต0 j`2ญ0 j`8ว@วXแ
+ื’แ
+ืRGถ0 j`2ญ0 j`8ว@วXแ
+ื’แ
+ืRG0Zj`ไ2ญ0Zj`ไ8ว@วXแ
+ื’แ
+ืRG0Zj`ไ2ญ0Zj`ไ8ว@วXแ
+ื’แ
+ืRG0 j`2ญ0 j`8ว@วXแ
+ื’แ
+ืา
+ะ
+Û(ท"a20ืBา
+ุ
+ฌ 	฿า
+2D
+อ(เฯBEัิ
+0F8แ"… โ20อ:โBฺ0ิj`ีRC…0Zj`o2ญ0Zj`o8ว@วXแ	ื ’แ	ื RCบ0j`2ญ0j`8ว@วXแ	ื’แ	ืREป0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืา
+ะ
+Û(ผ"`20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"โ โ20อ:โBฺ0ิj`ีRC๒0Zj`o2ญ0Zj`o8ว@วXแ	ื ’แ	ื RE์0 j`2ญ0 j`8ว@วXแ	ื’แ	ืREพ0 j`2ญ0 j`8ว@วXแ	ื’แ	ืRE้0 j`2ญ0 j`8ว@วXแ	ื’แ	ืRC๊0j`2ญ0j`8ว@วXแ	ื’แ	ืRC๋0j`2ญ0j`8ว@วXแ	ื’แ	ืRC์0j`2ญ0j`8ว@วXแ	ื ’แ	ื RCฟ0j`2ญ0j`8ว@วXแ	ื(’แ	ื(า
+ะ
+Û(ภ"`20ืBา
+ุ	ฌ0	฿า
+2D
+อ(เฯBEัิ
+0F8แ"— โ20อ:โBฺ0ิj`ีREร0Zj`2ญ0Zj`8ว@วXแ	ื ’แ	ื REล0 j`2ญ0 j`8ว@วXแ	ื’แ	ืREว0Zj`‘2ญ0Zj`‘8ว@วXแ	ื’แ	ืREศ0 j`2ญ0 j`8ว@วXแ	ื’แ	ืREษ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืา
+ะ
+Û(ส"`’20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"ะ“ โ20อ:โBฺ0ิj`ีREฬ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื ’แ	ื REอ0 j`2ญ0 j`8ว@วXแ	ื’แ	ืREฮ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืREฯ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืา
+ะ
+Û(ะ"`”20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"ย• โ20อ:โBฺ0ิj`ีREฬ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื ’แ	ื REฮ0 j`2ญ0 j`8ว@วXแ	ื’แ	ืา
+ะ
+Û("`–20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"ย— โ20อ:โBฺ0ิj`ีREำ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื ’แ	ื REิ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืา
+ะ
+Û("`20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แ"ย โ20อ:โBฺ0ิj`ีREึ0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื ’แ	ื REื0Zj`ไ2ญ0Zj`ไ8ว@วXแ	ื’แ	ืา
+ะ
+Û("`20ืBา
+ุ	ฌ	฿า
+2D
+อ(เฯBEัิ
+0F8แเ
+ ๊
+platform.IOBluetooth๒
+Û"#*+-.2356;>MOPQR
+pq$|},…i‘’—h กคฅฆชซฌญฎฏบปผมยรฤล/ศษ4สห7ฬUึูฺÛÜฃÝÞ฿เโใๅๆ็่้๊์ํ๎๏๑๒๓๔๖๗๙๚๛üþÿ€…’“”•–—

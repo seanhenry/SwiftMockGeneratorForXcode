@@ -1,0 +1,1009 @@
+
+ÓÀ
+platform
+darwin
+__Reply__kmod_destroy_t
+	Companion
+kotlinx
+cinterop
+
+CStructVar
+Type
+internal
+CStruct
+VarType
+size
+align
+kotlin
+
+Deprecated
+message
+(Use sizeOf<T>() or alignOf<T>() instead.
+replaceWith
+ReplaceWith
+imports
+level
+DeprecationLevel
+WARNING
+__Reply__kmod_control_t
+mach_msg_header_t
+MemberAt
+offset
+Head
+mach_msg_body_t
+	msgh_body
+mach_msg_ool_descriptor_t
+data
+NDR_record_t
+NDR
+UInt
+mach_msg_type_number_t
+value
+dataCnt
+native
+	NativePtr
+rawPtr
+spelling
+Ïstruct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p3; unsigned int p4; }
+ __Reply__host_get_special_port_t
+mach_msg_port_descriptor_t
+port
+Ÿstruct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; }
+ __Reply__host_set_special_port_t
+Int
+kern_return_t
+RetCode
+struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; }
+#__Reply__host_set_exception_ports_t
+#__Reply__host_get_exception_ports_t
+CPointer
+CArrayPointer
+ArrayMemberAt
+old_handlers
+masksCnt
+	UIntVarOf
+exception_mask_tVar
+masks
+IntVarOf
+exception_behavior_tVar
+old_behaviors
+thread_state_flavor_tVar
+old_flavors
+€struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2[32]; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p3; unsigned int p4; unsigned int p5[32]; int p6[32]; int p7[32]; }
+$__Reply__host_swap_exception_ports_t
+old_handlerss
+__Reply__mach_vm_wire_t
+__Reply__host_processor_sets_t
+mach_msg_ool_ports_descriptor_t
+processor_sets
+processor_setsCnt
+"__Reply__host_processor_set_priv_t
+set
+__Reply__host_set_UNDServer_t
+__Reply__host_get_UNDServer_t
+server
+__Reply__kext_request_t
+response_data
+log_data
+response_dataCnt
+log_dataCnt
+	op_result
+ñstruct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; null p3; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p4; unsigned int p5; unsigned int p6; int p7; }
+!__ReplyUnion__host_priv_subsystem
+__Reply__host_get_boot_info_t
+Reply_host_get_boot_info
+__Reply__host_reboot_t
+Reply_host_reboot
+__Reply__host_priv_statistics_t
+Reply_host_priv_statistics
+&__Reply__host_default_memory_manager_t
+!Reply_host_default_memory_manager
+__Reply__vm_wire_t
+Reply_vm_wire
+__Reply__thread_wire_t
+Reply_thread_wire
+__Reply__vm_allocate_cpm_t
+Reply_vm_allocate_cpm
+__Reply__host_processors_t
+Reply_host_processors
+!__Reply__host_get_clock_control_t
+Reply_host_get_clock_control
+__Reply__kmod_create_t
+Reply_kmod_create
+Reply_kmod_destroy
+Reply_kmod_control
+Reply_host_get_special_port
+Reply_host_set_special_port
+Reply_host_set_exception_ports
+Reply_host_get_exception_ports
+Reply_host_swap_exception_ports
+Reply_mach_vm_wire
+Reply_host_processor_sets
+Reply_host_processor_set_priv
+Reply_host_set_UNDServer
+Reply_host_get_UNDServer
+Reply_kext_request
+Ş3union { struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; unsigned int p3; unsigned int p4; char p5[4096]; } p0; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p1; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; unsigned int p3; int p4[68]; } p2; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; } p3; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p4; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p5; struct __attribute__((packed)) { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; unsigned long p3; } p6; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p3; unsigned int p4; } p7; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; } p8; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; int p3; } p9; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p10; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p3; unsigned int p4; } p11; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; } p12; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p13; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p14; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2[32]; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p3; unsigned int p4; unsigned int p5[32]; int p6[32]; int p7[32]; } p15; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2[32]; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p3; unsigned int p4; unsigned int p5[32]; int p6[32]; int p7[32]; } p16; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p17; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p3; unsigned int p4; } p18; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; } p19; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p20; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; } p21; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; null p3; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p4; unsigned int p5; unsigned int p6; int p7; } p22; }
+,__Request__host_security_create_task_token_t
+parent_task
+host
+ledgers
+security_token_t
+	sec_token
+audit_token_t
+audit_token
+
+ledgersCnt
+posix
+	boolean_t
+inherit_memory
+¸struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; null p3; null p4; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p5; struct { unsigned int p0[2]; } p6; struct { unsigned int p0[8]; } p7; unsigned int p8; unsigned int p9; }
+)__Request__host_security_set_task_token_t
+target_task
+struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; null p3; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p4; struct { unsigned int p0[2]; } p5; struct { unsigned int p0[8]; } p6; }
+'__RequestUnion__host_security_subsystem
+'Request_host_security_create_task_token
+$Request_host_security_set_task_token
+Øunion { struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; null p3; null p4; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p5; struct { unsigned int p0[2]; } p6; struct { unsigned int p0[8]; } p7; unsigned int p8; unsigned int p9; } p0; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; null p3; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p4; struct { unsigned int p0[2]; } p5; struct { unsigned int p0[8]; } p6; } p1; }
+*__Reply__host_security_create_task_token_t
+
+child_task
+'__Reply__host_security_set_task_token_t
+%__ReplyUnion__host_security_subsystem
+%Reply_host_security_create_task_token
+"Reply_host_security_set_task_token
+Ïunion { struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; } p0; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p1; }
+__Request__lock_acquire_t
+lock_id
+__Request__lock_release_t
+__Request__lock_try_t
+__Request__lock_make_stable_t
+__Request__lock_handoff_t
+ __Request__lock_handoff_accept_t
+"__RequestUnion__lock_set_subsystem
+Request_lock_acquire
+Request_lock_release
+Request_lock_try
+Request_lock_make_stable
+Request_lock_handoff
+Request_lock_handoff_accept
+Õunion { struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p0; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p1; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p2; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p3; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p4; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p5; }
+__Reply__lock_acquire_t
+__Reply__lock_release_t
+__Reply__lock_try_t
+__Reply__lock_make_stable_t
+__Reply__lock_handoff_t
+__Reply__lock_handoff_accept_t
+ __ReplyUnion__lock_set_subsystem
+Reply_lock_acquire
+Reply_lock_release
+Reply_lock_try
+Reply_lock_make_stable
+Reply_lock_handoff
+Reply_lock_handoff_accept
+__Request__processor_start_t
+vstruct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; }
+__Request__processor_exit_t
+__Request__processor_info_t
+processor_flavor_t
+flavor
+processor_info_outCnt
+®struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; unsigned int p3; }
+__Request__processor_control_t
+processor_cmdCnt
+integer_tVar
+processor_cmd
+²struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; unsigned int p2; int p3[20]; }
+__Request__processor_assign_t
+new_set
+wait
+%__Request__processor_get_assignment_t
+#__RequestUnion__processor_subsystem
+Request_processor_start
+Request_processor_exit
+Request_processor_info
+Request_processor_control
+Request_processor_assign
+ Request_processor_get_assignment
+¸
+union { struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; } p0; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; } p1; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; unsigned int p3; } p2; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; unsigned int p2; int p3[20]; } p3; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p3; unsigned int p4; } p4; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; } p5; }
+__Reply__processor_start_t
+__Reply__processor_exit_t
+__Reply__processor_info_t
+processor_info_out
+Ûstruct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p3; unsigned int p4; int p5[20]; }
+__Reply__processor_control_t
+__Reply__processor_assign_t
+#__Reply__processor_get_assignment_t
+assigned_set
+!__ReplyUnion__processor_subsystem
+Reply_processor_start
+Reply_processor_exit
+Reply_processor_info
+Reply_processor_control
+Reply_processor_assign
+Reply_processor_get_assignment
+•union { struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p0; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p1; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p3; unsigned int p4; int p5[20]; } p2; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p3; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p4; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned int p0; } p1; null p2; } p5; }
+%__Request__processor_set_statistics_t
+processor_set_flavor_t
+info_outCnt
+"__Request__processor_set_destroy_t
+'__Request__processor_set_max_priority_t
+max_priority
+change_threads
+(__Request__processor_set_policy_enable_t
+policy
+)__Request__processor_set_policy_disable_t
+ __Request__processor_set_tasks_t
+"__Request__processor_set_threads_t
+)__Request__processor_set_policy_control_t
+policy_infoCnt
+policy_info
+change
+Êstruct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; unsigned int p3; int p4[5]; unsigned int p5; }
+&__Request__processor_set_stack_usage_t
+__Request__processor_set_info_t
+'__RequestUnion__processor_set_subsystem
+ Request_processor_set_statistics
+Request_processor_set_destroy
+"Request_processor_set_max_priority
+#Request_processor_set_policy_enable
+$Request_processor_set_policy_disable
+Request_processor_set_tasks
+Request_processor_set_threads
+$Request_processor_set_policy_control
+!Request_processor_set_stack_usage
+Request_processor_set_info
+²union { struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; unsigned int p3; } p0; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; } p1; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; unsigned int p3; } p2; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; } p3; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; unsigned int p3; } p4; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; } p5; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; } p6; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; unsigned int p3; int p4[5]; unsigned int p5; } p7; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; } p8; struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; unsigned int p3; } p9; }
+#__Reply__processor_set_statistics_t
+info_out
+¹struct { struct { unsigned int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned int p4; int p5; } p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned char p5; unsigned char p6; unsigned char p7; } p1; int p2; unsigned int p3; int p4[5]; }
+ __Reply__processor_set_destroy_t
+%__Reply__processor_set_max_priority_t
+&__Reply__processor_set_policy_enable_t
+'__Reply__processor_set_policy_disable_t
+__Reply__processor_set_tasks_t
+	task_list
+task_listCntê
+ 
+ 
+ 
+ 
+
+
+ 
+ 
+
+	 
+	
+ 
+
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+  
+" 
+# 
+&
+
+' 
+' 
+ 
++ 
+, 
+ 
+/ 
+0 
+1 
+ 
+4 
+# 
+5 
+6 
+7 
+	8 
+; 
+< 
+> 
+? 
+A 
+% 
+D 
+/ 
+F 
+1 
+G 
+H 
+3 
+K 
+6 
+M 
+8 
+N 
+: 
+P 
+< 
+W 
+X 
+Z 
+\ 
+^ 
+` 
+b 
+d 
+f 
+h 
+j 
+> 
+z 
+~ 
+€ 
+ ƒ
+M„ 
+J 
+‡ 
+P 
+Š 
+R 
+ 
+T 
+ 
+V 
+‘ 
+X 
+• 
+Z 
+— 
+\ 
+˜ 
+^ 
+™ 
+` 
+š 
+b 
+› 
+d 
+œ 
+f 
+¤ 
+h 
+¥ 
+j 
+¦ 
+l 
+§ 
+n 
+¨ 
+p 
+© 
+r 
+ª 
+t 
+± 
+v 
+³ 
+x 
+´ 
+µ 
+z 
+¹ 
+» 
+} 
+¾ 
+€ 
+Á 
+‚ 
+Â 
+„ 
+Ê 
+† 
+Ë 
+ˆ 
+Ì 
+Š 
+Ï 
+Œ 
+Ğ 
+ 
+Ñ 
+ 
+Ó 
+’ 
+Û 
+Ü 
+” 
+Ş 
+— 
+ß 
+™ 
+â 
+› 
+ä 
+ 
+å 
+Ÿ 
+æ 
+¡ 
+ç 
+£ 
+ì 
+¥ 
+í 
+§ 
+î 
+© 
+ú 
+« 
+ı 
+­ 
+ş 
+¯ 
+ÿ 
+± 
+€ 
+³ 
+ "U‡20BÒ
+
+HÒ
+,(B
+
+
+08"Ù 20:B
+(0j`R08Ç@ Š R08Ç@ Š0R08Ç@ Š8R!08Ç@ ŠXR=%0j`2
+$0j`8Ç@ÇX†Šh’hÒ
+	)(*"U‡20BÒ
+
+pÒ
+,(B
+
+
+08"~ 20:B
+(0j`R08Ç@ Š R08Ç@ Š0R-08Ç@ Š8Ò
+	)(."U‡20BÒ
+
+PÒ
+,(B
+
+
+08"¡ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"U‡"20BÒ
+
+HÒ
+,(B
+
+
+08"¡# 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"U‡$20BÒ
+
+HÒ
+,(B
+
+
+08"¯% 20:B
+(0j`R08Ç@ Š R08Ç@ Š0R*900&j0`'8Ç@ Š(8R!08Ç@ Š	¸R?:0j`2
+$0j`8Ç@ÇX†Š	È’	ÈR?=&00)j`*0&j00)j`*`'8Ç@ Š(	ĞR?@&0 0+j`,0&j0 0+j`,`'8Ç@ Š(	ĞR?B&0 0+j`-0&j0 0+j`-`'8Ç@ Š(	Ğ
+Ò
+	)(C"V‡.20BÒ
+
+	ĞÒ
+,(B
+
+
+08"¯/ 20:B
+(0j`R08Ç@ Š R08Ç@ Š0R*E00&j0`'8Ç@ Š(8R!08Ç@ Š	¸R?:0j`2
+$0j`8Ç@ÇX†Š	È’	ÈR?=&00)j`*0&j00)j`*`'8Ç@ Š(	ĞR?@&0 0+j`,0&j0 0+j`,`'8Ç@ Š(	ĞR?B&0 0+j`-0&j0 0+j`-`'8Ç@ Š(	Ğ
+Ò
+	)(C"V‡020BÒ
+
+	ĞÒ
+,(B
+
+
+08"¡1 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"U‡220BÒ
+
+HÒ
+,(B
+
+
+08"Ù3 20:B
+(0j`R08Ç@ Š R08Ç@ Š0RI048Ç@ Š8R!08Ç@ ŠXR=J0j`2
+$0j`8Ç@ÇX†Šh’hÒ
+	)(*"U‡520BÒ
+
+pÒ
+,(B
+
+
+08"~6 20:B
+(0j`R08Ç@ Š R08Ç@ Š0RL08Ç@ Š8Ò
+	)(."U‡720BÒ
+
+PÒ
+,(B
+
+
+08"¡8 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"U‡920BÒ
+
+HÒ
+,(B
+
+
+08"~: 20:B
+(0j`R08Ç@ Š R08Ç@ Š0RO08Ç@ Š8Ò
+	)(."U‡;20BÒ
+
+PÒ
+,(B
+
+
+08"ù< 20:B
+(0j`R08Ç@ Š R08Ç@ Š0RQ08Ç@ Š8RR08Ç@ ŠXR!08Ç@ ŠxR?S0j`2
+$0j`8Ç@ÇX†Š	ˆ’	ˆR?T0j`2
+$0j`8Ç@ÇX†Š	’	R?U0 j`!2
+$0 j`!8Ç@ÇX†Š	˜’	˜Ò
+	)(V"V‡=20BÒ
+
+	 Ò
+,(B
+
+
+08"®> 20:B
+(0j`RY0?8Ç@ Š R[0@8Ç@ Š R]0A8Ç@ Š R_0B8Ç@ Š Ra0C8Ç@ Š Rc0D8Ç@ Š Re0E8Ç@ Š Rg0F8Ç@ Š Ri0G8Ç@ Š Rk0H8Ç@ Š Rl08Ç@ Š Rm08Ç@ Š Rn08Ç@ Š Ro08Ç@ Š Rp0#8Ç@ Š Rq0%8Ç@ Š Rr0/8Ç@ Š Rs018Ç@ Š Rt038Ç@ Š Ru068Ç@ Š Rv088Ç@ Š Rw0:8Ç@ Š Rx0<8Ç@ Š Ò
+	)(y"V‡I20BÒ
+
+	Ø@Ò
+,(B
+
+
+08"“J 20:B
+(0j`R08Ç@ Š R08Ç@ Š0R{08Ç@ Š8R|08Ç@ ŠPR}048Ç@ ŠhR!08Ç@ Š	ˆR0K8Ç@ Š	˜R0L8Ç@ Š	¨R@‚0j`2
+$0j`8Ç@ÇX†Š	è’	èR@…0j`N2
+$0j`N8Ç@ÇX†Š	ğ’	ğÒ
+		)(†"V‡O20BÒ
+
+	øÒ
+,(B
+
+
+08"òP 20:B
+(0j`R08Ç@ Š R08Ç@ Š0Rˆ08Ç@ Š8R|08Ç@ ŠPR!08Ç@ ŠhR0K8Ç@ ŠxR0L8Ç@ Š	ˆÒ
+		)(‰"V‡Q20BÒ
+
+	ÈÒ
+,(B
+
+
+08"eR 20:B
+(0j`R‹0J8Ç@ Š RŒ0P8Ç@ Š Ò
+		)("V‡S20BÒ
+
+	øÒ
+,(B
+
+
+08"T 20:B
+(0j`R08Ç@ Š R08Ç@ Š0R08Ç@ Š8Ò
+	)(."U‡U20BÒ
+
+PÒ
+,(B
+
+
+08"¡V 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"U‡W20BÒ
+
+HÒ
+,(B
+
+
+08"eX 20:B
+(0j`R’0T8Ç@ Š R“0V8Ç@ Š Ò
+		)(”"U‡Y20BÒ
+
+PÒ
+,(B
+
+
+08"šZ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R6–0 2$0 8Ç@ÇX†Š@’@Ò
+	)(3"U‡[20BÒ
+
+HÒ
+,(B
+
+
+08"š\ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R6–0 2$0 8Ç@ÇX†Š@’@Ò
+	)(3"U‡]20BÒ
+
+HÒ
+,(B
+
+
+08"š^ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R6–0 2$0 8Ç@ÇX†Š@’@Ò
+	)(3"U‡_20BÒ
+
+HÒ
+,(B
+
+
+08"š` 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R6–0 2$0 8Ç@ÇX†Š@’@Ò
+	)(3"U‡a20BÒ
+
+HÒ
+,(B
+
+
+08"šb 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R6–0 2$0 8Ç@ÇX†Š@’@Ò
+	)(3"U‡c20BÒ
+
+HÒ
+,(B
+
+
+08"šd 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R6–0 2$0 8Ç@ÇX†Š@’@Ò
+	)(3"U‡e20BÒ
+
+HÒ
+,(B
+
+
+08"Ùf 20:B
+(0j`R0Z8Ç@ Š R0\8Ç@ Š RŸ0^8Ç@ Š R 0`8Ç@ Š R¡0b8Ç@ Š R¢0d8Ç@ Š Ò
+		)(£"U‡g20BÒ
+
+HÒ
+,(B
+
+
+08"¡h 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"U‡i20BÒ
+
+HÒ
+,(B
+
+
+08"¡j 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"U‡k20BÒ
+
+HÒ
+,(B
+
+
+08"¡l 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"U‡m20BÒ
+
+HÒ
+,(B
+
+
+08"¡n 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"U‡o20BÒ
+
+HÒ
+,(B
+
+
+08"¡p 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"U‡q20BÒ
+
+HÒ
+,(B
+
+
+08"¡r 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"U‡s20BÒ
+
+HÒ
+,(B
+
+
+08"Ùt 20:B
+(0j`R«0h8Ç@ Š R¬0j8Ç@ Š R­0l8Ç@ Š R®0n8Ç@ Š R¯0p8Ç@ Š R°0r8Ç@ Š Ò
+		)(£"U‡u20BÒ
+
+HÒ
+,(B
+
+
+08"Gv 20:B
+(0j`R08Ç@ Š Ò
+		)(²"U‡w20BÒ
+
+0Ò
+,(B
+
+
+08"Gx 20:B
+(0j`R08Ç@ Š Ò
+		)(²"U‡y20BÒ
+
+0Ò
+,(B
+
+
+08"ãz 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R>¶0 j`{2
+$0 j`{8Ç@ÇX†Š@’@R>·0j`2
+$0j`8Ç@ÇX†ŠH’HÒ
+		)(¸"U‡|20BÒ
+
+PÒ
+,(B
+
+
+08"ä} 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R>º0j`2
+$0j`8Ç@ÇX†Š@’@R?¼&0 0+j`~0&j0 0+j`~`'8Ç@ Š(HÒ
+		)(½"V‡20BÒ
+
+	èÒ
+,(B
+
+
+08"Ü€ 20:B
+(0j`R08Ç@ Š R08Ç@ Š0R¿08Ç@ Š8R!08Ç@ ŠPR>À0j`N2
+$0j`N8Ç@ÇX†Š`’`Ò
+	)(*"V‡20BÒ
+
+hÒ
+,(B
+
+
+08"H‚ 20:B
+(0j`R08Ç@ Š Ò
+		)(²"V‡ƒ20BÒ
+
+0Ò
+,(B
+
+
+08"Ü„ 20:B
+(0j`RÃ0v8Ç@ Š RÄ0x8Ç@ Š RÅ0z8Ç@ Š RÆ0}8Ç@ Š RÇ0€8Ç@ Š RÈ0‚8Ç@ Š Ò
+		)(É"W‡…20BÒ
+
+	èÒ
+,(B
+
+
+08"¢† 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"V‡‡20BÒ
+
+HÒ
+,(B
+
+
+08"¢ˆ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"V‡‰20BÒ
+
+HÒ
+,(B
+
+
+08"Š 20:B
+(0j`R08Ç@ Š R08Ç@ Š0R|08Ç@ Š8R!08Ç@ ŠPR>·0j`2
+$0j`8Ç@ÇX†Š`’`R?Í&0 0+j`~0&j0 0+j`~`'8Ç@ Š(hÒ
+		)(Î"W‡‹20BÒ
+
+	ˆÒ
+,(B
+
+
+08"¢Œ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"V‡20BÒ
+
+HÒ
+,(B
+
+
+08"¢ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"V‡20BÒ
+
+HÒ
+,(B
+
+
+08"€ 20:B
+(0j`R08Ç@ Š R08Ç@ Š0RÒ08Ç@ Š8Ò
+	)(."V‡‘20BÒ
+
+PÒ
+,(B
+
+
+08"à’ 20:B
+(0j`RÔ0†8Ç@ Š RÕ0ˆ8Ç@ Š RÖ0Š8Ç@ Š R×0Œ8Ç@ Š RØ08Ç@ Š RÙ08Ç@ Š Ò
+		)(Ú"W‡“20BÒ
+
+	ˆÒ
+,(B
+
+
+08"æ” 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R@¶0 j`•2$0 j`•8Ç@ÇX†Š@’@R>İ0j`2
+$0j`8Ç@ÇX†ŠH’HÒ
+		)(¸"V‡–20BÒ
+
+PÒ
+,(B
+
+
+08"H— 20:B
+(0j`R08Ç@ Š Ò
+		)(²"V‡˜20BÒ
+
+0Ò
+,(B
+
+
+08"Ü™ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R6à0 2$0 8Ç@ÇX†Š@’@R>á0j`N2
+$0j`N8Ç@ÇX†ŠH’HÒ
+		)(¸"V‡š20BÒ
+
+PÒ
+,(B
+
+
+08"›› 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R6ã0 2$0 8Ç@ÇX†Š@’@Ò
+	)(3"V‡œ20BÒ
+
+HÒ
+,(B
+
+
+08"Ü 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R6ã0 2$0 8Ç@ÇX†Š@’@R>á0j`N2
+$0j`N8Ç@ÇX†ŠH’HÒ
+		)(¸"V‡20BÒ
+
+PÒ
+,(B
+
+
+08"HŸ 20:B
+(0j`R08Ç@ Š Ò
+		)(²"V‡ 20BÒ
+
+0Ò
+,(B
+
+
+08"H¡ 20:B
+(0j`R08Ç@ Š Ò
+		)(²"V‡¢20BÒ
+
+0Ò
+,(B
+
+
+08"ç£ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R@¶0 j`•2$0 j`•8Ç@ÇX†Š@’@R>è0j`2
+$0j`8Ç@ÇX†ŠH’HR?é&0 0+j`~0&j0 0+j`~`'8Ç@ Š(PR>ê0j`N2
+$0j`N8Ç@ÇX†Šx’xÒ
+		)(ë"W‡¤20BÒ
+
+	€Ò
+,(B
+
+
+08"H¥ 20:B
+(0j`R08Ç@ Š Ò
+		)(²"V‡¦20BÒ
+
+0Ò
+,(B
+
+
+08"Ü§ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R6¶0 2$0 8Ç@ÇX†Š@’@R>İ0j`2
+$0j`8Ç@ÇX†ŠH’HÒ
+		)(¸"V‡¨20BÒ
+
+PÒ
+,(B
+
+
+08"Ø© 20:B
+(0j`Rï0”8Ç@ Š Rğ0—8Ç@ Š Rñ0™8Ç@ Š Rò0›8Ç@ Š Ró08Ç@ Š Rô0Ÿ8Ç@ Š Rõ0¡8Ç@ Š Rö0£8Ç@ Š R÷0¥8Ç@ Š Rø0§8Ç@ Š Ò
+		)(ù"W‡ª20BÒ
+
+	€Ò
+,(B
+
+
+08"¤« 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@R>İ0j`2
+$0j`8Ç@ÇX†ŠH’HR?û&0 0+j`~0&j0 0+j`~`'8Ç@ Š(PÒ
+		)(ü"V‡¬20BÒ
+
+xÒ
+,(B
+
+
+08"¢­ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"V‡®20BÒ
+
+HÒ
+,(B
+
+
+08"¢¯ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"V‡°20BÒ
+
+HÒ
+,(B
+
+
+08"¢± 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"V‡²20BÒ
+
+HÒ
+,(B
+
+
+08"¢³ 20:B
+(0j`R08Ç@ Š R!08Ç@ Š0R=20 j`!2
+$0 j`!8Ç@ÇX†Š@’@Ò
+	)(3"V‡´20BÒ
+
+HÒ
+,(B
+
+
+08"Üµ 20:B
+(0j`R08Ç@ Š R08Ç@ Š0R‚048Ç@ Š8R!08Ç@ ŠXR>ƒ0j`2
+$0j`8Ç@ÇX†Šh’hÒ
+	)(*à
+ ê
+platform.darwinò
+µ"#$%./012356789:;<=>IJOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz|}€‚ƒ„…†‡ˆ‰Š‹Œ‘’“”–—˜™š›œŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ

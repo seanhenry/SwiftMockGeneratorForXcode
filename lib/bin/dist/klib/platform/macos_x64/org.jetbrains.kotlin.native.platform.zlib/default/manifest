@@ -1,0 +1,18 @@
+builtins_platform=NATIVE
+headers=zconf.h zlib.h
+package=platform.zlib
+compiler_version=1.4.30-dev
+depends=stdlib org.jetbrains.kotlin.native.platform.posix
+exportForwardDeclarations=cnames.structs.internal_state
+interop=true
+linkerOpts=-lz
+compilerOpts=-DByte\=uByte -DBytef\=uBytef
+native_targets=macos_x64
+ir_provider=kotlin.native.cinterop
+unique_name=org.jetbrains.kotlin.native.platform.zlib
+includedHeaders=usr/include/zconf.h usr/include/zlib.h b396b6c797ee07ce5bd3ba01920f6f609d7f90fd6681beebb1c8e539b74b4674
+abi_version=1.4.1
+short_name=zlib
+headerFilter=zconf.h zlib.h
+metadata_version=1.4.1
+ir_version=1.0.0

@@ -1,0 +1,17 @@
+builtins_platform=NATIVE
+package=platform.CoreAudioTypes
+compiler_version=1.4.30-dev
+depends=stdlib org.jetbrains.kotlin.native.platform.darwin
+exportForwardDeclarations=
+interop=true
+language=Objective-C
+compilerOpts=-framework CoreAudioTypes
+native_targets=macos_x64
+ir_provider=kotlin.native.cinterop
+modules=CoreAudioTypes
+unique_name=org.jetbrains.kotlin.native.platform.CoreAudioTypes
+includedHeaders=System/Library/Frameworks/CoreAudioTypes.framework/Versions/A/Headers/CoreAudioTypes.h System/Library/Frameworks/CoreAudioTypes.framework/Versions/A/Headers/CoreAudioBaseTypes.h System/Library/Frameworks/CoreAudioTypes.framework/Versions/A/Headers/AudioSessionTypes.h
+abi_version=1.4.1
+short_name=CoreAudioTypes
+metadata_version=1.4.1
+ir_version=1.0.0

@@ -1,0 +1,926 @@
+
+”b
+kotlinx
+cinterop
+
+CValuesRef
+platform
+IOKit
+_IODataQueueMemory
+IODataQueueMemory
+	dataQueue
+kotlin
+Boolean
+internal
+CCall
+id
+2knifunptr_platform_IOKit0_IODataQueueDataAvailable
+IODataQueueDataAvailable
+CPointer
+_IODataQueueEntry
+IODataQueueEntry
+)knifunptr_platform_IOKit1_IODataQueuePeek
+IODataQueuePeek
+data
+	UIntVarOf
+UInt
+posix
+uint32_tVar
+dataSize
+Int
+IOReturn
+,knifunptr_platform_IOKit2_IODataQueueDequeue
+IODataQueueDequeue
+mach_port_t
+notificationPort
+9knifunptr_platform_IOKit3_IODataQueueWaitForAvailableData
+IODataQueueWaitForAvailableData
+=knifunptr_platform_IOKit4_IODataQueueAllocateNotificationPort
+#IODataQueueAllocateNotificationPort
+uint32_t
+,knifunptr_platform_IOKit5_IODataQueueEnqueue
+IODataQueueEnqueue
+
+notifyPort
+8knifunptr_platform_IOKit6_IODataQueueSetNotificationPort
+IODataQueueSetNotificationPort
+bootstrapPort
+mach_port_tVar
+
+masterPort
+darwin
+kern_return_t
+&knifunptr_platform_IOKit7_IOMasterPort
+IOMasterPort
+cnames
+structs
+IONotificationPort
+IONotificationPortRef
+2knifunptr_platform_IOKit8_IONotificationPortCreate
+IONotificationPortCreate
+notify
+Unit
+3knifunptr_platform_IOKit9_IONotificationPortDestroy
+IONotificationPortDestroy
+__CFRunLoopSource
+CoreFoundation
+CFRunLoopSourceRef
+=knifunptr_platform_IOKit10_IONotificationPortGetRunLoopSource
+"IONotificationPortGetRunLoopSource
+8knifunptr_platform_IOKit11_IONotificationPortGetMachPort
+IONotificationPortGetMachPort
+Bknifunptr_platform_IOKit12_IONotificationPortSetImportanceReceiver
+'IONotificationPortSetImportanceReceiver
+NSObject
+dispatch_queue_t
+queue
+=knifunptr_platform_IOKit13_IONotificationPortSetDispatchQueue
+"IONotificationPortSetDispatchQueue
+unused
+mach_msg_header_t
+msg
+	reference
+7knifunptr_platform_IOKit14_IODispatchCalloutFromMessage
+IODispatchCalloutFromMessage
+msgType
+recvPort
+.knifunptr_platform_IOKit15_IOCreateReceivePort
+IOCreateReceivePort
+io_object_t
+object
+*knifunptr_platform_IOKit16_IOObjectRelease
+IOObjectRelease
+)knifunptr_platform_IOKit17_IOObjectRetain
+IOObjectRetain
+	ByteVarOf
+Byte
+ByteVar
+libkern
+	io_name_t
+	className
++knifunptr_platform_IOKit18_IOObjectGetClass
+IOObjectGetClass
+
+__CFString
+CFStringRef
+,knifunptr_platform_IOKit19_IOObjectCopyClass
+IOObjectCopyClass
+	classname
+9knifunptr_platform_IOKit20_IOObjectCopySuperclassForClass
+IOObjectCopySuperclassForClass
+?knifunptr_platform_IOKit21_IOObjectCopyBundleIdentifierForClass
+$IOObjectCopyBundleIdentifierForClass
+	boolean_t
+-knifunptr_platform_IOKit22_IOObjectConformsTo
+IOObjectConformsTo
+anObject
+,knifunptr_platform_IOKit23_IOObjectIsEqualTo
+IOObjectIsEqualTo
+7knifunptr_platform_IOKit24_IOObjectGetKernelRetainCount
+IOObjectGetKernelRetainCount
+5knifunptr_platform_IOKit25_IOObjectGetUserRetainCount
+IOObjectGetUserRetainCount
+1knifunptr_platform_IOKit26_IOObjectGetRetainCount
+IOObjectGetRetainCount
+io_iterator_t
+iterator
+)knifunptr_platform_IOKit27_IOIteratorNext
+IOIteratorNext
+*knifunptr_platform_IOKit28_IOIteratorReset
+IOIteratorReset
+,knifunptr_platform_IOKit29_IOIteratorIsValid
+IOIteratorIsValid
+__CFDictionary
+CFDictionaryRef
+matching
+io_service_t
+6knifunptr_platform_IOKit30_IOServiceGetMatchingService
+IOServiceGetMatchingService
+io_iterator_tVar
+existing
+7knifunptr_platform_IOKit31_IOServiceGetMatchingServices
+IOServiceGetMatchingServices
+notificationType
+wakePort
+ULong
+	uintptr_t
+notification
+3knifunptr_platform_IOKit32_IOServiceAddNotification
+IOServiceAddNotification
+	CFunction
+	Function2
+CPointed
+COpaquePointer
+IOServiceMatchingCallback
+callback
+refCon
+;knifunptr_platform_IOKit33_IOServiceAddMatchingNotification
+ IOServiceAddMatchingNotification
+service
+interestType
+	Function4
+IOServiceInterestCallback
+io_object_tVar
+;knifunptr_platform_IOKit34_IOServiceAddInterestNotification
+ IOServiceAddInterestNotification
+boolean_tVar
+matches
+6knifunptr_platform_IOKit35_IOServiceMatchPropertyTable
+IOServiceMatchPropertyTable
+	busyState
+0knifunptr_platform_IOKit36_IOServiceGetBusyState
+IOServiceGetBusyState
+mach_timespec
+mach_timespec_t
+waitTime
+-knifunptr_platform_IOKit37_IOServiceWaitQuiet
+IOServiceWaitQuiet
+,knifunptr_platform_IOKit38_IOKitGetBusyState
+IOKitGetBusyState
+)knifunptr_platform_IOKit39_IOKitWaitQuiet
+IOKitWaitQuiet
+task_port_t
+
+owningTask
+type
+io_connect_tVar
+connect
+(knifunptr_platform_IOKit40_IOServiceOpen
+IOServiceOpen
+options
+0knifunptr_platform_IOKit41_IOServiceRequestProbe
+IOServiceRequestProbe
+-knifunptr_platform_IOKit42_IOServiceAuthorize
+IOServiceAuthorize
+oflag
+8knifunptr_platform_IOKit43_IOServiceOpenAsFileDescriptor
+IOServiceOpenAsFileDescriptor
+io_connect_t
+)knifunptr_platform_IOKit44_IOServiceClose
+IOServiceClose
+*knifunptr_platform_IOKit45_IOConnectAddRef
+IOConnectAddRef
++knifunptr_platform_IOKit46_IOConnectRelease
+IOConnectRelease
+io_service_tVar
+.knifunptr_platform_IOKit47_IOConnectGetService
+IOConnectGetService
+port
+7knifunptr_platform_IOKit48_IOConnectSetNotificationPort
+IOConnectSetNotificationPort
+
+memoryType
+intoTask
+
+ULongVarOf
+mach_vm_address_tVar
+	atAddress
+mach_vm_size_tVar
+ofSize
+IOOptionBits
+-knifunptr_platform_IOKit49_IOConnectMapMemory
+IOConnectMapMemory
+/knifunptr_platform_IOKit50_IOConnectMapMemory64
+IOConnectMapMemory64
+fromTask
+mach_vm_address_t
+/knifunptr_platform_IOKit51_IOConnectUnmapMemory
+IOConnectUnmapMemory
+1knifunptr_platform_IOKit52_IOConnectUnmapMemory64
+IOConnectUnmapMemory64
+	CFTypeRef
+
+properties
+3knifunptr_platform_IOKit53_IOConnectSetCFProperties
+IOConnectSetCFProperties
+propertyName
+property
+1knifunptr_platform_IOKit54_IOConnectSetCFProperty
+IOConnectSetCFProperty
+
+connection
+selector
+uint64_tVar
+input
+inputCnt
+inputStruct
+size_t
+inputStructCnt
+output
+	outputCnt
+outputStruct
+	size_tVar
+outputStructCnt
+.knifunptr_platform_IOKit55_IOConnectCallMethod
+IOConnectCallMethod
+	wake_port
+referenceCnt
+3knifunptr_platform_IOKit56_IOConnectCallAsyncMethod
+IOConnectCallAsyncMethod
+4knifunptr_platform_IOKit57_IOConnectCallStructMethod
+IOConnectCallStructMethod
+9knifunptr_platform_IOKit58_IOConnectCallAsyncStructMethod
+IOConnectCallAsyncStructMethod
+4knifunptr_platform_IOKit59_IOConnectCallScalarMethod
+IOConnectCallScalarMethod
+9knifunptr_platform_IOKit60_IOConnectCallAsyncScalarMethod
+IOConnectCallAsyncScalarMethod
+index
+)knifunptr_platform_IOKit61_IOConnectTrap0
+IOConnectTrap0
+p1
+)knifunptr_platform_IOKit62_IOConnectTrap1
+IOConnectTrap1
+p2
+)knifunptr_platform_IOKit63_IOConnectTrap2
+IOConnectTrap2
+p3
+)knifunptr_platform_IOKit64_IOConnectTrap3
+IOConnectTrap3
+p4
+)knifunptr_platform_IOKit65_IOConnectTrap4
+IOConnectTrap4
+p5
+)knifunptr_platform_IOKit66_IOConnectTrap5
+IOConnectTrap5
+p6
+)knifunptr_platform_IOKit67_IOConnectTrap6
+IOConnectTrap6
+client
+-knifunptr_platform_IOKit68_IOConnectAddClient
+IOConnectAddClient
+io_registry_entry_t
+1knifunptr_platform_IOKit69_IORegistryGetRootEntry
+IORegistryGetRootEntry
+io_string_t
+path
+2knifunptr_platform_IOKit70_IORegistryEntryFromPath
+IORegistryEntryFromPath
+6knifunptr_platform_IOKit71_IORegistryEntryCopyFromPath
+IORegistryEntryCopyFromPath
+plane
+3knifunptr_platform_IOKit72_IORegistryCreateIterator
+IORegistryCreateIterator
+entry
+8knifunptr_platform_IOKit73_IORegistryEntryCreateIterator
+IORegistryEntryCreateIterator
+7knifunptr_platform_IOKit74_IORegistryIteratorEnterEntry
+IORegistryIteratorEnterEntry
+6knifunptr_platform_IOKit75_IORegistryIteratorExitEntry
+IORegistryIteratorExitEntry
+name
+1knifunptr_platform_IOKit76_IORegistryEntryGetName
+IORegistryEntryGetName
+8knifunptr_platform_IOKit77_IORegistryEntryGetNameInPlane
+IORegistryEntryGetNameInPlane
+location
+<knifunptr_platform_IOKit78_IORegistryEntryGetLocationInPlane
+!IORegistryEntryGetLocationInPlane
+1knifunptr_platform_IOKit79_IORegistryEntryGetPath
+IORegistryEntryGetPath
+2knifunptr_platform_IOKit80_IORegistryEntryCopyPath
+IORegistryEntryCopyPath
+entryID
+<knifunptr_platform_IOKit81_IORegistryEntryGetRegistryEntryID
+!IORegistryEntryGetRegistryEntryID
+CPointerVarOf
+CFMutableDictionaryRef
+CFMutableDictionaryRefVar
+__CFAllocator
+CFAllocatorRef
+	allocator
+<knifunptr_platform_IOKit82_IORegistryEntryCreateCFProperties
+!IORegistryEntryCreateCFProperties
+key
+:knifunptr_platform_IOKit83_IORegistryEntryCreateCFProperty
+IORegistryEntryCreateCFProperty
+:knifunptr_platform_IOKit84_IORegistryEntrySearchCFProperty
+IORegistryEntrySearchCFProperty
+io_struct_inband_t
+buffer
+size
+5knifunptr_platform_IOKit85_IORegistryEntryGetProperty
+IORegistryEntryGetProperty
+9knifunptr_platform_IOKit86_IORegistryEntrySetCFProperties
+IORegistryEntrySetCFProperties
+7knifunptr_platform_IOKit87_IORegistryEntrySetCFProperty
+IORegistryEntrySetCFProperty
+:knifunptr_platform_IOKit88_IORegistryEntryGetChildIterator
+IORegistryEntryGetChildIterator
+io_registry_entry_tVar
+child
+7knifunptr_platform_IOKit89_IORegistryEntryGetChildEntry
+IORegistryEntryGetChildEntry
+;knifunptr_platform_IOKit90_IORegistryEntryGetParentIterator
+ IORegistryEntryGetParentIterator
+parent
+8knifunptr_platform_IOKit91_IORegistryEntryGetParentEntry
+IORegistryEntryGetParentEntry
+1knifunptr_platform_IOKit92_IORegistryEntryInPlane
+IORegistryEntryInPlane
+String
+CString
+,knifunptr_platform_IOKit93_IOServiceMatching
+IOServiceMatching
+0knifunptr_platform_IOKit94_IOServiceNameMatching
+IOServiceNameMatching
+bsdName
+,knifunptr_platform_IOKit95_IOBSDNameMatching
+IOBSDNameMatching
+5knifunptr_platform_IOKit96_IOOpenFirmwarePathMatching
+IOOpenFirmwarePathMatching
+uint64_t
+4knifunptr_platform_IOKit97_IORegistryEntryIDMatching
+IORegistryEntryIDMatching
+openFirmwarePath
+3knifunptr_platform_IOKit98_IOServiceOFPathToBSDName
+IOServiceOFPathToBSDName
+uintptr_tVar
+COpaquePointerVar
+content
+vm_size_tVar
+7knifunptr_platform_IOKit99_OSGetNotificationFromMessage
+OSGetNotificationFromMessage
+flag
+/knifunptr_platform_IOKit100_IOCatalogueSendData
+IOCatalogueSendData
+description
+0knifunptr_platform_IOKit101_IOCatalogueTerminate
+IOCatalogueTerminate
+CPointerVar
+.knifunptr_platform_IOKit102_IOCatalogueGetData
+IOCatalogueGetData
+3knifunptr_platform_IOKit103_IOCatalogueModuleLoaded
+IOCatalogueModuleLoaded
+,knifunptr_platform_IOKit104_IOCatalogueReset
+IOCatalogueReset
+__CFUUID
+	CFUUIDRef
+
+pluginType
+interfaceType
+IOCFPlugInInterfaceStruct
+IOCFPlugInInterface
+theInterface
+IntVarOf
+	SInt32Var
+theScore
+=knifunptr_platform_IOKit105_IOCreatePlugInInterfaceForService
+!IOCreatePlugInInterfaceForService
+	interface
+4knifunptr_platform_IOKit106_IODestroyPlugInInterface
+IODestroyPlugInInterface
+CFOptionFlags
+__CFData
+	CFDataRef
+)knifunptr_platform_IOKit107_IOCFSerialize
+IOCFSerialize
+alloc
+__CFURL
+CFURLRef
+url
+	errorCode
+;knifunptr_platform_IOKit108_IOURLCreatePropertyFromResource
+IOURLCreatePropertyFromResource
+CFDataRefVar
+resourceData
+CFDictionaryRefVar
+	__CFArray
+
+CFArrayRef
+desiredProperties
+Dknifunptr_platform_IOKit109_IOURLCreateDataAndPropertiesFromResource
+(IOURLCreateDataAndPropertiesFromResource
+CFStringRefVar
+errorString
++knifunptr_platform_IOKit110_IOCFUnserialize
+IOCFUnserialize
+
+bufferSize
+1knifunptr_platform_IOKit111_IOCFUnserializeBinary
+IOCFUnserializeBinary
+3knifunptr_platform_IOKit112_IOCFUnserializeWithSize
+IOCFUnserializeWithSize
+IOVirtualAddress
+address
+IOByteCount
+length
+CValue
+IOVirtualRange
+.knifunptr_platform_IOKit113_IOVirtualRangeMake
+IOVirtualRangeMake
+framebuffer
+pAccelerator
+	UInt32Var
+pFramebufferIndex
+2knifunptr_platform_IOKit114_IOAccelFindAccelerator
+IOAccelFindAccelerator
+-knifunptr_platform_IOKit115_IOFramebufferOpen
+IOFramebufferOpen
+9knifunptr_platform_IOKit116_IODisplayCreateInfoDictionary
+IODisplayCreateInfoDictionary
+	matching1
+	matching2
+SInt32
+6knifunptr_platform_IOKit117_IODisplayMatchDictionaries
+IODisplayMatchDictionaries
+3knifunptr_platform_IOKit118_IODisplayForFramebuffer
+IODisplayForFramebuffer
+params
+2knifunptr_platform_IOKit119_IODisplaySetParameters
+IODisplaySetParameters
+parameterName
+Float
+value
+6knifunptr_platform_IOKit120_IODisplaySetFloatParameter
+IODisplaySetFloatParameter
+8knifunptr_platform_IOKit121_IODisplaySetIntegerParameter
+IODisplaySetIntegerParameter
+3knifunptr_platform_IOKit122_IODisplayCopyParameters
+IODisplayCopyParameters
+8knifunptr_platform_IOKit123_IODisplayCopyFloatParameters
+IODisplayCopyFloatParameters
+
+FloatVarOf
+FloatVar
+6knifunptr_platform_IOKit124_IODisplayGetFloatParameter
+IODisplayGetFloatParameter
+min
+max
+=knifunptr_platform_IOKit125_IODisplayGetIntegerRangeParameter
+!IODisplayGetIntegerRangeParameter
+5knifunptr_platform_IOKit126_IODisplayCommitParameters
+IODisplayCommitParameters
+CFTypeID
+/knifunptr_platform_IOKit127_IOHIDQueueGetTypeID
+IOHIDQueueGetTypeID÷
+ 
+ 
+ 
+
+
+ 
+ 
+
+	 
+
+
+	 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+$ 
++ 
+-
+. 
+1
+2
+3 
+4 
+8 
+; 
+<
+= 
+D 
+E 
+J 
+S 
+Y 
+Z 
+[ 
+\
+(] 
+a 
+b 
+j 
+v 
+~ 
+ 
+Å 
+Ñ 
+ä 
+ã 
+è 
+ê 
+ë 
+í 
+ì 
+ö 
+õ 
+ú 
+ü 
+¶ 
+ß 
+Ø 
+≤ 
+æ 
+≈ 
+Õ 
+Œ 
+– 
+“ 
+ÿ 
+› 
+Á 
+Î 
+ 
+ò 
+(õ 
+∫ 
+ª 
+º 
+Ω 
+æ 
+(« 
+“ 
+› 
+
+ﬁ 
+Ë 
+Ó 
+Ô 
+Ò 
+˙ 
+Å 
+Ç 
+Ö 
+Ü 
+à 
+â 
+ê 
+ë 
+í 
+ñ 
+ó 
+ú 
+û 
+ü 
+† 
+§ 
+≠ 
+Ø 
+± 
+≤ 
+∑ 
+¡ 
+  
+‘ 
+’ 
+ﬁ ö[,020j`0Há “
+
+(80j`020j`0Há “
+
+(X0j`20j`020200j`0Há “
+
+(<!0j`20j`02
+0j`Há “
+
+( #0j`Há “
+
+("J&0j`20j`0202
+0j`Há “
+
+(%<)0j`20j`02
+'0j`Há “
+
+((B00j`2
+*0j`2,00j`0Há “
+
+(/2600j`2
+,0j`Há “
+
+(5.:02700j`Há “
+
+(9<?00j` 2700j`Há “
+
+(>2A0j`2700j`Há “
+
+(@2C0j`2700j`Há “
+
+(B>H02700j`2F
+0!j`"Há “
+
+(GDN02I02K
+0#02L0Há “
+
+(MBR0j`2
+O0j`2P00j`0Há “
+
+(Q(V0j`2
+T0j`$Há “
+
+(U(X0j`2
+T0j`$Há “
+
+(WH`0j`2
+T0j`$2^0&0%j`'0j`)Há “
+
+(_2d0*0j`+2
+T0j`$Há “
+
+(c<g0*0j`+2e0*0j`+Há “
+
+(f<i0*0j`+2e0*0j`+Há “
+
+(hHl0j`,2
+T0j`$2^0&0%j`'0j`)Há “
+
+(k4o0j`,2
+T0j`$2
+m0j`$Há “
+
+(n(q0j`2
+T0j`$Há “
+
+(p(s0j`2
+T0j`$Há “
+
+(r(u0j`2
+T0j`$Há “
+
+(t(y0j`$2
+w0j`-Há “
+
+(x${02
+w0j`-Há “
+
+(z(}0j`,2
+w0j`-Há “
+
+(|AÉ0j`02
+,0j`2Ä0.0j`/Há “
+
+	(Ç\á0j`2
+,0j`2Ä0.0j`/2Ö00j`10Há “
+
+	(Üñé0j`2
+,0j`2à0&0%j`'0j`)2Ä0.0j`/2â0j`2
+L02j`32å00j`10Há “
+
+	(çŸó0j`2'00j`2à0&0%j`'0j`)2Ä0.0j`/2Aî<0.*(060j`70j`-005040j`82ï02å00j`10Há “
+
+	(ñÔû0j`2'00j`2ò0j`02ô0&0%j`'0j`)2aî\PNJH060j`70j`00j`060j`7009040j`:2ï02å00j`;0Há “
+
+	(ù]¢0j`2ò0j`02Ä0.0j`/2†00j`<0Há “
+
+	(°F•0j`2ò0j`02£00j`0Há “
+
+	(§@™0j`2ò0j`02®0=j`>0Há “
+
+	(©E¨0j`2
+,0j`2£00j`0Há “
+
+	(´?Æ0j`2
+,0j`2®0=j`>0Há “
+
+	(≠`µ0j`2ò0j`02∞0j`?2±0j`2≥00j`@0Há “
+
+	(¥8∏0j`2ò0j`02∂0j`Há “
+
+	(∑8∫0j`2ò0j`02∂0j`Há “
+
+	(π0Ω02ò0j`02ª0Há “
+
+	(º+¿0j`2≥0j`AHá “
+
+	(ø+¬0j`2≥0j`AHá “
+
+	(¡+ƒ0j`2≥0j`AHá “
+
+	(√F«0j`2≥0j`A2ò00j`B0Há “
+
+	(∆Q 0j`2≥0j`A2±0j`2»0j`2
+L02j`3Há “
+
+	(…à‘0j`2≥0j`A2À0j`2Ã0j`?2œ020Cj`D02—020Cj`E02∂0j`FHá “
+
+	(”à÷0j`2≥0j`A2À0j`2Ã0j`?2œ020Cj`D02—020Cj`E02∂0j`FHá “
+
+	(’R⁄0j`2≥0j`A2À0j`2◊0j`?2œ02j`GHá “
+
+	(ŸR‹0j`2≥0j`A2À0j`2◊0j`?2œ02j`GHá “
+
+	(€D‡0j`2≥0j`A2ﬁ060j`HHá “
+
+	(ﬂ[‰0j`2≥0j`A2·0*0j`+2‚060j`HHá “
+
+	(„‹Û0j`2Â0j`2Ê0j`2Ë020Cj`I02È0j`2Í02Ï02j`J2Ì020Cj`I02Ó00j`02Ô02Ò020Cj`K0Há “
+
+	(Úê˜0j`2Â0j`2Ê0j`2Ù0j`2L020Cj`I02ı0j`2Ë020Cj`I02È0j`2Í02Ï02j`J2Ì020Cj`I02Ó00j`02Ô02Ò020Cj`K0Há “
+
+	(ˆ~˘0j`2Â0j`2Ê0j`2Í02Ï02j`J2Ô02Ò020Cj`K0Há “
+
+	(¯≤˚0j`2Â0j`2Ê0j`2Ù0j`2L020Cj`I02ı0j`2Í02Ï02j`J2Ô02Ò020Cj`K0Há “
+
+	(˙ñ˝0j`2Â0j`2Ê0j`2Ë020Cj`I02È0j`2Ì020Cj`I02Ó00j`0Há “
+
+	(¸ ˇ0j`2Â0j`2Ê0j`2Ù0j`2L020Cj`I02ı0j`2Ë020Cj`I02È0j`2Ì020Cj`I02Ó00j`0Há “
+
+	(˛8Ç0j`2≥0j`A2Ä0j`Há “
+
+	(ÅEÖ0j`2≥0j`A2Ä0j`2É02j`3Há “
+
+	(ÑRà0j`2≥0j`A2Ä0j`2É02j`32Ü02j`3Há “
+
+	(á_ã0j`2≥0j`A2Ä0j`2É02j`32Ü02j`32â02j`3Há “
+
+	(älé0j`2≥0j`A2Ä0j`2É02j`32Ü02j`32â02j`32å02j`3Há “
+
+	(çyë0j`2≥0j`A2Ä0j`2É02j`32Ü02j`32â02j`32å02j`32è02j`3Há “
+
+	(êÜî0j`2≥0j`A2Ä0j`2É02j`32Ü02j`32â02j`32å02j`32è02j`32í02j`3Há “
+
+	(ì8ó0j`2≥0j`A2ï0j`AHá “
+
+	(ñ*ö0j`L2
+,0j`Há “
+
+	(ôKû0j`L2
+,0j`2ú0&0%j`'0j`MHá “
+
+	(ùA†0j`L2
+,0j`2ú0*0j`+Há “
+
+	(ür£0j`2
+,0j`2°0&0%j`'0j`)2∂0j`F2w00j`10Há “
+
+	(¢s¶0j`2§0j`L2°0&0%j`'0j`)2∂0j`F2w00j`10Há “
+
+	(•*®0j`2
+w0j`-Há “
+
+	(ß*™0j`2
+w0j`-Há “
+
+	(©L≠0j`2§0j`L2´0&0%j`'0j`)Há “
+
+	(¨mØ0j`2§0j`L2°0&0%j`'0j`)2´0&0%j`'0j`)Há “
+
+	(Æm≤0j`2§0j`L2°0&0%j`'0j`)2∞0&0%j`'0j`)Há “
+
+	(±m¥0j`2§0j`L2°0&0%j`'0j`)2ú0&0%j`'0j`MHá “
+
+	(≥V∂0*0j`+2§0j`L2°0&0%j`'0j`)Há “
+
+	(µFπ0j`2§0j`L2∑020Cj`I0Há “
+
+	(∏t¡0j`2§0j`L2#ﬁ0.0j`O0Nj`P02ø0Q0j`R2∂0j`FHá “
+
+	(¿rƒ060j`H2§0j`L2¬0*0j`+2ø0Q0j`R2∂0j`FHá “
+
+	(√ì∆060j`H2§0j`L2°0&0%j`'0j`)2¬0*0j`+2ø0Q0j`R2∂0j`FHá “
+
+	(≈àÀ0j`2§0j`L2·0&0%j`'0j`)2»0&0%j`'0j`S2…00j`0Há “
+
+	( DÕ0j`2§0j`L2ﬁ060j`HHá “
+
+	(Ã[œ0j`2§0j`L2·0*0j`+2‚060j`HHá “
+
+	(Œf—0j`2§0j`L2°0&0%j`'0j`)2w00j`10Há “
+
+	(–g’0j`2§0j`L2°0&0%j`'0j`)2”00j`T0Há “
+
+	(‘f◊0j`2§0j`L2°0&0%j`'0j`)2w00j`10Há “
+
+	(÷g⁄0j`2§0j`L2°0&0%j`'0j`)2ÿ00j`T0Há “
+
+	(ŸL‹0j`,2§0j`L2°0&0%j`'0j`)Há “
+
+	(€:‡0.0j`O2´0U“
+VHá “
+
+	(ﬂ:‚0.0j`O2´0U“
+VHá “
+
+	(·SÂ0.0j`O2
+,0j`2∂0j`2„0U“
+VHá “
+
+	(‰SÁ0.0j`O2
+,0j`2∂0j`2ú0U“
+VHá “
+
+	(Ê5Í0.0j`O2∑02j`WHá “
+
+	(ÈlÌ0j`2
+,0j`2Î0&0%j`'0j`)2„0&0%j`'0j`)Há “
+
+	(Ï≤Û0j`2K
+0#02Ä0j`2±00j`02L020Cj`X02% 060j`70Nj`Y02…020Cj`Z0Há “
+
+	(ÚVˆ0j`2
+,0j`2Ù0j`2»0U“
+V2…0j`Há “
+
+	(ıX˘0j`2
+,0j`2Ù0j`2˜0&0%j`'0j`)Há “
+
+	(¯ç¸0j`2
+,0j`2Ù0j`29»4.,0&0%j`'00Nj0&0%j`'`[02…00j`0Há “
+
+	(˚K˛0j`2
+,0j`2´0&0%j`'0j`)Há “
+
+	(˝7Ä0j`2
+,0j`2Ù0j`Há “
+
+	(ˇ◊å0j`2ò0j`02É0\0j`]2Ñ0\0j`]2aá\VT(&" 0^j`_00Nj0^j`_`[00Nj&" 0^j`_00Nj0^j`_`[`[02ä00`j`a0Há “
+
+	(ãMè0j`2-ç(" 0^j`_00Nj0^j`_`[0Há “
+
+	(éMî0c0j`d2T060j`H2∂02j`bHá “
+
+	(ìäõ060j`H2ï0Q0j`R2ò0e0j`f2‚0*0j`+2ô00`j`a0Há “
+
+	(öƒ£02ï0Q0j`R2ò0e0j`f2#ù0c0j`d0Nj`g02#ﬁ0.0j`/0Nj`h02°0i0j`j2ô00`j`a0Há “
+
+	(¢Öß060j`H2»0U“
+V2ø0Q0j`R2∂02j`b2#•0*0j`+0Nj`k0Há “
+
+	(¶í™060j`H2»0U“
+V2®02j`J2ø0Q0j`R2∂02j`b2#•0*0j`+0Nj`k0Há “
+
+	(©í¨060j`H2»0U“
+V2®02j`J2ø0Q0j`R2∂02j`b2#•0*0j`+0Nj`k0Há “
+
+	(´:¥0o0n2Æ02j`l2∞0j`mHá “
+
+	(≥a∫0j`2µ0j`02∂00j`B02∏00j`p0Há “
+
+	(π\º0j`2ò0j`02∞0j`?2±02≥00j`@0Há “
+
+	(ªBæ0.0j`/2µ0j`02∂0j`FHá “
+
+	(ΩY√0j`q2ø0.0j`/2¿0.0j`/2∂0j`FHá “
+
+	(¬8≈0j`02µ0j`02∂0j`FHá “
+
+	(ƒO»0j`2ò0j`02∂0j`F2∆0.0j`/Há “
+
+	(«XÕ0j`2ò0j`02∂0j`F2…0*0j`+2À0rHá “
+
+	(Ã\œ0j`2ò0j`02∂0j`F2…0*0j`+2À0j`qHá “
+
+	(Œ]—0j`2ò0j`02∂0j`F2#∆0.0j`/0Nj`h0Há “
+
+	(–]”0j`2ò0j`02∂0j`F2#∆0.0j`/0Nj`h0Há “
+
+	(“j◊0j`2ò0j`02∂0j`F2…0*0j`+2À0r0sj`t0Há “
+
+	(÷†€0j`2ò0j`02∂0j`F2…0*0j`+2À00`j`a02ÿ00`j`a02Ÿ00`j`a0Há “
+
+	(⁄8›0j`2ò0j`02∂0j`FHá “
+
+	(‹‡02j`uHá “
+
+	(ﬂÿ
+‡
+ Í
+platform.IOKit

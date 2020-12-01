@@ -1,0 +1,662 @@
+
+ËF
+kotlinx
+cinterop
+CPointer
+cnames
+structs
+
+__CFString
+platform
+CoreFoundation
+CFStringRef
+name
+	CFunction
+kotlin
+	Function2
+CoreMIDI
+MIDINotification
+CPointed
+COpaquePointer
+Unit
+MIDINotifyProc
+
+notifyProc
+
+CValuesRef
+notifyRefCon
+	UIntVarOf
+UInt
+MIDIClientRefVar
+	outClient
+Int
+darwin
+OSStatus
+internal
+CCall
+id
+-knifunptr_platform_CoreMIDI0_MIDIClientCreate
+MIDIClientCreate
+	Function1
+MIDINotifyBlock
+notifyBlock
+6knifunptr_platform_CoreMIDI1_MIDIClientCreateWithBlock
+MIDIClientCreateWithBlock
+MIDIClientRef
+client
+.knifunptr_platform_CoreMIDI2_MIDIClientDispose
+MIDIClientDispose
+portName
+	Function3
+MIDIPacketList
+MIDIReadProc
+readProc
+refCon
+MIDIPortRefVar
+outPort
+0knifunptr_platform_CoreMIDI3_MIDIInputPortCreate
+MIDIInputPortCreate
+MIDIReadBlock
+	readBlock
+9knifunptr_platform_CoreMIDI4_MIDIInputPortCreateWithBlock
+MIDIInputPortCreateWithBlock
+1knifunptr_platform_CoreMIDI5_MIDIOutputPortCreate
+MIDIOutputPortCreate
+MIDIPortRef
+port
+,knifunptr_platform_CoreMIDI6_MIDIPortDispose
+MIDIPortDispose
+MIDIEndpointRef
+source
+
+connRefCon
+2knifunptr_platform_CoreMIDI7_MIDIPortConnectSource
+MIDIPortConnectSource
+5knifunptr_platform_CoreMIDI8_MIDIPortDisconnectSource
+MIDIPortDisconnectSource
+ULong
+	ItemCount
+3knifunptr_platform_CoreMIDI9_MIDIGetNumberOfDevices
+MIDIGetNumberOfDevices
+deviceIndex0
+MIDIDeviceRef
++knifunptr_platform_CoreMIDI10_MIDIGetDevice
+MIDIGetDevice
+device
+;knifunptr_platform_CoreMIDI11_MIDIDeviceGetNumberOfEntities
+MIDIDeviceGetNumberOfEntities
+entityIndex0
+MIDIEntityRef
+1knifunptr_platform_CoreMIDI12_MIDIDeviceGetEntity
+MIDIDeviceGetEntity
+entity
+:knifunptr_platform_CoreMIDI13_MIDIEntityGetNumberOfSources
+MIDIEntityGetNumberOfSources
+sourceIndex0
+1knifunptr_platform_CoreMIDI14_MIDIEntityGetSource
+MIDIEntityGetSource
+?knifunptr_platform_CoreMIDI15_MIDIEntityGetNumberOfDestinations
+!MIDIEntityGetNumberOfDestinations
+
+destIndex0
+6knifunptr_platform_CoreMIDI16_MIDIEntityGetDestination
+MIDIEntityGetDestination
+inEntity
+MIDIDeviceRefVar
+	outDevice
+1knifunptr_platform_CoreMIDI17_MIDIEntityGetDevice
+MIDIEntityGetDevice
+4knifunptr_platform_CoreMIDI18_MIDIGetNumberOfSources
+MIDIGetNumberOfSources
++knifunptr_platform_CoreMIDI19_MIDIGetSource
+MIDIGetSource
+9knifunptr_platform_CoreMIDI20_MIDIGetNumberOfDestinations
+MIDIGetNumberOfDestinations
+0knifunptr_platform_CoreMIDI21_MIDIGetDestination
+MIDIGetDestination
+
+inEndpoint
+MIDIEntityRefVar
+	outEntity
+3knifunptr_platform_CoreMIDI22_MIDIEndpointGetEntity
+MIDIEndpointGetEntity
+MIDIEndpointRefVar
+outDest
+3knifunptr_platform_CoreMIDI23_MIDIDestinationCreate
+MIDIDestinationCreate
+<knifunptr_platform_CoreMIDI24_MIDIDestinationCreateWithBlock
+MIDIDestinationCreateWithBlock
+outSrc
+.knifunptr_platform_CoreMIDI25_MIDISourceCreate
+MIDISourceCreate
+endpt
+1knifunptr_platform_CoreMIDI26_MIDIEndpointDispose
+MIDIEndpointDispose
+<knifunptr_platform_CoreMIDI27_MIDIGetNumberOfExternalDevices
+MIDIGetNumberOfExternalDevices
+3knifunptr_platform_CoreMIDI28_MIDIGetExternalDevice
+MIDIGetExternalDevice
+MIDIObjectRef
+obj
+
+propertyID
+IntVarOf
+	SInt32Var
+outValue
+:knifunptr_platform_CoreMIDI29_MIDIObjectGetIntegerProperty
+MIDIObjectGetIntegerProperty
+SInt32
+value
+:knifunptr_platform_CoreMIDI30_MIDIObjectSetIntegerProperty
+MIDIObjectSetIntegerProperty
+CPointerVarOf
+CFStringRefVar
+str
+9knifunptr_platform_CoreMIDI31_MIDIObjectGetStringProperty
+MIDIObjectGetStringProperty
+9knifunptr_platform_CoreMIDI32_MIDIObjectSetStringProperty
+MIDIObjectSetStringProperty
+__CFData
+	CFDataRef
+CFDataRefVar
+outData
+7knifunptr_platform_CoreMIDI33_MIDIObjectGetDataProperty
+MIDIObjectGetDataProperty
+data
+7knifunptr_platform_CoreMIDI34_MIDIObjectSetDataProperty
+MIDIObjectSetDataProperty
+__CFDictionary
+CFDictionaryRef
+CFDictionaryRefVar
+outDict
+=knifunptr_platform_CoreMIDI35_MIDIObjectGetDictionaryProperty
+MIDIObjectGetDictionaryProperty
+dict
+=knifunptr_platform_CoreMIDI36_MIDIObjectSetDictionaryProperty
+MIDIObjectSetDictionaryProperty
+CFPropertyListRef
+CFPropertyListRefVar
+outProperties
+Boolean
+deep
+5knifunptr_platform_CoreMIDI37_MIDIObjectGetProperties
+MIDIObjectGetProperties
+6knifunptr_platform_CoreMIDI38_MIDIObjectRemoveProperty
+MIDIObjectRemoveProperty
+MIDIUniqueID
+
+inUniqueID
+MIDIObjectRefVar
+	outObject
+MIDIObjectTypeVar
+outObjectType
+6knifunptr_platform_CoreMIDI39_MIDIObjectFindByUniqueID
+MIDIObjectFindByUniqueID
+dest
+pktlist
+&knifunptr_platform_CoreMIDI40_MIDISend
+MIDISend
+MIDISysexSendRequest
+request
++knifunptr_platform_CoreMIDI41_MIDISendSysex
+MIDISendSysex
+src
+*knifunptr_platform_CoreMIDI42_MIDIReceived
+MIDIReceived
+-knifunptr_platform_CoreMIDI43_MIDIFlushOutput
+MIDIFlushOutput
+)knifunptr_platform_CoreMIDI44_MIDIRestart
+MIDIRestart
+
+MIDIPacket
+pkt
+,knifunptr_platform_CoreMIDI45_MIDIPacketNext
+MIDIPacketNext
+0knifunptr_platform_CoreMIDI46_MIDIPacketListInit
+MIDIPacketListInit
+	ByteCount
+listSize
+	curPacket
+MIDITimeStamp
+time
+nData
+
+UByteVarOf
+UByte
+ByteVar
+/knifunptr_platform_CoreMIDI47_MIDIPacketListAdd
+MIDIPacketListAdd
+MIDISetupRefVar
+outSetup
+-knifunptr_platform_CoreMIDI48_MIDISetupCreate
+MIDISetupCreate
+MIDISetupRef
+setup
+.knifunptr_platform_CoreMIDI49_MIDISetupDispose
+MIDISetupDispose
+.knifunptr_platform_CoreMIDI50_MIDISetupInstall
+MIDISetupInstall
+1knifunptr_platform_CoreMIDI51_MIDISetupGetCurrent
+MIDISetupGetCurrent
+-knifunptr_platform_CoreMIDI52_MIDISetupToData
+MIDISetupToData
+/knifunptr_platform_CoreMIDI53_MIDISetupFromData
+MIDISetupFromData
+embedded
+numSourceEndpoints
+numDestinationEndpoints
+	newEntity
+1knifunptr_platform_CoreMIDI54_MIDIDeviceAddEntity
+MIDIDeviceAddEntity
+4knifunptr_platform_CoreMIDI55_MIDIDeviceRemoveEntity
+MIDIDeviceRemoveEntity
+<knifunptr_platform_CoreMIDI56_MIDIEntityAddOrRemoveEndpoints
+MIDIEntityAddOrRemoveEndpoints
+0knifunptr_platform_CoreMIDI57_MIDISetupAddDevice
+MIDISetupAddDevice
+3knifunptr_platform_CoreMIDI58_MIDISetupRemoveDevice
+MIDISetupRemoveDevice
+8knifunptr_platform_CoreMIDI59_MIDISetupAddExternalDevice
+MIDISetupAddExternalDevice
+;knifunptr_platform_CoreMIDI60_MIDISetupRemoveExternalDevice
+MIDISetupRemoveExternalDevice
+outDriverName
+4knifunptr_platform_CoreMIDI61_MIDIGetSerialPortOwner
+MIDIGetSerialPortOwner
+
+driverName
+4knifunptr_platform_CoreMIDI62_MIDISetSerialPortOwner
+MIDISetSerialPortOwner
+	__CFArray
+
+CFArrayRef
+CFArrayRefVar
+outDriverNames
+6knifunptr_platform_CoreMIDI63_MIDIGetSerialPortDrivers
+MIDIGetSerialPortDrivers
+manufacturer
+model
+6knifunptr_platform_CoreMIDI64_MIDIExternalDeviceCreate
+MIDIExternalDeviceCreate
+MIDIThruConnectionParams
+ptr
+posix
+size_t
+:knifunptr_platform_CoreMIDI65_MIDIThruConnectionParamsSize
+MIDIThruConnectionParamsSize
+inConnectionParams
+@knifunptr_platform_CoreMIDI66_MIDIThruConnectionParamsInitialize
+"MIDIThruConnectionParamsInitialize
+inPersistentOwnerID
+MIDIThruConnectionRefVar
+outConnection
+6knifunptr_platform_CoreMIDI67_MIDIThruConnectionCreate
+MIDIThruConnectionCreate
+MIDIThruConnectionRef
+
+connection
+7knifunptr_platform_CoreMIDI68_MIDIThruConnectionDispose
+MIDIThruConnectionDispose
+outConnectionParams
+9knifunptr_platform_CoreMIDI69_MIDIThruConnectionGetParams
+MIDIThruConnectionGetParams
+9knifunptr_platform_CoreMIDI70_MIDIThruConnectionSetParams
+MIDIThruConnectionSetParams
+outConnectionList
+4knifunptr_platform_CoreMIDI71_MIDIThruConnectionFind
+MIDIThruConnectionFind
+MIDIDriverInterface
+CPointerVar
+MIDIDriverRef
+owner
+.knifunptr_platform_CoreMIDI72_MIDIDeviceCreate
+MIDIDeviceCreate
+/knifunptr_platform_CoreMIDI73_MIDIDeviceDispose
+MIDIDeviceDispose
+MIDIDeviceListRef
+devList
+>knifunptr_platform_CoreMIDI74_MIDIDeviceListGetNumberOfDevices
+ MIDIDeviceListGetNumberOfDevices
+index0
+5knifunptr_platform_CoreMIDI75_MIDIDeviceListGetDevice
+MIDIDeviceListGetDevice
+dev
+5knifunptr_platform_CoreMIDI76_MIDIDeviceListAddDevice
+MIDIDeviceListAddDevice
+3knifunptr_platform_CoreMIDI77_MIDIDeviceListDispose
+MIDIDeviceListDispose
+ref1
+ref2
+4knifunptr_platform_CoreMIDI78_MIDIEndpointSetRefCons
+MIDIEndpointSetRefCons
+COpaquePointerVar
+4knifunptr_platform_CoreMIDI79_MIDIEndpointGetRefCons
+MIDIEndpointGetRefCons
+__CFRunLoop
+CFRunLoopRef
+4knifunptr_platform_CoreMIDI80_MIDIGetDriverIORunLoop
+MIDIGetDriverIORunLoop
+driver
+5knifunptr_platform_CoreMIDI81_MIDIGetDriverDeviceList
+MIDIGetDriverDeviceList
+enabled
+8knifunptr_platform_CoreMIDI82_MIDIDriverEnableMonitoring
+MIDIDriverEnableMonitoring
+UInt32
+
+ULongVarOf
+MIDITimeStampVar
+UInt64
+MIDIUniqueIDVar
+MIDICompletionProc
+MIDICompletionProcVar
+MIDINotifyProcVar
+ObjCBlockVar
+ObjCNotImplementedVar
+MIDINotifyBlockVar
+MIDIReadProcVar
+MIDIReadBlockVar
+MIDIDriverRefVar
+MIDIDeviceListRefVar
+MIDIChannelNumber
+MIDIChannelNumberVar
+uint8_t
+MIDICIPropertyResponseBlock
+	Function4
+MIDICISession
+
+Foundation
+NSData
+NSError
+MIDICIPropertyResponseBlockVar
+MIDICIProfileChangedBlock
+MIDICIProfile
+MIDICIProfileChangedBlockVar
+MIDICIPropertyChangedBlock
+MIDICIPropertyChangedBlockVar
+MIDIObjectType
+MIDINotificationMessageID
+MIDINotificationMessageIDVarå
+ 
+ 
+ 
+
+
+ 
+
+
+ 
+
+ 
+
+
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+" 
+# 
+' 
+
+, 
+- 
+. 
+1 
+5 
+; 
+? 
+
+F 
+G 
+K 
+R 
+a 
+n 
+r 
+‚ 
+… 
+† 
+Š 
+Ž 
+ 
+• 
+– 
+— 
+ž 
+Ÿ 
+  
+§ 
+¨ 
+
+ª 
+° 
+² 
+´ 
+¼ 
+Ç 
+Í 
+Ð 
+Ó 
+
+Ô 
+Õ 
+Ø 
+Ü 
+€ 
+ 
+‚ 
+Š 
+Œ
+K 
+” 
+˜ 
+¤ 
+¥ 
+¦ 
+¬ 
+¼ 
+¿ 
+À 
+É 
+Ê 
+Ì 
+Î 
+Ñ 
+Ò 
+Ø 
+KÚ 
+Û 
+
+Ü 
+Ý 
+Þ
+aß 
+aà 
+â 
+ã 
+å 
+ç 
+è µA !0j`2	00j`2D@42.,
+0000j`000	0j`20200j`0H‡ Ò
+( p&0j`2	00j`200j`02"$
+0000j`H‡ Ò
+(%(*0j`2
+(0j`H‡ Ò
+()Â40j`2
+(0j`2+00j`2Z/VJHDB
+0000j`00j`000	0j` 2002200j`!0H‡ Ò
+(3’80j`2
+(0j`2+00j`2200j`!02864
+0000j`00j`"H‡ Ò
+(7X:0j`2
+(0j`2+00j`2200j`!0H‡ Ò
+(9(>0j`2
+<0j`#H‡ Ò
+(=BC0j`2
+<0j`#2
+@0j`$2A0H‡ Ò
+(B4E0j`2
+<0j`#2
+@0j`$H‡ Ò
+(DI0%j`&H‡ Ò
+(H(M0j`'2
+J0%j`&H‡ Ò
+(L(P0%j`&2
+N0j`'H‡ Ò
+(O4T0j`(2
+N0j`'2
+Q0%j`&H‡ Ò
+(S(W0%j`&2
+U0j`(H‡ Ò
+(V4Z0j`$2
+U0j`(2
+X0%j`&H‡ Ò
+(Y(\0%j`&2
+U0j`(H‡ Ò
+([4_0j`$2
+U0j`(2
+]0%j`&H‡ Ò
+(^Bd0j`2
+`0j`(2b00j`)0H‡ Ò
+(cf0%j`&H‡ Ò
+(e(h0j`$2
+X0%j`&H‡ Ò
+(gj0%j`&H‡ Ò
+(i(l0j`$2
+]0%j`&H‡ Ò
+(kBq0j`2
+m0j`$2o00j`*0H‡ Ò
+(pÂu0j`2
+(0j`2	00j`2Z/VJHDB
+0000j`00j`000	0j` 2002s00j`+0H‡ Ò
+(t’w0j`2
+(0j`2	00j`2s00j`+02864
+0000j`00j`"H‡ Ò
+(vXz0j`2
+(0j`2	00j`2x00j`+0H‡ Ò
+(y(}0j`2
+{0j`$H‡ Ò
+(|0%j`&H‡ Ò
+(~*0j`'2
+J0%j`&H‡ Ò
+	(€]‰0j`2ƒ0j`,2„00j`2‡00-j`.0H‡ Ò
+	(ˆO0j`2ƒ0j`,2„00j`2‹0j`/H‡ Ò
+	(Œg’0j`2ƒ0j`,2„00j`2#00j`00j`10H‡ Ò
+	(‘Y”0j`2ƒ0j`,2„00j`200j`H‡ Ò
+	(“gš0j`2ƒ0j`,2„00j`2#˜020j`300j`40H‡ Ò
+	(™Y0j`2ƒ0j`,2„00j`2›020j`3H‡ Ò
+	(œg£0j`2ƒ0j`,2„00j`2#¡050j`600j`70H‡ Ò
+	(¢Y¦0j`2ƒ0j`,2„00j`2¤050j`6H‡ Ò
+	(¥[­0j`2ƒ0j`,2%© 00j`800j`902«0:H‡ Ò
+	(¬B¯0j`2ƒ0j`,2„00j`H‡ Ò
+	(®a·0j`2±0j`;2³00j`<02µ00-j`=0H‡ Ò
+	(¶H»0j`2
+<0j`#2¸0j`$2¹
+00H‡ Ò
+	(º/¿0j`2½
+0>0H‡ Ò
+	(¾<Â0j`2À0j`$2¹
+00H‡ Ò
+	(Á+Ä0j`2¸0j`$H‡ Ò
+	(ÃÆ0j`H‡ Ò
+	(Å3Ê
+0?02È
+0?0H‡ Ò
+	(É3Ì
+0?02¹
+00H‡ Ò
+	(Ë†×
+0?02¹
+002Î0%j`@2Ï
+0?02Ñ0%j`A2Ò0%j`@2›0C0Bj`D0H‡ Ò
+	(Ö9Û0j`2Ù00j`E0H‡ Ò
+	(Ú+ß0j`2Ý0j`FH‡ Ò
+	(Þ+á0j`2Ý0j`FH‡ Ò
+	(à9ã0j`2Ù00j`E0H‡ Ò
+	(âPå0j`2Ý0j`F2#˜020j`300j`40H‡ Ò
+	(äPç0j`2›020j`32Ù00j`E0H‡ Ò
+	(æ~í0j`2
+N0j`'2	00j`2è0:2é0%j`&2ê0%j`&2ë00j`*0H‡ Ò
+	(ì6ï0j`2
+N0j`'2
+U0j`(H‡ Ò
+	(îDñ0j`2
+U0j`(2é0%j`&2ê0%j`&H‡ Ò
+	(ð*ó0j`2
+N0j`'H‡ Ò
+	(ò*õ0j`2
+N0j`'H‡ Ò
+	(ô*÷0j`2
+N0j`'H‡ Ò
+	(ö*ù0j`2
+N0j`'H‡ Ò
+	(øYü0j`2+00j`2#ú00j`00j`10H‡ Ò
+	(ûKÿ0j`2+00j`2ý00j`H‡ Ò
+	(þC…0j`2#ƒ0G0j`H00j`I0H‡ Ò
+	(„|‰0j`2	00j`2†00j`2‡00j`2b00j`)0H‡ Ò
+	(ˆ/0%j`L2‹
+0J0H‡ Ò
+	(Ž+’02
+0J0H‡ Ò
+	(‘g—0j`2“00j`2020j`32•00j`M0H‡ Ò
+	(–+›0j`2™0j`NH‡ Ò
+	(šPž0j`2™0j`N2#œ020j`300j`40H‡ Ò
+	(B 0j`2™0j`N2020j`3H‡ Ò
+	(ŸZ£0j`2“00j`2#¡020j`300j`40H‡ Ò
+	(¢©©0j`2+§&
+0O000j0O`P0j`Q2	00j`2†00j`2‡00j`2b00j`)0H‡ Ò
+	(¨*«0j`2
+N0j`'H‡ Ò
+	(ª+¯0%j`&2­0j`RH‡ Ò
+	(®8²0j`'2­0j`R2°0%j`&H‡ Ò
+	(±8µ0j`2­0j`R2³0j`'H‡ Ò
+	(´+·0j`2­0j`RH‡ Ò
+	(¶H»0j`2
+{0j`$2¸02¹0H‡ Ò
+	(ºx¾0j`2
+{0j`$2%¸ 00j`00j`S02%¹ 00j`00j`S0H‡ Ò
+	(½(Â0T0j`UH‡ Ò
+	(ÁKÅ0j`R2+Ã&
+0O000j0O`P0j`QH‡ Ò
+	(ÄTÈ0j`2+Ã&
+0O000j0O`P0j`Q2Æ0:H‡ Ò
+	(Ç*²"`,020j`,0*‚"`V20j`V*"`020j`0*'"`,20j`,*1"`#020j`#0*;"`,20j`,*a"`'020j`'0*K"`,20j`,*n"`(020j`(0*R"`,20j`,*r"`$020j`$0*?"`,20j`,*Ë"`A0W20%j`A0W*Ð"`X20%j`X*Í"`;0-20j`;0-*°"`/20j`/*;Ï"`Y002,(&
+0>0000	0j`Y00*KÎ""
+0>0000	02"
+0>0000	0*QÐ"`002B><42.,
+0000j`000	0j`00*h"*&$ 
+00`000	02842.,
+0000j`000	0*QÓ"``Z2B
+0000j`0[j 
+0000j``Z*6#"
+00002
+0000*gÔ"` 002XTRJHDB
+0000j`00j`000	0j` 00*†."2.,(&
+00``000	02NJHDB
+0000j`00j`000	0*}Õ"`"`Z2n20
+0000j`00j`"0[j620
+0000j`00j`"`Z*T5" 
+00`002.
+0000j`00*Ø"`F020j`F0*Ü"`,20j`,*”"`N020j`N0*˜"`,20j`,*7Ö"`Q002($"
+0O000j0O`P0j`Q00*3¦"
+0O`P02
+0O000j0O`P0*×"`R020j`R0*¬"`,20j`,*Ù"`\0B20Cj`\0B*Ø"`]20Cj`]*yá"`^`Z2j0.0`0Cj`\0b0c00_j`^0[j40.0`0Cj`\0b0c00_j`^`Z*[Û"(0``\0b0c00_2,0`0Cj`\0b0c00_*uä"`d`Z2f.,0`0Cj`\0e0:00_j`d0[j2.,0`0Cj`\0e0:00_j`d`Z*Wâ"&0``\0e0:00_2*0`0Cj`\0e0:00_*iæ"`f`Z2Z(&0`0Cj`\0b00j`f0[j,(&0`0Cj`\0b00j`f`Z*Kå" 0``\0b002$0`0Cj`\0b00*´"`g0-20j`g0-*ç"`/20j`/*é"`h0-20j`h0-Ø
+à
+ ê
+platform.CoreMIDI

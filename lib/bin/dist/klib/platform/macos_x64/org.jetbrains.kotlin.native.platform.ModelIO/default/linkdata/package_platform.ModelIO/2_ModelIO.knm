@@ -1,0 +1,543 @@
+
+·C
+platform
+ModelIO
+MDLAssetMeta
+kotlin
+Float
+value
+Long
+MDLProbePlacement
+	heuristic
+)MDLLightProbeIrradianceDataSourceProtocol
+usingIrradianceDataSource
+collections
+List
+kotlinx
+cinterop
+
+ObjCMethod
+selector
+@placeLightProbesWithDensity:heuristic:usingIrradianceDataSource:
+encoding
+@36@0:8f16q20@28
+isStret
+placeLightProbesWithDensity
+MDLLightProbeMeta
+darwin
+	NSInteger
+textureSize
+MDLTransform
+forLocation
+lightsToConsider
+objectsToConsider
+
+MDLTexture
+reflectiveCubemap
+irradianceCubemap
+MDLLightProbe
+mlightProbeWithTextureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:
+@64@0:8q16@24@32@40@48@56
+lightProbeWithTextureSize
+MDLMesh
+String
+name
+ULong
+MDLVertexFormat
+format
+Unit
+addAttributeWithName:format:
+v32@0:8@16Q24
+addAttributeWithName
+type
+
+Foundation
+NSData
+data
+stride
+-addAttributeWithName:format:type:data:stride:
+v56@0:8@16Q24@32@40q48
+Double
+NSTimeInterval
+time
+2addAttributeWithName:format:type:data:stride:time:
+v64@0:8@16Q24@32@40q48d56
+attributeName
+creaseThreshold
+-addNormalsWithAttributeNamed:creaseThreshold:
+v28@0:8@16f24
+addNormalsWithAttributeNamed
+textureCoordinateAttributeName
+tangentAttributeNamed
+bitangentAttributeNamed
+`addTangentBasisForTextureCoordinateAttributeNamed:tangentAttributeNamed:bitangentAttributeNamed:
+v40@0:8@16@24@32
+1addTangentBasisForTextureCoordinateAttributeNamed
+normalAttributeNamed
+]addTangentBasisForTextureCoordinateAttributeNamed:normalAttributeNamed:tangentAttributeNamed:
+]addOrthTanBasisForTextureCoordinateAttributeNamed:normalAttributeNamed:tangentAttributeNamed:
+1addOrthTanBasisForTextureCoordinateAttributeNamed
+0addUnwrappedTextureCoordinatesForAttributeNamed:
+
+v24@0:8@16
+/addUnwrappedTextureCoordinatesForAttributeNamed
+'flipTextureCoordinatesInAttributeNamed:
+&flipTextureCoordinatesInAttributeNamed
+makeVerticesUnique
+v16@0:8
+CPointer
+ObjCObjectVar
+NSError
+error
+Boolean
+!makeVerticesUniqueAndReturnError:
+c24@0:8^@16
+ makeVerticesUniqueAndReturnError
+MDLVertexAttributeData
+withData
+replaceAttributeNamed:withData:
+v32@0:8@16@24
+replaceAttributeNamed
+updateAttributeNamed:withData:
+updateAttributeNamed
+removeAttributeNamed:
+removeAttributeNamed
+native
+	Vector128
+vector_float3
+extent
+vector_uint3
+segments
+inwardNormals
+MDLGeometryType
+geometryType
+MDLMeshBufferAllocatorProtocol
+	allocator
+
+Deprecated
+message
+Use factory method instead
+replaceWith
+ReplaceWith
+imports
+
+expression
+HMDLMesh.create(extent, segments, inwardNormals, geometryType, allocator)
+level
+DeprecationLevel
+ERROR
+@initBoxWithExtent:segments:inwardNormals:geometryType:allocator:
+@68@0:81632c48q52@60
+internal
+CCall
+ConsumesReceiver
+ReturnsRetained
+initBoxWithExtent
+T
+ObjCClassOf
+boxWithExtent
+ObjCFactory
+create
+>MDLMesh.create(extent, inwardNormals, geometryType, allocator)
+?initIcosahedronWithExtent:inwardNormals:geometryType:allocator:
+@52@0:816c32q36@44
+initIcosahedronWithExtent
+icosahedronWithExtent
+mesh
+Int
+submeshIndex
+UInt
+subdivisionLevels
+@MDLMesh.create(mesh, submeshIndex, subdivisionLevels, allocator)
+CinitMeshBySubdividingMesh:submeshIndex:subdivisionLevels:allocator:
+@40@0:8@16i24I28@32
+initMeshBySubdividingMesh
+meshBySubdividingMesh
+MDLMeshMeta
+
+dimensions
+CnewBoxWithDimensions:segments:geometryType:inwardNormals:allocator:
+@68@0:81632q48c56@60
+newBoxWithDimensions
+radii
+
+NSUInteger
+radialSegments
+verticalSegments
+
+hemisphere
+fnewEllipsoidWithRadii:radialSegments:verticalSegments:geometryType:inwardNormals:hemisphere:allocator:
+@72@0:816Q32Q40q48c56c60@64
+newEllipsoidWithRadii
+radius
+>newIcosahedronWithRadius:inwardNormals:geometryType:allocator:
+@40@0:8f16c20q24@32
+newIcosahedronWithRadius
+1newIcosahedronWithRadius:inwardNormals:allocator:
+@32@0:8f16c20@24
+1newSubdividedMesh:submeshIndex:subdivisionLevels:
+@40@0:8@16Q24Q32
+newSubdividedMesh
+bakeQuality
+attenuationFactor
+vertexAttributeNamed
+materialPropertyNamed
+zgenerateAmbientOcclusionTextureWithQuality:attenuationFactor:objectsToConsider:vertexAttributeNamed:materialPropertyNamed:
+c48@0:8f16f20@24@32@40
+*generateAmbientOcclusionTextureWithQuality
+raysPerSample
+ogenerateAmbientOcclusionVertexColorsWithRaysPerSample:attenuationFactor:objectsToConsider:vertexAttributeNamed:
+c44@0:8q16f24@28@36
+5generateAmbientOcclusionVertexColorsWithRaysPerSample
+igenerateAmbientOcclusionVertexColorsWithQuality:attenuationFactor:objectsToConsider:vertexAttributeNamed:
+c40@0:8f16f20@24@32
+/generateAmbientOcclusionVertexColorsWithQuality
+qgenerateLightMapTextureWithQuality:lightsToConsider:objectsToConsider:vertexAttributeNamed:materialPropertyNamed:
+c52@0:8f16@20@28@36@44
+"generateLightMapTextureWithQuality
+XgenerateLightMapVertexColorsWithLightsToConsider:objectsToConsider:vertexAttributeNamed:
+c40@0:8@16@24@32
+0generateLightMapVertexColorsWithLightsToConsider
+id
+2knifunptr_platform_ModelIO11_kUTTypeAlembic_getter
+kUTTypeAlembic
+3knifunptr_platform_ModelIO12_kUTType3dObject_getter
+kUTType3dObject
+2knifunptr_platform_ModelIO13_kUTTypePolygon_getter
+kUTTypePolygon
+<knifunptr_platform_ModelIO14_kUTTypeStereolithography_getter
+kUTTypeStereolithography
+Dknifunptr_platform_ModelIO15_kUTTypeUniversalSceneDescription_getter
+ kUTTypeUniversalSceneDescription
+@knifunptr_platform_ModelIO16_MDLVertexAttributeAnisotropy_getter
+MDLVertexAttributeAnisotropy
+>knifunptr_platform_ModelIO17_MDLVertexAttributeBinormal_getter
+MDLVertexAttributeBinormal
+?knifunptr_platform_ModelIO18_MDLVertexAttributeBitangent_getter
+MDLVertexAttributeBitangent
+;knifunptr_platform_ModelIO19_MDLVertexAttributeColor_getter
+MDLVertexAttributeColor
+@knifunptr_platform_ModelIO20_MDLVertexAttributeEdgeCrease_getter
+MDLVertexAttributeEdgeCrease
+Bknifunptr_platform_ModelIO21_MDLVertexAttributeJointIndices_getter
+MDLVertexAttributeJointIndices
+Bknifunptr_platform_ModelIO22_MDLVertexAttributeJointWeights_getter
+MDLVertexAttributeJointWeights
+<knifunptr_platform_ModelIO23_MDLVertexAttributeNormal_getter
+MDLVertexAttributeNormal
+Dknifunptr_platform_ModelIO24_MDLVertexAttributeOcclusionValue_getter
+ MDLVertexAttributeOcclusionValue
+>knifunptr_platform_ModelIO25_MDLVertexAttributePosition_getter
+MDLVertexAttributePosition
+Cknifunptr_platform_ModelIO26_MDLVertexAttributeShadingBasisU_getter
+MDLVertexAttributeShadingBasisU
+Cknifunptr_platform_ModelIO27_MDLVertexAttributeShadingBasisV_getter
+MDLVertexAttributeShadingBasisV
+Hknifunptr_platform_ModelIO28_MDLVertexAttributeSubdivisionStencil_getter
+$MDLVertexAttributeSubdivisionStencil
+=knifunptr_platform_ModelIO29_MDLVertexAttributeTangent_getter
+MDLVertexAttributeTangent
+Gknifunptr_platform_ModelIO30_MDLVertexAttributeTextureCoordinate_getter
+#MDLVertexAttributeTextureCoordinate
+MDLVertexFormatInvalid
+MDLVertexFormatPackedBit
+MDLVertexFormatUCharBits
+MDLVertexFormatCharBits
+"MDLVertexFormatUCharNormalizedBits
+!MDLVertexFormatCharNormalizedBits
+MDLVertexFormatUShortBits
+MDLVertexFormatShortBits
+#MDLVertexFormatUShortNormalizedBits
+"MDLVertexFormatShortNormalizedBits
+MDLVertexFormatUIntBits
+MDLVertexFormatIntBits
+MDLVertexFormatHalfBits
+MDLVertexFormatFloatBits
+MDLVertexFormatUChar
+MDLVertexFormatUChar2
+MDLVertexFormatUChar3
+MDLVertexFormatUChar4
+MDLVertexFormatChar
+MDLVertexFormatChar2
+MDLVertexFormatChar3
+MDLVertexFormatChar4
+MDLVertexFormatUCharNormalized
+MDLVertexFormatUChar2Normalized
+MDLVertexFormatUChar3Normalized
+MDLVertexFormatUChar4Normalized
+MDLVertexFormatCharNormalized
+MDLVertexFormatChar2Normalized
+MDLVertexFormatChar3Normalized
+MDLVertexFormatChar4Normalized
+MDLVertexFormatUShort
+MDLVertexFormatUShort2
+MDLVertexFormatUShort3
+MDLVertexFormatUShort4
+MDLVertexFormatShort
+MDLVertexFormatShort2
+MDLVertexFormatShort3
+MDLVertexFormatShort4
+MDLVertexFormatUShortNormalized
+ MDLVertexFormatUShort2Normalized
+ MDLVertexFormatUShort3Normalized
+ MDLVertexFormatUShort4Normalized
+MDLVertexFormatShortNormalized
+MDLVertexFormatShort2Normalized
+MDLVertexFormatShort3Normalized
+MDLVertexFormatShort4Normalized
+MDLVertexFormatUInt
+MDLVertexFormatUInt2
+MDLVertexFormatUInt3
+MDLVertexFormatUInt4
+Vector128VarOf
+MDLVoxelIndex
+MDLVoxelIndexVar
+vector_int4
+
+ULongVarOf
+MDLVertexFormatVar
+MDLMeshBufferType
+MDLMeshBufferTypeVar
+MDLIndexBitDepth
+MDLIndexBitDepthVar
+	LongVarOf
+MDLGeometryTypeVar
+MDLProbePlacementVar
+MDLCameraProjection
+MDLCameraProjectionVar
+MDLTextureChannelEncoding
+MDLTextureChannelEncodingVar
+MDLLightType
+MDLLightTypeVar
+MDLMaterialSemantic
+MDLMaterialSemanticVar
+MDLMaterialPropertyType
+MDLMaterialPropertyTypeVar
+MDLMaterialFace
+MDLMaterialFaceVar
+MDLTransformOpRotationOrder
+MDLTransformOpRotationOrderVarä
+ 
+ 
+ 
+
+ 
+ 
+ 
+	 
+
+ 
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+! 
+% 
+& 
+( 
+) 
++ 
+ 0
+1 
+6 
+7 
+Q 
+R 
+S 
+U 
+Y 
+b
+!c 
+d 
+f 
+i 
+k 
+m 
+q 
+v 
+z
+*{ 
++| 
++} 
+Ä 
+Ç 
+ä 
+å 
+ì 
+ô 
+ò 
+ô 
+õ 
+ú 
+û 
+† 
+¢ 
+• 
+ß 
+© 
+´ 
+≠ 
+Ø 
+± ≤-P0	*0202
+0j`2
+0Há “
+ (( r$0*02
+0j`202
+0	2
+0	202 0Há “
+ ("(# D.0*02'02
+*0j`Há “
+ (,(- `.0*02'02
+*0j`2/02202
+30j`Há “
+ (4(5 l.0*02'02
+*0j`2/02202
+30j`2
+80j`Há “
+ (9(: B?0*02;02<0Há “
+ (=(> JE0*02@02A02B0Há “
+ (C(D HE0*02@02F02A0Há “
+ (G(D HI0*02@02F02A0Há “
+ (H(D 8L0*02@0Há “
+ (J(K 8N0*02@0Há “
+ (M(K 0O0*0Há “
+ (O(P HX0*02T
+000Há “
+ (V(W @]0*02'02Z0 Há “
+ ([(\ @_0*02'02Z0 Há “
+ (^(\ 8a0*02'0Há “
+ (`(K ©~0*02
+e0"j`#2
+g0"j`$2h02
+j0j`%2l0&Há “
+6'n(opB(rs(t
+u
+0)8w“
+ (x(y “
+,“
+-ÇÉ8 " *0*8 0.2Å0"j`#2
+g0"j`$2h02
+j0j`%2l0&Há “
+ /(x(y “
+,“
+-°á0*02
+e0"j`#2h02
+j0j`%2l0&Há “
+7'n(opB(r	s(Ñ
+u
+0)8w“
+"	(Ö	(Ü “
+,“
+-xÉ8"*0*80.2à0"j`#2h02
+j0j`%2l0&Há “
+"/	(Ö	(Ü “
+,“
+-úë0*02â02ã002ç012l0&Há “
+7'n(opB(r	s(é
+u
+0)8w“
+"	(è	(ê “
+,“
+-rÉ8"*0*80.2í02ã002ç012l0&Há “
+"/	(è	(ê “
+,“
+-jó0*022î0"j`#2
+g0"j`$2
+j0j`%2h02l0&Há “
+"	(ï	(ñ Åü0*022ò0"j`#2ö0j`32õ0j`32
+j0j`%2h02ú02l0&Há “
+"	(ù	(û Z£0*022†02h02
+j0j`%2l0&Há “
+"	(°	(¢ N£0*022†02h02l0&Há “
+"	(§	(• X®0*022â02ã0j`32ç0j`3Há “
+"	(¶	(ß cØ0*02©02™02
+0	2´02¨0Há “
+"	(≠	(Æ ^≥0*02∞0j`2™02
+0	2´0Há “
+"	(±	(≤ Z∂0*02©02™02
+0	2´0Há “
+"	(¥	(µ fπ0*02©02
+0	2
+0	2´02¨0Há “
+"	(∑	(∏ Tº0*02
+0	2
+0	2´0Há “
+"	(∫	(ª "ø08«@ ä+
+Ω(æ"¡08«@ ä+
+Ω(¿"√08«@ ä+
+Ω(¬"≈08«@ ä+
+Ω(ƒ"«08«@ ä+
+Ω(∆"…08«@ ä+
+Ω(»"À08«@ ä+
+Ω( "Õ08«@ ä+
+Ω(Ã"œ08«@ ä+
+Ω(Œ"—08«@ ä+
+Ω(–"”08«@ ä+
+Ω(“"’08«@ ä+
+Ω(‘"◊08«@ ä+
+Ω(÷"Ÿ08«@ ä+
+Ω(ÿ"€08«@ ä+
+Ω(⁄"›08«@ ä+
+Ω(‹"ﬂ08«@ ä+
+Ω(ﬁ"·08«@ ä+
+Ω(‡"„08«@ ä+
+Ω(‚"Â08«@ ä+
+Ω(‰"Ê0j`8@ XÜTÍ
+ P"Á0j`8@ XÜTÍ
+Ä@P"Ë0j`8@ XÜTÍ
+ÄÄP"È0j`8@ XÜTÍ
+ÄÄP"Í0j`8@ XÜTÍ
+ÄÄP"Î0j`8@ XÜTÍ
+ÄÄ P"Ï0j`8@ XÜTÍ
+ÄÄ(P"Ì0j`8@ XÜTÍ
+ÄÄ0P"Ó0j`8@ XÜTÍ
+ÄÄ8P"Ô0j`8@ XÜTÍ
+ÄÄ@P"0j`8@ XÜTÍ
+ÄÄHP"Ò0j`8@ XÜTÍ
+ÄÄPP"Ú0j`8@ XÜTÍ
+ÄÄXP"Û0j`8@ XÜTÍ
+ÄÄ`P"Ù0j`8@ XÜTÍ
+ÇÄP"ı0j`8@ XÜTÍ
+ÑÄP"ˆ0j`8@ XÜTÍ
+ÜÄP"˜0j`8@ XÜTÍ
+àÄP"¯0j`8@ XÜTÍ
+ÇÄP"˘0j`8@ XÜTÍ
+ÑÄP"˙0j`8@ XÜTÍ
+ÜÄP"˚0j`8@ XÜTÍ
+àÄP"¸0j`8@ XÜTÍ
+ÇÄP"˝0j`8@ XÜTÍ
+ÑÄP"˛0j`8@ XÜTÍ
+ÜÄP"ˇ0j`8@ XÜTÍ
+àÄP"Ä0j`8@ XÜTÍ
+ÇÄ P"Å0j`8@ XÜTÍ
+ÑÄ P"Ç0j`8@ XÜTÍ
+ÜÄ P"É0j`8@ XÜTÍ
+àÄ P"Ñ0j`8@ XÜTÍ
+ÇÄ(P"Ö0j`8@ XÜTÍ
+ÑÄ(P"Ü0j`8@ XÜTÍ
+ÜÄ(P"á0j`8@ XÜTÍ
+àÄ(P"à0j`8@ XÜTÍ
+ÇÄ0P"â0j`8@ XÜTÍ
+ÑÄ0P"ä0j`8@ XÜTÍ
+ÜÄ0P"ã0j`8@ XÜTÍ
+àÄ0P"å0j`8@ XÜTÍ
+ÇÄ8P"ç0j`8@ XÜTÍ
+ÑÄ8P"é0j`8@ XÜTÍ
+ÜÄ8P"è0j`8@ XÜTÍ
+àÄ8P"ê0j`8@ XÜTÍ
+ÇÄ@P"ë0j`8@ XÜTÍ
+ÑÄ@P"í0j`8@ XÜTÍ
+ÜÄ@P"ì0j`8@ XÜTÍ
+àÄ@P"î0j`8@ XÜTÍ
+ÇÄHP"ï0j`8@ XÜTÍ
+ÑÄHP"ñ0j`8@ XÜTÍ
+ÜÄHP"ó0j`8@ XÜTÍ
+àÄHP*ö"`50420"j`504*ô"`620"j`6*ù"`0720j`07*)"`320j`3*ü"`80720j`807*û"`320j`3*°"`90720j`907*†"`320j`3*£"`%0:20j`%0:*i"`20j`*§"`0:20j`0:*"`20j`*¶"`;0720j`;07*•"`320j`3*®"`<0:20j`<0:*ß"`20j`*™"`=0720j`=07*©"`320j`3*¨"`>0720j`>07*´"`320j`3*Æ"`?0720j`?07*≠"`320j`3*∞"`@0720j`@07*Ø"`320j`3*≤"`A0720j`A07*±"`320j`3ÿ
+‡
+ Í
+platform.ModelIO

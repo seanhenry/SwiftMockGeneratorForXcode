@@ -1,0 +1,873 @@
+
+ÈE
+kotlinx
+cinterop
+
+CValuesRef
+	UIntVarOf
+kotlin
+UInt
+platform
+GSS
+OM_uint32Var
+minor_status
+CPointerVarOf
+CPointer
+cnames
+structs
+gss_ctx_id_t_desc_struct
+gss_ctx_id_t
+gss_ctx_id_tVar
+context_handle
+gss_cred_id_t_desc_struct
+gss_cred_id_t
+acceptor_cred_handle
+gss_buffer_desc_struct
+gss_buffer_t
+input_token
+gss_channel_bindings_struct
+gss_channel_bindings_t
+input_chan_bindings
+gss_name_t_desc_struct
+
+gss_name_t
+gss_name_tVar
+src_name
+gss_OID_desc_struct
+gss_OID
+
+gss_OIDVar
+	mech_type
+output_token
+	ret_flags
+time_rec
+gss_cred_id_tVar
+delegated_cred_handle
+	OM_uint32
+internal
+CCall
+id
+.knifunptr_platform_GSS0_gss_accept_sec_context
+gss_accept_sec_context
+desired_name
+time_req
+gss_OID_set_desc_struct
+gss_OID_set
+desired_mechs
+Int
+gss_cred_usage_t
+
+cred_usage
+output_cred_handle
+gss_OID_setVar
+actual_mechs
+(knifunptr_platform_GSS1_gss_acquire_cred
+gss_acquire_cred
+password
+6knifunptr_platform_GSS2_gss_acquire_cred_with_password
+gss_acquire_cred_with_password
+member_buffer
+gss_buffer_set_desc_struct
+gss_buffer_set_t
+gss_buffer_set_tVar
+
+buffer_set
+1knifunptr_platform_GSS3_gss_add_buffer_set_member
+gss_add_buffer_set_member
+input_cred_handle
+desired_mech
+initiator_time_req
+acceptor_time_req
+initiator_time_rec
+acceptor_time_rec
+$knifunptr_platform_GSS4_gss_add_cred
+gss_add_cred
+gss_OID_desc
+gss_const_OID
+
+member_oid
+oid_set
+.knifunptr_platform_GSS5_gss_add_oid_set_member
+gss_add_oid_set_member
+
+input_name
+output_name
+-knifunptr_platform_GSS6_gss_canonicalize_name
+gss_canonicalize_name
+	name1_arg
+	name2_arg
+IntVarOf
+IntVar
+
+name_equal
+(knifunptr_platform_GSS7_gss_compare_name
+gss_compare_name
+(knifunptr_platform_GSS8_gss_context_time
+gss_context_time
+3knifunptr_platform_GSS9_gss_create_empty_buffer_set
+gss_create_empty_buffer_set
+1knifunptr_platform_GSS10_gss_create_empty_oid_set
+gss_create_empty_oid_set
+gss_buffer_desc
+gss_const_buffer_t
+oid
+.knifunptr_platform_GSS11_gss_decapsulate_token
+gss_decapsulate_token
+/knifunptr_platform_GSS12_gss_delete_sec_context
+gss_delete_sec_context
+min_stat
+cred_handle
+)knifunptr_platform_GSS13_gss_destroy_cred
+gss_destroy_cred
+	mech_attr
+name
+
+short_desc
+	long_desc
+.knifunptr_platform_GSS14_gss_display_mech_attr
+gss_display_mech_attr
+output_name_buffer
+output_name_type
+)knifunptr_platform_GSS15_gss_display_name
+gss_display_name
+status_value
+status_type
+message_content
+status_string
++knifunptr_platform_GSS16_gss_display_status
+gss_display_status
+	dest_name
++knifunptr_platform_GSS17_gss_duplicate_name
+gss_duplicate_name
+src_oid
+dest_oid
+*knifunptr_platform_GSS18_gss_duplicate_oid
+gss_duplicate_oid
+.knifunptr_platform_GSS19_gss_encapsulate_token
+gss_encapsulate_token
+token
+(knifunptr_platform_GSS20_gss_export_cred
+gss_export_cred
+exported_name
+(knifunptr_platform_GSS21_gss_export_name
+gss_export_name
+interprocess_token
+/knifunptr_platform_GSS22_gss_export_sec_context
+gss_export_sec_context
+	gss_qop_t
+qop_req
+message_buffer
+message_token
+$knifunptr_platform_GSS23_gss_get_mic
+gss_get_mic
+(knifunptr_platform_GSS24_gss_import_cred
+gss_import_cred
+input_name_buffer
+input_name_type
+(knifunptr_platform_GSS25_gss_import_name
+gss_import_name
+/knifunptr_platform_GSS26_gss_import_sec_context
+gss_import_sec_context
+mech_set
++knifunptr_platform_GSS27_gss_indicate_mechs
+gss_indicate_mechs
+gss_OID_set_desc
+gss_const_OID_set
+desired_mech_attrs
+except_mech_attrs
+critical_mech_attrs
+mechs
+4knifunptr_platform_GSS28_gss_indicate_mechs_by_attrs
+gss_indicate_mechs_by_attrs
+initiator_cred_handle
+target_name
+input_mech_type
+	req_flags
+actual_mech_type
+-knifunptr_platform_GSS29_gss_init_sec_context
+gss_init_sec_context
+mech
+known_mech_attrs
+3knifunptr_platform_GSS30_gss_inquire_attrs_for_mech
+gss_inquire_attrs_for_mech
+	targ_name
+lifetime_rec
+	ctx_flags
+locally_initiated
+xopen
+,knifunptr_platform_GSS31_gss_inquire_context
+gss_inquire_context
+name_ret
+lifetime
+gss_cred_usage_tVar
+
+mechanisms
+)knifunptr_platform_GSS32_gss_inquire_cred
+gss_inquire_cred
+	cred_name
+initiator_lifetime
+acceptor_lifetime
+1knifunptr_platform_GSS33_gss_inquire_cred_by_mech
+gss_inquire_cred_by_mech
+desired_object
+data_set
+0knifunptr_platform_GSS34_gss_inquire_cred_by_oid
+gss_inquire_cred_by_oid
+sasl_mech_name
+6knifunptr_platform_GSS35_gss_inquire_mech_for_saslname
+gss_inquire_mech_for_saslname
+
+mech_types
+3knifunptr_platform_GSS36_gss_inquire_mechs_for_name
+gss_inquire_mechs_for_name
+
+name_is_MN
+MN_mech
+attrs
+)knifunptr_platform_GSS37_gss_inquire_name
+gss_inquire_name
+	mechanism
+
+name_types
+3knifunptr_platform_GSS38_gss_inquire_names_for_mech
+gss_inquire_names_for_mech
+	mech_name
+mech_description
+6knifunptr_platform_GSS39_gss_inquire_saslname_for_mech
+gss_inquire_saslname_for_mech
+7knifunptr_platform_GSS40_gss_inquire_sec_context_by_oid
+gss_inquire_sec_context_by_oid
+flags
+	Function2
+Unit
+useriter
+'knifunptr_platform_GSS41_gss_iter_creds
+gss_iter_creds
+userctx
+	CFunction
+	Function3
+CPointed
+COpaquePointer
+)knifunptr_platform_GSS42_gss_iter_creds_f
+gss_iter_creds_f
+String
+CString
+	ByteVarOf
+Byte
+ByteVar
+CPointerVar
+out_name
+-knifunptr_platform_GSS43_gss_krb5_ccache_name
+gss_krb5_ccache_name
+cred
+krb5_ccache_data
+out
+-knifunptr_platform_GSS44_gss_krb5_copy_ccache
+gss_krb5_copy_ccache
+version
+COpaquePointerVar
+rctx
+:knifunptr_platform_GSS45_gss_krb5_export_lucid_sec_context
+!gss_krb5_export_lucid_sec_context
+c
+8knifunptr_platform_GSS46_gss_krb5_free_lucid_sec_context
+gss_krb5_free_lucid_sec_context
+num_enctypes
+posix
+
+int32_tVar
+enctypes
+8knifunptr_platform_GSS47_gss_krb5_set_allowable_enctypes
+gss_krb5_set_allowable_enctypes
+a
+b
+&knifunptr_platform_GSS48_gss_oid_equal
+gss_oid_equal
+oid_str
+'knifunptr_platform_GSS49_gss_oid_to_str
+gss_oid_to_str
+token_buffer
+2knifunptr_platform_GSS50_gss_process_context_token
+gss_process_context_token
+context
+prf_key
+prf_in
+Long
+ssize_t
+desired_output_len
+prf_out
+*knifunptr_platform_GSS51_gss_pseudo_random
+gss_pseudo_random
+buffer
++knifunptr_platform_GSS52_gss_release_buffer
+gss_release_buffer
+/knifunptr_platform_GSS53_gss_release_buffer_set
+gss_release_buffer_set
+)knifunptr_platform_GSS54_gss_release_cred
+gss_release_cred
+)knifunptr_platform_GSS55_gss_release_name
+gss_release_name
+(knifunptr_platform_GSS56_gss_release_oid
+gss_release_oid
+set
+,knifunptr_platform_GSS57_gss_release_oid_set
+gss_release_oid_set
+conf_req_flag
+input_message_buffer
+
+conf_state
+output_message_buffer
+!knifunptr_platform_GSS58_gss_seal
+gss_seal
+object
+value
+,knifunptr_platform_GSS59_gss_set_cred_option
+gss_set_cred_option
+3knifunptr_platform_GSS60_gss_set_sec_context_option
+gss_set_sec_context_option
+!knifunptr_platform_GSS61_gss_sign
+gss_sign
+member
+present
+0knifunptr_platform_GSS62_gss_test_oid_set_member
+gss_test_oid_set_member
+	qop_state
+#knifunptr_platform_GSS63_gss_unseal
+
+gss_unseal
+gss_qop_tVar
+#knifunptr_platform_GSS64_gss_unwrap
+
+gss_unwrap
+user
+#knifunptr_platform_GSS65_gss_userok
+
+gss_userok
+#knifunptr_platform_GSS66_gss_verify
+
+gss_verify
+'knifunptr_platform_GSS67_gss_verify_mic
+gss_verify_mic
+!knifunptr_platform_GSS68_gss_wrap
+gss_wrap
+req_output_size
+max_input_size
+,knifunptr_platform_GSS69_gss_wrap_size_limit
+gss_wrap_size_limit
+ad_type
+ad_data
+Dknifunptr_platform_GSS70_gsskrb5_extract_authz_data_from_sec_context
++gsskrb5_extract_authz_data_from_sec_context
+identity
+;knifunptr_platform_GSS71_gsskrb5_register_acceptor_identity
+"gsskrb5_register_acceptor_identity
+<knifunptr_platform_GSS72_krb5_gss_register_acceptor_identity
+#krb5_gss_register_acceptor_identity
+__CFUUID
+CoreFoundation
+	CFUUIDRef
+uuid
+4knifunptr_platform_GSS73_GSSCreateCredentialFromUUID
+GSSCreateCredentialFromUUID
+major_status
+	__CFError
+
+CFErrorRef
+'knifunptr_platform_GSS74_GSSCreateError
+GSSCreateError
+	CFTypeRef
+	name_type
+CFErrorRefVar
+error
+&knifunptr_platform_GSS75_GSSCreateName
+GSSCreateName
+.knifunptr_platform_GSS76_GSSCredentialCopyName
+GSSCredentialCopyName
+
+credential
+.knifunptr_platform_GSS77_GSSCredentialCopyUUID
+GSSCredentialCopyUUID
+1knifunptr_platform_GSS78_GSSCredentialGetLifetime
+GSSCredentialGetLifetime
+
+__CFString
+CFStringRef
+3knifunptr_platform_GSS79_GSSNameCreateDisplayString
+GSSNameCreateDisplayString
+__CFDictionary
+CFDictionaryRef
+
+attributes
+1knifunptr_platform_GSS80_gss_aapl_change_password
+gss_aapl_change_password
+.knifunptr_platform_GSS81_gss_aapl_initial_cred
+gss_aapl_initial_cred
+uint32_t
+
+ULongVarOf
+	OM_uint64
+ULong
+OM_uint64Var
+uint64_t
+
+gss_uint32
+gss_uint32Var
+gss_const_name_t
+gss_const_name_tVar
+gss_const_ctx_id_t
+gss_const_OIDVar
+gss_const_OID_setVar
+gss_const_cred_id_t
+gss_const_cred_id_tVar
+gss_buffer_tVar
+gss_const_buffer_tVar
+gss_channel_bindings_tVar
+gss_const_channel_bindings_t
+gss_const_channel_bindings_tVar
+gss_buffer_set_desc
+gss_iov_buffer_desc_struct
+gss_iov_buffer_desc
+gss_iov_buffer_t
+gss_iov_buffer_tVarÈ
+ 
+ 
+ 
+ 
+
+ 
+
+
+ 
+
+ 
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+! 
+& 
+( 
+)
+* 
+0 
+1 
+3 
+4 
+7 
+? 
+@ 
+A 
+M 
+N 
+Y 
+Z 
+d 
+e 
+ë 
+¢ 
+£ 
+æ 
+· 
+‚ 
+Á 
+Ë 
+È 
+Í 
+Ì 
+Ó 
+Ô 
+ 
+Ò 
+Ú 
+˜ 
+¸ 
+Ñ
+@Ö 
+ñ 
+@ó 
+ø 
+ÿ 
+Ÿ
+F⁄ 
+ﬂ 
+F‡ 
+F„ 
+FÂ 
+ 
+FÒ 
+Ù 
+Fı 
+@˚ 
+¸ 
+˝ 
+˛ 
+@Ä 
+Å 
+É 
+à 
+ç 
+ê 
+í ·_“-0j`2	00j`02"00
+j`0	j`0200
+j`200
+j`200
+j`2"00
+j`0	j`02""00
+j`0	j`02#00
+j`2$00j`02%00j`02"'00
+j`0	j`0Há “
++(,‹:0j`2	00j`02.00
+j`2
+/0j`220 0
+j`!2
+50"j`#2"600
+j`0	j`02"80 0
+j`!0	j`$02%00j`0Há “
++(9Ú=0j`2	00j`02.00
+j`2;00
+j`2
+/0j`220 0
+j`!2
+50"j`#2"600
+j`0	j`02"80 0
+j`!0	j`$02%00j`0Há “
++(<pD0j`2	00j`02>00
+j`2"B0%0
+j`&0	j`'0Há “
++(CòL0j`2	00j`02E00
+j`2.00
+j`2F00
+j`2
+50"j`#2
+G0j`2
+H0j`2"600
+j`0	j`02"80 0
+j`!0	j`$02I00j`02J00j`0Há “
++(KtR0j`2	00j`02O0j`(0
+j`)2"P0 0
+j`!0	j`$0Há “
++(QÜV0j`2	00j`02S00
+j`2"00
+j`2"T00
+j`0	j`0Há “
++(U|]0j`2	00j`02W00
+j`2X00
+j`2[0"0*j`+0Há “
++(\f_0j`2	00j`0200
+j`2%00j`0Há “
++(^Za0j`2	00j`02"B0%0
+j`&0	j`'0Há “
++(`Zc0j`2	00j`02"P0 0
+j`!0	j`$0Há “
++(bfh0j`20j`,0
+j`-2f0j`(0
+j`)2#00
+j`Há “
++(gpj0j`2	00j`02"00
+j`0	j`02#00
+j`Há “
++(iZn0j`2k00j`02"l00
+j`0	j`0Há “
++(mít0j`2	00j`02o0j`(0
+j`)2p00
+j`2q00
+j`2r00
+j`Há “
++(sÜx0j`2	00j`02S00
+j`2u00
+j`2"v00
+j`0	j`0Há “
++(wê~0j`2	00j`02
+y0j`2z0"2"00
+j`2{00j`02|00
+j`Há “
++(}rÅ0j`2	00j`0200
+j`2"00
+j`0	j`0Há “
+	+(ÄtÖ0j`2	00j`02Ç00
+j`2#É00
+j`0	j`0Há “
+	+(Ñhá0j`20j`,0
+j`-2f0j`(0
+j`)2#00
+j`Há “
+	+(Üeä0j`2	00j`02l00
+j`2à00
+j`Há “
+	+(âeç0j`2	00j`02S00
+j`2ã00
+j`Há “
+	+(åsê0j`2	00j`02"00
+j`0	j`02é00
+j`Há “
+	+(èâñ0j`2	00j`0200
+j`2í0j`.2ì00
+j`2î00
+j`Há “
+	+(ïsò0j`2	00j`02à00
+j`2"l00
+j`0	j`0Há “
+	+(óéú0j`2	00j`02ô00
+j`2ö0j`(0
+j`)2"T00
+j`0	j`0Há “
+	+(õsû0j`2	00j`02é00
+j`2"00
+j`0	j`0Há “
+	+(ù]°0j`2	00j`02#ü0 0
+j`!0	j`$0Há “
+	+(†Æ©0j`2	00j`02§0 j`/0
+j`02•0 j`/0
+j`02¶0 j`/0
+j`02#ß0 0
+j`!0	j`$0Há “
+	+(®’∞0j`2	00j`02™00
+j`2"00
+j`0	j`02´00
+j`2¨00
+j`2≠0j`2
+/0j`200
+j`200
+j`2#Æ00
+j`0	j`02#00
+j`2$00j`02%00j`0Há “
+	+(Øú¥0j`2	00j`02±0j`(0
+j`)2"o0 0
+j`!0	j`$02#≤0 0
+j`!0	j`$0Há “
+	+(≥ßª0j`2	00j`0200
+j`2"00
+j`0	j`02#µ00
+j`0	j`02∂00j`02""00
+j`0	j`02∑00j`02∏0"0*j`+02π0"0*j`+0Há “
+	+(∫Õ¡0j`2	00j`02l00
+j`2#º00
+j`0	j`02Ω00j`0250"0*j`102#ø0 0
+j`!0	j`$0Há “
+	+(¿Ÿ∆0j`2	00j`02l00
+j`2"00
+j`2#¬00
+j`0	j`02√00j`02ƒ00j`0250"0*j`10Há “
+	+(≈ä 0j`2	00j`02l00
+j`2«00
+j`2#»0%0
+j`&0	j`'0Há “
+	+(…sÕ0j`2	00j`02À00
+j`2""00
+j`0	j`0Há “
+	+(Ãs–0j`2	00j`02S00
+j`2#Œ0 0
+j`!0	j`$0Há “
+	+(œ≥’0j`2	00j`02S00
+j`2—0"0*j`+02#“00
+j`0	j`02#”0%0
+j`&0	j`'0Há “
+	+(‘xŸ0j`2	00j`02÷0j`(0
+j`)2#◊0 0
+j`!0	j`$0Há “
+	+(ÿì›0j`2	00j`02F00
+j`2À00
+j`2⁄00
+j`2€00
+j`Há “
+	+(‹äﬂ0j`2	00j`0200
+j`2«00
+j`2#»0%0
+j`&0	j`'0Há “
+	+(ﬁóÂ0j`2k00j`02‡0j`2±0j`(0
+j`)25„000
+j`00
+j`0302Há “
+	+(‰ Ï0j`2k00j`02‡0j`2±0j`(0
+j`)2Ê02Y„TNLHF060
+j`700
+j`00
+j`0305040
+Há “
+	+(ÎÑı0j`2	00j`02p08“
+929Û4.,0;0:j`<0
+0	j0;0:j`<`=0Há “
+	+(Ù`˙0j`2	00j`02ˆ00
+j`2¯
+0>0Há “
+	+(˘êˇ0j`2	00j`02"00
+j`0	j`02˚0j`2%˝ 060
+j`70	j`?0Há “
+	+(˛GÇ0j`2	00j`02Ä0Há “
+	+(Åwà0j`2	00j`02ˆ00
+j`2É0j`2Ü0"0*j`A0Há “
+	+(áPå0"2â0j`(0
+j`)2ä0j`(0
+j`)Há “
+	+(ãeè0j`2	00j`02f00
+j`2ç00
+j`Há “
+	+(éeí0j`2	00j`0200
+j`2ê00
+j`Há “
+	+(ëìõ0j`2	00j`02ì00
+j`2î0"2ï00
+j`2ò0Bj`C2ô00
+j`Há “
+	+(öOû0j`2	00j`02ú00
+j`Há “
+	+(ù\†0j`2	00j`02"B0%0
+j`&0	j`'0Há “
+	+(ü\¢0j`2	00j`02"l00
+j`0	j`0Há “
+	+(°\§0j`2	00j`02"S00
+j`0	j`0Há “
+	+(£\¶0j`2	00j`02"f00
+j`0	j`0Há “
+	+(•]©0j`2	00j`02#ß0 0
+j`!0	j`$0Há “
+	+(®©Ø0j`2	00j`0200
+j`2™0"2í0"2´00
+j`2¨0"0*j`+02≠00
+j`Há “
+	+(Æä≥0j`2	00j`02"l00
+j`0	j`02∞00
+j`2±00
+j`Há “
+	+(≤äµ0j`2	00j`02"00
+j`0	j`02∞00
+j`2±00
+j`Há “
+	+(¥Ö∑0j`2	00j`0200
+j`2í0"2ì00
+j`2î00
+j`Há “
+	+(∂Öª0j`2	00j`02∏0j`(0
+j`)2ß0 0
+j`!2π0"0*j`+0Há “
+	+(∫≤æ0j`2	00j`0200
+j`2´00
+j`2≠00
+j`2¨0"0*j`+02º0"0*j`+0Há “
+	+(Ω≤¡0j`2	00j`0200
+j`2´00
+j`2≠00
+j`2¨0"0*j`+02º00j`D0Há “
+	+(¿Bƒ0"2p00
+j`2¬08“
+9Há “
+	+(√ó∆0j`2	00j`0200
+j`2ì00
+j`2ê00
+j`2º0"0*j`+0Há “
+	+(≈ó»0j`2	00j`0200
+j`2ì00
+j`2ê00
+j`2º00j`D0Há “
+	+(«≠ 0j`2	00j`0200
+j`2™0"2í0j`.2´00
+j`2¨0"0*j`+02≠00
+j`Há “
+	+(…åŒ0j`2	00j`0200
+j`2™0"2í0j`.2À0j`2Ã00j`0Há “
+	+(Õn“0j`2	00j`0200
+j`2œ0"2–00
+j`Há “
+	+(—0’0j`2”08“
+9Há “
+	+(‘0◊0j`2”08“
+9Há “
+	+(÷?›00
+j`2€0E0
+j`GHá “
+	+(‹\‚0H0
+j`I2±0j`(0
+j`)2ﬁ0j`2
+	0j`Há “
+	+(·ÄË00
+j`2p060
+j`J2‰0j`(0
+j`)2#Ê0H0
+j`I0	j`K0Há “
+	+(Á?Í00
+j`2ˆ00
+j`Há “
+	+(È?Ì0E0
+j`G2Î00
+j`Há “
+	+(Ï5Ô0j`2ˆ00
+j`Há “
+	+(Ó>Û0L0
+j`M2p00
+j`Há “
+	+(Úã¯0j`2p00
+j`2±0j`(0
+j`)2ˆ0N0
+j`O2#Ê0H0
+j`I0	j`K0Há “
+	+(˜Æ˙0j`2.00
+j`2F0j`(0
+j`)2ˆ0N0
+j`O2"600
+j`0	j`02#Ê0H0
+j`I0	j`K0Há “
+	+(˘*"`020j`0*("`P20j`P*ˇ"`R0Q20Sj`R0Q*˝"`T20Sj`T*Ç"`U020j`U0*Å"`P20j`P* "`0	200
+j`0	*"00
+200
+*!Ñ"`V0	200
+j`V0	*É"00
+200
+* "`0	200
+j`0	*"00
+200
+*Ö"020*
+M"020* !"`0	200
+j`0	* "00
+200
+*%Ü"`)0	20j`(0
+j`)0	*N"`(0
+20j`(0
+*¢"0 20 * 7"`!0	20 0
+j`!0	*1"0 0
+20 0
+*%á"`00	20 j`/0
+j`00	*£"`/0
+20 j`/0
+*æ"`#0*20"j`#0**
+4"0"20"* &"`0	200
+j`0	*"00
+200
+*!â"`W0	200
+j`W0	*à"00
+200
+*
+d"020*!ä"`0	200
+j`0	*"00
+200
+*%ã"`-0	20j`,0
+j`-0	*e"`,0
+20j`,0
+*!å"`0	200
+j`0	*"00
+200
+*!é"`X0	200
+j`X0	*ç"00
+200
+*è"0%20%* A"`&0	20%0
+j`&0	*@"0%0
+20%0
+*ë"0Y20Y*!ì"`Z0	20Y0
+j`Z0	*í"0Y0
+20Y0
+*ø"`.020j`.0*ë"`20j`ÿ
+‡
+ Í
+platform.GSS

@@ -1,0 +1,17 @@
+builtins_platform=NATIVE
+headers=iconv.h
+package=platform.iconv
+compiler_version=1.4.30-dev
+depends=stdlib org.jetbrains.kotlin.native.platform.posix
+exportForwardDeclarations=
+interop=true
+linkerOpts=-liconv
+native_targets=macos_x64
+ir_provider=kotlin.native.cinterop
+unique_name=org.jetbrains.kotlin.native.platform.iconv
+includedHeaders=usr/include/iconv.h 7f9e0d32caf9ed2059eb3ef6a2452e0205d60712aba3d2b956bbf7579f5544d2
+abi_version=1.4.1
+short_name=iconv
+headerFilter=**
+metadata_version=1.4.1
+ir_version=1.0.0

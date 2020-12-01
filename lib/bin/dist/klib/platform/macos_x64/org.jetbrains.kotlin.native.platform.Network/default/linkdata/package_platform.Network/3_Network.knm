@@ -1,0 +1,545 @@
+
+´?
+platform
+darwin
+NSObject
+Network
+nw_protocol_options_t
+options
+kotlin
+UInt
+posix
+uint32_t
+keepalive_interval
+Unit
+kotlinx
+cinterop
+internal
+CCall
+id
+Cknifunptr_platform_Network281_nw_tcp_options_set_keepalive_interval
+%nw_tcp_options_set_keepalive_interval
+maximum_segment_size
+Eknifunptr_platform_Network282_nw_tcp_options_set_maximum_segment_size
+'nw_tcp_options_set_maximum_segment_size
+connection_timeout
+Cknifunptr_platform_Network283_nw_tcp_options_set_connection_timeout
+%nw_tcp_options_set_connection_timeout
+persist_timeout
+@knifunptr_platform_Network284_nw_tcp_options_set_persist_timeout
+"nw_tcp_options_set_persist_timeout
+retransmit_connection_drop_time
+Pknifunptr_platform_Network285_nw_tcp_options_set_retransmit_connection_drop_time
+2nw_tcp_options_set_retransmit_connection_drop_time
+Boolean
+retransmit_fin_drop
+Dknifunptr_platform_Network286_nw_tcp_options_set_retransmit_fin_drop
+&nw_tcp_options_set_retransmit_fin_drop
+disable_ack_stretching
+Gknifunptr_platform_Network287_nw_tcp_options_set_disable_ack_stretching
+)nw_tcp_options_set_disable_ack_stretching
+enable_fast_open
+Aknifunptr_platform_Network288_nw_tcp_options_set_enable_fast_open
+#nw_tcp_options_set_enable_fast_open
+disable_ecn
+<knifunptr_platform_Network289_nw_tcp_options_set_disable_ecn
+nw_tcp_options_set_disable_ecn
+nw_protocol_metadata_t
+metadata
+9knifunptr_platform_Network290_nw_protocol_metadata_is_tcp
+nw_protocol_metadata_is_tcp
+Aknifunptr_platform_Network291_nw_tcp_get_available_receive_buffer
+#nw_tcp_get_available_receive_buffer
+>knifunptr_platform_Network292_nw_tcp_get_available_send_buffer
+ nw_tcp_get_available_send_buffer
+nw_protocol_definition_t
+=knifunptr_platform_Network293_nw_protocol_copy_tls_definition
+nw_protocol_copy_tls_definition
+3knifunptr_platform_Network294_nw_tls_create_options
+nw_tls_create_options
+Security
+sec_protocol_options_t
+>knifunptr_platform_Network295_nw_tls_copy_sec_protocol_options
+ nw_tls_copy_sec_protocol_options
+9knifunptr_platform_Network296_nw_protocol_metadata_is_tls
+nw_protocol_metadata_is_tls
+sec_protocol_metadata_t
+?knifunptr_platform_Network297_nw_tls_copy_sec_protocol_metadata
+!nw_tls_copy_sec_protocol_metadata
+=knifunptr_platform_Network298_nw_protocol_copy_udp_definition
+nw_protocol_copy_udp_definition
+3knifunptr_platform_Network299_nw_udp_create_options
+nw_udp_create_options
+prefer_no_checksum
+Cknifunptr_platform_Network300_nw_udp_options_set_prefer_no_checksum
+%nw_udp_options_set_prefer_no_checksum
+4knifunptr_platform_Network301_nw_udp_create_metadata
+nw_udp_create_metadata
+9knifunptr_platform_Network302_nw_protocol_metadata_is_udp
+nw_protocol_metadata_is_udp
+<knifunptr_platform_Network303_nw_protocol_copy_ws_definition
+nw_protocol_copy_ws_definition
+nw_ws_version_t
+version
+2knifunptr_platform_Network304_nw_ws_create_options
+nw_ws_create_options
+String
+CString
+name
+value
+Aknifunptr_platform_Network305_nw_ws_options_add_additional_header
+#nw_ws_options_add_additional_header
+subprotocol
+;knifunptr_platform_Network306_nw_ws_options_add_subprotocol
+nw_ws_options_add_subprotocol
+auto_reply_ping
+?knifunptr_platform_Network307_nw_ws_options_set_auto_reply_ping
+!nw_ws_options_set_auto_reply_ping
+skip_handshake
+>knifunptr_platform_Network308_nw_ws_options_set_skip_handshake
+ nw_ws_options_set_skip_handshake
+ULong
+size_t
+maximum_message_size
+Dknifunptr_platform_Network309_nw_ws_options_set_maximum_message_size
+&nw_ws_options_set_maximum_message_size
+8knifunptr_platform_Network310_nw_protocol_metadata_is_ws
+nw_protocol_metadata_is_ws
+Int
+nw_ws_opcode_t
+opcode
+3knifunptr_platform_Network311_nw_ws_create_metadata
+nw_ws_create_metadata
+7knifunptr_platform_Network312_nw_ws_metadata_get_opcode
+nw_ws_metadata_get_opcode
+nw_ws_close_code_t
+
+close_code
+;knifunptr_platform_Network313_nw_ws_metadata_set_close_code
+nw_ws_metadata_set_close_code
+;knifunptr_platform_Network314_nw_ws_metadata_get_close_code
+nw_ws_metadata_get_close_code
+dispatch_queue_t
+client_queue
+	Function1
+
+nw_error_t
+nw_ws_pong_handler_t
+pong_handler
+=knifunptr_platform_Network315_nw_ws_metadata_set_pong_handler
+nw_ws_metadata_set_pong_handler
+nw_ws_request_t
+request
+CPointer
+	ByteVarOf
+Byte
+ByteVar
+nw_ws_subprotocol_enumerator_t
+
+enumerator
+Bknifunptr_platform_Network316_nw_ws_request_enumerate_subprotocols
+$nw_ws_request_enumerate_subprotocols
+	Function2
+$nw_ws_additional_header_enumerator_t
+Hknifunptr_platform_Network317_nw_ws_request_enumerate_additional_headers
+*nw_ws_request_enumerate_additional_headers
+nw_ws_response_status_t
+status
+selected_subprotocol
+nw_ws_response_t
+3knifunptr_platform_Network318_nw_ws_response_create
+nw_ws_response_create
+response
+7knifunptr_platform_Network319_nw_ws_response_get_status
+nw_ws_response_get_status
+Eknifunptr_platform_Network320_nw_ws_response_get_selected_subprotocol
+'nw_ws_response_get_selected_subprotocol
+Bknifunptr_platform_Network321_nw_ws_response_add_additional_header
+$nw_ws_response_add_additional_header
+Aknifunptr_platform_Network322_nw_ws_metadata_copy_server_response
+#nw_ws_metadata_copy_server_response
+Iknifunptr_platform_Network323_nw_ws_response_enumerate_additional_headers
++nw_ws_response_enumerate_additional_headers
+nw_ws_client_request_handler_t
+handler
+Fknifunptr_platform_Network324_nw_ws_options_set_client_request_handler
+(nw_ws_options_set_client_request_handler
+ObjCObjectVar
+nw_object_t
+nw_object_tVar
+nw_txt_record_t
+nw_txt_record_tVar
+ObjCBlockVar
+nw_txt_record_access_key_t
+ObjCNotImplementedVar
+	Function4
+nw_txt_record_find_key_t
+
+UByteVarOf
+UByte
+
+uint8_tVar
+nw_txt_record_access_key_tVar
+nw_txt_record_access_bytes_t
+nw_txt_record_access_bytes_tVar
+nw_txt_record_applier_t
+nw_txt_record_applier_tVar
+nw_advertise_descriptor_t
+nw_advertise_descriptor_tVar
+nw_protocol_definition_tVar
+nw_protocol_options_tVar
+nw_protocol_metadata_tVar
+nw_interface_t
+nw_interface_tVar
+nw_endpoint_t
+nw_endpoint_tVar
+nw_parameters_t
+nw_parameters_tVar
+nw_protocol_stack_t
+nw_protocol_stack_tVar
+(nw_parameters_configure_protocol_block_t
++nw_parameters_configure_protocol_block_tVar
+(nw_parameters_iterate_interfaces_block_t
++nw_parameters_iterate_interfaces_block_tVar
+-nw_parameters_iterate_interface_types_block_t
+nw_interface_type_t
+0nw_parameters_iterate_interface_types_block_tVar
++nw_protocol_stack_iterate_protocols_block_t
+.nw_protocol_stack_iterate_protocols_block_tVar
+nw_browse_descriptor_t
+nw_browse_descriptor_tVar
+nw_browse_result_t
+nw_browse_result_tVar
+
+ULongVarOf
+nw_browse_result_change_t
+nw_browse_result_change_tVar
+uint64_t
+&nw_browse_result_enumerate_interface_t
+)nw_browse_result_enumerate_interface_tVar
+nw_error_tVar
+nw_browser_t
+nw_browser_tVar
++nw_browser_browse_results_changed_handler_t
+	Function3
+.nw_browser_browse_results_changed_handler_tVar
+"nw_browser_state_changed_handler_t
+nw_browser_state_t
+%nw_browser_state_changed_handler_tVar
+	nw_path_t
+nw_path_tVar
+$nw_path_enumerate_interfaces_block_t
+'nw_path_enumerate_interfaces_block_tVar
+"nw_path_enumerate_gateways_block_t
+%nw_path_enumerate_gateways_block_tVar
+nw_content_context_t
+nw_content_context_tVar
+nw_connection_t
+nw_connection_tVar
+%nw_connection_state_changed_handler_t
+nw_connection_state_t
+(nw_connection_state_changed_handler_tVar
+%nw_connection_boolean_event_handler_t
+(nw_connection_boolean_event_handler_tVar
+"nw_connection_path_event_handler_t
+%nw_connection_path_event_handler_tVar
+"nw_connection_receive_completion_t
+dispatch_data_t
+%nw_connection_receive_completion_tVar
+nw_connection_send_completion_t
+"nw_connection_send_completion_tVar
+nw_establishment_report_t
+nw_establishment_report_tVar
+&nw_establishment_report_access_block_t
+)nw_establishment_report_access_block_tVar
+!nw_report_resolution_enumerator_t
+	Function5
+nw_report_resolution_source_t
+$nw_report_resolution_enumerator_tVar
+nw_report_protocol_enumerator_t
+"nw_report_protocol_enumerator_tVar
+nw_data_transfer_report_t
+nw_data_transfer_report_tVar
+'nw_data_transfer_report_collect_block_t
+*nw_data_transfer_report_collect_block_tVar
+nw_ethernet_channel_t
+nw_ethernet_channel_tVarπ
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+	 
+ 
+
+
+
+
+ 
+ 
+, 
+4 
+ 9
+: 
+? 
+O 
+S 
+T 
+b 
+c 
+i 
+j 
+p 
+v 
+x 
+y 
+z 
+~ 
+Ä 
+Å 
+Ç 
+É 
+Ñ 
+à 
+â 
+å 
+è 
+ù 
+° 
+¢ 
+§ 
+¶ 
+ß 
+® 
+© 
+™ 
+´ 
+¨ 
+≠ 
+Ø 
+± 
+≥ 
+∏ 
+∫ 
+º 
+æ 
+¿ 
+¬ 
+ƒ 
+≈ 
+« 
+… 
+À 
+Õ 
+Œ 
+– 
+— 
+‘ 
+÷ 
+◊ 
+Ÿ 
+⁄ 
+‹ 
+ﬁ 
+‡ 
+‚ 
+‰ 
+Ê 
+Á 
+È 
+Î 
+Ì 
+Ó 
+ 
+Ú 
+Ù 
+ˆ 
+˜ 
+¯ 
+˙ 
+¸ 
+˛ 
+Ä Ô740	2
+0j`2
+
+0j`Há “
+(40	2
+0j`2
+0j`Há “
+(40	2
+0j`2
+0j`Há “
+(40	2
+0j`2
+0j`Há “
+(40	2
+0j`2
+0j`Há “
+(0"0	2
+0j`2 0Há “
+(!0%0	2
+0j`2#0Há “
+($0(0	2
+0j`2&0Há “
+('0+0	2
+0j`2)0Há “
+(*(/02-
+0j`Há “
+(.,10j`2-
+0j`Há “
+(0,30j`2-
+0j`Há “
+(2 6
+0j`Há “
+(5 8
+0j`Há “
+(70<
+0j`2
+0j`Há “
+(;(>02-
+0j`Há “
+(=0A
+0j`2-
+0j`Há “
+(@ C
+0j`Há “
+(B E
+0j`Há “
+(D0H0	2
+0j`2F0Há “
+(G J
+0j`Há “
+(I(L02-
+0j`Há “
+(K N
+0j`Há “
+(M,R
+0j`2
+P0j`Há “
+(QJX0	2
+0j`2U0“
+2V0“
+Há “
+(W9[0	2
+0j`2Y0“
+Há “
+(Z0^0	2
+0j`2\0Há “
+(]0a0	2
+0j`2_0Há “
+(`4f0	2
+0j`2
+d0j`Há “
+(e(h02-
+0j`Há “
+(g,m
+0j`2
+k0j`Há “
+(l,o0j`2-
+0j`Há “
+(n4s0	2-
+0j`2
+q0j`Há “
+(r,u0j`2-
+0j`Há “
+(t\}0	2-
+0j`2w
+0j`2"{
+0j`0	0j`Há “
+(|Yá02
+0j` 2-Ö(0#0"j`$0!00j`%Há “
+	(Üqã02
+0j` 2EÖ@0#0"j`$0!0#0"j`$0!00&j`'Há “
+	(äAë
+0j`)2ç0j`(2é0“
+Há “
+	(ê/î0j`(2í
+0j`)Há “
+	(ì=ñ0#0"j`$0!2í
+0j`)Há “
+	(ïMò0	2í
+0j`)2U0“
+2V0“
+Há “
+	(ó2ö
+0j`)2-
+0j`Há “
+	(ôrú02í
+0j`)2EÖ@0#0"j`$0!0#0"j`$0!00&j`'Há “
+	(õg†0	2
+0j`2w
+0j`2+û&
+0j` 
+0j`)0j`*Há “
+	(ü*£"`,0+20j`,0+*¢"020*•"`-0+20j`-0+*§"020*æÆ"`/`.2ÆRP0#0"j`$0!0j`20403j`50!0j`001j`/00jVRP0#0"j`$0!0j`20403j`50!0j`001j`/`.*áß"2
+`$0!`2
+`50!`0012N0#0"j`$0!0j`20403j`50!0j`001*y∞"`6`.2j0.0403j`50!0j`00&j`600j40.0403j`50!0j`00&j`6`.*QØ"
+`50!`00&2,0403j`50!0j`00&*æ≤"`7`.2ÆRP0#0"j`$0!0j`20403j`50!0j`001j`700jVRP0#0"j`$0!0j`20403j`50!0j`001j`7`.*á±"2
+`$0!`2
+`50!`0012N0#0"j`$0!0j`20403j`50!0j`001*¥"`80+20j`80+*≥"020*µ"`0+20j`0+*4"020*∂"`0+20j`0+*"020*∑"`0+20j`0+*,"020*π"`90+20j`90+*∏"020*ª"`:0+20j`:0+*∫"020*Ω"`;0+20j`;0+*º"020*ø"`<0+20j`<0+*æ"020*Q¡"`=`.2B
+0j`0	0j`=00j 
+0j`0	0j`=`.*1¿"`0	02
+0j`0	0*Q√"`>`.2B
+0j`900j`>00j 
+0j`900j`>`.*1¬"`9002
+0j`900*I∆"`?`.2:0j`@00j`?00j0j`@00j`?`.*+ƒ"`@0020j`@00*Q»"`A`.2B
+0j`0	0j`A00j 
+0j`0	0j`A`.*1«"`0	02
+0j`0	0* "`B0+20j`B0+*…"020*Ã"`C0+20j`C0+*À"020*œ"`E0D20j`E0D*Œ"`F20j`F*Q“"`G`.2B
+0j`900j`G00j 
+0j`900j`G`.*1—"`9002
+0j`900*”"`0+20j`0+*y"020*’"`H0+20j`H0+*‘"020*yÿ"`I`.2j0.
+0j`C
+0j`C00	0Jj`I00j40.
+0j`C
+0j`C00	0Jj`I`.*S÷" `C`C00	0J2,
+0j`C
+0j`C00	0J*e€"`K`.2V&$0j`L
+0j`0	0&j`K00j*&$0j`L
+0j`0	0&j`K`.*AŸ"`L`0	0&2"0j`L
+0j`0	0&*›"`M0+20j`M0+*‹"020*Qﬂ"`N`.2B
+0j`900j`N00j 
+0j`900j`N`.*1ﬁ"`9002
+0j`900*Q·"`O`.2B
+0j`:00j`O00j 
+0j`:00j`O`.*1‡"`:002
+0j`:00*„"`P0+20j`P0+*‚"020*Â"`Q0+20j`Q0+*‰"020*eË"`R`.2V&$0j`S
+0j`0	0&j`R00j*&$0j`S
+0j`0	0&j`R`.*AÊ"`S`0	0&2"0j`S
+0j`0	0&*AÍ"`T`.2200	0j`T00j00	0j`T`.*'È"00	0200	0*QÏ"`U`.2B
+0j`M0	0j`U00j 
+0j`M0	0j`U`.*1Î"`M0	02
+0j`M0	0*ñÔ"`V`.2Ü><
+0j`W
+0j`P0
+0j`0	01j`V00jB><
+0j`W
+0j`P0
+0j`0	01j`V`.*iÌ"(`W`P0`0	012:
+0j`W
+0j`P0
+0j`0	01*QÒ"`X`.2B
+0j`0	0j`X00j 
+0j`0	0j`X`.*1"`0	02
+0j`0	0*Û"`Y0+20j`Y0+*Ú"020*Qı"`Z`.2B
+0j`Y0	0j`Z00j 
+0j`Y0	0j`Z`.*1Ù"`Y0	02
+0j`Y0	0*™˘"`[`.2öHF0j`]0j`F0j`
+0j`:
+0j`:00\j`[00jLHF0j`]0j`F0j`
+0j`:
+0j`:00\j`[`.*wˆ",`]`F``:`:00\2D0j`]0j`F0j`
+0j`:
+0j`:00\*y˚"`^`.2j0.
+0j`0j`F0j`F00Jj`^00j40.
+0j`0j`F0j`F00Jj`^`.*Q˙"``F`F00J2,
+0j`0j`F0j`F00J*˝"`_0+20j`_0+*¸"020*Qˇ"```.2B
+0j`_0	0j``00j 
+0j`_0	0j```.*1˛"`_0	02
+0j`_0	0*Å"`a0+20j`a0+*Ä"020ÿ
+‡
+ Í
+platform.Network

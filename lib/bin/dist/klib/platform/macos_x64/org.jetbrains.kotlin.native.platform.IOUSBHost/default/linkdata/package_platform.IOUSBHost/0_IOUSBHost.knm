@@ -1,0 +1,780 @@
+
+±?
+platform
+	IOUSBHost
+IOUSBHostObjectMeta
+darwin
+NSObjectMeta
+IOUSBHostObject
+kotlinx
+cinterop
+
+ObjCMethod
+selector
+new
+encoding
+@16@0:8
+isStret
+CPointer
+cnames
+structs
+_NSZone
+zone
+allocWithZone:
+@24@0:8^{_NSZone=}16
+allocWithZone
+alloc
+ExternalObjCClass
+NSObject
+kotlin
+UInt
+IOKit
+io_service_t
+	ioService
+ULong
+IOUSBHostObjectInitOptions
+options
+dispatch_queue_t
+queue
+ObjCObjectVar
+
+Foundation
+NSError
+error
+	Function3
+posix
+uint32_t
+CPointed
+COpaquePointer
+Unit
+IOUSBHostInterestHandler
+interestHandler
+
+Deprecated
+message
+Use constructor instead
+replaceWith
+ReplaceWith
+imports
+
+expression
+BIOUSBHostObject(ioService, options, queue, error, interestHandler)
+level
+DeprecationLevel
+ERROR
+6initWithIOService:options:queue:error:interestHandler:
+@52@0:8I16Q20@28^@36@?44
+internal
+CCall
+ConsumesReceiver
+ReturnsRetained
+initWithIOService
+9IOUSBHostObject(ioService, queue, error, interestHandler)
+.initWithIOService:queue:error:interestHandler:
+@44@0:8I16@20^@28@?36
+destroy
+v16@0:8
+CValue
+IOUSBDeviceRequest
+request
+NSMutableData
+data
+
+ULongVarOf
+NSUIntegerVar
+bytesTransferred
+Double
+NSTimeInterval
+completionTimeout
+Boolean
+@sendDeviceRequest:data:bytesTransferred:completionTimeout:error:
+1c56@0:8{IOUSBDeviceRequest=CCSSS}16@24^Q32d40^@48
+sendDeviceRequest
+.sendDeviceRequest:data:bytesTransferred:error:
+.c48@0:8{IOUSBDeviceRequest=CCSSS}16@24^Q32^@40
+sendDeviceRequest:error:
+'c32@0:8{IOUSBDeviceRequest=CCSSS}16^@24
+	Function2
+Int
+IOReturn
+
+NSUInteger
+IOUSBHostCompletionHandler
+completionHandler
+DenqueueDeviceRequest:data:completionTimeout:error:completionHandler:
+1c56@0:8{IOUSBDeviceRequest=CCSSS}16@24d32^@40@?48
+enqueueDeviceRequest
+2enqueueDeviceRequest:data:error:completionHandler:
+.c48@0:8{IOUSBDeviceRequest=CCSSS}16@24^@32@?40
+-enqueueDeviceRequest:error:completionHandler:
++c40@0:8{IOUSBDeviceRequest=CCSSS}16^@24@?32
+IOUSBHostAbortOption
+option
+$abortDeviceRequestsWithOption:error:
+c32@0:8Q16^@24
+abortDeviceRequestsWithOption
+abortDeviceRequestsWithError:
+c24@0:8^@16
+abortDeviceRequestsWithError
+tIOUSBDescriptorType
+type
+length
+index
+
+languageID
+tIOUSBDeviceRequestTypeValue
+requestType
+!tIOUSBDeviceRequestRecipientValue
+requestRecipient
+IOUSBDescriptorHeader
+IOUSBDescriptor
+NdescriptorWithType:length:index:languageID:requestType:requestRecipient:error:
+9r^{IOUSBDescriptorHeader=CC}60@0:8i16^Q20Q28Q36i44i48^@52
+descriptorWithType
+1descriptorWithType:length:index:languageID:error:
+3r^{IOUSBDescriptorHeader=CC}52@0:8i16^Q20Q28Q36^@44
+ descriptorWithType:length:error:
+-r^{IOUSBDescriptorHeader=CC}36@0:8i16^Q20^@28
+String
+!stringWithIndex:languageID:error:
+@40@0:8Q16Q24^@32
+stringWithIndex
+stringWithIndex:error:
+@32@0:8Q16^@24
+IOUSBHostTimeVar
+time
+uint64_t
+frameNumberWithTime:
+Q24@0:8^Q16
+frameNumberWithTime
+capacity
+ioDataWithCapacity:error:
+ioDataWithCapacity
+I16@0:8
+deviceAddress
+Q16@0:8
+IOUSBHostObject()
+init
+	iOService
+ObjCConstructor
+
+designated
+initSelector
+	Companion
+ObjCClassOf
+IOUSBHostDeviceMeta
+NSNumber
+vendorID
+	productID
+	bcdDevice
+deviceClass
+deviceSubclass
+deviceProtocol
+speed
+collections
+List
+productIDArray
+__CFDictionary
+CoreFoundation
+CFMutableDictionaryRef
+xcreateMatchingDictionaryWithVendorID:productID:bcdDevice:deviceClass:deviceSubclass:deviceProtocol:speed:productIDArray:
+0^{__CFDictionary=}80@0:8@16@24@32@40@48@56@64@72
+$createMatchingDictionaryWithVendorID
+IOUSBHostDevice
+value
+matchInterfaces
+)configureWithValue:matchInterfaces:error:
+c36@0:8Q16c24^@28
+configureWithValue
+configureWithValue:error:
+IOUSBConfigurationDescriptor
+'configurationDescriptorWithIndex:error:
+6r^{IOUSBConfigurationDescriptor=CCSCCCCC}32@0:8Q16^@24
+ configurationDescriptorWithIndex
+configurationValue
+4configurationDescriptorWithConfigurationValue:error:
+-configurationDescriptorWithConfigurationValue
+resetWithError:
+resetWithError
+IOUSBDeviceDescriptor
+deviceDescriptor
+.r^{IOUSBDeviceDescriptor=CCSCCCCSSSCCCC}16@0:8
+IOUSBBOSDescriptor
+capabilityDescriptors
+!r^{IOUSBBOSDescriptor=CCSC}16@0:8
+configurationDescriptor
+/r^{IOUSBConfigurationDescriptor=CCSCCCCC}16@0:8
+BIOUSBHostDevice(ioService, options, queue, error, interestHandler)
+9IOUSBHostDevice(ioService, queue, error, interestHandler)
+IOUSBHostDevice()
+IOUSBHostInterfaceMeta
+interfaceNumber
+interfaceClass
+interfaceSubclass
+interfaceProtocol
+§createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:
+6^{__CFDictionary=}96@0:8@16@24@32@40@48@56@64@72@80@88
+IOUSBHostInterface
+idleTimeout
+setIdleTimeout:error:
+c32@0:8d16^@24
+setIdleTimeout
+alternateSetting
+selectAlternateSetting:error:
+selectAlternateSetting
+address
+IOUSBHostPipe
+copyPipeWithAddress:error:
+copyPipeWithAddress
+d16@0:8
+IOUSBInterfaceDescriptor
+interfaceDescriptor
+,r^{IOUSBInterfaceDescriptor=CCCCCCCCC}16@0:8
+EIOUSBHostInterface(ioService, options, queue, error, interestHandler)
+<IOUSBHostInterface(ioService, queue, error, interestHandler)
+IOUSBHostInterface()
+IOUSBHostPipeMeta
+IOUSBHostIOSourceMeta
+IOUSBHostIOSource
+IOUSBHostIOSourceDescriptors
+descriptors
+ adjustPipeWithDescriptors:error:
+¡c32@0:8r^{IOUSBHostIOSourceDescriptors=S{IOUSBEndpointDescriptor=CCCCSC}{IOUSBSuperSpeedEndpointCompanionDescriptor=CCCCS}{IOUSBSuperSpeedPlusIsochronousEndpointCompanionDescriptor=CCSI}}16^@24
+adjustPipeWithDescriptors
+clearStallWithError:
+clearStallWithError
+AsendControlRequest:data:bytesTransferred:completionTimeout:error:
+sendControlRequest
+/sendControlRequest:data:bytesTransferred:error:
+sendControlRequest:error:
+EenqueueControlRequest:data:completionTimeout:error:completionHandler:
+enqueueControlRequest
+3enqueueControlRequest:data:error:completionHandler:
+.enqueueControlRequest:error:completionHandler:
+abortWithOption:error:
+abortWithOption
+abortWithError:
+abortWithError
+?sendIORequestWithData:bytesTransferred:completionTimeout:error:
+c48@0:8@16^Q24d32^@40
+sendIORequestWithData
+CenqueueIORequestWithData:completionTimeout:error:completionHandler:
+c48@0:8@16d24^@32@?40
+enqueueIORequestWithData
+IOUSBHostIsochronousFrame
+	frameList
+frameListCount
+firstFrameNumber
+FsendIORequestWithData:frameList:frameListCount:firstFrameNumber:error:
+8c56@0:8@16^{IOUSBHostIsochronousFrame=iIIIQ}24Q32Q40^@48
+%IOUSBHostIsochronousCompletionHandler
+[enqueueIORequestWithData:frameList:frameListCount:firstFrameNumber:error:completionHandler:
+<c64@0:8@16^{IOUSBHostIsochronousFrame=iIIIQ}24Q32Q40^@48@?56
+enableStreamsWithError:
+enableStreamsWithError
+disableStreamsWithError:
+disableStreamsWithError
+streamID
+IOUSBHostStream
+copyStreamWithStreamID:error:
+copyStreamWithStreamID
+originalDescriptors
+∫r^{IOUSBHostIOSourceDescriptors=S{IOUSBEndpointDescriptor=CCCCSC}{IOUSBSuperSpeedEndpointCompanionDescriptor=CCCCS}{IOUSBSuperSpeedPlusIsochronousEndpointCompanionDescriptor=CCSI}}16@0:8
+IOUSBHostPipe()
+hostInterface
+endpointAddress
+IOUSBHostIOSource()
+IOUSBHostStreamMeta
+-sendIORequestWithData:bytesTransferred:error:
+c40@0:8@16^Q24^@32
+1enqueueIORequestWithData:error:completionHandler:
+c40@0:8@16^@24@?32
+hostPipe
+IOUSBHostStream()
+
+CStructVar
+CStruct
+MemberAt
+offset
+status
+requestCount
+completeCount
+reserved
+IOUSBHostTime
+	timeStamp
+native
+	NativePtr
+rawPtr
+spelling
+\struct { int p0; unsigned int p1; unsigned int p2; unsigned int p3; unsigned long long p4; }
+Type
+VarType
+size
+align
+(Use sizeOf<T>() or alignOf<T>() instead.
+WARNING
+UShort
+uint16_t
+bcdUSB
+IOUSBEndpointDescriptor
+
+descriptor
+*IOUSBSuperSpeedEndpointCompanionDescriptor
+ssCompanionDescriptor
+9IOUSBSuperSpeedPlusIsochronousEndpointCompanionDescriptor
+sspCompanionDescriptor
+⁄struct { unsigned short p0; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned short p4; unsigned char p5; } p1; struct { unsigned char p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned short p4; } p2; struct { unsigned char p0; unsigned char p1; unsigned short p2; unsigned int p3; } p3; }Ú
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+ 
+ 
+
+
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+! 
+# 
+ $
+% 
+' 
+ (
+) 
+* 
++ 
+, 
+- 
+/ 
+3 
+8 
+<
+#= 
+$> 
+$? 
+F 
+G 
+I 
+K 
+L 
+N 
+O 
+Q 
+Y 
+Z 
+[ 
+\ 
+] 
+f 
+n 
+s 
+u 
+w 
+x 
+Ä 
+Ü 
+à 
+ï 
+ò 
+ô 
+ö 
+õ 
+£
+B§ 
+¶ 
+ ß
+E® 
+¨ 
+≥ 
+º 
+ø 
+Gò 
+« 
+Œ 
+◊ 
+€ 
+Mò 
+· 
+‚ 
+„ 
+‰ 
+˝ 
+É 
+ã 
+Nò 
+Sò 
+î 
+Wò 
+õ 
+#ú 
+]ù 
+£ 
+•
+`<
+a¶ 
+¶ 
+Uò 
+\™ 
+]´ 
+∞ 
+± 
+≥ 
+µ 
+∑ 
+Tò "±20BJ.
+0Hó “
+ 	(
+( J>02
+00	Hó “
+ 	(( J.0Hó “
+ 	(( “
+"Ω ò20:òBúî0j`
+ 0j`"
+0j`&
+000	<.800j`00	j`00j`“
+=	ñ	ó(:Bêî0j`"
+0j`&
+000	<.800j`00	j`00j`“
+=	ñ 	ó(BB“
+=	ñ 
+ó(ìJÔ@02
+0j`2
+ 0j`2"
+0j`2&
+000	2<.800j`00	j`00j`Hó “
+6 0(12B!45(6
+7
+0"89“
+ 	(:(; “
+%“
+&J„@02
+0j`2"
+0j`2&
+000	2<.800j`00	j`00j`Hó “
+6 0(12B!45(A
+7
+0"89“
+ 	(B(C “
+%“
+&J,D0Hó “
+ 	(D(E JÇT0.2H0(0'2J0)2M00*j`+0	2
+P0,j`-2&
+000	Hó “
+ 	(R(S JvT0.2H0(0'2J0)2M00*j`+0	2&
+000	Hó “
+ 	(U(V JRT0.2H0(0'2&
+000	Hó “
+ 	(W(X Jía0.2H0(0'2J0)2
+P0,j`-2&
+000	2(^$00j`10j`200/j`3Hó “
+ 	(_(` JÜa0.2H0(0'2J0)2&
+000	2(^$00j`10j`200/j`3Hó “
+ 	(b(c J|a0.2H0(0'2&
+000	2(^$00j`10j`200/j`3Hó “
+ 	(d(e JPj0.2
+g0j`42&
+000	Hó “
+ 	(h(i JDm0.2&
+000	Hó “
+ 	(k(l J¶{08j`90	2
+o0j`52p00*j`+0	2
+q0j`22
+r0j`22
+t0j`62
+v0j`72&
+000	Hó “
+ 	(y(z Jé{08j`90	2
+o0j`52p00*j`+0	2
+q0j`22
+r0j`22&
+000	Hó “
+ 	(|(} Jv{08j`90	2
+o0j`52p00*j`+0	2&
+000	Hó “
+ 	(~( JaÉ0:2
+q0j`22
+r0j`22&
+000	Hó “
+"		(Å	(Ç JUÉ0:2
+q0j`22&
+000	Hó “
+"		(Ñ	(Ö JNã0j`<2á00*j`;0	Hó “
+"		(â	(ä JVé0)2å0j`22&
+000	Hó “
+"		(ç	(Ö J10j`Hó “
+!	(	(è J4"
+0j`Hó “
+ 	("( J3ê0j`2Hó “
+"		(ê	(ë Jtì0Hó “
+7 0(12B!4	5(í
+7
+0"89“
+!		(ì( “
+%“
+&R30j`8«@ ä!	(	(è R6"
+0j`8«@ ä 	("( R5ê0j`28«@ ä"		(ê	(ë “
+"Ü>20200?B"Õ@20BJô´0D0	j`F2	ú0A2	ù0A2	û0A2	ü0A2	†0A2	°0A2	¢0A2•0CHó “
+"		(©	(™ J.
+0GHó “
+ 	(
+( J>0G2
+00	Hó “
+ 	(( J.0GHó “
+ 	(( “
+"…G ò20:òBúî0j`
+ 0j`"
+0j`&
+000	<.800j`00	j`00j`“
+=	ñ	ó(:Bêî0j`"
+0j`&
+000	<.800j`00	j`00j`“
+=	ñ 	ó(BB“
+=	ñ 
+ó(ìJ]±0.2≠0j`22Æ0.2&
+000	Hó “
+"		(Ø	(∞ JS±0.2≠0j`22&
+000	Hó “
+!		(≤(i J[∂
+0H0	2
+q0j`22&
+000	Hó “
+"		(¥	(µ J\π
+0H0	2∑0j`22&
+000	Hó “
+"		(∏	(µ JFª0.2&
+000	Hó “
+!		(∫(l J7Ω
+0I0	Hó “
+"		(Ω	(æ J7¿
+0J0	Hó “
+"		(¿	(¡ J7¬
+0H0	Hó “
+"		(¬	(√ J@0G2
+0j`2
+ 0j`2"
+0j`2&
+000	2<.800j`00	j`00j`Hó “
+7 0(12B!4	5(ƒ
+7
+0"89“
+ 	(:(; “
+%“
+&J‰@0G2
+0j`2"
+0j`2&
+000	2<.800j`00	j`00j`Hó “
+7 0(12B!4	5(≈
+7
+0"89“
+ 	(B(C “
+%“
+&Jtì0GHó “
+7 0(12B!4	5(∆
+7
+0"89“
+!		(ì( “
+%“
+&R9Ω
+0I0	8«@ ä"		(Ω	(æ R9¿
+0J0	8«@ ä"		(¿	(¡ R9¬
+0H0	8«@ ä"		(¬	(√ “
+"ÜK20@20G0?B"„L20BJØ´0D0	j`F2	ú0A2	ù0A2	û0A2	»0A2	∑0A2	…0A2	 0A2	À0A2	¢0A2•0CHó “
+"		(Ã	(Õ J.
+0MHó “
+ 	(
+( J>0M2
+00	Hó “
+ 	(( J.0MHó “
+ 	(( “
+"íM ò20:òBúî0j`
+ 0j`"
+0j`&
+000	<.800j`00	j`00j`“
+=	ñ	ó(:Bêî0j`"
+0j`&
+000	<.800j`00	j`00j`“
+=	ñ 	ó(BB“
+=	ñ 
+ó(ìJT“0.2œ0,j`-2&
+000	Hó “
+"		(–	(— JS’0.2”0j`22&
+000	Hó “
+!		(‘(i J[Ÿ0N2÷0j`22&
+000	Hó “
+"		(ÿ	(Ö “
+&J3œ0,j`-Hó “
+"		(œ	(⁄ J7¬
+0H0	Hó “
+"		(¬	(√ J7‹
+0O0	Hó “
+"		(‹	(› J@0M2
+0j`2
+ 0j`2"
+0j`2&
+000	2<.800j`00	j`00j`Hó “
+7 0(12B!4	5(ﬁ
+7
+0"89“
+ 	(:(; “
+%“
+&J‰@0M2
+0j`2"
+0j`2&
+000	2<.800j`00	j`00j`Hó “
+7 0(12B!4	5(ﬂ
+7
+0"89“
+ 	(B(C “
+%“
+&Jtì0MHó “
+7 0(12B!4	5(‡
+7
+0"89“
+!		(ì( “
+%“
+&R5œ0,j`-8«@ ä"		(œ	(⁄ R9¬
+0H0	8«@ ä"		(¬	(√ R9‹
+0O0	8«@ ä"		(‹	(› “
+"ÜP20L20M0?B"±Q20RBJ.
+0NHó “
+ 	(
+( J>0N2
+00	Hó “
+ 	(( J.0NHó “
+ 	(( “
+"¢N ò20S:òB“
+=	ñ
+ó(ìJXË0.2Â
+0T0	2&
+000	Hó “
+"		(Ê	(Á JT“0.2œ0,j`-2&
+000	Hó “
+"		(–	(— JFÍ0.2&
+000	Hó “
+!		(È(l JÑÏ0.2H0(0'2J0)2M00*j`+0	2
+P0,j`-2&
+000	Hó “
+!		(Î(S JxÏ0.2H0(0'2J0)2M00*j`+0	2&
+000	Hó “
+!		(Ì(V JTÏ0.2H0(0'2&
+000	Hó “
+!		(Ó(X Jî0.2H0(0'2J0)2
+P0,j`-2&
+000	2(^$00j`10j`200/j`3Hó “
+!		(Ô(` Jà0.2H0(0'2J0)2&
+000	2(^$00j`10j`200/j`3Hó “
+!		(Ò(c J~0.2H0(0'2&
+000	2(^$00j`10j`200/j`3Hó “
+!		(Ú(e JRÙ0.2
+g0j`42&
+000	Hó “
+!		(Û(i JFˆ0.2&
+000	Hó “
+!		(ı(l Jw˘0.2J0)2M00*j`+0	2
+P0,j`-2&
+000	Hó “
+"		(˜	(¯ Já¸0.2J0)2
+P0,j`-2&
+000	2(^$00j`10j`200/j`3Hó “
+"		(˙	(˚ Jz˘0.2J0)2˛
+0U0	2ˇ0j`22Ä0j`<2&
+000	Hó “
+"		(Å	(Ç J®¸0.2J0)2˛
+0U0	2ˇ0j`22Ä0j`<2&
+000	2,^(00j`1
+0U0	00/j`VHó “
+"		(Ñ	(Ö JFá0.2&
+000	Hó “
+!		(Ü(l JFâ0.2&
+000	Hó “
+!		(à(l J[ç0W2ä0j`22&
+000	Hó “
+"		(å	(Ö “
+&J7é
+0T0	Hó “
+"		(é	(è J7Â
+0T0	Hó “
+"		(Â	(è J3œ0,j`-Hó “
+"		(œ	(⁄ Jtì0NHó “
+7 0(12B!4	5(ê
+7
+0"89“
+!		(ì( “
+%“
+&R9é
+0T0	8«@ ä"		(é	(è R9Â
+0T0	8«@ ä"		(Â	(è R5œ0,j`-8«@ ä"		(œ	(⁄ “
+"ÜX20Q20N0?B"±R20BJ.
+0SHó “
+ 	(
+( J>0S2
+00	Hó “
+ 	(( J.0SHó “
+ 	(( “
+"‰S ò20:òB“
+=	ñ
+ó(ìJ.ë0MHó “
+!		(ë( J3ê0j`2Hó “
+"		(ê	(ë J3í0j`2Hó “
+"		(í	(ë Jtì0SHó “
+7 0(12B!4	5(ì
+7
+0"89“
+!		(ì( “
+%“
+&R0ë0M8«@ ä!		(ë( R5ê0j`28«@ ä"		(ê	(ë R5í0j`28«@ ä"		(í	(ë “
+"ÜY20R20S0?B"±Z20RBJ.
+0WHó “
+ 	(
+( J>0W2
+00	Hó “
+ 	(( J.0WHó “
+ 	(( “
+"˛W ò20S:òB“
+=	ñ
+ó(ìJRÙ0.2
+g0j`42&
+000	Hó “
+!		(Û(i JFˆ0.2&
+000	Hó “
+!		(ı(l Jk˘0.2J0)2M00*j`+0	2&
+000	Hó “
+"		(ï	(ñ J{¸0.2J0)2&
+000	2(^$00j`10j`200/j`3Hó “
+"		(ó	(ò J.ô0NHó “
+!		(ô( J3ä0j`2Hó “
+"		(ä	(ë Jtì0WHó “
+7 0(12B!4	5(ö
+7
+0"89“
+!		(ì( “
+%“
+&R0ô0N8«@ ä!		(ô( R5ä0j`28«@ ä"		(ä	(ë “
+"Ü[20Z20W0?B"˛U ò20\:òBß0bj`cRAü00j`12≠00j`18«@«XÜä^	û í^	û RA†0j`2≠0j`8«@«XÜä^	ûí^	ûRA°0j`2≠0j`8«@«XÜä^	ûí^	ûRA¢0j`2≠0j`8«@«XÜä^	ûí^	ûRA§0j`_2≠0j`_8«@«XÜä^	û í^	û “
+]
+®(©"Yád20eB“
+f	¨0	≠“
+. 	0(Æ2B
+!47
+0"8Ø"ÃT ò20\:òBß0bj`cRA≤0gj`h2≠0gj`h8«@«XÜä^	û í^	û R¥0i8«@ ä^	ûR∂0j8«@ ä^	ûR∏0k8«@ ä^	û“
+]
+®(π"Yál20eB“
+f	¨0	≠“
+. 	0(Æ2B
+!47
+0"8Ø‡
+ Í
+platform.IOUSBHostÚ
+>@GKLMPQNXRSYZW[UdTl

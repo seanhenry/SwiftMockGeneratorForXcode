@@ -1,0 +1,988 @@
+
+üm
+kotlin
+UInt
+platform
+darwin
+task_t
+task
+kotlinx
+cinterop
+CPointer
+	ByteVarOf
+Byte
+ByteVar
+suid_cred_path_t
+path
+suid_cred_uid_t
+uid
+
+CValuesRef
+	UIntVarOf
+suid_cred_tVar
+
+delegation
+Int
+kern_return_t
+internal
+CCall
+id
+2knifunptr_platform_darwin785_task_create_suid_cred
+task_create_suid_cred
+thread_act_t
+
+target_act
+-knifunptr_platform_darwin786_thread_terminate
+thread_terminate
+flavor
+natural_tVar
+thread_state_t
+	old_state
+mach_msg_type_number_tVar
+old_stateCnt
+*knifunptr_platform_darwin787_act_get_state
+act_get_state
+	new_state
+mach_msg_type_number_t
+new_stateCnt
+*knifunptr_platform_darwin788_act_set_state
+act_set_state
+thread_state_flavor_t
+-knifunptr_platform_darwin789_thread_get_state
+thread_get_state
+-knifunptr_platform_darwin790_thread_set_state
+thread_set_state
++knifunptr_platform_darwin791_thread_suspend
+thread_suspend
+*knifunptr_platform_darwin792_thread_resume
+thread_resume
+)knifunptr_platform_darwin793_thread_abort
+thread_abort
+0knifunptr_platform_darwin794_thread_abort_safely
+thread_abort_safely
+thread
+1knifunptr_platform_darwin795_thread_depress_abort
+thread_depress_abort
+thr_act
+
+which_port
+posix
+mach_port_tVar
+special_port
+4knifunptr_platform_darwin796_thread_get_special_port
+thread_get_special_port
+mach_port_t
+4knifunptr_platform_darwin797_thread_set_special_port
+thread_set_special_port
+thread_inspect_t
+thread_flavor_t
+IntVarOf
+integer_tVar
+thread_info_t
+thread_info_out
+thread_info_outCnt
+(knifunptr_platform_darwin798_thread_info
+thread_info
+exception_mask_t
+exception_mask
+new_port
+exception_behavior_t
+behavior
+
+new_flavor
+7knifunptr_platform_darwin799_thread_set_exception_ports
+thread_set_exception_ports
+exception_mask_tVar
+exception_mask_array_t
+masks
+masksCnt
+exception_handler_tVar
+exception_handler_array_t
+old_handlers
+exception_behavior_tVar
+exception_behavior_array_t
+old_behaviors
+thread_state_flavor_tVar
+exception_flavor_array_t
+old_flavors
+7knifunptr_platform_darwin800_thread_get_exception_ports
+thread_get_exception_ports
+8knifunptr_platform_darwin801_thread_swap_exception_ports
+thread_swap_exception_ports
+policy_t
+policy
+policy_base_t
+base
+baseCnt
+	boolean_t
+	set_limit
+*knifunptr_platform_darwin802_thread_policy
+thread_policy
+thread_policy_flavor_t
+thread_policy_t
+policy_info
+policy_infoCnt
+.knifunptr_platform_darwin803_thread_policy_set
+thread_policy_set
+boolean_tVar
+get_default
+.knifunptr_platform_darwin804_thread_policy_get
+thread_policy_get
+reply
+*knifunptr_platform_darwin805_thread_sample
+thread_sample
+trace_status
+.knifunptr_platform_darwin806_etap_trace_thread
+etap_trace_thread
+processor_set_t
+new_set
+*knifunptr_platform_darwin807_thread_assign
+thread_assign
+2knifunptr_platform_darwin808_thread_assign_default
+thread_assign_default
+processor_set_name_tVar
+assigned_set
+2knifunptr_platform_darwin809_thread_get_assignment
+thread_get_assignment
+pset
+policy_limit_t
+limit
+limitCnt
+.knifunptr_platform_darwin810_thread_set_policy
+thread_set_policy
+mach_voucher_selector_t
+which
+ipc_voucher_tVar
+voucher
+4knifunptr_platform_darwin811_thread_get_mach_voucher
+thread_get_mach_voucher
+ipc_voucher_t
+4knifunptr_platform_darwin812_thread_set_mach_voucher
+thread_set_mach_voucher
+new_voucher
+old_voucher
+5knifunptr_platform_darwin813_thread_swap_mach_voucher
+thread_swap_mach_voucher
+vm_map_t
+target_task
+
+ULongVarOf
+ULong
+vm_address_tVar
+address
+	vm_size_t
+size
+flags
+(knifunptr_platform_darwin814_vm_allocate
+vm_allocate
+vm_address_t
+*knifunptr_platform_darwin815_vm_deallocate
+vm_deallocate
+set_maximum
+	vm_prot_t
+new_protection
+'knifunptr_platform_darwin816_vm_protect
+
+vm_protect
+vm_inherit_t
+new_inheritance
+'knifunptr_platform_darwin817_vm_inherit
+
+vm_inherit
+vm_offset_tVar
+data
+dataCnt
+$knifunptr_platform_darwin818_vm_read
+vm_read
+vm_read_entry
+vm_read_entry_t
+	data_list
+	natural_t
+count
+)knifunptr_platform_darwin819_vm_read_list
+vm_read_list
+vm_offset_t
+%knifunptr_platform_darwin820_vm_write
+vm_write
+source_address
+dest_address
+$knifunptr_platform_darwin821_vm_copy
+vm_copy
+vm_size_tVar
+outsize
+.knifunptr_platform_darwin822_vm_read_overwrite
+vm_read_overwrite
+	vm_sync_t
+
+sync_flags
+%knifunptr_platform_darwin823_vm_msync
+vm_msync
+vm_behavior_t
+new_behavior
+,knifunptr_platform_darwin824_vm_behavior_set
+vm_behavior_set
+mask
+mem_entry_name_port_t
+object
+offset
+copy
+cur_protection
+max_protection
+inheritance
+#knifunptr_platform_darwin825_vm_map
+vm_map
+vm_machine_attribute_t
+	attribute
+vm_machine_attribute_val_tVar
+value
+1knifunptr_platform_darwin826_vm_machine_attribute
+vm_machine_attribute
+target_address
+src_task
+src_address
+vm_prot_tVar
+%knifunptr_platform_darwin827_vm_remap
+vm_remap
+
+permission
+mem_entry_name_port_tVar
+object_handle
+parent_entry
+3knifunptr_platform_darwin828_mach_make_memory_entry
+mach_make_memory_entry
+
+target_map
+disposition
+	ref_count
+.knifunptr_platform_darwin829_vm_map_page_query
+vm_map_page_query
+nesting_depth
+IntVar
+vm_region_recurse_info_t
+info
+infoCnt
+1knifunptr_platform_darwin830_vm_region_recurse_64
+vm_region_recurse_64
+vm_region_flavor_t
+vm_region_info_t
+object_name
+)knifunptr_platform_darwin831_vm_region_64
+vm_region_64
+memory_object_size_tVar
+memory_object_offset_t
+6knifunptr_platform_darwin832_mach_make_memory_entry_64
+mach_make_memory_entry_64
+vm_purgable_t
+control
+state
+0knifunptr_platform_darwin833_vm_purgable_control
+vm_purgable_control
+ipc_space_t
+CPointerVarOf
+mach_port_name_tVar
+mach_port_name_array_t
+mach_port_name_array_tVar
+names
+namesCnt
+mach_port_type_tVar
+mach_port_type_array_t
+mach_port_type_array_tVar
+types
+typesCnt
+,knifunptr_platform_darwin834_mach_port_names
+mach_port_names
+mach_port_name_t
+name
+ptype
++knifunptr_platform_darwin835_mach_port_type
+mach_port_type
+old_name
+new_name
+-knifunptr_platform_darwin836_mach_port_rename
+mach_port_rename
+mach_port_right_t
+right
+4knifunptr_platform_darwin837_mach_port_allocate_name
+mach_port_allocate_name
+/knifunptr_platform_darwin838_mach_port_allocate
+mach_port_allocate
+.knifunptr_platform_darwin839_mach_port_destroy
+mach_port_destroy
+1knifunptr_platform_darwin840_mach_port_deallocate
+mach_port_deallocate
+mach_port_urefs_tVar
+refs
+/knifunptr_platform_darwin841_mach_port_get_refs
+mach_port_get_refs
+mach_port_delta_t
+delta
+/knifunptr_platform_darwin842_mach_port_mod_refs
+mach_port_mod_refs
+mach_msg_trailer_type_t
+trailer_type
+mach_port_seqno_tVar
+request_seqnop
+mach_msg_size_tVar
+	msg_sizep
+mach_msg_id_tVar
+msg_idp
+mach_msg_trailer_info_t
+trailer_infop
+trailer_infopCnt
++knifunptr_platform_darwin843_mach_port_peek
+mach_port_peek
+mach_port_mscount_t
+mscount
+2knifunptr_platform_darwin844_mach_port_set_mscount
+mach_port_set_mscount
+ipc_space_inspect_t
+members
+
+membersCnt
+5knifunptr_platform_darwin845_mach_port_get_set_status
+mach_port_get_set_status
+member
+after
+2knifunptr_platform_darwin846_mach_port_move_member
+mach_port_move_member
+mach_msg_id_t
+msgid
+sync
+notify
+mach_msg_type_name_t
+
+notifyPoly
+previous
+;knifunptr_platform_darwin847_mach_port_request_notification
+mach_port_request_notification
+poly
+polyPoly
+3knifunptr_platform_darwin848_mach_port_insert_right
+mach_port_insert_right
+	msgt_name
+mach_msg_type_name_tVar
+4knifunptr_platform_darwin849_mach_port_extract_right
+mach_port_extract_right
+mach_port_seqno_t
+seqno
+0knifunptr_platform_darwin850_mach_port_set_seqno
+mach_port_set_seqno
+mach_port_flavor_t
+mach_port_info_t
+port_info_out
+port_info_outCnt
+5knifunptr_platform_darwin851_mach_port_get_attributes
+mach_port_get_attributes
+	port_info
+port_infoCnt
+5knifunptr_platform_darwin852_mach_port_set_attributes
+mach_port_set_attributes
+mach_port_qos
+mach_port_qos_t
+qos
+3knifunptr_platform_darwin853_mach_port_allocate_qos
+mach_port_allocate_qos
+proto
+4knifunptr_platform_darwin854_mach_port_allocate_full
+mach_port_allocate_full
+table_entries
+0knifunptr_platform_darwin855_task_set_port_space
+task_set_port_space
+mach_port_rights_tVar
+srights
+2knifunptr_platform_darwin856_mach_port_get_srights
+mach_port_get_srights
+ipc_info_space
+ipc_info_space_t
+
+space_info
+ipc_info_name
+ipc_info_name_t
+ipc_info_name_array_t
+ipc_info_name_array_tVar
+
+table_info
+table_infoCnt
+ipc_info_tree_name
+ipc_info_tree_name_t
+ipc_info_tree_name_array_t
+ipc_info_tree_name_array_tVar
+	tree_info
+tree_infoCnt
+1knifunptr_platform_darwin857_mach_port_space_info
+mach_port_space_info
+UIntVar
+	dnr_total
+dnr_used
+5knifunptr_platform_darwin858_mach_port_dnrequest_info
+mach_port_dnrequest_info
+object_type
+object_addr
+4knifunptr_platform_darwin859_mach_port_kernel_object
+mach_port_kernel_object
+4knifunptr_platform_darwin860_mach_port_insert_member
+mach_port_insert_member
+5knifunptr_platform_darwin861_mach_port_extract_member
+mach_port_extract_member
+mach_port_context_tVar
+context
+2knifunptr_platform_darwin862_mach_port_get_context
+mach_port_get_context
+mach_port_context_t
+2knifunptr_platform_darwin863_mach_port_set_context
+mach_port_set_context
+mach_vm_address_tVar
+.knifunptr_platform_darwin864_mach_port_kobject
+mach_port_kobject
+mach_port_options
+mach_port_options_t
+mach_port_options_ptr_t
+options
+0knifunptr_platform_darwin865_mach_port_construct
+mach_port_construct
+srdelta
+guard
+/knifunptr_platform_darwin866_mach_port_destruct
+mach_port_destruct
+strict
+,knifunptr_platform_darwin867_mach_port_guard
+mach_port_guard
+.knifunptr_platform_darwin868_mach_port_unguard
+mach_port_unguard
+ipc_info_space_basic
+ipc_info_space_basic_t
+
+basic_info
+7knifunptr_platform_darwin869_mach_port_space_basic_info
+mach_port_space_basic_info
+uint64_t
+7knifunptr_platform_darwin870_mach_port_guard_with_flags
+mach_port_guard_with_flags
+	old_guard
+	new_guard
+1knifunptr_platform_darwin871_mach_port_swap_guard
+mach_port_swap_guard
+kobject_description_t
+description
+:knifunptr_platform_darwin872_mach_port_kobject_description
+mach_port_kobject_description
++knifunptr_platform_darwin873_mach_host_self
+mach_host_self
+-knifunptr_platform_darwin874_mach_thread_self
+mach_thread_self
+host_t
+arg0
+arg1
++knifunptr_platform_darwin875_host_page_size
+host_page_size
+
+clock_name
+sleep_type_t
+
+sleep_type
+	sleep_sec
+
+sleep_nsec
+mach_timespec
+mach_timespec_t
+wakeup_time
+-knifunptr_platform_darwin876_clock_sleep_trap
+clock_sleep_trap
+target
+mach_vm_offset_tVar
+addr
+mach_vm_size_t
+=knifunptr_platform_darwin877__kernelrpc_mach_vm_allocate_trap
+ _kernelrpc_mach_vm_allocate_trap
+mach_vm_address_t
+?knifunptr_platform_darwin878__kernelrpc_mach_vm_deallocate_trap
+"_kernelrpc_mach_vm_deallocate_trap
+<knifunptr_platform_darwin879__kernelrpc_mach_vm_protect_trap
+_kernelrpc_mach_vm_protect_trap
+mach_vm_offset_t
+8knifunptr_platform_darwin880__kernelrpc_mach_vm_map_trap
+_kernelrpc_mach_vm_map_trap
+Eknifunptr_platform_darwin881__kernelrpc_mach_vm_purgable_control_trap
+(_kernelrpc_mach_vm_purgable_control_trap
+?knifunptr_platform_darwin882__kernelrpc_mach_port_allocate_trap
+"_kernelrpc_mach_port_allocate_trap
+>knifunptr_platform_darwin883__kernelrpc_mach_port_destroy_trap
+!_kernelrpc_mach_port_destroy_trap
+Aknifunptr_platform_darwin884__kernelrpc_mach_port_deallocate_trap
+$_kernelrpc_mach_port_deallocate_trap
+?knifunptr_platform_darwin885__kernelrpc_mach_port_mod_refs_trap
+"_kernelrpc_mach_port_mod_refs_trap
+Bknifunptr_platform_darwin886__kernelrpc_mach_port_move_member_trap
+%_kernelrpc_mach_port_move_member_trap
+Cknifunptr_platform_darwin887__kernelrpc_mach_port_insert_right_trap
+&_kernelrpc_mach_port_insert_right_trap
+Eknifunptr_platform_darwin888__kernelrpc_mach_port_get_attributes_trap
+(_kernelrpc_mach_port_get_attributes_trap
+Dknifunptr_platform_darwin889__kernelrpc_mach_port_insert_member_trap
+'_kernelrpc_mach_port_insert_member_trap
+Eknifunptr_platform_darwin890__kernelrpc_mach_port_extract_member_trap
+(_kernelrpc_mach_port_extract_member_trap
+@knifunptr_platform_darwin891__kernelrpc_mach_port_construct_trap
+#_kernelrpc_mach_port_construct_trap
+?knifunptr_platform_darwin892__kernelrpc_mach_port_destruct_trap
+"_kernelrpc_mach_port_destruct_trap
+<knifunptr_platform_darwin893__kernelrpc_mach_port_guard_trap
+_kernelrpc_mach_port_guard_trap
+>knifunptr_platform_darwin894__kernelrpc_mach_port_unguard_trap
+!_kernelrpc_mach_port_unguard_trap
+uint64_tVar
+activity_id
+6knifunptr_platform_darwin895_mach_generate_activity_id
+mach_generate_activity_id
+filename
+priority
+(knifunptr_platform_darwin896_macx_swapon
+macx_swapon
+)knifunptr_platform_darwin897_macx_swapoff
+macx_swapoff
+hi_water
+	low_water
+
+alert_port
+*knifunptr_platform_darwin898_macx_triggers
+macx_triggers
+suspend
+7knifunptr_platform_darwin899_macx_backing_store_suspend
+macx_backing_store_suspend
+pid
+8knifunptr_platform_darwin900_macx_backing_store_recovery
+macx_backing_store_recovery
+pri
+&knifunptr_platform_darwin901_swtch_pri
+	swtch_pri
+"knifunptr_platform_darwin902_swtch
+swtch
+thread_name
+option
+mach_msg_timeout_t
+option_time
+*knifunptr_platform_darwin903_thread_switch
+thread_switch
++knifunptr_platform_darwin904_task_self_trap
+task_self_trap
+host
+
+UByteVarOf
+UByte
+
+uint8_tVar
+$mach_voucher_attr_raw_recipe_array_t
+recipes
+recipes_size
+:knifunptr_platform_darwin905_host_create_mach_voucher_trap
+host_create_mach_voucher_trap
+voucher_name
+mach_voucher_attr_key_t
+key
+mach_voucher_attr_raw_recipe_t
+recipe
+recipe_size
+Bknifunptr_platform_darwin906_mach_voucher_extract_attr_recipe_trap
+%mach_voucher_extract_attr_recipe_trap
+;knifunptr_platform_darwin907__kernelrpc_mach_port_type_trap
+_kernelrpc_mach_port_type_trap
+Kknifunptr_platform_darwin908__kernelrpc_mach_port_request_notification_trap
+._kernelrpc_mach_port_request_notification_trap
+target_tport
+t
+)knifunptr_platform_darwin909_task_for_pid
+task_for_pid
+tn
+.knifunptr_platform_darwin910_task_name_for_pid
+task_name_for_pid
+x
+)knifunptr_platform_darwin911_pid_for_task
+pid_for_task
+7knifunptr_platform_darwin912_debug_control_port_for_pid
+debug_control_port_for_pid˜	
+ 
+  
+
+
+ 
+
+
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+
+ 
+ 
+  
+! 
+# 
+( 
+, 
+>
+? 
+C 
+F 
+G 
+H 
+I 
+J 
+O 
+R 
+W 
+X 
+[ 
+\ 
+^ 
+_ 
+a 
+b 
+h 
+j 
+m 
+q 
+r 
+w 
+Å 
+á 
+å 
+ë 
+ì 
+ó 
+û 
+† 
+ ° 
+¢ 
+§ 
+© 
+≠ 
+± 
+µ 
+∫ 
+ª 
+Ω 
+¡ 
+» 
+Ã 
+– 
+’ 
+ﬁ 
+‡ 
+Á 
+Î 
+ˆ 
+˜ 
+¸ 
+˝ 
+Å 
+Ç 
+Ö 
+ä 
+ã 
+å 
+ç 
+é 
+ë 
+í 
+ì 
+ò 
+° 
+´ 
+Ø 
+≥ 
+µ 
+∑ 
+π 
+ª 
+¿ 
+ƒ 
+Õ 
+— 
+€ 
+ﬁ 
+‚ 
+„ 
+Ï 
+Ì 
+˜ 
+˚ 
+¸ 
+˛ 
+ˇ 
+Ä 
+Å 
+Ñ 
+Ö 
+Ü 
+á 
+å 
+ô 
+ù 
+† 
+£ 
+§ 
+• 
+≤ 
+≥ 
+∑ 
+æ 
+∆ 
+Ã 
+– 
+— 
+÷ 
+ÿ 
+€ 
+‡ 
+ˇ 
+õ 
+¢ 
+ £ 
+§ 
+• 
+´ 
+≠ ú]n0j`2
+0j`20	0j`
+0j`2
+0j`200j`0Há “
+((0j`2
+0j`Há “
+(j&0j`2
+0j`202"00j`0j`2$00j`0Há “
+(%\+0j`2
+0j`202'00j`0j`2
+)0j`Há “
+(*n.0j`2
+0j`2
+0j`2"00j`0j`2$00j`0Há “
+(-`00j`2
+0j`2
+0j`2'00j`0j`2
+)0j`Há “
+(/(20j`2
+0j`Há “
+(1(40j`2
+0j`Há “
+(3(60j`2
+0j`Há “
+(5(80j`2
+0j`Há “
+(7(;0j`2
+90j`Há “
+(:JB0j`2
+<0j`2=02@00j`0Há “
+(A<E0j`2
+<0j`2=02
+@0j`Há “
+(DnN0j`2
+0j`2
+0j`2K00j` 0j`!2L00j`0Há “
+(MXV0j`2
+90j`2
+P0j`"2
+Q0j`2
+S0j`#2
+T0j`Há “
+(UŒe0j`2
+90j`2
+P0j`"2Y00j`$0j`%2Z00j`02]00j`&0j`'2`00j`(0j`)2c00j`*0j`+Há “
+(dÚg0j`2
+90j`2
+P0j`"2
+Q0j`2
+S0j`#2
+T0j`2Y00j`$0j`%2Z00j`02]00j`&0j`'2`00j`(0j`)2c00j`*0j`+Há “
+(flp0j`2
+<0j`2
+i0j`,2k00j` 0j`-2
+l0j`2
+n0j`.Há “
+(o`v0j`2
+90j`2
+0j`/2s00j` 0j`02
+t0j`Há “
+(uàz0j`2
+90j`2
+0j`/2s00j` 0j`02t00j`02x00j`10Há “
+(y4}0j`2
+90j`2
+{0j`Há “
+(|5Ä0j`2
+0j`2
+~0j`.Há “
+(7Ñ0j`2
+90j`2Ç0j`2Há “
+	(É*Ü0j`2
+90j`Há “
+	(ÖEä0j`2
+90j`2à00j`30Há “
+	(âùê0j`2
+<0j`2ã0j`22
+i0j`,2k00j` 0j`-2
+l0j`2ç00j` 0j`42é0j`Há “
+	(èRñ0j`2
+<0j`2í0j`52î00j`60Há “
+	(ï7ô0j`2
+<0j`2î0j`7Há “
+	(òRù0j`2
+<0j`2ö0j`72õ00j`60Há “
+	(ú\®0j`2ü0j`82£0:09j`;02•0:j`<2¶0Há “
+	(ßE´0j`2ü0j`82£0:j`=2•0:j`<Há “
+	(™_∞0j`2ü0j`82£0:j`=2•0:j`<2¨0j`.2Æ0j`>Há “
+	(ØR¥0j`2ü0j`82£0:j`=2•0:j`<2≤0j`?Há “
+	(≥{π0j`2ü0j`82£0:j`=2•0:j`<2∂0:09j`@02∑00j`0Há “
+	(∏O¿0j`2ü0j`82º0A0j`B2æ0j`CHá “
+	(øR√0j`2ü0j`82£0:j`=2∂0:j`D2∑0j`Há “
+	(¬R«0j`2ü0j`82ƒ0:j`=2•0:j`<2≈0:j`=Há “
+	(∆mÀ0j`2ü0j`82£0:j`=2•0:j`<2∂0:j`=2…0:09j`E0Há “
+	( Rœ0j`2ü0j`82£0:j`=2•0:j`<2Õ0j`FHá “
+	(ŒR”0j`2ü0j`82£0:j`=2•0:j`<2—0j`GHá “
+	(“∑›0j`2ü0j`82£0:09j`;02•0:j`<2‘0:j`=2¶02÷0j`H2◊0:j`D2ÿ0j`.2Ÿ0j`>2⁄0j`>2€0j`?Há “
+	(‹m„0j`2ü0j`82£0:j`=2•0:j`<2ﬂ0j`I2·00j`J0Há “
+	(‚”È0j`2ü0j`82‰0:09j`;02•0:j`<2‘0:j`=2¶02Â0j`82Ê0:j`=2ÿ0j`.2Ÿ00j`K02⁄00j`K02€0j`?Há “
+	(ËàÔ0j`2ü0j`82•0:09j`E02◊0:j`D2Í0j`>2Ï00j`L02Ì0j`HHá “
+	(ÓnÙ0j`20j`82◊0:j`D2Ò00j` 02Ú00j` 0Há “
+	(Û∏˚0j`2ü0j`82£0:09j`;02•0:09j`E02ı00j`02¯00j`M0j`N2˘00j`0Há “
+	(˙ƒÄ0j`2ü0j`82£0:09j`;02•0:09j`E02
+0j`O2¯00j`M0j`P2˘00j`02˛00j`0Há “
+	(ˇàÑ0j`2ü0j`82•0:09j`Q02◊0:j`R2Í0j`>2Ï00j`02Ì0j`HHá “
+	(É`â0j`2ü0j`82£0:j`=2Ü0j`S2á00j`M0Há “
+	(àæó0j`2
+0j`T2-è(" 00j`V0j`W0Uj`X02ê00j`02-î(" 00j`Y0j`Z0Uj`[02ï00j`0Há “
+	(ñRú0j`2
+0j`T2ô0j`\2ö00j`Y0Há “
+	(õD†0j`2
+0j`T2ù0j`\2û0j`\Há “
+	(üD§0j`2
+0j`T2¢0j`]2ô0j`\Há “
+	(£R¶0j`2
+0j`T2¢0j`]2ô00j`V0Há “
+	(•7®0j`2
+0j`T2ô0j`\Há “
+	(ß7™0j`2
+0j`T2ô0j`\Há “
+	(©_Æ0j`2
+0j`T2ô0j`\2¢0j`]2¨00j`^0Há “
+	(≠Q≤0j`2
+0j`T2ô0j`\2¢0j`]2∞0j`_Há “
+	(±—ø0j`2
+0j`T2ô0j`\2¥0j``2∂00j`a02∏00j`b02∫00j`c02º0	0j`
+0j`d2Ω00j`0Há “
+	(æD√0j`2
+0j`T2ô0j`\2¡0j`eHá “
+	(¬Å»0j`2
+0j`f2ô0j`\2-≈(" 00j`V0j`W0Uj`X02∆00j`0Há “
+	(«DÃ0j`2
+0j`T2…0j`\2 0j`\Há “
+	(ÀÜ’0j`2
+0j`T2ô0j`\2Œ0j`g2œ0j`e2–0j`2“0j`h2”00j`0Há “
+	(‘QŸ0j`2
+0j`T2ô0j`\2÷0j`2◊0j`hHá “
+	(ÿz›0j`2
+0j`T2ô0j`\2⁄0j`h2÷00j`02◊00j`i0Há “
+	(‹D·0j`2
+0j`T2ô0j`\2ﬂ0j`jHá “
+	(‡Á0j`2
+0j`f2ô0j`\2
+0j`k2‰00j` 0j`l2Â00j`0Há “
+	(ÊqÎ0j`2
+0j`T2ô0j`\2
+0j`k2Ë00j` 0j`l2È0j`Há “
+	(Íg0j`2
+0j`T2¢0j`]2Ó0mj`n02ô00j`V0Há “
+	(ÔtÛ0j`2
+0j`T2¢0j`]2Ò0j`2Ó0mj`n02ô00j`V0Há “
+	(Ú3ˆ0j`2
+0j`T2Ù0Há “
+	(ıR˙0j`2
+0j`T2ô0j`\2¯00j`o0Há “
+	(˘«ã0j`2
+0j`f2˝0pj`q02'Ç"0rj`s0j`t0Uj`u02É00j`02'à"0vj`w0j`x0Uj`y02â00j`0Há “
+	(ämê0j`2
+0j`T2ô0j`\2ç00j`z02é00j`z0Há “
+	(èmî0j`2
+0j`f2ô0j`\2ë00j`z02í00j`z0Há “
+	(ìDñ0j`2
+0j`T2ô0j`\2ã0j`\Há “
+	(ïDò0j`2
+0j`T2ô0j`\2ã0j`\Há “
+	(óRú0j`2
+0j`f2ô0j`\2ö0:09j`{0Há “
+	(õDü0j`2
+0j`T2ô0j`\2ö0:j`|Há “
+	(ûm¢0j`2
+0j`f2ô0j`\2ë00j`02í0:09j`}0Há “
+	(°n®0j`2
+0j`T2¶0~j`0j`Ä2ö0:j`|2ô00j`V0Há “
+	(ßQ¨0j`2
+0j`T2ô0j`\2©0j`_2™0:j`|Há “
+	(´QØ0j`2
+0j`T2ô0j`\2™0:j`|2≠0j`.Há “
+	(ÆD±0j`2
+0j`T2ô0j`\2™0:j`|Há “
+	(∞A∂0j`2
+0j`f2¥
+0Åj`Ç0Há “
+	(µRπ0j`2
+0j`T2ô0j`\2™0:j`|2¶0:j`ÉHá “
+	(∏QΩ0j`2
+0j`T2ô0j`\2∫0:j`|2ª0:j`|Há “
+	(ºè¡0j`2
+0j`f2ô0j`\2ë00j`02í0:09j`}02 ø0	0j`
+0j`ÑHá “
+	(¿√0j`Há “
+	(¬≈0j`Há “
+	(ƒH 0j`2«0j`Ö2»0:09j`E0Há†“
+	(…b‘0j`2À0j`\2Õ0j`Ü2Œ02œ02“
+0áj`à0Há “
+	(”^⁄0j`2’0j`\2◊0:09j`â02•0:j`ä2¶0Há “
+	(ŸG›0j`2’0j`\2£0:j`ã2•0:j`äHá “
+	(‹aﬂ0j`2’0j`\2£0:j`ã2•0:j`ä2¨0j`.2Æ0j`>Há “
+	(ﬁy‚0j`2’0j`\2£0:09j`â02•0:j`ä2‘0:j`å2¶02Ÿ0j`>Há “
+	(·a‰0j`2’0j`\2£0:j`å2Ü0j`S2á00j`M0Há “
+	(„SÊ0j`2’0j`\2¢0j`]2ô00j`V0Há “
+	(Â8Ë0j`2’0j`\2ô0j`\Há “
+	(Á8Í0j`2’0j`\2ô0j`\Há “
+	(ÈRÏ0j`2’0j`\2ô0j`\2¢0j`]2∞0j`_Há “
+	(ÎEÓ0j`2’0j`\2…0j`\2 0j`\Há “
+	(ÌR0j`2’0j`\2ô0j`\2÷0j`\2◊0j`hHá “
+	(ÔÄÚ0j`2’0j`\2ô0j`\2
+0j`k2‰00j` 0j`l2Â00j`0Há “
+	(ÒEÙ0j`2’0j`\2ô0j`\2ã0j`\Há “
+	(ÛEˆ0j`2’0j`\2ô0j`\2ã0j`\Há “
+	(ıi¯0j`2’0j`\2¶0~j`02ö0:j`É2ô00j`V0Há “
+	(˜S˙0j`2’0j`\2ô0j`\2©0j`_2™0:j`ÉHá “
+	(˘S¸0j`2’0j`\2ô0j`\2™0:j`É2≠0j`.Há “
+	(˚F˛0j`2’0j`\2ô0j`\2™0:j`ÉHá “
+	(˝PÇ0j`2’0j`\2æ02Ä0:09j`ç0Há “
+	(ÅGÜ0j`2É0:j`É2¶02•02Ñ0Há “
+	(Ö5à0j`2É0:j`É2¶0Há “
+	(áFç0j`2â02ä02¶02ã0j`Há “
+	(å+ê0j`2é0j`.Há “
+	(è'ì0j`2ë0Há “
+	(í'ñ0j`.2î0Há “
+	(ïò0j`.Há “
+	(óBû0j`2ô0j`\2ö02ú0j`éHá “
+	(ù†0j`\Há “
+	(üt©0j`2°0j`\2#¶0ê0èj`ë0j`í2ß02î00j`V0Há “
+	(®y±0j`2™0j`\2¨0j`ì2#Æ0ê0èj`ë0j`î2Ø00j`0Há “
+	(∞R≥0j`2
+0j`T2ô0j`\2ö00j`Y0Há “
+	(≤Üµ0j`2
+0j`T2ô0j`\2Œ0j`g2œ0j`e2–0j`\2“0j`h2”00j`V0Há “
+	(¥Oπ0j`2∂0j`\2ë02∑00j`V0Há “
+	(∏Oº0j`2∂0j`\2ë02∫00j`V0Há “
+	(ªFø0j`2∑0j`\2Ω00j`M0Há “
+	(æO¡0j`2∂0j`\2ë02∑00j`V0Há “
+	(¿ÿ
+‡
+ Í
+platform.darwin

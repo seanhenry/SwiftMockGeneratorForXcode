@@ -1,0 +1,1165 @@
+
+‚Z
+platform
+IOBluetooth
+BluetoothHCIInquiryAccessCode
+kotlinx
+cinterop
+
+CStructVar
+CPointer
+
+UByteVarOf
+kotlin
+UByte
+posix
+
+uint8_tVar
+CArrayPointer
+internal
+CStruct
+ArrayMemberAt
+offset
+data
+native
+	NativePtr
+rawPtr
+	Companion
+spelling
+struct { unsigned char p0[3]; }
+Type
+VarType
+size
+align
+
+Deprecated
+message
+(Use sizeOf<T>() or alignOf<T>() instead.
+replaceWith
+ReplaceWith
+imports
+level
+DeprecationLevel
+WARNING
+%BluetoothHCICurrentInquiryAccessCodes
+"BluetoothHCIInquiryAccessCodeCount
+value
+MemberAt
+count
+codes
+&struct { unsigned char p0; void* p1; }
+-BluetoothHCICurrentInquiryAccessCodesForWrite
+3struct { unsigned char p0; unsigned char p1[192]; }
+"BluetoothHCILinkSupervisionTimeout
+UShort
+BluetoothConnectionHandle
+handle
+uint16_t
+timeout
+0struct { unsigned short p0; unsigned short p1; }
+"BluetoothHCITransmitPowerLevelInfo
+Byte
+BluetoothHCITransmitPowerLevel
+-struct { unsigned short p0; signed char p1; }
+%BluetoothHCIAutomaticFlushTimeoutInfo
+!BluetoothHCIAutomaticFlushTimeout
+BluetoothTransportInfo
+UInt
+uint32_t
+	productID
+vendorID
+type
+	ByteVarOf
+ByteVar
+productName
+
+vendorName
+ULong
+uint64_t
+totalDataBytesSent
+totalSCOBytesSent
+totalDataBytesReceived
+totalSCOBytesReceived
+≥struct { unsigned int p0; unsigned int p1; unsigned int p2; char p3[35]; char p4[35]; unsigned long long p5; unsigned long long p6; unsigned long long p7; unsigned long long p8; }
+BluetoothHCIInquiryResult
+BluetoothDeviceAddress
+deviceAddress
+BluetoothPageScanRepetitionMode
+pageScanRepetitionMode
+BluetoothHCIPageScanPeriodMode
+pageScanPeriodMode
+BluetoothHCIPageScanMode
+pageScanMode
+BluetoothClassOfDevice
+classOfDevice
+BluetoothClockOffset
+clockOffset
+àstruct { struct { unsigned char p0[6]; } p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned int p4; unsigned short p5; }
+BluetoothHCIInquiryResults
+results
+IOKit
+IOItemCount
+¨struct { struct { struct { unsigned char p0[6]; } p0; unsigned char p1; unsigned char p2; unsigned char p3; unsigned int p4; unsigned short p5; } p0[50]; unsigned int p1; }
+!BluetoothHCIInquiryWithRSSIResult
+uint8_t
+reserved
+BluetoothHCIRSSIValue
+	RSSIValue
+Üstruct { struct { unsigned char p0[6]; } p0; unsigned char p1; unsigned char p2; unsigned int p3; unsigned short p4; signed char p5; }
+"BluetoothHCIInquiryWithRSSIResults
+™struct { struct { struct { unsigned char p0[6]; } p0; unsigned char p1; unsigned char p2; unsigned int p3; unsigned short p4; signed char p5; } p0[50]; unsigned int p1; }
+#BluetoothHCIExtendedInquiryResponse
+!struct { unsigned char p0[240]; }
+.BluetoothHCIReadExtendedInquiryResponseResults
+BluetoothHCIFECRequired
+outFECRequired
+extendedInquiryResponse
+Bstruct { unsigned char p0; struct { unsigned char p0[240]; } p1; }
+!BluetoothHCIExtendedInquiryResult
+numberOfReponses
+æstruct { unsigned char p0; struct { unsigned char p0[6]; } p1; unsigned char p2; unsigned char p3; unsigned int p4; unsigned short p5; signed char p6; struct { unsigned char p0[240]; } p7; }
+ BluetoothHCIReadLMPHandleResults
+BluetoothLMPHandle
+
+lmp_handle
+@struct { unsigned short p0; unsigned char p1; unsigned int p2; }
+ BluetoothHCISimplePairingOOBData
+ struct { unsigned char p0[16]; }
+#BluetoothHCIReadLocalOOBDataResults
+hash
+
+randomizer
+Tstruct { struct { unsigned char p0[16]; } p0; struct { unsigned char p0[16]; } p1; }
+BluetoothIOCapabilityResponse
+BluetoothIOCapability
+ioCapability
+BluetoothOOBDataPresence
+OOBDataPresence
+#BluetoothAuthenticationRequirements
+authenticationRequirements
+dstruct { struct { unsigned char p0[6]; } p0; unsigned char p1; unsigned char p2; unsigned char p3; }
+ BluetoothUserPasskeyNotification
+BluetoothPasskey
+passkey
+?struct { struct { unsigned char p0[6]; } p0; unsigned int p1; }
+BluetoothKeypressNotification
+!BluetoothKeypressNotificationType
+notificationType
+@struct { struct { unsigned char p0[6]; } p0; unsigned char p1; }
+0BluetoothRemoteHostSupportedFeaturesNotification
+BluetoothHCISupportedFeatures
+hostSupportedFeatures
+Rstruct { struct { unsigned char p0[6]; } p0; struct { unsigned char p0[8]; } p1; }
+%BluetoothAFHHostChannelClassification
+ struct { unsigned char p0[10]; }
+BluetoothAFHResults
+BluetoothAFHMode
+mode
+afhMap
+Estruct { unsigned short p0; unsigned char p1; unsigned char p2[10]; }
+ BluetoothUserConfirmationRequest
+BluetoothNumericValue
+numericValue
+-BluetoothHCIEventSimplePairingCompleteResults
+.struct { struct { unsigned char p0[6]; } p0; }
+"BluetoothSynchronousConnectionInfo
+BluetoothHCITransmitBandwidth
+transmitBandWidth
+BluetoothHCIReceiveBandwidth
+receiveBandWidth
+BluetoothHCIMaxLatency
+
+maxLatency
+BluetoothHCIVoiceSetting
+voiceSetting
+ BluetoothHCIRetransmissionEffort
+retransmissionEffort
+BluetoothPacketType
+
+packetType
+wstruct { unsigned int p0; unsigned int p1; unsigned short p2; unsigned short p3; unsigned char p4; unsigned short p5; }
+*BluetoothEnhancedSynchronousConnectionInfo
+ BluetoothHCITransmitCodingFormat
+transmitCodingFormat
+BluetoothHCIReceiveCodingFormat
+receiveCodingFormat
+"BluetoothHCITransmitCodecFrameSize
+transmitCodecFrameSize
+!BluetoothHCIReceiveCodecFrameSize
+receiveCodecFrameSize
+BluetoothHCIInputBandwidth
+inputBandwidth
+BluetoothHCIOutputBandwidth
+outputBandwidth
+BluetoothHCIInputCodingFormat
+inputCodingFormat
+BluetoothHCIOutputCodingFormat
+outputCodingFormat
+BluetoothHCIInputCodedDataSize
+inputCodedDataSize
+BluetoothHCIOutputCodedDataSize
+outputCodedDataSize
+BluetoothHCIInputPCMDataFormat
+inputPCMDataFormat
+BluetoothHCIOutputPCMDataFormat
+outputPCMDataFormat
+,BluetoothHCIInputPCMSamplePayloadMSBPosition
+ inputPCMSampelPayloadMSBPosition
+-BluetoothHCIOutputPCMSamplePayloadMSBPosition
+!outputPCMSampelPayloadMSBPosition
+BluetoothHCIInputDataPath
+inputDataPath
+BluetoothHCIOutputDataPath
+outputDataPath
+"BluetoothHCIInputTransportUnitSize
+inputTransportUnitSize
+#BluetoothHCIOutputTransportUnitSize
+outputTransportUnitSize
+ﬂstruct { unsigned int p0; unsigned int p1; unsigned long long p2; unsigned long long p3; unsigned short p4; unsigned short p5; unsigned int p6; unsigned int p7; unsigned long long p8; unsigned long long p9; unsigned short p10; unsigned short p11; unsigned char p12; unsigned char p13; unsigned char p14; unsigned char p15; unsigned char p16; unsigned char p17; unsigned char p18; unsigned char p19; unsigned short p20; unsigned short p21; unsigned char p22; unsigned short p23; }
+5BluetoothHCIEventSynchronousConnectionCompleteResults
+connectionHandle
+BluetoothLinkType
+linkType
+transmissionInterval
+retransmissionWindow
+receivePacketLength
+transmitPacketLength
+BluetoothAirMode
+airMode
+Østruct { unsigned short p0; struct { unsigned char p0[6]; } p1; unsigned char p2; unsigned char p3; unsigned char p4; unsigned short p5; unsigned short p6; unsigned char p7; }
+4BluetoothHCIEventSynchronousConnectionChangedResults
+gstruct { unsigned short p0; unsigned char p1; unsigned char p2; unsigned short p3; unsigned short p4; }
+*BluetoothHCIEventConnectionCompleteResults
+BluetoothHCIEncryptionMode
+encryptionMode
+estruct { unsigned short p0; struct { unsigned char p0[6]; } p1; unsigned char p2; unsigned char p3; }
+,BluetoothHCIEventLEConnectionCompleteResults
+role
+peerAddressType
+peerAddress
+connInterval
+connLatency
+supervisionTimeout
+masterClockAccuracy
+∞struct { unsigned short p0; unsigned char p1; unsigned char p2; struct { unsigned char p0[6]; } p3; unsigned short p4; unsigned short p5; unsigned short p6; unsigned char p7; }
+4BluetoothHCIEventLEEnhancedConnectionCompleteResults
+localResolvablePrivateAddress
+peerResolvablePrivateAddress
+¯struct { unsigned short p0; unsigned char p1; unsigned char p2; struct { unsigned char p0[6]; } p3; struct { unsigned char p0[6]; } p4; struct { unsigned char p0[6]; } p5; unsigned short p6; unsigned short p7; unsigned short p8; unsigned char p9; }
+2BluetoothHCIEventLEConnectionUpdateCompleteResults
+Vstruct { unsigned short p0; unsigned short p1; unsigned short p2; unsigned short p3; }
+8BluetoothHCIEventLEReadRemoteUsedFeaturesCompleteResults
+usedFeatures
+Astruct { unsigned short p0; struct { unsigned char p0[8]; } p1; }
+-BluetoothHCIEventDisconnectionCompleteResults
+BluetoothReasonCode
+reason
+/struct { unsigned short p0; unsigned char p1; }
+-BluetoothHCIEventReadSupportedFeaturesResults
+supportedFeatures
+,BluetoothHCIEventReadExtendedFeaturesResults
+ BluetoothHCIExtendedFeaturesInfo
+supportedFeaturesInfo
+estruct { unsigned short p0; struct { unsigned char p0; unsigned char p1; unsigned char p2[8]; } p1; }
+-BluetoothHCIEventReadRemoteVersionInfoResults
+BluetoothLMPVersion
+
+lmpVersion
+BluetoothManufacturerName
+manufacturerName
+BluetoothLMPSubversion
+lmpSubversion
+Ustruct { unsigned short p0; unsigned char p1; unsigned short p2; unsigned short p3; }
+)BluetoothHCIEventRemoteNameRequestResults
+BluetoothDeviceName
+
+deviceName
+Estruct { struct { unsigned char p0[6]; } p0; unsigned char p1[248]; }
+'BluetoothHCIEventReadClockOffsetResults
+)BluetoothHCIEventConnectionRequestResults
+Qstruct { struct { unsigned char p0[6]; } p0; unsigned int p1; unsigned char p2; }
++BluetoothHCIEventLinkKeyNotificationResults
+BluetoothKey
+linkKey
+BluetoothKeyType
+keyType
+estruct { struct { unsigned char p0[6]; } p0; struct { unsigned char p0[16]; } p1; unsigned char p2; }
+&BluetoothHCIEventMaxSlotsChangeResults
+BluetoothMaxSlots
+maxSlots
+"BluetoothHCIEventModeChangeResults
+BluetoothHCIConnectionMode
+BluetoothHCIModeInterval
+modeInterval
+Bstruct { unsigned short p0; unsigned char p1; unsigned short p2; }
+&BluetoothHCIEventReturnLinkKeysResults
+numLinkKeys
+anonymousStruct1
+linkKeys
+wstruct { unsigned char p0; struct { struct { unsigned char p0[6]; } p0; struct { unsigned char p0[16]; } p1; } p1[1]; }
+Sstruct { struct { unsigned char p0[6]; } p0; struct { unsigned char p0[16]; } p1; }
+.BluetoothHCIEventAuthenticationCompleteResults
+struct { unsigned short p0; }
+(BluetoothHCIEventEncryptionChangeResults
+BluetoothEncryptionEnable
+enable
+7BluetoothHCIEventChangeConnectionLinkKeyCompleteResults
+-BluetoothHCIEventMasterLinkKeyCompleteResults
+BluetoothKeyFlag
+keyFlag
+(BluetoothHCIEventQoSSetupCompleteResults
+'BluetoothHCIQualityOfServiceSetupParams
+setupParams
+îstruct { unsigned short p0; struct { unsigned char p0; unsigned char p1; unsigned int p2; unsigned int p3; unsigned int p4; unsigned int p5; } p1; }
+%BluetoothHCIEventHardwareErrorResults
+BluetoothHCIStatus
+error
+struct { unsigned char p0; }
+%BluetoothHCIEventFlushOccurredResults
+"BluetoothHCIEventRoleChangeResults
+BluetoothRole
+Sstruct { unsigned short p0; struct { unsigned char p0[6]; } p1; unsigned char p2; }
+*BluetoothHCIEventDataBufferOverflowResults
+,BluetoothHCIEventConnectionPacketTypeResults
+3BluetoothHCIEventReadRemoteSupportedFeaturesResults
+lmpFeatures
+Sstruct { unsigned char p0; unsigned short p1; struct { unsigned char p0[8]; } p2; }
+2BluetoothHCIEventReadRemoteExtendedFeaturesResults
+BluetoothHCIPageNumber
+page
+maxPage
+wstruct { unsigned char p0; unsigned short p1; unsigned char p2; unsigned char p3; struct { unsigned char p0[8]; } p4; }
+$BluetoothHCIEventQoSViolationResults
+*BluetoothHCIEventPageScanModeChangeResults
+BluetoothPageScanMode
+4BluetoothHCIEventPageScanRepetitionModeChangeResults
+&BluetoothHCIEventVendorSpecificResults
+length
+3struct { unsigned char p0; unsigned char p1[255]; }
+4BluetoothHCIEventEncryptionKeyRefreshCompleteResults
+&BluetoothHCIEventSniffSubratingResults
+maxTransmitLatency
+maxReceiveLatency
+minRemoteTimeout
+minLocalTimeout
+istruct { unsigned short p0; unsigned short p1; unsigned short p2; unsigned short p3; unsigned short p4; }§
+ 
+ 
+ 
+
+
+ 
+ 
+ 
+
+	 
+ 
+
+
+ 
+ 
+
+ 
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+  
+# 
+% 
+& 
+( 
+ 
+, 
+ 
+. 
+/ 
+0 
+
+2 
+  
+5 
+6 
+7 
+% 
+9 
+: 
+) 
+; 
+< 
+
+= 
+A 
+B 
+E 
+
+F 
+, 
+L 
+M 
+O 
+Q 
+S 
+U 
+W 
+4 
+Z 
+ \
+=] 
+< 
+_ 
+
+` 
+b 
+@ 
+e 
+D 
+g 
+F 
+i 
+j 
+H 
+n 
+K 
+q 
+r 
+M 
+u 
+P 
+w 
+R 
+{ 
+| 
+~ 
+Ä 
+T 
+É 
+Ñ 
+Y 
+á 
+à 
+\ 
+ã 
+å 
+_ 
+è 
+b 
+ë 
+í 
+d 
+ñ 
+ó 
+g 
+ô 
+j 
+õ 
+ú 
+û 
+† 
+¢ 
+§ 
+¶ 
+l 
+© 
+™ 
+¨ 
+Æ 
+∞ 
+≤ 
+¥ 
+∂ 
+∏ 
+∫ 
+º 
+æ 
+¿ 
+¬ 
+ƒ 
+∆ 
+» 
+  
+Ã 
+t 
+œ 
+— 
+◊ 
+à 
+⁄ 
+å 
+‹ 
+› 
+é 
+‡ 
+ë 
+È 
+ì 
+Ì 
+ï 
+Ô 
+ó 
+Ú 
+Û 
+ô 
+ˆ 
+ú 
+¯ 
+˘ 
+û 
+¸ 
+˝ 
+ˇ 
+Å 
+° 
+Ñ 
+Ö 
+¶ 
+à 
+© 
+â 
+´ 
+ã 
+å 
+é 
+≠ 
+ë 
+í 
+± 
+î 
+ï 
+ñ 
+¥ 
+ô 
+õ 
+∏ 
+π 
+ü 
+º 
+° 
+¢ 
+æ 
+§ 
+¡ 
+• 
+¶ 
+√ 
+® 
+© 
+∆ 
+¨ 
+≠ 
+… 
+∞ 
+Ã 
+± 
+≤ 
+Œ 
+¥ 
+— 
+µ 
+” 
+∂ 
+’ 
+π 
+∫ 
+◊ 
+æ 
+⁄ 
+ø 
+¿ 
+‹ 
+¡ 
+ﬂ 
+¬ 
+· 
+≈ 
+„ 
+∆ 
+Â "j 20:B
+0j`R>&0	0j`0j0	0j``8«@ ä “
+("Uá20B“
+“
+,(B
+!
+"
+08$"∞ 20:B
+0j`R=)0	j`2
+'0	j`8«@«XÜä í RE*
+002'
+008«@«XÜäí“
+(+"Uá20B“
+ “
+,(B
+!
+"
+08$"© 20:B
+0j`R=)0	j`2
+'0	j`8«@«XÜä í R>*&0	0j`0j0	0j``8«@ ä“
+(-"Vá20B“
+	Ç“
+,(B
+!
+"
+08$"®  20:B
+0j`R=10!j`"2
+'0!j`"8«@«XÜä í R=30!j`#2
+'0!j`#8«@«XÜäí“
+(4"Uá$20B“
+“
+,(B
+!
+"
+08$"®% 20:B
+0j`R=10!j`"2
+'0!j`"8«@«XÜä í R="0&j`'2
+'0&j`'8«@«XÜäí“
+(8"Uá(20B“
+“
+,(B
+!
+"
+08$"®) 20:B
+0j`R=10!j`"2
+'0!j`"8«@«XÜä í R=30!j`*2
+'0!j`*8«@«XÜäí“
+(4"Uá+20B“
+“
+,(B
+!
+"
+08$"Î, 20:B
+0j`R=>0-j`.2
+'0-j`.8«@«XÜä í R=?0-j`.2
+'0-j`.8«@«XÜäíR=@0-j`.2
+'0-j`.8«@«XÜäíR>C&0&0/j`00j0&0/j`0`8«@ äR>D&0&0/j`00j0&0/j`0`8«@ ä^R?G01j`22
+'01j`28«@«XÜä	∞í	∞R?H01j`22
+'01j`28«@«XÜä	¿í	¿R?I01j`22
+'01j`28«@«XÜä	–í	–R?J01j`22
+'01j`28«@«XÜä	‡í	‡“
+(K"Vá320B“
+	“
+,(B
+!
+"
+08$"Å4 20:B
+0j`RN058«@ ä R=P0	j`62
+'0	j`68«@«XÜäíR=R0	j`72
+'0	j`78«@«XÜäíR=T0	j`82
+'0	j`88«@«XÜäíR=V0-j`92
+'0-j`98«@«XÜäíR=X0!j`:2
+'0!j`:8«@«XÜä í “
+(Y"Uá;20B“
+(“
+,(B
+!
+"
+08$"ó< 20:B
+0j`R*[040j04`8«@ ä R?)0-j`>2
+'0-j`>8«@«XÜä	–í	–“
+(^"Vá?20B“
+	ÿ“
+,(B
+!
+"
+08$"Å@ 20:B
+0j`RN058«@ ä R=P0	j`62
+'0	j`68«@«XÜäíR=a0	j`A2
+'0	j`A8«@«XÜäíR=V0-j`92
+'0-j`98«@«XÜäíR=X0!j`:2
+'0!j`:8«@«XÜäíR=c0&j`B2
+'0&j`B8«@«XÜäí“
+(d"UáC20B“
+ “
+,(B
+!
+"
+08$"óD 20:B
+0j`R*[0@0j0@`8«@ ä R?)0-j`>2
+'0-j`>8«@«XÜä	¿í	¿“
+(f"VáE20B“
+	»“
+,(B
+!
+"
+08$"jF 20:B
+0j`R>&0	0j`0j0	0j``8«@ ä “
+(h"VáG20B“
+	‡“
+,(B
+!
+"
+08$"ÖH 20:B
+0j`R=k0	j`I2
+'0	j`I8«@«XÜä í Rl0F8«@ ä“
+(m"VáJ20B“
+	‚“
+,(B
+!
+"
+08$"‹K 20:B
+0j`R=o0	j`A2
+'0	j`A8«@«XÜä í RN058«@ äR=P0	j`62
+'0	j`68«@«XÜäíR=a0	j`A2
+'0	j`A8«@«XÜäíR=V0-j`92
+'0-j`98«@«XÜäíR=X0!j`:2
+'0!j`:8«@«XÜä í R=c0&j`B2
+'0&j`B8«@«XÜä$í$Rl0F8«@ ä&“
+(p"VáL20B“
+	à“
+,(B
+!
+"
+08$"ÁM 20:B
+0j`R=10!j`"2
+'0!j`"8«@«XÜä í R=s0	j`N2
+'0	j`N8«@«XÜäíR=a0-j`.2
+'0-j`.8«@«XÜäí“
+(t"UáO20B“
+“
+,(B
+!
+"
+08$"jP 20:B
+0j`R>&0	0j`0j0	0j``8«@ ä “
+(v"UáQ20B“
+ “
+,(B
+!
+"
+08$"bR 20:B
+0j`Rx0P8«@ ä Ry0P8«@ ä “
+(z"UáS20B“
+@“
+,(B
+!
+"
+08$"ÖT 20:B
+0j`RN058«@ ä R=}0	j`U2
+'0	j`U8«@«XÜäíR=0	j`V2
+'0	j`V8«@«XÜäíR>Å0	j`W2
+'0	j`W8«@«XÜäí“
+	(Ç"UáX20B“
+“
+,(B
+!
+"
+08$"áY 20:B
+0j`RN058«@ ä R>Ö0-j`Z2
+'0-j`Z8«@«XÜäí“
+	(Ü"Uá[20B“
+“
+,(B
+!
+"
+08$"á\ 20:B
+0j`RN058«@ ä R>â0	j`]2
+'0	j`]8«@«XÜäí“
+	(ä"Uá^20B“
+“
+,(B
+!
+"
+08$"d_ 20:B
+0j`RN058«@ ä Rç0`8«@ ä“
+	(é"Uáa20B“
+“
+,(B
+!
+"
+08$"kb 20:B
+0j`R>&0	0j`0j0	0j``8«@ ä “
+	(ê"Uác20B“
+“
+,(B
+!
+"
+08$"Îd 20:B
+0j`R=10!j`"2
+'0!j`"8«@«XÜä í R>ì0	j`e2
+'0	j`e8«@«XÜäíR?î&0	0j`0j0	0j``8«@ ä“
+	(ï"Uáf20B“
+“
+,(B
+!
+"
+08$"ág 20:B
+0j`RN058«@ ä R>ò0-j`h2
+'0-j`h8«@«XÜäí“
+	(Ü"Uái20B“
+“
+,(B
+!
+"
+08$"Gj 20:B
+0j`RN058«@ ä “
+	(ö"Uák20B“
+“
+,(B
+!
+"
+08$"´l 20:B
+0j`R>ù0-j`m2
+'0-j`m8«@«XÜä í R>ü0-j`n2
+'0-j`n8«@«XÜäíR>°0!j`o2
+'0!j`o8«@«XÜäíR>£0!j`p2
+'0!j`p8«@«XÜäíR>•0	j`q2
+'0	j`q8«@«XÜäíR>ß0!j`r2
+'0!j`r8«@«XÜäí“
+	(®"Uás20B“
+ “
+,(B
+!
+"
+08$"…t 20:B
+0j`R>ù0-j`m2
+'0-j`m8«@«XÜä í R>ü0-j`n2
+'0-j`n8«@«XÜäíR>´01j`u2
+'01j`u8«@«XÜäíR>≠01j`v2
+'01j`v8«@«XÜä í R>Ø0!j`w2
+'0!j`w8«@«XÜä0í0R>±0!j`x2
+'0!j`x8«@«XÜä4í4R>≥0-j`y2
+'0-j`y8«@«XÜä8í8R>µ0-j`z2
+'0-j`z8«@«XÜä@í@R>∑01j`{2
+'01j`{8«@«XÜäPíPR>π01j`|2
+'01j`|8«@«XÜä`í`R>ª0!j`}2
+'0!j`}8«@«XÜäpípR>Ω0!j`~2
+'0!j`~8«@«XÜätítR>ø0	j`2
+'0	j`8«@«XÜäxíxR@¡0	j`Ä2'0	j`Ä8«@«XÜäzízR@√0	j`Å2'0	j`Å8«@«XÜä|í|R@≈0	j`Ç2'0	j`Ç8«@«XÜä~í~RB«0	j`É2'0	j`É8«@«XÜä	Äí	ÄRB…0	j`Ñ2'0	j`Ñ8«@«XÜä	Çí	ÇRBÀ0	j`Ö2'0	j`Ö8«@«XÜä	Ñí	ÑRBÕ0	j`Ü2'0	j`Ü8«@«XÜä	Üí	ÜR@°0!j`o2
+'0!j`o8«@«XÜä	àí	àR@£0!j`p2
+'0!j`p8«@«XÜä	åí	åR@•0	j`q2
+'0	j`q8«@«XÜä	êí	êR@ß0!j`r2
+'0!j`r8«@«XÜä	îí	î“
+	(Œ"Wáá20B“
+	†“
+,(B
+!
+"
+08$"åà 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í RN058«@ äR@“0	j`â2'0	j`â8«@«XÜäíR>”0	j`A2
+'0	j`A8«@«XÜäíR>‘0	j`A2
+'0	j`A8«@«XÜäíR>’0!j`#2
+'0!j`#8«@«XÜäíR>÷0!j`#2
+'0!j`#8«@«XÜäíR@ÿ0	j`ä2'0	j`ä8«@«XÜä í “
+	(Ÿ"Váã20B“
+$“
+,(B
+!
+"
+08$"Ïå 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R>”0	j`A2
+'0	j`A8«@«XÜäíR>‘0	j`A2
+'0	j`A8«@«XÜäíR>’0!j`#2
+'0!j`#8«@«XÜäíR>÷0!j`#2
+'0!j`#8«@«XÜäí“
+	(€"Váç20B“
+“
+,(B
+!
+"
+08$"åé 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í RN058«@ äR@“0	j`â2'0	j`â8«@«XÜäíR@ﬁ0	j`è2'0	j`è8«@«XÜäí“
+	(ﬂ"Váê20B“
+“
+,(B
+!
+"
+08$"âë 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R>·0	j`A2
+'0	j`A8«@«XÜäíR>‚0	j`A2
+'0	j`A8«@«XÜäíR„058«@ äR>‰0!j`#2
+'0!j`#8«@«XÜäíR>Â0!j`#2
+'0!j`#8«@«XÜäíR>Ê0!j`#2
+'0!j`#8«@«XÜäíR>Á0	j`A2
+'0	j`A8«@«XÜä í “
+	(Ë"Váí20B“
+"“
+,(B
+!
+"
+08$"√ì 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R>·0	j`A2
+'0	j`A8«@«XÜäíR>‚0	j`A2
+'0	j`A8«@«XÜäíR„058«@ äRÍ058«@ äRÎ058«@ ä R>‰0!j`#2
+'0!j`#8«@«XÜä,í,R>Â0!j`#2
+'0!j`#8«@«XÜä0í0R>Ê0!j`#2
+'0!j`#8«@«XÜä4í4R>Á0	j`A2
+'0	j`A8«@«XÜä8í8“
+	(Ï"Váî20B“
+:“
+,(B
+!
+"
+08$"¨ï 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R>‰0!j`#2
+'0!j`#8«@«XÜäíR>Â0!j`#2
+'0!j`#8«@«XÜäíR>Ê0!j`#2
+'0!j`#8«@«XÜäí“
+	(Ó"Váñ20B“
+“
+,(B
+!
+"
+08$"âó 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R0`8«@ ä“
+	(Ò"Váò20B“
+“
+,(B
+!
+"
+08$"Æô 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R@Ù0	j`ö2'0	j`ö8«@«XÜäí“
+	(ı"Váõ20B“
+“
+,(B
+!
+"
+08$"âú 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R˜0`8«@ ä“
+	(Ò"Váù20B“
+“
+,(B
+!
+"
+08$"äû 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R˙0ü8«@ ä“
+	(˚"Vá†20B“
+“
+,(B
+!
+"
+08$"≤° 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R@˛0	j`¢2'0	j`¢8«@«XÜäíR@Ä0!j`£2'0!j`£8«@«XÜäíR@Ç0!j`§2'0!j`§8«@«XÜäí“
+	(É"Vá•20B“
+“
+,(B
+!
+"
+08$"z¶ 20:B
+0j`RN058«@ ä R0Ü0	0j`0j`ß8«@ ä“
+	(á"Wá®20B“
+	¸“
+,(B
+!
+"
+08$"™© 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R=X0!j`:2
+'0!j`:8«@«XÜäí“
+(4"Vá™20B“
+“
+,(B
+!
+"
+08$"…´ 20:B
+0j`RN058«@ ä R=V0-j`92
+'0-j`98«@«XÜäíR@“0	j`â2'0	j`â8«@«XÜäí“
+	(ä"Vá¨20B“
+ “
+,(B
+!
+"
+08$"®≠ 20:B
+0j`RN058«@ ä Rç0Æ8«@ äR@è0	j`Ø2'0	j`Ø8«@«XÜä,í,“
+	(ê"Vá∞20B“
+.“
+,(B
+!
+"
+08$"Æ± 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R@ì0	j`≤2'0	j`≤8«@«XÜäí“
+	(ı"Vá≥20B“
+“
+,(B
+!
+"
+08$"¥ 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R@ì0	j`µ2'0	j`µ8«@«XÜäíR@ó0!j`∂2'0!j`∂8«@«XÜäí“
+	(ò"Vá∑20B“
+“
+,(B
+!
+"
+08$"õ∏ 20:B
+0j`R>ö0	j`A2
+'0	j`A8«@«XÜä í R-ú0π0j	0π`8«@ ä“
+	(ù"Vá∫20B“
+.“
+,(B
+!
+"
+08$"fπ 20:B
+0j`RN058«@ ä Rç0Æ8«@ ä“
+	(û"Váª20B“
+,“
+,(B
+!
+"
+08$"lº 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í “
+	(†"VáΩ20B“
+“
+,(B
+!
+"
+08$"Ææ 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R@£0	j`ø2'0	j`ø8«@«XÜäí“
+	(ı"Vá¿20B“
+“
+,(B
+!
+"
+08$"l¡ 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í “
+	(†"Vá¬20B“
+“
+,(B
+!
+"
+08$"Æ√ 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R@ß0	j`ƒ2'0	j`ƒ8«@«XÜäí“
+	(ı"Vá≈20B“
+“
+,(B
+!
+"
+08$"ä∆ 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R™0«8«@ ä“
+	(´"Vá»20B“
+0“
+,(B
+!
+"
+08$"n… 20:B
+0j`R@Æ0	j` 2'0	j` 8«@«XÜä í “
+	(Ø"VáÀ20B“
+“
+,(B
+!
+"
+08$"lÃ 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í “
+	(†"VáÕ20B“
+“
+,(B
+!
+"
+08$" Œ 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í RN058«@ äR@·0	j`œ2'0	j`œ8«@«XÜäí“
+	(≥"Vá–20B“
+“
+,(B
+!
+"
+08$"n— 20:B
+0j`R@“0	j`â2'0	j`â8«@«XÜä í “
+	(Ø"Vá“20B“
+“
+,(B
+!
+"
+08$"´” 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R>ß0!j`r2
+'0!j`r8«@«XÜäí“
+(4"Vá‘20B“
+“
+,(B
+!
+"
+08$"À’ 20:B
+0j`R@Æ0	j` 2'0	j` 8«@«XÜä í R>–0!j`"2
+'0!j`"8«@«XÜäíR∑0`8«@ ä“
+	(∏"Vá÷20B“
+“
+,(B
+!
+"
+08$"œ◊ 20:B
+0j`R@Æ0	j` 2'0	j` 8«@«XÜä í R>–0!j`"2
+'0!j`"8«@«XÜäíR@ª0	j`ÿ2'0	j`ÿ8«@«XÜäíR@º0	j`ÿ2'0	j`ÿ8«@«XÜä
+í
+R∑0`8«@ ä“
+	(Ω"VáŸ20B“
+“
+,(B
+!
+"
+08$"l⁄ 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í “
+	(†"Vá€20B“
+“
+,(B
+!
+"
+08$"â‹ 20:B
+0j`RN058«@ ä R?T0	j`›2'0	j`›8«@«XÜäí“
+	(ä"Váﬁ20B“
+“
+,(B
+!
+"
+08$"áﬂ 20:B
+0j`RN058«@ ä R=P0	j`62
+'0	j`68«@«XÜäí“
+	(ä"Vá‡20B“
+“
+,(B
+!
+"
+08$"¨· 20:B
+0j`R>√0	j`A2
+'0	j`A8«@«XÜä í R>&0	0j`0j0	0j``8«@ ä“
+	(ƒ"Wá‚20B“
+	Ä“
+,(B
+!
+"
+08$"l„ 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í “
+	(†"Vá‰20B“
+“
+,(B
+!
+"
+08$"ÏÂ 20:B
+0j`R>–0!j`"2
+'0!j`"8«@«XÜä í R>«0!j`#2
+'0!j`#8«@«XÜäíR>»0!j`#2
+'0!j`#8«@«XÜäíR>…0!j`#2
+'0!j`#8«@«XÜäíR> 0!j`#2
+'0!j`#8«@«XÜäí“
+	(À"VáÊ20B“
+“
+,(B
+!
+"
+08$‡
+ Í
+platform.IOBluetoothÚ
+À $%()+,34;<?@CDEFGHJKLMOPQRSTXY[\^_abcdfgijklstáàãåçéêëíìîïñóòôõúùû†°•¶®©™´¨≠∞±≥¥∑∏∫πªºΩæ¿¡¬√≈∆»…ÀÃÕŒ–—“”‘’÷◊Ÿ⁄€‹ﬁﬂ‡·‚„‰ÂÊ

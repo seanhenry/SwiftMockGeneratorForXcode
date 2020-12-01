@@ -1,0 +1,829 @@
+
+„Y
+kotlinx
+cinterop
+
+CValuesRef
+UShortVarOf
+kotlin
+UShort
+platform
+darwin
+	UInt16Var
+deviceNodeIDArray
+deviceCount
+Int
+OSStatus
+internal
+CCall
+id
+.knifunptr_platform_FWAUserLib0_FWACountDevices
+FWACountDevices
+UInt
+UInt32
+nodeID
+CPointerVarOf
+CPointer
+cnames
+structs
+OpaqueFWARef
+
+FWAUserLib
+FWARef
+	FWARefVar
+outRef
+&knifunptr_platform_FWAUserLib1_FWAOpen
+FWAOpen
++knifunptr_platform_FWAUserLib2_FWAOpenLocal
+FWAOpenLocal
+inRef
+'knifunptr_platform_FWAUserLib3_FWAClose
+FWAClose
+UByte
+UInt8
+	inAddress
+inSubAddress
+ULong
+	ByteCount
+
+inDataSize
+	inDataPtr
+&knifunptr_platform_FWAUserLib4_FWARead
+FWARead
+'knifunptr_platform_FWAUserLib5_FWAWrite
+FWAWrite
+	UIntVarOf
+	UInt32Var
+	outNodeID
+outGeneration
++knifunptr_platform_FWAUserLib6_FWAGetNodeID
+FWAGetNodeID
+
+ULongVarOf
+	UInt64Var
+guid
+)knifunptr_platform_FWAUserLib7_FWAGetGUID
+
+FWAGetGUID
+,knifunptr_platform_FWAUserLib8_FWAGetMacGUID
+FWAGetMacGUID
+IOKit
+FWAddressStruct
+FWAddressPtr
+address
+outData
+-knifunptr_platform_FWAUserLib9_FWAReadQuadlet
+FWAReadQuadlet
+size
+
+UByteVarOf
+UInt8Var
+,knifunptr_platform_FWAUserLib10_FWAReadBlock
+FWAReadBlock
+cmd
+cmdSize
+response
+responseSize
+-knifunptr_platform_FWAUserLib11_FWAExecuteAVC
+FWAExecuteAVC
+data
+/knifunptr_platform_FWAUserLib12_FWAWriteQuadlet
+FWAWriteQuadlet
+-knifunptr_platform_FWAUserLib13_FWAWriteBlock
+FWAWriteBlock
+midiIO
+bufSizeInBytes
+buf
+sequenceNum
+midiStreamRef
+3knifunptr_platform_FWAUserLib14_FWACreateMIDIStream
+FWACreateMIDIStream
+4knifunptr_platform_FWAUserLib15_FWADisposeMIDIStream
+FWADisposeMIDIStream
+writeMsgLength
+0knifunptr_platform_FWAUserLib16_FWAWriteMIDIData
+FWAWriteMIDIData
+FWAMIDIReadBuffer
+FWAMIDIReadBuf
+/knifunptr_platform_FWAUserLib17_FWAReadMIDIData
+FWAReadMIDIData
+cycleTimeOffset
+5knifunptr_platform_FWAUserLib18_FWAGetCycleTimeOffset
+FWAGetCycleTimeOffset
+5knifunptr_platform_FWAUserLib19_FWASetCycleTimeOffset
+FWASetCycleTimeOffset
+vendorID
+.knifunptr_platform_FWAUserLib20_FWAGetVendorID
+FWAGetVendorID
+	ByteVarOf
+Byte
+ByteVar
+name
+0knifunptr_platform_FWAUserLib21_FWAGetDeviceName
+FWAGetDeviceName
+0knifunptr_platform_FWAUserLib22_FWAGetVendorName
+FWAGetVendorName
+BooleanVarOf
+Boolean
+
+BooleanVar
+supportsMIDI
+0knifunptr_platform_FWAUserLib23_FWAIsMIDICapable
+FWAIsMIDICapable
+plugs
+7knifunptr_platform_FWAUserLib24_FWAGetNumMIDIInputPlugs
+FWAGetNumMIDIInputPlugs
+8knifunptr_platform_FWAUserLib25_FWAGetNumMIDIOutputPlugs
+FWAGetNumMIDIOutputPlugs
+7knifunptr_platform_FWAUserLib26_FWASetNumMIDIInputPlugs
+FWASetNumMIDIInputPlugs
+8knifunptr_platform_FWAUserLib27_FWASetNumMIDIOutputPlugs
+FWASetNumMIDIOutputPlugs
+8knifunptr_platform_FWAUserLib28_FWAGetNumAudioInputPlugs
+FWAGetNumAudioInputPlugs
+9knifunptr_platform_FWAUserLib29_FWAGetNumAudioOutputPlugs
+FWAGetNumAudioOutputPlugs
+audioIO
+audioStreamRef
+4knifunptr_platform_FWAUserLib30_FWACreateAudioStream
+FWACreateAudioStream
+5knifunptr_platform_FWAUserLib31_FWADisposeAudioStream
+FWADisposeAudioStream
+rate
+6knifunptr_platform_FWAUserLib32_FWAGetDeviceSampleRate
+FWAGetDeviceSampleRate
+mode
+4knifunptr_platform_FWAUserLib33_FWAGetDeviceSendMode
+FWAGetDeviceSendMode
+inSize
+2knifunptr_platform_FWAUserLib34_FWAGetDeviceStatus
+FWAGetDeviceStatus
+numInput
+inputIsochChan
+	numOutput
+outputIsochChan
+6knifunptr_platform_FWAUserLib35_FWAGetDeviceStreamInfo
+FWAGetDeviceStreamInfo
+__CFRunLoopSource
+CoreFoundation
+CFRunLoopSourceRef
+CFRunLoopSourceRefVar
+source
+refcon
+2knifunptr_platform_FWAUserLib36_FWAInitAEvntSource
+FWAInitAEvntSource
+posix
+mach_port_tVar
+
+notifyPort
+3knifunptr_platform_FWAUserLib37_CreateAsyncWakePort
+CreateAsyncWakePort
+1knifunptr_platform_FWAUserLib38_FWAGetAEvntSource
+FWAGetAEvntSource
+	CFunction
+	Function3
+CPointed
+COpaquePointer
+IOReturn
+Unit
+IOAsyncCallback1
+callback
+refCon
+5knifunptr_platform_FWAUserLib39_FWAWriteMIDIDataAsync
+FWAWriteMIDIDataAsync
+readBufSize
+	Function4
+IOAsyncCallback2
+4knifunptr_platform_FWAUserLib40_FWAReadMIDIDataAsync
+FWAReadMIDIDataAsync
+update
+6knifunptr_platform_FWAUserLib41_FWASetDeviceStreamInfo
+FWASetDeviceStreamInfo
+/knifunptr_platform_FWAUserLib42_FWASyncUpDevice
+FWASyncUpDevice
+IOFWSpeedVar
+speed
+.knifunptr_platform_FWAUserLib43_FWAGetMaxSpeed
+FWAGetMaxSpeed
+
+inChannels
+outChannels
+6knifunptr_platform_FWAUserLib44_FWAGetMaxIsochChannels
+FWAGetMaxIsochChannels
+numSequences
+2knifunptr_platform_FWAUserLib45_FWAGetMaxSequences
+FWAGetMaxSequences
+sampleRates
+count
+:knifunptr_platform_FWAUserLib46_FWAGetSupportedSampleRates
+FWAGetSupportedSampleRates
+FWAudioTypeVar
+
+audioTypes
+9knifunptr_platform_FWAUserLib47_FWAGetSupportedAudioTypes
+FWAGetSupportedAudioTypes
+OpaqueFWAIsochStreamRef
+FWAIsochStreamRef
+FWAIsochStreamRefVar
+isochStreamRef
+<knifunptr_platform_FWAUserLib48_FWAGetCurrentIsochStreamRefs
+FWAGetCurrentIsochStreamRefs
+FWAStreamStateVar
+state
+6knifunptr_platform_FWAUserLib49_FWAGetIsochStreamState
+FWAGetIsochStreamState
+FWAStreamDirectionVar
+	direction
+:knifunptr_platform_FWAUserLib50_FWAGetIsochStreamDirection
+FWAGetIsochStreamDirection
+	channelID
+:knifunptr_platform_FWAUserLib51_FWAGetIsochStreamChannelID
+FWAGetIsochStreamChannelID
+:knifunptr_platform_FWAUserLib52_FWASetIsochStreamChannelID
+FWASetIsochStreamChannelID
+;knifunptr_platform_FWAUserLib53_FWAGetIsochStreamSampleRate
+FWAGetIsochStreamSampleRate
+;knifunptr_platform_FWAUserLib54_FWASetIsochStreamSampleRate
+FWASetIsochStreamSampleRate
+<knifunptr_platform_FWAUserLib55_FWAGetIsochStreamOutputSpeed
+FWAGetIsochStreamOutputSpeed
+	IOFWSpeed
+<knifunptr_platform_FWAUserLib56_FWASetIsochStreamOutputSpeed
+FWASetIsochStreamOutputSpeed
+type
+:knifunptr_platform_FWAUserLib57_FWAGetIsochStreamAudioType
+FWAGetIsochStreamAudioType
+FWAudioType
+:knifunptr_platform_FWAUserLib58_FWASetIsochStreamAudioType
+FWASetIsochStreamAudioType
+channelNumber
+FWAStreamDirection
+numAudioChannels
+numMIDIChannels
+4knifunptr_platform_FWAUserLib59_FWACreateIsochStream
+FWACreateIsochStream
+5knifunptr_platform_FWAUserLib60_FWADisposeIsochStream
+FWADisposeIsochStream
+3knifunptr_platform_FWAUserLib61_FWAStartIsochStream
+FWAStartIsochStream
+2knifunptr_platform_FWAUserLib62_FWAStopIsochStream
+FWAStopIsochStream
+numAudioSequence
+Cknifunptr_platform_FWAUserLib63_FWAGetIsochStreamAudioSequenceCount
+#FWAGetIsochStreamAudioSequenceCount
+Cknifunptr_platform_FWAUserLib64_FWASetIsochStreamAudioSequenceCount
+#FWASetIsochStreamAudioSequenceCount
+numMIDISequence
+Bknifunptr_platform_FWAUserLib65_FWAGetIsochStreamMIDISequenceCount
+"FWAGetIsochStreamMIDISequenceCount
+Bknifunptr_platform_FWAUserLib66_FWASetIsochStreamMIDISequenceCount
+"FWASetIsochStreamMIDISequenceCount
+String
+CString
+
+deviceName
+OpaqueFWADeviceRef
+FWADeviceRef
+FWADeviceRefVar
+device
+6knifunptr_platform_FWAUserLib67_FWACreateFWAudioDevice
+FWACreateFWAudioDevice
+7knifunptr_platform_FWAUserLib68_FWADisposeFWAudioDevice
+FWADisposeFWAudioDevice
+5knifunptr_platform_FWAUserLib69_FWAStartFWAudioDevice
+FWAStartFWAudioDevice
+4knifunptr_platform_FWAUserLib70_FWAStopFWAudioDevice
+FWAStopFWAudioDevice
+owningDevice
+hasInput
+	hasOutput
+OpaqueFWAEngineRef
+FWAEngineRef
+FWAEngineRefVar
+engine
+6knifunptr_platform_FWAUserLib71_FWACreateFWAudioEngine
+FWACreateFWAudioEngine
+7knifunptr_platform_FWAUserLib72_FWADisposeFWAudioEngine
+FWADisposeFWAudioEngine
+owningIsochStreamRef
+
+streamName
+streamIdent
+OpaqueFWAAudioStreamRef
+FWAAudioStreamRef
+FWAAudioStreamRefVar
+	streamRef
+6knifunptr_platform_FWAUserLib73_FWACreateFWAudioStream
+FWACreateFWAudioStream
+7knifunptr_platform_FWAUserLib74_FWADisposeFWAudioStream
+FWADisposeFWAudioStream
+sequenceNumber
+OpaqueFWAMIDIStreamRef
+FWAMIDIStreamRef
+FWAMIDIStreamRefVar
+:knifunptr_platform_FWAUserLib75_FWACreateFWAudioMIDIStream
+FWACreateFWAudioMIDIStream
+;knifunptr_platform_FWAUserLib76_FWADisposeFWAudioMIDIStream
+FWADisposeFWAudioMIDIStream
+owningMIDIStreamRef
+mpxID
+plugName
+	plugIdent
+OpaqueFWAMIDIPlugRef
+FWAMIDIPlugRef
+FWAMIDIPlugRefVar
+8knifunptr_platform_FWAUserLib77_FWACreateFWAudioMIDIPlug
+FWACreateFWAudioMIDIPlug
+plugRef
+9knifunptr_platform_FWAUserLib78_FWADisposeFWAudioMIDIPlug
+FWADisposeFWAudioMIDIPlug
+sequence
+1knifunptr_platform_FWAUserLib79_FWAGetClockSource
+FWAGetClockSource
+1knifunptr_platform_FWAUserLib80_FWASetClockSource
+FWASetClockSource
+enable
+.knifunptr_platform_FWAUserLib81_FWASetAutoLoad
+FWASetAutoLoad
+
+propertyID
+.knifunptr_platform_FWAUserLib82_FWAGetProperty
+FWAGetProperty
+.knifunptr_platform_FWAUserLib83_FWASetProperty
+FWASetProperty
+modelID
+
+pluginPath
+0knifunptr_platform_FWAUserLib84_FWASetPluginPath
+FWASetPluginPath
+owningStream
+OpaqueFWAAudioPlugRef
+FWAAudioPlugRef
+FWAAudioPlugRefVar
+4knifunptr_platform_FWAUserLib85_FWACreateFWAudioPlug
+FWACreateFWAudioPlug
+5knifunptr_platform_FWAUserLib86_FWADisposeFWAudioPlug
+FWADisposeFWAudioPlug
+<knifunptr_platform_FWAUserLib87_FWAGetFWAudioMIDIPlugChannel
+FWAGetFWAudioMIDIPlugChannel
+<knifunptr_platform_FWAUserLib88_FWASetFWAudioMIDIPlugChannel
+FWASetFWAudioMIDIPlugChannel
+8knifunptr_platform_FWAUserLib89_FWAGetFWAudioPlugChannel
+FWAGetFWAudioPlugChannel
+8knifunptr_platform_FWAUserLib90_FWASetFWAudioPlugChannel
+FWASetFWAudioPlugChannel
+index
+dir
+8knifunptr_platform_FWAUserLib91_FWAGetIndexedFWAudioPlug
+FWAGetIndexedFWAudioPlug
+OpaqueFWAMIDIDeviceNubRef
+FWAMIDIDeviceNubRef
+<knifunptr_platform_FWAUserLib92_FWAGetIndexedFWAudioMIDIPlug
+FWAGetIndexedFWAudioMIDIPlug
+isochChannel
+6knifunptr_platform_FWAUserLib93_FWAAttachFWAudioStream
+FWAAttachFWAudioStream
+:knifunptr_platform_FWAUserLib94_FWAAttachFWAudioMIDIStream
+FWAAttachFWAudioMIDIStream
+keyname
+keyvalue
+9knifunptr_platform_FWAUserLib95_FWASetFWAudioPlugProperty
+FWASetFWAudioPlugProperty
+=knifunptr_platform_FWAUserLib96_FWASetFWAudioMIDIPlugProperty
+FWASetFWAudioMIDIPlugProperty
+UInt64
+options
+9knifunptr_platform_FWAUserLib97_FWAOpenLocalWithInterface
+FWAOpenLocalWithInterface
+io_service_t
+arg0
+2knifunptr_platform_FWAUserLib98_FWAOpenWithService
+FWAOpenWithService
+IOFireWireSessionRefOpaqueStuct
+IOFireWireSessionRef
+IOFireWireSessionRefVar
+
+sessionRef
+0knifunptr_platform_FWAUserLib99_FWAGetSessionRef
+FWAGetSessionRef
+isochStream
+9knifunptr_platform_FWAUserLib100_FWAReserveIsochSequences
+FWAReserveIsochSequences
+iconFilePath
+
+editorPath
+FWAMIDIDeviceNubRefVar
+>knifunptr_platform_FWAUserLib101_FWACreateFWAudioMIDIDeviceNub
+FWACreateFWAudioMIDIDeviceNub
+?knifunptr_platform_FWAUserLib102_FWADisposeFWAudioMIDIDeviceNub
+FWADisposeFWAudioMIDIDeviceNub
+midiDeviceNub
+midiPlug
+?knifunptr_platform_FWAUserLib103_FWAMIDIDeviceNubAttachMIDIPlug
+FWAMIDIDeviceNubAttachMIDIPlug
+?knifunptr_platform_FWAUserLib104_FWAMIDIDeviceNubDetachMIDIPlug
+FWAMIDIDeviceNubDetachMIDIPlug
+FWAudioTypePtr
+FWAudioTypePtrVar
+FWAStreamNotificationProc
+	Function2
+FWAStreamNotificationProcVar
+FWADeviceStatus
+FWADeviceStatusRec
+FWADeviceStatusRecPtr
+FWADeviceStatusRecPtrVar
+FWACreateStreamRecPtr
+FWACreateStreamRec
+FWACreateStreamRecPtrVar
+FWACreateMIDIPlugRecPtr
+FWACreateMIDIPlugRec
+FWACreateMIDIPlugRecPtrVar
+FWACreateFWAudioPlugRecPtr
+FWACreateFWAudioPlugRec
+FWACreateFWAudioPlugRecPtrVar
+FWACreateDeviceRecPtr
+FWACreateDeviceRec
+FWACreateDeviceRecPtrVar
+FWASetPluginPathRecPtr
+FWASetPluginPathRec
+FWASetPluginPathRecPtrVar
+FWASetPlugPropertyRecPtr
+FWASetPlugPropertyRec
+FWASetPlugPropertyRecPtrVar
+FWACreateMIDIDeviceNubRecPtr
+FWACreateMIDIDeviceNubRec
+FWACreateMIDIDeviceNubRecPtrVar
+FWAGetPropertyRecPtr
+FWAGetPropertyRec
+FWAGetPropertyRecPtrVar⁄
+ 
+ 
+ 
+ 
+
+ 
+
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+
+ 
+
+ 
+ 
+% 
+& 
+) 
+* 
+1 
+2 
+7 
+8 
+>
+? 
+@ 
+F 
+G 
+a 
+b 
+m 
+n 
+o 
+u 
+v 
+w 
+ù 
+û
+-ü 
+-† 
+•
+0¶ 
+¨ 
+≠ 
+Æ 
+Ø 
+∞ 
+± 
+≤ 
+∏ 
+π 
+¡ 
+– 
+‘ 
+’ 
+÷ 
+⁄ 
+ﬁ 
+Ì 
+Û 
+˜ 
+å 
+ç 
+è 
+ê 
+ë 
+û 
+ü 
+† 
+© 
+™ 
+´ 
+≤ 
+≥ 
+¥ 
+Ω 
+æ 
+ø 
+◊ 
+ÿ 
+Ÿ 
+Í 
+Î 
+˘ 
+˝ 
+Å 
+Ç 
+É 
+å 
+ó 
+ô 
+ö 
+ú 
+û 
+† 
+° 
+£ 
+§ 
+¶ 
+ß 
+© 
+™ 
+¨ 
+≠ 
+Ø 
+∞ 
+≤ 
+≥ 
+µ 
+∂ §XP0	j`
+2	00j`02
+00j`0Há “
+(L0	j`
+2
+0j`2"00j`0j`0Há “
+(@!0	j`
+2"00j`0j`0Há “
+( 2$0	j`
+2"00j`Há “
+(#d.0	j`
+2"00j`2
+'0j`2
+(0j`2
++0j`2,0Há “
+(-d00	j`
+2"00j`2
+'0j`2
+(0j`2
++0j`2,0Há “
+(/f60	j`
+2"00j`2300j`02400j`0Há “
+(5L;0	j`
+2"00j`2900j`0Há “
+(:L=0	j`
+2"00j`2900j`0Há “
+(<bD0	j`
+2"00j`2A0 0j`!2B00j`0Há “
+(C|I0	j`
+2"00j`2A0 0j`!2E00j`02B00"j`#0Há “
+(HåO0	j`
+2"00j`2J00"j`#02
+K0j`2L00"j`#02M00j`0Há “
+(NTR0	j`
+2"00j`2A0 0j`!2
+P0j`Há “
+(QnT0	j`
+2"00j`2A0 0j`!2
+E0j`2P00"j`#0Há “
+(S~[0	j`
+2"00j`2
+U0j`2
+V0j`2W02
+X0j`2Y00j`0Há “
+(Z>]0	j`
+2"00j`2
+Y0j`Há “
+(\d`0	j`
+2"00j`2
+Y0j`2
+^0j`2W00"j`#0Há “
+(_Rd0	j`
+2"00j`2
+Y0j`2W0$j`%0Há “
+(cLg0	j`
+2"00j`2e00j`0Há “
+(f>i0	j`
+2"00j`2
+e0j`Há “
+(hLl0	j`
+2"00j`2j00j`0Há “
+(kLr0	j`
+2"00j`2p0'0&j`(0Há “
+(qLt0	j`
+2"00j`2p0'0&j`(0Há “
+(sLz0	j`
+2"00j`2x0*0)j`+0Há “
+(yL}0	j`
+2"00j`2{00j`0Há “
+(|L0	j`
+2"00j`2{00j`0Há “
+(~@Å0	j`
+2"00j`2
+{0j`Há “
+	(Ä@É0	j`
+2"00j`2
+{0j`Há “
+	(ÇNÖ0	j`
+2"00j`2{00j`0Há “
+	(ÑNá0	j`
+2"00j`2{00j`0Há “
+	(Üvã0	j`
+2"00j`2à0j`2â00j`02X00j`0Há “
+	(äAç0	j`
+2"00j`2â0j`Há “
+	(åOê0	j`
+2"00j`2é00j`0Há “
+	(èOì0	j`
+2"00j`2ë00j`0Há “
+	(íOñ0	j`
+2"00j`2B02î0j`Há “
+	(ï≠ú0	j`
+2"00j`2â0j`2ó00j`02ò00j`02ô00j`02ö00j`0Há “
+	(õh§0	j`
+2"00j`2#°0,0j`.0j`/02¢0Há “
+	(£O©0	j`
+2"00j`2ß00j`10Há “
+	(®>´0,0j`.2"00j`Há “
+	(™¥∂0	j`
+2"00j`2
+Y0j`2
+^0j`2W≥RFD@>040j`50	j`6040j`50703020j`82¥0Há “
+	(µÀª0	j`
+2"00j`2
+Y0j`2∑0j`2m≥h\ZVT040j`50	j`6040j`5040j`50709020j`:2¥0Há “
+	(∫~æ0	j`
+2"00j`2â0j`2ó0j`2ò0j`2ô0j`2ö0j`2º0*Há “
+	(Ω4¿0	j`
+2"00j`Há “
+	(øOƒ0	j`
+2"00j`2¬00j`;0Há “
+	(√j»0	j`
+2"00j`2≈00j`02∆00j`0Há “
+	(«OÀ0	j`
+2"00j`2…00j`0Há “
+	( jœ0	j`
+2"00j`2Ã00j`02Õ00j`0Há “
+	(Œj”0	j`
+2"00j`2—00j`<02Õ00j`0Há “
+	(“tŸ0	j`
+2"00j`2#◊0=0j`>0j`?02Õ00j`0Há “
+	(ÿf›0	j`
+2"00j`2◊0=0j`>2€00j`@0Há “
+	(‹f·0	j`
+2"00j`2◊0=0j`>2ﬂ00j`A0Há “
+	(‡f‰0	j`
+2"00j`2◊0=0j`>2‚00j`0Há “
+	(„XÊ0	j`
+2"00j`2◊0=0j`>2‚0j`Há “
+	(ÂfË0	j`
+2"00j`2◊0=0j`>2é00j`0Há “
+	(ÁXÍ0	j`
+2"00j`2◊0=0j`>2é0j`Há “
+	(ÈfÏ0	j`
+2"00j`2◊0=0j`>2¬00j`;0Há “
+	(ÎXÔ0	j`
+2"00j`2◊0=0j`>2¬0j`BHá “
+	(ÓfÚ0	j`
+2"00j`2◊0=0j`>200j`<0Há “
+	(ÒXı0	j`
+2"00j`2◊0=0j`>20j`CHá “
+	(Ùç˚0	j`
+2"00j`2ˆ0j`2ﬂ0j`D2¯0j`2˘0j`2#◊0=0j`>0j`?0Há “
+	(˙K˝0	j`
+2"00j`2◊0=0j`>Há “
+	(¸Kˇ0	j`
+2"00j`2◊0=0j`>Há “
+	(˛KÅ0	j`
+2"00j`2◊0=0j`>Há “
+	(ÄfÑ0	j`
+2"00j`2◊0=0j`>2Ç00j`0Há “
+	(ÉXÜ0	j`
+2"00j`2◊0=0j`>2Ç0j`Há “
+	(Öfâ0	j`
+2"00j`2◊0=0j`>2á00j`0Há “
+	(àXã0	j`
+2"00j`2◊0=0j`>2á0j`Há “
+	(äàî0	j`
+2"00j`2é0E“
+F2
+j0j`290E“
+F2#í0G0j`H0j`I0Há “
+	(ìKñ0	j`
+2"00j`2í0G0j`HHá “
+	(ïKò0	j`
+2"00j`2í0G0j`HHá “
+	(óKö0	j`
+2"00j`2í0G0j`HHá “
+	(ôÇ£0	j`
+2"00j`2õ0G0j`H2ú0*2ù0*2#°0J0j`K0j`L0Há “
+	(¢K•0	j`
+2"00j`2°0J0j`KHá “
+	(§ÕÆ0	j`
+2"00j`2¶0=0j`>2ˆ0j`2ﬂ0j`2¯0j`2ß0'0&j`(02®00"j`#02#¨0M0j`N0j`O0Há “
+	(≠K∞0	j`
+2"00j`2¨0M0j`NHá “
+	(Øä∂0	j`
+2"00j`2¶0=0j`>2±0j`2ﬂ0j`2#¨0P0j`Q0j`R0Há “
+	(µK∏0	j`
+2"00j`2¨0P0j`QHá “
+	(∑≥¡0	j`
+2"00j`2π0P0j`Q2∫0j`2ª0'0&j`(02º00"j`#02#¨0S0j`T0j`U0Há “
+	(¿Kƒ0	j`
+2"00j`2¬0S0j`THá “
+	(√t«0	j`
+2"00j`2#¨0=0j`>0j`?02≈00j`0Há “
+	(∆X…0	j`
+2"00j`2¨0=0j`>2≈0j`Há “
+	(»=Ã0	j`
+2"00j`2 0*Há “
+	(Àiœ0	j`
+2"00j`2Õ0j`2P02E00j`0Há “
+	(Œ[—0	j`
+2"00j`2Õ0j`2P02
+E0j`Há “
+	(–v’0	j`
+2"00j`2°0J0j`K2
+j0j`2“0j`2”0E“
+FHá “
+	(‘≥€0	j`
+2"00j`2÷0M0j`N2‚0j`2ª0'0&j`(02º00"j`#02#¨0V0j`W0j`X0Há “
+	(⁄K›0	j`
+2"00j`2¬0V0j`WHá “
+	(‹fﬂ0	j`
+2"00j`2¨0S0j`T2‚00j`0Há “
+	(ﬁX·0	j`
+2"00j`2¨0S0j`T2‚0j`Há “
+	(‡f„0	j`
+2"00j`2¨0V0j`W2‚00j`0Há “
+	(‚XÂ0	j`
+2"00j`2¨0V0j`W2‚0j`Há “
+	(‰äÈ0	j`
+2"00j`2í0G0j`H2Ê0j`2Á0j`2#¬0V0j`W0j`X0Há “
+	(ËäÌ0	j`
+2"00j`2í0Y0j`Z2Ê0j`2Á0j`2#¬0S0j`T0j`U0Há “
+	(Ïb0	j`
+2"00j`2¨0M0j`N2Ó0=0j`>Há “
+	(ÔbÚ0	j`
+2"00j`2¨0P0j`Q2Ó0=0j`>Há “
+	(Òoˆ0	j`
+2"00j`2¬0V0j`W2Û0E“
+F2Ù0E“
+FHá “
+	(ıo¯0	j`
+2"00j`2¬0S0j`T2Û0E“
+F2Ù0E“
+FHá “
+	(˜[¸0	j`
+2
+90j`[2˙0j`2"00j`0j`0Há “
+	(˚]Ä0	j`
+2˛0j`\2˙0j`2"00j`0j`0Há†“
+	(ˇYÜ0	j`
+2"00j`2#Ñ0]0j`^0j`_0Há “
+	(Öeâ0	j`
+2"00j`2á0=0j`>20j`C2Õ0j`Há “
+	(à–é0	j`
+2"00j`2õ0G0j`H2é0E“
+F2
+j0j`290E“
+F2ä0E“
+F2“0j`2ã0E“
+F2#í0Y0j`Z0j``0Há “
+	(çKê0	j`
+2"00j`2í0Y0j`ZHá “
+	(èbî0	j`
+2"00j`2ë0Y0j`Z2í0S0j`THá “
+	(ìKñ0	j`
+2"00j`2í0S0j`THá “
+	(ï*
+b"0$20$*+ò"`a0200j`<0j`a0*!ó"`<0200j`<0*Mõ"`b02>:80.*(0j`040j`5070c020j`b0*]ô""``5070c020240.*(0j`040j`5070c020*ù"0d20d*!ü"`e020d0j`e0*û"0d020d0*!¢"`f020g0j`f0*†"0g020g0*!•"`h020i0j`h0*£"0i020i0*!®"`j020k0j`j0*¶"0k020k0*!´"`l020m0j`l0*©"0m020m0*!Æ"`n020o0j`n0*¨"0o020o0*!±"`p020q0j`p0*Ø"0q020q0*!¥"`r020s0j`r0*≤"0s020s0*!∑"`t020u0j`t0ÿ
+‡
+ Í
+platform.FWAUserLib

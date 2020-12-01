@@ -1,0 +1,549 @@
+
+ÜJ
+kotlin
+ULong
+platform
+CoreFoundation
+CFTypeID
+kotlinx
+cinterop
+internal
+CCall
+id
+4knifunptr_platform_OpenDirectory1_ODContextGetTypeID
+ODContextGetTypeID
+1knifunptr_platform_OpenDirectory2_ODNodeGetTypeID
+ODNodeGetTypeID
+CPointer
+cnames
+structs
+__CFAllocator
+CFAllocatorRef
+	allocator
+__ODSession
+OpenDirectory
+ODSessionRef
+session
+UInt
+
+ODNodeType
+nodeType
+
+CValuesRef
+CPointerVarOf
+	__CFError
+
+CFErrorRef
+CFErrorRefVar
+error
+__ODNode
+	ODNodeRef
+:knifunptr_platform_OpenDirectory3_ODNodeCreateWithNodeType
+ODNodeCreateWithNodeType
+
+__CFString
+CFStringRef
+nodeName
+6knifunptr_platform_OpenDirectory4_ODNodeCreateWithName
+ODNodeCreateWithName
+node
+2knifunptr_platform_OpenDirectory5_ODNodeCreateCopy
+ODNodeCreateCopy
+	__CFArray
+
+CFArrayRef
+8knifunptr_platform_OpenDirectory6_ODNodeCopySubnodeNames
+ODNodeCopySubnodeNames
+Cknifunptr_platform_OpenDirectory7_ODNodeCopyUnreachableSubnodeNames
+!ODNodeCopyUnreachableSubnodeNames
+/knifunptr_platform_OpenDirectory8_ODNodeGetName
+ODNodeGetName
+keys
+__CFDictionary
+CFDictionaryRef
+3knifunptr_platform_OpenDirectory9_ODNodeCopyDetails
+ODNodeCopyDetails
+Aknifunptr_platform_OpenDirectory10_ODNodeCopySupportedRecordTypes
+ODNodeCopySupportedRecordTypes
+String
+ODRecordType
+
+recordType
+@knifunptr_platform_OpenDirectory11_ODNodeCopySupportedAttributes
+ODNodeCopySupportedAttributes
+
+recordName
+password
+Boolean
+7knifunptr_platform_OpenDirectory12_ODNodeSetCredentials
+ODNodeSetCredentials
+ODAuthenticationType
+authType
+	authItems
+CFArrayRefVar
+outAuthItems
+__ODContext
+ODContextRef
+ODContextRefVar
+
+outContext
+?knifunptr_platform_OpenDirectory13_ODNodeSetCredentialsExtended
+ODNodeSetCredentialsExtended
+	cacheName
+Iknifunptr_platform_OpenDirectory14_ODNodeSetCredentialsUsingKerberosCache
+&ODNodeSetCredentialsUsingKerberosCache
+attributeDict
+
+__ODRecord
+ODRecordRef
+5knifunptr_platform_OpenDirectory15_ODNodeCreateRecord
+ODNodeCreateRecord
+CPointed
+	CFTypeRef
+
+attributes
+3knifunptr_platform_OpenDirectory16_ODNodeCopyRecord
+ODNodeCopyRecord
+Long
+CFIndex
+
+customCode
+__CFData
+	CFDataRef
+data
+3knifunptr_platform_OpenDirectory17_ODNodeCustomCall
+ODNodeCustomCall
+function
+payload
+7knifunptr_platform_OpenDirectory18_ODNodeCustomFunction
+ODNodeCustomFunction
+5knifunptr_platform_OpenDirectory19_ODNodeCopyPolicies
+ODNodeCopyPolicies
+>knifunptr_platform_OpenDirectory20_ODNodeCopySupportedPolicies
+ODNodeCopySupportedPolicies
+policies
+4knifunptr_platform_OpenDirectory21_ODNodeSetPolicies
+ODNodeSetPolicies
+ODPolicyType
+
+policyType
+value
+2knifunptr_platform_OpenDirectory22_ODNodeSetPolicy
+ODNodeSetPolicy
+5knifunptr_platform_OpenDirectory23_ODNodeRemovePolicy
+ODNodeRemovePolicy
+policy
+ODPolicyCategoryType
+category
+9knifunptr_platform_OpenDirectory24_ODNodeAddAccountPolicy
+ODNodeAddAccountPolicy
+<knifunptr_platform_OpenDirectory25_ODNodeRemoveAccountPolicy
+ODNodeRemoveAccountPolicy
+;knifunptr_platform_OpenDirectory26_ODNodeSetAccountPolicies
+ODNodeSetAccountPolicies
+<knifunptr_platform_OpenDirectory27_ODNodeCopyAccountPolicies
+ODNodeCopyAccountPolicies
+=knifunptr_platform_OpenDirectory28_ODNodePasswordContentCheck
+ODNodePasswordContentCheck
+3knifunptr_platform_OpenDirectory29_ODQueryGetTypeID
+ODQueryGetTypeID
+recordTypeOrList
+ODAttributeType
+	attribute
+ODMatchType
+	matchType
+queryValueOrList
+returnAttributeOrList
+
+maxResults
+	__ODQuery
+
+ODQueryRef
+8knifunptr_platform_OpenDirectory30_ODQueryCreateWithNode
+ODQueryCreateWithNode
+<knifunptr_platform_OpenDirectory31_ODQueryCreateWithNodeType
+ODQueryCreateWithNodeType
+query
+allowPartialResults
+5knifunptr_platform_OpenDirectory32_ODQueryCopyResults
+ODQueryCopyResults
+Unit
+5knifunptr_platform_OpenDirectory33_ODQuerySynchronize
+ODQuerySynchronize
+	CFunction
+	Function4
+COpaquePointer
+ODQueryCallback
+callback
+userInfo
+5knifunptr_platform_OpenDirectory34_ODQuerySetCallback
+ODQuerySetCallback
+__CFRunLoop
+CFRunLoopRef
+runLoop
+runLoopMode
+=knifunptr_platform_OpenDirectory35_ODQueryScheduleWithRunLoop
+ODQueryScheduleWithRunLoop
+?knifunptr_platform_OpenDirectory36_ODQueryUnscheduleFromRunLoop
+ODQueryUnscheduleFromRunLoop
+darwin
+NSObject
+dispatch_queue_t
+queue
+:knifunptr_platform_OpenDirectory37_ODQuerySetDispatchQueue
+ODQuerySetDispatchQueue
+4knifunptr_platform_OpenDirectory38_ODRecordGetTypeID
+ODRecordGetTypeID
+record
+username
+=knifunptr_platform_OpenDirectory39_ODRecordSetNodeCredentials
+ODRecordSetNodeCredentials
+Eknifunptr_platform_OpenDirectory40_ODRecordSetNodeCredentialsExtended
+"ODRecordSetNodeCredentialsExtended
+Oknifunptr_platform_OpenDirectory41_ODRecordSetNodeCredentialsUsingKerberosCache
+,ODRecordSetNodeCredentialsUsingKerberosCache
+=knifunptr_platform_OpenDirectory42_ODRecordCopyPasswordPolicy
+ODRecordCopyPasswordPolicy
+9knifunptr_platform_OpenDirectory43_ODRecordVerifyPassword
+ODRecordVerifyPassword
+Aknifunptr_platform_OpenDirectory44_ODRecordVerifyPasswordExtended
+ODRecordVerifyPasswordExtended
+oldPassword
+newPassword
+9knifunptr_platform_OpenDirectory45_ODRecordChangePassword
+ODRecordChangePassword
+8knifunptr_platform_OpenDirectory46_ODRecordGetRecordType
+ODRecordGetRecordType
+8knifunptr_platform_OpenDirectory47_ODRecordGetRecordName
+ODRecordGetRecordName
+5knifunptr_platform_OpenDirectory48_ODRecordCopyValues
+ODRecordCopyValues
+valueOrValues
+3knifunptr_platform_OpenDirectory49_ODRecordSetValue
+ODRecordSetValue
+3knifunptr_platform_OpenDirectory50_ODRecordAddValue
+ODRecordAddValue
+6knifunptr_platform_OpenDirectory51_ODRecordRemoveValue
+ODRecordRemoveValue
+6knifunptr_platform_OpenDirectory52_ODRecordCopyDetails
+ODRecordCopyDetails
+6knifunptr_platform_OpenDirectory53_ODRecordSynchronize
+ODRecordSynchronize
+1knifunptr_platform_OpenDirectory54_ODRecordDelete
+ODRecordDelete
+group
+member
+4knifunptr_platform_OpenDirectory55_ODRecordAddMember
+ODRecordAddMember
+7knifunptr_platform_OpenDirectory56_ODRecordRemoveMember
+ODRecordRemoveMember
+9knifunptr_platform_OpenDirectory57_ODRecordContainsMember
+ODRecordContainsMember
+7knifunptr_platform_OpenDirectory58_ODRecordCopyPolicies
+ODRecordCopyPolicies
+@knifunptr_platform_OpenDirectory59_ODRecordCopyEffectivePolicies
+ODRecordCopyEffectivePolicies
+@knifunptr_platform_OpenDirectory60_ODRecordCopySupportedPolicies
+ODRecordCopySupportedPolicies
+6knifunptr_platform_OpenDirectory61_ODRecordSetPolicies
+ODRecordSetPolicies
+4knifunptr_platform_OpenDirectory62_ODRecordSetPolicy
+ODRecordSetPolicy
+7knifunptr_platform_OpenDirectory63_ODRecordRemovePolicy
+ODRecordRemovePolicy
+;knifunptr_platform_OpenDirectory64_ODRecordAddAccountPolicy
+ODRecordAddAccountPolicy
+>knifunptr_platform_OpenDirectory65_ODRecordRemoveAccountPolicy
+ODRecordRemoveAccountPolicy
+=knifunptr_platform_OpenDirectory66_ODRecordSetAccountPolicies
+ODRecordSetAccountPolicies
+>knifunptr_platform_OpenDirectory67_ODRecordCopyAccountPolicies
+ODRecordCopyAccountPolicies
+@knifunptr_platform_OpenDirectory68_ODRecordAuthenticationAllowed
+ODRecordAuthenticationAllowed
+@knifunptr_platform_OpenDirectory69_ODRecordPasswordChangeAllowed
+ODRecordPasswordChangeAllowed
+posix
+uint64_t
+willExpireIn
+=knifunptr_platform_OpenDirectory70_ODRecordWillPasswordExpire
+ODRecordWillPasswordExpire
+Dknifunptr_platform_OpenDirectory71_ODRecordWillAuthenticationsExpire
+!ODRecordWillAuthenticationsExpire
+int64_t
+Fknifunptr_platform_OpenDirectory72_ODRecordSecondsUntilPasswordExpires
+#ODRecordSecondsUntilPasswordExpires
+Lknifunptr_platform_OpenDirectory73_ODRecordSecondsUntilAuthenticationsExpire
+)ODRecordSecondsUntilAuthenticationsExpire
+5knifunptr_platform_OpenDirectory74_ODSessionGetTypeID
+ODSessionGetTypeID
+options
+2knifunptr_platform_OpenDirectory75_ODSessionCreate
+ODSessionCreate
+9knifunptr_platform_OpenDirectory76_ODSessionCopyNodeNames
+ODSessionCopyNodeNames
+ODRecord
+inRecord
+ObjCObjectVar
+
+Foundation
+NSError
+
+ObjCMethod
+selector
+addMemberRecord:error:
+encoding
+c32@0:8@16^@24
+isStret
+addMemberRecord
+removeMemberRecord:error:
+removeMemberRecord
+isMemberRecord:error:
+isMemberRecord
+Aknifunptr_platform_OpenDirectory77_kODErrorDomainFramework_getter
+kODErrorDomainFramework
+@knifunptr_platform_OpenDirectory78_kODSessionProxyAddress_getter
+kODSessionProxyAddress
+=knifunptr_platform_OpenDirectory79_kODSessionProxyPort_getter
+kODSessionProxyPort
+Aknifunptr_platform_OpenDirectory80_kODSessionProxyUsername_getter
+kODSessionProxyUsername
+Aknifunptr_platform_OpenDirectory81_kODSessionProxyPassword_getter
+kODSessionProxyPassword
+Kknifunptr_platform_OpenDirectory82_kODModuleConfigOptionQueryTimeout_getter
+!kODModuleConfigOptionQueryTimeout
+Uknifunptr_platform_OpenDirectory83_kODModuleConfigOptionConnectionSetupTimeout_getter
++kODModuleConfigOptionConnectionSetupTimeout
+Wknifunptr_platform_OpenDirectory84_kODModuleConfigOptionConnectionIdleDisconnect_getter
+-kODModuleConfigOptionConnectionIdleDisconnect
+Lknifunptr_platform_OpenDirectory85_kODModuleConfigOptionPacketSigning_getter
+"kODModuleConfigOptionPacketSigning
+ODNodeRefVar
+ODQueryRefVar
+ODRecordRefVar
+ODSessionRefVar
+	UIntVarOf
+ODNodeTypeVar
+uint32_t
+ODMatchTypeVar
+ODRecordTypeVar
+ODAttributeTypeVar
+ODAuthenticationTypeVar
+ODPolicyTypeVar
+ODErrorUserInfoKeyType
+ODErrorUserInfoKeyTypeVar
+_ODRecordType
+_ODRecordTypeVar
+_ODAttributeType
+_ODAttributeTypeVar
+_ODAuthenticationType
+_ODAuthenticationTypeVar
+ODPolicyKeyType
+ODPolicyKeyTypeVar
+ODPolicyCategoryTypeVar
+ODPolicyAttributeType
+ODPolicyAttributeTypeVar
+ODQueryCallbackVar
+ODFrameworkErrors
+ODFrameworkErrorsVará
+ 
+  
+
+
+ 
+
+
+
+ 
+ 
+
+
+
+ 
+ 
+ 
+
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+! 
+" 
+% 
+& 
+- 
+. 
+6 
+7 
+ < 
+= 
+ C 
+F 
+I 
+K 
+L 
+M 
+U 
+V 
+Y 
+Z 
+ ^ 
+_ 
+a 
+b 
+q 
+y 
+à 
+ä 
+è 
+ê 
+ ô 
+ú 
+ ù 
+û 
+ü 
+§ 
+• 
+¨
+=≠ 
+=Æ 
+˘
+@˙ 
+@Ä 
+å 
+é 
+è
+Eê 
+ë 
+≤ 
+@¥ 
+∫ 
+º 
+æ 
+¿ 
+¬ 
+≈ 
+» ÏP0j`Há “
+	(
+0j`Há “
+	(Ç$00	j`200	j`200	j`2
+0j`2" 00	j`0j`0Há “
+	(#å)00	j`200	j`200	j`2'00	j`2" 00	j`0j`0Há “
+	((v,00	j`200	j`2*00	j`2" 00	j`0j`0Há “
+	(+`000	j`2*00	j`2" 00	j`0j`0Há “
+	(/`200	j`2*00	j`2" 00	j`0j`0Há “
+	(1<400	j`2*00	j`Há “
+	(3v900	j`2*00	j`2500	j`2" 00	j`0j`0Há “
+	(8`;00	j`2*00	j`2" 00	j`0j`0Há “
+	(:p@00	j`2*00	j`2>
+0 j`!2" 00	j`0j`0Há “
+	(?éE0"2*00	j`2>
+0 j`!2A00	j`2B00	j`2" 00	j`0j`0Há “
+	(D–P0"2*00	j`2>
+0 j`!2G
+0 j`#2H00	j`2"J00	j`0j`$02"N0%0	j`&0j`'02" 00	j`0j`0Há “
+	(OhS0"2*00	j`2Q00	j`2" 00	j`0j`0Há “
+	(RúX0(0	j`)2*00	j`2>
+0 j`!2A00	j`2T00	j`2" 00	j`0j`0Há “
+	(Wû]0(0	j`)2*00	j`2>
+0 j`!2A00	j`2[0*0	j`+2" 00	j`0j`0Há “
+	(\Çe0.0	j`/2*00	j`2
+`0,j`-2c0.0	j`/2" 00	j`0j`0Há “
+	(dêi0*0	j`+2*00	j`2f00	j`2g0*0	j`+2" 00	j`0j`0Há “
+	(h`k00	j`2*00	j`2" 00	j`0j`0Há “
+	(j`m00	j`2*00	j`2" 00	j`0j`0Há “
+	(lhp0"2*00	j`2n00	j`2" 00	j`0j`0Há “
+	(ozu0"2*00	j`2r
+0 j`02s0*0	j`+2" 00	j`0j`0Há “
+	(tbw0"2*00	j`2r
+0 j`02" 00	j`0j`0Há “
+	(vx|0"2*00	j`2x00	j`2z
+0 j`12" 00	j`0j`0Há “
+	({x~0"2*00	j`2x00	j`2z
+0 j`12" 00	j`0j`0Há “
+	(}iÄ0"2*00	j`2n00	j`2" 00	j`0j`0Há “
+	(bÇ00	j`2*00	j`2" 00	j`0j`0Há “
+		(ÅÄÑ0"2*00	j`2B00	j`2A00	j`2" 00	j`0j`0Há “
+		(ÉÜ0j`Há “
+		(ÖÓí040	j`5200	j`2*00	j`2á0*0	j`+2â
+0 j`22ã0j`32å0*0	j`+2ç0*0	j`+2é0,j`-2" 00	j`0j`0Há “
+		(ë‰î040	j`5200	j`2
+0j`2á0*0	j`+2â
+0 j`22ã0j`32å0*0	j`+2ç0*0	j`+2é0,j`-2" 00	j`0j`0Há “
+		(ìlò00	j`2ï040	j`52ñ0"2" 00	j`0j`0Há “
+		(ó1õ062ï040	j`5Há “
+		(öµ£062ï040	j`52s†nb`\Z040	j`500	j`00	j`0*0	j`90608070	j`:2°0Há “
+		(¢_©062ï040	j`52¶0;0	j`<2ß00	j`Há “
+		(®_´062ï040	j`52¶0;0	j`<2ß00	j`Há “
+		(™B±062ï040	j`52Ø
+0>j`?Há “
+		(∞≥0j`Há “
+		(≤Ç∑0"2¥0(0	j`)2µ00	j`2B00	j`2" 00	j`0j`0Há “
+		(∂”π0"2¥0(0	j`)2>
+0 j`!2G
+0 j`#2H00	j`2"J00	j`0j`$02"N0%0	j`&0j`'02" 00	j`0j`0Há “
+		(∏kª0"2¥0(0	j`)2Q00	j`2" 00	j`0j`0Há “
+		(∫yΩ00	j`200	j`2¥0(0	j`)2" 00	j`0j`0Há “
+		(ºkø0"2¥0(0	j`)2B00	j`2" 00	j`0j`0Há “
+		(æ√¡0"2¥0(0	j`)2G
+0 j`#2H00	j`2"J00	j`0j`$02"N0%0	j`&0j`'02" 00	j`0j`0Há “
+		(¿É≈0"2¥0(0	j`)2¬00	j`2√00	j`2" 00	j`0j`0Há “
+		(ƒ?«00	j`2¥0(0	j`)Há “
+		(∆?…00	j`2¥0(0	j`)Há “
+		(»tÀ00	j`2¥0(0	j`)2â
+0 j`22" 00	j`0j`0Há “
+		( Œ0"2¥0(0	j`)2â
+0 j`22Ã0*0	j`+2" 00	j`0j`0Há “
+		(Õ~–0"2¥0(0	j`)2â
+0 j`22s0*0	j`+2" 00	j`0j`0Há “
+		(œ~“0"2¥0(0	j`)2â
+0 j`22s0*0	j`+2" 00	j`0j`0Há “
+		(—y‘00	j`2¥0(0	j`)2[00	j`2" 00	j`0j`0Há “
+		(”U÷0"2¥0(0	j`)2" 00	j`0j`0Há “
+		(’Uÿ0"2¥0(0	j`)2" 00	j`0j`0Há “
+		(◊l‹0"2Ÿ0(0	j`)2⁄0(0	j`)2" 00	j`0j`0Há “
+		(€lﬁ0"2Ÿ0(0	j`)2⁄0(0	j`)2" 00	j`0j`0Há “
+		(›l‡0"2Ÿ0(0	j`)2⁄0(0	j`)2" 00	j`0j`0Há “
+		(ﬂc‚00	j`2¥0(0	j`)2" 00	j`0j`0Há “
+		(·c‰00	j`2¥0(0	j`)2" 00	j`0j`0Há “
+		(„cÊ00	j`2¥0(0	j`)2" 00	j`0j`0Há “
+		(ÂkË0"2¥0(0	j`)2n00	j`2" 00	j`0j`0Há “
+		(Á}Í0"2¥0(0	j`)2x
+0 j`02s0*0	j`+2" 00	j`0j`0Há “
+		(ÈeÏ0"2¥0(0	j`)2x
+0 j`02" 00	j`0j`0Há “
+		(Î{Ó0"2¥0(0	j`)2x00	j`2z
+0 j`12" 00	j`0j`0Há “
+		(Ì{0"2¥0(0	j`)2x00	j`2z
+0 j`12" 00	j`0j`0Há “
+		(ÔkÚ0"2¥0(0	j`)2n00	j`2" 00	j`0j`0Há “
+		(ÒcÙ00	j`2¥0(0	j`)2" 00	j`0j`0Há “
+		(ÛUˆ0"2¥0(0	j`)2" 00	j`0j`0Há “
+		(ıl¯0"2¥0(0	j`)2√00	j`2" 00	j`0j`0Há “
+		(˜>˝0"2¥0(0	j`)2˚0j`AHá “
+		(¸>ˇ0"2¥0(0	j`)2˚0j`AHá “
+		(˛5Ç0,j`B2¥0(0	j`)Há “
+		(Å5Ñ0,j`B2¥0(0	j`)Há “
+		(ÉÜ0j`Há “
+		(Öyâ00	j`200	j`2á00	j`2" 00	j`0j`0Há “
+		(àxã00	j`200	j`200	j`2" 00	j`0j`0Há “
+		(äYó0"*0C2	ç0C2 
+0F0D0	Há “
+%G
+í(ì
+î(ï	ñ Yô0"*0C2	ç0C2 
+0F0D0	Há “
+%G
+í(ò
+î(ï	ñ Yõ0"*0C2	ç0C2 
+0F0D0	Há “
+%G
+í(ö
+î(ï	ñ "*ù00	j`8«@ ä		(ú"*ü00	j`8«@ ä		(û"*°00	j`8«@ ä		(†"*£00	j`8«@ ä		(¢"*•00	j`8«@ ä		(§"*ß00	j`8«@ ä		(¶"*©00	j`8«@ ä		(®"*´00	j`8«@ ä		(™"*≠00	j`8«@ ä		(¨* M"`&020%0	j`&0*L"0%0	20%0	*!Æ"`0200	j`0*""00	200	*!Ø"`502040	j`50*ê"040	2040	*!∞"`)020(0	j`)0*V"0(0	20(0	*!±"`0200	j`0*"00	200	*≥"`0H20j`0H*"`I20j`I*µ"`30H20j`30H*ä"`I20j`I*∂"`!0D20 j`!0D*="0 20 *∑"`20D20 j`20D*à"0 20 *∏"`#0D20 j`#0D*F"0 20 *π"`00D20 j`00D*q"0 20 *ª"`J0D20 j`J0D*∫"0 20 *Ω"`K0D20 j`K0D*º"`!20 j`!*ø"`L0D20 j`L0D*æ"`220 j`2*¡"`M0D20 j`M0D*¿"`#20 j`#*√"`N0D20 j`N0D*¬"0 20 *ƒ"`10D20 j`10D*y"0 20 *∆"`O0D20 j`O0D*≈"0 20 *«"`:02pljb`\Z040	j`500	j`00	j`0*0	j`90608070	j`:0*°ü"40.*(`5```90608070	2fb`\Z040	j`500	j`00	j`0*0	j`90608070	*…"`P0H20j`P0H*»"020ÿ
+‡
+ Í
+platform.OpenDirectory

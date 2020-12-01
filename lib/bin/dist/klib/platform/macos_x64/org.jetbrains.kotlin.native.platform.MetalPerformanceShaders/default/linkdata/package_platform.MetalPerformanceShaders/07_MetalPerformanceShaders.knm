@@ -1,0 +1,2806 @@
+
+îr
+platform
+MetalPerformanceShaders
+(MPSNNReductionFeatureChannelsMaxNodeMeta
+MPSNNUnaryReductionNodeMeta
+MPSNNImageNode
+
+sourceNode
+$MPSNNReductionFeatureChannelsMaxNode
+kotlinx
+cinterop
+
+ObjCMethod
+selector
+nodeWithSource:
+encoding
+
+@24@0:8@16
+isStret
+nodeWithSource
+new
+@16@0:8
+CPointer
+cnames
+structs
+_NSZone
+zone
+allocWithZone:
+@24@0:8^{_NSZone=}16
+allocWithZone
+alloc
+ExternalObjCClass
+MPSNNUnaryReductionNode
+kotlin
+
+Deprecated
+message
+Use constructor instead
+replaceWith
+ReplaceWith
+imports
+
+expression
+0MPSNNReductionFeatureChannelsMaxNode(sourceNode)
+level
+DeprecationLevel
+ERROR
+initWithSource:
+internal
+CCall
+ConsumesReceiver
+ReturnsRetained
+initWithSource
+&MPSNNReductionFeatureChannelsMaxNode()
+init
+source
+ObjCConstructor
+
+designated
+initSelector
+	Companion
+ObjCClassOf
+0MPSNNReductionFeatureChannelsArgumentMaxNodeMeta
+,MPSNNReductionFeatureChannelsArgumentMaxNode
+8MPSNNReductionFeatureChannelsArgumentMaxNode(sourceNode)
+.MPSNNReductionFeatureChannelsArgumentMaxNode()
+MPSNNReductionRowMeanNodeMeta
+MPSNNReductionRowMeanNode
+%MPSNNReductionRowMeanNode(sourceNode)
+MPSNNReductionRowMeanNode()
+ MPSNNReductionColumnMeanNodeMeta
+MPSNNReductionColumnMeanNode
+(MPSNNReductionColumnMeanNode(sourceNode)
+MPSNNReductionColumnMeanNode()
+)MPSNNReductionFeatureChannelsMeanNodeMeta
+%MPSNNReductionFeatureChannelsMeanNode
+1MPSNNReductionFeatureChannelsMeanNode(sourceNode)
+'MPSNNReductionFeatureChannelsMeanNode()
+!MPSNNReductionSpatialMeanNodeMeta
+MPSNNReductionSpatialMeanNode
+)MPSNNReductionSpatialMeanNode(sourceNode)
+MPSNNReductionSpatialMeanNode()
+MPSNNReductionRowSumNodeMeta
+MPSNNReductionRowSumNode
+$MPSNNReductionRowSumNode(sourceNode)
+MPSNNReductionRowSumNode()
+MPSNNReductionColumnSumNodeMeta
+MPSNNReductionColumnSumNode
+'MPSNNReductionColumnSumNode(sourceNode)
+MPSNNReductionColumnSumNode()
+(MPSNNReductionFeatureChannelsSumNodeMeta
+$MPSNNReductionFeatureChannelsSumNode
+Float
+weight
+f16@0:8
+Unit
+
+setWeight:
+
+v20@0:8f16
+	setWeight
+0MPSNNReductionFeatureChannelsSumNode(sourceNode)
+&MPSNNReductionFeatureChannelsSumNode()
+value
+MPSCNNPoolingNodeMeta
+MPSNNFilterNodeMeta
+ULong
+darwin
+
+NSUInteger
+
+filterSize
+MPSCNNPoolingNode
+nodeWithSource:filterSize:
+@32@0:8@16Q24
+stride
+!nodeWithSource:filterSize:stride:
+@40@0:8@16Q24Q32
+MPSNNFilterNode
+kernelWidth
+kernelHeight
+strideInPixelsX
+strideInPixelsY
+ZMPSCNNPoolingNode(sourceNode, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY)
+HinitWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:
+@56@0:8@16Q24Q32Q40Q48
+1MPSCNNPoolingNode(sourceNode, filterSize, stride)
+!initWithSource:filterSize:stride:
+)MPSCNNPoolingNode(sourceNode, filterSize)
+initWithSource:filterSize:
+Q16@0:8
+MPSCNNPoolingNode()
+MPSCNNPoolingAverageNodeMeta
+MPSCNNPoolingAverageNode
+aMPSCNNPoolingAverageNode(sourceNode, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY)
+8MPSCNNPoolingAverageNode(sourceNode, filterSize, stride)
+0MPSCNNPoolingAverageNode(sourceNode, filterSize)
+MPSCNNPoolingAverageNode()
+MPSCNNPoolingL2NormNodeMeta
+MPSCNNPoolingL2NormNode
+`MPSCNNPoolingL2NormNode(sourceNode, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY)
+7MPSCNNPoolingL2NormNode(sourceNode, filterSize, stride)
+/MPSCNNPoolingL2NormNode(sourceNode, filterSize)
+MPSCNNPoolingL2NormNode()
+MPSCNNPoolingMaxNodeMeta
+MPSCNNPoolingMaxNode
+]MPSCNNPoolingMaxNode(sourceNode, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY)
+4MPSCNNPoolingMaxNode(sourceNode, filterSize, stride)
+,MPSCNNPoolingMaxNode(sourceNode, filterSize)
+MPSCNNPoolingMaxNode()
+MPSCNNDilatedPoolingMaxNodeMeta
+MPSCNNDilatedPoolingMaxNode
+dilationRate
+.nodeWithSource:filterSize:stride:dilationRate:
+@48@0:8@16Q24Q32Q40
+dilationRateX
+dilationRateY
+ÇMPSCNNDilatedPoolingMaxNode(sourceNode, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY, dilationRateX, dilationRateY)
+dinitWithSource:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:
+@72@0:8@16Q24Q32Q40Q48Q56Q64
+IMPSCNNDilatedPoolingMaxNode(sourceNode, filterSize, stride, dilationRate)
+.initWithSource:filterSize:stride:dilationRate:
+3MPSCNNDilatedPoolingMaxNode(sourceNode, filterSize)
+MPSCNNDilatedPoolingMaxNode()
+MPSCNNPoolingGradientNodeMeta
+MPSNNGradientFilterNodeMeta
+sourceGradient
+sourceImage
+MPSNNGradientStateNode
+gradientState
+MPSNNPaddingProtocol
+paddingPolicy
+MPSCNNPoolingGradientNode
+xnodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:
+@80@0:8@16@24@32Q40Q48Q56Q64@72
+nodeWithSourceGradient
+MPSNNGradientFilterNode
+ëMPSCNNPoolingGradientNode(sourceGradient, sourceImage, gradientState, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY, paddingPolicy)
+xinitWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:paddingPolicy:
+initWithSourceGradient
+MPSCNNPoolingGradientNode()
+ MPSCNNPoolingMaxGradientNodeMeta
+MPSCNNPoolingMaxGradientNode
+îMPSCNNPoolingMaxGradientNode(sourceGradient, sourceImage, gradientState, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY, paddingPolicy)
+MPSCNNPoolingMaxGradientNode()
+$MPSCNNPoolingAverageGradientNodeMeta
+ MPSCNNPoolingAverageGradientNode
+òMPSCNNPoolingAverageGradientNode(sourceGradient, sourceImage, gradientState, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY, paddingPolicy)
+"MPSCNNPoolingAverageGradientNode()
+#MPSCNNPoolingL2NormGradientNodeMeta
+MPSCNNPoolingL2NormGradientNode
+óMPSCNNPoolingL2NormGradientNode(sourceGradient, sourceImage, gradientState, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY, paddingPolicy)
+!MPSCNNPoolingL2NormGradientNode()
+'MPSCNNDilatedPoolingMaxGradientNodeMeta
+#MPSCNNDilatedPoolingMaxGradientNode
+ÜnodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:
+"@88@0:8@16@24@32Q40Q48Q56Q64Q72Q80
+™MPSCNNDilatedPoolingMaxGradientNode(sourceGradient, sourceImage, gradientState, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY, dilationRateX, dilationRateY)
+ÜinitWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:dilationRateX:dilationRateY:
+õMPSCNNDilatedPoolingMaxGradientNode(sourceGradient, sourceImage, gradientState, kernelWidth, kernelHeight, strideInPixelsX, strideInPixelsY, paddingPolicy)
+%MPSCNNDilatedPoolingMaxGradientNode()
+MPSCNNNormalizationNodeMeta
+MPSCNNNormalizationNode
+#MPSCNNNormalizationNode(sourceNode)
+alpha
+	setAlpha:
+setAlpha
+beta
+setBeta:
+setBeta
+delta
+	setDelta:
+setDelta
+MPSCNNNormalizationNode()
+"MPSCNNSpatialNormalizationNodeMeta
+
+kernelSize
+MPSCNNSpatialNormalizationNode
+nodeWithSource:kernelSize:
+6MPSCNNSpatialNormalizationNode(sourceNode, kernelSize)
+initWithSource:kernelSize:
+setKernelWidth:
+
+v24@0:8Q16
+setKernelWidth
+setKernelHeight:
+setKernelHeight
+*MPSCNNSpatialNormalizationNode(sourceNode)
+ MPSCNNSpatialNormalizationNode()
+*MPSCNNSpatialNormalizationGradientNodeMeta
+&MPSCNNSpatialNormalizationGradientNode
+<nodeWithSourceGradient:sourceImage:gradientState:kernelSize:
+@48@0:8@16@24@32Q40
+^MPSCNNSpatialNormalizationGradientNode(sourceGradient, sourceImage, gradientState, kernelSize)
+<initWithSourceGradient:sourceImage:gradientState:kernelSize:
+(MPSCNNSpatialNormalizationGradientNode()
+(MPSCNNLocalContrastNormalizationNodeMeta
+$MPSCNNLocalContrastNormalizationNode
+<MPSCNNLocalContrastNormalizationNode(sourceNode, kernelSize)
+pm
+setPm:
+setPm
+ps
+setPs:
+setPs
+p0
+setP0:
+setP0
+0MPSCNNLocalContrastNormalizationNode(sourceNode)
+&MPSCNNLocalContrastNormalizationNode()
+0MPSCNNLocalContrastNormalizationGradientNodeMeta
+,MPSCNNLocalContrastNormalizationGradientNode
+JnodeWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:
+@56@0:8@16@24@32Q40Q48
+sMPSCNNLocalContrastNormalizationGradientNode(sourceGradient, sourceImage, gradientState, kernelWidth, kernelHeight)
+JinitWithSourceGradient:sourceImage:gradientState:kernelWidth:kernelHeight:
+.MPSCNNLocalContrastNormalizationGradientNode()
+'MPSCNNCrossChannelNormalizationNodeMeta
+#MPSCNNCrossChannelNormalizationNode
+;MPSCNNCrossChannelNormalizationNode(sourceNode, kernelSize)
+kernelSizeInFeatureChannels
+setKernelSizeInFeatureChannels:
+setKernelSizeInFeatureChannels
+/MPSCNNCrossChannelNormalizationNode(sourceNode)
+%MPSCNNCrossChannelNormalizationNode()
+/MPSCNNCrossChannelNormalizationGradientNodeMeta
++MPSCNNCrossChannelNormalizationGradientNode
+cMPSCNNCrossChannelNormalizationGradientNode(sourceGradient, sourceImage, gradientState, kernelSize)
+-MPSCNNCrossChannelNormalizationGradientNode()
+#MPSCNNInstanceNormalizationNodeMeta
+MPSNNTrainableNodeProtocolMeta
+-MPSCNNInstanceNormalizationDataSourceProtocol
+
+dataSource
+MPSCNNInstanceNormalizationNode
+nodeWithSource:dataSource:
+@32@0:8@16@24
+MPSNNTrainableNodeProtocol
+3MPSCNNInstanceNormalizationNode(source, dataSource)
+initWithSource:dataSource:
+!MPSCNNInstanceNormalizationNode()
+MPSNNTrainingStyle
+trainingStyle
+setTrainingStyle:
+setTrainingStyle
+Any
+object
+Boolean
+isEqual:
+
+c24@0:8@16
+isEqual
+	ObjCClass
+class
+#16@0:8
+CPointed
+COpaquePointer
+	aSelector
+performSelector:
+
+@24@0:8:16
+performSelector
+
+withObject
+performSelector:withObject:
+@32@0:8:16@24
+_withObject
+&performSelector:withObject:withObject:
+@40@0:8:16@24@32
+isProxy
+c16@0:8
+aClass
+isKindOfClass:
+
+c24@0:8#16
+isKindOfClass
+isMemberOfClass:
+isMemberOfClass
+	objcnames
+classes
+Protocol
+	aProtocol
+conformsToProtocol:
+conformsToProtocol
+respondsToSelector:
+
+c24@0:8:16
+respondsToSelector
+hash
+
+superclass
+String
+description
+debugDescription
++MPSCNNInstanceNormalizationGradientNodeMeta
+'MPSCNNInstanceNormalizationGradientNode
+1nodeWithSourceGradient:sourceImage:gradientState:
+@40@0:8@16@24@32
+SMPSCNNInstanceNormalizationGradientNode(sourceGradient, sourceImage, gradientState)
+1initWithSourceGradient:sourceImage:gradientState:
+)MPSCNNInstanceNormalizationGradientNode()
+ MPSCNNGroupNormalizationNodeMeta
+*MPSCNNGroupNormalizationDataSourceProtocol
+MPSCNNGroupNormalizationNode
+0MPSCNNGroupNormalizationNode(source, dataSource)
+MPSCNNGroupNormalizationNode()
+(MPSCNNGroupNormalizationGradientNodeMeta
+$MPSCNNGroupNormalizationGradientNode
+PMPSCNNGroupNormalizationGradientNode(sourceGradient, sourceImage, gradientState)
+&MPSCNNGroupNormalizationGradientNode()
+ MPSCNNBatchNormalizationNodeMeta
+*MPSCNNBatchNormalizationDataSourceProtocol
+MPSCNNBatchNormalizationNode
+0MPSCNNBatchNormalizationNode(source, dataSource)
+MPSCNNBatchNormalizationFlags
+flags
+	setFlags:
+setFlags
+MPSCNNBatchNormalizationNode()
+(MPSCNNBatchNormalizationGradientNodeMeta
+$MPSCNNBatchNormalizationGradientNode
+PMPSCNNBatchNormalizationGradientNode(sourceGradient, sourceImage, gradientState)
+&MPSCNNBatchNormalizationGradientNode()
+MPSNNScaleNodeMeta
+CValue
+Metal
+MTLSize
+
+outputSize
+MPSNNScaleNode
+nodeWithSource:outputSize:
+@48@0:8@16{?=QQQ}24
+!MPSImageTransformProviderProtocol
+transformProvider
+,nodeWithSource:transformProvider:outputSize:
+@56@0:8@16@24{?=QQQ}32
+&MPSNNScaleNode(sourceNode, outputSize)
+initWithSource:outputSize:
+9MPSNNScaleNode(sourceNode, transformProvider, outputSize)
+,initWithSource:transformProvider:outputSize:
+MPSNNScaleNode()
+MPSNNBilinearScaleNodeMeta
+MPSNNBilinearScaleNode
+.MPSNNBilinearScaleNode(sourceNode, outputSize)
+AMPSNNBilinearScaleNode(sourceNode, transformProvider, outputSize)
+MPSNNBilinearScaleNode()
+MPSNNLanczosScaleNodeMeta
+MPSNNLanczosScaleNode
+-MPSNNLanczosScaleNode(sourceNode, outputSize)
+@MPSNNLanczosScaleNode(sourceNode, transformProvider, outputSize)
+MPSNNLanczosScaleNode()
+MPSNNBinaryArithmeticNodeMeta
+collections
+List
+sourceNodes
+MPSNNBinaryArithmeticNode
+nodeWithSources:
+nodeWithSources
+left
+rightSource
+nodeWithLeftSource:rightSource:
+nodeWithLeftSource
+&MPSNNBinaryArithmeticNode(sourceNodes)
+initWithSources:
+initWithSources
+,MPSNNBinaryArithmeticNode(left, rightSource)
+initWithLeftSource:rightSource:
+initWithLeftSource
+gradientClass
+primaryScale
+setPrimaryScale:
+setPrimaryScale
+secondaryScale
+setSecondaryScale:
+setSecondaryScale
+bias
+setBias:
+setBias
+primaryStrideInPixelsX
+setPrimaryStrideInPixelsX:
+setPrimaryStrideInPixelsX
+primaryStrideInPixelsY
+setPrimaryStrideInPixelsY:
+setPrimaryStrideInPixelsY
+primaryStrideInFeatureChannels
+"setPrimaryStrideInFeatureChannels:
+!setPrimaryStrideInFeatureChannels
+secondaryStrideInPixelsX
+setSecondaryStrideInPixelsX:
+setSecondaryStrideInPixelsX
+secondaryStrideInPixelsY
+setSecondaryStrideInPixelsY:
+setSecondaryStrideInPixelsY
+ secondaryStrideInFeatureChannels
+$setSecondaryStrideInFeatureChannels:
+#setSecondaryStrideInFeatureChannels
+minimumValue
+setMinimumValue:
+setMinimumValue
+maximumValue
+setMaximumValue:
+setMaximumValue
+MPSNNBinaryArithmeticNode()
+sources
+
+leftSource
+MPSNNAdditionNodeMeta
+MPSNNAdditionNode
+MPSNNAdditionNode(sourceNodes)
+$MPSNNAdditionNode(left, rightSource)
+MPSNNAdditionNode()
+MPSNNSubtractionNodeMeta
+MPSNNSubtractionNode
+!MPSNNSubtractionNode(sourceNodes)
+'MPSNNSubtractionNode(left, rightSource)
+MPSNNSubtractionNode()
+MPSNNMultiplicationNodeMeta
+MPSNNMultiplicationNode
+$MPSNNMultiplicationNode(sourceNodes)
+*MPSNNMultiplicationNode(left, rightSource)
+MPSNNMultiplicationNode()
+MPSNNDivisionNodeMeta
+MPSNNDivisionNode
+MPSNNDivisionNode(sourceNodes)
+$MPSNNDivisionNode(left, rightSource)
+MPSNNDivisionNode()
+MPSNNComparisonNodeMeta
+MPSNNComparisonNode
+MPSNNComparisonType
+comparisonType
+setComparisonType:
+setComparisonType
+ MPSNNComparisonNode(sourceNodes)
+&MPSNNComparisonNode(left, rightSource)
+MPSNNComparisonNode()
+MPSNNArithmeticGradientNodeMeta
+MPSNNBinaryGradientStateNode
+isSecondarySourceFilter
+MPSNNArithmeticGradientNode
+InodeWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:
+@44@0:8@16@24@32c40
+`MPSNNArithmeticGradientNode(sourceGradient, sourceImage, gradientState, isSecondarySourceFilter)
+IinitWithSourceGradient:sourceImage:gradientState:isSecondarySourceFilter:
+gradientImages
+forwardFilter
+SMPSNNArithmeticGradientNode(gradientImages, forwardFilter, isSecondarySourceFilter)
+=initWithGradientImages:forwardFilter:isSecondarySourceFilter:
+@36@0:8@16@24c32
+initWithGradientImages
+MPSNNArithmeticGradientNode()
+MPSNNAdditionGradientNodeMeta
+MPSNNAdditionGradientNode
+^MPSNNAdditionGradientNode(sourceGradient, sourceImage, gradientState, isSecondarySourceFilter)
+QMPSNNAdditionGradientNode(gradientImages, forwardFilter, isSecondarySourceFilter)
+MPSNNAdditionGradientNode()ò
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+	 
+ 
+
+
+
+ 
+ 
+ 
+
+ 
+" 
+' 
+*
++ 
+, 
+- 
+2 
+5 
+6 
+7 
+8 
+5 
+; 
+< 
+5 
+? 
+@ 
+!5 
+C 
+D 
+$5 
+G 
+H 
+'5 
+K 
+L 
+*5 
+O 
+P 
+-5 
+S 
+T 
+U 
+X 
+05 
+_ 
+` 
+a 
+ b
+7c 
+e 
+k 
+95 
+y 
+z 
+=5 
+ 
+Ä 
+@5 
+Ö 
+Ü 
+C5 
+ã 
+å 
+F5 
+ô 
+ö 
+ù 
+ü 
+° 
+• 
+L5 
+™ 
+´ 
+P5 
+Æ 
+Ø 
+S5 
+≤ 
+≥ 
+V5 
+∂ 
+∑ 
+Y5 
+æ 
+ø 
+\5 
+À 
+Õ 
+_5 
+ÿ 
+Ÿ 
+b5 
+ﬂ 
+‡ 
+e5 
+Ì 
+Ó 
+h5 
+Ù 
+ı 
+k5 
+¸ 
+˝ 
+n5 
+Ä 
+Å 
+Ç 
+Ñ 
+á 
+ã 
+è 
+ë 
+ï 
+ò 
+ô 
+¨
+{≠
+|Æ 
+∑ 
+s5 
+∫ 
+ª 
+Å5 
+¡ 
+¬ 
+√ 
+Ö5 
+∆ 
+« 
+à5 
+  
+À 
+Ã 
+Œ 
+å5 
+” 
+‘ 
+ê5 
+◊ 
+ÿ 
+ Ÿ
+î⁄ 
+‹ 
+ﬂ 
+ñ5 
+Ë 
+È 
+ö5 
+Ì 
+Ó 
+ù5 
+Ú 
+Û
+†Ù 
+ˆ 
+¢5 
+® 
+© 
+•5 
+≠ 
+Æ 
+®5 
+≤ 
+≥ 
+´5 
+∑ 
+∏ 
+Æ5 
+º 
+Ω 
+æ 
+±5 
+≈ 
+∆ 
+» 
+∂5 
+‘ 
+’ "Á20BJ4020Hó “
+ 
+(( J.0Hó “
+ 
+(( J>02
+00	Hó “
+ 
+(( J.0Hó “
+ 
+(( “
+"¿ 520:5B#10“
+34()B“
+34(0Jw.020Hó “
+6( !B#$(%
+&
+08(“
+ 
+()( “
+“
+Jq00Hó “
+6( !B#$(/
+&
+08(“
+ 
+(0( “
+“
+“
+"Ü20200B"Á20BJ4020Hó “
+ 
+(( J.0Hó “
+ 
+(( J>02
+00	Hó “
+ 
+(( J.0Hó “
+ 
+(( “
+"¿ 520:5B#10“
+34()B“
+34(0Jw.020Hó “
+6( !B#$(9
+&
+08(“
+ 
+()( “
+“
+Jq00Hó “
+6( !B#$(:
+&
+08(“
+ 
+(0( “
+“
+“
+"Ü20200B"Á20BJ4020Hó “
+ 
+(( J.0Hó “
+ 
+(( J>02
+00	Hó “
+ 
+(( J.0Hó “
+ 
+(( “
+"¿ 520:5B#10“
+34()B“
+34(0Jw.020Hó “
+6( !B#$(=
+&
+08(“
+ 
+()( “
+“
+Jq00Hó “
+6( !B#$(>
+&
+08(“
+ 
+(0( “
+“
+“
+"Ü20200B"Á 20BJ40!20Hó “
+ 
+(( J.0!Hó “
+ 
+(( J>0!2
+00	Hó “
+ 
+(( J.0!Hó “
+ 
+(( “
+"¿! 520:5B#10“
+34()B“
+34(0Jw.0!20Hó “
+6( !B#$(A
+&
+08(“
+ 
+()( “
+“
+Jq00!Hó “
+6( !B#$(B
+&
+08(“
+ 
+(0( “
+“
+“
+"Ü"20 20!0B"Á#20BJ40$20Hó “
+ 
+(( J.0$Hó “
+ 
+(( J>0$2
+00	Hó “
+ 
+(( J.0$Hó “
+ 
+(( “
+"¿$ 520:5B#10“
+34()B“
+34(0Jw.0$20Hó “
+6( !B#$(E
+&
+08(“
+ 
+()( “
+“
+Jq00$Hó “
+6( !B#$(F
+&
+08(“
+ 
+(0( “
+“
+“
+"Ü%20#20$0B"Á&20BJ40'20Hó “
+ 
+(( J.0'Hó “
+ 
+(( J>0'2
+00	Hó “
+ 
+(( J.0'Hó “
+ 
+(( “
+"¿' 520:5B#10“
+34()B“
+34(0Jw.0'20Hó “
+6( !B#$(I
+&
+08(“
+ 
+()( “
+“
+Jq00'Hó “
+6( !B#$(J
+&
+08(“
+ 
+(0( “
+“
+“
+"Ü(20&20'0B"Á)20BJ40*20Hó “
+ 
+(( J.0*Hó “
+ 
+(( J>0*2
+00	Hó “
+ 
+(( J.0*Hó “
+ 
+(( “
+"¿* 520:5B#10“
+34()B“
+34(0Jw.0*20Hó “
+6( !B#$(M
+&
+08(“
+ 
+()( “
+“
+Jq00*Hó “
+6( !B#$(N
+&
+08(“
+ 
+(0( “
+“
+“
+"Ü+20)20*0B"Á,20BJ40-20Hó “
+ 
+(( J.0-Hó “
+ 
+(( J>0-2
+00	Hó “
+ 
+(( J.0-Hó “
+ 
+(( “
+"¿- 520:5B#10“
+34()B“
+34(0Jw.0-20Hó “
+6( !B#$(Q
+&
+08(“
+ 
+()( “
+“
+Jq00-Hó “
+6( !B#$(R
+&
+08(“
+ 
+(0( “
+“
+“
+"Ü.20,20-0B"Á/20BJ40020Hó “
+ 
+(( J.00Hó “
+ 
+(( J>002
+00	Hó “
+ 
+(( J.00Hó “
+ 
+(( “
+"É0 520:5B#10“
+34()B“
+34(0J,V01Hó “
+ 
+(V(W J4[022V01Hó “
+ 
+(Y(Z Jw.0020Hó “
+6( !B#$(\
+&
+08(“
+ 
+()( “
+“
+Jq000Hó “
+6( !B#$(]
+&
+08(“
+ 
+(0( “
+“
+R]V012^018«@«XÜä 
+(V(W í 
+(Y(Z “
+"Ü320/2000B"¡4205BJ@09202
+d06j`8Hó “
+ 
+(f(g JL09202
+d06j`82
+h06j`8Hó “
+ 
+(i(j J.09Hó “
+ 
+(( J>092
+00	Hó “
+ 
+(( J.09Hó “
+ 
+(( “
+"ø	9 520::5BS10
+l06j`8
+m06j`8
+n06j`8
+o06j`8“
+34(qB;10
+d06j`8
+h06j`8“
+34(tB/10
+d06j`8“
+34(vB“
+34(0Jß.09202
+l06j`82
+m06j`82
+n06j`82
+o06j`8Hó “
+6( !B#$(p
+&
+08(“
+ 
+(q(r “
+“
+Jè.09202
+d06j`82
+h06j`8Hó “
+6( !B#$(s
+&
+08(“
+ 
+(t(j “
+“
+JÉ.09202
+d06j`8Hó “
+6( !B#$(u
+&
+08(“
+ 
+(v(g “
+“
+J0l06j`8Hó “
+ 
+(l(w J0m06j`8Hó “
+ 
+(m(w J0n06j`8Hó “
+ 
+(n(w J0o06j`8Hó “
+ 
+(o(w Jq009Hó “
+6( !B#$(x
+&
+08(“
+ 
+(0( “
+“
+R2l06j`88«@ ä 
+(l(w R2m06j`88«@ ä 
+(m(w R2n06j`88«@ ä 
+(n(w R2o06j`88«@ ä 
+(o(w “
+"Ü;2042090B"¡<204BJ@0=202
+d06j`8Hó “
+ 
+(f(g JL0=202
+d06j`82
+h06j`8Hó “
+ 
+(i(j J.0=Hó “
+ 
+(( J>0=2
+00	Hó “
+ 
+(( J.0=Hó “
+ 
+(( “
+"ß= 5209:5BS10
+l06j`8
+m06j`8
+n06j`8
+o06j`8“
+34(qB;10
+d06j`8
+h06j`8“
+34(tB/10
+d06j`8“
+34(vB“
+34(0Jß.0=202
+l06j`82
+m06j`82
+n06j`82
+o06j`8Hó “
+6( !B#$({
+&
+08(“
+ 
+(q(r “
+“
+Jè.0=202
+d06j`82
+h06j`8Hó “
+6( !B#$(|
+&
+08(“
+ 
+(t(j “
+“
+JÉ.0=202
+d06j`8Hó “
+6( !B#$(}
+&
+08(“
+ 
+(v(g “
+“
+Jq00=Hó “
+6( !B#$(~
+&
+08(“
+ 
+(0( “
+“
+“
+"Ü>20<20=0B"¡?204BJ@0@202
+d06j`8Hó “
+ 
+(f(g JL0@202
+d06j`82
+h06j`8Hó “
+ 
+(i(j J.0@Hó “
+ 
+(( J>0@2
+00	Hó “
+ 
+(( J.0@Hó “
+ 
+(( “
+"´@ 5209:5BS10
+l06j`8
+m06j`8
+n06j`8
+o06j`8“
+34(qB;10
+d06j`8
+h06j`8“
+34(tB/10
+d06j`8“
+34(vB“
+34(0J®.0@202
+l06j`82
+m06j`82
+n06j`82
+o06j`8Hó “
+7( !B#	$(Å
+&
+08(“
+ 
+(q(r “
+“
+Jê.0@202
+d06j`82
+h06j`8Hó “
+7( !B#	$(Ç
+&
+08(“
+ 
+(t(j “
+“
+JÑ.0@202
+d06j`8Hó “
+7( !B#	$(É
+&
+08(“
+ 
+(v(g “
+“
+Jr00@Hó “
+7( !B#	$(Ñ
+&
+08(“
+ 
+(0( “
+“
+“
+"ÜA20?20@0B"¡B204BJ@0C202
+d06j`8Hó “
+ 
+(f(g JL0C202
+d06j`82
+h06j`8Hó “
+ 
+(i(j J.0CHó “
+ 
+(( J>0C2
+00	Hó “
+ 
+(( J.0CHó “
+ 
+(( “
+"´C 5209:5BS10
+l06j`8
+m06j`8
+n06j`8
+o06j`8“
+34(qB;10
+d06j`8
+h06j`8“
+34(tB/10
+d06j`8“
+34(vB“
+34(0J®.0C202
+l06j`82
+m06j`82
+n06j`82
+o06j`8Hó “
+7( !B#	$(á
+&
+08(“
+ 
+(q(r “
+“
+Jê.0C202
+d06j`82
+h06j`8Hó “
+7( !B#	$(à
+&
+08(“
+ 
+(t(j “
+“
+JÑ.0C202
+d06j`8Hó “
+7( !B#	$(â
+&
+08(“
+ 
+(v(g “
+“
+Jr00CHó “
+7( !B#	$(ä
+&
+08(“
+ 
+(0( “
+“
+“
+"ÜD20B20C0B"–E205BJ@0F202
+d06j`8Hó “
+ 
+(f(g J[0F202
+d06j`82
+h06j`82ç06j`8Hó “
+"	
+(é	(è J.0FHó “
+ 
+(( J>0F2
+00	Hó “
+ 
+(( J.0FHó “
+ 
+(( “
+"”F 520::5Bn10
+l06j`8
+m06j`8
+n06j`8
+o06j`8ê06j`8ë06j`8“
+3	4(ìBI10
+d06j`8
+h06j`8ç06j`8“
+3	4(ñB/10
+d06j`8“
+34(vB“
+34(0Jƒ.0F202
+l06j`82
+m06j`82
+n06j`82
+o06j`82ê06j`82ë06j`8Hó “
+7( !B#	$(í
+&
+08(“
+"	
+(ì	(î “
+“
+Jü.0F202
+d06j`82
+h06j`82ç06j`8Hó “
+7( !B#	$(ï
+&
+08(“
+"	
+(ñ	(è “
+“
+JÑ.0F202
+d06j`8Hó “
+7( !B#	$(ó
+&
+08(“
+ 
+(v(g “
+“
+J2ê06j`8Hó “
+!	
+(ê(w J2ë06j`8Hó “
+!	
+(ë(w Jr00FHó “
+7( !B#	$(ò
+&
+08(“
+ 
+(0( “
+“
+R4ê06j`88«@ ä!	
+(ê(w R4ë06j`88«@ ä!	
+(ë(w “
+"ÜG20E20F0B"πH20IBJÖ§0L2õ02ú02û0J2
+l06j`82
+m06j`82
+n06j`82
+o06j`82	†0KHó “
+"	
+(¢	(£ J.0LHó “
+ 
+(( J>0L2
+00	Hó “
+ 
+(( J.0LHó “
+ 
+(( “
+"˚L 520M:5Brõ0ú0û0J
+l06j`8
+m06j`8
+n06j`8
+o06j`8	†0K“
+3	4(ßB“
+34(0J…®0L2õ02ú02û0J2
+l06j`82
+m06j`82
+n06j`82
+o06j`82	†0KHó “
+7( !B#	$(¶
+&
+08(“
+"	
+(ß	(£ “
+“
+J0l06j`8Hó “
+ 
+(l(w J0m06j`8Hó “
+ 
+(m(w J0n06j`8Hó “
+ 
+(n(w J0o06j`8Hó “
+ 
+(o(w Jr00LHó “
+7( !B#	$(©
+&
+08(“
+ 
+(0( “
+“
+R2l06j`88«@ ä 
+(l(w R2m06j`88«@ ä 
+(m(w R2n06j`88«@ ä 
+(n(w R2o06j`88«@ ä 
+(o(w “
+"ÜN20H20L0B"πO20HBJÖ§0P2õ02ú02û0J2
+l06j`82
+m06j`82
+n06j`82
+o06j`82	†0KHó “
+"	
+(¢	(£ J.0PHó “
+ 
+(( J>0P2
+00	Hó “
+ 
+(( J.0PHó “
+ 
+(( “
+"„P 520L:5Brõ0ú0û0J
+l06j`8
+m06j`8
+n06j`8
+o06j`8	†0K“
+3	4(ßB“
+34(0J…®0P2õ02ú02û0J2
+l06j`82
+m06j`82
+n06j`82
+o06j`82	†0KHó “
+7( !B#	$(¨
+&
+08(“
+"	
+(ß	(£ “
+“
+Jr00PHó “
+7( !B#	$(≠
+&
+08(“
+ 
+(0( “
+“
+“
+"ÜQ20O20P0B"πR20HBJÖ§0S2õ02ú02û0J2
+l06j`82
+m06j`82
+n06j`82
+o06j`82	†0KHó “
+"	
+(¢	(£ J.0SHó “
+ 
+(( J>0S2
+00	Hó “
+ 
+(( J.0SHó “
+ 
+(( “
+"„S 520L:5Brõ0ú0û0J
+l06j`8
+m06j`8
+n06j`8
+o06j`8	†0K“
+3	4(ßB“
+34(0J…®0S2õ02ú02û0J2
+l06j`82
+m06j`82
+n06j`82
+o06j`82	†0KHó “
+7( !B#	$(∞
+&
+08(“
+"	
+(ß	(£ “
+“
+Jr00SHó “
+7( !B#	$(±
+&
+08(“
+ 
+(0( “
+“
+“
+"ÜT20R20S0B"πU20HBJÖ§0V2õ02ú02û0J2
+l06j`82
+m06j`82
+n06j`82
+o06j`82	†0KHó “
+"	
+(¢	(£ J.0VHó “
+ 
+(( J>0V2
+00	Hó “
+ 
+(( J.0VHó “
+ 
+(( “
+"„V 520L:5Brõ0ú0û0J
+l06j`8
+m06j`8
+n06j`8
+o06j`8	†0K“
+3	4(ßB“
+34(0J…®0V2õ02ú02û0J2
+l06j`82
+m06j`82
+n06j`82
+o06j`82	†0KHó “
+7( !B#	$(¥
+&
+08(“
+"	
+(ß	(£ “
+“
+Jr00VHó “
+7( !B#	$(µ
+&
+08(“
+ 
+(0( “
+“
+“
+"ÜW20U20V0B"–X20HBJî§0Y2õ02ú02û0J2
+l06j`82
+m06j`82
+n06j`82
+o06j`82ê06j`82ë06j`8Hó “
+"	
+(∏	(π JÖ§0Y2õ02ú02û0J2
+l06j`82
+m06j`82
+n06j`82
+o06j`82	†0KHó “
+"	
+(¢	(£ J.0YHó “
+ 
+(( J>0Y2
+00	Hó “
+ 
+(( J.0YHó “
+ 
+(( “
+"ñY 520L:5BÅõ0ú0û0J
+l06j`8
+m06j`8
+n06j`8
+o06j`8ê06j`8ë06j`8“
+3	4(ªBrõ0ú0û0J
+l06j`8
+m06j`8
+n06j`8
+o06j`8	†0K“
+3	4(ßB“
+34(0Jÿ®0Y2õ02ú02û0J2
+l06j`82
+m06j`82
+n06j`82
+o06j`82ê06j`82ë06j`8Hó “
+7( !B#	$(∫
+&
+08(“
+"	
+(ª	(π “
+“
+J2ê06j`8Hó “
+!	
+(ê(w J2ë06j`8Hó “
+!	
+(ë(w J…®0Y2õ02ú02û0J2
+l06j`82
+m06j`82
+n06j`82
+o06j`82	†0KHó “
+7( !B#	$(º
+&
+08(“
+"	
+(ß	(£ “
+“
+Jr00YHó “
+7( !B#	$(Ω
+&
+08(“
+ 
+(0( “
+“
+R4ê06j`88«@ ä!	
+(ê(w R4ë06j`88«@ ä!	
+(ë(w “
+"ÜZ20X20Y0B"Á[205BJ40\20Hó “
+ 
+(( J.0\Hó “
+ 
+(( J>0\2
+00	Hó “
+ 
+(( J.0\Hó “
+ 
+(( “
+"£\ 520::5B#10“
+34()B“
+3 4(0Jx.0\20Hó “
+7( !B#	$(¿
+&
+08(“
+ 
+()( “
+“
+J.¡01Hó “
+!	
+(¡(W J7√022¡01Hó “
+!	
+(¬(Z J.ƒ01Hó “
+!	
+(ƒ(W J7∆022ƒ01Hó “
+!	
+(≈(Z J.«01Hó “
+!	
+(«(W J7…022«01Hó “
+!	
+(»(Z Jr00\Hó “
+7( !B#	$( 
+&
+08(“
+ 
+(0( “
+“
+R`¡012^018«@«XÜä!	
+(¡(W í!	
+(¬(Z R`ƒ012^018«@«XÜä!	
+(ƒ(W í!	
+(≈(Z R`«012^018«@«XÜä!	
+(«(W í!	
+(»(Z “
+"Ü]20[20\0B"´^20[BJB0_202Ã06j`8Hó “
+!	
+(Œ(g J40_20Hó “
+ 
+(( J.0_Hó “
+ 
+(( J>0_2
+00	Hó “
+ 
+(( J.0_Hó “
+ 
+(( “
+"Æ_ 520\:5B110Ã06j`8“
+3	4(–B#10“
+34()B“
+3 4(0JÜ.0_202Ã06j`8Hó “
+7( !B#	$(œ
+&
+08(“
+!	
+(–(g “
+“
+J0l06j`8Hó “
+ 
+(l(w J;”022
+l06j`8Hó “
+"	
+(—	(“ J0m06j`8Hó “
+ 
+(m(w J;’022
+m06j`8Hó “
+"	
+(‘	(“ Jx.0_20Hó “
+7( !B#	$(÷
+&
+08(“
+ 
+()( “
+“
+Jr00_Hó “
+7( !B#	$(◊
+&
+08(“
+ 
+(0( “
+“
+Rgl06j`82
+^06j`88«@«XÜä 
+(l(w í"	
+(—	(“ Rgm06j`82
+^06j`88«@«XÜä 
+(m(w í"	
+(‘	(“ “
+"Ü`20^20_0B"äa20IBJW§0b2õ02ú02û0J2Ã06j`8Hó “
+"	
+(⁄	(€ J.0bHó “
+ 
+(( J>0b2
+00	Hó “
+ 
+(( J.0bHó “
+ 
+(( “
+"òb 520M:5BDõ0ú0û0JÃ06j`8“
+3	4(›B“
+34(0Jõ®0b2õ02ú02û0J2Ã06j`8Hó “
+7( !B#	$(‹
+&
+08(“
+"	
+(›	(€ “
+“
+J0l06j`8Hó “
+ 
+(l(w J;”022
+l06j`8Hó “
+"	
+(—	(“ J0m06j`8Hó “
+ 
+(m(w J;’022
+m06j`8Hó “
+"	
+(‘	(“ J.¡01Hó “
+!	
+(¡(W J7√022¡01Hó “
+!	
+(¬(Z J.ƒ01Hó “
+!	
+(ƒ(W J7∆022ƒ01Hó “
+!	
+(≈(Z J.«01Hó “
+!	
+(«(W J7…022«01Hó “
+!	
+(»(Z Jr00bHó “
+7( !B#	$(ﬁ
+&
+08(“
+ 
+(0( “
+“
+Rgl06j`82
+^06j`88«@«XÜä 
+(l(w í"	
+(—	(“ Rgm06j`82
+^06j`88«@«XÜä 
+(m(w í"	
+(‘	(“ R`¡012^018«@«XÜä!	
+(¡(W í!	
+(¬(Z R`ƒ012^018«@«XÜä!	
+(ƒ(W í!	
+(≈(Z R`«012^018«@«XÜä!	
+(«(W í!	
+(»(Z “
+"Üc20a20b0B"´d20[BJB0e202Ã06j`8Hó “
+!	
+(Œ(g J40e20Hó “
+ 
+(( J.0eHó “
+ 
+(( J>0e2
+00	Hó “
+ 
+(( J.0eHó “
+ 
+(( “
+"èe 520\:5B110Ã06j`8“
+3	4(–B#10“
+34()B“
+3 4(0JÜ.0e202Ã06j`8Hó “
+7( !B#	$(·
+&
+08(“
+!	
+(–(g “
+“
+J.‚01Hó “
+!	
+(‚(W J7‰022‚01Hó “
+!	
+(„(Z J.Â01Hó “
+!	
+(Â(W J7Á022Â01Hó “
+!	
+(Ê(Z J.Ë01Hó “
+!	
+(Ë(W J7Í022Ë01Hó “
+!	
+(È(Z J0l06j`8Hó “
+ 
+(l(w J;”022
+l06j`8Hó “
+"	
+(—	(“ J0m06j`8Hó “
+ 
+(m(w J;’022
+m06j`8Hó “
+"	
+(‘	(“ Jx.0e20Hó “
+7( !B#	$(Î
+&
+08(“
+ 
+()( “
+“
+Jr00eHó “
+7( !B#	$(Ï
+&
+08(“
+ 
+(0( “
+“
+R`‚012^018«@«XÜä!	
+(‚(W í!	
+(„(Z R`Â012^018«@«XÜä!	
+(Â(W í!	
+(Ê(Z R`Ë012^018«@«XÜä!	
+(Ë(W í!	
+(È(Z Rgl06j`82
+^06j`88«@«XÜä 
+(l(w í"	
+(—	(“ Rgm06j`82
+^06j`88«@«XÜä 
+(m(w í"	
+(‘	(“ “
+"Üf20d20e0B"ïg20IBJb§0h2õ02ú02û0J2
+l06j`82
+m06j`8Hó “
+"	
+(Ô	( J.0hHó “
+ 
+(( J>0h2
+00	Hó “
+ 
+(( J.0hHó “
+ 
+(( “
+"´h 520M:5BOõ0ú0û0J
+l06j`8
+m06j`8“
+3	4(ÚB“
+34(0J¶®0h2õ02ú02û0J2
+l06j`82
+m06j`8Hó “
+7( !B#	$(Ò
+&
+08(“
+"	
+(Ú	( “
+“
+J.¡01Hó “
+!	
+(¡(W J7√022¡01Hó “
+!	
+(¬(Z J.ƒ01Hó “
+!	
+(ƒ(W J7∆022ƒ01Hó “
+!	
+(≈(Z J.«01Hó “
+!	
+(«(W J7…022«01Hó “
+!	
+(»(Z J.Ë01Hó “
+!	
+(Ë(W J7Í022Ë01Hó “
+!	
+(È(Z J.‚01Hó “
+!	
+(‚(W J7‰022‚01Hó “
+!	
+(„(Z J.Â01Hó “
+!	
+(Â(W J7Á022Â01Hó “
+!	
+(Ê(Z J0l06j`8Hó “
+ 
+(l(w J0m06j`8Hó “
+ 
+(m(w Jr00hHó “
+7( !B#	$(Û
+&
+08(“
+ 
+(0( “
+“
+R`¡012^018«@«XÜä!	
+(¡(W í!	
+(¬(Z R`ƒ012^018«@«XÜä!	
+(ƒ(W í!	
+(≈(Z R`«012^018«@«XÜä!	
+(«(W í!	
+(»(Z R`Ë012^018«@«XÜä!	
+(Ë(W í!	
+(È(Z R`‚012^018«@«XÜä!	
+(‚(W í!	
+(„(Z R`Â012^018«@«XÜä!	
+(Â(W í!	
+(Ê(Z R2l06j`88«@ ä 
+(l(w R2m06j`88«@ ä 
+(m(w “
+"Üi20g20h0B"´j20[BJB0k202Ã06j`8Hó “
+!	
+(Œ(g J40k20Hó “
+ 
+(( J.0kHó “
+ 
+(( J>0k2
+00	Hó “
+ 
+(( J.0kHó “
+ 
+(( “
+"€k 520\:5B110Ã06j`8“
+3	4(–B#10“
+34()B“
+3 4(0JÜ.0k202Ã06j`8Hó “
+7( !B#	$(ˆ
+&
+08(“
+!	
+(–(g “
+“
+J2˜06j`8Hó “
+!	
+(˜(w J<˘022˜06j`8Hó “
+"	
+(¯	(“ Jx.0k20Hó “
+7( !B#	$(˙
+&
+08(“
+ 
+()( “
+“
+Jr00kHó “
+7( !B#	$(˚
+&
+08(“
+ 
+(0( “
+“
+Ri˜06j`82
+^06j`88«@«XÜä!	
+(˜(w í"	
+(¯	(“ “
+"Ül20j20k0B"äm20IBJW§0n2õ02ú02û0J2Ã06j`8Hó “
+"	
+(⁄	(€ J.0nHó “
+ 
+(( J>0n2
+00	Hó “
+ 
+(( J.0nHó “
+ 
+(( “
+"Òn 520M:5BDõ0ú0û0JÃ06j`8“
+3	4(›B“
+34(0Jõ®0n2õ02ú02û0J2Ã06j`8Hó “
+7( !B#	$(˛
+&
+08(“
+"	
+(›	(€ “
+“
+J2Ã06j`8Hó “
+!	
+(Ã(w Jr00nHó “
+7( !B#	$(ˇ
+&
+08(“
+ 
+(0( “
+“
+R4Ã06j`88«@ ä!	
+(Ã(w “
+"Üo20m20n0B"ˆp20520qBJ?0s2102É0rHó “
+"	
+(Ö	(Ü J.0sHó “
+ 
+(( J>0s2
+00	Hó “
+ 
+(( J.0sHó “
+ 
+(( “
+"º
+s 520:20t:5B-10É0r“
+3	4(âB“
+34(0JÉ.0s2102É0rHó “
+7( !B#	$(à
+&
+08(“
+"	
+(â	(Ü “
+“
+Jr00sHó “
+7( !B#	$(ä
+&
+08(“
+ 
+(0( “
+“
+J2å06j`uHó “
+!	
+(å(w J<é022å06j`uHó “
+"	
+(ç	(“ J:î0w2	ê0vHó “
+"	
+(í	(ì J1ñ0xHó “
+"	
+(ñ	(ó JJù0v2ö0y0	j`zHó “
+"	
+(õ	(ú JUù0v2ö0y0	j`z2	û0vHó “
+"	
+(ü	(† J`ù0v2ö0y0	j`z2	û0v2	°0vHó “
+"	
+(¢	(£ J/§0wHó “
+"	
+(§	(• J:©0w2	¶0xHó “
+"	
+(ß	(® J:´0w2	¶0xHó “
+"	
+(™	(® J:±0w2	Ø0}Hó “
+"	
+(∞	(ì JH¥0w2ö0y0	j`zHó “
+"	
+(≤	(≥ J2µ06j`8Hó “
+!	
+(µ(w J1∂0xHó “
+"	
+(∂	(ó J0∏0~Hó “
+!	
+(∏( J0π0~Hó “
+!	
+(π( “
+"Ü20p20s0B"ÜÄ20I20qBJK§0Å2õ02ú02û0JHó “
+"	
+(º	(Ω J/0ÅHó “
+ 
+(( J?0Å2
+00	Hó “
+ 
+(( J/0ÅHó “
+ 
+(( “
+"‘
+Å 520M20t:5B7õ0ú0û0J“
+3	4(øB“
+34(0Jè®0Å2õ02ú02û0JHó “
+7( !B#	$(æ
+&
+08(“
+"	
+(ø	(Ω “
+“
+Js00ÅHó “
+7( !B#	$(¿
+&
+08(“
+ 
+(0( “
+“
+J2å06j`uHó “
+!	
+(å(w J<é022å06j`uHó “
+"	
+(ç	(“ J:î0w2	ê0vHó “
+"	
+(í	(ì J1ñ0xHó “
+"	
+(ñ	(ó JJù0v2ö0y0	j`zHó “
+"	
+(õ	(ú JUù0v2ö0y0	j`z2	û0vHó “
+"	
+(ü	(† J`ù0v2ö0y0	j`z2	û0v2	°0vHó “
+"	
+(¢	(£ J/§0wHó “
+"	
+(§	(• J:©0w2	¶0xHó “
+"	
+(ß	(® J:´0w2	¶0xHó “
+"	
+(™	(® J:±0w2	Ø0}Hó “
+"	
+(∞	(ì JH¥0w2ö0y0	j`zHó “
+"	
+(≤	(≥ J2µ06j`8Hó “
+!	
+(µ(w J1∂0xHó “
+"	
+(∂	(ó J0∏0~Hó “
+!	
+(∏( J0π0~Hó “
+!	
+(π( “
+"ÜÇ20Ä2	0Å0B"¸É20520qBJA0Ö2102É0ÑHó “
+"	
+(Ö	(Ü J/0ÖHó “
+ 
+(( J?0Ö2
+00	Hó “
+ 
+(( J/0ÖHó “
+ 
+(( “
+"¡
+Ö 520:20t:5B.10É0Ñ“
+3	4(âB“
+34(0JÖ.0Ö2102É0ÑHó “
+7( !B#	$(ƒ
+&
+08(“
+"	
+(â	(Ü “
+“
+Js00ÖHó “
+7( !B#	$(≈
+&
+08(“
+ 
+(0( “
+“
+J2å06j`uHó “
+!	
+(å(w J<é022å06j`uHó “
+"	
+(ç	(“ J:î0w2	ê0vHó “
+"	
+(í	(ì J1ñ0xHó “
+"	
+(ñ	(ó JJù0v2ö0y0	j`zHó “
+"	
+(õ	(ú JUù0v2ö0y0	j`z2	û0vHó “
+"	
+(ü	(† J`ù0v2ö0y0	j`z2	û0v2	°0vHó “
+"	
+(¢	(£ J/§0wHó “
+"	
+(§	(• J:©0w2	¶0xHó “
+"	
+(ß	(® J:´0w2	¶0xHó “
+"	
+(™	(® J:±0w2	Ø0}Hó “
+"	
+(∞	(ì JH¥0w2ö0y0	j`zHó “
+"	
+(≤	(≥ J2µ06j`8Hó “
+!	
+(µ(w J1∂0xHó “
+"	
+(∂	(ó J0∏0~Hó “
+!	
+(∏( J0π0~Hó “
+!	
+(π( “
+"ÜÜ20É2	0Ö0B"Üá20I20qBJK§0à2õ02ú02û0JHó “
+"	
+(º	(Ω J/0àHó “
+ 
+(( J?0à2
+00	Hó “
+ 
+(( J/0àHó “
+ 
+(( “
+"‘
+à 520M20t:5B7õ0ú0û0J“
+3	4(øB“
+34(0Jè®0à2õ02ú02û0JHó “
+7( !B#	$(»
+&
+08(“
+"	
+(ø	(Ω “
+“
+Js00àHó “
+7( !B#	$(…
+&
+08(“
+ 
+(0( “
+“
+J2å06j`uHó “
+!	
+(å(w J<é022å06j`uHó “
+"	
+(ç	(“ J:î0w2	ê0vHó “
+"	
+(í	(ì J1ñ0xHó “
+"	
+(ñ	(ó JJù0v2ö0y0	j`zHó “
+"	
+(õ	(ú JUù0v2ö0y0	j`z2	û0vHó “
+"	
+(ü	(† J`ù0v2ö0y0	j`z2	û0v2	°0vHó “
+"	
+(¢	(£ J/§0wHó “
+"	
+(§	(• J:©0w2	¶0xHó “
+"	
+(ß	(® J:´0w2	¶0xHó “
+"	
+(™	(® J:±0w2	Ø0}Hó “
+"	
+(∞	(ì JH¥0w2ö0y0	j`zHó “
+"	
+(≤	(≥ J2µ06j`8Hó “
+!	
+(µ(w J1∂0xHó “
+"	
+(∂	(ó J0∏0~Hó “
+!	
+(∏( J0π0~Hó “
+!	
+(π( “
+"Üâ20á2	0à0B"¸ä20520qBJA0å2102É0ãHó “
+"	
+(Ö	(Ü J/0åHó “
+ 
+(( J?0å2
+00	Hó “
+ 
+(( J/0åHó “
+ 
+(( “
+"¢å 520:20t:5B.10É0ã“
+3	4(âB“
+34(0JÖ.0å2102É0ãHó “
+7( !B#	$(Õ
+&
+08(“
+"	
+(â	(Ü “
+“
+J3œ06j`çHó “
+!	
+(œ(w J=—022œ06j`çHó “
+"	
+(–	(“ Js00åHó “
+7( !B#	$(“
+&
+08(“
+ 
+(0( “
+“
+J2å06j`uHó “
+!	
+(å(w J<é022å06j`uHó “
+"	
+(ç	(“ J:î0w2	ê0vHó “
+"	
+(í	(ì J1ñ0xHó “
+"	
+(ñ	(ó JJù0v2ö0y0	j`zHó “
+"	
+(õ	(ú JUù0v2ö0y0	j`z2	û0vHó “
+"	
+(ü	(† J`ù0v2ö0y0	j`z2	û0v2	°0vHó “
+"	
+(¢	(£ J/§0wHó “
+"	
+(§	(• J:©0w2	¶0xHó “
+"	
+(ß	(® J:´0w2	¶0xHó “
+"	
+(™	(® J:±0w2	Ø0}Hó “
+"	
+(∞	(ì JH¥0w2ö0y0	j`zHó “
+"	
+(≤	(≥ J2µ06j`8Hó “
+!	
+(µ(w J1∂0xHó “
+"	
+(∂	(ó J0∏0~Hó “
+!	
+(∏( J0π0~Hó “
+!	
+(π( Rkœ06j`ç2^06j`ç8«@«XÜä!	
+(œ(w í"	
+(–	(“ “
+"Üé20ä2	0å0B"Üè20I20qBJK§0ê2õ02ú02û0JHó “
+"	
+(º	(Ω J/0êHó “
+ 
+(( J?0ê2
+00	Hó “
+ 
+(( J/0êHó “
+ 
+(( “
+"‘
+ê 520M20t:5B7õ0ú0û0J“
+3	4(øB“
+34(0Jè®0ê2õ02ú02û0JHó “
+7( !B#	$(’
+&
+08(“
+"	
+(ø	(Ω “
+“
+Js00êHó “
+7( !B#	$(÷
+&
+08(“
+ 
+(0( “
+“
+J2å06j`uHó “
+!	
+(å(w J<é022å06j`uHó “
+"	
+(ç	(“ J:î0w2	ê0vHó “
+"	
+(í	(ì J1ñ0xHó “
+"	
+(ñ	(ó JJù0v2ö0y0	j`zHó “
+"	
+(õ	(ú JUù0v2ö0y0	j`z2	û0vHó “
+"	
+(ü	(† J`ù0v2ö0y0	j`z2	û0v2	°0vHó “
+"	
+(¢	(£ J/§0wHó “
+"	
+(§	(• J:©0w2	¶0xHó “
+"	
+(ß	(® J:´0w2	¶0xHó “
+"	
+(™	(® J:±0w2	Ø0}Hó “
+"	
+(∞	(ì JH¥0w2ö0y0	j`zHó “
+"	
+(≤	(≥ J2µ06j`8Hó “
+!	
+(µ(w J1∂0xHó “
+"	
+(∂	(ó J0∏0~Hó “
+!	
+(∏( J0π0~Hó “
+!	
+(π( “
+"Üë20è2	0ê0B"’í205BJH0ñ202€
+0ï0ìHó “
+"	
+(›	(ﬁ JT0ñ202
+‡0ó2€
+0ï0ìHó “
+"	
+(·	(‚ J/0ñHó “
+ 
+(( J?0ñ2
+00	Hó “
+ 
+(( J/0ñHó “
+ 
+(( “
+"…ñ 520::5B510€
+0ï0ì“
+3	4(‰BA10
+‡0ó€
+0ï0ì“
+3	4(ÊB“
+34(0Jå.0ñ202€
+0ï0ìHó “
+7( !B#	$(„
+&
+08(“
+"	
+(‰	(ﬁ “
+“
+Jò.0ñ202
+‡0ó2€
+0ï0ìHó “
+7( !B#	$(Â
+&
+08(“
+"	
+(Ê	(‚ “
+“
+Js00ñHó “
+7( !B#	$(Á
+&
+08(“
+ 
+(0( “
+“
+“
+"Üò20í2	0ñ0B"÷ô20íBJH0ö202€
+0ï0ìHó “
+"	
+(›	(ﬁ JT0ö202
+‡0ó2€
+0ï0ìHó “
+"	
+(·	(‚ J/0öHó “
+ 
+(( J?0ö2
+00	Hó “
+ 
+(( J/0öHó “
+ 
+(( “
+" ö 520ñ:5B510€
+0ï0ì“
+3	4(‰BA10
+‡0ó€
+0ï0ì“
+3	4(ÊB“
+34(0Jå.0ö202€
+0ï0ìHó “
+7( !B#	$(Í
+&
+08(“
+"	
+(‰	(ﬁ “
+“
+Jò.0ö202
+‡0ó2€
+0ï0ìHó “
+7( !B#	$(Î
+&
+08(“
+"	
+(Ê	(‚ “
+“
+Js00öHó “
+7( !B#	$(Ï
+&
+08(“
+ 
+(0( “
+“
+“
+"Üõ20ô2	0ö0B"÷ú20íBJH0ù202€
+0ï0ìHó “
+"	
+(›	(ﬁ JT0ù202
+‡0ó2€
+0ï0ìHó “
+"	
+(·	(‚ J/0ùHó “
+ 
+(( J?0ù2
+00	Hó “
+ 
+(( J/0ùHó “
+ 
+(( “
+" ù 520ñ:5B510€
+0ï0ì“
+3	4(‰BA10
+‡0ó€
+0ï0ì“
+3	4(ÊB“
+34(0Jå.0ù202€
+0ï0ìHó “
+7( !B#	$(Ô
+&
+08(“
+"	
+(‰	(ﬁ “
+“
+Jò.0ù202
+‡0ó2€
+0ï0ìHó “
+7( !B#	$(
+&
+08(“
+"	
+(Ê	(‚ “
+“
+Js00ùHó “
+7( !B#	$(Ò
+&
+08(“
+ 
+(0( “
+“
+“
+"Üû20ú2	0ù0B"∏ü205BJ=¯0¢2ı0°Hó “
+!	
+(˜( JB¸0¢2˘02˙0Hó “
+"	
+(˚	(Ü J/0¢Hó “
+ 
+(( J?0¢2
+00	Hó “
+ 
+(( J/0¢Hó “
+ 
+(( “
+"‰¢ 520::5B*¶0°“
+3	4(˛B.ß0˙0“
+3	4(ÅB“
+34(0JÅˇ0¢2ı0°Hó “
+7( !B#	$(˝
+&
+08(“
+!	
+(˛( “
+“
+JÜÇ0¢2˘02˙0Hó “
+7( !B#	$(Ä
+&
+08(“
+"	
+(Å	(Ü “
+“
+J/É0xHó “
+"	
+(É	(ó J.Ñ01Hó “
+!	
+(Ñ(W J7Ü022Ñ01Hó “
+!	
+(Ö(Z J.á01Hó “
+!	
+(á(W J7â022á01Hó “
+!	
+(à(Z J.ä01Hó “
+!	
+(ä(W J7å022ä01Hó “
+!	
+(ã(Z J2ç06j`8Hó “
+!	
+(ç(w J<è022ç06j`8Hó “
+"	
+(é	(“ J2ê06j`8Hó “
+!	
+(ê(w J<í022ê06j`8Hó “
+"	
+(ë	(“ J2ì06j`8Hó “
+!	
+(ì(w J<ï022ì06j`8Hó “
+"	
+(î	(“ J2ñ06j`8Hó “
+!	
+(ñ(w J<ò022ñ06j`8Hó “
+"	
+(ó	(“ J2ô06j`8Hó “
+!	
+(ô(w J<õ022ô06j`8Hó “
+"	
+(ö	(“ J2ú06j`8Hó “
+!	
+(ú(w J<û022ú06j`8Hó “
+"	
+(ù	(“ J.ü01Hó “
+!	
+(ü(W J7°022ü01Hó “
+!	
+(†(Z J.¢01Hó “
+!	
+(¢(W J7§022¢01Hó “
+!	
+(£(Z Js00¢Hó “
+7( !B#	$(•
+&
+08(“
+ 
+(0( “
+“
+R`Ñ012^018«@«XÜä!	
+(Ñ(W í!	
+(Ö(Z R`á012^018«@«XÜä!	
+(á(W í!	
+(à(Z R`ä012^018«@«XÜä!	
+(ä(W í!	
+(ã(Z Riç06j`82
+^06j`88«@«XÜä!	
+(ç(w í"	
+(é	(“ Riê06j`82
+^06j`88«@«XÜä!	
+(ê(w í"	
+(ë	(“ Riì06j`82
+^06j`88«@«XÜä!	
+(ì(w í"	
+(î	(“ Riñ06j`82
+^06j`88«@«XÜä!	
+(ñ(w í"	
+(ó	(“ Riô06j`82
+^06j`88«@«XÜä!	
+(ô(w í"	
+(ö	(“ Riú06j`82
+^06j`88«@«XÜä!	
+(ú(w í"	
+(ù	(“ R`ü012^018«@«XÜä!	
+(ü(W í!	
+(†(Z R`¢012^018«@«XÜä!	
+(¢(W í!	
+(£(Z “
+"Ü£20ü2	0¢0B"π§20üBJ=¯0•2ı0°Hó “
+!	
+(˜( JB¸0•2˘02˙0Hó “
+"	
+(˚	(Ü J/0•Hó “
+ 
+(( J?0•2
+00	Hó “
+ 
+(( J/0•Hó “
+ 
+(( “
+"è• 520¢:5B*¶0°“
+3	4(˛B.ß0˙0“
+3	4(ÅB“
+34(0JÅˇ0•2ı0°Hó “
+7( !B#	$(™
+&
+08(“
+!	
+(˛( “
+“
+JÜÇ0•2˘02˙0Hó “
+7( !B#	$(´
+&
+08(“
+"	
+(Å	(Ü “
+“
+Js00•Hó “
+7( !B#	$(¨
+&
+08(“
+ 
+(0( “
+“
+“
+"Ü¶20§2	0•0B"πß20üBJ=¯0®2ı0°Hó “
+!	
+(˜( JB¸0®2˘02˙0Hó “
+"	
+(˚	(Ü J/0®Hó “
+ 
+(( J?0®2
+00	Hó “
+ 
+(( J/0®Hó “
+ 
+(( “
+"è® 520¢:5B*¶0°“
+3	4(˛B.ß0˙0“
+3	4(ÅB“
+34(0JÅˇ0®2ı0°Hó “
+7( !B#	$(Ø
+&
+08(“
+!	
+(˛( “
+“
+JÜÇ0®2˘02˙0Hó “
+7( !B#	$(∞
+&
+08(“
+"	
+(Å	(Ü “
+“
+Js00®Hó “
+7( !B#	$(±
+&
+08(“
+ 
+(0( “
+“
+“
+"Ü©20ß2	0®0B"π™20üBJ=¯0´2ı0°Hó “
+!	
+(˜( JB¸0´2˘02˙0Hó “
+"	
+(˚	(Ü J/0´Hó “
+ 
+(( J?0´2
+00	Hó “
+ 
+(( J/0´Hó “
+ 
+(( “
+"è´ 520¢:5B*¶0°“
+3	4(˛B.ß0˙0“
+3	4(ÅB“
+34(0JÅˇ0´2ı0°Hó “
+7( !B#	$(¥
+&
+08(“
+!	
+(˛( “
+“
+JÜÇ0´2˘02˙0Hó “
+7( !B#	$(µ
+&
+08(“
+"	
+(Å	(Ü “
+“
+Js00´Hó “
+7( !B#	$(∂
+&
+08(“
+ 
+(0( “
+“
+“
+"Ü¨20™2	0´0B"π≠20üBJ=¯0Æ2ı0°Hó “
+!	
+(˜( JB¸0Æ2˘02˙0Hó “
+"	
+(˚	(Ü J/0ÆHó “
+ 
+(( J?0Æ2
+00	Hó “
+ 
+(( J/0ÆHó “
+ 
+(( “
+"èÆ 520¢:5B*¶0°“
+3	4(˛B.ß0˙0“
+3	4(ÅB“
+34(0JÅˇ0Æ2ı0°Hó “
+7( !B#	$(π
+&
+08(“
+!	
+(˛( “
+“
+JÜÇ0Æ2˘02˙0Hó “
+7( !B#	$(∫
+&
+08(“
+"	
+(Å	(Ü “
+“
+Js00ÆHó “
+7( !B#	$(ª
+&
+08(“
+ 
+(0( “
+“
+“
+"ÜØ20≠2	0Æ0B"π∞20üBJ=¯0±2ı0°Hó “
+!	
+(˜( JB¸0±2˘02˙0Hó “
+"	
+(˚	(Ü J/0±Hó “
+ 
+(( J?0±2
+00	Hó “
+ 
+(( J/0±Hó “
+ 
+(( “
+"‡± 520¢:5B*¶0°“
+3	4(˛B.ß0˙0“
+3	4(ÅB“
+34(0J/ø0≤Hó “
+!	
+(ø(w J9¡022ø0≤Hó “
+"	
+(¿	(“ JÅˇ0±2ı0°Hó “
+7( !B#	$(¬
+&
+08(“
+!	
+(˛( “
+“
+JÜÇ0±2˘02˙0Hó “
+7( !B#	$(√
+&
+08(“
+"	
+(Å	(Ü “
+“
+Js00±Hó “
+7( !B#	$(ƒ
+&
+08(“
+ 
+(0( “
+“
+Rcø0≤2^0≤8«@«XÜä!	
+(ø(w í"	
+(¿	(“ “
+"Ü≥20∞2	0±0B"å¥20IBJU§0∂2õ02ú02û0µ2«0wHó “
+"	
+(…	(  J/0∂Hó “
+ 
+(( J?0∂2
+00	Hó “
+ 
+(( J/0∂Hó “
+ 
+(( “
+"À∂ 520M:5BAõ0ú0û0µ«0w“
+3	4(ÃB<Õ0°Œ0:«0w“
+3	4(–B“
+34(0Jô®0∂2õ02ú02û0µ2«0wHó “
+7( !B#	$(À
+&
+08(“
+"	
+(Ã	(  “
+“
+Jî“0∂2Õ0°2Œ0:2«0wHó “
+7( !B#	$(œ
+&
+08(“
+"	
+(–	(— “
+“
+J.Ñ01Hó “
+!	
+(Ñ(W J7Ü022Ñ01Hó “
+!	
+(Ö(Z J.á01Hó “
+!	
+(á(W J7â022á01Hó “
+!	
+(à(Z J.ä01Hó “
+!	
+(ä(W J7å022ä01Hó “
+!	
+(ã(Z J2ñ06j`8Hó “
+!	
+(ñ(w J<ò022ñ06j`8Hó “
+"	
+(ó	(“ J2ô06j`8Hó “
+!	
+(ô(w J<õ022ô06j`8Hó “
+"	
+(ö	(“ J2ú06j`8Hó “
+!	
+(ú(w J<û022ú06j`8Hó “
+"	
+(ù	(“ J.ü01Hó “
+!	
+(ü(W J7°022ü01Hó “
+!	
+(†(Z J.¢01Hó “
+!	
+(¢(W J7§022¢01Hó “
+!	
+(£(Z J/«0wHó “
+"	
+(«	(• Js00∂Hó “
+7( !B#	$(”
+&
+08(“
+ 
+(0( “
+“
+R`Ñ012^018«@«XÜä!	
+(Ñ(W í!	
+(Ö(Z R`á012^018«@«XÜä!	
+(á(W í!	
+(à(Z R`ä012^018«@«XÜä!	
+(ä(W í!	
+(ã(Z Riñ06j`82
+^06j`88«@«XÜä!	
+(ñ(w í"	
+(ó	(“ Riô06j`82
+^06j`88«@«XÜä!	
+(ô(w í"	
+(ö	(“ Riú06j`82
+^06j`88«@«XÜä!	
+(ú(w í"	
+(ù	(“ R`ü012^018«@«XÜä!	
+(ü(W í!	
+(†(Z R`¢012^018«@«XÜä!	
+(¢(W í!	
+(£(Z R1«0w8«@ ä"	
+(«	(• “
+"Ü∑20¥2	0∂0B"ç∏20¥BJU§0π2õ02ú02û0µ2«0wHó “
+"	
+(…	(  J/0πHó “
+ 
+(( J?0π2
+00	Hó “
+ 
+(( J/0πHó “
+ 
+(( “
+"⁄π 520∂:5BAõ0ú0û0µ«0w“
+3	4(ÃB<Õ0°Œ0:«0w“
+3	4(–B“
+34(0Jô®0π2õ02ú02û0µ2«0wHó “
+7( !B#	$(÷
+&
+08(“
+"	
+(Ã	(  “
+“
+Jî“0π2Õ0°2Œ0:2«0wHó “
+7( !B#	$(◊
+&
+08(“
+"	
+(–	(— “
+“
+Js00πHó “
+7( !B#	$(ÿ
+&
+08(“
+ 
+(0( “
+“
+“
+‡
+ Í
+ platform.MetalPerformanceShadersÚ
+Ø !"#$%&'()*+,-./0349;<=>?@ABCDEFGHLNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopsÄÅÇÉÖÜáàâäåéèêëíñòôöõúùûü¢£§•¶ß®©™´¨≠ÆØ∞±≥¥∂∑∏π

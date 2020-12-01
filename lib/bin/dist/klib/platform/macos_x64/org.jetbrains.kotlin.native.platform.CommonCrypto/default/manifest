@@ -1,0 +1,17 @@
+builtins_platform=NATIVE
+package=platform.CoreCrypto
+compiler_version=1.4.30-dev
+depends=stdlib org.jetbrains.kotlin.native.platform.posix
+exportForwardDeclarations=cnames.structs._CCCryptor
+interop=true
+language=Objective-C
+compilerOpts=-D_XOPEN_SOURCE
+native_targets=macos_x64
+ir_provider=kotlin.native.cinterop
+modules=CommonCrypto
+unique_name=org.jetbrains.kotlin.native.platform.CommonCrypto
+includedHeaders=usr/include/CommonCrypto/CommonCrypto.h usr/include/CommonCrypto/CommonCryptor.h usr/include/CommonCrypto/CommonCryptoError.h usr/include/CommonCrypto/CommonDigest.h usr/include/CommonCrypto/CommonHMAC.h usr/include/CommonCrypto/CommonKeyDerivation.h usr/include/CommonCrypto/CommonSymmetricKeywrap.h usr/include/CommonCrypto/CommonRandom.h
+abi_version=1.4.1
+short_name=CommonCrypto
+metadata_version=1.4.1
+ir_version=1.0.0

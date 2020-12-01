@@ -1,0 +1,894 @@
+
+‡p
+kotlinx
+cinterop
+CPointer
+cnames
+structs
+OpaquePMPrintSession
+platform
+ApplicationServices
+PMPrintSession
+printSession
+kotlin
+Int
+darwin
+OSStatus
+internal
+CCall
+id
+8knifunptr_platform_ApplicationServices256_PMSessionError
+PMSessionError
+
+printError
+;knifunptr_platform_ApplicationServices257_PMSessionSetError
+PMSessionSetError
+OpaquePMPrintSettings
+PMPrintSettings
+printSettings
+OpaquePMPageFormat
+PMPageFormat
+
+pageFormat
+Jknifunptr_platform_ApplicationServices258_PMSessionBeginCGDocumentNoDialog
+ PMSessionBeginCGDocumentNoDialog
+Fknifunptr_platform_ApplicationServices259_PMSessionEndDocumentNoDialog
+PMSessionEndDocumentNoDialog
+
+CValuesRef
+PMRect
+	pageFrame
+Dknifunptr_platform_ApplicationServices260_PMSessionBeginPageNoDialog
+PMSessionBeginPageNoDialog
+Bknifunptr_platform_ApplicationServices261_PMSessionEndPageNoDialog
+PMSessionEndPageNoDialog
+CPointerVarOf
+	CGContext
+CoreGraphics
+CGContextRef
+CGContextRefVar
+context
+Gknifunptr_platform_ApplicationServices262_PMSessionGetCGGraphicsContext
+PMSessionGetCGGraphicsContext
+UShortVarOf
+UShort
+PMDestinationTypeVar
+	destTypeP
+Eknifunptr_platform_ApplicationServices263_PMSessionGetDestinationType
+PMSessionGetDestinationType
+
+__CFString
+CoreFoundation
+CFStringRef
+CFStringRefVar
+destFormatP
+Hknifunptr_platform_ApplicationServices264_PMSessionCopyDestinationFormat
+PMSessionCopyDestinationFormat
+__CFURL
+CFURLRef
+CFURLRefVar
+destLocationP
+Jknifunptr_platform_ApplicationServices265_PMSessionCopyDestinationLocation
+ PMSessionCopyDestinationLocation
+PMDestinationType
+destType
+
+destFormat
+destLocation
+Aknifunptr_platform_ApplicationServices266_PMSessionSetDestination
+PMSessionSetDestination
+	__CFArray
+
+CFArrayRef
+CFArrayRefVar
+documentFormatP
+Gknifunptr_platform_ApplicationServices267_PMSessionCopyOutputFormatList
+PMSessionCopyOutputFormatList
+OpaquePMPrinter
+	PMPrinter
+printer
+pageFormatList
+Gknifunptr_platform_ApplicationServices268_PMSessionCreatePageFormatList
+PMSessionCreatePageFormatList
+printerList
+	LongVarOf
+Long
+
+CFIndexVar
+currentIndex
+PMPrinterVar
+currentPrinter
+Dknifunptr_platform_ApplicationServices269_PMSessionCreatePrinterList
+PMSessionCreatePrinterList
+Dknifunptr_platform_ApplicationServices270_PMSessionGetCurrentPrinter
+PMSessionGetCurrentPrinter
+session
+Fknifunptr_platform_ApplicationServices271_PMSessionSetCurrentPMPrinter
+PMSessionSetCurrentPMPrinter
+key
+CPointed
+	CFTypeRef
+CFTypeRefVar
+data
+Eknifunptr_platform_ApplicationServices272_PMSessionGetDataFromSession
+PMSessionGetDataFromSession
+Cknifunptr_platform_ApplicationServices273_PMSessionSetDataInSession
+PMSessionSetDataInSession
+PMPageFormatVar
+<knifunptr_platform_ApplicationServices274_PMCreatePageFormat
+PMCreatePageFormat
+Dknifunptr_platform_ApplicationServices275_PMSessionDefaultPageFormat
+PMSessionDefaultPageFormat
+BooleanVarOf
+Boolean
+
+BooleanVar
+changed
+Eknifunptr_platform_ApplicationServices276_PMSessionValidatePageFormat
+PMSessionValidatePageFormat
+	formatSrc
+
+formatDest
+:knifunptr_platform_ApplicationServices277_PMCopyPageFormat
+PMCopyPageFormat
+OpaquePMPaper
+PMPaper
+paper
+Gknifunptr_platform_ApplicationServices278_PMCreatePageFormatWithPMPaper
+PMCreatePageFormatWithPMPaper
+__CFData
+	CFDataRef
+CFDataRefVar
+UInt
+PMDataFormat
+format
+Nknifunptr_platform_ApplicationServices279_PMPageFormatCreateDataRepresentation
+$PMPageFormatCreateDataRepresentation
+Rknifunptr_platform_ApplicationServices280_PMPageFormatCreateWithDataRepresentation
+(PMPageFormatCreateWithDataRepresentation
+pageRect
+?knifunptr_platform_ApplicationServices281_PMGetAdjustedPageRect
+PMGetAdjustedPageRect
+	paperRect
+@knifunptr_platform_ApplicationServices282_PMGetAdjustedPaperRect
+PMGetAdjustedPaperRect
+PMOrientationVar
+orientation
+:knifunptr_platform_ApplicationServices283_PMGetOrientation
+PMGetOrientation
+OSType
+dataID
+	UIntVarOf
+	UInt32Var
+size
+extendedData
+Eknifunptr_platform_ApplicationServices284_PMGetPageFormatExtendedData
+PMGetPageFormatExtendedData
+	printerID
+Bknifunptr_platform_ApplicationServices285_PMPageFormatGetPrinterID
+PMPageFormatGetPrinterID
+DoubleVarOf
+Double
+	DoubleVar
+scale
+4knifunptr_platform_ApplicationServices286_PMGetScale
+
+PMGetScale
+Aknifunptr_platform_ApplicationServices287_PMGetUnadjustedPageRect
+PMGetUnadjustedPageRect
+Bknifunptr_platform_ApplicationServices288_PMGetUnadjustedPaperRect
+PMGetUnadjustedPaperRect
+PMOrientation
+lock
+:knifunptr_platform_ApplicationServices289_PMSetOrientation
+PMSetOrientation
+UInt32
+Eknifunptr_platform_ApplicationServices290_PMSetPageFormatExtendedData
+PMSetPageFormatExtendedData
+4knifunptr_platform_ApplicationServices291_PMSetScale
+
+PMSetScale
+PMPrintSettingsVar
+?knifunptr_platform_ApplicationServices292_PMCreatePrintSettings
+PMCreatePrintSettings
+Gknifunptr_platform_ApplicationServices293_PMSessionDefaultPrintSettings
+PMSessionDefaultPrintSettings
+Hknifunptr_platform_ApplicationServices294_PMSessionValidatePrintSettings
+PMSessionValidatePrintSettings
+
+settingSrc
+settingDest
+=knifunptr_platform_ApplicationServices295_PMCopyPrintSettings
+PMCopyPrintSettings
+Qknifunptr_platform_ApplicationServices296_PMPrintSettingsCreateDataRepresentation
+'PMPrintSettingsCreateDataRepresentation
+Uknifunptr_platform_ApplicationServices297_PMPrintSettingsCreateWithDataRepresentation
++PMPrintSettingsCreateWithDataRepresentation
+collate
+6knifunptr_platform_ApplicationServices298_PMGetCollate
+PMGetCollate
+copies
+5knifunptr_platform_ApplicationServices299_PMGetCopies
+PMGetCopies
+PMDuplexModeVar
+duplexSetting
+5knifunptr_platform_ApplicationServices300_PMGetDuplex
+PMGetDuplex
+first
+8knifunptr_platform_ApplicationServices301_PMGetFirstPage
+PMGetFirstPage
+last
+7knifunptr_platform_ApplicationServices302_PMGetLastPage
+PMGetLastPage
+minPage
+maxPage
+8knifunptr_platform_ApplicationServices303_PMGetPageRange
+PMGetPageRange
+name
+Cknifunptr_platform_ApplicationServices304_PMPrintSettingsGetJobName
+PMPrintSettingsGetJobName
+value
+Aknifunptr_platform_ApplicationServices305_PMPrintSettingsGetValue
+PMPrintSettingsGetValue
+6knifunptr_platform_ApplicationServices306_PMSetCollate
+PMSetCollate
+5knifunptr_platform_ApplicationServices307_PMSetCopies
+PMSetCopies
+PMDuplexMode
+5knifunptr_platform_ApplicationServices308_PMSetDuplex
+PMSetDuplex
+8knifunptr_platform_ApplicationServices309_PMSetFirstPage
+PMSetFirstPage
+7knifunptr_platform_ApplicationServices310_PMSetLastPage
+PMSetLastPage
+8knifunptr_platform_ApplicationServices311_PMSetPageRange
+PMSetPageRange
+Cknifunptr_platform_ApplicationServices312_PMPrintSettingsSetJobName
+PMPrintSettingsSetJobName
+locked
+Aknifunptr_platform_ApplicationServices313_PMPrintSettingsSetValue
+PMPrintSettingsSetValue
+__CFDictionary
+CFDictionaryRef
+CFDictionaryRefVar
+settingsDictionary
+Iknifunptr_platform_ApplicationServices314_PMPrintSettingsCopyAsDictionary
+PMPrintSettingsCopyAsDictionary
+settingsKeys
+Aknifunptr_platform_ApplicationServices315_PMPrintSettingsCopyKeys
+PMPrintSettingsCopyKeys
+@knifunptr_platform_ApplicationServices316_PMCreateGenericPrinter
+PMCreateGenericPrinter
+OpaquePMServer
+PMServer
+server
+Cknifunptr_platform_ApplicationServices317_PMServerCreatePrinterList
+PMServerCreatePrinterList
+options
+Fknifunptr_platform_ApplicationServices318_PMServerLaunchPrinterBrowser
+PMServerLaunchPrinterBrowser
+Fknifunptr_platform_ApplicationServices319_PMPrinterCreateFromPrinterID
+PMPrinterCreateFromPrinterID
+descriptionType
+fileURL
+Eknifunptr_platform_ApplicationServices320_PMPrinterCopyDescriptionURL
+PMPrinterCopyDescriptionURL
+	deviceURI
+@knifunptr_platform_ApplicationServices321_PMPrinterCopyDeviceURI
+PMPrinterCopyDeviceURI
+	hostNameP
+?knifunptr_platform_ApplicationServices322_PMPrinterCopyHostName
+PMPrinterCopyHostName
+
+presetList
+>knifunptr_platform_ApplicationServices323_PMPrinterCopyPresets
+PMPrinterCopyPresets
+supportsControlCharRangeP
+supportsEightBitP
+>knifunptr_platform_ApplicationServices324_PMPrinterGetCommInfo
+PMPrinterGetCommInfo
+8knifunptr_platform_ApplicationServices325_PMPrinterGetID
+PMPrinterGetID
+>knifunptr_platform_ApplicationServices326_PMPrinterGetLocation
+PMPrinterGetLocation
+	OSTypeVar
+creator
+Cknifunptr_platform_ApplicationServices327_PMPrinterGetDriverCreator
+PMPrinterGetDriverCreator
+VersRec
+release
+Gknifunptr_platform_ApplicationServices328_PMPrinterGetDriverReleaseInfo
+PMPrinterGetDriverReleaseInfo
+countP
+Lknifunptr_platform_ApplicationServices329_PMPrinterGetPrinterResolutionCount
+"PMPrinterGetPrinterResolutionCount
+index
+PMResolution
+resolutionP
+Nknifunptr_platform_ApplicationServices330_PMPrinterGetIndexedPrinterResolution
+$PMPrinterGetIndexedPrinterResolution
+Fknifunptr_platform_ApplicationServices331_PMPrinterGetOutputResolution
+PMPrinterGetOutputResolution
+Fknifunptr_platform_ApplicationServices332_PMPrinterSetOutputResolution
+PMPrinterSetOutputResolution
+PMLanguageInfo
+info
+Bknifunptr_platform_ApplicationServices333_PMPrinterGetLanguageInfo
+PMPrinterGetLanguageInfo
+makeAndModel
+Fknifunptr_platform_ApplicationServices334_PMPrinterGetMakeAndModelName
+PMPrinterGetMakeAndModelName
+settings
+	mimeTypes
+?knifunptr_platform_ApplicationServices335_PMPrinterGetMimeTypes
+PMPrinterGetMimeTypes
+:knifunptr_platform_ApplicationServices336_PMPrinterGetName
+PMPrinterGetName
+	paperList
+?knifunptr_platform_ApplicationServices337_PMPrinterGetPaperList
+PMPrinterGetPaperList
+PMPrinterStateVar
+state
+;knifunptr_platform_ApplicationServices338_PMPrinterGetState
+PMPrinterGetState
+<knifunptr_platform_ApplicationServices339_PMPrinterIsDefault
+PMPrinterIsDefault
+=knifunptr_platform_ApplicationServices340_PMPrinterIsFavorite
+PMPrinterIsFavorite
+Fknifunptr_platform_ApplicationServices341_PMPrinterIsPostScriptCapable
+PMPrinterIsPostScriptCapable
+isPSPrinter
+Fknifunptr_platform_ApplicationServices342_PMPrinterIsPostScriptPrinter
+PMPrinterIsPostScriptPrinter
+	isRemoteP
+;knifunptr_platform_ApplicationServices343_PMPrinterIsRemote
+PMPrinterIsRemote
+=knifunptr_platform_ApplicationServices344_PMPrinterSetDefault
+PMPrinterSetDefault
+OpaquePMPreset
+PMPreset
+preset
+:knifunptr_platform_ApplicationServices345_PMPresetCopyName
+PMPresetCopyName
+Eknifunptr_platform_ApplicationServices346_PMPresetCreatePrintSettings
+PMPresetCreatePrintSettings
+
+attributes
+?knifunptr_platform_ApplicationServices347_PMPresetGetAttributes
+PMPresetGetAttributes
+
+PMPaperVar
+>knifunptr_platform_ApplicationServices348_PMGetPageFormatPaper
+PMGetPageFormatPaper
+width
+height
+PMPaperMargins
+margins
+paperP
+=knifunptr_platform_ApplicationServices349_PMPaperCreateCustom
+PMPaperCreateCustom
+
+paperWidth
+9knifunptr_platform_ApplicationServices350_PMPaperGetWidth
+PMPaperGetWidth
+paperHeight
+:knifunptr_platform_ApplicationServices351_PMPaperGetHeight
+PMPaperGetHeight
+paperMargins
+;knifunptr_platform_ApplicationServices352_PMPaperGetMargins
+PMPaperGetMargins
+paperID
+6knifunptr_platform_ApplicationServices353_PMPaperGetID
+PMPaperGetID
+	paperName
+@knifunptr_platform_ApplicationServices354_PMPaperGetPPDPaperName
+PMPaperGetPPDPaperName
+Dknifunptr_platform_ApplicationServices355_PMPaperCreateLocalizedName
+PMPaperCreateLocalizedName
+=knifunptr_platform_ApplicationServices356_PMPaperGetPrinterID
+PMPaperGetPrinterID
+9knifunptr_platform_ApplicationServices357_PMPaperIsCustom
+PMPaperIsCustom
+workflowItems
+=knifunptr_platform_ApplicationServices358_PMWorkflowCopyItems
+PMWorkflowCopyItems
+workflowItem
+title
+String
+CString
+pdfFile
+Hknifunptr_platform_ApplicationServices359_PMWorkflowSubmitPDFWithOptions
+PMWorkflowSubmitPDFWithOptions
+Iknifunptr_platform_ApplicationServices360_PMWorkflowSubmitPDFWithSettings
+PMWorkflowSubmitPDFWithSettings
+mimeType
+CGDataProvider
+CGDataProviderRef
+provider
+Dknifunptr_platform_ApplicationServices361_PMPrinterPrintWithProvider
+PMPrinterPrintWithProvider
+@knifunptr_platform_ApplicationServices362_PMPrinterPrintWithFile
+PMPrinterPrintWithFile
+sourceFileURL
+destinationFileURL
+Gknifunptr_platform_ApplicationServices363_PMPrinterWritePostScriptToURL
+PMPrinterWritePostScriptToURL
+	ByteVarOf
+Byte
+ByteVar
+CPointerVar
+Bknifunptr_platform_ApplicationServices364_PMPrintSettingsToOptions
+PMPrintSettingsToOptions
+Zknifunptr_platform_ApplicationServices365_PMPrintSettingsToOptionsWithPrinterAndPageFormat
+0PMPrintSettingsToOptionsWithPrinterAndPageFormat
+commandString
+jobTitle
+>knifunptr_platform_ApplicationServices366_PMPrinterSendCommand
+PMPrinterSendCommand
+	stateDict
+<knifunptr_platform_ApplicationServices367_PMPrinterCopyState
+PMPrinterCopyState
+PMPPDDomain
+domain
+ppds
+=knifunptr_platform_ApplicationServices368_PMCopyAvailablePPDs
+PMCopyAvailablePPDs
+ppd
+localizedPPD
+<knifunptr_platform_ApplicationServices369_PMCopyLocalizedPPD
+PMCopyLocalizedPPD
+7knifunptr_platform_ApplicationServices370_PMCopyPPDData
+PMCopyPPDData
+epsDataProvider
+CGImage
+
+CGImageRef
+
+epsPreview
+Lknifunptr_platform_ApplicationServices371_PMCGImageCreateWithEPSDataProvider
+"PMCGImageCreateWithEPSDataProvider
+	CFunction
+	Function5
+SpeechChannelRecord
+SpeechChannel
+SRefCon
+COpaquePointer
+COpaquePointerVar
+
+ULongVarOf
+ULong
+ULongVar
+IntVarOf
+	SInt32Var
+Unit
+SpeechTextDoneProcPtr
+userRoutine
+SpeechTextDoneUPP
+>knifunptr_platform_ApplicationServices372_NewSpeechTextDoneUPP
+NewSpeechTextDoneUPP
+	Function2
+SpeechDoneProcPtr
+SpeechDoneUPP
+:knifunptr_platform_ApplicationServices373_NewSpeechDoneUPP
+NewSpeechDoneUPP
+	Function3
+SpeechSyncProcPtr
+SpeechSyncUPP
+:knifunptr_platform_ApplicationServices374_NewSpeechSyncUPP
+NewSpeechSyncUPP
+	Function4
+Short
+OSErr
+SpeechErrorProcPtr
+SpeechErrorUPP
+;knifunptr_platform_ApplicationServices375_NewSpeechErrorUPP
+NewSpeechErrorUPP
+SInt16
+SpeechPhonemeProcPtr
+SpeechPhonemeUPP
+=knifunptr_platform_ApplicationServices376_NewSpeechPhonemeUPP
+NewSpeechPhonemeUPP
+UInt16
+SpeechWordProcPtr
+SpeechWordUPP
+:knifunptr_platform_ApplicationServices377_NewSpeechWordUPP
+NewSpeechWordUPP
+userUPP
+Bknifunptr_platform_ApplicationServices378_DisposeSpeechTextDoneUPP
+DisposeSpeechTextDoneUPP
+>knifunptr_platform_ApplicationServices379_DisposeSpeechDoneUPP
+DisposeSpeechDoneUPP
+>knifunptr_platform_ApplicationServices380_DisposeSpeechSyncUPP
+DisposeSpeechSyncUPP
+?knifunptr_platform_ApplicationServices381_DisposeSpeechErrorUPP
+DisposeSpeechErrorUPP
+Aknifunptr_platform_ApplicationServices382_DisposeSpeechPhonemeUPP
+DisposeSpeechPhonemeUPP
+>knifunptr_platform_ApplicationServices383_DisposeSpeechWordUPP
+DisposeSpeechWordUPP≥
+ 
+ 
+ 
+
+
+ 
+
+
+ 
+
+
+	 
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+  
+! 
+' 
+( 
+)
+* 
++ 
+/ 
+	0 
+1 
+5 
+6
+7 
+8 
+< 
+= 
+> 
+B 
+H 
+I 
+J 
+N 
+O 
+U 
+	V 
+W 
+Y 
+c 
+d 
+e 
+k 
+p 
+	q 
+r 
+z 
+{ 
+ 
+Ä 
+Å 
+	Ç 
+É 
+è 
+ì 
+ï 
+ñ 
+û 
+	ü 
+† 
+® 
+¨ 
+± 
+∆ 
+ﬁ 
+Ï 
+Ì 
+Ó 
+˜ 
+¯ 
+ñ 
+ö 
+¢ 
+™ 
+∫ 
+Ã 
+Õ 
+÷ 
+€ 
+	˙ 
+˚ 
+Ç 
+É 
+ç 
+	é 
+è 
+ê 
+ú 
+® 
+© 
+≠ 
+	Æ 
+Ø 
+∞ 
+± 
+≤ 
+≥ 
+¥ 
+	µ 
+∂ 
+∑ 
+∏ 
+	π 
+∫ 
+º 
+	ø 
+¿ 
+¡ 
+	ƒ 
+≈ 
+∆ 
+	… 
+	  
+À 
+Ã 
+Õ 
+– 
+— 
+“ 
+’ 
+÷ 
+◊ ïa20
+j`2	00j`Há “
+(>0
+j`2	00j`2
+0
+j`Há “
+(^0
+j`2	00j`200j`200j`Há “
+(20
+j`2	00j`Há “
+(X$0
+j`2	00j`200j`2"
+00Há “
+(#2&0
+j`2	00j`Há “
+(%V.0
+j`2	00j`2",00j`0j`0Há “
+(-b40
+j`2	00j`200j`2200j`0Há “
+(3l;0
+j`2	00j`200j`2"900j`0j` 0Há “
+(:lA0
+j`2	00j`200j`2"?0!0j`"0j`#0Há “
+(@ÄG0
+j`2	00j`200j`2
+C0j`$2D00j`2E0!0j`"Há “
+(FbM0
+j`2	00j`2
+C0j`$2"K0%0j`&0j`'0Há “
+(LlS0
+j`2	00j`2P0(0j`)2"Q0%0j`&0j`'0Há “
+(Rî\0
+j`2	00j`2"T0%0j`&0j`'02X0+0*j`,02"Z0(0j`)0j`-0Há “
+([V^0
+j`2	00j`2"Z0(0j`)0j`-0Há “
+(]Ha0
+j`2_00j`2P0(0j`)Há “
+(`nh0
+j`2	00j`2b00j`2$f 0.0j`/0j`00Há “
+(g`j0
+j`2	00j`2b00j`2f0.0j`/Há “
+(i@m0
+j`2"00j`0j`10Há “
+(lHo0
+j`2	00j`200j`Há “
+(nbu0
+j`2	00j`200j`2s0302j`40Há “
+(tHy0
+j`2v00j`2w00j`Há “
+(xV~0
+j`2"00j`0j`102|050j`6Há “
+(}eÜ0
+j`200j`2"f070j`80j`902Ñ0:j`;Há “
+	(ÖXà0
+j`2f070j`82"00j`0j`10Há “
+	(áEã0
+j`200j`2â
+00Há “
+	(äEé0
+j`200j`2å
+00Há “
+	(çOí0
+j`200j`2ê00j`<0Há “
+	(ëkö0
+j`200j`2î0:j`=2ó0:0>j`?02ò0Há “
+	(ôYù0
+j`200j`2#õ00j`0j` 0Há “
+	(úO£0
+j`200j`2°0A0@j`B0Há “
+	(¢E•0
+j`200j`2â
+00Há “
+	(§Eß0
+j`200j`2å
+00Há “
+	(¶J´0
+j`200j`2ê0j`C2©03Há “
+	(™]Æ0
+j`200j`2î0:j`=2ó0:j`D2ò0Há “
+	(≠=∞0
+j`200j`2°0AHá “
+	(ØB≥0
+j`2"00j`0j`E0Há “
+	(≤Jµ0
+j`2	00j`200j`Há “
+	(¥d∑0
+j`2	00j`200j`2s0302j`40Há “
+	(∂Lª0
+j`2∏00j`2π00j`Há “
+	(∫eΩ0
+j`200j`2"f070j`80j`902Ñ0:j`;Há “
+	(ºXø0
+j`2f070j`82"00j`0j`E0Há “
+	(æO¬0
+j`200j`2¿0302j`40Há “
+	(¡O≈0
+j`200j`2√0:0>j`?0Há “
+	(ƒO…0
+j`200j`2«0:0>j`F0Há “
+	(»OÃ0
+j`200j`2 0:0>j`?0Há “
+	(ÀOœ0
+j`200j`2Õ0:0>j`?0Há “
+	(Œj”0
+j`200j`2–0:0>j`?02—0:0>j`?0Há “
+	(“Y÷0
+j`200j`2#‘00j`0j` 0Há “
+	(’qŸ0
+j`200j`2b00j`2%◊ 0.0j`/0j`00Há “
+	(ÿ=€0
+j`200j`2¿03Há “
+	(⁄J›0
+j`200j`2√0:j`D2©03Há “
+	(‹A‡0
+j`200j`2«0:j`GHá “
+	(ﬂJ‚0
+j`200j`2 0:j`D2©03Há “
+	(·J‰0
+j`200j`2Õ0:j`D2©03Há “
+	(„NÊ0
+j`200j`2–0:j`D2—0:j`DHá “
+	(ÂKË0
+j`200j`2‘00j`Há “
+	(ÁlÎ0
+j`200j`2b00j`2◊0.0j`/2È03Há “
+	(ÍYÒ0
+j`200j`2#Ô0H0j`I0j`J0Há “
+	(YÙ0
+j`200j`2#Ú0%0j`&0j`'0Há “
+	(ÛBˆ0
+j`2"P0(0j`)0j`-0Há “
+	(ıY˚0
+j`2˘0K0j`L2"T0%0j`&0j`'0Há “
+	(˙L˛0
+j`2˘0K0j`L2¸0H0j`IHá “
+	(˝?Ä0(0j`)2õ00j`Há “
+	(ˇpÑ0
+j`2P0(0j`)2Å00j`2#Ç0!0j`"0j`#0Há “
+	(ÉYá0
+j`2P0(0j`)2#Ö0!0j`"0j`#0Há “
+	(ÜYä0
+j`2P0(0j`)2#à00j`0j` 0Há “
+	(âYç0
+j`2P0(0j`)2#ã0%0j`&0j`'0Há “
+	(åjë0
+j`2P0(0j`)2é0302j`402è0302j`40Há “
+	(ê>ì00j`2P0(0j`)Há “
+	(í>ï00j`2P0(0j`)Há “
+	(îOô0
+j`2P0(0j`)2ó0:0>j`M0Há “
+	(òEù0
+j`2P0(0j`)2õ
+0N0Há “
+	(úO†0
+j`2P0(0j`)2û0:0>j`?0Há “
+	(üR•0
+j`2P0(0j`)2°0:j`D2£
+0O0Há “
+	(§[ß0
+j`2P0(0j`)200j`2£
+0O0Há “
+	(¶[©0
+j`2P0(0j`)200j`2£
+0O0Há “
+	(®E≠0
+j`2P0(0j`)2´
+0P0Há “
+	(¨Y∞0
+j`2P0(0j`)2#Æ00j`0j` 0Há “
+	(Øp¥0
+j`2P0(0j`)2±00j`2#≤0%0j`&0j`'0Há “
+	(≥>∂00j`2P0(0j`)Há “
+	(µYπ0
+j`2P0(0j`)2#∑0%0j`&0j`'0Há “
+	(∏OΩ0
+j`2P0(0j`)2ª00j`Q0Há “
+	(º0ø032P0(0j`)Há “
+	(æ0¡032P0(0j`)Há “
+	(¿0√032P0(0j`)Há “
+	(¬O∆0
+j`2P0(0j`)2ƒ0302j`40Há “
+	(≈O…0
+j`2P0(0j`)2«0302j`40Há “
+	(»4À0
+j`2P0(0j`)Há “
+	( Z–0
+j`2Œ0R0j`S2#‘00j`0j` 0Há “
+	(œo“0
+j`2Œ0R0j`S2_00j`2"00j`0j`E0Há “
+	(—Z’0
+j`2Œ0R0j`S2#”0H0j`I0j`J0Há “
+	(‘Yÿ0
+j`2Ñ00j`2"|050j`60j`T0Há “
+	(◊≠ﬂ0
+j`2P0(0j`)200j`2‘00j`2Ÿ0A2⁄0A2‹0j`U02#›050j`60j`T0Há “
+	(ﬁO‚0
+j`2|050j`62‡0A0@j`B0Há “
+	(·OÂ0
+j`2|050j`62„0A0@j`B0Há “
+	(‰IË0
+j`2|050j`62Ê0j`U0Há “
+	(ÁYÎ0
+j`2|050j`62#È00j`0j` 0Há “
+	(ÍYÓ0
+j`2|050j`62#Ï00j`0j` 0Há “
+	(Ìo0
+j`2|050j`62P0(0j`)2#Ï00j`0j` 0Há “
+	(ÔYÚ0
+j`2|050j`62#õ00j`0j` 0Há “
+	(Ò0Ù032|050j`6Há “
+	(ÛC˜0
+j`2#ı0%0j`&0j`'0Há “
+	(ˆu˛0
+j`2¯0!0j`"2˘00j`2¸0V“
+W2¸0!0j`"Há “
+	(˝cÄ0
+j`2¯0!0j`"2±00j`2¸0!0j`"Há “
+	(ˇêÜ0
+j`2P0(0j`)2±00j`2Ñ00j`2Å00j`2Ñ0X0j`YHá “
+	(Öêà0
+j`2P0(0j`)2±00j`2Ñ00j`2Å00j`2Ç0!0j`"Há “
+	(áßå0
+j`2P0(0j`)2±00j`2Ñ00j`2Å00j`2â0!0j`"2ä0!0j`"Há “
+	(ãpí0
+j`2±00j`29¸4.,0[0Zj`\00j0[0Zj`\`]0Há “
+	(ëúî0
+j`2±00j`2P0(0j`)200j`29¸4.,0[0Zj`\00j0[0Zj`\`]0Há “
+	(ìyò0
+j`2P0(0j`)2ï00j`2ñ00j`2¸0H0j`IHá “
+	(óYõ0
+j`2P0(0j`)2#ô0H0j`I0j`J0Há “
+	(öP†0
+j`2ù0j`^2#û0%0j`&0j`'0Há “
+	(üZ§0
+j`2°0!0j`"2#¢0!0j`"0j`#0Há “
+	(£Y¶0
+j`2°0!0j`"2"f070j`80j`90Há “
+	(•V¨0_0j``2ß0X0j`Y2™0_0j``Há “
+	(´ﬁæûëéâÜ0c0j`d0.0j`e" 0.0j`f0j`g00i0hj`j00
+0kj`l00m0b0a0j`o2§ªûëéâÜ0c0j`d0.0j`e" 0.0j`f0j`g00i0hj`j00
+0kj`l00m0b0a0j`nHá “
+	(Ω´√F:8420c0j`d0.0j`e0m0p0a0j`r2KªF:8420c0j`d0.0j`e0m0p0a0j`qHá “
+	(¬ø»PDB><0c0j`d0.0j`e0:j`=0m0s0a0j`u2UªPDB><0c0j`d0.0j`e0:j`=0m0s0a0j`tHá “
+	(«ÀœVJHDB0c0j`d0.0j`e0wj`x0+0m0v0a0j`z2[ªVJHDB0c0j`d0.0j`e0wj`x0+0m0v0a0j`yHá “
+	(Œø‘PDB><0c0j`d0.0j`e0wj`{0m0s0a0j`}2UªPDB><0c0j`d0.0j`e0wj`{0m0s0a0j`|Há “
+	(”ÃŸWJHDB0c0j`d0.0j`e0i0j`~0m0v0a0j`Ä2[ªVJHDB0c0j`d0.0j`e0i0j`~0m0v0a0j`Há “
+	(ÿ¡‹0m2§⁄ûëéâÜ0c0j`d0.0j`e" 0.0j`f0j`g00i0hj`j00
+0kj`l00m0b0a0j`oHá “
+	(€gﬁ0m2K⁄F:8420c0j`d0.0j`e0m0p0a0j`rHá “
+	(›q‡0m2U⁄PDB><0c0j`d0.0j`e0:j`=0m0s0a0j`uHá “
+	(ﬂw‚0m2[⁄VJHDB0c0j`d0.0j`e0wj`x0+0m0v0a0j`zHá “
+	(·q‰0m2U⁄PDB><0c0j`d0.0j`e0wj`{0m0s0a0j`}Há “
+	(„xÊ0m2\⁄WJHDB0c0j`d0.0j`e0i0j`~0m0v0a0j`ÄHá “
+	(Âÿ
+‡
+ Í
+platform.ApplicationServices
