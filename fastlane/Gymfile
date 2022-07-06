@@ -4,3 +4,10 @@ output_name('Swift Mock Generator for Xcode')
 configuration('Release')
 export_method('developer-id')
 derived_data_path('/tmp/fastlaneBuild')
+export_options({
+  method: "developer-id",
+  provisioningProfiles: {
+    "codes.seanhenry.MockGeneratorApp": "Mock Generator Dev ID",
+    "codes.seanhenry.MockGeneratorApp.XcodePlugin": "Mock Generator Extension Dev ID",
+  },
+})
