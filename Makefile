@@ -1,4 +1,4 @@
-USE_CASE_SHA=subscript-support
+USE_CASE_SHA=v19
 MUSTACHE_SHA=v7.3.2
 
 ROOT=$(shell pwd)
@@ -51,7 +51,7 @@ endef
 
 usecases: mkdestpath mkkotlinnative
 	$(call update_repo,$(USECASES_SRC_PATH),https://github.com/seanhenry/MockGenerator.git,$(USE_CASE_SHA))
-	cd $(USECASES_SRC_PATH)/UseCases/src/main/java; \
+	cd $(USECASES_SRC_PATH)/src/main/kotlin; \
 	$(KOTLINC) -nomain -target macos_arm64 -p framework -o $(DEST_PATH_DEBUG)/arm64/UseCases .; \
 	$(KOTLINC) -nomain -target macos_arm64 -p framework -opt -o $(DEST_PATH_RELEASE)/arm64/UseCases .; \
 	$(KOTLINC) -nomain -target macos_x64 -p framework -o $(DEST_PATH_DEBUG)/x86_64/UseCases .; \
@@ -62,7 +62,7 @@ usecases: mkdestpath mkkotlinnative
 	lipo -create -output $(DEST_PATH_RELEASE)/UseCases.framework/Versions/A/UseCases \
 	  $(DEST_PATH_RELEASE)/x86_64/UseCases.framework/Versions/A/UseCases \
 	  $(DEST_PATH_RELEASE)/arm64/UseCases.framework/Versions/A/UseCases; \
-	cp $(USECASES_SRC_PATH)/MockGenerator/resources/*.mustache $(ROOT)/MockGenerator; \
+	cp $(USECASES_SRC_PATH)/src/main/resources/*.mustache $(ROOT)/MockGenerator; \
 
 mkkotlinnative:
 	echo "Download and install Kotlin Native from https://github.com/JetBrains/kotlin/releases to ~/kotlin-native"
