@@ -1,3 +1,5 @@
+> ⚠️ This plugin is no longer being actively worked on as the author is no longer writing much Swift. I will try to keep the app working but won't be adding new features. Thank you everyone for your support!
+
 # Swift Mock Generator Xcode Source Editor Extension
 ![Mock Generator Icon](readme/AppIcon_256.png)
 
@@ -83,7 +85,8 @@ See how this project generates its mocks [here](https://github.com/seanhenry/Swi
 
 | Feature | Supported |
 |---|---|
-| Swift 5.|✅|
+| Swift 5.0|✅|
+| Swift 5.1+||
 | Generate a spy.|✅|
 | Generate a stub.|✅|
 | Generate a dummy.|✅|
