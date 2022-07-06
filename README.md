@@ -1,5 +1,7 @@
 > ⚠️ This plugin is no longer being actively worked on as the author is no longer writing much Swift. I will try to keep the app working but won't be adding new features. Thank you everyone for your support!
 
+> ❗️ Your app may stop working after 10th September 2022 as the signing certificate will expire. [Download](https://github.com/seanhenry/SwiftMockGeneratorForXcode/releases) and install the most recent version to fix this issue.
+
 # Swift Mock Generator Xcode Source Editor Extension
 ![Mock Generator Icon](readme/AppIcon_256.png)
 
