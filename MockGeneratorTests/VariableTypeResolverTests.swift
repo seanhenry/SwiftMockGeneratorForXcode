@@ -103,16 +103,16 @@ class VariableTypeResolverTests: XCTestCase {
 
     private func assertResolveArray(_ text: String, _ expected: String, line: UInt = #line) {
         let resolved = try! resolve(text)
-        XCTAssert(resolved is UseCasesArrayType, line: line)
-        let array = resolved as? UseCasesArrayType
+        XCTAssert(resolved is UseCases.ArrayType, line: line)
+        let array = resolved as? UseCases.ArrayType
         XCTAssertEqual(array?.text, "[\(expected)]", line: line)
         XCTAssertEqual(array?.type.text, expected, line: line)
     }
 
     private func assertResolveDict(_ text: String, _ expectedKey: String, _ expectedValue: String, line: UInt = #line) {
         let resolved = try! resolve(text)
-        XCTAssert(resolved is UseCasesDictionaryType, line: line)
-        let dict = resolved as? UseCasesDictionaryType
+        XCTAssert(resolved is UseCases.DictionaryType, line: line)
+        let dict = resolved as? UseCases.DictionaryType
         XCTAssertEqual(dict?.text, "[\(expectedKey): \(expectedValue)]", line: line)
         XCTAssertEqual(dict?.keyType.text, expectedKey, line: line)
         XCTAssertEqual(dict?.valueType.text, expectedValue, line: line)
@@ -120,8 +120,8 @@ class VariableTypeResolverTests: XCTestCase {
 
     private func assertResolveTuple(_ text: String, _ expected: String..., line: UInt = #line) {
         let resolved = try! resolve(text)
-        XCTAssert(resolved is UseCasesTupleType, line: line)
-        guard let tuple = resolved as? UseCasesTupleType else {
+        XCTAssert(resolved is UseCases.TupleType, line: line)
+        guard let tuple = resolved as? UseCases.TupleType else {
             XCTFail("Expected tuple type", line: line)
             return
         }
@@ -135,7 +135,7 @@ class VariableTypeResolverTests: XCTestCase {
         XCTAssertNil(try resolve(text), line: line)
     }
 
-    private func resolve(_ text: String) throws -> UseCasesType? {
+    private func resolve(_ text: String) throws -> UseCases.`Type`? {
         let fullText = """
         \(text)
         func returnMethod() -> ReturnMethodType {}
@@ -146,7 +146,7 @@ class VariableTypeResolverTests: XCTestCase {
         return VariableTypeResolver.resolve(try parse(fullText), resolver: ResolverFactory.createResolver(filePaths: []))
     }
 
-    private func parse(_ text: String) throws -> Element {
+    private func parse(_ text: String) throws -> AST.Element {
         return try ParserTestHelper.parseFile(from: text).children[0]
     }
 }

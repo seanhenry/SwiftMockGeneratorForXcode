@@ -1,12 +1,9 @@
 USE_CASE_SHA=subscript-support
 MUSTACHE_SHA=v7.3.2
-KOTLIN_NATIVE_SHA=v0.8
-KOTLINC_VERSION=0.8-dev
 
 ROOT=$(shell pwd)
 
 SRC_PATH=/tmp/xcode-mock-generator-src
-KOTLIN_NATIVE_SRC_PATH=$(SRC_PATH)/kotlinnative
 USECASES_SRC_PATH=$(SRC_PATH)/usecases
 MUSTACHE_SRC_PATH=$(SRC_PATH)/GRMustache
 SWIFT_TOOLKIT_SRC_PATH=$(ROOT)/SwiftToolkit
@@ -14,11 +11,10 @@ SWIFT_TOOLKIT_SRC_PATH=$(ROOT)/SwiftToolkit
 DEST_PATH=$(ROOT)/lib
 DEST_PATH_DEBUG=$(DEST_PATH)/Debug
 DEST_PATH_RELEASE=$(DEST_PATH)/Release
-KOTLINNATIVE_DEST_PATH=$(ROOT)/bin
 
-KOTLINC=$(KOTLINNATIVE_DEST_PATH)/dist/bin/kotlinc
+KOTLINC=~/kotlin-native/bin/kotlinc-native
 
-.PHONY: test bootstrap clean usecases mkdestpath mkkotlinnative xcpretty mustache swift-toolkit
+.PHONY: bootstrap clean usecases mkdestpath mkkotlinnative xcpretty mustache swift-toolkit
 
 bootstrap: clean swift-toolkit usecases mustache
 
@@ -56,20 +52,20 @@ endef
 usecases: mkdestpath mkkotlinnative
 	$(call update_repo,$(USECASES_SRC_PATH),https://github.com/seanhenry/MockGenerator.git,$(USE_CASE_SHA))
 	cd $(USECASES_SRC_PATH)/UseCases/src/main/java; \
-	$(KOTLINC) -nomain -p framework -o $(DEST_PATH_DEBUG)/UseCases .; \
-	$(KOTLINC) -nomain -p framework -opt -o $(DEST_PATH_RELEASE)/UseCases .; \
-	cp $(USECASES_SRC_PATH)/MockGenerator/resources/*.mustache $(ROOT)/MockGenerator;
+	$(KOTLINC) -nomain -target macos_arm64 -p framework -o $(DEST_PATH_DEBUG)/arm64/UseCases .; \
+	$(KOTLINC) -nomain -target macos_arm64 -p framework -opt -o $(DEST_PATH_RELEASE)/arm64/UseCases .; \
+	$(KOTLINC) -nomain -target macos_x64 -p framework -o $(DEST_PATH_DEBUG)/x86_64/UseCases .; \
+	$(KOTLINC) -nomain -target macos_x64 -p framework -opt -o $(DEST_PATH_RELEASE)/x86_64/UseCases .; \
+	lipo -create -output $(DEST_PATH_DEBUG)/UseCases.framework/Versions/A/UseCases \
+	  $(DEST_PATH_DEBUG)/x86_64/UseCases.framework/Versions/A/UseCases \
+	  $(DEST_PATH_DEBUG)/arm64/UseCases.framework/Versions/A/UseCases; \
+	lipo -create -output $(DEST_PATH_RELEASE)/UseCases.framework/Versions/A/UseCases \
+	  $(DEST_PATH_RELEASE)/x86_64/UseCases.framework/Versions/A/UseCases \
+	  $(DEST_PATH_RELEASE)/arm64/UseCases.framework/Versions/A/UseCases; \
+	cp $(USECASES_SRC_PATH)/MockGenerator/resources/*.mustache $(ROOT)/MockGenerator; \
 
 mkkotlinnative:
-	if [[ "$$($(KOTLINC) -version)" =~ '$(KOTLINC_VERSION)' ]]; then \
-		echo "kotlin native already installed"; \
-	else \
-		$(call update_repo,$(KOTLIN_NATIVE_SRC_PATH),https://github.com/JetBrains/kotlin-native.git,$(KOTLIN_NATIVE_SHA)) \
-		cd $(KOTLIN_NATIVE_SRC_PATH); \
-		./gradlew dependencies:update; \
-		./gradlew dist distPlatformLibs; \
-		cp -Rf $(KOTLIN_NATIVE_SRC_PATH)/dist $(KOTLINNATIVE_DEST_PATH); \
-	fi
+	echo "Download and install Kotlin Native from https://github.com/JetBrains/kotlin/releases to ~/kotlin-native"
 
 define MUSTACHE_MODULE_MAP
 module GRMustache {
@@ -81,7 +77,7 @@ export MUSTACHE_MODULE_MAP
 
 # 1 - configuration
 define build_mustache
-	xcrun xcodebuild -project src/GRMustache.xcodeproj -scheme GRMustache7-MacOS -configuration $(1) -derivedDataPath build clean build MACOSX_DEPLOYMENT_TARGET=10.12 | xcpretty
+	xcrun xcodebuild -project src/GRMustache.xcodeproj -scheme GRMustache7-MacOS -configuration $(1) -derivedDataPath build clean build MACOSX_DEPLOYMENT_TARGET=11.0 ONLY_ACTIVE_ARCH=NO | xcpretty
 endef
 
 mustache: xcpretty mkdestpath
@@ -96,9 +92,8 @@ mustache: xcpretty mkdestpath
 	echo "$$MUSTACHE_MODULE_MAP" > $(DEST_PATH_RELEASE)/include/GRMustache/module.modulemap;
 
 mkdestpath:
-	mkdir -p $(DEST_PATH_DEBUG)
-	mkdir -p $(DEST_PATH_RELEASE)
-	mkdir -p $(KOTLINNATIVE_DEST_PATH)
+	mkdir -p $(DEST_PATH_DEBUG)/x86_64 $(DEST_PATH_DEBUG)/arm64
+	mkdir -p $(DEST_PATH_RELEASE)/x86_64 $(DEST_PATH_RELEASE)/arm64
 
 xcpretty:
 	gem install xcpretty || gem update xcpretty || true
@@ -122,5 +117,3 @@ swift-toolkit: mkdestpath
 	cp -R lib/Debug/SwiftToolkit.framework "$(DEST_PATH_DEBUG)"; \
 	cp -R lib/Debug/TestHelper.framework "$(DEST_PATH_DEBUG)"; \
 	cp -R lib/Debug/SwiftyPluginTest.framework "$(DEST_PATH_DEBUG)";
-
-

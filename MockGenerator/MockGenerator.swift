@@ -1,5 +1,7 @@
 import AST
-import UseCases
+import class UseCases.MockClass
+import class UseCases.CallbackMockView
+import class UseCases.Generator
 import SwiftyKit
 
 protocol MockGenerator {
@@ -34,23 +36,23 @@ extension MockGenerator {
         formatterFactory.make().format(element)
     }
 
-    private func isEmpty(mockClass: UseCasesMockClass) -> Bool {
+    private func isEmpty(mockClass: MockClass) -> Bool {
         return mockClass.protocols.isEmpty && mockClass.inheritedClass == nil
     }
 
-    private func getMockBody(from mockClass: UseCasesMockClass) -> [String] {
-        let view = UseCasesCallbackMockView { [templateName] model in
+    private func getMockBody(from mockClass: MockClass) -> [String] {
+        let view = CallbackMockView { [templateName] model in
             let view = MustacheView(templateName: templateName)
             view.render(model: model)
             return view.result
         }
-        let generator = UseCasesGenerator(view: view)
+        let generator = Generator(view: view)
         generator.set(c: mockClass)
         generator.generate()
         return view.result
     }
 
-    private func transformToMockClass(element: Element) -> UseCasesMockClass {
+    private func transformToMockClass(element: Element) -> MockClass {
         return TypeDeclarationTransformingVisitor.transformMock(element, resolver: resolverFactory.make())
     }
 }

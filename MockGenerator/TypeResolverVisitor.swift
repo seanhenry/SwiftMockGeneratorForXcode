@@ -1,4 +1,3 @@
-import UseCases
 import AST
 import Resolver
 import SwiftyKit

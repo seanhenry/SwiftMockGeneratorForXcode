@@ -5,58 +5,58 @@ import Foundation
 
 class MemberTransformingVisitor: RecursiveElementVisitor {
 
-    private(set) var initializers = [UseCasesInitializer]()
-    private(set) var properties = [UseCasesProperty]()
-    private(set) var methods = [UseCasesMethod]()
-    private(set) var subscripts = [UseCasesSubscript]()
-    private(set) var type: UseCasesType = UseCasesTypeIdentifierBuilder(identifier: "").build()
+    private(set) var initializers = [UseCases.Initializer]()
+    private(set) var properties = [UseCases.Property]()
+    private(set) var methods = [UseCases.Method]()
+    private(set) var subscripts = [UseCases.Subscript]()
+    private(set) var type: UseCases.`Type` = TypeIdentifier.Builder(identifier: "").build()
     private let resolver: Resolver
 
     init(resolver: Resolver) {
         self.resolver = resolver
     }
 
-    static func transformType(_ element: Element, resolver: Resolver) -> UseCasesType {
+    static func transformType(_ element: AST.Element, resolver: Resolver) -> UseCases.`Type` {
         let visitor = MemberTransformingVisitor(resolver: resolver)
         element.accept(visitor)
         return visitor.type
     }
 
-    func transformType(_ element: Element) -> UseCasesType {
+    func transformType(_ element: AST.Element) -> UseCases.`Type` {
         return MemberTransformingVisitor.transformType(element, resolver: resolver)
     }
 
-    override func visitType(_ element: Type) {
-        type = UseCasesTypeIdentifier(identifier: element.text)
+    override func visitType(_ element: AST.`Type`) {
+        type = UseCases.TypeIdentifier(identifier: element.text)
     }
 
-    override func visitTypeIdentifier(_ element: TypeIdentifier) {
+    override func visitTypeIdentifier(_ element: AST.TypeIdentifier) {
         if let genericArgumentClause = element.genericArgumentClause {
-            type = UseCasesGenericType(identifier: element.typeName, arguments: genericArgumentClause.arguments.map { transformType($0) })
+            type = GenericType(identifier: element.typeName, arguments: genericArgumentClause.arguments.map { transformType($0) })
         } else {
             let identifiers = element.typeNames
-            type = UseCasesTypeIdentifier(identifiers: NSMutableArray(array: identifiers as NSArray))
+            type = UseCases.TypeIdentifier(identifiers: NSMutableArray(array: identifiers as NSArray))
         }
     }
 
-    override func visitArrayType(_ element: ArrayType) {
-        type = UseCasesArrayType(type: transformType(element.elementType), useVerboseSyntax: false)
+    override func visitArrayType(_ element: AST.ArrayType) {
+        type = UseCases.ArrayType(type: transformType(element.elementType), useVerboseSyntax: false)
     }
 
-    override func visitDictionaryType(_ element: DictionaryType) {
+    override func visitDictionaryType(_ element: AST.DictionaryType) {
         let key = transformType(element.keyType)
         let value = transformType(element.valueType)
-        type = UseCasesDictionaryType(keyType: key, valueType: value, useVerboseSyntax: false)
+        type = UseCases.DictionaryType(keyType: key, valueType: value, useVerboseSyntax: false)
     }
 
-    override func visitOptionalType(_ element: OptionalType) {
+    override func visitOptionalType(_ element: AST.OptionalType) {
         let iuo = element.text.hasSuffix("!")
         let type = transformType(element.type)
-        self.type = UseCasesOptionalType(type: type, isImplicitlyUnwrapped: iuo, useVerboseSyntax: false)
+        self.type = UseCases.OptionalType(type: type, isImplicitlyUnwrapped: iuo, useVerboseSyntax: false)
     }
 
-    override func visitFunctionType(_ element: FunctionType) {
-        type = UseCasesFunctionType(arguments: element.functionTypeArgumentClause.arguments
+    override func visitFunctionType(_ element: AST.FunctionType) {
+        type = UseCases.FunctionType(arguments: element.functionTypeArgumentClause.arguments
             .compactMap { $0.typeAnnotation?.type ?? $0.type }
             .map { transformType($0) },
             returnType: transformType(element.returnType),
@@ -64,22 +64,22 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
     }
 
     override func visitParenthesizedType(_ element: ParenthesizedType) {
-        let tupleType = UseCasesTupleTypeTupleElement(label: nil, type: transformType(element.type))
-        type = UseCasesTupleType(tupleElements: [tupleType])
+        let tupleType = UseCases.TupleType.TupleElement(label: nil, type: transformType(element.type))
+        type = TupleType(tupleElements: [tupleType])
     }
 
     override func visitMetatypeType(_ element: MetatypeType) {
-        type = UseCasesTypeIdentifier(identifiers: NSMutableArray(array: [element.type.text, element.metatype.text]))
+        type = UseCases.TypeIdentifier(identifiers: NSMutableArray(array: [element.type.text, element.metatype.text]))
     }
 
-    override func visitTupleType(_ element: TupleType) {
+    override func visitTupleType(_ element: AST.TupleType) {
         let tupleElements = element.tupleTypeElementList.tupleTypeElements.compactMap(transformTupleType)
-        type = UseCasesTupleType(tupleElements: tupleElements)
+        type = TupleType(tupleElements: tupleElements)
     }
 
-    private func transformTupleType(_ e: TupleTypeElement) -> UseCasesTupleTypeTupleElement? {
+    private func transformTupleType(_ e: TupleTypeElement) -> UseCases.TupleType.TupleElement? {
         if let type = e.type ?? e.typeAnnotation?.type {
-            return UseCasesTupleTypeTupleElement(label: e.elementName?.text, type: transformType(type))
+            return TupleType.TupleElement(label: e.elementName?.text, type: transformType(type))
         }
         return nil
     }
@@ -100,13 +100,13 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
                && !element.isFinal
     }
 
-    private func transform(_ element: FunctionDeclaration) -> UseCasesMethod {
+    private func transform(_ element: FunctionDeclaration) -> UseCases.Method {
         let genericParameter = transformGenericParameters(from: element)
         let parameters = transformParameters(element.parameterClause.parameters)
-        let returnType = element.functionResult.map { transformType($0.type) } ?? UseCasesTypeIdentifier(identifier: "")
-        return UseCasesMethod(name: element.name,
+        let returnType = element.functionResult.map { transformType($0.type) } ?? UseCases.TypeIdentifier(identifier: "")
+        return UseCases.Method(name: element.name,
             genericParameters: genericParameter,
-            returnType: UseCasesResolvedType(originalType: returnType, resolvedType: returnType),
+            returnType: UseCases.ResolvedType(originalType: returnType, resolvedType: returnType),
             parametersList: parameters,
             declarationText: getDeclarationText(element),
             throws: element.throws,
@@ -114,7 +114,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
         )
     }
 
-    private func getDeclarationText(_ element: Element) -> String {
+    private func getDeclarationText(_ element: AST.Element) -> String {
         let visitor = DeclarationTextVisitor()
         element.accept(visitor)
         return visitor.text.trimmingCharacters(in: .whitespaces)
@@ -126,7 +126,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
         } ?? []
     }
 
-    private func transformParameters(_ parameters: [Parameter]) -> [UseCasesParameter] {
+    private func transformParameters(_ parameters: [AST.Parameter]) -> [UseCases.Parameter] {
         return parameters.map { parameter in
             var internalName = parameter.localParameterName
             if internalName == "`let`" {
@@ -134,25 +134,25 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
             } else if internalName == "`var`" {
                 internalName = "var"
             }
-            return UseCasesParameter(
+            return UseCases.Parameter(
                 externalName: parameter.externalParameterName,
                 internalName: internalName,
-                type: UseCasesResolvedType(originalType: transformType(parameter.typeAnnotation.type), resolvedType: resolveAndTransform(parameter.typeAnnotation.type)),
+                type: UseCases.ResolvedType(originalType: transformType(parameter.typeAnnotation.type), resolvedType: resolveAndTransform(parameter.typeAnnotation.type)),
                 text: parameter.text,
                 isEscaping: isEscaping(parameter))
         }
     }
 
-    private func isEscaping(_ parameter: Parameter) -> Bool {
+    private func isEscaping(_ parameter: AST.Parameter) -> Bool {
         return parameter.typeAnnotation.attributes.attributes.contains { $0.text == "@escaping" }
     }
 
-    private func resolveAndTransform(_ type: Type) -> UseCasesType {
+    private func resolveAndTransform(_ type: AST.`Type`) -> UseCases.`Type` {
         let resolved = resolveType(type)
         return transformType(resolved)
     }
 
-    private func resolveType(_ type: Type) -> Type {
+    private func resolveType(_ type: AST.`Type`) -> AST.`Type` {
         let visitor = TypeResolverVisitor(resolver: resolver)
         type.accept(visitor)
         return visitor.resolvedType ?? type
@@ -165,13 +165,13 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
             return
         }
         let typeAnnotation = element.typeAnnotation == nil ? ": \(type.text)" : ""
-        properties.append(UseCasesProperty(name: name,
+        properties.append(UseCases.Property(name: name,
             type: type,
             isWritable: isWritable(element),
             declarationText: "var \(getDeclarationText(element.patternInitializerList.patternInitializers[0]))\(typeAnnotation)"))
     }
 
-    private func findType(_ element: VariableDeclaration) -> UseCasesType? {
+    private func findType(_ element: VariableDeclaration) -> UseCases.`Type`? {
         if let type = element.typeAnnotation?.type {
             return transformType(type)
         } else if let type = VariableTypeResolver.resolve(element, resolver: resolver) {
@@ -201,7 +201,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
         guard isOverridable(element) else {
             return
         }
-        initializers.append(UseCasesInitializer(
+        initializers.append(UseCases.Initializer(
             parametersList: transformParameters(element.parameterClause.parameters),
             isFailable: element.isFailable,
             throws: element.throws))
@@ -213,9 +213,9 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
             return
         }
         let returnType = transformType(functionResult.type)
-        let resolvedType = UseCasesResolvedType(originalType: returnType, resolvedType: returnType)
+        let resolvedType = UseCases.ResolvedType(originalType: returnType, resolvedType: returnType)
         subscripts.append(
-            UseCasesSubscript(
+            UseCases.Subscript(
                 returnType: resolvedType,
                 parameters: transformParameters(element.parameterClause.parameters),
                 isWritable: isWritable(element),
@@ -227,7 +227,7 @@ class MemberTransformingVisitor: RecursiveElementVisitor {
 
 extension ParameterClause {
 
-    var parameters: [Parameter] {
+    var parameters: [AST.Parameter] {
         return parameterList?.parameters ?? []
     }
 }
@@ -259,5 +259,5 @@ private class DeclarationTextVisitor: RecursiveElementVisitor {
     override func visitCodeBlock(_ element: CodeBlock) {}
     override func visitGetterSetterBlock(_ element: GetterSetterBlock) {}
     override func visitGetterSetterKeywordBlock(_ element: GetterSetterKeywordBlock) {}
-    override func visitInitializer(_ element: Initializer) {}
+    override func visitInitializer(_ element: AST.Initializer) {}
 }

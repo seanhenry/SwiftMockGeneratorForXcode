@@ -27,91 +27,91 @@ class MemberTransformingVisitorTests: XCTestCase {
     // MARK: - visit
 
     func test_shouldTransformTypeIdentifier() {
-        assertTypeIs("Type", UseCasesTypeIdentifier.self, "Type")
+        assertTypeIs("Type", UseCases.TypeIdentifier.self, "Type")
     }
 
     func test_shouldTransformMetadataTypeIdentifier() {
-        assertTypeIs("T.Type", UseCasesTypeIdentifier.self, "T.Type")
+        assertTypeIs("T.Type", UseCases.TypeIdentifier.self, "T.Type")
     }
 
     func test_shouldTransformProtocolMetadataTypeIdentifier() {
-        assertTypeIs("T.Protocol", UseCasesTypeIdentifier.self, "T.Protocol")
+        assertTypeIs("T.Protocol", UseCases.TypeIdentifier.self, "T.Protocol")
     }
 
     func test_shouldTransformParenthesizedType() {
-        assertTypeIs("(T)", UseCasesTupleType.self, "(T)")
+        assertTypeIs("(T)", UseCases.TupleType.self, "(T)")
     }
 
     func test_shouldTransformGenericType() {
-        assertTypeIs("Type<A>", UseCasesGenericType.self, "Type<A>")
+        assertTypeIs("Type<A>", UseCases.GenericType.self, "Type<A>")
     }
 
     func test_shouldTransformGenericTypeWithMultipleArguments() {
-        assertTypeIs("Type<A, B>", UseCasesGenericType.self, "Type<A, B>")
+        assertTypeIs("Type<A, B>", UseCases.GenericType.self, "Type<A, B>")
     }
 
     func test_shouldTransformGenericTypeWithNestedTypes() {
-        assertTypeIs("Type<A.B>", UseCasesGenericType.self, "Type<A.B>")
+        assertTypeIs("Type<A.B>", UseCases.GenericType.self, "Type<A.B>")
     }
 
     func test_shouldTransformNestedTypes() {
-        assertTypeIs("A.B.C", UseCasesTypeIdentifier.self, "A.B.C")
-        let type = transformType("A.B", UseCasesTypeIdentifier.self)
+        assertTypeIs("A.B.C", UseCases.TypeIdentifier.self, "A.B.C")
+        let type = transformType("A.B", UseCases.TypeIdentifier.self)
         XCTAssertEqual(type.identifiers[0] as! String, "A")
         XCTAssertEqual(type.identifiers[1] as! String, "B")
     }
 
     func test_shouldTransformArrayType() {
-        let type = transformType("[Type]", UseCasesArrayType.self)
+        let type = transformType("[Type]", UseCases.ArrayType.self)
         XCTAssertEqual(type.text, "[Type]")
-        XCTAssert(type.type is UseCasesTypeIdentifier)
+        XCTAssert(type.type is UseCases.TypeIdentifier)
     }
 
     func test_shouldTransformArrayTypeWithComplexType() {
-        let type = transformType("[[Int]]", UseCasesArrayType.self)
+        let type = transformType("[[Int]]", UseCases.ArrayType.self)
         XCTAssertEqual(type.text, "[[Int]]")
-        XCTAssert(type.type is UseCasesArrayType)
+        XCTAssert(type.type is UseCases.ArrayType)
         XCTAssertEqual(type.type.text, "[Int]")
-        let inner = type.type as! UseCasesArrayType
-        XCTAssert(inner.type is UseCasesTypeIdentifier)
+        let inner = type.type as! UseCases.ArrayType
+        XCTAssert(inner.type is UseCases.TypeIdentifier)
     }
 
     func test_shouldTransformDictionaryType() {
-        let type = transformType("[A: B]", UseCasesDictionaryType.self)
+        let type = transformType("[A: B]", UseCases.DictionaryType.self)
         XCTAssertEqual(type.text, "[A: B]")
-        XCTAssert(type.keyType is UseCasesTypeIdentifier)
-        XCTAssert(type.valueType is UseCasesTypeIdentifier)
+        XCTAssert(type.keyType is UseCases.TypeIdentifier)
+        XCTAssert(type.valueType is UseCases.TypeIdentifier)
     }
 
     func test_shouldTransformDictionaryTypeWithComplexTypes() {
-        let type = transformType("[[A]: [B: C]]", UseCasesDictionaryType.self)
+        let type = transformType("[[A]: [B: C]]", UseCases.DictionaryType.self)
         XCTAssertEqual(type.text, "[[A]: [B: C]]")
-        XCTAssert(type.keyType is UseCasesArrayType)
-        XCTAssert(type.valueType is UseCasesDictionaryType)
+        XCTAssert(type.keyType is UseCases.ArrayType)
+        XCTAssert(type.valueType is UseCases.DictionaryType)
     }
 
     func test_shouldTransformOptionalType() {
-        let type = transformType("A?", UseCasesOptionalType.self)
+        let type = transformType("A?", UseCases.OptionalType.self)
         XCTAssertEqual(type.text, "A?")
-        XCTAssert(type.type is UseCasesTypeIdentifier)
+        XCTAssert(type.type is UseCases.TypeIdentifier)
     }
 
     func test_shouldTransformComplexOptionalType() {
-        let type = transformType("[A]?", UseCasesOptionalType.self)
+        let type = transformType("[A]?", UseCases.OptionalType.self)
         XCTAssertEqual(type.text, "[A]?")
-        XCTAssert(type.type is UseCasesArrayType)
+        XCTAssert(type.type is UseCases.ArrayType)
     }
 
     // TODO: support IUO properly
     // TODO: support Optional<Style>
     func test_shouldTransformIUO() {
-        let type = transformType("A!", UseCasesOptionalType.self)
+        let type = transformType("A!", UseCases.OptionalType.self)
         XCTAssertEqual(type.text, "A!")
         XCTAssert(type.isImplicitlyUnwrapped)
     }
 
     func test_shouldTransformFunctionType() {
-        let type = transformType("() -> ()", UseCasesFunctionType.self)
+        let type = transformType("() -> ()", UseCases.FunctionType.self)
         XCTAssertEqual(type.text, "() -> ()")
         XCTAssertFalse(type.throws)
         XCTAssertEqual(type.returnType.text, "()")
@@ -119,20 +119,20 @@ class MemberTransformingVisitorTests: XCTestCase {
     }
 
     func test_shouldTransformThrowingFunctionType() {
-        let type = transformType("() throws -> ()", UseCasesFunctionType.self)
+        let type = transformType("() throws -> ()", UseCases.FunctionType.self)
         XCTAssertEqual(type.text, "() throws -> ()")
         XCTAssertTrue(type.throws)
     }
 
     func test_shouldTransformFunctionTypeWithArguments() {
-        let type = transformType("(A, [B]) -> ()", UseCasesFunctionType.self)
+        let type = transformType("(A, [B]) -> ()", UseCases.FunctionType.self)
         XCTAssertEqual(type.text, "(A, [B]) -> ()")
         XCTAssertEqual(type.arguments[0].text, "A")
         XCTAssertEqual(type.arguments[1].text, "[B]")
     }
 
     func test_shouldTransformTupleType() {
-        let type = transformType("(a: A, [B])", UseCasesTupleType.self)
+        let type = transformType("(a: A, [B])", UseCases.TupleType.self)
         XCTAssertEqual(type.text, "(a: A, [B])")
         XCTAssertEqual(type.tupleElements[0].label, "a")
         XCTAssertEqual(type.tupleElements[0].text, "a: A")
@@ -140,12 +140,12 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssertEqual(type.tupleElements[1].text, "[B]")
     }
 
-    private func assertTypeIs<T: UseCasesType>(_ input: String, _ t: T.Type, _ text: String, line: UInt = #line) {
+    private func assertTypeIs<T: UseCases.`Type`>(_ input: String, _ t: T.Type, _ text: String, line: UInt = #line) {
         let result = transformType(input, T.self)
         XCTAssertEqual(result.text, text, line: line)
     }
 
-    private func transformType<T: UseCasesType>(_ input: String, _ t: T.Type) -> T {
+    private func transformType<T: UseCases.`Type`>(_ input: String, _ t: T.Type) -> T {
         let type = try! ParserTestHelper.parseType(input)
         return MemberTransformingVisitor.transformType(type, resolver: resolver) as! T
     }
@@ -190,7 +190,7 @@ class MemberTransformingVisitorTests: XCTestCase {
 
     func test_visit_shouldTransformReturningProtocolMethod() {
         let method = transformMethod("func a() -> A")
-        XCTAssert(method.returnType.originalType is UseCasesTypeIdentifier)
+        XCTAssert(method.returnType.originalType is UseCases.TypeIdentifier)
         XCTAssertEqual(method.returnType.originalType.text, "A")
         XCTAssertEqual(method.returnType.resolvedType.text, "A")
     }
@@ -232,7 +232,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         assertMethodIsNotTransformed("final func a()")
     }
 
-    private func transformMethod(_ input: String) -> UseCasesMethod {
+    private func transformMethod(_ input: String) -> UseCases.Method {
         let method = try! ParserTestHelper.parseFunctionDeclaration(input)
         method.accept(visitor)
         return visitor.methods[0]
@@ -244,7 +244,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssert(visitor.methods.isEmpty, line: line)
     }
 
-    private func assertParameter(_ parameter: UseCasesParameter, externalName: String? = nil, internalName: String, type: String, isEscaping: Bool = false, line: UInt = #line) {
+    private func assertParameter(_ parameter: UseCases.Parameter, externalName: String? = nil, internalName: String, type: String, isEscaping: Bool = false, line: UInt = #line) {
         XCTAssertEqual(parameter.externalName, externalName, line: line)
         XCTAssertEqual(parameter.internalName, internalName, line: line)
         XCTAssertEqual(parameter.type.originalType.text, type, line: line)
@@ -269,10 +269,10 @@ class MemberTransformingVisitorTests: XCTestCase {
 
     func test_visit_shouldTransformComplexTypeProtocolProperty() {
         let property = transformProperty("var a: [B] { get set }")
-        XCTAssert(property.type is UseCasesArrayType)
-        let array = property.type as! UseCasesArrayType
+        XCTAssert(property.type is UseCases.ArrayType)
+        let array = property.type as! UseCases.ArrayType
         XCTAssertEqual(array.text, "[B]")
-        XCTAssert(array.type is UseCasesTypeIdentifier)
+        XCTAssert(array.type is UseCases.TypeIdentifier)
         XCTAssertEqual(array.type.text, "B")
     }
 
@@ -345,16 +345,16 @@ class MemberTransformingVisitorTests: XCTestCase {
     }
 
     func test_visit_shouldFindArrayLiteralType() {
-        let property: UseCasesType = transformProperty("class A {}\nvar a = [A]()").type
+        let property: UseCases.`Type` = transformProperty("class A {}\nvar a = [A]()").type
         XCTAssertEqual(property.text, "[A]")
-        XCTAssert(property is UseCasesArrayType)
+        XCTAssert(property is UseCases.ArrayType)
     }
 
     func test_visit_shouldAppendTypeAnnotationToSignatureWhenInferredType() {
         XCTAssertEqual(transformProperty("var a = 0").declarationText, "var a: Int")
     }
 
-    private func transformProperty(_ input: String) -> UseCasesProperty {
+    private func transformProperty(_ input: String) -> UseCases.Property {
         let file = try! ParserTestHelper.parseFile(from: input)
         let property = file.variableDeclarations[0]
         property.accept(visitor)
@@ -462,7 +462,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssertEqual(sub.declarationText, "subscript() -> Int")
     }
 
-    private func getReadOnlySubscriptProtocol() -> Element {
+    private func getReadOnlySubscriptProtocol() -> AST.Element {
         return getFirstSubscript(fromFile: """
         protocol TestProtocol {
         subscript() -> Int { get }
@@ -476,7 +476,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssert(sub.isWritable)
     }
 
-    private func getReadWriteSubscriptProtocol() -> Element {
+    private func getReadWriteSubscriptProtocol() -> AST.Element {
         return getFirstSubscript(fromFile: """
         protocol TestProtocol {
         subscript() -> Int { get set }
@@ -491,7 +491,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssertEqual(sub.declarationText, "subscript() -> Int")
     }
 
-    private func getReadWriteClassSubscript() -> Element {
+    private func getReadWriteClassSubscript() -> AST.Element {
         return getFirstSubscript(fromFile: """
         class TestClass {
         subscript() -> Int { get {} set {} }
@@ -504,7 +504,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssert(visitor!.subscripts.isEmpty)
     }
 
-    private func getPrivateSubscript() -> Element {
+    private func getPrivateSubscript() -> AST.Element {
         return getFirstSubscript(fromFile: """
         class TestClass {
         private subscript() -> Int { get {} set {} }
@@ -517,7 +517,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssert(visitor!.subscripts.isEmpty)
     }
 
-    private func getFilePrivateSubscript() -> Element {
+    private func getFilePrivateSubscript() -> AST.Element {
         return getFirstSubscript(fromFile: """
         class TestClass {
         fileprivate subscript() -> Int { get {} set {} }
@@ -531,7 +531,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssertFalse(sub.isWritable)
     }
 
-    private func getPrivateSetSubscript() -> Element {
+    private func getPrivateSetSubscript() -> AST.Element {
         return getFirstSubscript(fromFile: """
         class TestClass {
         private(set) subscript() -> Int { get {} set {} }
@@ -545,7 +545,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssertFalse(sub.isWritable)
     }
 
-    private func getFilePrivateSetSubscript() -> Element {
+    private func getFilePrivateSetSubscript() -> AST.Element {
         return getFirstSubscript(fromFile: """
         class TestClass {
         fileprivate(set) subscript() -> Int { get {} set {} }
@@ -563,7 +563,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         XCTAssertEqual(sub.declarationText, "subscript(a: A, b c: [B]) -> Int")
     }
 
-    private func getParameterSubscriptProtocol() -> Element {
+    private func getParameterSubscriptProtocol() -> AST.Element {
         return getFirstSubscript(fromFile: """
         protocol TestProtocol {
         subscript(a: A, b c: [B]) -> Int { get }
@@ -587,7 +587,7 @@ class MemberTransformingVisitorTests: XCTestCase {
 
     // MARK: - Helpers
 
-    private func getMethodProtocol() -> Element {
+    private func getMethodProtocol() -> AST.Element {
         let file = try! ParserTestHelper.parseFile(from: getMethodProtocolString())
         return file.typeDeclarations[0]
     }
@@ -602,7 +602,7 @@ class MemberTransformingVisitorTests: XCTestCase {
         """
     }
 
-    private func getPropertyProtocol() -> Element {
+    private func getPropertyProtocol() -> AST.Element {
         let file = try! ParserTestHelper.parseFile(from: getPropertyProtocolString())
         return file.typeDeclarations[0]
     }
@@ -617,12 +617,12 @@ class MemberTransformingVisitorTests: XCTestCase {
         """
     }
 
-    private func getParametersString(_ method: UseCasesMethod) -> String {
+    private func getParametersString(_ method: UseCases.Method) -> String {
         let parameters = method.parametersList
         return parameters.map { $0.text }.joined(separator: ", ")
     }
 
-    private func getInitializerProtocol() -> Element {
+    private func getInitializerProtocol() -> AST.Element {
         let file = try! ParserTestHelper.parseFile(from: getInitializerProtocolString())
         return file.typeDeclarations[0]
     }

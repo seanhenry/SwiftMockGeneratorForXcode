@@ -72,7 +72,7 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
         XCTAssertNil(transformed.inheritedClass)
     }
 
-    private func transformProtocols(_ string: String) -> [UseCasesProtocol] {
+    private func transformProtocols(_ string: String) -> [UseCases.`Protocol`] {
         let p = try! ParserTestHelper.parseFile(from: string).typeDeclarations[0]
         let protocols = TypeDeclarationTransformingVisitor.transformMock(p, resolver: resolver).protocols
         return protocols
@@ -127,7 +127,7 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
         XCTAssertEqual(inherited?.properties.isEmpty, true)
         XCTAssertEqual(inherited?.initializers.isEmpty, true)
         XCTAssertEqual(inherited?.methods.isEmpty, true)
-        XCTAssertNil(inherited?.inherited)
+        XCTAssertNil(inherited?.inheritedClass)
     }
 
     func test_shouldTransformClass() {
@@ -137,14 +137,14 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
         XCTAssertEqual(inherited?.properties.count, 1)
         XCTAssertEqual(inherited?.initializers.count, 1)
         XCTAssertEqual(inherited?.methods.count, 1)
-        XCTAssertNil(inherited?.inherited)
+        XCTAssertNil(inherited?.inheritedClass)
     }
 
     func test_shouldTransformClassWithInheritedClass() {
         let transformed = transform(getInheritanceClassString())
         let inherited = transformed.inheritedClass
         XCTAssertNotNil(inherited)
-        XCTAssertNotNil(inherited?.inherited)
+        XCTAssertNotNil(inherited?.inheritedClass)
     }
 
     func test_shouldIgnoreNSObjectAndReplaceItWithClassWithEmptyInitializer() {
@@ -163,7 +163,7 @@ class TypeDeclarationTransformingVisitorTests: XCTestCase {
         XCTAssertEqual(protocols.count, 0)
     }
 
-    private func transform(_ string: String) -> UseCasesMockClass {
+    private func transform(_ string: String) -> MockClass {
         let mockClass = try! ParserTestHelper.parseFile(from: string).typeDeclarations[0]
         return TypeDeclarationTransformingVisitor.transformMock(mockClass, resolver: resolver)
     }

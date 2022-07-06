@@ -1,5 +1,4 @@
 import XCTest
-import UseCases
 import AST
 import TestHelper
 import Resolver

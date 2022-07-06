@@ -4,20 +4,20 @@ import UseCases
 
 class VariableTypeResolver: RecursiveElementVisitor {
 
-  public class func resolve(_ element: Element?, resolver: Resolver) -> UseCasesType? {
+  public class func resolve(_ element: AST.Element?, resolver: Resolver) -> UseCases.`Type`? {
     let visitor = VariableTypeResolver(resolver: resolver)
     element?.accept(visitor)
     return visitor.type
   }
 
   let resolver: Resolver
-  var type: UseCasesType?
+  var type: UseCases.`Type`?
 
   init(resolver: Resolver) {
     self.resolver = resolver
   }
 
-  private func resolve(_ element: Element?) -> UseCasesType? {
+  private func resolve(_ element: AST.Element?) -> UseCases.`Type`? {
     return VariableTypeResolver.resolve(element, resolver: resolver)
   }
 
@@ -43,11 +43,11 @@ class VariableTypeResolver: RecursiveElementVisitor {
       .last
   }
 
-  override func visitType(_ element: Type) {
+  override func visitType(_ element: AST.`Type`) {
     transformType(element)
   }
 
-  private func transformType(_ element: Element?) {
+  private func transformType(_ element: AST.Element?) {
     if let element = element {
       type = MemberTransformingVisitor.transformType(element, resolver: resolver)
     }
@@ -74,7 +74,7 @@ class VariableTypeResolver: RecursiveElementVisitor {
       type = nil
       return
     }
-    type = UseCasesArrayType(type: value, useVerboseSyntax: false)
+    type = ArrayType(type: value, useVerboseSyntax: false)
   }
 
   override func visitDictionaryLiteralExpression(_ element: DictionaryLiteralExpression) {
@@ -84,7 +84,7 @@ class VariableTypeResolver: RecursiveElementVisitor {
       type = nil
       return
     }
-    type = UseCasesDictionaryType(keyType: key, valueType: value, useVerboseSyntax: false)
+    type = DictionaryType(keyType: key, valueType: value, useVerboseSyntax: false)
   }
 
   override func visitFunctionCallExpression(_ element: FunctionCallExpression) {
@@ -115,11 +115,11 @@ class VariableTypeResolver: RecursiveElementVisitor {
 
   override func visitTupleExpression(_ element: TupleExpression) {
     let resolved = element.tupleElementList.elements.map {
-      resolve($0) ?? UseCasesTypeIdentifier(identifier: "Any")
+      resolve($0) ?? UseCases.TypeIdentifier(identifier: "Any")
     }.map {
-      UseCasesTupleTypeTupleElement(label: nil, type: $0)
+      TupleType.TupleElement(label: nil, type: $0)
     }
-    type = UseCasesTupleType(tupleElements: resolved)
+    type = TupleType(tupleElements: resolved)
   }
 
   override func visitClosureExpression(_ element: ClosureExpression) {
@@ -149,7 +149,7 @@ class VariableTypeResolver: RecursiveElementVisitor {
     super.visitBinaryExpression(element)
   }
 
-  override func visitTypeDeclaration(_ element: TypeDeclaration) {
+  override func visitTypeDeclaration(_ element: AST.TypeDeclaration) {
     setTypeIdentifier(element.name)
   }
 
@@ -163,7 +163,7 @@ class VariableTypeResolver: RecursiveElementVisitor {
 
   private func setTypeIdentifier(_ name: String?) {
     if let name = name {
-      type = UseCasesTypeIdentifier(identifier: name)
+      type = UseCases.TypeIdentifier(identifier: name)
     }
   }
 }

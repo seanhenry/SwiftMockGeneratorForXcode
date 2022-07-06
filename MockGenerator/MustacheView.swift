@@ -2,7 +2,7 @@ import UseCases
 import GRMustache
 import Foundation
 
-class MustacheView: NSObject, UseCasesMockView {
+class MustacheView: NSObject, MockView {
 
     private(set) var result = ""
     private let templateName: String
@@ -11,7 +11,7 @@ class MustacheView: NSObject, UseCasesMockView {
         self.templateName = templateName
     }
 
-    func render(model: UseCasesMockViewModel) {
+    func render(model: MockViewModel) {
         do {
             let template = try GRMustacheTemplate(fromResource: templateName, bundle: Bundle(for: MustacheView.self))
             result = try template.renderObject(model.toDictionary())
@@ -19,7 +19,7 @@ class MustacheView: NSObject, UseCasesMockView {
     }
 }
 
-extension UseCasesMockViewModel {
+extension MockViewModel {
 
     fileprivate func toDictionary() -> NSDictionary {
         let dictionary = NSMutableDictionary()
@@ -34,7 +34,7 @@ extension UseCasesMockViewModel {
     }
 }
 
-extension UseCasesInitializerViewModel {
+extension InitializerViewModel {
 
     fileprivate func toDictionary() -> NSDictionary {
         let dictionary = NSMutableDictionary()
@@ -44,7 +44,7 @@ extension UseCasesInitializerViewModel {
     }
 }
 
-extension UseCasesPropertyViewModel {
+extension PropertyViewModel {
 
     fileprivate func toDictionary() -> NSDictionary {
         let dictionary = NSMutableDictionary()
@@ -64,7 +64,7 @@ extension UseCasesPropertyViewModel {
     }
 }
 
-extension UseCasesMethodViewModel {
+extension MethodViewModel {
 
     fileprivate func toDictionary() -> NSDictionary {
         let dictionary = NSMutableDictionary()
@@ -87,7 +87,7 @@ extension UseCasesMethodViewModel {
     }
 }
 
-extension UseCasesClosureParameterViewModel {
+extension ClosureParameterViewModel {
 
     fileprivate func toDictionary() -> NSDictionary {
         let dictionary = NSMutableDictionary()
@@ -100,7 +100,7 @@ extension UseCasesClosureParameterViewModel {
     }
 }
 
-extension UseCasesParametersViewModel {
+extension ParametersViewModel {
 
     fileprivate func toDictionary() -> NSDictionary {
         let dictionary = NSMutableDictionary()
@@ -110,7 +110,7 @@ extension UseCasesParametersViewModel {
     }
 }
 
-extension UseCasesResultTypeViewModel {
+extension ResultTypeViewModel {
 
     fileprivate func toDictionary() -> NSDictionary {
         let dictionary = NSMutableDictionary()
@@ -126,7 +126,7 @@ extension UseCasesResultTypeViewModel {
     }
 }
 
-extension UseCasesSubscriptViewModel {
+extension SubscriptViewModel {
 
     fileprivate func toDictionary() -> NSDictionary {
         let dictionary = NSMutableDictionary()
