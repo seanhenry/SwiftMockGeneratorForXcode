@@ -4,6 +4,12 @@
     }
 {{/initializer}}
 
+{{#publicInitializer}}
+    {{scope}} init() {
+        fatalError("Not implemented")
+    }
+{{/publicInitializer}}
+
 {{#property}}
 
     {{#hasSetter}}

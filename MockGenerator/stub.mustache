@@ -4,6 +4,12 @@
     }
 {{/initializer}}
 
+{{#publicInitializer}}
+    {{scope}} init() {
+        fatalError("Not implemented")
+    }
+{{/publicInitializer}}
+
 {{#property}}
 
     {{scope}} var stubbed{{capitalizedUniqueName}}: {{{iuoType}}} {{{defaultValueAssignment}}}

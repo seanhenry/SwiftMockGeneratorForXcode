@@ -5,6 +5,8 @@ import AST
 
 class MustacheView: NSObject, MockView {
 
+    typealias ModelDictionary = [String: Any]
+    
     private(set) var result = ""
     private let templateName: String
     private let element: AST.TypeDeclaration
@@ -17,24 +19,36 @@ class MustacheView: NSObject, MockView {
     func render(model: MockViewModel) {
         do {
             let template = try GRMustacheTemplate(fromResource: templateName, bundle: Bundle(for: MustacheView.self))
-            var dict = model.toDictionary().mutableCopy() as! NSMutableDictionary
-            dict["scope"] = getScope()
+            let dict = injectAdditionalValues(model.toDictionary() as! ModelDictionary)
             result = try template.renderObject(dict)
         } catch { } // ignored
     }
     
-    private func getScope() -> String? {
-        if element.hasOpenModifier {
-            return "open"
-        } else if element.hasPublicModifier {
-            return "public"
-        } else if element.hasInternalModifier {
-            return "internal"
-        } else if element.hasPrivateModifier || element.hasFilePrivateModifier {
-            return "fileprivate"
-        } else {
-            return nil
+    private func injectAdditionalValues(_ dict: ModelDictionary) -> ModelDictionary {
+        let scope: String? = {
+            if element.hasOpenModifier {
+                return "open"
+            } else if element.hasPublicModifier {
+                return "public"
+            } else if element.hasInternalModifier {
+                return "internal"
+            } else if element.hasPrivateModifier || element.hasFilePrivateModifier {
+                return "fileprivate"
+            } else {
+                return nil
+            }
+        }()
+        
+        var result = dict
+        result["scope"] = scope
+        
+        let initializers = (dict["initializer"] as? [Any]) ?? []
+        
+        if (scope == "open" || scope == "public") && initializers.isEmpty {
+            result["publicInitializer"] = NSNumber(true)
         }
+            
+        return result
     }
 }
 
