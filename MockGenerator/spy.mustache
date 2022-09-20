@@ -1,5 +1,5 @@
 {{#initializer}}
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
     {{{initializerCall}}}
     }
 {{/initializer}}
@@ -16,7 +16,7 @@
     {{scope}} var invoked{{capitalizedUniqueName}}GetterCount = 0
     {{scope}} var stubbed{{capitalizedUniqueName}}: {{{iuoType}}} {{{defaultValueAssignment}}}
 
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
 
     {{#hasSetter}}
         set {
@@ -61,7 +61,7 @@
         {{scope}} var invoked{{capitalizedUniqueName}}List = [{{{resultType.type}}}]()
     {{/hasSetter}}
 
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
 
     {{#hasSetter}}
         set {
@@ -124,7 +124,7 @@
         {{scope}} var stubbed{{capitalizedUniqueName}}Result: {{{iuoType}}} {{{defaultValueAssignment}}}
     {{/resultType}}
 
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
 
     invoked{{capitalizedUniqueName}} = true
     invoked{{capitalizedUniqueName}}Count += 1

@@ -1,5 +1,5 @@
 {{#initializer}}
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
     {{{initializerCall}}}
     }
 {{/initializer}}
@@ -9,7 +9,7 @@
 
     {{#hasSetter}}
 
-        {{{declarationText}}} {
+        {{scope}} {{{declarationText}}} {
         set {
         }
         get {
@@ -21,7 +21,7 @@
     {{/hasSetter}}
     {{^hasSetter}}
 
-        {{{declarationText}}} {
+        {{scope}} {{{declarationText}}} {
         {{#defaultValue}}return {{{defaultValue}}}{{/defaultValue}}
         {{^defaultValue}}fatalError("Dummy implementation"){{/defaultValue}}
         }
@@ -32,7 +32,7 @@
 
 {{#subscript}}
 
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
 
     {{#hasSetter}}
         set {
@@ -51,7 +51,7 @@
 
 {{#method}}
 
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
 
     {{#resultType}}
         {{#defaultValue}}return {{{defaultValue}}}{{/defaultValue}}
