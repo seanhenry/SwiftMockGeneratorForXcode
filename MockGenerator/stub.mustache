@@ -1,14 +1,20 @@
 {{#initializer}}
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
     {{{initializerCall}}}
     }
 {{/initializer}}
+
+{{#publicInitializer}}
+    {{scope}} init() {
+        fatalError("Not implemented")
+    }
+{{/publicInitializer}}
 
 {{#property}}
 
     {{scope}} var stubbed{{capitalizedUniqueName}}: {{{iuoType}}} {{{defaultValueAssignment}}}
 
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
 
     {{#hasSetter}}
         set {
@@ -29,7 +35,7 @@
 
     {{scope}} var stubbed{{capitalizedUniqueName}}Result: {{{resultType.iuoType}}} {{{resultType.defaultValueAssignment}}}
 
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
 
     {{#hasSetter}}
         set {
@@ -51,7 +57,7 @@
         {{scope}} var stubbed{{capitalizedUniqueName}}Result: {{{iuoType}}} {{{defaultValueAssignment}}}
     {{/resultType}}
 
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
 
     {{#resultType}}
         return stubbed{{capitalizedUniqueName}}Result{{returnCastStatement}}

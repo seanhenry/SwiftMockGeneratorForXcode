@@ -18,7 +18,7 @@ extension MockGenerator {
         guard !isEmpty(mockClass: mockClass) else {
             throw error("Could not find a class or protocol on \(element.name)")
         }
-        let mockLines = getMockBody(from: mockClass)
+        let mockLines = getMockBody(from: mockClass, element: element)
         guard !mockLines.isEmpty else {
             throw error("Found inherited types but there was nothing to mock")
         }
@@ -40,9 +40,9 @@ extension MockGenerator {
         return mockClass.protocols.isEmpty && mockClass.inheritedClass == nil
     }
 
-    private func getMockBody(from mockClass: MockClass) -> [String] {
+    private func getMockBody(from mockClass: MockClass, element: TypeDeclaration) -> [String] {
         let view = CallbackMockView { [templateName] model in
-            let view = MustacheView(templateName: templateName)
+            let view = MustacheView(templateName: templateName, element: element)
             view.render(model: model)
             return view.result
         }

@@ -1,8 +1,14 @@
 {{#initializer}}
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
     {{{initializerCall}}}
     }
 {{/initializer}}
+
+{{#publicInitializer}}
+    {{scope}} init() {
+        fatalError("Not implemented")
+    }
+{{/publicInitializer}}
 
 {{#property}}
 
@@ -20,7 +26,7 @@
         {{scope}} var forwardToOriginal{{capitalizedUniqueName}} = false
     {{/isImplemented}}
 
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
 
     {{#hasSetter}}
         set {
@@ -85,7 +91,7 @@
         {{scope}} var forwardToOriginal{{capitalizedUniqueName}} = false
     {{/isImplemented}}
 
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
 
     {{#hasSetter}}
         set {
@@ -167,7 +173,7 @@
         {{scope}} var forwardToOriginal{{capitalizedUniqueName}} = false
     {{/isImplemented}}
 
-    {{{declarationText}}} {
+    {{scope}} {{{declarationText}}} {
 
     invoked{{capitalizedUniqueName}} = true
     invoked{{capitalizedUniqueName}}Count += 1

@@ -1,21 +1,54 @@
 import UseCases
 import GRMustache
 import Foundation
+import AST
 
 class MustacheView: NSObject, MockView {
 
+    typealias ModelDictionary = [String: Any]
+    
     private(set) var result = ""
     private let templateName: String
+    private let element: AST.TypeDeclaration
 
-    init(templateName: String) {
+    init(templateName: String, element: AST.TypeDeclaration) {
         self.templateName = templateName
+        self.element = element
     }
 
     func render(model: MockViewModel) {
         do {
             let template = try GRMustacheTemplate(fromResource: templateName, bundle: Bundle(for: MustacheView.self))
-            result = try template.renderObject(model.toDictionary())
+            let dict = injectAdditionalValues(model.toDictionary() as! ModelDictionary)
+            result = try template.renderObject(dict)
         } catch { } // ignored
+    }
+    
+    private func injectAdditionalValues(_ dict: ModelDictionary) -> ModelDictionary {
+        let scope: String? = {
+            if element.hasOpenModifier {
+                return "open"
+            } else if element.hasPublicModifier {
+                return "public"
+            } else if element.hasInternalModifier {
+                return "internal"
+            } else if element.hasPrivateModifier || element.hasFilePrivateModifier {
+                return "fileprivate"
+            } else {
+                return nil
+            }
+        }()
+        
+        var result = dict
+        result["scope"] = scope
+        
+        let initializers = (dict["initializer"] as? [Any]) ?? []
+        
+        if (scope == "open" || scope == "public") && initializers.isEmpty {
+            result["publicInitializer"] = NSNumber(true)
+        }
+            
+        return result
     }
 }
 
@@ -27,9 +60,6 @@ extension MockViewModel {
         dictionary["property"] = property.map { $0.toDictionary() }
         dictionary["method"] = method.map { $0.toDictionary() }
         dictionary["subscript"] = `subscript`.map { $0.toDictionary() }
-        if let scope = scope {
-            dictionary["scope"] = scope
-        }
         return dictionary
     }
 }
